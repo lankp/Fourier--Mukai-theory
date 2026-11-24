@@ -18,6 +18,8 @@ import FourierMukai.Scheme.Statements
 import FourierMukai.Scheme.Duality
 import FourierMukai.Scheme.PerfectRing
 import FourierMukai.Scheme.Affine
+import FourierMukai.Scheme.AffineDiagonal
+import FourierMukai.Scheme.Perfect
 import FourierMukai.Paper.Statements
 import FourierMukai.Paper.InterfaceAudit
 import FourierMukai.Examples.Identity
