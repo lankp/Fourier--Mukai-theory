@@ -96,9 +96,15 @@ library, and the build configuration here (`lean-toolchain`, the `[leanOptions]`
 block, the Mathlib pin) is copied from it so the two libraries can be developed
 side by side.
 
-* `lean-toolchain`: `leanprover/lean4:v4.35.0`.
-* `lakefile.toml`: requires Mathlib at `v4.35.0` and `Stacks` from
-  `https://github.com/AxiomMath/Stacks`.
+* `lean-toolchain`: `leanprover/lean4:v4.33.1`, the toolchain every module in
+  this repository has actually been verified against.
+* `lakefile.toml`: requires Mathlib at `v4.33.1`; it no longer requires the
+  Stacks library, which is a person-months port at this toolchain (see
+  [`results/STACKS_PORTABILITY.md`](results/STACKS_PORTABILITY.md)).
+* In the verification environment there is no Lake build: `/opt/mathlib` is a
+  prebuilt read-only Mathlib on `LEAN_PATH`, and `scripts/build.sh` calls `lean`
+  directly. That script is the reproduced build; the Lake configuration is kept
+  for users with a writable setup and is not exercised here.
 
 With [elan](https://github.com/leanprover/elan) and Lake:
 

@@ -34,6 +34,22 @@ is rebuilt for schemes.
   Stacks 09SR); it is stated for bare triangulated categories with a
   recollement, so it applies to `D_qc(X)` without change.
 
+## Decided sequencing
+
+**B'' now, A in parallel, B' medium term.**
+
+* **B''** — affine Noetherian schemes first (`X = Spec A`, `A` Noetherian): the
+  dictionary `D_qc(Spec A) ≃ D(A-Mod)`, perfect complexes for rings, and GL26's
+  Lemma 2.25 (and one further target) proved in the affine model with the
+  projection formula as data.  Run `smwuz1thx`.
+* **A** — the scheme-level foundational layer in parallel (`D(X)`, `D_qc`,
+  `Perf(X)`, open-immersion functors, `RHom`/`⊗^L`/`f^!` interfaces, and the
+  scheme statement layer).  Run `smwuyku7t`.  The three blocking instances that
+  A still needs (`EnoughInjectives X.Modules`, `MonoidalCategory X.Modules`,
+  `QCoh` abelian) are the gate for anything beyond the interfaces.
+* **B'** — separated Noetherian schemes, with GLMP25 Theorem 6.11 (preprint) as
+  the scheme form of GL26 Theorem 10.13, once B'' and A have landed.
+
 ## First goal
 
 GL26 **Theorem 1.3** (`E` is `f`-perfect ⟺ `E ⊗^L Lf^*A ∈ D^b_coh` for all

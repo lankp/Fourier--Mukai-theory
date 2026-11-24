@@ -3,7 +3,8 @@ version = "0.1.0"
 defaultTargets = ["FourierMukai", "WeakApprox"]
 lintDriver = "batteries/runLinter"
 
-# Mirrors the build configuration of https://github.com/AxiomMath/Stacks.
+# The [leanOptions] block is kept from the AxiomMath/Stacks build configuration:
+# it is what every module in this repository has been checked against.
 [leanOptions]
 pp.unicode.fun = true
 autoImplicit = false
@@ -14,16 +15,15 @@ weak.linter.mathlibStandardSet = true
 weak.linter.style.header = false
 weak.linter.overlappingInstances = false
 
+# This pin follows the toolchain in `lean-toolchain` (Lean 4.33.1), which is the
+# one every module here has been verified against.  Note that there is no Lake
+# build in the verification environment: `/opt/mathlib` is a prebuilt, read-only
+# Mathlib checked out on LEAN_PATH, and `scripts/build.sh` calls `lean` directly.
+# The Lake configuration is therefore not exercised there; see `README.md`.
 [[require]]
 name = "mathlib"
 scope = "leanprover-community"
-rev = "v4.35.0"
-
-# The project builds on top of the Axiom Math formalization of the Stacks Project.
-[[require]]
-name = "Stacks"
-git = "https://github.com/AxiomMath/Stacks"
-rev = "main"
+rev = "v4.33.1"
 
 [[lean_lib]]
 name = "FourierMukai"
