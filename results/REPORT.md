@@ -420,7 +420,11 @@ is false without the finite-generation/boundedness hypotheses (compare Example
 2.17).
 
 **(h) Dependence on preprints.**  Theorem 1.2(1) uses weak approximability of
-`D_qc` for algebraic spaces [Lank, arXiv 2610.22161, Cor. 1.2], and Remark 2.6
+`D_qc` for algebraic spaces [Lank, arXiv 2610.22161, Cor. 1.2].  The *categorical*
+layer of that preprint is now formalized in this repository (`WeakApprox/`, see
+`results/WEAK_APPROX.md`), including its Theorem 1.1 in both directions; what
+remains external on that side is Stacks Tag 09SR and the geometric Corollary 1.2.
+Remark 2.6
 uses [Canonaco–Haesemeyer–Neeman–Stellari, arXiv 2402.04605, Thm. B]; Theorem 1.6
 rests on the companion [GLMP25, arXiv 2512.16503] and on [Neeman 2023]; §11 uses
 [HLS09] and the notion of Gorenstein morphism.  A formalization should record
@@ -455,20 +459,31 @@ look before formalizing):
   but the indices in the display (`f'_1` for the tensor, `f'_2` for the
   pushforward) are worth checking once.
 
-### 5.4 Request to the authors: weak approximability
+### 5.4 Weak approximability: status
 
 To formalize Remark 2.6 (the passage between equivalences on `D_qc`, `D^-_coh`,
 `D^b_coh` and `Perf`) and the part of §12 that uses it, the formalization needs
 the notion of a weakly approximable triangulated category and the gluing theorem.
-Please attach the LaTeX of
+The preprint
 
-* P. Lank, *Gluing weak approximability along recollements* (arXiv:2610.22161),
-  in particular Corollary 1.2, and
-* the definition of weak approximability from Neeman, *Triangulated categories
-  with a single compact generator, and two Brown representability theorems*
-  (arXiv/Invent. Math. 2026) and from Canonaco–Haesemeyer–Neeman–Stellari,
-  *The passage among the subcategories of weakly approximable triangulated
-  categories* (arXiv:2402.04605, Definition 10.1.1).
+* P. Lank, *Gluing weak approximability along recollements*
+  (arXiv:2610.22161)
+
+is now available, and its categorical layer is formalized in `WeakApprox/`:
+§2–§4 and Theorem 1.1, together with the compactness theory of §2.1.5 in the
+`AddCommGrpCat` rendering that the paper itself uses.  The one external input is
+Stacks Tag 09SR (Ravenel–Neeman), which is required only to pass from the
+paper's hypotheses to Setup 4.4; it is recorded, with everything formalized of
+it, in `WeakApprox/NineSR.lean` and `results/WEAK_APPROX.md`.
+
+Two things are still missing for GL26's use of the preprint:
+
+* Corollary 1.2 of the preprint, i.e. weak approximability of `D_qc,S(X)` for a
+  quasi-compact quasi-separated algebraic space with quasi-finite separated
+  diagonal.  That is a geometric statement about algebraic spaces and needs the
+  Stacks library plus Hall–Rydh's induction principle.
+* the identification of the abstract `t`-structure of the formalization with the
+  standard one on `D_qc`, again geometric.
 
 For the current sprint (mate calculus, generation, thickness) none of this is
 needed: those results are independent of weak approximability.  It becomes
