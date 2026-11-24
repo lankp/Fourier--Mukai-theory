@@ -1,5 +1,5 @@
 /-
-Copyright (c) 2026 Formalization of Lank--Pauwels--Peng.
+Copyright (c) 2026 Formalization of Lank--Pauwels.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import Mathlib.CategoryTheory.Triangulated.Subcategory
@@ -14,7 +14,7 @@ import Mathlib.CategoryTheory.Generator.Basic
 
 This file holds the definitions of §2.1.2 and §2.1.5 of
 
-  P. Lank, B. Pauwels, F. Peng, *Gluing weak approximability along recollements*.
+  P. Lank, B. Pauwels, *Gluing weak approximability along recollements*.
 
 The development lives in its own tree (`WeakApprox/`) so that it can be moved,
 unchanged, into a repository of its own.  See `results/WEAK_APPROX.md` for the

@@ -1,5 +1,5 @@
 /-
-Copyright (c) 2026 Formalization of Lank--Pauwels--Peng.
+Copyright (c) 2026 Formalization of Lank--Pauwels.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import WeakApprox.Basic
@@ -10,7 +10,7 @@ import Mathlib.CategoryTheory.Triangulated.TStructure.TruncLTGE
 
 Lemma 3.3 of
 
-  P. Lank, B. Pauwels, F. Peng, *Gluing weak approximability along recollements*:
+  P. Lank, B. Pauwels, *Gluing weak approximability along recollements*:
 in a distinguished triangle `E ⟶ F ⟶ D ⟶ E⟦1⟧` with `F ∈ T^{≤0}` and
 `D ∈ T^{≤-m}` for some `m ≥ 1`, one has `E ∈ T^{≤0}`.
 

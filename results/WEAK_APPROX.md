@@ -1,11 +1,9 @@
 # Formalizing *Gluing weak approximability along recollements*
 
-P. Lank, B. Pauwels — 22 pages (November 2026 version; an earlier 27-page version
-had F. Peng as a coauthor and treated algebraic stacks).  The current version
-treats quasi-compact quasi-separated **algebraic spaces**, and Corollary 1.2 is
-proved from the induction principle for algebraic spaces (Stacks Tag 09IT) rather
-than from the stack version.  This note is the blueprint for the Lean development
-of the paper, in `WeakApprox/`.
+P. Lank, B. Pauwels — 22 pages, November 2026.  It treats quasi-compact
+quasi-separated **algebraic spaces**, and Corollary 1.2 is proved from the
+induction principle for algebraic spaces (Stacks Tag 09IT).  This note is the
+blueprint for the Lean development of the paper, in `WeakApprox/`.
 
 ## 0. What the paper does
 

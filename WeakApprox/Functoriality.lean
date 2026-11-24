@@ -1,5 +1,5 @@
 /-
-Copyright (c) 2026 Formalization of Lank--Pauwels--Peng.
+Copyright (c) 2026 Formalization of Lank--Pauwels.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import WeakApprox.Closure
@@ -10,7 +10,7 @@ import Mathlib.Tactic
 
 Lemma 3.1(3) of
 
-  P. Lank, B. Pauwels, F. Peng, *Gluing weak approximability along recollements*:
+  P. Lank, B. Pauwels, *Gluing weak approximability along recollements*:
 if `F : T ⥤ T'` is exact, preserves small coproducts and `F(H) ∈ ⟨H'⟩^[c,d]`, then
 `F(⟨H⟩^[a,b]) ⊆ ⟨H'⟩^[a+c,b+d]`.
 

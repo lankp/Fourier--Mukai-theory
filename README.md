@@ -9,7 +9,7 @@ algebraic spaces:
    (Section 2.1, Appendix B, and the mate calculus of Section 7), and states its
    main theorems over an interface for the geometric layer.
 2. **Pat Lank, Bregje Pauwels**, *Gluing weak approximability along recollements*
-   (November 2026).  The library `WeakApprox/` formalizes Sections 2 and 3 of that
+   (November 2026; the authorship of the preprint is current as of that version).  The library `WeakApprox/` formalizes Sections 2 and 3 of that
    paper: the closure properties of `⟨H⟩^[a,b]`, the aisle lemma, the vanishing
    criteria, and the definition of weak approximation data.
 

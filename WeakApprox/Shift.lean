@@ -1,5 +1,5 @@
 /-
-Copyright (c) 2026 Formalization of Lank--Pauwels--Peng.
+Copyright (c) 2026 Formalization of Lank--Pauwels.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import WeakApprox.Basic
@@ -9,7 +9,7 @@ import WeakApprox.Basic
 
 Lemma 3.1(2) of
 
-  P. Lank, B. Pauwels, F. Peng, *Gluing weak approximability along recollements*:
+  P. Lank, B. Pauwels, *Gluing weak approximability along recollements*:
 `⟨H⟩^[a,b]⟦s⟧ = ⟨H⟩^[a-s,b-s]`, and `⟨H⟩^[a,b] ⊆ ⟨H⟩^[a',b']` when `a' ≤ a`,
 `b ≤ b'`.
 

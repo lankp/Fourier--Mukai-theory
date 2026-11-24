@@ -1,5 +1,5 @@
 /-
-Copyright (c) 2026 Formalization of Lank--Pauwels--Peng.
+Copyright (c) 2026 Formalization of Lank--Pauwels.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import WeakApprox.Basic
@@ -11,7 +11,7 @@ import Mathlib.CategoryTheory.Limits.Types.Colimits
 
 Lemma 3.1(4) of
 
-  P. Lank, B. Pauwels, F. Peng, *Gluing weak approximability along recollements*:
+  P. Lank, B. Pauwels, *Gluing weak approximability along recollements*:
 if `Hom(H⟦-k⟧, Y) = 0` for all `a ≤ k ≤ b`, then `Hom(X, Y) = 0` for every
 `X ∈ ⟨H⟩^[a,b]`; and, when `H` is compact, the class `{Y : Hom(H, Y) = 0}` is
 closed under small coproducts, extensions and direct summands.  The second part
