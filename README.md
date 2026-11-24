@@ -33,6 +33,18 @@ spaces, `f^×`, `f^!`).  They are formalization targets, not proved theorems; th
 interface and the missing prerequisites are described in
 [`results/REPORT.md`](results/REPORT.md).
 
+## Refocus for schemes (in progress)
+
+The project is being refocused from quasi-compact quasi-separated **algebraic
+spaces** to **Noetherian schemes**, because the weak-approximability input GL26
+needs is a *published* theorem for schemes (Neeman: `D_qc,Z(X)` is weakly
+approximable for `X` quasicompact quasiseparated and `Z` closed with
+quasicompact complement) whereas the algebraic-space version rests on the
+unpublished Corollary 1.2 of the weak-approximability preprint.  The categorical
+layer in `WeakApprox/` is scheme-agnostic and is reused unchanged.  See
+[`results/SCHEMES.md`](results/SCHEMES.md) for the target, the module map of
+`FourierMukai/Scheme/`, and the list of what Mathlib is missing.
+
 ## Other preprints verified along the way
 
 GL26's methodology rests on three bodies of work that are not in the published
