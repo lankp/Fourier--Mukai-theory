@@ -1,11 +1,12 @@
 /- Copyright (c) 2026 Formalization of Lank--Pauwels. Released under Apache 2.0 license as described in the file LICENSE. -/
 import WeakApprox.Lemma43
+import WeakApprox.CompactAb
 import FourierMukai.Prelim.Lemma25
 
 /-!
 # The compact-generator bridge (Stacks 09SR)
 
-This file uses the project's existing `IsCoproductCompact` rendering of
+This file uses the `IsCompactAb` rendering of
 compactness.  It separates the formal consequences of separation from the
 Ravenel--Neeman/Stacks finite-generation theorem.  The latter is represented by
 its final finite-stage retract conclusion; no separation-only proof of that
@@ -48,7 +49,7 @@ that stage in `⟨G⟩`.  This predicate packages exactly that resulting data,
 including the finite envelope stage.  The unresolved input is the homotopy
 colimit/compactness argument, not the closure arguments below. -/
 def IsCompactRetractGenerated (G : C) : Prop :=
-  ∀ X : C, IsCoproductCompact X →
+  ∀ X : C, IsCompactAb X →
     ∃ (n : ℕ) (Y : C), (ObjectProperty.singleton G).triangEnvelopeIter n Y ∧
       Nonempty (Retract X Y)
 
@@ -136,7 +137,7 @@ generation supplied by the Stacks-09SR finite-stage retract input.  This is the
 use form needed by Lemma 4.3. -/
 theorem eventuallyHomZero_of_compact_of_isCompactRetractGenerated {G X Y : C}
     (hG : EventuallyHomZero G G) (hgen : IsCompactRetractGenerated G)
-    (hX : IsCoproductCompact X) (hY : IsCoproductCompact Y) :
+    (hX : IsCompactAb X) (hY : IsCompactAb Y) :
     EventuallyHomZero X Y :=
   eventuallyHomZero_of_compact hG
     (isClassicalGeneratorOnCompacts_of_isCompactRetractGenerated hgen) hX hY

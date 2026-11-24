@@ -3,6 +3,7 @@ Copyright (c) 2026 Formalization of Lank--Pauwels.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import WeakApprox.Recollement
+import WeakApprox.CompactAb
 import WeakApprox.Lemma35
 import FourierMukai.Prelim.Lemma25
 import Mathlib.CategoryTheory.Triangulated.Generators
@@ -183,11 +184,11 @@ coproduct-compact object belongs to the finite thick envelope of `G`.
 This is stronger than the project's `IsGenerator G` separation predicate, and is
 therefore kept as an explicit hypothesis in the two applications below. -/
 def IsClassicalGeneratorOnCompacts (G : C) : Prop :=
-  ∀ X : C, IsCoproductCompact X → (ObjectProperty.singleton G).triangEnvelope X
+  ∀ X : C, IsCompactAb X → (ObjectProperty.singleton G).triangEnvelope X
 
 theorem eventuallyHomZero_of_compact {G X Y : C} (hG : EventuallyHomZero G G)
     (hgen : IsClassicalGeneratorOnCompacts G)
-    (hX : IsCoproductCompact X) (hY : IsCoproductCompact Y) :
+    (hX : IsCompactAb X) (hY : IsCompactAb Y) :
     EventuallyHomZero X Y :=
   eventuallyHomZero_of_mem_triangEnvelope hG (hgen X hX) (hgen Y hY)
 
@@ -312,12 +313,11 @@ variable {DZ : Type uZ} {DD : Type uD} {DU : Type uU}
 
 /-- `j_!` preserves compact objects. Its right adjoint `j^*` preserves small
 coproducts because it is itself a left adjoint (`j^* ⊣ j_*`). -/
-lemma Recollement.isCoproductCompact_jShriek_obj (R : Recollement DZ DD DU)
-    {X : DU} (hX : IsCoproductCompact X) :
-    IsCoproductCompact (R.jShriek.obj X) := by
-  letI (J : Type v) : PreservesColimitsOfShape (Discrete J) R.jStar :=
-    R.jStarAdj.leftAdjoint_preservesColimits.preservesColimitsOfShape
-  exact isCoproductCompact_leftAdjoint_obj R.jShriekAdj hX
+lemma Recollement.isCompactAb_jShriek_obj (R : Recollement DZ DD DU)
+    {X : DU} (hX : IsCompactAb X) :
+    IsCompactAb (R.jShriek.obj X) :=
+  isCompactAb_leftAdjoint_obj' R.jShriekAdj hX
+    (fun _ => R.jStarAdj.leftAdjoint_preservesColimits.preservesColimitsOfShape)
 
 /-- **Lemma 4.3(1).** Under the relative classical-generation hypothesis
 `hgen`, there is a nonnegative `m` with `j^*G' ∈ tU^{≤m}`.
@@ -331,11 +331,11 @@ criterion directly. No preferred-equivalence-class hypothesis is needed. -/
 theorem lemma_4_3_1 (R : Recollement DZ DD DU) (tU : TStructure DU)
     (G' : DD) (GU : DU) (hG' : EventuallyHomZero G' G')
     (hgen : IsClassicalGeneratorOnCompacts G')
-    (hGUcompact : IsCoproductCompact GU) (hGUgen : IsGenerator GU)
+    (hGUcompact : IsCompactAb GU) (hGUgen : IsGenerator GU)
     (hGU0 : tU.le 0 GU) :
     ∃ m : ℤ, 0 ≤ m ∧ tU.le m (R.jStar.obj G') := by
-  have hjCompact : IsCoproductCompact (R.jShriek.obj GU) :=
-    R.isCoproductCompact_jShriek_obj hGUcompact
+  have hjCompact : IsCompactAb (R.jShriek.obj GU) :=
+    R.isCompactAb_jShriek_obj hGUcompact
   have hG'mem : (ObjectProperty.singleton G').triangEnvelope G' :=
     ObjectProperty.le_triangEnvelope _ _ ((ObjectProperty.singleton_iff _ _).2 rfl)
   have he : EventuallyHomZero (R.jShriek.obj GU) G' :=
@@ -357,10 +357,10 @@ theorem lemma_4_3_4 (R : Recollement DZ DD DU) (G' : DD) (GU : DU) (m : ℤ)
     [HasBinaryBiproduct (G'⟦m⟧) (R.jShriek.obj GU)]
     (hG' : EventuallyHomZero G' G')
     (hgen : IsClassicalGeneratorOnCompacts G')
-    (hGUcompact : IsCoproductCompact GU) :
+    (hGUcompact : IsCompactAb GU) :
     EventuallyHomZero (G'⟦m⟧ ⊞ R.jShriek.obj GU) (G'⟦m⟧ ⊞ R.jShriek.obj GU) := by
-  have hjCompact : IsCoproductCompact (R.jShriek.obj GU) :=
-    R.isCoproductCompact_jShriek_obj hGUcompact
+  have hjCompact : IsCompactAb (R.jShriek.obj GU) :=
+    R.isCompactAb_jShriek_obj hGUcompact
   have hG'mem : (ObjectProperty.singleton G').triangEnvelope G' :=
     ObjectProperty.le_triangEnvelope _ _ ((ObjectProperty.singleton_iff _ _).2 rfl)
   have hShift : (ObjectProperty.singleton G').triangEnvelope (G'⟦m⟧) :=

@@ -55,7 +55,7 @@ lemma shiftImage_shiftTail (H : C) (n₀ s : ℤ) :
 
 /-- Covariant Hom-vanishing passes to the coproduct/extension closure of a tail
 of shifts of a compact object. This is the closure step in Lemma 3.5. -/
-theorem hom_zero_of_mem_coprod_shiftTail (H : C) [IsCoproductCompact H] {n₀ : ℤ}
+theorem hom_zero_of_mem_coprod_shiftTail (H : C) [IsCompactAb H] {n₀ : ℤ}
     (h : ∀ n : ℤ, n₀ ≤ n → ∀ f : H ⟶ H⟦n⟧, f = 0)
     {Y : C} (hY : Coprod (shiftTail H n₀) Y) : ∀ f : H ⟶ Y, f = 0 := by
   have hle : Coprod (shiftTail H n₀) ≤ homZeroRight H := by
@@ -75,7 +75,7 @@ Rendering of compact generation: the hypothesis `hgen` is literally
 `t.le 0 = Coprod {H⟦n⟧ | n ≥ 0}`, using the project's inductive `Coprod` and
 `shiftTail`. Compactness is the project's `IsCoproductCompact`. No additional
 coproduct-existence or retract-closure hypothesis is imposed. -/
-theorem lemma_3_5 (t : TStructure C) (H : C) [IsCoproductCompact H] (n₀ : ℤ)
+theorem lemma_3_5 (t : TStructure C) (H : C) [IsCompactAb H] (n₀ : ℤ)
     (hgen : t.le 0 = Coprod (shiftTail H 0))
     (h : ∀ n : ℤ, n₀ ≤ n → ∀ f : H ⟶ H⟦n⟧, f = 0)
     {Y : C} (hY : t.le (-n₀) Y) : ∀ f : H ⟶ Y, f = 0 := by

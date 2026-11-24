@@ -103,14 +103,6 @@ noncomputable def isColimitCofan_of_bijective_abCofanSum {J : Type v} [Decidable
     change m (DFinsupp.sumAddHom (fun j => (c.inj j).hom) x) = _
     simpa only [AddMonoidHom.comp_apply] using DFunLike.congr_fun hm' x
 
-/-- Compactness with values in abelian groups: covariant `Hom(H, -)` preserves
-`Type v`-small coproducts in `AddCommGrpCat`. -/
-class IsCompactAb {C : Type u} [Category.{v} C] [Preadditive C] (H : C) : Prop where
-  preserves (J : Type v) : PreservesColimitsOfShape (Discrete J)
-    (preadditiveCoyoneda.obj (Opposite.op H))
-
-attribute [instance] IsCompactAb.preserves
-
 section CompactAb
 
 variable {C : Type u} [Category.{v} C] [Preadditive C]

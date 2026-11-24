@@ -5,6 +5,8 @@ Released under Apache 2.0 license as described in the file LICENSE.
 import WeakApprox.Basic
 import Mathlib.CategoryTheory.Triangulated.Orthogonal
 import Mathlib.CategoryTheory.Limits.Types.Colimits
+import Mathlib.CategoryTheory.Preadditive.Yoneda.Basic
+import Mathlib.Algebra.Category.Grp.Zero
 
 /-!
 # Lemma 3.1(4): vanishing of `Hom` on the coproduct/extension envelope
@@ -99,15 +101,18 @@ instance homZeroRight_isClosedUnderIsomorphisms (H : C) :
 colimit shape preserved by the Hom functor. -/
 instance homZeroRight_isClosedUnderColimitsOfShape (H : C)
     (J : Type*) [Category* J]
-    [PreservesColimitsOfShape J (coyoneda.obj (.op H))] :
+    [PreservesColimitsOfShape J (preadditiveCoyoneda.obj (.op H))] :
     (homZeroRight H).IsClosedUnderColimitsOfShape J where
   colimitsOfShape_le := by
     rintro Y ⟨p⟩ f
-    obtain ⟨j, g, hg⟩ := Types.jointly_surjective_of_isColimit
-      (isColimitOfPreserves (coyoneda.obj (.op H)) p.isColimit) f
-    rw [← hg]
-    change g ≫ p.ι.app j = 0
-    rw [p.prop_diag_obj j g, zero_comp]
+    let F := p.diag ⋙ preadditiveCoyoneda.obj (.op H)
+    have hF : IsZero F := Functor.isZero F (fun j => by
+      rw [AddCommGrpCat.isZero_iff_subsingleton]
+      exact ⟨fun g h => by rw [p.prop_diag_obj j g, p.prop_diag_obj j h]⟩)
+    have hc : IsColimit ((preadditiveCoyoneda.obj (.op H)).mapCocone p.cocone) :=
+      isColimitOfPreserves (preadditiveCoyoneda.obj (.op H)) p.isColimit
+    have hY : IsZero ((preadditiveCoyoneda.obj (.op H)).obj Y) := hc.isZero_pt hF
+    exact (AddCommGrpCat.subsingleton_of_isZero hY).elim f 0
 
 instance homZeroRight_isTriangulatedClosed₂ (H : C) :
     (homZeroRight H).IsTriangulatedClosed₂ :=
@@ -125,7 +130,7 @@ instance homZeroRight_isStableUnderRetracts (H : C) :
 
 /-- **Lemma 3.1(4), compactness part: coproducts.** For a coproduct-compact
 object `H`, `{Y | Hom(H,Y) = 0}` is closed under small coproducts. -/
-theorem homZeroRight_closedUnderSmallCoproducts (H : C) [IsCoproductCompact H]
+theorem homZeroRight_closedUnderSmallCoproducts (H : C) [IsCompactAb H]
     (J : Type v) : (homZeroRight H).IsClosedUnderColimitsOfShape (Discrete J) :=
   inferInstance
 
@@ -140,7 +145,7 @@ theorem homZeroRight_closedUnderDirectSummands (H : C) :
 /-- **Lemma 3.1(4), compactness part, combined.** If `H` is compact (in the
 coproduct-preserving sense above), then `{Y | Hom(H,Y) = 0}` is closed under
 small coproducts, extensions and direct summands. -/
-theorem homZeroRight_closed (H : C) [IsCoproductCompact H] :
+theorem homZeroRight_closed (H : C) [IsCompactAb H] :
     (∀ J : Type v, (homZeroRight H).IsClosedUnderColimitsOfShape (Discrete J)) ∧
       (homZeroRight H).IsTriangulatedClosed₂ ∧
       (homZeroRight H).IsStableUnderRetracts :=

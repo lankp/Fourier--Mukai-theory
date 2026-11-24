@@ -56,7 +56,7 @@ sufficient input for the reverse envelope membership.  Together with
 input needed to derive self-Hom vanishing for another compact object without
 assuming that vanishing in advance. -/
 theorem eventuallyHomZero_self_of_isClassicalGeneratorOnCompacts
-    (W : WeakApproximationData C) {G' : C} (hG'compact : IsCoproductCompact G')
+    (W : WeakApproximationData C) {G' : C} (hG'compact : IsCompactAb G')
     (hgen : IsClassicalGeneratorOnCompacts W.G) : EventuallyHomZero G' G' :=
   eventuallyHomZero_self_of_mem_triangEnvelope W (hgen G' hG'compact)
 

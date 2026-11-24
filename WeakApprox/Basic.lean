@@ -8,6 +8,7 @@ import Mathlib.CategoryTheory.ObjectProperty.ColimitsClosure
 import Mathlib.CategoryTheory.Limits.Presentation
 import Mathlib.CategoryTheory.ObjectProperty.Retract
 import Mathlib.CategoryTheory.Generator.Basic
+import Mathlib.CategoryTheory.Preadditive.Yoneda.Basic
 
 /-!
 # Basic definitions for *Gluing weak approximability along recollements*
@@ -138,8 +139,26 @@ end Coprod
 def envelope (H : C) (a b : ℤ) : ObjectProperty C :=
   ObjectProperty.retractClosure (Coprod (shiftInterval H a b))
 
-/-- Compactness of `H`: the functor `Hom(H, -)` preserves `Type v`-small
-coproducts. -/
+/-- Compactness of `H` in the paper's sense: the `AddCommGrpCat`-valued functor
+`Hom(H, -)` preserves `Type v`-small coproducts.  This is the notion used by
+`WeakApproximationData` and throughout §4; see `WeakApprox/CompactAb.lean` for
+its API and for the comparison with the strictly stronger `Type`-valued
+`IsCoproductCompact` below. -/
+class IsCompactAb (H : C) : Prop where
+  preserves (J : Type v) :
+    PreservesColimitsOfShape (Discrete J) (preadditiveCoyoneda.obj (.op H))
+
+attribute [instance] IsCompactAb.preserves
+
+/-- The `Type`-valued counterpart: the functor `Hom(H, -)` preserves `Type v`-small
+coproducts.
+
+This is strictly stronger than `IsCompactAb`: a `Type`-valued coproduct is a
+disjoint union, so this forces every morphism `H ⟶ ∐ X_j` to factor through a
+single summand.  Consequently it is not closed under binary biproducts, and it
+is kept only for statements that are explicitly about it (e.g. the
+`IsClassicalGeneratorOnCompacts` hypothesis extracted from Stacks 09SR); every
+statement of the paper uses `IsCompactAb`. -/
 class IsCoproductCompact (H : C) : Prop where
   preserves (J : Type v) :
     PreservesColimitsOfShape (Discrete J) (coyoneda.obj (.op H))
@@ -166,7 +185,7 @@ structure WeakApproximationData (C : Type u) [Category.{v} C] [Preadditive C]
   /-- positivity of the bound -/
   A_pos : 0 < A
   /-- `G` is compact -/
-  G_compact : IsCoproductCompact G
+  G_compact : IsCompactAb G
   /-- `G` generates -/
   G_generates : IsGenerator G
   /-- `G ∈ T^{≤A}` -/

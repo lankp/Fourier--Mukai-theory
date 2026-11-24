@@ -76,8 +76,8 @@ structure SetupMain where
   GU : DU
   /-- The chosen compact generator of `D`. -/
   G' : D
-  /-- `G'` is coproduct-compact. -/
-  G'_compact : IsCoproductCompact G'
+  /-- `G'` is compact. -/
+  G'_compact : IsCompactAb G'
   /-- `G'` generates. -/
   G'_generates : IsGenerator G'
   /-- The normalizing shift. -/
@@ -89,7 +89,7 @@ structure SetupMain where
   [normalized_biproduct : HasBinaryBiproduct (G'⟦m⟧) (R.jShriek.obj GU)]
   /-- The normalized generator is coproduct-compact.  This is a Lemma 4.3(2)
   conclusion taken as setup data. -/
-  G_compact : IsCoproductCompact (G'⟦m⟧ ⊞ R.jShriek.obj GU)
+  G_compact : IsCompactAb (G'⟦m⟧ ⊞ R.jShriek.obj GU)
   /-- The normalized generator generates.  This is a Lemma 4.3(2) conclusion
   taken as setup data. -/
   G_generates : IsGenerator (G'⟦m⟧ ⊞ R.jShriek.obj GU)
