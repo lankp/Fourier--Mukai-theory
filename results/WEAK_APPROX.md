@@ -69,6 +69,19 @@ overflows Lean's stack); every audited declaration depends only on `propext`,
   `a` out of a shift of `G`, and zero detection only covers the case where all
   maps into the target vanish.  The implication the paper uses, separation ⟹
   zero detection, is proved.
+* **09SR can be weakened to what the geometry actually provides**
+  (`WeakApprox/CompactVanishing.lean`).  The §4 chain never uses thick
+  generation directly: it uses that Homs between compacts vanish in large
+  positive degrees.  That consequence is isolated as
+  `CompactHomZeroAtTop C := ∀ X Y, IsCompactAb X → IsCompactAb Y →
+  EventuallyHomZero X Y`, and Lemma 4.3(1), Lemma 4.3(4) and Setup 4.4(3) are
+  re-proved from it alone — no thick envelope, no
+  `IsClassicalGeneratorOnCompacts`.  Since 09SR implies it (given
+  self-vanishing of the generator), the residue is now the weaker statement,
+  and it is exactly what the paper's geometric `lem:compact_ext_vanishing`
+  supplies for `D_qc`.  Boundedness of compacts, by contrast, gives only
+  negative-shift vanishing (`EventuallyHomZeroNeg`), not
+  `CompactHomZeroAtTop`.
 * **The single external input is Stacks Tag 09SR** (Ravenel–Neeman:
   `Loc(S)^c = thick(S)` for a set `S` of compact objects, hence for a compact
   generator every compact lies in the thick envelope).  It is *not* used in
@@ -182,6 +195,7 @@ geometric counterpart (`lem:compact_ext_vanishing`) is a theorem about `D_qc`.
 | `WeakApprox/BoundedVanishing.lean` | boundedness gives `Hom(X, Y⟦k⟧) = 0` for `k ≤ m - n - 1` from `X ∈ T^{≤n}`, `Y ∈ T^{≥m}`; records the grading convention of this Mathlib | done |
 | `WeakApprox/GeneratorBridge.lean` | Section 2.1.2: the exact relation between `IsGenerator` (separation by the shift class), the paper's zero detection, and the absence of ghost morphisms | done |
 | `WeakApprox/MainMinimal.lean` | **Theorem 1.1** from the minimal Setup 4.4 data, with Stacks 09SR as the only external hypothesis; both directions | done |
+| `WeakApprox/CompactVanishing.lean` | `CompactHomZeroAtTop`; Lemma 4.3(1), Lemma 4.3(4) and Setup 4.4(3) from it alone; and why compact boundedness gives only negative-shift vanishing | done |
 | `WeakApprox/NineSR.lean` | Stacks 09SR: zero detection from separation, the finite-stage retract rendering of its conclusion, its equivalence with `IsClassicalGeneratorOnCompacts`, and stability under isomorphisms and shifts. The Ravenel–Neeman theorem itself stays external | partial (documented) |
 | `WeakApprox/WeakApproximable.lean` | Definition 5.3 and Remark 5.4 in categorical form: `SatisfiesWA`, `SatisfiesStandardWA`, and `standard ⟹ weak` | done (categorical layer) |
 | Corollary 1.2 (`D_qc,S` on algebraic spaces) | needs the Stacks library for algebraic spaces and Hall–Rydh's induction principle | out of reach here |

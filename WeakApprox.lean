@@ -26,6 +26,7 @@ import WeakApprox.BoundedVanishing
 import WeakApprox.ShiftAudit
 import WeakApprox.TStructureConvention
 import WeakApprox.StatementAudit
+import WeakApprox.CompactVanishing
 import WeakApprox.TwoStage
 import WeakApprox.NineSR
 import WeakApprox.GeneratorBridge
