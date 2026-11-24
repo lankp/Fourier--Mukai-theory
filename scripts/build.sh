@@ -25,6 +25,7 @@ for f in \
   FourierMukai/Scheme/Affine.lean \
   FourierMukai/Scheme/AffineMain.lean \
   FourierMukai/Scheme/AffineDictionary.lean \
+  FourierMukai/Scheme/AffineQCoh.lean \
   FourierMukai/Scheme/AffineDiagonal.lean \
   FourierMukai/Scheme/Perfect.lean \
   FourierMukai/Paper/Statements.lean \

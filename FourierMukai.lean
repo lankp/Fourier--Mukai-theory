@@ -24,6 +24,7 @@ import FourierMukai.Scheme.PerfectField
 import FourierMukai.Scheme.Affine
 import FourierMukai.Scheme.AffineMain
 import FourierMukai.Scheme.AffineDictionary
+import FourierMukai.Scheme.AffineQCoh
 import FourierMukai.Scheme.AffineDiagonal
 import FourierMukai.Scheme.Perfect
 
