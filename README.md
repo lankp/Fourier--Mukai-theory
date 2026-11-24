@@ -61,7 +61,15 @@ precise obstruction and for the two ways past it.
 
 Everything above is `sorry`-free and depends only on `propext`, `Classical.choice`
 and `Quot.sound`; the audits are printed at the end of the modules that state the
-main results.
+main results.  The one exception, kept deliberately and clearly separated, is
+`FourierMukai/Paper/Statements.lean`: it retains the paper's targets as
+`sorry`-ed specifications over the superseded abstract `FMContext` interface, and
+`FourierMukai/Audit.lean` prints the ten declarations that still depend on
+`sorryAx`.  None of them is used by the affine chain, and the corresponding
+scheme-layer statements (`FourierMukai/Scheme/Statements.lean`, and
+`affine_lemma_2_25` for Lemma 2.25) are `sorry`-free — note that
+`RelativeFM.lemma_2_25` (the old abstract one) and `affine_lemma_2_25` are
+different declarations.
 
 ## What is assumed
 
