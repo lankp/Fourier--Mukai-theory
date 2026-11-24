@@ -82,11 +82,17 @@ overflows Lean's stack); every audited declaration depends only on `propext`,
   supplies for `D_qc`.  Boundedness of compacts, by contrast, gives only
   negative-shift vanishing (`EventuallyHomZeroNeg`), not
   `CompactHomZeroAtTop`.
-* **The single external input is Stacks Tag 09SR** (Ravenel–Neeman:
+* **The external input is eventual vanishing between compacts.**  The
+  strongest form in the library is Stacks Tag 09SR (Ravenel–Neeman:
   `Loc(S)^c = thick(S)` for a set `S` of compact objects, hence for a compact
   generator every compact lies in the thick envelope).  It is *not* used in
   Theorem 1.1; it is needed only to derive Setup 4.4 from the paper's
-  hypotheses, i.e. in Lemma 4.3(1)/(4).  `WeakApprox/NineSR.lean` formalizes
+  hypotheses, i.e. in Lemma 4.3(1)/(4).  It is not needed in that strong form:
+  `WeakApprox/CompactVanishing.lean` re-proves Lemma 4.3(1), Lemma 4.3(4) and
+  Setup 4.4(3) from the weaker `CompactHomZeroAtTop` (Homs between compacts
+  vanish in large positive degrees), which is exactly what the paper's
+  geometric `lem:compact_ext_vanishing` supplies for `D_qc`.
+  `WeakApprox/NineSR.lean` formalizes
   the parts that are provable here — zero detection from separation, the
   finite-stage-retract rendering of the 09SR conclusion, its equivalence with
   `IsClassicalGeneratorOnCompacts`, and stability under isomorphisms and shifts
