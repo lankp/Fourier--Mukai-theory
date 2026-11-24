@@ -20,6 +20,7 @@ import FourierMukai.Scheme.Derived
 import FourierMukai.Scheme.Statements
 import FourierMukai.Scheme.Duality
 import FourierMukai.Scheme.PerfectRing
+import FourierMukai.Scheme.PerfectField
 import FourierMukai.Scheme.Affine
 import FourierMukai.Scheme.AffineDictionary
 import FourierMukai.Scheme.AffineDiagonal
