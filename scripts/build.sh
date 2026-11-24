@@ -40,6 +40,7 @@ for f in \
   WeakApprox/EventualVanishing.lean \
   WeakApprox/TwoStage.lean \
   WeakApprox/NineSR.lean \
+  WeakApprox/GeneratorBridge.lean \
   WeakApprox/Lemma433TStructure.lean \
   WeakApprox/Setup44Vanishing.lean \
   WeakApprox/Proposition48Paper.lean \
