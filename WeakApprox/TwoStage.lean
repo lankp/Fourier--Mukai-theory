@@ -266,3 +266,6 @@ theorem satisfiesWA_of_setup (S : Setup44 DZ D DU)
 
 end Theorem11
 end RelativeWeakApprox
+
+#print axioms RelativeWeakApprox.theorem_1_1_of_setup
+#print axioms RelativeWeakApprox.satisfiesWA_of_setup

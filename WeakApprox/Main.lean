@@ -236,3 +236,9 @@ theorem theorem_1_1 (S : SetupMain DZ D DU)
 end SetupMain
 
 end RelativeWeakApprox
+
+-- Axiom audit.  `#print axioms` is kept in the defining module: printing it from
+-- a downstream module makes Lean re-traverse the imported proof term of
+-- `theorem_1_1` and overflow its stack.
+#print axioms RelativeWeakApprox.SetupMain.theorem_1_1_forward
+#print axioms RelativeWeakApprox.SetupMain.theorem_1_1

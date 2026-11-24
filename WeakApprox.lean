@@ -25,7 +25,6 @@ import WeakApprox.EventualVanishing
 import WeakApprox.TwoStage
 import WeakApprox.NineSR
 import WeakApprox.Main
-import WeakApprox.Audit
 
 /-!
 # Weak approximability along recollements

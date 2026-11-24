@@ -41,7 +41,6 @@ for f in \
   WeakApprox/TwoStage.lean \
   WeakApprox/NineSR.lean \
   WeakApprox/Main.lean \
-  WeakApprox/Audit.lean \
   WeakApprox.lean ; do
   echo "== compiling $f"
   lean -o "${f%.lean}.olean" "$f"
