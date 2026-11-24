@@ -42,10 +42,17 @@ repository:
 * **Lank–Pauwels**, *Gluing weak approximability along recollements*
   (November 2026), which GL26 cites for weak approximability of `D_qc` on
   algebraic spaces (Remark 2.6 and §12).  The library `WeakApprox/` verifies
-  §2–§4: the closure properties of `⟨H⟩^[a,b]` (Lemma 3.1), the aisle lemma
-  (Lemma 3.3), the iterated approximation (Lemma 3.4), the vanishing criterion
-  (Lemma 3.5), the `Recollement` structure and the glued aisle (Lemma 4.2),
-  `P`-lifts and Lemma 4.6, and Proposition 4.8.  See
+  §2–§4 and **Theorem 1.1**: the closure properties of `⟨H⟩^[a,b]`
+  (Lemma 3.1), the aisle lemma (Lemma 3.3), the iterated approximation
+  (Lemma 3.4), the vanishing criterion (Lemma 3.5), the `Recollement`
+  structure and the glued aisle (Lemma 4.2), Lemma 4.3, `P`-lifts and
+  Lemma 4.6, Proposition 4.8, and both directions of Theorem 1.1 over Setup 4.4
+  (`WeakApprox/Main.lean`).  Theorem 1.1 itself needs no unproved input; the
+  remaining external ingredient of the paper is Stacks Tag 09SR (Ravenel–
+  Neeman), used only to *derive* Setup 4.4, and `WeakApprox/NineSR.lean`
+  records exactly what is and is not formalized of it.  Compactness is
+  rendered over `AddCommGrpCat` in `WeakApprox/CompactAb.lean`, which is what
+  makes Lemma 4.3(2) hold without an extra compactness hypothesis.  See
   [`results/WEAK_APPROX.md`](results/WEAK_APPROX.md).
 * **Neeman**, *Triangulated categories with a single compact generator, and two
   Brown representability theorems* (Invent. Math. 2026) and **Canonaco–

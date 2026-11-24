@@ -236,9 +236,3 @@ theorem theorem_1_1 (S : SetupMain DZ D DU)
 end SetupMain
 
 end RelativeWeakApprox
-
-#print axioms RelativeWeakApprox.SetupMain.toSetup44
-#print axioms RelativeWeakApprox.SetupMain.eventuallyHomZero_G
-#print axioms RelativeWeakApprox.SetupMain.thick_G'
-#print axioms RelativeWeakApprox.SetupMain.theorem_1_1_forward
-#print axioms RelativeWeakApprox.SetupMain.theorem_1_1
