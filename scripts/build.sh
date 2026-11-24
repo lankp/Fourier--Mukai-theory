@@ -40,6 +40,7 @@ for f in \
   WeakApprox/EventualVanishing.lean \
   WeakApprox/TwoStage.lean \
   WeakApprox/NineSR.lean \
+  WeakApprox/Lemma433TStructure.lean \
   WeakApprox/Main.lean \
   WeakApprox.lean ; do
   echo "== compiling $f"

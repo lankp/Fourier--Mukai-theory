@@ -24,6 +24,7 @@ import WeakApprox.WeakApproximable
 import WeakApprox.EventualVanishing
 import WeakApprox.TwoStage
 import WeakApprox.NineSR
+import WeakApprox.Lemma433TStructure
 import WeakApprox.Main
 
 /-!
