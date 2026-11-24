@@ -1,0 +1,119 @@
+# Formalizing *Gluing weak approximability along recollements*
+
+P. Lank, B. Pauwels, F. Peng — 27 pages.  This note is the blueprint for the Lean
+development of that paper, kept separate from `FourierMukai/` so that it can be
+moved into its own repository when that exists.
+
+## 0. What the paper does
+
+* **Theorem 1.1.** For a recollement of singly compactly generated triangulated
+  categories with `D_Z`, `D_U` weakly approximable, `D` is weakly approximable iff
+  `Hom(G', G'[n]) = 0` for `n ≫ 0`.
+* **Corollary 1.2.** For a quasi-compact quasi-separated algebraic stack with
+  quasi-finite separated diagonal, `D_qc,S(X)` is weakly approximable, and
+  coherent when `X` is Noetherian.
+* The engine is §3 (properties of `⟨H⟩^[a,b]`, the aisle lemma, the iterative
+  approximation) and §4 (lifts to aisles, the key Lemma 4.6 and Proposition 4.8).
+
+## 1. Module plan
+
+| module | contents | state |
+|---|---|---|
+| `WeakApprox/Basic.lean` | `H[a,b]`, `Coprod` (with universal property `Coprod.le`), `smd`, `⟨H⟩^[a,b]`, `IsCoproductCompact`, `IsGenerator`, weak approximation data (Definition 2.1) | done (renderings documented in the file) |
+| `WeakApprox/Closure.lean` | Lemma 3.1(1)–(5) | swarm `smwufzlp4` |
+| `WeakApprox/Aisle.lean` | Lemma 3.3 (aisles closed under extensions) | done; Lemmas 3.4 and 3.5 open |
+| `WeakApprox/Closure.lean` | Lemma 3.1(1): `⟨H⟩^[a,b]` closed under small coproducts, extensions, retracts, strictly full, contains `H[a,b]`, and minimal with these properties.  Also the two reusable Mathlib-level facts that the retract closure preserves coproduct- and extension-closure. | done |
+| `WeakApprox/Functoriality.lean` | Lemma 3.1(3): `F(⟨H⟩^[a,b]) ⊆ ⟨H'⟩^[a+c,b+d]` for an exact coproduct-preserving `F` with `F(H) ∈ ⟨H'⟩^[c,d]`.  Restriction: source and target share the hom universe, and both have the relevant coproducts. | done |
+| Lemma 3.1(5) | verified solution in `.ultramath/smwufzlp4/m5/Solution.lean` (compiles, axioms clean, with the ℕ-indexed Eilenberg swindle and the retract-complement lemma); **not ported**.  Blocker: `Coprod`'s coproduct constructor is indexed by `Type v`, where `v` is the hom universe of `C`, while the swindle is indexed by `ℕ : Type 0`; `Coprod.{0}` would force `Category.{0} C`.  Fixes: index the swindle by `ULift ℕ` and transport along the coproduct iso, or add a `Type 0`-coproduct constructor (m5's documented rendering). |
+| `WeakApprox/Shift.lean` | Lemma 3.1(2): `shiftImage` (`P⟦s⟧`), `H[a,b]⟦s⟧ = H[a-s,b-s]`, `⟨H⟩^[a,b]⟦s⟧ = ⟨H⟩^[a-s,b-s]`, and monotonicity in the interval | done |
+| `WeakApprox/HomVanishing.lean` | Lemma 3.1(4): `Hom(X,Y) = 0` on `⟨H⟩^[a,b]`, and closure of `{Y : Hom(H,Y) = 0}` under coproducts/ extensions/retracts | done |
+| `WeakApprox/Recollement.lean` | recollement data, the two gluing triangles, the glued t-structure, Lemma 4.2, Lemma 4.3 | open |
+| `WeakApprox/Lift.lean` | `P`-lifts, Lemma 4.6, Proposition 4.8 | open |
+| `WeakApprox/Main.lean` | Theorem 1.1 | open |
+| `WeakApprox/Stacks.lean` | Corollary 1.2 (algebraic stacks) | out of reach for now |
+
+The style follows the Stacks formalization the user is building: one module per
+section of the paper, every declaration carries a docstring citing the numbered
+item of the paper it formalizes, and the paper's hypotheses are hypotheses of the
+Lean theorem (no interface structure unless the paper's own data is genuinely
+unavailable, as for `D_qc,Z` of stacks).
+
+## 2. What Mathlib already has (verified in this VM, Lean 4.33.1)
+
+* Triangulated categories: `Pretriangulated`, `Triangle`, `distTriang`,
+  `isIso₃_of_isIso₁₂`, rotations, shifts; `ObjectProperty.IsTriangulated`.
+* Closure operators on object properties: `retractClosure` (with
+  `IsStableUnderRetracts`), `colimitClosure`, `IsClosedUnderColimitsOfShape`,
+  `extensionProduct` and friends in `ObjectProperty.Extensions`, `Orthogonal`,
+  `Shift`, `triangEnvelope`/`triangEnvelopeIter`, `IsClassicalTriangulatedGenerator`.
+* `TStructure` in `CategoryTheory.Triangulated.TStructure.Basic`, with `le`, `ge`,
+  shift compatibility, orthogonality and truncation triangles.
+* Homological functors, long exact sequences, coproducts in preadditive/triangulated
+  categories.
+
+So §2.1.2 and §3 are within reach, and §2.1.3 is partly there.
+
+## 3. What is missing
+
+1. **Recollements.** There is no `Recollement` anywhere in Mathlib (grep: zero hits).
+   §2.1.4 and the whole of §4 need: two adjoint triples, full faithfulness of
+   `i_*`, `j_!`, `j_*`, the kernel condition, the two gluing triangles, the glued
+   t-structure, and the t-exactness statements. This is the largest single gap;
+   it is a self-contained 2-categorical/triangulated project (analogous in size to
+   the mate calculus).
+2. **Compact objects.** Mathlib has `ObjectProperty.IsStrongTriangulatedGenerator`
+   but no general `IsCompact` class for triangulated categories; the paper's `T^c`
+   and "compactly generated" need a definition (coproduct preservation of
+   `Hom(G, -)`) and the standard facts (compacts are thick, `F` preserves compacts
+   when it has a coproduct preserving right adjoint — Neeman [Nee96, Theorem 5.1]).
+3. **The `Coprod` closure.**  Done: `WeakApprox/Basic.lean` has `Coprod` as an
+   inductive closure under small coproducts (colimits over `Discrete J`) and
+   extensions, with the universal property `Coprod.le` that Lemma 3.1(1)'s
+   minimality needs.
+4. **The octahedron bookkeeping** of Remark 3.2 and §4: given composable
+   morphisms, the two cocone triangles and their compatibility.  Mathlib has the
+   octahedron axiom but little of the customary packaging; this has to be built.
+5. **Homological algebra of algebraic stacks**: lisse-étale site, `D_qc`, `Perf`,
+   support, `D_qc,Z`, the Thomason condition, the induction principle of Hall–Rydh
+   [HR18, Theorem E], the étale-neighbourhood recollement of [Lan26, Prop. 3.1].
+   The Stacks library (`StacksFrontier/AlgebraicGeometry/...`) has much of the
+   *scheme/space* version (`Stacks.DerivedQCoh.IsDQCoh`, `IsPerfect`, support,
+   coherator), but the stack-level statements of this paper are a further layer
+   and are not formalized.
+
+## 4. Order of work
+
+1. `Basic.lean` + Lemma 3.1 (swarm `smwufzlp4`, running).  *Done so far:*
+   `Basic.lean` (all definitions, with the renderings recorded in the module
+   docstring), `Closure.lean` (Lemma 3.1(1)), `Shift.lean` (Lemma 3.1(2)),
+   `Functoriality.lean` (Lemma 3.1(3)), `HomVanishing.lean` (Lemma 3.1(4)) and
+   `Aisle.lean` (Lemma 3.3).  Lemma 3.1(5) is verified but awaits the universe fix
+   recorded in the table above.  One bridge lemma is still missing:
+   `IsGenerator G` (separation by shifts of `G`) is equivalent to the paper's
+   condition `(∀ n, Hom(G⟦n⟧, E) = 0) → E ≅ 0`; the forward implication is
+   immediate, the converse needs the long exact sequence of a cone.
+2. Lemma 3.3, 3.4, 3.5 (3.3 is in the swarm; 3.4 needs the iteration and the two
+   octahedron cases of Remark 3.2; 3.5 is short).
+3. Definition 2.1 and the formal statement of Theorem 1.1 over a recollement
+   structure.
+4. §4: Lemma 4.2, 4.3, 4.6, Proposition 4.8.  This is where the mathematical work
+   of the paper is, and it is also where the formalization will need the most
+   design: `P`-lifts are a structure with a commuting condition, and TR3 is used
+   four times in Lemma 4.6 alone.
+5. Theorem 1.1.
+6. Corollary 1.2 — only after the Stacks library (or an equivalent) is available
+   for algebraic stacks, and after Hall–Rydh's induction principle.
+
+## 5. Notes on the paper for the formalizer
+
+* §2.1.5 uses `⟨G⟩^{[-A,A]}` for `smd(Coprod(G[-A,A]))`; in the formalization this
+  must be the *same* operator as in Lemma 3.1, including the `retractClosure`.
+* Lemma 3.1(1)'s minimality is used constantly (every later "by Lemma 3.1(1)" is
+  really minimality plus the closure properties), so it should be exposed as an
+  induction principle (`⟨H⟩^[a,b] ≤ Q` from the three closure properties), not
+  just as three separate lemmas.
+* Lemma 3.1(5) is only used to pass from `smd(Coprod)` to `Coprod` with one extra
+  index; a weakening to `b' > b` would be harmless and should be recorded if used.
+* Definition 2.1 has `A > 0`; in the formalization `A : ℤ` with `0 < A` is the
+  practical choice, and the definition should be a structure so that later lemmas
+  can destructure it (`G`, `t`, `A`, the two properties).

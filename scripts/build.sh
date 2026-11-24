@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Build the Lean files of this repository against the Mathlib installation on
+# LEAN_PATH (there is no Lake package: /opt/mathlib is read-only, so we call
+# `lean` directly and write the .olean files next to the sources).
+set -euo pipefail
+cd "$(dirname "$0")/.."
+export LEAN_PATH="${LEAN_PATH}:."
+for f in \
+  FourierMukai/Prelim/Generation.lean \
+  FourierMukai/Prelim/Triangulated.lean \
+  FourierMukai/Prelim/Thickness.lean \
+  FourierMukai/Prelim/Coproduct.lean \
+  FourierMukai/Prelim/EssentiallyDense.lean \
+  FourierMukai/Prelim/Mates.lean \
+  FourierMukai/Prelim/Lemma25.lean \
+  FourierMukai/Paper/DerivedSetup.lean \
+  FourierMukai/Paper/Statements.lean \
+  FourierMukai/Examples/Identity.lean \
+  FourierMukai.lean \
+  FourierMukai/Audit.lean \
+  WeakApprox/Basic.lean \
+  WeakApprox/Aisle.lean \
+  WeakApprox/HomVanishing.lean \
+  WeakApprox/Shift.lean \
+  WeakApprox/Closure.lean \
+  WeakApprox/Functoriality.lean \
+  WeakApprox.lean ; do
+  echo "== compiling $f"
+  lean -o "${f%.lean}.olean" "$f"
+done
+echo "all modules compiled"

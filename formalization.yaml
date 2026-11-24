@@ -1,0 +1,56 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+
+version: "v0.4"
+
+project:
+  name: "FourierMukai"
+  authors: [Pat Lank, Elías Guisado Villalgordo, Bregje Pauwels]
+  description: >
+    A Lean 4 formalization, on top of the Axiom Math formalization of the Stacks Project and
+    Mathlib, of two papers on derived categories of algebraic spaces: *Relative Fourier–Mukai
+    theory for algebraic spaces* (Guisado Villalgordo–Lank) and *Gluing weak approximability
+    along recollements* (Lank–Pauwels). The `FourierMukai` library formalizes the 2-categorical
+    and triangulated-category foundations of the first paper together with statements of its
+    main theorems; the `WeakApprox` library formalizes the second paper.
+  responsible_maintainers: [Pat Lank]
+  license: "Apache-2.0"
+
+sources:
+  - title: "Relative Fourier–Mukai theory for algebraic spaces"
+    authors: [Elías Guisado Villalgordo, Pat Lank]
+    id: "arXiv:2609.01298"
+    type: "article"
+    relationship: "formalizes"
+    note: "Parts 0 and 1 (preliminaries, Appendix B, Section 2.1, Section 7) are formalized; the main theorems are stated."
+  - title: "Gluing weak approximability along recollements"
+    authors: [Pat Lank, Bregje Pauwels]
+    id: "preprint, November 2026"
+    type: "article"
+    relationship: "formalizes"
+    note: "Sections 2 and 3 are formalized; Sections 4 and 5 are in progress."
+
+classification:
+  arxiv: [math.AG, math.CT]
+  msc2020: [14F08, 18G80, 14A20, 18E30]
+
+status:
+  scope: "The triangulated-category and 2-categorical foundations of both papers, with the geometric layer stated over an interface."
+  sorry_count: 10
+  sorry_in_definitions: 0
+  axioms: [propext, Classical.choice, Quot.sound]
+
+automation:
+  methods:
+    - method: "autonomous"
+      models: [Ultramath]
+    - method: "manual"
+  notes: "Most lemmas were produced by Ultramath runs and checked by the maintainer against the compiler and the paper."
+
+review:
+  status: "self-assessed"
+  reviewers: [Pat Lank]
+  notes: >
+    Every declaration outside `FourierMukai/Paper/Statements.lean` is sorry-free and depends only
+    on the standard axioms; the statements in that file are formalization targets.
+
+acknowledgements: "The project builds on the Axiom Math formalization of the Stacks Project, and on Mathlib."
