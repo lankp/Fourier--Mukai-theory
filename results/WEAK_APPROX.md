@@ -120,6 +120,40 @@ Stacks library is not importable here.  They are:
 Stacks 09SR plays in the abstract setup here, and in the paper it is a theorem
 about `D_qc(X)` rather than a general categorical fact.
 
+## 0d. A convention warning about `TStructure` and shifts
+
+In this Mathlib (4.33.1) the `t`-structure axioms move the two gradings **down**
+under a shift:
+
+* `TStructure.le_shift (n a n') (h : a + n' = n) : t.le n X → t.le n' (X⟦a⟧)`,
+  i.e. `T^{≤n}⟦a⟧ ⊆ T^{≤ n-a}`;
+* `TStructure.ge_shift` has the same shape, `T^{≥m}⟦a⟧ ⊆ T^{≥ m-a}`.
+
+Both were checked with `#check` and confirmed by compiled proofs (a
+`t.le 0 X` does give `t.le (-1) (X⟦1⟧)`, and the classical direction
+`t.le 0 X → t.le 1 (X⟦1⟧)` is not what the axioms provide).  Meanwhile
+`t.le_monotone` and `t.ge_antitone` hold, so `t.le 0 ≤ t.le 1`, and
+`Triangle.mor₃` is a map `obj₃ ⟶ obj₁⟦1⟧` in the classical rotation, i.e.
+`⟦1⟧` is the classical shift.
+
+Consequence for reading this library against the paper: the `le`-indexed
+statements (Lemma 3.3, Lemma 4.2, the envelope bounds `⟨H⟩^{[-A,A]}`, the
+hypotheses `Y ∈ T^{≤-A}`) are the paper's as written, whereas the statements
+indexed by an explicit `⟦n⟧` — `EventuallyHomZero`, the hypothesis
+`Hom(H, H⟦n⟧) = 0` of Lemma 3.5, and the conclusion
+`Hom(G', G'⟦n⟧) = 0` of Theorem 1.1 — are the classical statements with the
+sign of the shift reversed.  The library is internally consistent, so the
+theorems are true statements; what needs care is matching them to the paper's
+notation, which is exactly the kind of thing an independent audit should check
+(see `WeakApprox/BoundedVanishing.lean` for the visible symptom below).
+
+The symptom: with `X ∈ T^{≤n}` and `Y ∈ T^{≥m}`, the boundedness statement the
+gradings give here is `Hom(X, Y⟦k⟧) = 0` for `k ≤ m - n - 1`
+(`hom_zero_of_shift_le`), whereas classically one gets it for `k ≥ n - m + 1`.
+That is why the boundedness route to `EventuallyHomZero` does not go through in
+this Mathlib, and why the 09SR input cannot be weakened to boundedness of the
+compacts by a purely `le`/`ge` orthogonality argument.
+
 ## 1. Module plan
 
 | module | contents | state |
@@ -146,6 +180,7 @@ about `D_qc(X)` rather than a general categorical fact.
 | `WeakApprox/TwoStage.lean` | the closing argument of §4: `Setup44` produces weak approximation data with generator `G'⟦m⟧ ⊞ j_!G_U`, the glued `t`-structure and the bound `3A` | done |
 | `WeakApprox/Main.lean` | **Theorem 1.1**, both directions, over Setup 4.4 minus the conclusion of the forward direction; the forward direction needs neither `SatisfiesWA D` nor 09SR | done |
 | `WeakApprox/EquivalenceInvariance.lean` | weak and standard weak approximability are invariant under a triangulated, shift-compatible, coproduct-preserving equivalence; the `t`-structure is transported along the quasi-inverse | done |
+| `WeakApprox/BoundedVanishing.lean` | boundedness gives `Hom(X, Y⟦k⟧) = 0` for `k ≤ m - n - 1` from `X ∈ T^{≤n}`, `Y ∈ T^{≥m}`; records the grading convention of this Mathlib | done |
 | `WeakApprox/GeneratorBridge.lean` | Section 2.1.2: the exact relation between `IsGenerator` (separation by the shift class), the paper's zero detection, and the absence of ghost morphisms | done |
 | `WeakApprox/MainMinimal.lean` | **Theorem 1.1** from the minimal Setup 4.4 data, with Stacks 09SR as the only external hypothesis; both directions | done |
 | `WeakApprox/NineSR.lean` | Stacks 09SR: zero detection from separation, the finite-stage retract rendering of its conclusion, its equivalence with `IsClassicalGeneratorOnCompacts`, and stability under isomorphisms and shifts. The Ravenel–Neeman theorem itself stays external | partial (documented) |

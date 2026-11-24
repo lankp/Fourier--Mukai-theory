@@ -38,6 +38,7 @@ for f in \
   WeakApprox/Octahedron.lean \
   WeakApprox/WeakApproximable.lean \
   WeakApprox/EventualVanishing.lean \
+  WeakApprox/BoundedVanishing.lean \
   WeakApprox/TwoStage.lean \
   WeakApprox/NineSR.lean \
   WeakApprox/GeneratorBridge.lean \

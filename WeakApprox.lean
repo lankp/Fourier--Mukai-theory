@@ -22,6 +22,7 @@ import WeakApprox.Lemma35
 import WeakApprox.Octahedron
 import WeakApprox.WeakApproximable
 import WeakApprox.EventualVanishing
+import WeakApprox.BoundedVanishing
 import WeakApprox.TwoStage
 import WeakApprox.NineSR
 import WeakApprox.GeneratorBridge
