@@ -20,6 +20,8 @@ for f in \
   FourierMukai/Scheme/Derived.lean \
   FourierMukai/Scheme/Statements.lean \
   FourierMukai/Scheme/Duality.lean \
+  FourierMukai/Scheme/PerfectRing.lean \
+  FourierMukai/Scheme/Affine.lean \
   FourierMukai/Paper/Statements.lean \
   FourierMukai/Paper/InterfaceAudit.lean \
   FourierMukai/Examples/Identity.lean \
