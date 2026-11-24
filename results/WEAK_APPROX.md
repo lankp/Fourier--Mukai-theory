@@ -53,6 +53,12 @@ overflows Lean's stack); every audited declaration depends only on `propext`,
   Lemma 4.6 premise discharged in `WeakApprox/Proposition48Paper.lean`, and
   Lemma 4.3(3) is upgraded to a `t`-structure identity in
   `WeakApprox/Lemma433TStructure.lean` (`TStructure.ext_le_zero`).
+* **Invariance** (`WeakApprox/EquivalenceInvariance.lean`): `SatisfiesWA` and
+  `SatisfiesStandardWA` are invariant under triangulated equivalences that
+  commute with shifts and preserve small coproducts, in both directions.  This
+  is the invariance used when passing between equivalent models of `D_qc`; it
+  needs the two categories to share the hom universe, since `IsCompactAb` and
+  `Coprod` are indexed by it.
 * **The `IsGenerator` bridge is settled** (`WeakApprox/GeneratorBridge.lean`).
   The library's `IsGenerator G` (separation by the shift class) is strictly
   stronger than the paper's zero detection, not equivalent to it: separation is
@@ -97,6 +103,7 @@ overflows Lean's stack); every audited declaration depends only on `propext`,
 | `WeakApprox/EventualVanishing.lean` | weak approximation data force `Hom(G, G⟦n⟧) = 0` for `n ≥ 2A`; transport along the finite thick envelope; retract and shift invariance | done |
 | `WeakApprox/TwoStage.lean` | the closing argument of §4: `Setup44` produces weak approximation data with generator `G'⟦m⟧ ⊞ j_!G_U`, the glued `t`-structure and the bound `3A` | done |
 | `WeakApprox/Main.lean` | **Theorem 1.1**, both directions, over Setup 4.4 minus the conclusion of the forward direction; the forward direction needs neither `SatisfiesWA D` nor 09SR | done |
+| `WeakApprox/EquivalenceInvariance.lean` | weak and standard weak approximability are invariant under a triangulated, shift-compatible, coproduct-preserving equivalence; the `t`-structure is transported along the quasi-inverse | done |
 | `WeakApprox/GeneratorBridge.lean` | Section 2.1.2: the exact relation between `IsGenerator` (separation by the shift class), the paper's zero detection, and the absence of ghost morphisms | done |
 | `WeakApprox/NineSR.lean` | Stacks 09SR: zero detection from separation, the finite-stage retract rendering of its conclusion, its equivalence with `IsClassicalGeneratorOnCompacts`, and stability under isomorphisms and shifts. The Ravenel–Neeman theorem itself stays external | partial (documented) |
 | `WeakApprox/WeakApproximable.lean` | Definition 5.3 and Remark 5.4 in categorical form: `SatisfiesWA`, `SatisfiesStandardWA`, and `standard ⟹ weak` | done (categorical layer) |
