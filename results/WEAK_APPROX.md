@@ -104,9 +104,11 @@ So §2.1.2 and §3 are within reach, and §2.1.3 is partly there.
 3. Definition 2.1 and the formal statement of Theorem 1.1 over a recollement
    structure.
 4. §4: Remark 3.2(2), the `Recollement` structure and Lemma 4.2 are done
-   (`Octahedron.lean`, `Recollement.lean`, `Lemma42.lean`).  Remaining in §4:
-   Lemma 4.3 (normalization of the generator), Definition 4.5 and Lemma 4.6
-   (`P`-lifts), and Proposition 4.8.  This is where the mathematical work
+   (`Octahedron.lean`, `Recollement.lean`, `Lemma42.lean`).  In progress (swarm
+   `smwunmkmj`): Setup 4.4 as a structure, Definition 4.5 (`P`-lifts),
+   Lemma 4.6 (existence of `P`-lifts), Proposition 4.8 (the closure of `C`),
+   Lemma 4.3(1) and (4) (normalization of the generator and eventual vanishing),
+   and Lemma 4.3(2)–(3) (the generator and the glued t-structure).  This is where the mathematical work
    of the paper is, and it is also where the formalization will need the most
    design: `P`-lifts are a structure with a commuting condition, and TR3 is used
    four times in Lemma 4.6 alone.
