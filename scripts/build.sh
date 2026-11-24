@@ -18,9 +18,11 @@ for f in \
   FourierMukai/Scheme/WeakApprox.lean \
   FourierMukai/Scheme/OpenImmersion.lean \
   FourierMukai/Scheme/Derived.lean \
+  FourierMukai/Scheme/QCohSerre.lean \
   FourierMukai/Scheme/Statements.lean \
   FourierMukai/Scheme/Duality.lean \
   FourierMukai/Scheme/PerfectRing.lean \
+  FourierMukai/Scheme/PerfectModel.lean \
   FourierMukai/Scheme/PerfectField.lean \
   FourierMukai/Scheme/Affine.lean \
   FourierMukai/Scheme/AffineRecollement.lean \
