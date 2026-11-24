@@ -47,10 +47,15 @@ repository:
   (Lemma 3.4), the vanishing criterion (Lemma 3.5), the `Recollement`
   structure and the glued aisle (Lemma 4.2), Lemma 4.3, `P`-lifts and
   Lemma 4.6, Proposition 4.8, and both directions of Theorem 1.1 over Setup 4.4
-  (`WeakApprox/Main.lean`).  Theorem 1.1 itself needs no unproved input; the
-  remaining external ingredient of the paper is Stacks Tag 09SR (Ravenel–
-  Neeman), used only to *derive* Setup 4.4, and `WeakApprox/NineSR.lean`
-  records exactly what is and is not formalized of it.  Compactness is
+  (`WeakApprox/Main.lean`).  Theorem 1.1 itself needs no unproved input, and
+  Setup 4.4 is reduced to its irreducible hypotheses
+  (`WeakApprox/Setup44Minimal.lean`): the normalization, the compactness and
+  generation of the glued generator, the glued `t`-structure and condition (3)
+  are all derived.  The remaining external ingredient of the paper is Stacks Tag
+  09SR (Ravenel–Neeman), used only for condition (3), and
+  `WeakApprox/NineSR.lean` records exactly what is and is not formalized of it.
+  Weak approximability is also shown invariant under triangulated equivalences
+  (`WeakApprox/EquivalenceInvariance.lean`).  Compactness is
   rendered over `AddCommGrpCat` in `WeakApprox/CompactAb.lean`, which is what
   makes Lemma 4.3(2) hold without an extra compactness hypothesis.  See
   [`results/WEAK_APPROX.md`](results/WEAK_APPROX.md).
