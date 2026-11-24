@@ -23,6 +23,7 @@ import WeakApprox.Octahedron
 import WeakApprox.WeakApproximable
 import WeakApprox.EventualVanishing
 import WeakApprox.BoundedVanishing
+import WeakApprox.ShiftAudit
 import WeakApprox.TwoStage
 import WeakApprox.NineSR
 import WeakApprox.GeneratorBridge

@@ -39,6 +39,7 @@ for f in \
   WeakApprox/WeakApproximable.lean \
   WeakApprox/EventualVanishing.lean \
   WeakApprox/BoundedVanishing.lean \
+  WeakApprox/ShiftAudit.lean \
   WeakApprox/TwoStage.lean \
   WeakApprox/NineSR.lean \
   WeakApprox/GeneratorBridge.lean \
