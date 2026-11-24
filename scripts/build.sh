@@ -24,6 +24,9 @@ for f in \
   WeakApprox/Shift.lean \
   WeakApprox/Closure.lean \
   WeakApprox/Functoriality.lean \
+  WeakApprox/Lemma42.lean \
+  WeakApprox/Recollement.lean \
+  WeakApprox/Lemma34.lean \
   WeakApprox/Lemma35.lean \
   WeakApprox/Octahedron.lean \
   WeakApprox/WeakApproximable.lean \

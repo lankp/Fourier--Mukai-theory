@@ -8,6 +8,9 @@ import WeakApprox.HomVanishing
 import WeakApprox.Shift
 import WeakApprox.Closure
 import WeakApprox.Functoriality
+import WeakApprox.Lemma42
+import WeakApprox.Recollement
+import WeakApprox.Lemma34
 import WeakApprox.Lemma35
 import WeakApprox.Octahedron
 import WeakApprox.WeakApproximable
