@@ -131,6 +131,23 @@ categories those instances provide. The affine/ring case is genuinely easier and
 is a valid intermediate target: for `X = Spec A` everything reduces to `A-Mod`,
 where Mathlib does have the abelian, monoidal and injective-envelope structure.
 
+## A defect found in the current target layer
+
+`FourierMukai/Paper/Statements.lean` states GL26's Lemma 2.25 as
+`Nonempty (C.transform C.diagonalKernel ≅ 𝟭 D)` for an arbitrary `FMContext`.
+That is **not a consequence of the interface**: `transform` is defined as
+`push ∘ tensorRight K ∘ pull` and those are free structure fields, so
+`FourierMukai/Paper/InterfaceAudit.lean` exhibits a legal `FMContext` on
+`Type 0`, with every subcategory `True` and `push` constant at `PUnit`, for
+which the statement is false.  The paper's proof uses the projection formula
+(Stacks 08IN), the tensor unit, and `f'_1 ∘ Δ = f'_2 ∘ Δ = 𝟙`; those must be
+**fields** of the interface, not consequences of it.
+
+The same audit counts **7 vacuous `True` placeholders** in the ten targets (six
+relative-perfectness hypotheses and `hell : True`).  Both points are
+requirements on the scheme-level statement layer: no target may be stated over
+an interface that does not imply it, and no hypothesis may be `True`.
+
 ## Constraints and risks
 
 * **Toolchain.** Everything is verified on Lean 4.33.1 with Mathlib at

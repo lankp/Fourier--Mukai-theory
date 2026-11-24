@@ -13,6 +13,7 @@ import FourierMukai.Paper.DerivedSetup
 import FourierMukai.Scheme.Inputs
 import FourierMukai.Scheme.WeakApprox
 import FourierMukai.Paper.Statements
+import FourierMukai.Paper.InterfaceAudit
 import FourierMukai.Examples.Identity
 
 /-!
