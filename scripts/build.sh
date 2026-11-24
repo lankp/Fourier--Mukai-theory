@@ -22,6 +22,7 @@ for f in \
   FourierMukai/Scheme/Duality.lean \
   FourierMukai/Scheme/PerfectRing.lean \
   FourierMukai/Scheme/Affine.lean \
+  FourierMukai/Scheme/AffineDictionary.lean \
   FourierMukai/Scheme/AffineDiagonal.lean \
   FourierMukai/Scheme/Perfect.lean \
   FourierMukai/Paper/Statements.lean \

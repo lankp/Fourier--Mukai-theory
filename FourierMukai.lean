@@ -10,6 +10,9 @@ import FourierMukai.Prelim.Lemma25
 import FourierMukai.Prelim.Thickness
 import FourierMukai.Prelim.Generation
 import FourierMukai.Paper.DerivedSetup
+import FourierMukai.Paper.Statements
+import FourierMukai.Paper.InterfaceAudit
+import FourierMukai.Examples.Identity
 import FourierMukai.Scheme.Inputs
 import FourierMukai.Scheme.WeakApprox
 import FourierMukai.Scheme.OpenImmersion
@@ -18,11 +21,9 @@ import FourierMukai.Scheme.Statements
 import FourierMukai.Scheme.Duality
 import FourierMukai.Scheme.PerfectRing
 import FourierMukai.Scheme.Affine
+import FourierMukai.Scheme.AffineDictionary
 import FourierMukai.Scheme.AffineDiagonal
 import FourierMukai.Scheme.Perfect
-import FourierMukai.Paper.Statements
-import FourierMukai.Paper.InterfaceAudit
-import FourierMukai.Examples.Identity
 
 /-!
 # Relative Fourier--Mukai theory for algebraic spaces: Lean formalization
