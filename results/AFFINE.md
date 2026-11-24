@@ -3,9 +3,12 @@
 **Target.** For `X = Spec A` with `A` Noetherian, `U = Spec A[1/f]` and
 `Z = V(f)`, the recollement
 
-  `D_qc,Z(X)  ⟷  D_qc(X)  ⟷  D_qc(U)`
+  `D(U)  →  D(X)  →  D_Z(X)`
 
-satisfies **LP Theorem 1.1** — `D_qc(X)` is weakly approximable if and only if
+(note the orientation: the open category goes in the `D_Z` slot of the abstract
+`Recollement`, the supported category in the `D_U` slot — see
+`Scheme/AffineRecollement.lean` for why the reverse labelling is not the same
+recollement) satisfies **LP Theorem 1.1** — `D_qc(X)` is weakly approximable if and only if
 the chosen compact generator has eventually vanishing positive self-Homs — with
 **no unproved input except Neeman's published theorem** (Acta Math. 233 (2024),
 Theorem 3.2).  The affine dictionary identifies this with the ring-level picture
@@ -26,7 +29,7 @@ or field; "open" means work still to be done.
 | 5 | perfect = bounded projectives | `Perf A` = bounded complexes of f.g. projectives | Stacks 09M1 / Neeman | `Scheme/PerfectRing.lean` (`BoundedProjectiveModelInput`) | open |
 | 6 | compacts = perfect | compact objects of `D(A-Mod)` are `Perf A` | Bondal–Van den Bergh 3.1.1, Neeman | `Scheme/PerfectRing.lean` (`CompactPerfectInput`) | cited |
 | 7 | `Perf` bridge | ring envelope vs scheme-local 0BCJ model at `Spec A` | Stacks 0BCJ / 08CM | `Scheme/Perfect.lean`, `PerfectRing.lean` | open |
-| 8 | affine recollement | `D_Z ⟷ D(A) ⟷ D(A[1/f])` as `WeakApprox.Recollement` | localization sequence (Neeman; AJL) | — | open |
+| 8 | affine recollement | `D(A[1/f]) → D(A) → D_Z(A)` as `WeakApprox.Recollement`, i.e. `D_Z` slot = open, `D_U` slot = `f`-power torsion | localization sequence (Gao–Psaroudakis 2.2(ii), BDS 2.3, Krause §4, Stacks 0BFF) | `Scheme/AffineRecollement.lean` | proved, modulo the named `AffineRecollementInput` fields |
 | 9 | open functors | `j_! ⊣ j^* ⊣ j_*`, exactness, derived recollement | Stacks 00A6, 00AB, 079W | `Scheme/OpenImmersion.lean` | proved |
 | 10 | Setup 4.4 from ring data | the 20 fields for the affine recollement | LP §4 | `Scheme/Affine.lean` (partial) | open |
 | 11 | LP Theorem 1.1 (abstract) | the gluing theorem, minimal setup | LP Thm 1.1 | `WeakApprox/MainMinimal.lean` | proved |

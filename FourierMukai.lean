@@ -22,6 +22,7 @@ import FourierMukai.Scheme.Duality
 import FourierMukai.Scheme.PerfectRing
 import FourierMukai.Scheme.PerfectField
 import FourierMukai.Scheme.Affine
+import FourierMukai.Scheme.AffineRecollement
 import FourierMukai.Scheme.AffineMain
 import FourierMukai.Scheme.AffineDictionary
 import FourierMukai.Scheme.AffineQCoh
