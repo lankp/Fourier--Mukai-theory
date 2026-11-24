@@ -27,6 +27,7 @@ for f in \
   WeakApprox/PLift.lean \
   WeakApprox/Setup44.lean \
   WeakApprox/Lemma43.lean \
+  WeakApprox/Lemma4323.lean \
   WeakApprox/Lemma46.lean \
   WeakApprox/Proposition48.lean \
   WeakApprox/Lemma42.lean \
