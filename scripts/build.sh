@@ -19,6 +19,7 @@ for f in \
   FourierMukai.lean \
   FourierMukai/Audit.lean \
   WeakApprox/Basic.lean \
+  WeakApprox/CompactAb.lean \
   WeakApprox/Aisle.lean \
   WeakApprox/HomVanishing.lean \
   WeakApprox/Shift.lean \
