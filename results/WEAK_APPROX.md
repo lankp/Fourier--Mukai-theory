@@ -120,39 +120,34 @@ Stacks library is not importable here.  They are:
 Stacks 09SR plays in the abstract setup here, and in the paper it is a theorem
 about `D_qc(X)` rather than a general categorical fact.
 
-## 0d. A convention warning about `TStructure` and shifts
+## 0d. The `TStructure` grading convention: audited, faithful
 
-In this Mathlib (4.33.1) the `t`-structure axioms move the two gradings **down**
-under a shift:
+Both the paper and this Mathlib grade `t`-structures by `T^{≤ n} := T^{≤ 0}[-n]`
+(paper, `main-3.tex` line 314, §2.1.3), and Mathlib's axioms agree with it:
+`TStructure.le_shift` gives `T^{≤ n}⟦a⟧ ⊆ T^{≤ n-a}`, which is the same
+statement.  The audit in `WeakApprox/TStructureConvention.lean` records the
+Lean forms of the paper's definitions,
 
-* `TStructure.le_shift (n a n') (h : a + n' = n) : t.le n X → t.le n' (X⟦a⟧)`,
-  i.e. `T^{≤n}⟦a⟧ ⊆ T^{≤ n-a}`;
-* `TStructure.ge_shift` has the same shape, `T^{≥m}⟦a⟧ ⊆ T^{≥ m-a}`.
+* `le_eq_shiftImage_neg : t.le n = (t.le 0)⟦-n⟧`,
+* `ge_eq_shiftImage_neg : t.ge n = (t.ge 0)⟦-n⟧`,
 
-Both were checked with `#check` and confirmed by compiled proofs (a
-`t.le 0 X` does give `t.le (-1) (X⟦1⟧)`, and the classical direction
-`t.le 0 X → t.le 1 (X⟦1⟧)` is not what the axioms provide).  Meanwhile
-`t.le_monotone` and `t.ge_antitone` hold, so `t.le 0 ≤ t.le 1`, and
-`Triangle.mor₃` is a map `obj₃ ⟶ obj₁⟦1⟧` in the classical rotation, i.e.
-`⟦1⟧` is the classical shift.
+together with the comparisons that pin the sign (Mathlib's rotation axiom is the
+paper's TR2; the truncation triangle is the paper's; `truncLE n = truncLT (n+1)`).
+Under `paper[n] = ⟦n⟧` — which is also what makes `H[a,b] = {H[-k] : a ≤ k ≤ b}`
+match `shiftInterval` (`WeakApprox/ShiftAudit.lean`) — both the `le`-indexed and
+the `⟦n⟧`-indexed statements of the library are the paper's as written.  The
+opposite reading would require simultaneously translating `paper[n] = ⟦-n⟧`,
+i.e. a different identification rather than a second reading of the axioms.
 
-Consequence for reading this library against the paper: the `le`-indexed
-statements (Lemma 3.3, Lemma 4.2, the envelope bounds `⟨H⟩^{[-A,A]}`, the
-hypotheses `Y ∈ T^{≤-A}`) are the paper's as written, whereas the statements
-indexed by an explicit `⟦n⟧` — `EventuallyHomZero`, the hypothesis
-`Hom(H, H⟦n⟧) = 0` of Lemma 3.5, and the conclusion
-`Hom(G', G'⟦n⟧) = 0` of Theorem 1.1 — are the classical statements with the
-sign of the shift reversed.  The library is internally consistent, so the
-theorems are true statements; what needs care is matching them to the paper's
-notation, which is exactly the kind of thing an independent audit should check
-(see `WeakApprox/BoundedVanishing.lean` for the visible symptom below).
-
-The symptom: with `X ∈ T^{≤n}` and `Y ∈ T^{≥m}`, the boundedness statement the
-gradings give here is `Hom(X, Y⟦k⟧) = 0` for `k ≤ m - n - 1`
-(`hom_zero_of_shift_le`), whereas classically one gets it for `k ≥ n - m + 1`.
-That is why the boundedness route to `EventuallyHomZero` does not go through in
-this Mathlib, and why the 09SR input cannot be weakened to boundedness of the
-compacts by a purely `le`/`ge` orthogonality argument.
+One consequence worth recording, because it looks like an error until the
+convention is clear: with `X ∈ T^{≤n}` and `Y ∈ T^{≥m}`, boundedness gives
+`Hom(X, Y⟦k⟧) = 0` for `k ≤ m - n - 1` (`WeakApprox/BoundedVanishing.lean`),
+i.e. for shifts *below* a bound — that is the standard statement in this
+grading, not a sign error.  It is also why eventual vanishing in *positive*
+degrees, `Hom(G', G'⟦n⟧) = 0` for `n ≫ 0`, is not a consequence of boundedness
+alone: in this library it comes from membership in the thick envelope of the
+compact generator, i.e. from Stacks 09SR, exactly as in the paper, where the
+geometric counterpart (`lem:compact_ext_vanishing`) is a theorem about `D_qc`.
 
 ## 1. Module plan
 

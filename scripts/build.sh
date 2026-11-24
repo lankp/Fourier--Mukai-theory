@@ -40,6 +40,7 @@ for f in \
   WeakApprox/EventualVanishing.lean \
   WeakApprox/BoundedVanishing.lean \
   WeakApprox/ShiftAudit.lean \
+  WeakApprox/TStructureConvention.lean \
   WeakApprox/TwoStage.lean \
   WeakApprox/NineSR.lean \
   WeakApprox/GeneratorBridge.lean \

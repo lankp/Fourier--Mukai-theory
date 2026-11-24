@@ -5,24 +5,19 @@ Released under Apache 2.0 license as described in the file LICENSE.
 import WeakApprox.EventualVanishing
 
 /-!
-# Bounded objects vanish against each other: the direction the grading gives
+# Bounded objects vanish against each other
 
-In `WeakApprox/EventualVanishing.lean`, `EventuallyHomZero X Y` says
-`Hom(X, Y⟦n⟧) = 0` for all `n ≥ N`.  The classical way of producing such a
-vanishing is boundedness: `X ∈ T^{≤n}` and `Y ∈ T^{≥m}` give
-`Hom(X, Y[k]) = 0` for `k ≫ 0`, because classically `T^{≥m}[k] ⊆ T^{≥ m+k}`.
+Both the paper and Mathlib grade `t`-structures by `T^{≤ n} = T^{≤ 0}[-n]`
+(`WeakApprox/TStructureConvention.lean` records this), so `T^{≥m}⟦k⟧` lands in
+`T^{≥ m-k}` and the standard boundedness statement reads: if `X ∈ T^{≤n}` and
+`Y ∈ T^{≥m}`, then `Hom(X, Y⟦k⟧) = 0` for `k ≤ m - n - 1`.  That is what
+`hom_zero_of_shift_le` and `hom_zero_of_exists_bounded` prove.
 
-In this Mathlib the `t`-structure axioms move both indices *down* under `⟦a⟧`:
-`TStructure.le_shift (n a n') (h : a + n' = n) : t.le n X → t.le n' (X⟦a⟧)`
-gives `T^{≤n}⟦a⟧ ⊆ T^{≤ n-a}`, and `TStructure.ge_shift` gives
-`T^{≥m}⟦a⟧ ⊆ T^{≥ m-a}`.  Consequently the boundedness statement that holds
-here is the one for `k` *below* a bound: `X ∈ D^{≤n}` and `Y ∈ D^{≥m}` give
-`Hom(X, Y⟦k⟧) = 0` for `k ≤ m - n - 1`, since then `Y⟦k⟧ ∈ D^{≥m-k} ⊆ D^{≥n+1}`
-is orthogonal to `X`.
-
-`hom_zero_of_shift_le` and `eventuallyHomZero_neg` below prove exactly that.
-They are recorded because they exhibit the sign: the analogue of
-`EventuallyHomZero` for this grading quantifies over `k ≤ N`, not `k ≥ N`.
+This is deliberately *not* the route to `EventuallyHomZero`, which quantifies
+over `k ≥ N`: eventual vanishing in positive degrees is not a consequence of
+boundedness in this grading, and in the formalization it comes instead from
+membership in the thick envelope of the compact generator (Stacks 09SR), as in
+the paper.  See `results/WEAK_APPROX.md` §0d.
 -/
 
 @[expose] public section
