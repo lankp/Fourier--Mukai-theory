@@ -1,6 +1,7 @@
 /- Copyright (c) 2026 Formalization of Lank--Pauwels. Released under Apache 2.0 license as described in the file LICENSE. -/
 import FourierMukai.Scheme.AffineDictionary
 import FourierMukai.Scheme.Derived
+import FourierMukai.Scheme.QCohSerre
 import Mathlib.Algebra.Homology.ShortComplex.PreservesHomology
 import Mathlib.CategoryTheory.Adjunction.Limits
 import Mathlib.CategoryTheory.ObjectProperty.Kernels
@@ -20,7 +21,11 @@ with their tags: exactness of affine `tilde` (01HV), unbounded `RΓ` (06Z0), the
 derived `tilde ⊣ RΓ` adjunction (079W), and the two cohomology calculations —
 unit a quasi-isomorphism everywhere, counit a quasi-isomorphism on complexes
 with quasicoherent cohomology (06Z0, via 08D4 and 01XB).  The counit is required
-only on `D_qc`, not on all complexes.
+only on `D_qc`, not on all complexes.  The 01HV field is no longer an external
+fact: `preservesFiniteLimits_tildeFunctor` in `QCohSerre.lean` proves exactness
+of `tilde` from the adjunction with global sections, and
+`affineDerivedGammaInputOfTildeExact` fills it in, leaving 06Z0/079W/08D4/01XB
+as the cited residue.
 
 From it: `affineRingCohomologyEquivalence A : D(A-Mod) ≌ D_qc(Spec A)`,
 `affineQCohCohomologyEquivalence A : D(QCoh(Spec A)) ≌ D_qc(Spec A)`, and
@@ -229,6 +234,29 @@ noncomputable def affineDerivedGammaInputOfSubobjects (A : CommRingCat.{u})
           (adjunction.counit.app E))) :
     AffineDerivedGammaInput A where
   tildeExact := preservesFiniteLimits_tilde_of_isClosedUnderSubobjects A
+  RΓ := RΓ
+  adjunction := adjunction
+  unit_cohomology := unit_cohomology
+  counit_cohomology := counit_cohomology
+
+/-- **Proved constructor.**  The same input with the Stacks 01HV field, exactness
+of affine `tilde`, filled in from `QCohSerre.preservesFiniteLimits_tildeFunctor`,
+where it is proved unconditionally from the adjunction with global sections.
+So 01HV is no longer a cited input to the two models of `D_qc`. -/
+noncomputable def affineDerivedGammaInputOfTildeExact (A : CommRingCat.{u})
+    (RΓ : DerivedCategory (Spec A).Modules ⥤ DerivedCategory (ModuleCat.{u} A))
+    (adjunction : letI := preservesFiniteLimits_tildeFunctor A
+      affineDerivedTilde A ⊣ RΓ)
+    (unit_cohomology : letI := preservesFiniteLimits_tildeFunctor A
+      ∀ (M : DerivedCategory (ModuleCat.{u} A)) (n : ℤ),
+        IsIso ((DerivedCategory.homologyFunctor (ModuleCat.{u} A) n).map
+          (adjunction.unit.app M)))
+    (counit_cohomology : letI := preservesFiniteLimits_tildeFunctor A
+      ∀ (E : DerivedCategory (Spec A).Modules), QuasicoherentCohomology A E →
+        ∀ (n : ℤ), IsIso ((DerivedCategory.homologyFunctor (Spec A).Modules n).map
+          (adjunction.counit.app E))) :
+    AffineDerivedGammaInput A where
+  tildeExact := preservesFiniteLimits_tildeFunctor A
   RΓ := RΓ
   adjunction := adjunction
   unit_cohomology := unit_cohomology

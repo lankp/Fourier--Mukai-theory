@@ -18,7 +18,10 @@ the recollement `D_qc,Z(Spec A) ⟷ D_qc(Spec A) ⟷ D_qc(Spec A[1/f])` with **n
 unproved input except Neeman's published theorem** (Acta Math. 233 (2024),
 Theorem 3.2), which states that `D_qc,Z(X)` is weakly approximable for every
 quasicompact quasiseparated scheme `X` and every closed `Z` with quasicompact
-complement.
+complement.  The theorem *scheme* is complete; what is not yet closed is its
+instantiation, because Mathlib 4.33.1 has no coproduct instance for
+`D(A-Mod)` — see [`results/AFFINE.md`](results/AFFINE.md), row 10, for the
+precise obstruction and for the two ways past it.
 
 ## What is verified
 
@@ -36,6 +39,7 @@ complement.
 | result | Lean |
 |---|---|
 | `D(X) = D(X.Modules)`, cohomology sheaves, `D_qc(X)` as complexes with quasicoherent cohomology | `Derived.lean` |
+| quasicoherence: affine locality (01BD), exactness of `tilde` (00NX), closure under kernels and cokernels, and `D_qc(X)` triangulated from extension closure alone (01LA) | `QCohSerre.lean` |
 | finite locally free sheaves, bounded vector-bundle complexes, `IsPerfect` (scheme-local 0BCJ model) | `Perfect.lean` |
 | `j_! ⊣ j^* ⊣ j_*` for an open immersion, `j_!` and `j^*` exact, the derived recollement interface | `OpenImmersion.lean` |
 | derived pushforward/pullback from Kan extensions; `RHom`, `⊗^L`, `f^×`, `f^!` interface with the projection formula and base change as a mate | `Duality.lean` |
@@ -46,9 +50,13 @@ complement.
 
 | result | Lean |
 |---|---|
-| `Perf A`, `Db A`, `Dbcoh A` for a ring: closure under `0`, shifts, biproducts, cones, retracts; `Perf ⊆ D^b`; `Perf ⊆ D^b_coh` for Noetherian `A` | `PerfectRing.lean` |
+| `Perf A`, `Db A`, `Dbcoh A` for a ring: closure under `0`, shifts, biproducts, cones, retracts; `Perf ⊆ D^b`; `Perf ⊆ D^b_coh` for Noetherian `A`; `Perf k = D^b_coh k` over a field, proved by truncation induction | `PerfectRing.lean`, `PerfectField.lean` |
+| bounded complexes of finitely generated projective modules are perfect, for **every** commutative ring (Stacks 066T, `sorry`-free, no Noetherian hypothesis) | `PerfectModel.lean` |
 | the affine dictionary `D(A-Mod) ≌ D(QCoh(Spec A))`, from a general derived-transport theorem for equivalences of abelian categories | `AffineDictionary.lean` |
+| the two models of `D_qc(Spec A)`: `D(A-Mod) ≌ D_qc(Spec A)`, a *construction* from the `tilde ⊣ RΓ` input rather than a black-box equivalence, with `tilde` exactness (Stacks 01HV) now proved rather than cited | `AffineQCoh.lean` |
+| the affine recollement `D(A[1/f]) → D(A) → D_Z(A)` in the GL26/LP orientation: power-torsion Serre class, `Lj^* i_* ≅ 0`, `RΓ_Z Rj_* ≅ 0`, both gluing triangles | `AffineRecollement.lean` |
 | **LP Theorem 1.1 for `D(A-Mod)`**: weak approximability iff eventual self-vanishing of the generator | `Affine.lean` |
+| the same with Stacks 09SR *and* Bondal–Van den Bergh removed: `compact ⇒ Perf` is the only use of Neeman 3.2(i), and Bondal–Van den Bergh's Lemma 3.3.8 is proved for every ring | `AffineMain.lean` |
 | **GL26 Lemma 2.25 for affine schemes**, proved: `Φ_{RΔ_*O} ≅ 𝟭`, with the projection formula, the tensor unit and the diagonal retractions as data | `AffineDiagonal.lean` |
 
 Everything above is `sorry`-free and depends only on `propext`, `Classical.choice`
@@ -67,9 +75,14 @@ citation, never as a `sorry`:
   Mosc. Math. J. 3 (2003), Theorem 3.1.1 and Lemma 3.3.8 — compacts are perfect,
   and eventual vanishing between them.
 * Stacks tags for the individual facts still being formalized: 01LA
-  (quasicoherence is a Serre property), 06Z0/36.3.5 (the two models of `D_qc`),
-  09M1/0BCJ/08CM (perfect complexes), 08IN (projection formula), 00A6/00AB
-  (exactness of `j_!`, `j^*`).
+  (quasicoherence is closed under extensions), 06Z0/079W/08D4/01XB (unbounded
+  `RΓ` and the two cohomology computations defining the two models of `D_qc`),
+  09M1/07LT/0BCJ/08CM (perfect complexes), 08IN (projection formula for
+  `RΔ_* O_Y`, a field of `DiagonalIdentityData`), and the localization sequence
+  behind `j^×`, `RΓ_Z` and `i^*` in the affine recollement
+  (Gao–Psaroudakis 2.2(ii), Balmer–Dell'Ambrogio–Sanders 2.3, Krause §4,
+  Stacks 0BFF).  Tags 01HV (`tilde` is exact) and 00A6/00AB (exactness of `j_!`,
+  `j^*`) are *proved* here and no longer assumed.
 
 What is *not* claimed: the general scheme case, the separated case, algebraic
 spaces, and GL26's Theorems 1.2–1.7 beyond their statements.
