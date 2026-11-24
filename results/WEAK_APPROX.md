@@ -135,7 +135,11 @@ together with the comparisons that pin the sign (Mathlib's rotation axiom is the
 paper's TR2; the truncation triangle is the paper's; `truncLE n = truncLT (n+1)`).
 Under `paper[n] = ⟦n⟧` — which is also what makes `H[a,b] = {H[-k] : a ≤ k ≤ b}`
 match `shiftInterval` (`WeakApprox/ShiftAudit.lean`) — both the `le`-indexed and
-the `⟦n⟧`-indexed statements of the library are the paper's as written.  The
+the `⟦n⟧`-indexed statements of the library are the paper's as written:
+`WeakApprox/StatementAudit.lean` checks the text-forms of Lemma 3.5 and of
+Theorem 1.1 against the paper's wording (the hypotheses, the conclusion
+`Hom(G', G'[n]) = 0` for `n ≫ 0`, and the aisle identity
+`T^{≤-n₀} = Coprod{H[n] : n ≥ n₀}` used in the proof of `lem:hom_vanishing`).  The
 opposite reading would require simultaneously translating `paper[n] = ⟦-n⟧`,
 i.e. a different identification rather than a second reading of the axioms.
 

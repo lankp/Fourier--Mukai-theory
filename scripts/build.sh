@@ -41,6 +41,7 @@ for f in \
   WeakApprox/BoundedVanishing.lean \
   WeakApprox/ShiftAudit.lean \
   WeakApprox/TStructureConvention.lean \
+  WeakApprox/StatementAudit.lean \
   WeakApprox/TwoStage.lean \
   WeakApprox/NineSR.lean \
   WeakApprox/GeneratorBridge.lean \
