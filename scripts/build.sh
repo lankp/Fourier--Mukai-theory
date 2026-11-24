@@ -45,6 +45,7 @@ for f in \
   WeakApprox/Proposition48Paper.lean \
   WeakApprox/Main.lean \
   WeakApprox/Setup44Reduced.lean \
+  WeakApprox/Setup44Minimal.lean \
   WeakApprox.lean ; do
   echo "== compiling $f"
   lean -o "${f%.lean}.olean" "$f"

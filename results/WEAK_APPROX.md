@@ -43,6 +43,16 @@ overflows Lean's stack); every audited declaration depends only on `propext`,
   particular `IsCoproductCompact` is *not* closed under binary biproducts while
   `IsCompactAb` is, which is exactly why Lemma 4.3(2) used to carry a
   compactness hypothesis on `G'⟦m⟧ ⊞ j_!G_U` and no longer does.
+* **Setup 4.4 is reduced to its irreducible data.**  `Setup44Reduced`
+  (`WeakApprox/Setup44Reduced.lean`) drops `G_compact`, `G_generates` and
+  `tD_glued`, which are conclusions of Lemma 4.3, and `Setup44Minimal`
+  (`WeakApprox/Setup44Minimal.lean`) also drops the common bound and condition
+  (3): the bound is chosen after the fact (`WeakApproximationData.monoBound`)
+  and `Hom(G, D^{≤-A}) = 0` is derived from Lemma 4.3(4) plus Lemma 3.5
+  (`WeakApprox/Setup44Vanishing.lean`).  Proposition 4.8 is stated with its
+  Lemma 4.6 premise discharged in `WeakApprox/Proposition48Paper.lean`, and
+  Lemma 4.3(3) is upgraded to a `t`-structure identity in
+  `WeakApprox/Lemma433TStructure.lean` (`TStructure.ext_le_zero`).
 * **The single external input is Stacks Tag 09SR** (Ravenel–Neeman:
   `Loc(S)^c = thick(S)` for a set `S` of compact objects, hence for a compact
   generator every compact lies in the thick envelope).  It is *not* used in
