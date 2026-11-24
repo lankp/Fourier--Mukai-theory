@@ -10,6 +10,7 @@ import WeakApprox.Closure
 import WeakApprox.Functoriality
 import WeakApprox.PLift
 import WeakApprox.Setup44
+import WeakApprox.Lemma43
 import WeakApprox.Lemma46
 import WeakApprox.Proposition48
 import WeakApprox.Lemma42
