@@ -16,6 +16,7 @@ for f in \
   FourierMukai/Paper/DerivedSetup.lean \
   FourierMukai/Scheme/Inputs.lean \
   FourierMukai/Scheme/WeakApprox.lean \
+  FourierMukai/Scheme/OpenImmersion.lean \
   FourierMukai/Paper/Statements.lean \
   FourierMukai/Paper/InterfaceAudit.lean \
   FourierMukai/Examples/Identity.lean \
