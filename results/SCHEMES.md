@@ -45,6 +45,33 @@ with their derived counterparts, `⊗^L`, `RHom`, and the boundedness criterion
 GL26 proves via compact generators. The remaining targets (1.2, 1.6, 1.7, 12.3,
 2.25, 2.26, 12.2, 6.18) then follow the paper's own order.
 
+## How much of GL26 the scheme route actually simplifies
+
+The theorem-by-theorem audit is in
+[`results/GL26_SCHEME_DEPENDENCE.md`](GL26_SCHEME_DEPENDENCE.md).  The headline
+numbers:
+
+* only **2 of the 10** targets use weak approximability at all (Theorem 1.2(1)
+  through Theorem 12.9, and Remark 2.6/12.9 indirectly);
+* **4 targets retain the genuinely new geometry** of GL26 — arbitrary Noetherian
+  base change for relative perfectness and the three §12 openness/locus
+  declarations;
+* the scheme restriction deletes the étale-presentation and point/residual-space
+  scaffolding, but not Grothendieck duality, relative dualizing complexes, mates,
+  pseudocoherence, support arguments or arbitrary base change;
+* restricting further to **separated** Noetherian schemes reuses more:
+  Guisado Villalgordo–Lank–Manali Rahul–Pavic, Theorem 6.11 (preprint) is the
+  scheme form of GL26 Theorem 10.13.
+
+Consequence for the project's own work: Neeman's theorem proves scheme weak
+approximability *directly*, so the completed `WeakApprox/` layer is not a
+prerequisite for the scheme route — it is the abstract alternative, and the
+thing the algebraic-space version needs.  That does not devalue it (it is a
+proved theorem and it is what `FourierMukai/Scheme/WeakApprox.lean` instantiates
+when a gluing proof is wanted), but the rehaul's value has to come from the
+geometric layer and from GL26's own new mathematics, not from reusing the
+categorical gluing.
+
 ## Module map (`FourierMukai/Scheme/`)
 
 | module | content | status |
