@@ -1,3 +1,27 @@
+# Repository layout and the relation to AxiomMath/Stacks
+
+This repository is laid out like [AxiomMath/Stacks](https://github.com/AxiomMath/Stacks) and
+builds on top of it:
+
+| file | origin |
+|---|---|
+| `lean-toolchain` | copied from AxiomMath/Stacks (`leanprover/lean4:v4.35.0`) |
+| `LICENSE` | copied from AxiomMath/Stacks (Apache 2.0) |
+| `.gitignore` | adapted from AxiomMath/Stacks (plus the local development directories) |
+| `lakefile.toml` | AxiomMath/Stacks' `[leanOptions]` block and Mathlib pin (`v4.35.0`), plus a `Stacks` requirement and the two libraries `FourierMukai`, `WeakApprox` |
+| `formalization.yaml` | same schema as AxiomMath/Stacks' `formalization.yaml` |
+| `README.md` | the goals of this project |
+
+Official build: `lake exe cache get && lake build` with the pinned toolchain.  The two libraries
+are Mathlib-only at the moment, so their build does not require the Stacks modules to be compiled;
+the `Stacks` requirement is in place for the porting pass described below.  `scripts/build.sh`
+remains the offline development path (it calls the `lean` on `PATH`).
+
+The repository `lankp/Fourier--Mukai-theory` holds this development on the branches `main` and
+`formalization` (the default branch is `formalization`).
+
+---
+
 # Grafting this development into `lankp/Fourier--Mukai-theory`
 
 ## What that repository is (verified 2026-11-24)
