@@ -1,15 +1,18 @@
 # Formalizing *Gluing weak approximability along recollements*
 
-P. Lank, B. Pauwels, F. Peng — 27 pages.  This note is the blueprint for the Lean
-development of that paper, kept separate from `FourierMukai/` so that it can be
-moved into its own repository when that exists.
+P. Lank, B. Pauwels — 22 pages (November 2026 version; an earlier 27-page version
+had F. Peng as a coauthor and treated algebraic stacks).  The current version
+treats quasi-compact quasi-separated **algebraic spaces**, and Corollary 1.2 is
+proved from the induction principle for algebraic spaces (Stacks Tag 09IT) rather
+than from the stack version.  This note is the blueprint for the Lean development
+of the paper, in `WeakApprox/`.
 
 ## 0. What the paper does
 
 * **Theorem 1.1.** For a recollement of singly compactly generated triangulated
   categories with `D_Z`, `D_U` weakly approximable, `D` is weakly approximable iff
   `Hom(G', G'[n]) = 0` for `n ≫ 0`.
-* **Corollary 1.2.** For a quasi-compact quasi-separated algebraic stack with
+* **Corollary 1.2.** For a quasi-compact quasi-separated algebraic space with
   quasi-finite separated diagonal, `D_qc,S(X)` is weakly approximable, and
   coherent when `X` is Noetherian.
 * The engine is §3 (properties of `⟨H⟩^[a,b]`, the aisle lemma, the iterative
