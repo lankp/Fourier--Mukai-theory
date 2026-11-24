@@ -14,6 +14,7 @@ for f in \
   FourierMukai/Prelim/Mates.lean \
   FourierMukai/Prelim/Lemma25.lean \
   FourierMukai/Paper/DerivedSetup.lean \
+  FourierMukai/Scheme/Inputs.lean \
   FourierMukai/Paper/Statements.lean \
   FourierMukai/Examples/Identity.lean \
   FourierMukai.lean \

@@ -9,9 +9,22 @@ is rebuilt for schemes.
 
 * **The weak-approximability input becomes published.** For a quasicompact
   quasiseparated scheme `X` and `Z ⊆ X` closed with quasicompact complement,
-  `D_qc,Z(X)` is weakly approximable — Neeman, [5, Theorem 3.2(iv)] as quoted in
-  arXiv:2505.09120. The algebraic-space version is LP, *Corollary 1.2*, which
-  rests on Hall–Rydh's induction principle and is unpublished.
+  `D_qc,Z(X)` is weakly approximable — A. Neeman, *Bounded t-structures on the
+  category of perfect complexes*, Acta Math. 233 (2024), no. 2, 239–284,
+  Theorem 3.2(iv) (arXiv:2202.08861). The same theorem gives, in (i)–(iii), that
+  the compacts of `D_qc,Z(X)` are the perfect complexes supported on `Z`, that a
+  single compact generator exists, and the preferred standard `t`-structure.
+  Eventual Hom vanishing between compacts is Bondal–Van den Bergh, *Generators
+  and representability of functors…*, Mosc. Math. J. 3 (2003), Theorem 3.1.1 +
+  Lemma 3.3.8. The algebraic-space version is LP, *Corollary 1.2*, which rests
+  on Hall–Rydh's induction principle and is unpublished.  Note the class: qcqs,
+  not Noetherian — Noetherian buys nothing extra for these inputs.
+* **Two inputs of GL26 Remark 2.6 remain preprint-level**: coherence of
+  `D_qc,Z(X)` (Neeman, arXiv:1806.06471, Example 5.4) and the passage between
+  equivalences on `D_qc`, `D^-_coh`, `D^b_coh`, `Perf` (Canonaco–Haesemeyer–
+  Neeman–Stellari, arXiv:2402.04605, Theorem B).  The scheme restriction removes
+  the algebraic-space induction, not these.  See `FourierMukai/Scheme/Inputs.lean`
+  for the exact statements, as `Prop`-valued templates.
 * **The space-specific inputs disappear.** Nagata compactification for
   algebraic spaces, existence of quotients by finite groupoids, and the
   induction principle for algebraic spaces are replaced by the classical

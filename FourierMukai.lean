@@ -10,6 +10,7 @@ import FourierMukai.Prelim.Lemma25
 import FourierMukai.Prelim.Thickness
 import FourierMukai.Prelim.Generation
 import FourierMukai.Paper.DerivedSetup
+import FourierMukai.Scheme.Inputs
 import FourierMukai.Paper.Statements
 import FourierMukai.Examples.Identity
 
