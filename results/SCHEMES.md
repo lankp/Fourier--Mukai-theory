@@ -109,8 +109,15 @@ where Mathlib does have the abelian, monoidal and injective-envelope structure.
 * **Toolchain.** Everything is verified on Lean 4.33.1 with Mathlib at
   `/opt/mathlib`, which is read-only: there is no Lake build, and
   `lakefile.toml`'s pin (`v4.35.0` + AxiomMath/Stacks) is not reproducible here.
-  The Stacks formalization cannot be imported (wrong toolchain, ~64k modules, no
-  cache), so the scheme layer is built on Mathlib alone.
+  The Stacks formalization cannot be imported, and porting it is not a shortcut:
+  measured transitive import closures are 3,518 modules / 1.07M lines to reach
+  "compact = perfect", 4,416 / 1.35M with generation and Ext vanishing, and
+  7,679 / 2.31M for `f^!`; the estimate is 200--450 person-days for a literal
+  port and 250--550 for the smallest package supplying compact generation,
+  perfectness and Ext vanishing. See
+  [`results/STACKS_PORTABILITY.md`](STACKS_PORTABILITY.md). The scheme layer is
+  therefore built on Mathlib alone, and a definition spike of 10--20 person-days
+  is the sensible first step.
 * **The dominant cost is the geometric layer**, not the categorical part: `f^!`
   for schemes, and the compact-generation/perfectness comparison, are
   research-level formalizations even with the literature in hand.
