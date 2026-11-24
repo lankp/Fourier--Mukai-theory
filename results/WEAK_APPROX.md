@@ -28,6 +28,8 @@ of the paper, in `WeakApprox/`.
 | `WeakApprox/Closure.lean` | Lemma 3.1(1): `⟨H⟩^[a,b]` closed under small coproducts, extensions, retracts, strictly full, contains `H[a,b]`, and minimal with these properties.  Also the two reusable Mathlib-level facts that the retract closure preserves coproduct- and extension-closure. | done |
 | `WeakApprox/Functoriality.lean` | Lemma 3.1(3): `F(⟨H⟩^[a,b]) ⊆ ⟨H'⟩^[a+c,b+d]` for an exact coproduct-preserving `F` with `F(H) ∈ ⟨H'⟩^[c,d]`.  Restriction: source and target share the hom universe, and both have the relevant coproducts. | done |
 | Lemma 3.1(5) | verified solution in `.ultramath/smwufzlp4/m5/Solution.lean` (compiles, axioms clean, with the ℕ-indexed Eilenberg swindle and the retract-complement lemma); **not ported**.  Blocker: `Coprod`'s coproduct constructor is indexed by `Type v`, where `v` is the hom universe of `C`, while the swindle is indexed by `ℕ : Type 0`; `Coprod.{0}` would force `Category.{0} C`.  Fixes: index the swindle by `ULift ℕ` and transport along the coproduct iso, or add a `Type 0`-coproduct constructor (m5's documented rendering). |
+| `WeakApprox/Octahedron.lean` | Remark 3.2(2): from cocone triangles for `f`, `g`, `f ≫ g`, the octahedron axiom gives a distinguished triangle `F_f → F_gf → F_g → F_f⟦1⟧` | done |
+| `WeakApprox/WeakApproximable.lean` | Definition 5.3 and Remark 5.4 in categorical form: `SatisfiesWA`, `SatisfiesStandardWA` (relative to a chosen t-structure), and `standard ⟹ weak`.  The geometric support-set quantification is *not* encoded; it needs `D_qc,S` from the Stacks library | done (categorical layer) |
 | `WeakApprox/Shift.lean` | Lemma 3.1(2): `shiftImage` (`P⟦s⟧`), `H[a,b]⟦s⟧ = H[a-s,b-s]`, `⟨H⟩^[a,b]⟦s⟧ = ⟨H⟩^[a-s,b-s]`, and monotonicity in the interval | done |
 | `WeakApprox/HomVanishing.lean` | Lemma 3.1(4): `Hom(X,Y) = 0` on `⟨H⟩^[a,b]`, and closure of `{Y : Hom(H,Y) = 0}` under coproducts/ extensions/retracts | done |
 | `WeakApprox/Recollement.lean` | recollement data, the two gluing triangles, the glued t-structure, Lemma 4.2, Lemma 4.3 | open |
@@ -99,7 +101,8 @@ So §2.1.2 and §3 are within reach, and §2.1.3 is partly there.
    octahedron cases of Remark 3.2; 3.5 is short).
 3. Definition 2.1 and the formal statement of Theorem 1.1 over a recollement
    structure.
-4. §4: Lemma 4.2, 4.3, 4.6, Proposition 4.8.  This is where the mathematical work
+4. §4: Remark 3.2(2) is done (`Octahedron.lean`); Lemma 4.2, 4.3, 4.6 and
+   Proposition 4.8 are with the swarm `smwun9hk2`.  This is where the mathematical work
    of the paper is, and it is also where the formalization will need the most
    design: `P`-lifts are a structure with a commuting condition, and TR3 is used
    four times in Lemma 4.6 alone.

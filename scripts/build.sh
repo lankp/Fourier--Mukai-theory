@@ -24,6 +24,8 @@ for f in \
   WeakApprox/Shift.lean \
   WeakApprox/Closure.lean \
   WeakApprox/Functoriality.lean \
+  WeakApprox/Octahedron.lean \
+  WeakApprox/WeakApproximable.lean \
   WeakApprox.lean ; do
   echo "== compiling $f"
   lean -o "${f%.lean}.olean" "$f"

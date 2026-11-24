@@ -8,6 +8,8 @@ import WeakApprox.HomVanishing
 import WeakApprox.Shift
 import WeakApprox.Closure
 import WeakApprox.Functoriality
+import WeakApprox.Octahedron
+import WeakApprox.WeakApproximable
 
 /-!
 # Weak approximability along recollements
