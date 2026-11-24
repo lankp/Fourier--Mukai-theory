@@ -1,49 +1,95 @@
-# GL26 in Lean: relative Fourier–Mukai theory for algebraic spaces
+# GL26 in Lean: relative Fourier–Mukai theory for affine Noetherian schemes
 
 This repository is a Lean 4 formalization of
 
 > **GL26** — Elías Guisado Villalgordo, Pat Lank, *Relative Fourier–Mukai theory
 > for algebraic spaces*, arXiv:2609.01298 (2026).
 
-The goal is to verify the paper's results in Lean, on top of the Axiom Math
-formalization of the Stacks Project and Mathlib — see *Building* below.  The
-formalization proceeds from the foundational sections outwards: the
-triangulated-category and 2-categorical machinery of §2.1 and Appendix B, the mate
-calculus of §7, the compact-object criterion of §2.1, and then the geometric
-layer.
+**Current scope: the affine base case.** The project verifies GL26 over an
+affine Noetherian base scheme `S = Spec A`, on Mathlib alone.  The engine is the
+gluing theorem of Lank–Pauwels (**LP Theorem 1.1**), whose categorical form is
+verified here in full; the geometric layer is built for schemes, and the
+affine case is where it is being completed.  The separated-base case and then
+algebraic spaces are future targets — see [*Future targets*](#future-targets).
+
+The verification chain for the affine case is tracked, row by row, in
+[`results/AFFINE.md`](results/AFFINE.md).  Its end point is LP Theorem 1.1 for
+the recollement `D_qc,Z(Spec A) ⟷ D_qc(Spec A) ⟷ D_qc(Spec A[1/f])` with **no
+unproved input except Neeman's published theorem** (Acta Math. 233 (2024),
+Theorem 3.2), which states that `D_qc,Z(X)` is weakly approximable for every
+quasicompact quasiseparated scheme `X` and every closed `Z` with quasicompact
+complement.
 
 ## What is verified
 
-| GL26 | Lean |
+**Categorical layer** (`WeakApprox/`, scheme-agnostic, `sorry`-free):
+
+| result | Lean |
 |---|---|
-| Definition B.9 (`Trinatural`), identity and vertical composition of trinatural transformations | `FourierMukai/Prelim/Triangulated.lean` |
-| Lemma 2.3(1) (coproducts and cofactors), Lemma 2.3(2) (triangulated, thick, localizing), Lemma 2.3(3) (essential density) | `FourierMukai/Prelim/{Closure, Coproduct, Shift, EssentiallyDense, Thickness}.lean` |
-| Lemma 2.5 (equivalences and compact objects) | `FourierMukai/Prelim/Lemma25.lean` |
-| Lemma 7.1(2) (mate bijection) and Lemma 7.8(2) (mates of isomorphisms) | `FourierMukai/Prelim/Mates.lean` |
-| Definition 4.1, Definition 5.1, the integral transform `Φ_K`, Definition 12.1 (`FM`, `fm`) | `FourierMukai/Paper/DerivedSetup.lean` |
+| LP §2–§3: `⟨H⟩^[a,b]`, its closure properties (Lemma 3.1), the aisle lemma (3.3), iterated approximation (3.4), the vanishing criterion (3.5) | `WeakApprox/{Basic, Closure, Shift, Functoriality, HomVanishing, Aisle, Lemma34, Lemma35, Octahedron}.lean` |
+| LP §4: the `Recollement` structure, the glued aisle (Lemma 4.2), Lemma 4.3 with its hypotheses reduced, `P`-lifts (Def. 4.5), Lemma 4.6, Proposition 4.8, Setup 4.4 reduced to its irreducible data | `WeakApprox/{Recollement, Lemma42, Lemma43, Lemma4323, Lemma433TStructure, PLift, Lemma46, Proposition48, Proposition48Paper, Setup44, Setup44Reduced, Setup44Minimal}.lean` |
+| **LP Theorem 1.1**, both directions, from the minimal setup, with Stacks 09SR weakened to eventual vanishing between compacts | `WeakApprox/{Main, MainMinimal, EventualVanishing, CompactVanishing, NineSR}.lean` |
+| compactness over `AddCommGrpCat` (the paper's notion), closed under biproducts | `WeakApprox/CompactAb.lean` |
 
-Everything in `FourierMukai/Prelim/` is `sorry`-free and depends only on
-`propext`, `Classical.choice` and `Quot.sound`; `FourierMukai/Audit.lean` prints
-the audit.
+**Scheme layer** (`FourierMukai/Scheme/`):
 
-`FourierMukai/Paper/Statements.lean` states the paper's main theorems —
-Theorems 1.3, 1.2(1)–(2), 1.6, 12.3, 1.7, Lemmas 2.25, 2.26, 12.2 and
-Corollary 6.18 — over an interface for the geometric layer (`D_qc` on algebraic
-spaces, `f^×`, `f^!`).  They are formalization targets, not proved theorems; the
-interface and the missing prerequisites are described in
-[`results/REPORT.md`](results/REPORT.md).
+| result | Lean |
+|---|---|
+| `D(X) = D(X.Modules)`, cohomology sheaves, `D_qc(X)` as complexes with quasicoherent cohomology | `Derived.lean` |
+| finite locally free sheaves, bounded vector-bundle complexes, `IsPerfect` (scheme-local 0BCJ model) | `Perfect.lean` |
+| `j_! ⊣ j^* ⊣ j_*` for an open immersion, `j_!` and `j^*` exact, the derived recollement interface | `OpenImmersion.lean` |
+| derived pushforward/pullback from Kan extensions; `RHom`, `⊗^L`, `f^×`, `f^!` interface with the projection formula and base change as a mate | `Duality.lean` |
+| the ten GL26 targets over Noetherian schemes as `Prop`-valued statements, with no vacuous hypotheses | `Statements.lean` |
+| the published inputs (Neeman, Bondal–Van den Bergh) as `Prop` templates with citations | `Inputs.lean` |
 
-## Refocus for schemes (in progress)
+**Affine results** (the current focus):
 
-The project is being refocused from quasi-compact quasi-separated **algebraic
-spaces** to **Noetherian schemes**, because the weak-approximability input GL26
-needs is a *published* theorem for schemes (Neeman: `D_qc,Z(X)` is weakly
-approximable for `X` quasicompact quasiseparated and `Z` closed with
-quasicompact complement) whereas the algebraic-space version rests on the
-unpublished Corollary 1.2 of the weak-approximability preprint.  The categorical
-layer in `WeakApprox/` is scheme-agnostic and is reused unchanged.  See
-[`results/SCHEMES.md`](results/SCHEMES.md) for the target, the module map of
-`FourierMukai/Scheme/`, and the list of what Mathlib is missing.
+| result | Lean |
+|---|---|
+| `Perf A`, `Db A`, `Dbcoh A` for a ring: closure under `0`, shifts, biproducts, cones, retracts; `Perf ⊆ D^b`; `Perf ⊆ D^b_coh` for Noetherian `A` | `PerfectRing.lean` |
+| the affine dictionary `D(A-Mod) ≌ D(QCoh(Spec A))`, from a general derived-transport theorem for equivalences of abelian categories | `AffineDictionary.lean` |
+| **LP Theorem 1.1 for `D(A-Mod)`**: weak approximability iff eventual self-vanishing of the generator | `Affine.lean` |
+| **GL26 Lemma 2.25 for affine schemes**, proved: `Φ_{RΔ_*O} ≅ 𝟭`, with the projection formula, the tensor unit and the diagonal retractions as data | `AffineDiagonal.lean` |
+
+Everything above is `sorry`-free and depends only on `propext`, `Classical.choice`
+and `Quot.sound`; the audits are printed at the end of the modules that state the
+main results.
+
+## What is assumed
+
+Only published theorems, each stated as a named `Prop`/`structure` field with a
+citation, never as a `sorry`:
+
+* **Neeman**, *Bounded `t`-structures on the category of perfect complexes*,
+  Acta Math. 233 (2024), Theorem 3.2 — weak approximability, compact generation,
+  compact = supported perfect, preferred `t`-structure, for qcqs schemes.
+* **Bondal–Van den Bergh**, *Generators and representability of functors…*,
+  Mosc. Math. J. 3 (2003), Theorem 3.1.1 and Lemma 3.3.8 — compacts are perfect,
+  and eventual vanishing between them.
+* Stacks tags for the individual facts still being formalized: 01LA
+  (quasicoherence is a Serre property), 06Z0/36.3.5 (the two models of `D_qc`),
+  09M1/0BCJ/08CM (perfect complexes), 08IN (projection formula), 00A6/00AB
+  (exactness of `j_!`, `j^*`).
+
+What is *not* claimed: the general scheme case, the separated case, algebraic
+spaces, and GL26's Theorems 1.2–1.7 beyond their statements.
+
+## Future targets
+
+1. **Separated Noetherian schemes.**  The same chain over a separated base, where
+   Guisado Villalgordo–Lank–Manali Rahul–Pavic, Theorem 6.11, is the scheme form
+   of GL26 Theorem 10.13.
+2. **Algebraic spaces**, which need the Stacks library for `D_qc` on algebraic
+   spaces; at this toolchain that is a person-months port (see
+   [`results/STACKS_PORTABILITY.md`](results/STACKS_PORTABILITY.md)).
+3. The remaining GL26 targets (1.2, 1.3, 1.6, 1.7, 12.3, 2.26, 12.2, 6.18),
+   which are stated over Noetherian schemes in `FourierMukai/Scheme/Statements.lean`.
+
+The algebraic-space interface (`FourierMukai/Paper/DerivedSetup.lean`) and its
+target file are kept as the record of what must remain true after the switch;
+`FourierMukai/Paper/InterfaceAudit.lean` records a defect found in it — the
+abstract `FMContext` does not imply Lemma 2.25, which is why the affine proof of
+that lemma carries the projection formula and the diagonal identities as data.
 
 ## Other preprints verified along the way
 
@@ -84,26 +130,23 @@ repository:
 The status of each is recorded in the two reports above, including which
 statements are assumed rather than proved.
 
-## Building on the Axiom Math Stacks formalization
+## Building
 
-The project builds **on top of
-[AxiomMath/Stacks](https://github.com/AxiomMath/Stacks)**, the Axiom Math
-formalization of the Stacks Project, which is itself built on
-[Mathlib](https://github.com/leanprover-community/mathlib4).  We thank the Axiom
-Math team and the Stacks Project authors: the geometric prerequisites of GL26 —
-algebraic spaces, `D_qc`, perfect complexes, Grothendieck duality — come from that
-library, and the build configuration here (`lean-toolchain`, the `[leanOptions]`
-block, the Mathlib pin) is copied from it so the two libraries can be developed
-side by side.
+The project is **Mathlib-only**.  It was originally laid out to sit on top of
+[AxiomMath/Stacks](https://github.com/AxiomMath/Stacks), the Axiom Math
+formalization of the Stacks Project, and the `[leanOptions]` block in
+`lakefile.toml` is kept from that project's configuration because every module
+here has been checked against it.  The Stacks requirement itself has been
+dropped: porting that library to the toolchain used here is a person-months
+programme ([`results/STACKS_PORTABILITY.md`](results/STACKS_PORTABILITY.md)),
+so the geometric layer is built directly on Mathlib.
 
-* `lean-toolchain`: `leanprover/lean4:v4.33.1`, the toolchain every module in
-  this repository has actually been verified against.
-* `lakefile.toml`: requires Mathlib at `v4.33.1`; it no longer requires the
-  Stacks library, which is a person-months port at this toolchain (see
-  [`results/STACKS_PORTABILITY.md`](results/STACKS_PORTABILITY.md)).
+* `lean-toolchain`: `leanprover/lean4:v4.33.1`, the toolchain every module has
+  actually been verified against.
+* `lakefile.toml`: requires Mathlib at `v4.33.1`; no Stacks requirement.
 * In the verification environment there is no Lake build: `/opt/mathlib` is a
   prebuilt read-only Mathlib on `LEAN_PATH`, and `scripts/build.sh` calls `lean`
-  directly. That script is the reproduced build; the Lake configuration is kept
+  directly.  That script is the reproduced build; the Lake configuration is kept
   for users with a writable setup and is not exercised here.
 
 With [elan](https://github.com/leanprover/elan) and Lake:
@@ -113,21 +156,19 @@ lake exe cache get   # Mathlib's compiled artifacts
 lake build           # builds the libraries `FourierMukai` and `WeakApprox`
 ```
 
-The Stacks library is large (about 63,000 modules) and its own cache is still
-being prepared; both libraries here are Mathlib-only at present, so
-`lake build FourierMukai WeakApprox` does not need the Stacks modules compiled.
-For a machine without the pinned toolchain, `scripts/build.sh` compiles every
-module with the `lean` on `PATH`.
+or, without Lake, `./scripts/build.sh`, which compiles every module in dependency
+order with the `lean` on `PATH`.
 
 ## Layout
 
 | path | contents |
 |---|---|
-| `FourierMukai/Prelim/` | the triangulated-category and 2-categorical foundations (see the table above) |
-| `FourierMukai/Paper/` | the interface for the geometric layer, and the statements of the main theorems |
+| `WeakApprox/` | the Lank–Pauwels preprint: §2–§4 and Theorem 1.1, scheme-agnostic |
+| `FourierMukai/Scheme/` | the scheme layer and the affine verification: `D(X)`, `D_qc`, `Perf`, open-immersion functors, duality interface, statement layer, and the affine theorems |
+| `FourierMukai/Prelim/` | the triangulated-category and 2-categorical foundations used by both |
+| `FourierMukai/Paper/` | the (superseded) algebraic-space interface, its targets, and the interface audit |
 | `FourierMukai/Examples/` | a non-vacuous instantiation on Mathlib's derived category of an abelian category |
-| `WeakApprox/` | the Lank–Pauwels preprint: §2–§4 |
-| `results/` | reports: state of each formalization, missing prerequisites, porting notes |
+| `results/` | reports: `AFFINE.md` (the verification chain), `SCHEMES.md` (general scheme target), `MATHLIB_INVENTORY.md`, `STACKS_PORTABILITY.md`, `GL26_SCHEME_DEPENDENCE.md`, `WEAK_APPROX.md`, `REPORT.md` |
 | `scripts/build.sh` | the offline development build |
 
 ## License

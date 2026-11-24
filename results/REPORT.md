@@ -1,3 +1,10 @@
+> **Status (current).** The project has been refocused on **GL26 for affine
+> Noetherian schemes**; the affine verification chain is
+> [`results/AFFINE.md`](AFFINE.md) and the README describes the scope.  This
+> report was written when the target was the full algebraic-space paper, and it
+> remains the inventory of the geometric prerequisites and of the algebraic-space
+> interface (`FourierMukai/Paper/`), which is now the record of the future target.
+
 # Lean code for *Relative Fourier–Mukai theory for algebraic spaces*
 
 Elías Guisado Villalgordo, Pat Lank — 102 pages, 12 sections, 3 appendices.

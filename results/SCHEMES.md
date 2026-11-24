@@ -1,3 +1,8 @@
+> **Status.** The project's current focus is the **affine base case**; the
+> verification chain is in [`results/AFFINE.md`](AFFINE.md).  This document
+> describes the general Noetherian-scheme target, which comes after it, and the
+> separated-base step before it.
+
 # Refocus: GL26 for Noetherian schemes
 
 **Decision.** The project is refocused from *quasi-compact quasi-separated
