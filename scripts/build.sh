@@ -26,6 +26,8 @@ for f in \
   WeakApprox/Functoriality.lean \
   WeakApprox/PLift.lean \
   WeakApprox/Setup44.lean \
+  WeakApprox/Lemma46.lean \
+  WeakApprox/Proposition48.lean \
   WeakApprox/Lemma42.lean \
   WeakApprox/Recollement.lean \
   WeakApprox/Lemma34.lean \
