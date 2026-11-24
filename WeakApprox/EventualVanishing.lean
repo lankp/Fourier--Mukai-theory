@@ -62,4 +62,33 @@ theorem eventuallyHomZero_self_of_isClassicalGeneratorOnCompacts
 
 end WeakApproximationData
 
+section Closure
+
+variable {C : Type u} [Category.{v} C] [HasZeroObject C] [HasShift C ℤ]
+  [Preadditive C] [∀ (n : ℤ), (shiftFunctor C n).Additive] [Pretriangulated C]
+
+/-- Eventual Hom-vanishing is a retract invariant: if `X` is a retract of `Y`
+through `i : X ⟶ Y` and `r : Y ⟶ X` with `i ≫ r = 𝟙 X`, then `Y`'s
+self-vanishing bounds `X`'s, with the same cutoff. -/
+theorem EventuallyHomZero.of_retract {X Y : C} (i : X ⟶ Y) (r : Y ⟶ X)
+    (h : i ≫ r = 𝟙 X) (hY : EventuallyHomZero Y Y) : EventuallyHomZero X X := by
+  obtain ⟨N, hN⟩ := hY
+  refine ⟨N, fun n hn f => ?_⟩
+  have hf : r ≫ f ≫ i⟦n⟧' = 0 := hN n hn _
+  calc f = 𝟙 X ≫ f ≫ 𝟙 (X⟦n⟧) := by simp
+    _ = (i ≫ r) ≫ f ≫ (i⟦n⟧' ≫ r⟦n⟧') := by rw [h, ← Functor.map_comp, h]; simp
+    _ = i ≫ (r ≫ f ≫ i⟦n⟧') ≫ r⟦n⟧' := by simp only [Category.assoc]
+    _ = 0 := by rw [hf, zero_comp, comp_zero]
+
+/-- Eventual Hom-vanishing of an object is invariant under shifts. -/
+theorem EventuallyHomZero.shift [CategoryTheory.IsTriangulated C] {X : C}
+    (h : EventuallyHomZero X X) (k : ℤ) : EventuallyHomZero (X⟦k⟧) (X⟦k⟧) := by
+  have hbase : (ObjectProperty.singleton X).triangEnvelope X :=
+    ObjectProperty.le_triangEnvelope _ _ ((ObjectProperty.singleton_iff _ _).2 rfl)
+  exact eventuallyHomZero_of_mem_triangEnvelope h
+    ((ObjectProperty.singleton X).triangEnvelope.le_shift k _ hbase)
+    ((ObjectProperty.singleton X).triangEnvelope.le_shift k _ hbase)
+
+end Closure
+
 end RelativeWeakApprox

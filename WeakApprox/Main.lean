@@ -23,10 +23,12 @@ equivalence and is supplied by `SetupMain.toSetup44`.  Everything else in
 Setup 4.4 is kept verbatim, including the conclusions of Lemma 4.3(1)--(3) and
 the descriptions of the three compactly generated aisles.
 
-The single external input is Stacks Tag 09SR (Ravenel--Neeman): for a compact
-generator of a compactly generated category, every compact object lies in the
-finite thick triangulated envelope of the generator.  It is the hypothesis
-`h09SR`, uniform over generators; see `WeakApprox/NineSR.lean` and
+Both directions are theorems about Setup 4.4 and need no external input.  The
+forward direction uses only `G ∈ D^{≤0}` and `Hom(G, D^{≤-A}) = 0`, which give
+`Hom(G, G⟦n⟧) = 0` for `n ≥ A`, and then that `G'` lies in the thick envelope of
+`G` because `G'⟦m⟧` is a summand of `G`.  Stacks Tag 09SR (Ravenel--Neeman) is
+not used here: it is needed only to derive Setup 4.4 from the paper's own
+hypotheses, i.e. in Lemma 4.3.  See `WeakApprox/NineSR.lean` and
 `results/WEAK_APPROX.md` for what is and is not formalized of it.
 
 The reverse direction is `WeakApprox/TwoStage.lean`: `Setup44` produces weak
@@ -139,6 +141,9 @@ variable {DZ : Type uZ} {D : Type uD} {DU : Type uU}
   [CategoryTheory.IsTriangulated DZ] [CategoryTheory.IsTriangulated D]
   [CategoryTheory.IsTriangulated DU]
 
+/-- The normalized compact generator `G = G'⟦m⟧ ⊞ j_!G_U`. -/
+noncomputable def G (S : SetupMain DZ D DU) : D := S.G'⟦S.m⟧ ⊞ S.R.jShriek.obj S.GU
+
 /-- Adjoin the eventual vanishing of `Hom(G', G'⟦n⟧)` to a `SetupMain`, to get
 the setup assumed by the reverse direction (`WeakApprox/TwoStage.lean`). -/
 def toSetup44 (S : SetupMain DZ D DU)
@@ -174,36 +179,66 @@ def toSetup44 (S : SetupMain DZ D DU)
   approxU_A := S.approxU_A
   G_hom_vanishing := S.G_hom_vanishing
 
-theorem theorem_1_1_forward (S : SetupMain DZ D DU)
-    (h09SR : ∀ (G : D), IsGenerator G → IsCoproductCompact G →
-      IsClassicalGeneratorOnCompacts G)
-    (h : SatisfiesWA D) :
-    ∃ N : ℤ, ∀ n : ℤ, N ≤ n → ∀ f : S.G' ⟶ S.G'⟦n⟧, f = 0 := by
-  obtain ⟨W⟩ := h
-  have hgen : IsClassicalGeneratorOnCompacts W.G :=
-    h09SR W.G W.G_generates W.G_compact
-  have hmem : (ObjectProperty.singleton W.G).triangEnvelope S.G' :=
-    hgen S.G' S.G'_compact
-  exact eventuallyHomZero_self_of_mem_triangEnvelope W hmem
+/-- The normalized generator lies in its own degree-zero compactly generated
+aisle. -/
+theorem G_mem_le_zero (S : SetupMain DZ D DU) : S.tD.le 0 S.G := by
+  rw [S.tD_compactlyGenerated]
+  exact Coprod.of_mem _ ⟨0, le_rfl, ⟨(shiftFunctorZero D ℤ).symm.app S.G⟩⟩
 
-/-- **Theorem 1.1.**  With `D_Z` and `D_U` weakly approximable and the
-normalized generator `G'` of `D` compact, `D` is weakly approximable if and only
-if `Hom(G', G'⟦n⟧) = 0` for `n ≫ 0`.
+/-- The normalized generator has eventually vanishing positive self-shift Homs.
 
-The forward direction is `theorem_1_1_forward`; the reverse direction supplies
-the vanishing to `Setup44` and applies the two-stage approximation of
-`WeakApprox/TwoStage.lean`. -/
+This uses no weak approximation data on `D`: it is a consequence of the two
+Setup 4.4 conditions `G ∈ D^{≤0}` and `Hom(G, D^{≤-A}) = 0`, with cutoff `A`
+(a map `G ⟶ G⟦n⟧` lands in `D^{≤-n} ⊆ D^{≤-A}` as soon as `n ≥ A`). -/
+theorem eventuallyHomZero_G (S : SetupMain DZ D DU) : EventuallyHomZero S.G S.G := by
+  refine ⟨S.A, fun n hn f => S.G_hom_vanishing ?_ f⟩
+  apply S.tD.le_monotone (show 0 - n ≤ -S.A by omega)
+  exact S.tD.le_shift 0 n (0 - n) (by ring) S.G S.G_mem_le_zero
+
+/-- `G'` lies in the thick envelope of the normalized generator: `G'⟦m⟧` is a
+summand of `G = G'⟦m⟧ ⊞ j_!G_U`, and thick envelopes are closed under retracts
+and shifts. -/
+theorem thick_G' (S : SetupMain DZ D DU) :
+    (ObjectProperty.singleton S.G).triangEnvelope S.G' := by
+  have hG : (ObjectProperty.singleton S.G).triangEnvelope S.G :=
+    ObjectProperty.le_triangEnvelope _ _ ((ObjectProperty.singleton_iff _ _).2 rfl)
+  have hmem : (ObjectProperty.singleton S.G).triangEnvelope (S.G'⟦S.m⟧) :=
+    ObjectProperty.prop_of_retract _
+      ⟨biprod.inl, biprod.fst, biprod.inl_fst⟩ hG
+  have hmem' : (ObjectProperty.singleton S.G).triangEnvelope ((S.G'⟦S.m⟧)⟦-S.m⟧) :=
+    (ObjectProperty.singleton S.G).triangEnvelope.le_shift (-S.m) _ hmem
+  exact ObjectProperty.prop_of_iso _ (shiftShiftNeg S.G' S.m) hmem'
+
+/-- **Theorem 1.1, forward direction.**  Eventual vanishing of the positive
+self-shifts of `G'`.
+
+This needs neither `SatisfiesWA D` nor Stacks 09SR: it is a theorem about
+Setup 4.4 alone.  `G` has eventual self-vanishing by `eventuallyHomZero_G`, and
+`G'` lies in the thick envelope of `G` by `thick_G'`, so the vanishing
+transports along the envelope. -/
+theorem theorem_1_1_forward (S : SetupMain DZ D DU) :
+    ∃ N : ℤ, ∀ n : ℤ, N ≤ n → ∀ f : S.G' ⟶ S.G'⟦n⟧, f = 0 :=
+  eventuallyHomZero_of_mem_triangEnvelope S.eventuallyHomZero_G S.thick_G' S.thick_G'
+
+/-- **Theorem 1.1.**  With `D_Z` and `D_U` weakly approximable, `D` is weakly
+approximable if and only if `Hom(G', G'⟦n⟧) = 0` for `n ≫ 0`.
+
+Both directions are theorems about Setup 4.4.  The forward direction
+(`theorem_1_1_forward`) needs neither weak approximability of `D` nor Stacks
+09SR; the reverse direction supplies the vanishing to `Setup44` and applies the
+two-stage approximation of `WeakApprox/TwoStage.lean`.  Stacks 09SR enters only
+when Setup 4.4 is derived from the paper's own hypotheses, i.e. in Lemma 4.3. -/
 theorem theorem_1_1 (S : SetupMain DZ D DU)
-    (h09SR : ∀ (G : D), IsGenerator G → IsCoproductCompact G →
-      IsClassicalGeneratorOnCompacts G)
     [HasCoproducts.{v} DZ] [HasCoproducts.{v} D] [HasCoproducts.{v} DU] :
     SatisfiesWA D ↔ ∃ N : ℤ, ∀ n : ℤ, N ≤ n → ∀ f : S.G' ⟶ S.G'⟦n⟧, f = 0 :=
-  ⟨theorem_1_1_forward S h09SR, fun h => satisfiesWA_of_setup (S.toSetup44 h)⟩
+  ⟨fun _ => S.theorem_1_1_forward, fun h => satisfiesWA_of_setup (S.toSetup44 h)⟩
 
 end SetupMain
 
 end RelativeWeakApprox
 
 #print axioms RelativeWeakApprox.SetupMain.toSetup44
+#print axioms RelativeWeakApprox.SetupMain.eventuallyHomZero_G
+#print axioms RelativeWeakApprox.SetupMain.thick_G'
 #print axioms RelativeWeakApprox.SetupMain.theorem_1_1_forward
 #print axioms RelativeWeakApprox.SetupMain.theorem_1_1
