@@ -46,6 +46,7 @@ for f in \
   WeakApprox/Proposition48Paper.lean \
   WeakApprox/Main.lean \
   WeakApprox/Setup44Reduced.lean \
+  WeakApprox/MainMinimal.lean \
   WeakApprox/Setup44Minimal.lean \
   WeakApprox.lean ; do
   echo "== compiling $f"

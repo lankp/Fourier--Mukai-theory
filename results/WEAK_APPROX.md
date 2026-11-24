@@ -26,7 +26,10 @@ overflows Lean's stack); every audited declaration depends only on `propext`,
 `Classical.choice` and `Quot.sound`.
 
 * **Theorem 1.1** is proved, in both directions, at the level of Setup 4.4
-  (`WeakApprox/Main.lean`, statement `SetupMain.theorem_1_1`).  Its forward
+  (`WeakApprox/Main.lean`, statement `SetupMain.theorem_1_1`), and again at the
+  minimal level in `WeakApprox/MainMinimal.lean`
+  (`SetupMainMinimal.theorem_1_1`), where the setup carries only the paper's
+  data and Stacks 09SR is the single external hypothesis.  Its forward
   direction needs neither weak approximability of `D` nor Stacks 09SR: in
   Setup 4.4 the normalized generator satisfies `G ∈ D^{≤0}` and
   `Hom(G, D^{≤-A}) = 0`, which gives `Hom(G, G⟦n⟧) = 0` for `n ≥ A`, and `G'`
@@ -78,6 +81,45 @@ overflows Lean's stack); every audited declaration depends only on `propext`,
   Bousfield localization at a set of compact objects and that this localization
   is smashing; neither Mathlib nor this repository has that.
 
+## 0c. Audit against the paper
+
+Every theorem, lemma, proposition, corollary and definition of the paper that is
+*categorical* is formalized:
+
+| paper label | content | Lean |
+|---|---|---|
+| `def:weak_approx` | weak approximation data | `WeakApproximable.lean`, `Basic.lean` |
+| `lem:closures` | Lemma 3.1(1)–(5) | `Closure.lean`, `Shift.lean`, `Functoriality.lean`, `HomVanishing.lean`, `Proposition48.lean` |
+| `rmk:octahedral` | Remark 3.2 | `Octahedron.lean` |
+| `lem:aisle` | Lemma 3.3 | `Aisle.lean` |
+| `lem:iterate` | Lemma 3.4 | `Lemma34.lean` |
+| `lem:hom_vanishing` | Lemma 3.5 | `Lemma35.lean` |
+| `lem:glued` | Lemma 4.2 | `Lemma42.lean` |
+| `lem:normalize` | Lemma 4.3(1)–(3) | `Lemma43.lean`, `Lemma4323.lean`, `Lemma433TStructure.lean` |
+| `def:lift` | Definition 4.5 | `PLift.lean` |
+| `lem:onecell` | Lemma 4.6 | `Lemma46.lean` |
+| `prop:closure` | Proposition 4.8 | `Proposition48.lean`, `Proposition48Paper.lean` |
+| `thm:glueing_weak_approx` | Theorem 1.1 | `Main.lean`, `MainMinimal.lean` |
+| setup 4.1–4.4 | the recollement, the glued `t`-structure, the setup | `Recollement.lean`, `Setup44*.lean` |
+
+What remains is geometric, i.e. statements about quasi-compact quasi-separated
+algebraic spaces and the categories `D_qc(X)`, `D_qc,S(X)`.  None of them can be
+stated in this repository today, because Mathlib has no algebraic spaces and the
+Stacks library is not importable here.  They are:
+
+| paper label | content | needs |
+|---|---|---|
+| `cor:weak_approx_spaces` | `D_qc,S(X)` is weakly approximable for `X` quasi-compact quasi-separated with quasi-finite separated diagonal, and coherent when `X` is Noetherian | `D_qc,S` and the induction principle for algebraic spaces (Stacks 09IT) |
+| `lem:compact_ext_vanishing` | a compact object of `D_qc(X)` has `Hom(G, G⟦n⟧) = 0` for `n ≫ 0` | `D_qc`, and that compacts there are bounded above |
+| `lem:perf_vanishing` | a compact generator of `D_qc,S(X)` does the same | as above, plus support |
+| `lem:qcqs_open_pushforward` | `Rj_*` along a quasi-compact open immersion preserves small coproducts, with a uniform bound | the lisse-étale site |
+| `prop:A8` | gluing weak approximability along an elementary distinguished square | the `D_qc` recollement of such a square, plus `lem:qcqs_open_pushforward` |
+| `lem:characterize_T-_c` | description of `T^-_c` under standard W.A. | `D_qc`, pseudocoherence, support |
+
+`lem:compact_ext_vanishing` is worth noting: geometrically it plays the role that
+Stacks 09SR plays in the abstract setup here, and in the paper it is a theorem
+about `D_qc(X)` rather than a general categorical fact.
+
 ## 1. Module plan
 
 | module | contents | state |
@@ -105,6 +147,7 @@ overflows Lean's stack); every audited declaration depends only on `propext`,
 | `WeakApprox/Main.lean` | **Theorem 1.1**, both directions, over Setup 4.4 minus the conclusion of the forward direction; the forward direction needs neither `SatisfiesWA D` nor 09SR | done |
 | `WeakApprox/EquivalenceInvariance.lean` | weak and standard weak approximability are invariant under a triangulated, shift-compatible, coproduct-preserving equivalence; the `t`-structure is transported along the quasi-inverse | done |
 | `WeakApprox/GeneratorBridge.lean` | Section 2.1.2: the exact relation between `IsGenerator` (separation by the shift class), the paper's zero detection, and the absence of ghost morphisms | done |
+| `WeakApprox/MainMinimal.lean` | **Theorem 1.1** from the minimal Setup 4.4 data, with Stacks 09SR as the only external hypothesis; both directions | done |
 | `WeakApprox/NineSR.lean` | Stacks 09SR: zero detection from separation, the finite-stage retract rendering of its conclusion, its equivalence with `IsClassicalGeneratorOnCompacts`, and stability under isomorphisms and shifts. The Ravenel–Neeman theorem itself stays external | partial (documented) |
 | `WeakApprox/WeakApproximable.lean` | Definition 5.3 and Remark 5.4 in categorical form: `SatisfiesWA`, `SatisfiesStandardWA`, and `standard ⟹ weak` | done (categorical layer) |
 | Corollary 1.2 (`D_qc,S` on algebraic spaces) | needs the Stacks library for algebraic spaces and Hall–Rydh's induction principle | out of reach here |

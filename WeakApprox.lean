@@ -31,6 +31,7 @@ import WeakApprox.Proposition48Paper
 import WeakApprox.Setup44Reduced
 import WeakApprox.Setup44Minimal
 import WeakApprox.Main
+import WeakApprox.MainMinimal
 
 /-!
 # Weak approximability along recollements
