@@ -64,16 +64,45 @@ versions replace them; they document what has to remain true after the rehaul.
 
 ## What Mathlib 4.33.1 gives, and what it does not
 
-Verified present: `AlgebraicGeometry/Scheme`, `Modules/{Presheaf,Sheaf,Tilde}`
-(sheaves of modules, the tilde functor), `Noetherian`, `Morphisms`,
-`OpenImmersion`, `Sites`; `Algebra/Homology/DerivedCategory/Basic`
-(`DerivedCategory`, `HasDerivedCategory`, `Q`, `Qh`, triangulated structure);
-`CategoryTheory/Functor/Derived/*` and `CategoryTheory/Abelian/{Left,Right}Derived`.
+The measured inventory is in [`results/MATHLIB_INVENTORY.md`](MATHLIB_INVENTORY.md):
+56 rows, 34 present, 22 missing, each backed by a `#check` or a recorded search.
 
-Verified absent (as far as we have searched): a quasicoherence predicate for
-sheaves of modules on a scheme, perfect complexes, `RHom`, derived tensor,
-Grothendieck duality, K-injective/K-projective resolutions, ample line bundles.
-These are exactly the modules above.
+Present and directly usable: schemes and the morphism classes (Noetherian,
+proper, flat, separated, quasi-compact, quasi-separated, open and closed
+immersions); `X.Modules` (abelian, with limits and colimits); a quasicoherence
+predicate `SheafOfModules.IsQuasicoherent` with affine descriptions
+(`tilde`, `tildeEquiv`, affine presentations, restriction along open
+immersions); `SheafOfModules.IsLocallyFree`; underived pullback and pushforward
+of modules with their adjunction; the general derived category (`DerivedCategory`,
+`Q`, `Qh`, shifts, triangulation, `D^+`/`D^-`/`D^b`, the canonical
+`t`-structure, `totalLeftDerived`/`totalRightDerived`, `rightDerivedFunctorPlus`,
+`rightDerived`); tensor of modules, of presheaves of modules, and of raw
+complexes; site sheaf cohomology, the Čech complex construction, and the big and
+small étale sites of a scheme.
+
+Missing, in dependency order:
+
+1. **The three blocking instances.** `X.Modules` is not known to be Grothendieck
+   abelian and has no `EnoughInjectives` instance; there is no monoidal structure
+   on `X.Modules`; the quasicoherent modules are not known to form an abelian
+   subcategory. Without the first of these there is no derived functor on
+   unbounded complexes; without the second there is no `⊗^L`.
+2. **QC functoriality**: general pullback and qcqs pushforward preserving
+   quasicoherence, and the coherator.
+3. **The derived geometric layer**: `D_qc`, `D_qcoh`, `D^b_coh`, `Perf`,
+   `Perf = D_qc^c`, compact generation.
+4. **The six-functor layer**: `Rf_*` and `Lf^*` on `D_qc` with the adjunction,
+   `⊗^L`, `RHom`, the projection formula, tor-independent base change.
+5. **`f^×`, `f^!`, duality, support, ample/very ample, Nagata compactification,
+   the Čech comparison, and the open/closed recollement.**
+
+Consequence for the plan: **the first goal is not Theorem 1.3.** It is item 1 —
+`EnoughInjectives X.Modules` (equivalently, that sheaves of modules on a scheme
+form a Grothendieck abelian category) and the monoidal structure on `X.Modules`.
+Everything downstream, including the statement of Neeman's theorem, needs the
+categories those instances provide. The affine/ring case is genuinely easier and
+is a valid intermediate target: for `X = Spec A` everything reduces to `A-Mod`,
+where Mathlib does have the abelian, monoidal and injective-envelope structure.
 
 ## Constraints and risks
 
