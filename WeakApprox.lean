@@ -25,6 +25,9 @@ import WeakApprox.EventualVanishing
 import WeakApprox.TwoStage
 import WeakApprox.NineSR
 import WeakApprox.Lemma433TStructure
+import WeakApprox.Setup44Vanishing
+import WeakApprox.Proposition48Paper
+import WeakApprox.Setup44Reduced
 import WeakApprox.Main
 
 /-!
