@@ -36,6 +36,10 @@ for f in \
   WeakApprox/Lemma35.lean \
   WeakApprox/Octahedron.lean \
   WeakApprox/WeakApproximable.lean \
+  WeakApprox/EventualVanishing.lean \
+  WeakApprox/TwoStage.lean \
+  WeakApprox/NineSR.lean \
+  WeakApprox/Main.lean \
   WeakApprox.lean ; do
   echo "== compiling $f"
   lean -o "${f%.lean}.olean" "$f"

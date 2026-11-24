@@ -20,6 +20,10 @@ import WeakApprox.Lemma34
 import WeakApprox.Lemma35
 import WeakApprox.Octahedron
 import WeakApprox.WeakApproximable
+import WeakApprox.EventualVanishing
+import WeakApprox.TwoStage
+import WeakApprox.NineSR
+import WeakApprox.Main
 
 /-!
 # Weak approximability along recollements
