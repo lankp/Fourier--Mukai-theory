@@ -144,6 +144,7 @@ for f in \
   FourierMukai/Scheme/SchemeNeemanIsoTransport.lean \
   FourierMukai/Scheme/GL26OtherTargets.lean \
   FourierMukai/Scheme/GL26Theorem12Reduction.lean \
+  FourierMukai/Scheme/OpenClosedGlue.lean \
   FourierMukai/Scheme/FinalStatementCrosscheck.lean \
   FourierMukai/Scheme/Affine066S.lean \
   FourierMukai/Paper/Statements.lean \

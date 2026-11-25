@@ -143,6 +143,7 @@ import FourierMukai.Scheme.SchemeSupportedExcision
 import FourierMukai.Scheme.SchemeNeemanIsoTransport
 import FourierMukai.Scheme.GL26OtherTargets
 import FourierMukai.Scheme.GL26Theorem12Reduction
+import FourierMukai.Scheme.OpenClosedGlue
 import FourierMukai.Scheme.FinalStatementCrosscheck
 import FourierMukai.Scheme.Affine066S
 
