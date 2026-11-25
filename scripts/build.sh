@@ -133,6 +133,14 @@ for f in \
   FourierMukai/Scheme/M6Transport.lean \
   FourierMukai/Scheme/M6Unconditional.lean \
   FourierMukai/Scheme/SchemeNeemanAffineInstance.lean \
+  FourierMukai/Scheme/SchemeWeakApproxStatement.lean \
+  FourierMukai/Scheme/PaperTwoOpenGluing.lean \
+  FourierMukai/Scheme/SchemeSupportedTwoOpen.lean \
+  FourierMukai/Scheme/ClosedSupportNeeman.lean \
+  FourierMukai/Scheme/SchemeFiniteCoverInduction.lean \
+  FourierMukai/Scheme/SchemeSupportedFiniteCoverInduction.lean \
+  FourierMukai/Scheme/SchemeNeemanFiniteCoverAssembly.lean \
+  FourierMukai/Scheme/FinalStatementCrosscheck.lean \
   FourierMukai/Scheme/Affine066S.lean \
   FourierMukai/Paper/Statements.lean \
   FourierMukai/Paper/InterfaceAudit.lean \
