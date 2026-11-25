@@ -49,19 +49,20 @@ jobs:
             | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
 
-      # `lake-manifest.json` is not committed: this generates it from
-      # `lakefile.toml` (Mathlib pinned at the tag in the file) and fetches the
-      # dependency sources.  Commit the manifest afterwards to freeze the
-      # resolution.
-      - name: Resolve dependencies
-        run: lake update
+      # No `lake update`: `lake-manifest.json` is committed, so the resolution
+      # is fixed and `lake exe cache get` below fetches the packages it names.
+      # That removes about 95s per run.  It is not a cache fix: `lake update`
+      # was already deterministic here (re-running it reproduces the same
+      # manifest byte for byte), so the cache key did not move -- run 9's full
+      # rebuild had some other cause, which is not yet identified.
 
       # Two caches: the project's own oleans, and the dependency build
       # directories that `lake exe cache get` would otherwise repopulate from
-      # the network.  The dependency cache is large (Mathlib's `.lake/build` is
-      # several GB) and counts against GitHub's 10 GB per-repository cache
-      # budget, so if this repository ever approaches that limit, dropping the
-      # second path costs one cache fetch and nothing else.
+      # the network.  Measured: 1.9 GB compressed together, which is the whole
+      # repository's cache footprint and well inside GitHub's 10 GB budget.
+      # Restoring costs about 72s and saves about 330s of compilation.  It also
+      # runs before the packages exist, which is fine: `lake exe cache get`
+      # fetches the sources into the restored directory tree (tested).
       - name: Restore olean cache
         uses: actions/cache@v4
         with:
