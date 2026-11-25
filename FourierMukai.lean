@@ -69,6 +69,7 @@ import FourierMukai.Scheme.AisleGenDerivedCoproduct
 import FourierMukai.Scheme.AisleGenRingAisle
 import FourierMukai.Scheme.AisleGenRingGeneration
 import FourierMukai.Scheme.AisleGenDD
+import FourierMukai.Scheme.AffineSpecificAisleGeneration
 import FourierMukai.Scheme.AffineRecollementAssembly
 import FourierMukai.Scheme.AffineSetupInventory
 import FourierMukai.Scheme.AffineJUpperAdjoint

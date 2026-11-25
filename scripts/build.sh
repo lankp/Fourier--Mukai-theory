@@ -70,6 +70,7 @@ for f in \
   FourierMukai/Scheme/AisleGenRingAisle.lean \
   FourierMukai/Scheme/AisleGenRingGeneration.lean \
   FourierMukai/Scheme/AisleGenDD.lean \
+  FourierMukai/Scheme/AffineSpecificAisleGeneration.lean \
   FourierMukai/Scheme/AffineRecollementAssembly.lean \
   FourierMukai/Scheme/AffineSetupInventory.lean \
   FourierMukai/Scheme/AffineJUpperAdjoint.lean \
@@ -136,6 +137,7 @@ for f in \
   WeakApprox/Setup44Reduced.lean \
   WeakApprox/MainMinimal.lean \
   WeakApprox/Setup44Minimal.lean \
+  WeakApprox/CoprodRetract.lean \
   WeakApprox/CompactThick.lean \
   WeakApprox.lean ; do
   echo "== compiling $f"
