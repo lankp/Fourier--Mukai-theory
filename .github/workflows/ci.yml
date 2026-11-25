@@ -1,0 +1,117 @@
+name: CI
+
+# Verification setup modelled on
+# https://github.com/mattrobball/BridgelandStability:
+#   * a Lake build against Mathlib's olean cache (`lake exe cache get`), and
+#   * an independent check of the *statements* the project claims, run after the
+#     build, in its own job.
+#
+# Job graph:
+#   build ──> statement-check
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Lake build (Mathlib cache)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      # `lake-manifest.json` is not committed: this generates it from
+      # `lakefile.toml` (Mathlib pinned at the tag in the file) and fetches the
+      # dependency sources.  Commit the manifest afterwards to freeze the
+      # resolution.
+      - name: Resolve dependencies
+        run: lake update
+
+      - name: Restore olean cache
+        uses: actions/cache@v4
+        with:
+          path: .lake/build
+          key: oleans-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-${{ hashFiles('**/*.lean') }}
+          restore-keys: |
+            oleans-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-
+
+      - name: Get Mathlib cache
+        run: lake exe cache get
+
+      - name: Build
+        run: lake build
+
+      # `#print axioms` prints even when a file has errors, so this is a build
+      # step as much as an audit: it must elaborate cleanly.
+      - name: Axiom audit
+        run: lake env lean FourierMukai/Audit.lean
+
+      # Advisory while the tree is brought up to Mathlib's linter standard; the
+      # statement check below is the blocking quality gate.
+      - name: Declaration and style linters (advisory)
+        continue-on-error: true
+        run: |
+          lake exe runLinter
+          lake exe lint-style
+        env:
+          LAKE_NO_CACHE: "1"
+
+      - name: Upload oleans
+        uses: actions/upload-artifact@v4
+        with:
+          name: oleans
+          path: .lake/build
+          retention-days: 1
+
+  statement-check:
+    name: Independent statement check
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Resolve dependencies
+        run: lake update
+
+      - name: Download oleans
+        uses: actions/download-artifact@v4
+        with:
+          name: oleans
+          path: .lake/build
+
+      - name: Get Mathlib cache
+        run: lake exe cache get
+
+      # Re-elaborates StatementCheck.lean, refuses `sorryAx`, and diffs the
+      # printed signatures and axiom lists against results/statement-baseline.txt.
+      - name: Check statements against the baseline
+        run: ./scripts/check_statements.sh
+
+      - name: Upload the re-elaborated statement surface
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: statement-check
+          path: .scratch/statement-check.out
+          if-no-files-found: ignore
+          retention-days: 7
