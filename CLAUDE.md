@@ -88,11 +88,23 @@ A result is "proved" only after all of these, in order (`README.md`,
    `depends on axioms` lines before reading them; the set must be within
    `propext`, `Classical.choice`, `Quot.sound`;
 4. read the proof as well as the statement;
-5. `lake build` of the whole project passes (a single-file compile can read a
+5. **non-vacuity**: every hypothesis-carrying notion the statement relies on
+   (a class, a structure, a `Prop` definition such as a compactness or
+   generation predicate) is satisfiable.  Either cite an existing theorem that
+   exhibits an instance, or prove one (an example object, or at least the zero
+   object where that is meaningful).  A theorem whose hypotheses can never hold
+   is not a proof of the paper's result;
+6. `lake build` of the whole project passes (a single-file compile can read a
    stale `.olean`);
-6. `scripts/check_statements.sh` still passes.
+7. `scripts/check_statements.sh` still passes.
 
 Report the outcome of each step.  If a step was skipped, say so.
+
+Step 5 exists because of a real failure: the `Type`-valued `RelativeFM.IsCompact`
+is uninhabited in every pretriangulated category
+(`Prelim/CompactnessAudit.lean`), which made `lemma_2_5` and the first
+`lemma_2_4` vacuous while every other check passed.  Compactness in this
+project is `RelativeWeakApprox.IsCompactAb`.
 
 ## Conventions for new files
 
@@ -116,7 +128,7 @@ The maintainer has delegated merging to the orchestrator session: work reaches
 `formalization` by direct push, without pull requests.
 
 * The integration branch is `formalization`.  Only the **orchestrator** pushes to
-  it, and only after running the six verification steps on the result of the
+  it, and only after running the seven verification steps on the result of the
   merge.  Nobody force-pushes it or rewrites its history.
 * A **worker** works on one branch, `wave<N>/<short-slug>`, branched from the
   latest `formalization`, and pushes only that branch, with
@@ -127,7 +139,7 @@ The maintainer has delegated merging to the orchestrator session: work reaches
 * Commit messages say what was proved and what it depends on, in the style of
   the existing history.
 * A worker's final report lists: results covered (number + label), files, the
-  axiom sets printed, the six verification steps with outcomes, and any
+  axiom sets printed, the seven verification steps with outcomes, and any
   deviation from the paper's statement.  The orchestrator reads it, re-verifies,
   checks the statements against the manuscript, and merges or sends it back.
 
