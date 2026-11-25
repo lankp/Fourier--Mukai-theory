@@ -57,6 +57,8 @@ import FourierMukai.Scheme.AffineIShriek
 import FourierMukai.Scheme.AffineSupportedTStructure
 import FourierMukai.Scheme.AffineRecollementAssembly
 import FourierMukai.Scheme.AffineSetupInventory
+import FourierMukai.Scheme.AffineJUpperAdjoint
+import FourierMukai.Scheme.AffineJUpperTensorHom
 import FourierMukai.Scheme.AffineJUpperCandidateRefuted
 import FourierMukai.Scheme.AffineSupportedAssembly
 import FourierMukai.Scheme.AffineMain

@@ -155,6 +155,18 @@ preferred-`t`-structure equivalence and the normalized weak approximation data d
 generator).  So even with the recollement complete, those three aisle fields
 remain to be checked rather than assumed to follow.
 
+**`jUpper`: reduced to one tensor–Hom adjunction.**  `Scheme/AffineJUpperAdjoint.lean`
+proves, given `jUpper` and `jStarAdj`, the adjoint triple, `IsIso jStarAdj.counit`
+(from Mathlib's triple lemma and full faithfulness of the supported inclusion, not
+assumed), `jUpper`'s full faithfulness, its `CommShift`, the adjunction's
+`CommShift` and `IsTriangulated`.  It also rules out `jUpper = affineDZι`: that
+would force every map from the open essential image into a supported object to
+vanish.  `Scheme/AffineJUpperTensorHom.lean` gives the general reduction — if `E`
+is fully faithful, `J ⊣` something with `J ⋙ E ≅ T` and `T ⊣ H`, then
+`J ⊣ E ⋙ H` — so `jStarAdj` follows from a tensor–Hom adjunction with
+`T = C ⊗^L (-)`, `H = RHom(C, -)` and `C = RΓ_Z(A)`, the comparison being Stacks
+**0A6R**.  That single adjunction is what remains of `jUpper`.
+
 **Dead end, recorded so it is not retried.** The natural guess `jUpper = Rj_* Lj^*`
 on the supported category is *zero* for every `A`, `f`
 (`Scheme/AffineJUpperCandidateRefuted.lean`, `tensorLocalizationCandidateIsoZero`),

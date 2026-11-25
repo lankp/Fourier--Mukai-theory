@@ -58,6 +58,8 @@ for f in \
   FourierMukai/Scheme/AffineSupportedTStructure.lean \
   FourierMukai/Scheme/AffineRecollementAssembly.lean \
   FourierMukai/Scheme/AffineSetupInventory.lean \
+  FourierMukai/Scheme/AffineJUpperAdjoint.lean \
+  FourierMukai/Scheme/AffineJUpperTensorHom.lean \
   FourierMukai/Scheme/AffineJUpperCandidateRefuted.lean \
   FourierMukai/Scheme/AffineSupportedAssembly.lean \
   FourierMukai/Scheme/AffineMain.lean \
