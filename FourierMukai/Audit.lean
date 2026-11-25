@@ -97,3 +97,8 @@ open RelativeFM
 #print axioms RelativeFM.theorem_1_6
 #print axioms RelativeFM.lemma_2_26
 #print axioms RelativeFM.theorem_1_7
+#print axioms RelativeFM.Recollement.JUpperConstruction.adjunction
+#print axioms RelativeFM.Recollement.JUpperConstruction.jStarAdjOfIShriek
+#print axioms RelativeFM.Recollement.JUpperConstruction.affineRecollementInputOfIShriek
+#print axioms RelativeFM.Recollement.JUpperConstruction.affineRecollementInputOfStacks0E55
+#print axioms RelativeFM.Recollement.JUpperConstruction.affineRecollementInputOfExactCoextension
