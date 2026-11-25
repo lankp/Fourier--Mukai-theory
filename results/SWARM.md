@@ -8,17 +8,19 @@ rules every session follows are in `CLAUDE.md`; this file is the plan.
 * **Orchestrator**: one Claude session with the paper sources.  It picks tasks
   from the queue below, starts one worker session per task, sends each its task
   message (the rules, the files it may touch, and the TeX of the statements and
-  proofs it needs), reads the PRs, runs the verification steps of `CLAUDE.md`
-  itself, compares each Lean statement with the manuscript, and reports to the
-  maintainer.  It updates `results/COVERAGE.md` when a PR is merged.
+  proofs it needs), reads each worker's branch and report, runs the verification
+  steps of `CLAUDE.md` itself on the merge, compares each Lean statement with the
+  manuscript, and pushes the merge to `formalization`.  It updates
+  `results/COVERAGE.md` and the log below when it merges.
 * **Workers**: one cloud session per task, each in its own container, on its own
-  branch `wave<N>/<slug>`, ending in a PR into `formalization`.
-* **Maintainer** (a human): approves statements and merges.  Nothing reaches
-  `formalization` without that.
+  branch `wave<N>/<slug>`, ending in a pushed branch and a final report.  No PRs.
+* **Maintainer** (a human): has delegated merging to the orchestrator (25 November
+  2026) and reads the orchestrator's report after each wave.
 
 This replaces the earlier Ultramath arrangement (`README.md`, "How the work was
 produced"), in which members wrote into `.ultramath/` and never committed.  Here a
-worker commits to its own branch only, and the PR is the unit of review.
+worker commits to its own branch only, and the orchestrator's verified merge is
+the unit of review.
 
 ## Choosing tasks
 
@@ -80,6 +82,6 @@ From `README.md`, "What is open", and the coverage map:
 
 ## Log
 
-| wave | task | session | PR | outcome |
+| wave | task | session | merged as | outcome |
 |---|---|---|---|---|
 | 1 | | | | |
