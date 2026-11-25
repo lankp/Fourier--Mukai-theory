@@ -67,7 +67,8 @@ declarations are pinned in
 | Le–Chen 2.3: two out of three for split idempotents in a triangle | `LeChen` |
 | 066S from Neeman, hence `BoundedProjectiveModelConverseInput`, `Stacks07LTCompactModelInput` and `CompactPerfectInput` | `Affine066S` |
 | the finite-free induction of 07LT, and `compact ⇒ Perf` | `CompactToPerfect` |
-| perfect ⇒ compact, up to compactness of the regular module (the thick half of 09M8) | `PerfectCompactThick` |
+| perfect ⇒ compact (the thick half of 09M8), with compactness of the regular module now proved | `PerfectCompactThick`, `RegularCompact`, `RegularCompactEndpoints` |
+| compactness of the regular module in `D(A-Mod)`, and unconditional weak approximability of `D(A-Mod)` and of `D_{V(f)}(A-Mod)` | `RegularCompact` (`ringObject_isCompactAb`), `RegularCompactEndpoints` (`affine_satisfiesPaperWA`, `principalSupported_satisfiesPaperWA`) |
 | Spaltenstein's Theorem C, for any abelian category, and `AffineSpaltensteinInput A` for any commutative ring | `KProjectiveResolution`, `AffineBoundedAboveCoproducts`, `SpecialDirectLimits`, `Spaltenstein*`, `AffineSpaltenstein` |
 | the Hovey route to the same replacement data | `ProjectiveModel`, `SmallObjectPresentable`, `GeneratingCofibrations` |
 | 01LA(6) and 01IE extension closure, without cohomology | `QCohSerre`, `QCohSerreExtension`, `QCohSerreExtension01IE` |
@@ -82,7 +83,7 @@ declarations are pinned in
 | Lemma 2.25, `Φ_{RΔ_*O_Y} ≅ 𝟭` | `DiagonalIdentity`, `DiagonalFunctoriality`, `DiagonalDuality`, `Statements` | Stacks 08IN and functoriality of derived pullback and pushforward.  The tensor unit and the two diagonal retractions are derived rather than assumed, and the proper-flat hypothesis is proved unused |
 | Lemma 2.26, convolution | `AffineConvolution`, `GL26OtherTargets` | the derived cube, Stacks 08IN and 08IR, and one monoidal compatibility, packaged as `CorrectedConvolutionData` |
 | Lemma 5.4, the external tensor of compact generators generates the product | `Lemma54` | the cover square (flat base change, conservativity, the perfect/compact calculus).  The argument itself is proved in six-functor form |
-| Neeman 3.2(iv), affine supported base | `PrincipalNeemanM1`, `IdealNeemanM1`, `AffineSupportedSchemeBaseM1` | for a principal closed support, only `IsCompactAb (ringObject A)`; for finite `V(I)` and `IsAffine X`, that plus five named tagged inputs |
+| Neeman 3.2(iv), affine supported base | `PrincipalNeemanM1`, `IdealNeemanM1`, `AffineSupportedSchemeBaseM1` | for a principal closed support, nothing (compactness of the regular module is proved in `RegularCompact`); for finite `V(I)` and `IsAffine X`, five named tagged inputs |
 
 ### What is stated but not proved
 
@@ -239,10 +240,11 @@ a standalone challenge library and a `comparator` run.
    the repository's model of `D_qc`.  Of the four gluing inputs, supported
    excision is discharged from Stacks 08DF and isomorphism transport is proved;
    the open/closed glue is a reduction (`OpenClosedGlue`); the affine supported
-   base is proved for a principal closed support from `IsCompactAb (ringObject A)`
-   alone, and for finite `V(I)` and `IsAffine X` from that plus five named tagged
-   inputs.  What is left is those inputs, compactness of the regular module, and
-   the completion that the open/closed glue asks for.  The accounting is in
+   base is proved unconditionally for a principal closed support
+   (`principalSupported_satisfiesPaperWA`), and for finite `V(I)` and `IsAffine X`
+   from five named tagged inputs.  What is left is those inputs and the completion
+   that the open/closed glue asks for; compactness of the regular module is proved
+   (`Scheme/RegularCompact.lean`).  The accounting is in
    [`results/SCHEMES.md`](results/SCHEMES.md).
 2. **The last adjunction of the affine recollement.**  Every field of
    `AffineRecollementInput` is constructed except `jUpper` together with
