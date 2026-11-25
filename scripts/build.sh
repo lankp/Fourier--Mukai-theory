@@ -78,6 +78,12 @@ for f in \
   FourierMukai/Scheme/GeneratorCounterexampleM5.lean \
   FourierMukai/Scheme/PaperGeneratorM5.lean \
   FourierMukai/Scheme/AffineNeemanAssembly.lean \
+  FourierMukai/Scheme/NeemanFiniteSupportM4.lean \
+  FourierMukai/Scheme/ColimitHomologyM4.lean \
+  FourierMukai/Scheme/PrincipalChainM4.lean \
+  FourierMukai/Scheme/DerivedSingleM4.lean \
+  FourierMukai/Scheme/PrincipalKoszulM4.lean \
+  FourierMukai/Scheme/IdealKoszulM4.lean \
   FourierMukai/Scheme/AffineCompactness.lean \
   FourierMukai/Scheme/SchemeNeemanTransport.lean \
   FourierMukai/Scheme/NeemanSmallApproximationM3.lean \
