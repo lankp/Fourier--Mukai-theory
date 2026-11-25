@@ -55,25 +55,26 @@ about *constructing* `S` from ring data, not about the theorem.
 
 ## 1. The three open items
 
-**(1) Stacks 066S, i.e. the residue of 07LT.**  `Perf A ≤ HasBoundedFiniteProjectiveModel A`.
-Reduced twice and now in a good position:
+**(1) Stacks 066S — no longer needed as an independent assumption.**
+`Scheme/Affine066S.lean` derives it from Neeman alone: `NeemanAffineCompactModelInput`
+instantiates Neeman 3.2(i) at the *literal* bounded finite-projective model
+property, and then Y ∈ model ⇒ Y compact ⇒ X compact for a retract X of Y ⇒ X ∈
+model, so the model class is retract-closed and `Perf A ≤ model` follows.  From
+that: `Perf A ↔ model`, `BoundedProjectiveModelConverseInput`,
+`BoundedProjectiveModelInput`, `Stacks07LTCompactModelInput`, and both
+`CompactPerfectInput` and `CompactToPerfectInput`.  The tree therefore needs no
+separate 066S hypothesis, only Neeman.
 
-* `Scheme/PerfectModelConverse.lean`: `Perf A ≤ model ↔ model.IsStableUnderRetracts`,
-  with the model class proved closed under zero, isomorphisms, shifts, single
-  finite-projective complexes and cones (explicit mapping-cone models), so
-  triangulated.
-* `Scheme/LeChen.lean`: **Le–Chen 2.3 is proved** (`LeChen.splitsWithin_third`):
-  for a triangulated object property `T` and a morphism of distinguished triangles
-  whose three components are idempotents, splitting of the first two within `T`
-  gives splitting of the third.  No octahedral axiom is used.
-* `Scheme/CompactToPerfect.lean`: the whole finite-free induction of 07LT, and
-  `compact ⇒ Perf` follows from `FilteredFreeModelInput` + `FiniteFreeImprovementInput`.
-  066S is **not** needed for that implication (the thick envelope absorbs the
-  retract), only for the model form.
+What is *not* done, and should not be claimed: 066S is not proved unconditionally.
+The truncation induction that would do it fails, and the reason is now recorded
+rather than guessed — brutal truncation is not homotopy-functorial at the boundary,
+so the idempotent cannot simply be restricted to a subcomplex.  A genuine proof
+needs the homotopy-idempotent lifting that `LeChen` does not supply.
 
-Residue: the truncation induction on a bounded finite-projective complex, using
-that idempotents split in `R`-Mod at the bottom degree and `splitsWithin_third`
-to cross the triangle `σ_{≥a+1}P → P → P^a`.  Concrete, bounded work.
+Supporting infrastructure, all proved: `Scheme/LeChen.lean` (Le–Chen 2.3 for split
+idempotents in a triangle), `Scheme/PerfectModelConverse.lean`
+(`Perf ≤ model ↔ model retract-closed`, with the model class triangulated), and
+`Scheme/CompactToPerfect.lean` (07LT's finite-free induction).
 
 **(2) Spaltenstein's Theorem C — PROVED.**  `Scheme/SpaltensteinTheoremC.lean`
 gives `theoremCInput : TheoremCInput C` for an arbitrary abelian category, all

@@ -59,6 +59,7 @@ for f in \
   FourierMukai/Scheme/PerfectRingStacks.lean \
   FourierMukai/Scheme/PerfectCompactThick.lean \
   FourierMukai/Scheme/CompactToPerfect.lean \
+  FourierMukai/Scheme/Affine066S.lean \
   FourierMukai/Paper/Statements.lean \
   FourierMukai/Paper/InterfaceAudit.lean \
   FourierMukai/Examples/Identity.lean \
