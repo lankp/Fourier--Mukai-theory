@@ -44,6 +44,8 @@ import FourierMukai.Scheme.PerfectField
 import FourierMukai.Scheme.PerfectModel
 import FourierMukai.Scheme.PerfectModelConverse
 import FourierMukai.Scheme.LeChen
+import FourierMukai.Scheme.Affine066SRetracts
+import FourierMukai.Scheme.StupidTruncCounterexample
 import FourierMukai.Scheme.Affine
 import FourierMukai.Scheme.AffineCoproducts
 import FourierMukai.Scheme.AffineBoundedAboveCoproducts

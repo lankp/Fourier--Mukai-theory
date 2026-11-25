@@ -44,6 +44,8 @@ for f in \
   FourierMukai/Scheme/PerfectModel.lean \
   FourierMukai/Scheme/PerfectModelConverse.lean \
   FourierMukai/Scheme/LeChen.lean \
+  FourierMukai/Scheme/Affine066SRetracts.lean \
+  FourierMukai/Scheme/StupidTruncCounterexample.lean \
   FourierMukai/Scheme/PerfectField.lean \
   FourierMukai/Scheme/Affine.lean \
   FourierMukai/Scheme/AffineCoproducts.lean \
