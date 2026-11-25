@@ -101,13 +101,30 @@ identity (or the one compact-generation field), and Neeman's `compact ⇒ Perf` 
 nothing else.
 
 **(3) The affine recollement.**  `Scheme/AffineRecollement.lean`,
-`AffineRecollementInput`.  `Scheme/AffineLocalCohomology.lean` builds `RΓ_Z` as
-the degreewise cone of the localization unit, shifted by `-1`, proves it preserves
-quasi-isomorphisms, descends it to `D(A)`, and proves three of the input's fields:
-`Rj_* RΓ_Z ≅ 0`, `Lj^* RΓ_Z ≅ 0`, and `RΓ_Z X ≅ 0 ↔ X ∈ essIm Rj_*`.  No
-injectives and no Noetherian hypothesis.  Missing: `RΓ_Z` landing in `AffineDZ`
-(power-torsion support), its shift and triangulated structure, the adjunction to
-the inclusion, `iShriek`, `jUpper`, and the two gluing triangles.
+`AffineRecollementInput`.  Substantial progress, all from ring data and without
+injectives:
+
+* `Scheme/AffineLocalCohomology.lean` builds `RΓ_Z` as the degreewise cone of the
+  localization unit shifted by `-1`, proves it preserves quasi-isomorphisms,
+  descends it to `D(A)`, and proves `Rj_* RΓ_Z ≅ 0`, `Lj^* RΓ_Z ≅ 0` and
+  `RΓ_Z X ≅ 0 ↔ X ∈ essIm Rj_*`;
+* `Scheme/AffineLocalCohomologySupport.lean` proves `RΓ_Z` lands in the supported
+  subcategory (`derivedFunctor_isSupported`: every cohomology module is
+  power-torsion, via `exists_pow_smul_of_one_tmul_eq_zero`), so `jStar` is an
+  honest functor `AffineD A ⥤ AffineDZ A f`, with `jStarFactors` and the
+  shift-compatibility instances;
+* `Scheme/AffineGluing.lean` constructs the mapping-cocone counit and connecting
+  transformations and proves the associated triangle distinguished on every
+  object;
+* `Scheme/AffineSupportedAssembly.lean` supplies the four input fields
+  `jShriekAdj`, `kernel`, `firstConnecting`, `first_distinguished` by concrete
+  constructions, obtaining the supported adjunction from a Hom-bijection with
+  orthogonality on the rotated triangle.  No Brown representability and no
+  right-adjoint existence is assumed.
+
+Still missing: `iShriek`, `jUpper`, their two adjunctions, `iShriek_jUpper`,
+`secondConnecting`, and `second_distinguished`.  So `AffineRecollementInput` is
+not yet inhabited, but eight of its fields are now theorems.
 
 ## 2. Assembly items (no open mathematics)
 

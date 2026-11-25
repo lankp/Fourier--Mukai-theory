@@ -50,6 +50,9 @@ import FourierMukai.Scheme.AisleCoproducts
 import FourierMukai.Scheme.SmallAffineAssembly
 import FourierMukai.Scheme.AffineRecollement
 import FourierMukai.Scheme.AffineLocalCohomology
+import FourierMukai.Scheme.AffineGluing
+import FourierMukai.Scheme.AffineLocalCohomologySupport
+import FourierMukai.Scheme.AffineSupportedAssembly
 import FourierMukai.Scheme.AffineMain
 import FourierMukai.Scheme.AffineDictionary
 import FourierMukai.Scheme.AffineQCoh

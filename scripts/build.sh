@@ -51,6 +51,9 @@ for f in \
   FourierMukai/Scheme/SmallAffineAssembly.lean \
   FourierMukai/Scheme/AffineRecollement.lean \
   FourierMukai/Scheme/AffineLocalCohomology.lean \
+  FourierMukai/Scheme/AffineGluing.lean \
+  FourierMukai/Scheme/AffineLocalCohomologySupport.lean \
+  FourierMukai/Scheme/AffineSupportedAssembly.lean \
   FourierMukai/Scheme/AffineMain.lean \
   FourierMukai/Scheme/AffineDictionary.lean \
   FourierMukai/Scheme/AffineQCoh.lean \
