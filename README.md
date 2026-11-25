@@ -1,204 +1,187 @@
-# GL26 in Lean: relative Fourier–Mukai theory for affine Noetherian schemes
+# Relative Fourier–Mukai theory in Lean
 
-This repository is a Lean 4 formalization of
+A Lean 4 formalization of
 
 > **GL26** — Elías Guisado Villalgordo, Pat Lank, *Relative Fourier–Mukai theory
-> for algebraic spaces*, arXiv:2609.01298 (2026).
+> for algebraic spaces*, arXiv:2609.01298 (2026),
 
-**Current scope: the affine base case.** The project verifies GL26 over an
-affine Noetherian base scheme `S = Spec A`, on Mathlib alone.  The engine is the
-gluing theorem of Lank–Pauwels (**LP Theorem 1.1**), whose categorical form is
-verified here in full; the geometric layer is built for schemes, and the
-affine case is where it is being completed.  The separated-base case and then
-algebraic spaces are future targets — see [*Future targets*](#future-targets).
+together with the gluing theorem it rests on,
 
-The verification chain for the affine case is tracked, row by row, in
-[`results/AFFINE.md`](results/AFFINE.md).  Its end point is LP Theorem 1.1 for
-the recollement `D_qc,Z(Spec A) ⟷ D_qc(Spec A) ⟷ D_qc(Spec A[1/f])` with **no
-unproved input except Neeman's published theorem** (Acta Math. 233 (2024),
-Theorem 3.2), which states that `D_qc,Z(X)` is weakly approximable for every
-quasicompact quasiseparated scheme `X` and every closed `Z` with quasicompact
-complement.  The theorem *scheme* is complete; what is not yet closed is its
-instantiation, because Mathlib 4.33.1 has no coproduct instance for
-`D(A-Mod)` — see [`results/AFFINE.md`](results/AFFINE.md), row 10, for the
-precise obstruction and for the two ways past it.
+> **LP** — Pat Lank, Ruben Pauwels, *Gluing weak approximability along
+> recollements* (2026),
 
-## What is verified
+and, where they are needed and not yet available in Mathlib, the classical inputs
+those rest on: perfect complexes, quasicoherent cohomology, K-projective
+resolutions, and the exceptional-functor package of the affine recollement.
 
-**Categorical layer** (`WeakApprox/`, scheme-agnostic, `sorry`-free):
+**Scope: the affine base case.**  Everything here is aimed at `S = Spec A` with
+`A` Noetherian, on Mathlib alone.  The separated-base case and then algebraic
+spaces are future targets.
 
-| result | Lean |
+## The headline
+
+The affine case of GL26 Theorem 1.1, with **Neeman's theorem as the only published
+input**:
+
+```lean
+-- SmallAffineAssembly.lean
+theorem affine_theorem_1_1_small_standard_neeman_only
+    (S : SetupMainMinimal DZ (SmallAffineD A H) DU)
+    (hgen : standardT.le 0 = Coprod (shiftTail (S.G'⟦S.m⟧ ⊞ S.R.jShriek.obj S.GU) 0))
+    (I : SmallNeemanCompactToPerfectInput A H) :
+    SatisfiesWA (SmallAffineD A H) ↔ EventuallyHomZero S.G' S.G'
+```
+
+No Stacks 09SR, no coproduct package, no eventual-vanishing hypothesis.  The single
+external input `I` is Neeman's `compact ⇒ perfect`; the vanishing is proved inside
+the model.  The variant `affine_theorem_1_1_small_neeman_only` keeps a separate
+standard-`t` hypothesis instead of the compact-generation field;
+`replaceMiddleTStructure` (in the same module) rebuilds `SetupMainMinimal` with the
+standard middle `t`-structure, which is what makes that hypothesis definitionally
+free in the `_standard_` form.
+
+**What "only Neeman" means precisely.**  Every other input that earlier versions of
+this project cited — Stacks 01LA, 01IE, 01HV, 066S, 066T, 07LT, 09M1, 09M8, 09MB,
+09SR, 0AED, 0BCJ, and the Bondal–Van den Bergh articles — is now either **proved
+here** or **derived** from Neeman.  See [`results/ASSUMPTIONS.md`](results/ASSUMPTIONS.md)
+for the inventory, which distinguishes what is proved, what is derived, and what is
+genuinely open.
+
+## What is proved
+
+### Categorical layer — `WeakApprox/`
+
+LP §2–§4 and **LP Theorem 1.1**, scheme-agnostic and `sorry`-free:
+
+| result | module |
 |---|---|
-| LP §2–§3: `⟨H⟩^[a,b]`, its closure properties (Lemma 3.1), the aisle lemma (3.3), iterated approximation (3.4), the vanishing criterion (3.5) | `WeakApprox/{Basic, Closure, Shift, Functoriality, HomVanishing, Aisle, Lemma34, Lemma35, Octahedron}.lean` |
-| LP §4: the `Recollement` structure, the glued aisle (Lemma 4.2), Lemma 4.3 with its hypotheses reduced, `P`-lifts (Def. 4.5), Lemma 4.6, Proposition 4.8, Setup 4.4 reduced to its irreducible data | `WeakApprox/{Recollement, Lemma42, Lemma43, Lemma4323, Lemma433TStructure, PLift, Lemma46, Proposition48, Proposition48Paper, Setup44, Setup44Reduced, Setup44Minimal}.lean` |
-| **LP Theorem 1.1**, both directions, from the minimal setup, with Stacks 09SR weakened to eventual vanishing between compacts | `WeakApprox/{Main, MainMinimal, EventualVanishing, CompactVanishing, NineSR}.lean` |
-| compactness over `AddCommGrpCat` (the paper's notion), closed under biproducts | `WeakApprox/CompactAb.lean` |
+| `⟨H⟩^[a,b]` and its closure properties (Lemma 3.1), the aisle lemma (3.3), iterated approximation (3.4), the vanishing criterion (3.5) | `Basic`, `Closure`, `Shift`, `Functoriality`, `HomVanishing`, `Aisle`, `Lemma34`, `Lemma35`, `Octahedron` |
+| the `Recollement` structure, the glued aisle (Lemma 4.2), Lemma 4.3, `P`-lifts, Lemma 4.6, Proposition 4.8 | `Recollement`, `Lemma42`, `Lemma43`, `Lemma4323`, `Lemma433TStructure`, `PLift`, `Lemma46`, `Proposition48` |
+| **Theorem 1.1**, both directions, from the reduced Setup 4.4 | `Main`, `MainMinimal`, `EventualVanishing`, `CompactVanishing`, `NineSR` |
+| compactness over `AddCommGrpCat` (the paper's notion), closed under biproducts | `CompactAb` |
+| compact objects are closed under thick envelopes, by triangle two-out-of-three — no AB4 | `CompactThick` |
+| coproducts localized to a fixed aisle, so the LP proof needs no ambient coproducts | `Scheme/AisleCoproducts` |
 
-**Scheme layer** (`FourierMukai/Scheme/`):
+### Affine layer — `FourierMukai/Scheme/`
 
-| result | Lean |
+| result | module |
 |---|---|
-| `D(X) = D(X.Modules)`, cohomology sheaves, `D_qc(X)` as complexes with quasicoherent cohomology | `Derived.lean` |
-| quasicoherence: affine locality (01BD), exactness of `tilde` (00NX), closure under kernels and cokernels, and `D_qc(X)` triangulated from extension closure alone (01LA) | `QCohSerre.lean` |
-| finite locally free sheaves, bounded vector-bundle complexes, `IsPerfect` (scheme-local 0BCJ model) | `Perfect.lean` |
-| `j_! ⊣ j^* ⊣ j_*` for an open immersion, `j_!` and `j^*` exact, the derived recollement interface | `OpenImmersion.lean` |
-| derived pushforward/pullback from Kan extensions; `RHom`, `⊗^L`, `f^×`, `f^!` interface with the projection formula and base change as a mate | `Duality.lean` |
-| the ten GL26 targets over Noetherian schemes as `Prop`-valued statements, with no vacuous hypotheses | `Statements.lean` |
-| **GL26 Lemma 5.4** (external tensor of compact generators on a fibre product), proved in abstract six-functor form: both shift/tensor/Hom adjunction chains, the affine-projection global-sections chain, the cover comparison, and the full zero-detection argument; residue is the cover square itself | `Lemma54.lean` |
-| derived-category coproducts: degreewise coproducts of K-projective complexes are K-projective (no AB4 needed) and are coproducts in `D(C)`, giving `HasCoproducts` from a K-projective replacement datum | `DerivedCoproducts.lean`, `AffineCoproducts.lean` |
-| the published inputs (Neeman; Stacks chapter 36 tags 0AED, 09M8, 0AEC, 09SR, 0BCJ, 09MB) as `Prop` templates with citations | `Inputs.lean` |
-
-**Affine results** (the current focus):
-
-| result | Lean |
-|---|---|
-| `Perf A`, `Db A`, `Dbcoh A` for a ring: closure under `0`, shifts, biproducts, cones, retracts; `Perf ⊆ D^b`; `Perf ⊆ D^b_coh` for Noetherian `A`; `Perf k = D^b_coh k` over a field, proved by truncation induction | `PerfectRing.lean`, `PerfectField.lean` |
-| bounded complexes of finitely generated projective modules are perfect, for **every** commutative ring (Stacks 066T, `sorry`-free, no Noetherian hypothesis) | `PerfectModel.lean` |
-| the converse reduced to one Stacks lemma: `Perf A ≤ model ↔ model stable under retracts`, with the model class proved triangulated, K-projective and closed under cones; residue is exactly 066S | `PerfectModelConverse.lean` |
-| extension closure of quasicoherent sheaves: kernels, cokernels, coproducts, biproducts and split extensions proved; arbitrary-scheme closure derived from the affine Lemma 01IE, proved equivalent to it | `QCohSerreExtension.lean` |
-| the affine dictionary `D(A-Mod) ≌ D(QCoh(Spec A))`, from a general derived-transport theorem for equivalences of abelian categories | `AffineDictionary.lean` |
-| the two models of `D_qc(Spec A)`: `D(A-Mod) ≌ D_qc(Spec A)`, a *construction* from the `tilde ⊣ RΓ` input rather than a black-box equivalence, with `tilde` exactness (Stacks 01HV) now proved rather than cited | `AffineQCoh.lean` |
-| the affine recollement `D(A[1/f]) → D(A) → D_Z(A)` in the GL26/LP orientation: power-torsion Serre class, `Lj^* i_* ≅ 0`, `RΓ_Z Rj_* ≅ 0`, both gluing triangles | `AffineRecollement.lean` |
-| **LP Theorem 1.1 for `D(A-Mod)`**: weak approximability iff eventual self-vanishing of the generator | `Affine.lean` |
-| the same with Stacks 09SR *and* the eventual-vanishing hypothesis removed: `compact ⇒ Perf` (Stacks 0AED) is the only cited input, and the ring form of Stacks 09MB is proved for every commutative ring | `AffineMain.lean` |
-| **GL26 Lemma 2.25 for affine schemes**, proved: `Φ_{RΔ_*O} ≅ 𝟭`, with the projection formula, the tensor unit and the diagonal retractions as data | `AffineDiagonal.lean` |
+| `D(A-Mod) ≌ D(QCoh(Spec A))` | `AffineDictionary` |
+| the two models of `D_qc(Spec A)`, constructed from `tilde ⊣ RΓ` | `AffineQCoh` |
+| `Perf A`: thick envelope, closure properties, `⊆ D^b`, `⊆ D^b_coh`; `Perf k = D^b_coh k` over a field | `PerfectRing`, `PerfectField` |
+| bounded finite-projective models are perfect, for every commutative ring (066T) | `PerfectModel` |
+| `Perf ≤ model ↔ model` retract-closed, with the model class triangulated | `PerfectModelConverse` |
+| **Le–Chen 2.3**: two-out-of-three for split idempotents in a triangle | `LeChen` |
+| **066S derived from Neeman**, hence `BoundedProjectiveModelConverseInput`, `Stacks07LTCompactModelInput`, `CompactPerfectInput` | `Affine066S` |
+| 07LT's finite-free induction, and `compact ⇒ Perf` from its two residue fields | `CompactToPerfect` |
+| perfect ⇒ compact up to compactness of the regular module (the thick half of 09M8) | `PerfectCompactThick` |
+| **Spaltenstein's Theorem C**: `TheoremCInput` for arbitrary abelian `C`, and `AffineSpaltensteinInput A` for every commutative ring | `KProjectiveResolution`, `AffineBoundedAboveCoproducts`, `SpecialDirectLimits`, `Spaltenstein*`, `AffineSpaltenstein` |
+| the Hovey model-structure route to the same replacement data | `ProjectiveModel`, `SmallObjectPresentable`, `GeneratingCofibrations` |
+| **01LA(6) / 01IE** extension closure, proved without cohomology | `QCohSerre`, `QCohSerreExtension`, `QCohSerreExtension01IE` |
+| coproducts on `D(A-Mod)`: the universe decision, with `AffineD A ≌ SmallAffineD A H` | `AffineUniverse` |
+| the affine recollement `D(A[1/f]) → D(A) → D_Z(A)` in the GL26/LP orientation, **all fields but one** | `AffineRecollement`, `AffineLocalCohomology`, `AffineLocalCohomologySupport`, `AffineGluing`, `AffineSupportedAssembly`, `AffineMixedZero`, `AffineIShriek`, `AffineSecondGluing`, `AffineRecollementAssembly` |
+| **GL26 Lemma 2.25** for affine schemes: `Φ_{RΔ_*O} ≅ 𝟭` | `AffineDiagonal` |
+| **GL26 Lemma 5.4** in abstract six-functor form: the external tensor of compact generators generates the fibre product | `Lemma54` |
+| the ten GL26 targets over Noetherian schemes as `Prop`-valued statements | `Statements` |
 
 Everything above is `sorry`-free and depends only on `propext`, `Classical.choice`
 and `Quot.sound`; the audits are printed at the end of the modules that state the
-main results.  The one exception, kept deliberately and clearly separated, is
-`FourierMukai/Paper/Statements.lean`: it retains the paper's targets as
-`sorry`-ed specifications over the superseded abstract `FMContext` interface, and
-`FourierMukai/Audit.lean` prints the ten declarations that still depend on
-`sorryAx`.  None of them is used by the affine chain, and the corresponding
-scheme-layer statements (`FourierMukai/Scheme/Statements.lean`, and
-`affine_lemma_2_25` for Lemma 2.25) are `sorry`-free — note that
-`RelativeFM.lemma_2_25` (the old abstract one) and `affine_lemma_2_25` are
-different declarations.
+results.
 
 ## What is assumed
 
-Only published theorems, each stated as a named `Prop`/`structure` field with a
-citation, never as a `sorry`:
+**Neeman**, *Bounded `t`-structures on the category of perfect complexes*,
+Acta Math. 233 (2024), Theorem 3.2 — specifically the direction *compact implies
+perfect*, packaged as `SmallNeemanCompactToPerfectInput`.  Nothing else external is
+assumed on the affine path.
 
-* **Neeman**, *Bounded `t`-structures on the category of perfect complexes*,
-  Acta Math. 233 (2024), Theorem 3.2 — weak approximability, compact generation,
-  compact = supported perfect, preferred `t`-structure, for qcqs schemes.
-* **Stacks Project, Chapter 36 tags** for the compact/perfect and vanishing
-  inputs, which are the textbook form of the classical Bondal–Van den Bergh
-  statements: Tag 0AED (Lemma 75.16.3, an object of `D_{QCoh,T}` is compact iff
-  perfect), Tag 09M8 (perfect implies compact), Tag 0AEC (a perfect compact
-  generator exists), Tag 09SR (the generator generates the compacts), Tag 0BCJ
-  (perfect complexes are locally bounded), Tag 09MB (Lemma 75.17.2, eventual
-  vanishing of `Hom` and `Ext` out of a perfect object).
-* Stacks tags for the individual facts still being formalized: 01LA
-  (quasicoherence is closed under extensions), 06Z0/079W/08D4/01XB (unbounded
-  `RΓ` and the two cohomology computations defining the two models of `D_qc`),
-  09M1/07LT/0BCJ/08CM (perfect complexes), 08IN (projection formula for
-  `RΔ_* O_Y`, a field of `DiagonalIdentityData`), and the localization sequence
-  behind `j^×`, `RΓ_Z` and `i^*` in the affine recollement
-  (Gao–Psaroudakis 2.2(ii), Balmer–Dell'Ambrogio–Sanders 2.3, Krause §4,
-  Stacks 0BFF).  Tags 01HV (`tilde` is exact) and 00A6/00AB (exactness of `j_!`,
-  `j^*`) are *proved* here and no longer assumed.
+Hypotheses that remain in the endpoint are hypotheses of LP Theorem 1.1 by design,
+not gaps: the `SetupMainMinimal` data (the recollement, weak approximation on both
+ends, the glued generator and its normalization, the aisle identities) and one
+compact-generation identity.  Constructing that data from ring data is the work in
+progress described below.
 
-What is *not* claimed: the general scheme case, the separated case, algebraic
-spaces, and GL26's Theorems 1.2–1.7 beyond their statements.
+Two caveats worth stating plainly:
 
-## Future targets
+* **`FourierMukai/Paper/Statements.lean` still contains `sorry`s** — ten of them.
+  They are the paper's targets stated over the superseded abstract `FMContext`
+  interface, they are not used by anything on the affine path, and
+  `FourierMukai/Audit.lean` prints them deliberately.  They are specifications,
+  not gaps in proved theorems.
+* **The GL26 statements in `FourierMukai/Scheme/Statements.lean` are statements,
+  not proofs.**  Only Theorem 1.1 (affine case) and Lemmas 2.25 and 5.4 are
+  proved.
 
-1. **Separated Noetherian schemes.**  The same chain over a separated base, where
-   Guisado Villalgordo–Lank–Manali Rahul–Pavic, Theorem 6.11, is the scheme form
-   of GL26 Theorem 10.13.
-2. **Algebraic spaces**, which need the Stacks library for `D_qc` on algebraic
-   spaces; at this toolchain that is a person-months port (see
-   [`results/STACKS_PORTABILITY.md`](results/STACKS_PORTABILITY.md)).
-3. The remaining GL26 targets (1.2, 1.3, 1.6, 1.7, 12.3, 2.26, 12.2, 6.18),
-   which are stated over Noetherian schemes in `FourierMukai/Scheme/Statements.lean`.
+## What is open
 
-The algebraic-space interface (`FourierMukai/Paper/DerivedSetup.lean`) and its
-target file are kept as the record of what must remain true after the switch;
-`FourierMukai/Paper/InterfaceAudit.lean` records a defect found in it — the
-abstract `FMContext` does not imply Lemma 2.25, which is why the affine proof of
-that lemma carries the projection formula and the diagonal identities as data.
-
-## Other preprints verified along the way
-
-GL26's methodology rests on three bodies of work that are not in the published
-literature or in Mathlib, and their formalization is carried out here in the same
-repository:
-
-* **Lank–Pauwels**, *Gluing weak approximability along recollements*
-  (November 2026), which GL26 cites for weak approximability of `D_qc` on
-  algebraic spaces (Remark 2.6 and §12).  The library `WeakApprox/` verifies
-  §2–§4 and **Theorem 1.1**: the closure properties of `⟨H⟩^[a,b]`
-  (Lemma 3.1), the aisle lemma (Lemma 3.3), the iterated approximation
-  (Lemma 3.4), the vanishing criterion (Lemma 3.5), the `Recollement`
-  structure and the glued aisle (Lemma 4.2), Lemma 4.3, `P`-lifts and
-  Lemma 4.6, Proposition 4.8, and both directions of Theorem 1.1 over Setup 4.4
-  (`WeakApprox/Main.lean`).  Theorem 1.1 itself needs no unproved input, and
-  Setup 4.4 is reduced to its irreducible hypotheses
-  (`WeakApprox/Setup44Minimal.lean`): the normalization, the compactness and
-  generation of the glued generator, the glued `t`-structure and condition (3)
-  are all derived.  The remaining external ingredient of the paper is Stacks Tag
-  09SR (Ravenel–Neeman), used only for condition (3), and
-  `WeakApprox/NineSR.lean` records exactly what is and is not formalized of it.
-  Weak approximability is also shown invariant under triangulated equivalences
-  (`WeakApprox/EquivalenceInvariance.lean`).  Compactness is
-  rendered over `AddCommGrpCat` in `WeakApprox/CompactAb.lean`, which is what
-  makes Lemma 4.3(2) hold without an extra compactness hypothesis.  See
-  [`results/WEAK_APPROX.md`](results/WEAK_APPROX.md).
-* **Neeman**, *Triangulated categories with a single compact generator, and two
-  Brown representability theorems* (Invent. Math. 2026) and **Canonaco–
-  Haesemeyer–Neeman–Stellari**, *The passage among the subcategories of weakly
-  approximable triangulated categories* (2024): cited in GL26 for the passage
-  between equivalences on `D_qc`, `D^-_coh`, `D^b_coh` and `Perf` (Remark 2.6)
-  and for the aisle facts used in `WeakApprox/`.
-* **Neeman**, *An improvement on the base-change theorem and the functor `f^!`*
-  (2023) and **Guisado Villalgordo–Lank–Manali Rahul–Pavic**, *Fiberwise criteria
-  for Fourier–Mukai equivalences* (2025): cited throughout GL26's §2.4, §7–§10.
-
-The status of each is recorded in the two reports above, including which
-statements are assumed rather than proved.
+1. **The affine recollement's last adjunction.**  Every field of
+   `AffineRecollementInput` is now constructed except `jUpper` together with
+   `jStar ⊣ jUpper`.  The residue is one tensor–Hom adjunction on `RΓ_Z(A)`:
+   `C ⊗^L (-) ⊣ RHom(C, -)` with `C = RΓ_Z(A)` (Stacks 0A6R), which
+   `AffineJUpperTensorHom` reduces `jStarAdj` to.  For the record,
+   `AffineJUpperCandidateRefuted` proves that the obvious guess `jUpper = Rj_* Lj^*`
+   is *zero* and therefore wrong.
+2. **The `SetupMainMinimal` data from ring data.**  After the recollement,
+   `AffineSetupInventory.lean` packages what is left.  Note the caveat it raises:
+   Neeman's preferred-`t`-structure equivalence and the normalized weak
+   approximation data do not automatically give the *literal* aisle equalities the
+   Setup 4.4 fields ask for, so those are to be checked rather than assumed to
+   follow.
+3. **066S unconditionally.**  It is derived from Neeman, which suffices for the
+   endpoint, but not proved from scratch: the truncation induction fails because
+   brutal truncation is not homotopy-functorial at the boundary.
+4. Beyond the affine case: separated Noetherian bases, then algebraic spaces, which
+   need the Stacks library (porting it to this toolchain is a person-months
+   programme — see [`results/STACKS_PORTABILITY.md`](results/STACKS_PORTABILITY.md)),
+   and the remaining GL26 targets 1.2, 1.3, 1.6, 1.7, 12.3, 2.26, 12.2, 6.18.
 
 ## Building
 
-The project is **Mathlib-only**.  It was originally laid out to sit on top of
-[AxiomMath/Stacks](https://github.com/AxiomMath/Stacks), the Axiom Math
-formalization of the Stacks Project, and the `[leanOptions]` block in
-`lakefile.toml` is kept from that project's configuration because every module
-here has been checked against it.  The Stacks requirement itself has been
-dropped: porting that library to the toolchain used here is a person-months
-programme ([`results/STACKS_PORTABILITY.md`](results/STACKS_PORTABILITY.md)),
-so the geometric layer is built directly on Mathlib.
-
-* `lean-toolchain`: `leanprover/lean4:v4.33.1`, the toolchain every module has
-  actually been verified against.
-* `lakefile.toml`: requires Mathlib at `v4.33.1`; no Stacks requirement.
-* In the verification environment there is no Lake build: `/opt/mathlib` is a
-  prebuilt read-only Mathlib on `LEAN_PATH`, and `scripts/build.sh` calls `lean`
-  directly.  That script is the reproduced build; the Lake configuration is kept
-  for users with a writable setup and is not exercised here.
-
-With [elan](https://github.com/leanprover/elan) and Lake:
+`/opt/mathlib` is a prebuilt read-only Mathlib on `LEAN_PATH`, and there is no Lake
+build in this environment, so the reproduced build is a script:
 
 ```bash
-lake exe cache get   # Mathlib's compiled artifacts
-lake build           # builds the libraries `FourierMukai` and `WeakApprox`
+./scripts/build.sh          # ~3 minutes, 100 modules, dependency order
 ```
 
-or, without Lake, `./scripts/build.sh`, which compiles every module in dependency
-order with the `lean` on `PATH`.
+or one module at a time:
+
+```bash
+LEAN_PATH="$LEAN_PATH:." lean -o FourierMukai/Scheme/AffineMain.olean \
+  FourierMukai/Scheme/AffineMain.lean
+```
+
+Allow at least 300 s per module: the first `import Mathlib` in a process reads about
+6 GB of oleans.  `lean-toolchain` pins `leanprover/lean4:v4.33.1` and `lakefile.toml`
+pins Mathlib at `v4.33.1`; both are kept for users with a writable setup but are not
+exercised here.
+
+**Verification note.**  `#print axioms` prints even when a file has errors, so an
+audit line is not evidence that anything compiled.  Check the exit status and grep
+for `error` before believing a compile; the build script does both.
 
 ## Layout
 
 | path | contents |
 |---|---|
-| `WeakApprox/` | the Lank–Pauwels preprint: §2–§4 and Theorem 1.1, scheme-agnostic |
-| `FourierMukai/Scheme/` | the scheme layer and the affine verification: `D(X)`, `D_qc`, `Perf`, open-immersion functors, duality interface, statement layer, and the affine theorems |
-| `FourierMukai/Prelim/` | the triangulated-category and 2-categorical foundations used by both |
-| `FourierMukai/Paper/` | the (superseded) algebraic-space interface, its targets, and the interface audit |
-| `FourierMukai/Examples/` | a non-vacuous instantiation on Mathlib's derived category of an abelian category |
-| `results/` | reports: `AFFINE.md` (the verification chain), `SCHEMES.md` (general scheme target), `MATHLIB_INVENTORY.md`, `STACKS_PORTABILITY.md`, `GL26_SCHEME_DEPENDENCE.md`, `WEAK_APPROX.md`, `REPORT.md` |
-| `scripts/build.sh` | the offline development build |
+| `WeakApprox/` | the LP preprint: §2–§4 and Theorem 1.1, scheme-agnostic |
+| `FourierMukai/Scheme/` | the scheme and affine layer: `D(X)`, `D_qc`, `Perf`, perfect complexes, quasicoherent cohomology, K-projective replacements, the affine recollement, and the affine theorems (59 modules) |
+| `FourierMukai/Prelim/` | triangulated-category and 2-categorical foundations |
+| `FourierMukai/Paper/` | the superseded algebraic-space interface, its targets, and the interface audit |
+| `FourierMukai/Examples/` | a non-vacuous instantiation on Mathlib's derived category |
+| `results/` | `AFFINE.md` (the 21-row verification chain), `ASSUMPTIONS.md` (what is assumed and what would discharge it), `WEAK_APPROX.md`, `MATHLIB_INVENTORY.md`, `STACKS_PORTABILITY.md`, `GL26_SCHEME_DEPENDENCE.md`, `SCHEMES.md`, `REPORT.md` |
+| `scripts/build.sh` | the offline build |
+
+## On provenance
+
+Where a classical input was needed and a Stacks Project tag proves it, the tag is
+cited with its number and its statement, and the proof here is written against that
+statement rather than against a textbook paraphrase — for example Tag 0AED (compact
+iff perfect), Tag 09MB (eventual vanishing), Tag 0BCJ (perfect = locally bounded
+finite locally free).  Where the tag is *proved* here instead, the module says so
+and the scoreboard records it.  The one place where this project's own earlier
+prose was wrong and the Lean was right is recorded too, since it is the more
+instructive case: see `results/AFFINE.md` on the orientation of the recollement.
 
 ## License
 
