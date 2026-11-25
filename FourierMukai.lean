@@ -81,6 +81,8 @@ import FourierMukai.Scheme.AffineMain
 import FourierMukai.Scheme.AffineDictionary
 import FourierMukai.Scheme.AffineQCoh
 import FourierMukai.Scheme.AffineDiagonal
+import FourierMukai.Scheme.AffineConvolution
+import FourierMukai.Scheme.ConvolutionCounterexample
 import FourierMukai.Scheme.Perfect
 import FourierMukai.Scheme.PerfectRingStacks
 import FourierMukai.Scheme.PerfectCompactThick

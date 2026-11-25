@@ -82,6 +82,8 @@ for f in \
   FourierMukai/Scheme/AffineDictionary.lean \
   FourierMukai/Scheme/AffineQCoh.lean \
   FourierMukai/Scheme/AffineDiagonal.lean \
+  FourierMukai/Scheme/AffineConvolution.lean \
+  FourierMukai/Scheme/ConvolutionCounterexample.lean \
   FourierMukai/Scheme/Perfect.lean \
   FourierMukai/Scheme/PerfectRingStacks.lean \
   FourierMukai/Scheme/PerfectCompactThick.lean \
