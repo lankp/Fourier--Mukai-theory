@@ -37,6 +37,7 @@ for f in \
   FourierMukai/Scheme/QCohSerreExtension01IE.lean \
   FourierMukai/Scheme/Statements.lean \
   FourierMukai/Scheme/Duality.lean \
+  FourierMukai/Scheme/DerivedTensorHomClosed.lean \
   FourierMukai/Scheme/Lemma54.lean \
   FourierMukai/Scheme/PerfectRing.lean \
   FourierMukai/Scheme/PerfectModel.lean \

@@ -36,6 +36,7 @@ import FourierMukai.Scheme.QCohSerreExtension
 import FourierMukai.Scheme.QCohSerreExtension01IE
 import FourierMukai.Scheme.Statements
 import FourierMukai.Scheme.Duality
+import FourierMukai.Scheme.DerivedTensorHomClosed
 import FourierMukai.Scheme.Lemma54
 import FourierMukai.Scheme.PerfectRing
 import FourierMukai.Scheme.PerfectField
