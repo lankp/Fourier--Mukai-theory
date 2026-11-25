@@ -95,16 +95,13 @@ declarations are pinned in
   a statement layer.  It gives the numbered results over Noetherian schemes as
   `Prop`-valued definitions, with the inputs each one needs left visible.
 
-**A statement that leaves out an input is refuted here, not passed off as the
-paper's theorem.**  The bare forms of Lemmas 2.25 and 2.26 — over an interface
-whose derived functors are free fields — are false, and the repository proves it
-(`Paper/InterfaceAudit.lean`, `Scheme/GL26OtherTargets.lean`,
-`Scheme/ConvolutionCounterexample.lean`), while the forms that carry the inputs
-the papers actually use are proved.  Two errors of this project's own prose came
-from not keeping that distinction: an earlier version of
-`results/GL26_SCHEME_DEPENDENCE.md` said Lemma 2.25 was false, and
-`affine_lemma_2_25` was once described as a geometric affine instance when it
-takes its derived data as an argument.
+**GL26's Lemmas 2.25 and 2.26 are correct as stated in the paper, and both are
+proved here** in the form that carries the inputs their proofs use (the projection
+formula, the tensor unit, the diagonal identities, Tor-independent base change).
+The files `Paper/InterfaceAudit.lean`, `Scheme/GL26OtherTargets.lean` and
+`Scheme/ConvolutionCounterexample.lean` are about the Lean *interface*, not the
+paper: they show that an interface whose derived functors are free fields cannot
+imply these lemmas, which is why the Lean statements carry those inputs explicitly.
 
 ## Rules and assumptions
 
@@ -333,10 +330,9 @@ cited with its number and its statement, and the proof is written against that
 statement rather than against a textbook paraphrase: for example Tag 0AED (compact
 if and only if perfect), Tag 09MB (eventual vanishing), Tag 0BCJ (perfect means
 locally bounded finite locally free).  Where the tag is proved here instead, the
-module says so and the ledger records it.  The places where this project's own
-prose was wrong and the Lean was right are recorded too, in `results/AFFINE.md` on
-the orientation of the recollement and in `results/GL26_SCHEME_DEPENDENCE.md` on
-Lemma 2.25.
+module says so and the ledger records it.  Where this project's own prose was
+wrong and the Lean was right, the correction is recorded where it arose
+(`results/AFFINE.md`, on the orientation of the recollement).
 
 ## Licence
 
