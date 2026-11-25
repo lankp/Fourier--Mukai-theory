@@ -281,6 +281,15 @@ section heading, so correcting it changes no pinned output either.
 ## Verification of this map
 
 Produced on 25 November 2026 from commit `f7d14c0`, by label and number search
-plus module headers.  A row marked P or C repeats the tree's own claim; the
-build in this session checks that those modules compile and that their axiom sets
-are `propext`, `Classical.choice`, `Quot.sound`.
+plus module headers.  A row marked P or C repeats the tree's own claim, checked
+only as far as the following build of that commit goes (Lean 4.33.1, Mathlib
+`v4.33.1` oleans from `lake exe cache get`, 4 cores):
+
+| check | outcome |
+|---|---|
+| `lake build` (FourierMukai, WeakApprox, StatementCheck) | exit 0, 4 min 23 s; no errors, linter warnings only |
+| `declaration uses 'sorry'` in the build | 9, all in `FourierMukai/Paper/Statements.lean` |
+| `lake env lean FourierMukai/Audit.lean` | 34 audited declarations: 25 depend only on `propext`, `Classical.choice`, `Quot.sound`; 9 on `sorryAx`, exactly the nine targets of `Paper/Statements.lean` |
+| `scripts/check_statements.sh` | OK, 17 declarations match the baseline, none depends on `sorryAx` |
+
+The proofs behind the P and C rows were not re-read for this map.
