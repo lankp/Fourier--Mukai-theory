@@ -141,6 +141,9 @@ for f in \
   FourierMukai/Scheme/SchemeSupportedFiniteCoverInduction.lean \
   FourierMukai/Scheme/SchemeNeemanFiniteCoverAssembly.lean \
   FourierMukai/Scheme/SchemeSupportedExcision.lean \
+  FourierMukai/Scheme/SchemeNeemanIsoTransport.lean \
+  FourierMukai/Scheme/GL26OtherTargets.lean \
+  FourierMukai/Scheme/GL26Theorem12Reduction.lean \
   FourierMukai/Scheme/FinalStatementCrosscheck.lean \
   FourierMukai/Scheme/Affine066S.lean \
   FourierMukai/Paper/Statements.lean \
