@@ -31,6 +31,7 @@ for f in \
   FourierMukai/Scheme/AffineQCoh.lean \
   FourierMukai/Scheme/AffineDiagonal.lean \
   FourierMukai/Scheme/Perfect.lean \
+  FourierMukai/Scheme/PerfectRingStacks.lean \
   FourierMukai/Paper/Statements.lean \
   FourierMukai/Paper/InterfaceAudit.lean \
   FourierMukai/Examples/Identity.lean \

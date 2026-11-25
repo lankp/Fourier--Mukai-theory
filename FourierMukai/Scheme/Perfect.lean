@@ -474,19 +474,30 @@ def PerfectCompactStatement {X : Scheme.{u}} [HasDerivedCategory.{w} X.Modules]
     (H : PerfectToDQCohInterface X) (compact : ObjectProperty (SchemeD X)) : Prop :=
   ∀ E, H.DQCoh E → (compact E ↔ IsPerfect E)
 
-/-- PROVISIONAL interface for **Stacks Tags 0AED and 09M1**: on a qcqs scheme
+/-- PROVISIONAL interface for **Stacks Tags 09M1 and 0AED**: on a qcqs scheme
 (or a qcqs algebraic space over a scheme), an object of `D_qc(X)` is compact
-exactly when it is perfect.  Tag 09M1 is the easy direction (perfect implies
-compact); the converse is Tag 0AED, proved there from the perfect compact
-generator of Tag 0AEC and the generator theorem Tag 09SR.  This theorem is
-*not* proved here.  The qcqs hypotheses follow from the Noetherian-scheme
-target. -/
+exactly when it is perfect.
+
+Both tags are biconditional.  Tag 09M1 (Proposition 36.17.1) is the scheme
+statement; its affine case reduces, through the equivalence of Tag 06Z0, to
+Tag 07LT (Proposition 15.80.3: for a ring `R`, an object of `D(R)` is perfect —
+i.e. has a bounded complex of finite projective modules as a model, Tag 0657 —
+if and only if it is compact), and its scheme case is assembled from the affine
+one by Zariski locality.  Tag 0AED (Lemma 75.16.3) is the algebraic-space
+statement *with support*, and gives the supported form directly: an object of
+`D_QCoh,T(O_X)` is compact if and only if it is perfect on `X`.  The easy
+direction of each is Tag 09M8 (perfect objects are compact), which is what
+`PerfectToDQCohInterface` above supplies the shadow of.
+
+This theorem is *not* proved here.  The qcqs hypotheses follow from the
+Noetherian-scheme target. -/
 structure PerfectCompactInterface (X : Scheme.{u}) [HasDerivedCategory.{w} X.Modules]
     [CompactSpace X] [QuasiSeparatedSpace X] (H : PerfectToDQCohInterface X) where
   /-- Compact objects of `D_qc(X)`, supplied by the categorical layer. -/
   compact : ObjectProperty (SchemeD X)
-  /-- Stacks Tags **09M1** (perfect implies compact) and **0AED** (the
-  converse, via 0AEC and 09SR). -/
+  /-- Stacks Tags **09M1** (schemes) and **0AED** (algebraic spaces, with
+  support); both are biconditional, with Tag 09M8 for the direction perfect
+  implies compact. -/
   compact_iff_perfect : PerfectCompactStatement H compact
 
 /-! ### The affine thick-generation characterization -/

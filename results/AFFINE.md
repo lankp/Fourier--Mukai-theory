@@ -29,13 +29,13 @@ with no residue; "proved from X" means no residue beyond the named input;
 | 3 | quasicoherence is Serre | extensions of quasicoherent sheaves are quasicoherent | Stacks 01LA | `Scheme/QCohSerre.lean`, `Scheme/Derived.lean` | kernels and cokernels **proved**; extension closure open, and it alone is what `D_qc` needs |
 | 4 | `Perf` for rings | `Perf A` thick envelope; closure under `0`, shifts, biproducts, cones, retracts; `⊆ D^b`, `⊆ D^b_coh` (Noetherian) | — | `Scheme/PerfectRing.lean` | proved |
 | 5 | perfect = bounded projectives | `Perf A` = bounded complexes of f.g. projectives | Stacks 066T/09M1 | `Scheme/PerfectModel.lean` | `Perf ⇒? model` open (`BoundedProjectiveModelConverseInput`); `model ⇒ Perf` **proved for every ring** |
-| 6 | compacts = perfect | compact objects of `D(A-Mod)` are `Perf A` | Stacks 0AED (with 09M8, 0AEC, 09SR); same statement as Neeman 3.2(i) | `Scheme/PerfectRing.lean` (`CompactPerfectInput`) | cited |
+| 6 | compacts = perfect | compact objects of `D(A-Mod)` are `Perf A` | Stacks 09M1 (schemes, biconditional; affine case via 06Z0 and 07LT) or 0AED (algebraic spaces, with support) | `Scheme/PerfectRing.lean` (`CompactPerfectInput`), `Scheme/PerfectRingStacks.lean` (`CompactToPerfectInput`) | cited, and **only the implication `compact ⇒ Perf` is ever used** |
 | 7 | `Perf` bridge | ring envelope vs scheme-local 0BCJ model at `Spec A` | Stacks 0BCJ / 08CM / 06Z0 | `Scheme/PerfectModel.lean` (`perf_iff_affineThickGenerated`, under `AffineAllSheavesBridgeInput` + row 3), `Scheme/PerfectField.lean` (`perf_eq_dbcoh`) | proved over a field; in general reduced to row 5 plus the 06Z0 coherence fields |
 | 8 | affine recollement | `D(A[1/f]) → D(A) → D_Z(A)` as `WeakApprox.Recollement`, i.e. `D_Z` slot = open, `D_U` slot = `f`-power torsion | localization sequence (Gao–Psaroudakis 2.2(ii), BDS 2.3, Krause §4, Stacks 0BFF) | `Scheme/AffineRecollement.lean` | proved, modulo the named `AffineRecollementInput` fields |
 | 9 | open functors | `j_! ⊣ j^* ⊣ j_*`, exactness, derived recollement | Stacks 00A6, 00AB, 079W | `Scheme/OpenImmersion.lean` | proved |
 | 10 | Setup 4.4 from ring data | the 20 fields for the affine recollement | LP §4 | `Scheme/Affine.lean` (partial) | open, and **not instantiable at this toolchain** — see below |
 | 11 | LP Theorem 1.1 (abstract) | the gluing theorem, minimal setup | LP Thm 1.1 | `WeakApprox/MainMinimal.lean` | proved |
-| 12 | **affine Theorem 1.1** | `SatisfiesWA (D(A-Mod))` and the iff | rows 1–11 + row 6 | `Scheme/AffineMain.lean` (`affine_theorem_1_1_neeman_only`) | proved modulo row 10; 09SR and the eventual-vanishing hypothesis (Stacks 09MB) removed |
+| 12 | **affine Theorem 1.1** | `SatisfiesWA (D(A-Mod))` and the iff | rows 1–11 + row 6 | `Scheme/AffineMain.lean` (`affine_theorem_1_1_neeman_only`), `Scheme/PerfectRingStacks.lean` (`StacksGluing.affine_theorem_1_1_stacks07LT`) | proved modulo row 10; 09SR and the eventual-vanishing hypothesis (Stacks 09MB) removed, and the row-6 input reduced to its `compact ⇒ Perf` half, itself derived from the compact-to-model half of 07LT |
 | 13 | GL26 Lemma 2.25 | `Φ_{RΔ_*O} ≅ 𝟭` for affine `Y → S` | GL26 §2.5, Stacks 08IN | `Scheme/AffineDiagonal.lean` (`affine_lemma_2_25`) | proved |
 | 14 | weak approximability of `D_qc,Z(Spec A)` | the published input | Neeman, Acta 233 (2024) Thm 3.2 | `Scheme/Inputs.lean` | cited |
 
@@ -159,8 +159,19 @@ closed and `|X| ∖ T` quasi-compact (`T = |X|` for the unsupported statement), 
 every tag applies to Noetherian schemes after specialization, and to `Spec A`
 through the affine dictionary.
 
-Consequence for this project: row 6 (`CompactPerfectInput`) is Tag 0AED, and the
-eventual-vanishing hypothesis is Tag 09MB.  For `X = Spec A` the vanishing half
-is not cited at all — `perf_eventuallyHomZero` proves it for every commutative
-ring — so the single remaining cited item on the affine path is `compact ⇒ Perf`,
-the hard direction of Tag 0AED.
+Consequence for this project: row 6 (`CompactPerfectInput`) is Tag **09M1** for
+schemes (Proposition 36.17.1, a biconditional whose affine case reduces through
+06Z0 to 07LT) or Tag **0AED** for algebraic spaces with support, and the
+eventual-vanishing hypothesis is Tag **09MB**.  For `X = Spec A` the vanishing
+half is not cited at all — `perf_eventuallyHomZero` proves it for every
+commutative ring — so the single remaining cited item on the affine path is
+`compact ⇒ Perf`.
+
+That implication is not even needed in its scheme form.  By Tag 07LT a compact
+object of `D(R)` has a bounded complex of finite projective modules as a model
+(Tag 0657), and `AffinePerfect.model_mem_perf` proves that any such model lies in
+the thick envelope `Perf A`; `Scheme/PerfectRingStacks.lean` therefore derives
+`compact ⇒ Perf` from the compact-to-model half of 07LT alone, and states the
+affine endpoint with exactly that input
+(`StacksGluing.affine_theorem_1_1_stacks07LT`).  The reverse implication
+`Perf A ⇒ compact` is never used and is deliberately not assumed.

@@ -30,6 +30,7 @@ import FourierMukai.Scheme.AffineDictionary
 import FourierMukai.Scheme.AffineQCoh
 import FourierMukai.Scheme.AffineDiagonal
 import FourierMukai.Scheme.Perfect
+import FourierMukai.Scheme.PerfectRingStacks
 
 /-!
 # Relative Fourier--Mukai theory for algebraic spaces: Lean formalization
