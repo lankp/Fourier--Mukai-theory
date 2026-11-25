@@ -71,12 +71,12 @@ errors.  The scripts and the baseline dumps are the ones used for the earlier
 measurement; the procedure is the one under "The protocol used for every claim"
 below.
 
-## 2. CI jobs
+## 2. CI
 
 The workflow is [`.github/workflows/ci.yml`](.github/workflows/ci.yml); it fires on
-`push`, `pull_request` and `workflow_dispatch` for every branch.  [`ci/ci.yml`](ci/ci.yml)
-is a byte-identical mirror kept for editing: the GitHub connection this project
-is committed through cannot create or update a file under `.github/workflows/`
+`push`, `pull_request` and `workflow_dispatch`.  [`ci/ci.yml`](ci/ci.yml) is a
+byte-identical mirror kept for editing: the GitHub connection this project is
+committed through cannot create or update a file under `.github/workflows/`
 (it lacks the `workflows` permission), so a change made here has to be pasted
 in.  Check that the two agree with
 
@@ -84,14 +84,41 @@ in.  Check that the two agree with
 diff <(sed -n '/^name: CI/,$p' ci/ci.yml) .github/workflows/ci.yml
 ```
 
-1. **`build`** — elan, `lake update`, `lake exe cache get`, `lake build`
-   (`FourierMukai`, `WeakApprox`, `StatementCheck`), then
-   `lake env lean FourierMukai/Audit.lean`, which prints the axiom set of every
-   headline declaration.  Advisory (non-blocking) declaration and style linters.
-2. **`statement-check`** — depends on `build`, reuses its oleans, and runs
-   `scripts/check_statements.sh`.
+One job, `build-and-check`, in this order:
 
-### First runs, on the installed workflow
+1. elan, `lake update`;
+2. restore the olean cache — the project's `.lake/build` **and** the dependency
+   build directories `.lake/packages/*/.lake/build`;
+3. `lake exe cache get` (a hash check when the cache hit, a download otherwise);
+4. `lake build` — `FourierMukai`, `WeakApprox`, `StatementCheck`;
+5. `lake env lean FourierMukai/Audit.lean`, which prints every headline
+   declaration's axiom set and fails if anything stops elaborating;
+6. `scripts/check_statements.sh` — the blocking gate;
+7. the linters, advisory;
+8. upload of the re-elaborated statement surface.
+
+**The installed copy is still the two-job version** — `build` then a separate
+`statement-check` that repeats `lake update` and the cache fetch.  The one-job
+version above has not been pasted in yet; until it is, CI costs about four
+minutes instead of about three.
+
+### Why one job and not two
+
+The statement check needs exactly the oleans the build produces.  A second job
+bought a second `lake update`, a second Mathlib cache fetch and an artifact
+hand-off, for no parallelism — the check always waits for the build.  Measured on
+runs 3–6: 2m15s for the build job and 1m43s for the check job, of which roughly a
+minute was that duplicated setup.
+
+### What `paths-ignore` does and does not skip
+
+Documentation-only pushes are skipped: `**.md`, `ci/**`, `attachments/**`,
+`LICENSE`, `formalization.yaml`.  **`results/**` is not ignored**, because
+`results/statement-baseline.txt` is the file the statement check compares
+against — a push that changes only the baseline must still run the check, or the
+baseline could be altered without anything noticing.
+
+### What the first runs cost, as measured
 
 `CI` run 4 (commit `b8269d4`, `push` to `formalization`) — and run 3, the same
 commit on `main`:
@@ -101,10 +128,11 @@ commit on `main`:
 | `Lake build (Mathlib cache)` | resolve deps, olean cache, Mathlib cache, `lake build`, axiom audit, linters (advisory), upload oleans | **success** | 2m15s |
 | `Independent statement check` | resolve deps, download oleans, Mathlib cache, check against the baseline, upload the re-elaborated surface | **success** | 1m43s |
 
-Both green on both branches.  The step that matters in the second job is
-`scripts/check_statements.sh`: it exits non-zero on any drift from
-`results/statement-baseline.txt` or on any `sorryAx`, so a green step means the
-17 pinned statements still match their recorded types and axiom sets.
+Both green on both branches, and green again on runs 5 and 6 (commit `7bc29df`).
+The step that matters in the second job is `scripts/check_statements.sh`: it exits
+non-zero on any drift from `results/statement-baseline.txt` or on any `sorryAx`,
+so a green step means the 17 pinned statements still match their recorded types
+and axiom sets on a clean runner.
 
 Runs 1 and 2 of the installed workflow were cancelled by hand mid-flight, and
 runs on superseded commits are cancelled automatically by the `concurrency`
@@ -115,22 +143,12 @@ The starter workflow `blank.yml`, which GitHub's template added and which echoed
 "Hello, world!", has been deleted; it was reporting green on commits whose real
 CI had not run.
 
-### What the first runs cost
+### One caveat on the dependency cache
 
-`lake exe cache get` plus the olean restore make the build job about two
-minutes; the statement check adds under two more, of which roughly one is the
-duplicated `lake update` + `lake exe cache get` in that job.  Two further
-economies are available and neither is done, because both mean hand-editing the
-installed file:
-
-* fold `statement-check` into the `build` job, removing the second dependency
-  resolution and Mathlib cache fetch;
-* cache `.lake/packages/*/.lake/build` alongside the project's `.lake/build`,
-  which the current cache key does not cover.
-
-A `paths-ignore` filter for `results/**`, `*.md` and `ci/**` would also stop a
-documentation-only push from spending four minutes of runner time; it has the
-same cost of a hand edit.
+`.lake/packages/*/.lake/build` for Mathlib is several GB and counts against
+GitHub's 10 GB per-repository cache budget.  If this repository approaches that
+limit, dropping the second cache path costs one `lake exe cache get` and nothing
+else — the build does not depend on the cache being there.
 
 ### Both jobs were also run locally before installation
 

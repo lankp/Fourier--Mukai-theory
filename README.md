@@ -143,16 +143,23 @@ in `[leanOptions]`.
 ### CI
 
 The workflow is [`.github/workflows/ci.yml`](.github/workflows/ci.yml), live on
-push to every branch; [`ci/ci.yml`](ci/ci.yml) is a byte-identical mirror kept
-for editing, because this project's GitHub connection cannot itself write under
+push; [`ci/ci.yml`](ci/ci.yml) is a byte-identical mirror kept for editing,
+because this project's GitHub connection cannot itself write under
 `.github/workflows/`.  Both jobs are green on a GitHub runner — the Lake build of
 the whole tree with its axiom audit (2m15s), and the independent statement check
-against the recorded baseline (1m43s).  It runs three things:
+against the recorded baseline (1m43s).
+
+[`ci/ci.yml`](ci/ci.yml) folds them into a single job and is waiting to be
+pasted: one `lake update`, one cache restore that also covers
+`.lake/packages/*/.lake/build`, then build, axiom audit, statement check and the
+advisory linters in sequence, with documentation-only pushes skipped by
+`paths-ignore`.  The installed copy still runs two jobs until that paste
+happens.  What each step does:
 
 1. **Lake build** — elan, `lake update`, `lake exe cache get`, `lake build`, then
    `lake env lean FourierMukai/Audit.lean`, which prints every headline
    declaration's axiom set and fails if anything stops elaborating.
-2. **Independent statement check** — the job below.
+2. **Independent statement check** — [below](#the-independent-statement-check).
 3. **Linters**, advisory for now (`lake exe runLinter`, `lake exe lint-style`):
    the tree has not yet been brought up to Mathlib's linter standard.
 
