@@ -34,6 +34,7 @@ for f in \
   FourierMukai/Scheme/Affine.lean \
   FourierMukai/Scheme/AffineCoproducts.lean \
   FourierMukai/Scheme/AffineBoundedAboveCoproducts.lean \
+  FourierMukai/Scheme/AffineUniverse.lean \
   FourierMukai/Scheme/AffineRecollement.lean \
   FourierMukai/Scheme/AffineLocalCohomology.lean \
   FourierMukai/Scheme/AffineMain.lean \
