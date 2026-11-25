@@ -29,11 +29,11 @@ the end.
 
 | | P | C | H | T | D | — | total |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| theorems, propositions, corollaries, lemmas | 14 | 5 | 15 | 14 | – | 68 | 116 |
+| theorems, propositions, corollaries, lemmas | 15 | 5 | 15 | 14 | – | 67 | 116 |
 | definitions, setups, lemma-definitions | 1 | – | – | – | 13 | 5 | 19 |
 
-Fourteen results are proved outright (Lemmas 2.3, 2.5, 7.2, 7.4, 7.6, 7.9, 7.11, 7.12,
-7.17, B.4, B.5, B.7, B.10, C.1; 7.12 and 7.17 over abstract pseudofunctor data; 7.4, 7.6, 7.9 and C.1 (2) in `Cat`), as is Lemma-Definition 7.10 (in `Cat`), five conditionally (Lemmas 2.4, 2.25, 2.26, 5.4, and A.4 in the
+Fifteen results are proved outright (Lemmas 2.3, 2.5, 7.2, 7.4, 7.6, 7.9, 7.11, 7.12,
+7.17, B.2, B.4, B.5, B.7, B.10, C.1; 7.12 and 7.17 over abstract pseudofunctor data; 7.4, 7.6, 7.9 and C.1 (2) in `Cat`), as is Lemma-Definition 7.10 (in `Cat`), five conditionally (Lemmas 2.4, 2.25, 2.26, 5.4, and A.4 in the
 affine case).  Lemma 2.5 was briefly vacuous on 25 November 2026 and has been re-proved (see its row).  The 14 target rows are 10 distinct targets (1.2 = 12.9, 1.3 = 6.2 + 6.8,
 1.6 = 10.13, 1.7 = 11.4), none proved.  Sections 3, 4, 6, 8, 9, 10, 11 and 12
 have no proved result: everything there is a target, an interface field, or
@@ -220,9 +220,9 @@ absent.
 | Lem A.8 | `lem:etale_nbhd_preferred_class` | H | `Scheme/Inputs.lean` |
 | Lem A.9 | `lem:preferred_eq_class` | H | `Scheme/Inputs.lean` |
 | Def B.1 | `def:cat_with_trans` | D | Mathlib's `HasShift C ℤ` and `Functor.CommShift` stand in |
-| Lem B.2 | `lem:trans_is_2-cat` | — | |
+| Lem B.2 | `lem:trans_is_2-cat` | P | `Prelim/TransTwoCategory.lean`: `Trans.instBicategory` (strict, `Trans.instStrict`), `Trans.forget : StrictPseudofunctor TransCat Cat`, `lemma_B2_faithful`, `lemma_B2_unique` (the 2-cell data is determined by lying over `Cat`); translations are endofunctors (the paper's autoequivalences form a full sub-bicategory with the same structure) |
 | Def B.3 | | — | |
-| Lem B.4 | `lem:equiv_transadj` | P | `Trans.lemma_B4` (`Prelim/AppendixB.lean`), all five conditions; (5) is rendered as "unit and counit transnatural", which is the paper's notion only given Lemma B.2 (not formalized) |
+| Lem B.4 | `lem:equiv_transadj` | P | `Trans.lemma_B4` (`Prelim/TransTwoCategory.lean`), all five conditions, (5) as a `Bicategory.Adjunction` in `Trans` (no deviation); universe-polymorphic unit/counit form `Trans.lemma_B4_unitCounit` (`Prelim/AppendixB.lean`) |
 | Lem B.5 | `lem:adj_and_equiv_in_trans` | P | `Trans.lemma_B5_existsUnique` (T, T′ autoequivalences, as in the paper), `Trans.lemma_B5_equivalence`; left-adjoint variant not done |
 | Def B.6 | `def:trinat_trans` | D | `Trinatural` (`Prelim/Triangulated.lean`) |
 | Lem B.7 | `lem:transnat_is_trinat` | P | `lemma_B7`, `lemma_B7_natTrans` (also ⇔ Mathlib's `NatTrans.CommShift` ⇔ `RelativeFM.Trinatural`); triangulatedness of F, G not needed |
