@@ -116,10 +116,66 @@ Labels such as Proposition 10.5 refer to GL26 itself, not to earlier literature.
 | `theorem_1_2_baseChange` (Thm 12.9(2)) | Everything in the previous row, plus Corollary 12.10, Corollary 6.18, and reflection along residue-field extensions; proof at 7550--7573. | N24(iv), CHNS24/N18, and GLMP25's affine ascent/descent are partial scheme inputs. | Residue-field maps replace algebraic-space point representatives. | Both arbitrary base change for relative perfectness and the second use of Remark 2.6 at 7563 remain, including the preprint-level CHNS/N18 restriction. GL26 Corollary 12.10 alone assumes relative perfectness, so it cannot be used as a shortcut for arbitrary kernels. |
 | `lemma_12_2` | Propositions 10.10/10.12 ascent/descent, adjoint base change, preservation/reflection of relative perfectness, common field extensions; proof at 7162--7213. | Follows from **GLMP25 Theorem 6.11** on a separated base; its condition (3) uses arbitrary fields. | Residual gerbes and equivalence classes of field morphisms disappear. | On a general, possibly non-separated Noetherian base one still needs the duality/base-change package and proof of representative independence. It is a corollary of the older theorem only after imposing separatedness. |
 | `theorem_1_6` (Thm 10.13) | Left/right adjoint kernels, Proposition 10.5 and Remark 10.6 mates, compact generation, support at closed points, relative-perfect base change; proof at 6172--6878. | **GLMP25 Theorem 6.11** is essentially the same theorem on a separated Noetherian scheme, including both full faithfulness and equivalence and stronger affine/field formulations. | All residual-space and presentation scaffolding can be avoided by citing the scheme precursor. | Without separatedness, the later assembly remains. Weak approximability is **not** required: `main.tex` 6683--6686 explicitly replaces it by generation plus relative perfectness. |
-| `lemma_2_25` | Projection formula, tensor unit, functoriality of derived push/pull, and both projection–diagonal composites being identities; proof at 1514--1533. | **Stacks 08IN**, together with standard pseudofunctoriality; no algebraic-space-only result is needed. | Only the site wrapper is simplified. | The projection formula and diagonal identities are genuine data. They are absent from the current abstract `FMContext`, as the countermodel below proves. |
+| `lemma_2_25` | Projection formula, tensor unit, functoriality of derived push/pull, and both projection–diagonal composites being identities; proof at 1514--1533. | **Stacks 08IN**, together with standard pseudofunctoriality; no algebraic-space-only result is needed. | Only the site wrapper is simplified. | The projection formula and diagonal identities are genuine data. They are absent from the current abstract `FMContext`, as the countermodel below proves. **The lemma itself is correct** and is proved from those data; see "Lemma 2.25 is correct" below. |
 | `lemma_2_26` | Projection formula, Tor-independent base change (flatness supplies Tor independence), monoidality and pseudofunctoriality, and compatibility of the triple fibre product; proof at 1546--1563. | **Stacks 08IN and 08IR**; Huybrechts, *Fourier–Mukai Transforms in Algebraic Geometry*, Proposition 5.10, is the classical scheme computation. | Nothing substantive beyond étale wrappers. | The natural-isomorphism coherence and triple-product diagram remain. The Lean `conv` is currently an arbitrary function and the three contexts are unrelated, so the statement needs additional fields/hypotheses. |
 | `theorem_1_7` (Thm 11.4) | Lemma 11.1 relative perfectness of the diagonal ideal, Proposition 11.3 pullback of that ideal, relative adjoints, Theorem 10.13, and **HLS09 Proposition 2.16/§3.4.1** on geometric fibres; proof at 6885--7130. | HLS09 supplies the singular elliptic-fibre autoequivalence; GLMP25 Theorem 6.11 gives the separated-scheme ascent step. | The fibres were already schemes in GL26's definition. Restriction affects the global space, not the hard fibrewise curve argument. | Coherent relative dualizing complexes, ideal-sheaf base change, and the corrected global criterion remain. General non-separated bases are outside the old theorem. No weak-approximability shortcut is needed here. |
 | Definition 12.1 / `FMContext` | Fibre products, derived categories and functors, residue-field base change of kernels, and the actual identification of `fibreTransform` with the pulled-back integral transform. | These are definitions over schemes as well; N24 says nothing at the definitional level. | A scheme point has its canonical residue field, avoiding the space's equivalence-class definition. | `D_qc`, `Perf`, bounded pseudocoherence, pull/push/tensor and their compatibility do not become definable by Neeman's theorem. The current `FMContext` has no triangle, exactness, adjunction, `RHom` or `f^!` fields; `FMSetup.fibreTransform` is arbitrary. |
+
+### Lemma 2.25 is correct
+
+`main-4.tex` 1514--1536 is right, and an earlier version of this document said it
+was not.  The proof is the four-line computation
+
+* `Φ_{RΔ_*O_Y}(-) = R(f'_2)_*(L(f'_1)^*(-) ⊗^L RΔ_*O_Y)`
+* `≅ R(f'_2)_*RΔ_*(LΔ^*L(f'_1)^*(-) ⊗^L O_Y)`, by the projection formula for `Δ`
+  (08IN);
+* `≅ R(f'_2∘Δ)_*(L(f'_1∘Δ)^*(-))`, by the tensor unit and functoriality of
+  `L(-)^*` and `R(-)_*`;
+* `≅ 𝟭`, because `f'_1 ∘ Δ = f'_2 ∘ Δ = 𝟙`.
+
+The citation is the right one.  Stacks 08IN is Lemma 75.20.1, the projection
+formula `Rf_*E ⊗^L K = Rf_*(E ⊗^L Lf^*K)` for a quasi-compact and quasi-separated
+morphism of algebraic spaces; applied to the diagonal -- a closed immersion, hence
+quasi-compact and quasi-separated -- with `E = O_Y` and `K = L(f'_1)^*(-)`, it is
+exactly the second line.
+
+Properness and flatness are not used in that computation.  A closer audit
+(member m1 of run `smww35xg3`; tags as cited there, and 08IN checked here against
+the Stacks page) sharpens this: flatness is not used by Lemma 2.25 at all, and
+properness enters only as a convenient sufficient hypothesis for the kernel's
+bounded pseudocoherence -- 08GK applied to `Δ`, which needs `Δ` locally of finite
+type, `Y` Noetherian with `O_Y` bounded coherent, `Y ×_S Y` Noetherian, and `Δ`
+proper.  On the `D_qc` side the functors must be defined: derived pullback
+preserves `D_qc` for arbitrary morphisms (08F4), the derived tensor by 08F5, and
+qcqs derived pushforward by 08FA.  Since a relative diagonal is always separated
+(03HK) and is quasi-compact exactly when the morphism is quasi-separated, the
+identity-transform statement is available for every quasi-compact quasi-separated
+`f` -- stronger than the paper's proper-flat hypothesis.  The refinement stops
+there: for `f` separated but not quasi-compact, the paper's general `D_qc`-valued
+transform, defined with `R(f'_2)_*`, need not be available, so "any separated
+morphism" would be too strong a claim.
+
+The `constantContext` model of `FourierMukai/Paper/InterfaceAudit.lean` refutes
+only the rendering of the lemma as an assertion about an arbitrary `FMContext`,
+whose `pull`, `push` and `tensorRight` are free structure fields unconnected to
+any geometry.  It is not a counterexample to GL26 and must not be read as one.
+
+In this repository the lemma is
+`RelativeFM.Noetherian.lemma_2_25Statement_proved` (`Scheme/Statements.lean`),
+proved from `Lemma25DiagonalData`, i.e. from `RelativeFM.DiagonalIdentityData`
+(`Scheme/DiagonalIdentity.lean`), which carries exactly 08IN, the tensor unit and
+the two diagonal retractions.  Two of those three are themselves derived rather
+than assumed: the retractions from comparison data for derived pullback and
+pushforward together with `Δ ≫ prᵢ = 𝟙` (`Scheme/DiagonalFunctoriality.lean`), and
+the ordered projection formula plus the tensor unit from
+`DerivedMorphismData.projectionFormula` and the monoidal right unitor
+(`Scheme/DiagonalDuality.lean`).  The residual inputs are 08IN and
+functoriality, which is what the paper uses.  The conditional affine
+derived-module wrapper is `affine_lemma_2_25` (`Scheme/AffineDiagonal.lean`),
+which takes an `AffineDiagonalContext` as an argument; nothing constructs that
+context from the ring hypotheses, so it is not a ring-only geometric instance.
+The bare rendering survives only as `lemma_2_25BareStatement`, which
+`Scheme/GL26OtherTargets.lean` refutes.
 
 Two statement mismatches matter independently of schemes.  First, the Lean
 `theorem_1_6` quantifies over every `p : X.Base` and tests ordinary full
@@ -152,9 +208,11 @@ not missing mathematical references.
    Noetherian schemes".
 5. **The present Lean interface must be repaired before estimating proofs.**
    Seven hypotheses are `True`; `FMContext` lacks the projection formula and all
-   dualizing/mates data. `constantContext` below is a valid `FMContext` for which
-   Lemma 2.25 is false. Thus the ten unproved declarations are targets of mixed
-   faithfulness, not a reliable ten-item work breakdown.
+   dualizing/mates data. `constantContext` (`Paper/InterfaceAudit.lean`) is a valid `FMContext` for which
+   the *bare interface rendering* of Lemma 2.25 is false. That is a defect of the
+   interface: the lemma itself is correct (see "Lemma 2.25 is correct" below), and
+   its proof's inputs are simply not consequences of `FMContext`. Thus the unproved
+   declarations are targets of mixed faithfulness, not a reliable work breakdown.
 
 ## Practical scoping recommendation
 

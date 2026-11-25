@@ -1,5 +1,6 @@
 /- Copyright (c) 2026 Formalization of Lank--Pauwels. Released under Apache 2.0 license as described in the file LICENSE. -/
 import FourierMukai.Paper.DerivedSetup
+import FourierMukai.Scheme.DiagonalIdentity
 import Mathlib.AlgebraicGeometry.Noetherian
 import Mathlib.AlgebraicGeometry.Morphisms.Proper
 import Mathlib.AlgebraicGeometry.Morphisms.Flat
@@ -642,16 +643,78 @@ def lemma_12_2Statement (X : FMSetup.{w, u, v}) (hX : X.ctx.IsProperFlat) {K : X
     (hrel2 : X.ctx.IsRelativelyPerfectOverTwo K) : Prop :=
   X.RepIndependent K
 
-/-- **GL26 Lemma 2.25** (`lem:funct_on_kernel`).  For a proper flat family, the
-kernel `RΔ_* O_Y` induces the identity functor on `D_qc(Y)`.
+/-- **The bare rendering of GL26 Lemma 2.25 is refuted; it is not a target.**
 
-The remaining geometric ingredients are the projection formula (Stacks 08IN),
-functoriality of derived pullback/pushforward, and the two diagonal retraction
-identities recorded in `DiagonalFMData`. -/
-def lemma_2_25Statement {D DP : Type u} [Category.{v} D] [Category.{v} DP]
+GL26's Lemma 2.25 (`lem:funct_on_kernel`) is *correct*: for a proper flat
+`f : Y ⟶ S` of Noetherian algebraic spaces, `Φ_{RΔ_*O_Y} ≅ 𝟭` on `D_qc(Y)`.
+Its proof uses the projection formula for `Δ` (Stacks 08IN), the derived tensor
+unit, and `f'_1 ∘ Δ = f'_2 ∘ Δ = 𝟙`.
+
+This `Prop` deliberately omits those inputs: it quantifies over an abstract
+`FMContext` whose `pullFromOne`, `pushToTwo` and `tensorRight` are free fields.
+It is **false in that generality** -- `GL26OtherTargets` exhibits a legal
+instance (every scheme `Spec ℤ`, every functor on `Type`) whose transform is
+constant at `PUnit`.  That refutes the bare interface, not the lemma; the
+faithful statement is `lemma_2_25Statement` below, and it is proved. -/
+def lemma_2_25BareStatement {D DP : Type u} [Category.{v} D] [Category.{v} DP]
     (C : RelativeFM.Noetherian.FMContext.{w, u, v} D D DP)
     (hC : C.IsProperFlat) (Δ : DiagonalFMData C) : Prop :=
   Nonempty (C.transform (Δ.push.obj Δ.unit) ≅ 𝟭 D)
+
+/-- The three inputs of GL26's proof of Lemma 2.25, aligned with the functors of
+a `FMContext`: `RelativeFM.DiagonalIdentityData` carries the projection formula
+(Stacks 08IN), the tensor unit and the two diagonal retractions; the equalities
+identify its functors with `C.pullFromOne`, `C.pushToTwo`, `C.tensorRight` and
+`Δ.push`.  Nothing here asserts the conclusion.
+
+The two retraction fields of `core` are not extra mathematics:
+`FourierMukai/Scheme/DiagonalFunctoriality.lean` *derives* them from comparison
+data for derived pullback/pushforward together with the scheme equations
+`Δ ≫ pr₁ = 𝟙` and `Δ ≫ pr₂ = 𝟙`, so `core` can be built from 08IN, the tensor
+unit and functoriality alone. -/
+structure Lemma25DiagonalData {D DP : Type u} [Category.{v} D] [Category.{v} DP]
+    (C : RelativeFM.Noetherian.FMContext.{w, u, v} D D DP) (Δ : DiagonalFMData C) where
+  /-- Projection formula (08IN), tensor unit, and the two diagonal identities. -/
+  core : RelativeFM.DiagonalIdentityData D DP Δ.unit
+  tensorRight_eq : C.tensorRight = core.tensorRight
+  pull_eq : C.pullFromOne = core.pull
+  push_eq : C.pushToTwo = core.push
+  diagonal_eq : Δ.push = core.diagonal
+
+/-- **GL26 Lemma 2.25** (`lem:funct_on_kernel`) in its faithful form: for a
+proper flat family, the kernel `RΔ_* O_Y` induces the identity functor on
+`D_qc(Y)`, given the paper's proof inputs (Stacks 08IN, the tensor unit, and the
+two diagonal retractions of `f'_1` and `f'_2`).
+
+This is the paper's lemma, not a weakening of it: the extra argument
+`Lemma25DiagonalData` is exactly what the four-line proof uses, and its
+discharge from the geometry of `Y → S` is what the derived layer has to supply. -/
+def lemma_2_25Statement {D DP : Type u} [Category.{v} D] [Category.{v} DP]
+    (C : RelativeFM.Noetherian.FMContext.{w, u, v} D D DP)
+    (hC : C.IsProperFlat) (Δ : DiagonalFMData C) (E : Lemma25DiagonalData C Δ) : Prop :=
+  Nonempty (C.transform (Δ.push.obj Δ.unit) ≅ 𝟭 D)
+
+/-- GL26 Lemma 2.25 without its proper-flat hypothesis: the identity computation
+is categorical.  This is where the repository records that properness and
+flatness are not used by the proof.  They enter the lemma's ambient requirements
+-- bounded pseudocoherence of the kernel `RΔ_*O_Y` (Stacks 08GK) and preservation
+of `D_qc` by the functors -- not the computation of the transform.
+
+Suggested by the audit of member m1 of run `smww35xg3` (direction d2). -/
+theorem lemma_2_25Statement_proved_no_properFlat {D DP : Type u} [Category.{v} D]
+    [Category.{v} DP] (C : RelativeFM.Noetherian.FMContext.{w, u, v} D D DP)
+    (Δ : DiagonalFMData C) (E : Lemma25DiagonalData C Δ) :
+    Nonempty (C.transform (Δ.push.obj Δ.unit) ≅ 𝟭 D) := by
+  unfold RelativeFM.Noetherian.FMContext.transform
+  rw [E.pull_eq, E.push_eq, E.tensorRight_eq, E.diagonal_eq]
+  exact E.core.identity_transform_isId
+
+/-- GL26 Lemma 2.25, proved from the paper's own inputs. -/
+theorem lemma_2_25Statement_proved {D DP : Type u} [Category.{v} D] [Category.{v} DP]
+    (C : RelativeFM.Noetherian.FMContext.{w, u, v} D D DP)
+    (hC : C.IsProperFlat) (Δ : DiagonalFMData C) (E : Lemma25DiagonalData C Δ) :
+    lemma_2_25Statement C hC Δ E :=
+  lemma_2_25Statement_proved_no_properFlat C Δ E
 
 /-! ## Convolution of kernels -/
 
@@ -686,7 +749,15 @@ structure ConvolutionData {D1 D2 D3 DP12 DP23 DP13 : Type u}
 convolution of their kernels for proper flat families of Noetherian schemes.
 
 The proof contract is the projection formula (Stacks 08IN) and tor-independent
-base change (08IR); flatness of the families supplies tor-independence. -/
+base change (08IR); flatness of the families supplies tor-independence.
+
+This is the **bare interface rendering**, not a faithful target: `B.conv` is an
+arbitrary object-level function and the derived cube, 08IN/08IR compatibility is
+absent, so it is refuted -- `Scheme/ConvolutionCounterexample.lean`
+(`bare_lemma_2_26_has_countermodel`).  The proved categorical form takes
+`RelativeFM.Convolution.NoetherianBridge.CorrectedConvolutionData`; see
+`lemma_2_26_of_correction` and `Scheme/AffineConvolution.lean`.  GL26's Lemma
+2.26 itself is not in question. -/
 def lemma_2_26Statement {D1 D2 D3 DP12 DP23 DP13 : Type u}
     [Category.{v} D1] [Category.{v} D2] [Category.{v} D3]
     [Category.{v} DP12] [Category.{v} DP23] [Category.{v} DP13]

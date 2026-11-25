@@ -10,7 +10,8 @@ import FourierMukai
 Run `lean FourierMukai/Audit.lean` to see which declarations depend on `sorryAx`.
 Everything under `FourierMukai.Prelim` and `FourierMukai.Examples` should be free
 of `sorryAx`; the statements in `FourierMukai.Paper.Statements` are expected to
-depend on it (they are formalization targets, not proved theorems).
+depend on it (they are formalization targets, not proved theorems), with the one
+exception of `lemma_2_25`, which is proved from the inputs its paper proof uses.
 -/
 
 open RelativeFM
@@ -36,6 +37,11 @@ open RelativeFM
 #print axioms RelativeFM.Trinatural.isIso_iff_of_precomp_essentiallyDense₀
 #print axioms RelativeFM.lemma_2_5
 #print axioms RelativeFM.Trinatural.ofNatTrans
+#print axioms RelativeFM.lemma_2_25
+#print axioms RelativeFM.Noetherian.lemma_2_25Statement_proved
+#print axioms RelativeFM.AffineDiagonalContext.affine_lemma_2_25
+#print axioms RelativeFM.DerivedDiagonalInput.identityIso
+#print axioms RelativeFM.DiagonalFunctorialityInput.identityTransformIso
 
 -- Stated only (expected to depend on `sorryAx`):
 #print axioms RelativeFM.theorem_1_3
@@ -45,6 +51,5 @@ open RelativeFM
 #print axioms RelativeFM.corollary_6_18
 #print axioms RelativeFM.lemma_12_2
 #print axioms RelativeFM.theorem_1_6
-#print axioms RelativeFM.lemma_2_25
 #print axioms RelativeFM.lemma_2_26
 #print axioms RelativeFM.theorem_1_7

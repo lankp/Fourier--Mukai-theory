@@ -10,24 +10,30 @@ import Mathlib.AlgebraicGeometry.Morphisms.Finite
 /-!
 # Audit of the other GL26 targets for Noetherian schemes
 
-This module does two things which can be checked independently of the remaining
-geometric formalization.
+Two things here can be checked independently of the remaining geometric
+formalization.
 
-* It gives a proper-flat, affine-Noetherian countermodel to the bare
-  `lemma_2_25Statement`.  The diagonal scheme identities in `DiagonalFMData`
-  do not determine the derived tensor, pull, and push functors.
-* It supplies precisely the missing derived compatibility data and deduces the
-  same `lemma_2_25Statement` from the landed `DiagonalIdentityData.identityIso`.
-  The projection-formula input used by that structure is Stacks **08IN**; the
-  tensor-unit and derived diagonal identities are separately recorded data,
-  not hypotheses asserting the conclusion.
+* It refutes the **bare** rendering of Lemma 2.25, i.e. the `Prop` obtained by
+  quantifying over an abstract `FMContext` whose `pull`, `push` and
+  `tensorRight` are free fields.  The instance below is a legal `FMContext` --
+  every scheme is `Spec ℤ`, every morphism an identity, `IsProperFlat` holds --
+  whose categories are `Type` and whose transform is constant at `PUnit`.
+  **This refutes the interface, not GL26.**  GL26's Lemma 2.25 is correct: its
+  proof uses the projection formula (Stacks 08IN), the tensor unit, and
+  `f'_1 ∘ Δ = f'_2 ∘ Δ = 𝟙`, none of which follows from free fields.  The
+  faithful statement of the lemma and its proof are
+  `RelativeFM.Noetherian.lemma_2_25Statement` and
+  `lemma_2_25Statement_proved` in `FourierMukai/Scheme/Statements.lean`, with
+  `RelativeFM.DiagonalIdentityData` (`Scheme/DiagonalIdentity.lean`) carrying
+  the paper's three inputs.
+* It reexports the already landed bridge for Lemma 2.26 (Stacks **07A4**,
+  **08IN**, **08IR**, **0D6D**, **0D6E**) as
+  `lemma_2_26Statement_of_correction`.  The other numbered targets remain
+  specifications; none is claimed here.
 
-For completeness, `lemma_2_26Statement_of_correction` reexports the already
-landed corresponding bridge for Lemma 2.26 (Stacks **07A4**, **08IN**, **08IR**,
-**0D6D**, **0D6E**).  The other eight numbered targets remain specifications;
-none is claimed here.
-
-Found by member m6 of run `smww27cuj`, direction (d6).
+Found by member m6 of run `smww27cuj`, direction (d6).  The original wording of
+this header said "the bare Lemma 2.25 is FALSE", which misreported the paper and
+has been corrected; the mathematics below is unchanged.
 -/
 
 @[expose] public section
@@ -40,7 +46,7 @@ open RelativeFM.Noetherian
 
 universe w u v
 
-/-! ## The bare Lemma 2.25 rendering has a countermodel -/
+/-! ## The bare interface rendering of Lemma 2.25 is refuted -/
 
 namespace BareDiagonalCounterexample
 
@@ -76,40 +82,27 @@ theorem context_isProperFlat : context.IsProperFlat :=
   testContext_isProperFlat badTensor
 
 /-- The target evaluates the constant-`PUnit` transform at `PEmpty`, so no
-isomorphism with the identity functor can exist. -/
-theorem bare_lemma_2_25_has_countermodel
-    (h : lemma_2_25Statement context context_isProperFlat diagonal) : False := by
+isomorphism with the identity functor can exist.  This refutes
+`lemma_2_25BareStatement`, the interface rendering of Lemma 2.25 -- not GL26's
+lemma, whose proof has the projection formula and the diagonal identities as
+inputs. -/
+theorem lemma_2_25BareStatement_has_countermodel
+    (h : lemma_2_25BareStatement context context_isProperFlat diagonal) : False := by
   obtain ⟨e⟩ := h
   exact PEmpty.elim ((e.app PEmpty).hom PUnit.unit)
 
 end BareDiagonalCounterexample
 
-/-! ## Lemma 2.25 after adding the actual derived inputs -/
+/-! ## Where the faithful Lemma 2.25 lives
 
-/-- Derived data missing from bare `DiagonalFMData`.  The first field is the
-landed categorical diagonal package; the remaining equalities only identify
-its functors with those in the Noetherian statement layer. -/
-structure CorrectedDiagonalData {D DP : Type u} [Category.{v} D] [Category.{v} DP]
-    (C : Noetherian.FMContext.{w, u, v} D D DP) (Δ : DiagonalFMData C) where
-  /-- Projection formula (08IN), tensor unit, and the two derived diagonal
-  identities. -/
-  core : RelativeFM.DiagonalIdentityData D DP Δ.unit
-  tensor_eq : C.tensorRight = core.tensorRight
-  pull_eq : C.pullFromOne = core.pull
-  push_eq : C.pushToTwo = core.push
-  diagonal_eq : Δ.push = core.diagonal
-
-/-- **GL26 Lemma 2.25 in the exact existing statement-layer form**, after the
-corrected derived diagonal package is supplied.  Properness and flatness are
-used to construct such a package geometrically, not in this categorical step. -/
-theorem lemma_2_25Statement_of_correction
-    {D DP : Type u} [Category.{v} D] [Category.{v} DP]
-    {C : Noetherian.FMContext.{w, u, v} D D DP} {Δ : DiagonalFMData C}
-    (E : CorrectedDiagonalData C Δ) (hC : C.IsProperFlat) :
-    lemma_2_25Statement C hC Δ := by
-  unfold lemma_2_25Statement Noetherian.FMContext.transform
-  rw [E.tensor_eq, E.pull_eq, E.push_eq, E.diagonal_eq]
-  exact E.core.identity_transform_isId
+The corrected package and the proof of the lemma are
+`RelativeFM.Noetherian.Lemma25DiagonalData` and
+`RelativeFM.Noetherian.lemma_2_25Statement_proved` in
+`FourierMukai/Scheme/Statements.lean`; the derived inputs themselves are
+`RelativeFM.DiagonalIdentityData` in `FourierMukai/Scheme/DiagonalIdentity.lean`.
+They previously sat in this module as `CorrectedDiagonalData` and
+`lemma_2_25Statement_of_correction`, and were moved to the statement layer so
+that the canonical name for Lemma 2.25 is the proved statement. -/
 
 /-- The already landed Lemma 2.26 bridge, kept beside the new diagonal bridge
 so that both statement-layer corrections have one audit point. -/
@@ -207,8 +200,8 @@ theorem FM_subset_fm (X : Noetherian.FMSetup.{w, u, v}) (K : X.DP) : X.FM K ⊆ 
 
 end RelativeFM.GL26OtherTargetsSmww27cujM6
 
-#print axioms RelativeFM.GL26OtherTargetsSmww27cujM6.BareDiagonalCounterexample.bare_lemma_2_25_has_countermodel
-#print axioms RelativeFM.GL26OtherTargetsSmww27cujM6.lemma_2_25Statement_of_correction
+#print axioms RelativeFM.GL26OtherTargetsSmww27cujM6.BareDiagonalCounterexample.lemma_2_25BareStatement_has_countermodel
+#print axioms RelativeFM.Noetherian.lemma_2_25Statement_proved
 #print axioms RelativeFM.GL26OtherTargetsSmww27cujM6.lemma_2_26Statement_of_correction
 #print axioms RelativeFM.GL26OtherTargetsSmww27cujM6.canonical_locallyOfFiniteType_of_isClosed
 #print axioms RelativeFM.GL26OtherTargetsSmww27cujM6.someClosedFibre_of_everyFiniteTypeClosedFibre

@@ -36,8 +36,11 @@ for f in \
   FourierMukai/Scheme/QCohSerre.lean \
   FourierMukai/Scheme/QCohSerreExtension.lean \
   FourierMukai/Scheme/QCohSerreExtension01IE.lean \
+  FourierMukai/Scheme/DiagonalIdentity.lean \
+  FourierMukai/Scheme/DiagonalFunctoriality.lean \
   FourierMukai/Scheme/Statements.lean \
   FourierMukai/Scheme/Duality.lean \
+  FourierMukai/Scheme/DiagonalDuality.lean \
   FourierMukai/Scheme/DerivedTensorHomClosed.lean \
   FourierMukai/Scheme/Lemma54.lean \
   FourierMukai/Scheme/PerfectRing.lean \

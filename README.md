@@ -82,13 +82,13 @@ LP §2–§4 and **LP Theorem 1.1**, scheme-agnostic and `sorry`-free:
 | **01LA(6) / 01IE** extension closure, proved without cohomology | `QCohSerre`, `QCohSerreExtension`, `QCohSerreExtension01IE` |
 | coproducts on `D(A-Mod)`: the universe decision, with `AffineD A ≌ SmallAffineD A H` | `AffineUniverse` |
 | the affine recollement `D(A[1/f]) → D(A) → D_Z(A)` in the GL26/LP orientation, **all fields but one** | `AffineRecollement`, `AffineLocalCohomology`, `AffineLocalCohomologySupport`, `AffineGluing`, `AffineSupportedAssembly`, `AffineMixedZero`, `AffineIShriek`, `AffineSecondGluing`, `AffineRecollementAssembly` |
-| **GL26 Lemma 2.25** for affine schemes: `Φ_{RΔ_*O} ≅ 𝟭` | `AffineDiagonal` |
+| **GL26 Lemma 2.25**: `Φ_{RΔ_*O} ≅ 𝟭` — the three inputs its proof uses, the two diagonal identities *derived* from functoriality, the categorical computation, and the conditional affine derived-module wrapper | `DiagonalIdentity`, `DiagonalFunctoriality`, `DiagonalDuality`, `AffineDiagonal` |
 | **GL26 Lemma 5.4** in abstract six-functor form: the external tensor of compact generators generates the fibre product | `Lemma54` |
-| the ten GL26 targets over Noetherian schemes as `Prop`-valued statements | `Statements` |
+| the GL26 targets over Noetherian schemes as `Prop`-valued statements, with Lemma 2.25 stated faithfully and proved | `Statements` |
 
 Everything above is `sorry`-free and depends only on `propext`, `Classical.choice`
-and `Quot.sound`; the audits are printed at the end of the modules that state the
-results.
+and `Quot.sound`; axiom audits are printed by `FourierMukai/Audit.lean` and by the
+modules that end with explicit `#print axioms` commands.
 
 ## What is assumed
 
@@ -138,11 +138,13 @@ progress described below.
 
 Two caveats worth stating plainly:
 
-* **`FourierMukai/Paper/Statements.lean` still contains `sorry`s** — ten of them.
+* **`FourierMukai/Paper/Statements.lean` still contains `sorry`s** — nine of them.
   They are the paper's targets stated over the superseded abstract `FMContext`
   interface, they are not used by anything on the affine path, and
   `FourierMukai/Audit.lean` prints them deliberately.  They are specifications,
-  not gaps in proved theorems.
+  not gaps in proved theorems.  Lemma 2.25 is the exception: it is *proved* there
+  from the three inputs its paper proof uses, and the bare rendering that omits
+  them is refuted in `FourierMukai/Paper/InterfaceAudit.lean`.
 * **The GL26 statements in `FourierMukai/Scheme/Statements.lean` are statements,
   not proofs.**  Only Theorem 1.1 (affine case) and Lemmas 2.25 and 5.4 are
   proved.

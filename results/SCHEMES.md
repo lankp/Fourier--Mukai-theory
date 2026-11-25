@@ -153,20 +153,35 @@ where Mathlib does have the abelian, monoidal and injective-envelope structure.
 
 ## A defect found in the current target layer
 
-`FourierMukai/Paper/Statements.lean` states GL26's Lemma 2.25 as
+An earlier bare rendering quantified over an arbitrary `FMContext` and was
+refuted: `FourierMukai/Paper/Statements.lean` used to state GL26's Lemma 2.25 as
 `Nonempty (C.transform C.diagonalKernel ≅ 𝟭 D)` for an arbitrary `FMContext`.
 That is **not a consequence of the interface**: `transform` is defined as
 `push ∘ tensorRight K ∘ pull` and those are free structure fields, so
 `FourierMukai/Paper/InterfaceAudit.lean` exhibits a legal `FMContext` on
 `Type 0`, with every subcategory `True` and `push` constant at `PUnit`, for
-which the statement is false.  The paper's proof uses the projection formula
+which the bare statement is false.  The paper's proof uses the projection formula
 (Stacks 08IN), the tensor unit, and `f'_1 ∘ Δ = f'_2 ∘ Δ = 𝟙`; those must be
-**fields** of the interface, not consequences of it.
+**fields** of the interface, not consequences of it.  The current
+`RelativeFM.lemma_2_25` and `RelativeFM.Noetherian.lemma_2_25Statement_proved`
+take them explicitly and are proved; only the geometric discharge of those
+inputs remains.
 
-The same audit counts **7 vacuous `True` placeholders** in the ten targets (six
+The same audit counts **7 vacuous `True` placeholders** in the targets (six
 relative-perfectness hypotheses and `hell : True`).  Both points are
 requirements on the scheme-level statement layer: no target may be stated over
 an interface that does not imply it, and no hypothesis may be `True`.
+
+**Resolution for Lemma 2.25 (later).**  GL26's Lemma 2.25 is correct, and the
+defect above is exactly the defect of the interface: the paper's proof uses the
+projection formula (08IN), the tensor unit and `f'_1 ∘ Δ = f'_2 ∘ Δ = 𝟙`, none of
+which a free `FMContext` forces.  The scheme-level layer now carries the bare
+rendering as `lemma_2_25BareStatement` (refuted, kept to record what the
+interface fails to imply) and the faithful form as `lemma_2_25Statement`, which is
+proved from `Lemma25DiagonalData` in `FourierMukai/Scheme/Statements.lean`.  So
+Lemma 2.25 is no longer an open target; the open question is only the geometric
+discharge of `Lemma25DiagonalData` from `Y → S`, which needs the derived layer
+this section is about.
 
 ## Constraints and risks
 

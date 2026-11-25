@@ -27,10 +27,16 @@ sources:
     relationship: "formalizes"
     note: >-
       Affine base case.  Proved: Theorem 1.1 (affine, with Neeman's compact/perfect
-      theorem as the only external input), Lemma 2.25, Lemma 2.26, Lemma 5.4 (in
-      abstract six-functor form).  Stated over Noetherian schemes, not proved:
-      Theorems 1.2, 1.3, 1.6, 1.7, 12.3, Corollary 6.18, Lemmas 2.26-as-scheme,
-      12.2 (see `FourierMukai/Scheme/Statements.lean`).
+      theorem as the only external input), Lemma 2.25 (from `DiagonalIdentityData`,
+      i.e. 08IN, the tensor unit and the derived diagonal identities), the
+      categorical affine-derived-module computation for Lemma 2.26 from
+      `CorrectedConvolutionData`, and Lemma 5.4 (in abstract six-functor form).
+      Stated over Noetherian schemes, not proved: Theorems 1.2, 1.3, 1.6, 1.7,
+      12.3, Corollary 6.18, Lemmas 12.2, and the bare scheme-level Lemma 2.26
+      rendering, which needs the corrected derived cube (see
+      `FourierMukai/Scheme/Statements.lean`).  Statements are checked
+      against the 25 November 2026 manuscript (`main-4.tex`), which is not the
+      arXiv posting; line references in `results/` name that file.
   - title: "Gluing weak approximability along recollements"
     authors: [Pat Lank, Bregje Pauwels]
     id: "preprint, November 2026"
@@ -47,12 +53,14 @@ status:
     The affine base case of the first paper and the whole categorical layer of the
     second.  The one published input on the affine path is Neeman, Acta Math. 233
     (2024), Theorem 3.2, used only in the direction `compact ⇒ perfect`.
-  sorry_count: 10
+  sorry_count: 9
   sorry_in_definitions: 0
   sorry_location: >-
-    All ten are in `FourierMukai/Paper/Statements.lean`: the paper's targets stated
+    All nine are in `FourierMukai/Paper/Statements.lean`: the paper's targets stated
     over a superseded abstract interface, kept as specifications and printed by
-    `FourierMukai/Audit.lean`.  Nothing on the affine path depends on them.
+    `FourierMukai/Audit.lean`.  Nothing on the affine path depends on them.  The
+    tenth, Lemma 2.25, was proved there from the three inputs its own paper proof
+    uses (projection formula 08IN, tensor unit, diagonal retractions).
   axioms: [propext, Classical.choice, Quot.sound]
   build: "./scripts/build.sh (there is no Lake build in the verification environment)"
 

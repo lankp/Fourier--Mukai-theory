@@ -60,7 +60,7 @@ ring**: `S` and `hgen` still contain geometric and setup data.
 | Perfect modules and affine vanishing | Thick-envelope and boundedness calculus; model implies `Perf A`; Le--Chen 2.3; `perf_eventuallyHomZero` and its small-model analogue. Compact-to-`Perf` and 066S-style retract closure use only Neeman 3.2(i). |
 | Perfect-to-compact reduction | Only thick-envelope closure is proved (`PerfectCompactThick.lean`). Compactness of the regular module is not thereby proved, and the small endpoint does not need it. |
 | Local cohomology and most of the recollement | Concrete `RΓ_Z`, support, open adjunction, `iShriek`, kernel, mixed zero and both triangles. `C = RΓ_Z(A)` is the explicit two-term cone with `H⁰ = ker`, `H¹ = coker`. The last adjunction is below. |
-| Affine diagonal and product generation | Lemma 2.25's categorical computation and Lemma 5.4's abstract cover argument, conditional on their explicit geometric data (`AffineDiagonal.lean`, `Lemma54.lean`). |
+| Affine diagonal and product generation | Lemma 2.25's categorical computation and Lemma 5.4's abstract cover argument, conditional on their explicit geometric data (`DiagonalIdentity.lean`, `AffineDiagonal.lean`, `Lemma54.lean`).  The two diagonal retraction identities are themselves derived from comparison data for derived pullback/pushforward and `Δ ≫ prᵢ = 𝟙`, in `DiagonalFunctoriality.lean`. |
 | Convolution | Lemma 2.26's categorical core, corrected statement bridge and affine wrapper (`AffineConvolution.lean`), conditional on a derived cube with projection formulas, tensor compatibilities and an invertible 08IR mate. |
 
 ## 2b. Neeman's weak approximability: what is now proved

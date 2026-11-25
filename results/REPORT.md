@@ -4,6 +4,17 @@
 > report was written when the target was the full algebraic-space paper, and it
 > remains the inventory of the geometric prerequisites and of the algebraic-space
 > interface (`FourierMukai/Paper/`), which is now the record of the future target.
+>
+> *Correction, Lemma 2.25.*  An earlier revision of
+> [`GL26_SCHEME_DEPENDENCE.md`](GL26_SCHEME_DEPENDENCE.md) said "Lemma 2.25 is
+> false".  That was wrong, and this report's §5 remark about its indices is the
+> only caveat that survives: **GL26's Lemma 2.25 is correct.**  What the
+> `constantContext` model refutes is the rendering of the lemma over an abstract
+> `FMContext` whose `pull`, `push` and `tensorRight` are free fields.  The lemma is
+> now proved from the three inputs its own proof uses --
+> `FourierMukai/Scheme/Statements.lean` (`lemma_2_25Statement_proved`) and
+> `FourierMukai/Paper/Statements.lean` (`lemma_2_25`) -- so §6's `Paper.Statements`
+> inventory below now has nine `sorry`s, not ten.
 
 # Lean code for *Relative Fourier–Mukai theory for algebraic spaces*
 
@@ -186,11 +197,15 @@ statement in Lean, and the tags on which the paper's proof rests.
 | Cor 6.18 (easy half of Thm 1.5) | `corollary_6_18` | relative perfectness is preserved by arbitrary derived pullback |
 | Lemma 12.2 | `lemma_12_2` | representative-independence of `fm`/`FM` under relative perfectness |
 | Thm 1.6 = 10.13 | `theorem_1_6` | full faithfulness on `D^b_coh` ↔ full faithfulness of every closed-point fibre |
-| Lemma 2.25 | `lemma_2_25` | `Φ_{RΔ_*O_Y} ≅ 𝟙` |
+| Lemma 2.25 | `lemma_2_25` | `Φ_{RΔ_*O_Y} ≅ 𝟙`, given 08IN, the tensor unit and the two diagonal retractions |
 | Lemma 2.26 | `lemma_2_26` | `Φ_{K₂} ∘ Φ_{K₁} ≅ Φ_{K₂ ⋆ K₁}` |
 | Thm 1.7 = 11.4 | `theorem_1_7` | elliptic fibration ⟹ `Φ_{I_Δ}` is an autoequivalence |
 
-All of them carry `sorryAx` (see §6) — they are specifications, not proofs.
+All but `lemma_2_25` carry `sorryAx` (see §6) — they are specifications, not
+proofs.  `lemma_2_25` is proved from the inputs its paper proof uses
+(`DiagonalIdentityData` plus the kernel/functor comparison equalities), and its
+axioms are only `propext`, `Classical.choice` and `Quot.sound`; see the
+correction note at the top of this report.
 Two statements are weaker than the paper on purpose:
 
 * `theorem_1_3` merges the three equivalent conditions into a single `↔`
@@ -465,7 +480,12 @@ look before formalizing):
 * The proof of Lemma 2.25 writes `L(f'_1)^*(-) ⊗ RΔ_*O_Y` and then applies the
   projection formula for `Δ`; since `f'_1 ∘ Δ = f'_2 ∘ Δ = 𝟙`, both readings work,
   but the indices in the display (`f'_1` for the tensor, `f'_2` for the
-  pushforward) are worth checking once.
+  pushforward) are worth checking once.  **Checked, and they are consistent**:
+  08IN applied to `Δ` reads `RΔ_*O_Y ⊗^L LΔ^*(-) = RΔ_*(O_Y ⊗^L LΔ^*(-))`, which
+  assembled with `R(f'_2)_*` and `L(f'_1)^*` is exactly the paper's second line,
+  and `f'_i ∘ Δ = 𝟙` then collapses both composites.  See
+  [`GL26_SCHEME_DEPENDENCE.md`](GL26_SCHEME_DEPENDENCE.md), "Lemma 2.25 is
+  correct".
 
 ### 5.4 Weak approximability: status
 
@@ -525,8 +545,13 @@ necessary only when formalizing §10–§12.
 ```
 
 So: the `Prelim` and `Examples` modules are complete; the `Paper.Statements`
-module is a specification.  There are ten `sorry`s in the whole development and
+module is a specification.  There are nine `sorry`s in the whole development and
 they are all in that one file, by design.
+
+*(The output above is the run recorded when this report was written, before the
+Lemma 2.25 repair: `RelativeFM.lemma_2_25` now prints only
+`[propext, Classical.choice, Quot.sound]`, and `RelativeFM.Noetherian.lemma_2_25Statement_proved`
+prints the same.  Ten `sorry`s became nine.)*
 
 ---
 
@@ -585,8 +610,8 @@ lean FourierMukai/Audit.lean
 ```
 
 The build was run in this VM (about 6 s from a clean tree): all eight modules
-compile.  The only warnings are the ten `sorry` warnings in
-`Paper/Statements.lean` and linter style warnings (unused section variables,
-`letI` versus `let`, one universe annotation).  The linter warnings are
-cosmetic; the `letI`s are deliberate, since the hypothesis has to be found by
-instance search.
+compile.  The only warnings are the `sorry` warnings in `Paper/Statements.lean`
+(nine after the Lemma 2.25 repair; that lemma no longer emits one) and linter
+style warnings (unused section variables, `letI` versus `let`, one universe
+annotation).  The linter warnings are cosmetic; the `letI`s are deliberate, since
+the hypothesis has to be found by instance search.

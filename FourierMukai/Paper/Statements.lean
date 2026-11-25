@@ -3,6 +3,7 @@ Copyright (c) 2026 Relative Fourier--Mukai formalization project.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import FourierMukai.Paper.DerivedSetup
+import FourierMukai.Scheme.DiagonalIdentity
 
 /-!
 # Statements of the main results of *Relative Fourier--Mukai theory for algebraic spaces*
@@ -10,11 +11,14 @@ import FourierMukai.Paper.DerivedSetup
 This file collects the numbered results of the paper as Lean theorems about the
 abstract interface of `FourierMukai/Paper/DerivedSetup.lean`.
 
-**Every theorem in this file is stated, not proved.**  The proofs are the content of
-the 102-page paper; they depend on Grothendieck duality for algebraic spaces,
-Nagata compactification, weak approximability of `D_qc`, and the theory of
-relatively perfect complexes developed in Parts 1 and 2 of the paper.  None of that
-is available in Lean today; see `results/REPORT.md` for a detailed inventory.
+**All but one theorem in this file is stated, not proved.**  `lemma_2_25` is
+proved from the three inputs that the paper's own proof of it uses
+(`DiagonalIdentityData`, `FourierMukai/Scheme/DiagonalIdentity.lean`); the other
+nine are specifications.  Their proofs are the content of the 102-page paper;
+they depend on Grothendieck duality for algebraic spaces, Nagata
+compactification, weak approximability of `D_qc`, and the theory of relatively
+perfect complexes developed in Parts 1 and 2 of the paper.  None of that is
+available in Lean today; see `results/REPORT.md` for a detailed inventory.
 
 Each statement records in its docstring
 
@@ -22,8 +26,8 @@ Each statement records in its docstring
 * the Stacks Project tags (and other references) on which the paper's proof rests,
 * which part of the interface the statement uses.
 
-The `sorry`s here are therefore *specifications*, not gaps in an otherwise complete
-proof: they are the formalization targets.
+The nine remaining `sorry`s are therefore *specifications*, not gaps in an
+otherwise complete proof: they are the formalization targets.
 -/
 
 @[expose] public section
@@ -170,10 +174,26 @@ variable {D DP : Type u} [Category.{v} D] [Category.{v} DP]
 /-- **Lemma 2.25** (`lem:funct_on_kernel`): for `f : Y ⟶ S` proper flat,
 `Φ_{RΔ_*O_Y} ≅ 𝟙`, where `Δ : Y ⟶ Y ×_S Y` is the diagonal.
 
-The proof uses only the projection formula (Stacks tag 08IN) and the fact that
-`f'_1 ∘ Δ = f'_2 ∘ Δ = 𝟙`. -/
-theorem lemma_2_25 : Nonempty (C.transform C.diagonalKernel ≅ 𝟭 D) := by
-  sorry
+GL26's proof uses only the projection formula (Stacks tag 08IN), the derived
+tensor unit, and `f'_1 ∘ Δ = f'_2 ∘ Δ = 𝟙`.  Those are the fields of
+`core : DiagonalIdentityData`; `unit` is `O_Y` and `C.diagonalKernel` is
+`RΔ_*O_Y = core.diagonal.obj unit`.  The lemma is stated here over exactly those
+inputs, and proved.
+
+The *bare* rendering of this lemma -- the same conclusion quantified over a
+`FMContext` with free `pull`, `push`, `tensorRight`, with `core` and the four
+equalities dropped -- is **false**, as `FourierMukai/Paper/InterfaceAudit.lean`
+shows, because such an interface does not tie the functors to any geometry.  That
+is a defect of the interface, not of the lemma.  The scheme-layer form, with the
+same inputs, is `RelativeFM.Noetherian.lemma_2_25Statement_proved`. -/
+theorem lemma_2_25 (unit : D) (core : DiagonalIdentityData D DP unit)
+    (hK : C.diagonalKernel = core.diagonal.obj unit)
+    (hT : C.tensorRight = core.tensorRight)
+    (hP : C.pull = core.pull) (hS : C.push = core.push) :
+    Nonempty (C.transform C.diagonalKernel ≅ 𝟭 D) := by
+  unfold FMContext.transform
+  rw [hP, hS, hT, hK]
+  exact core.identity_transform_isId
 
 end Functoriality
 
@@ -187,7 +207,17 @@ variable {D1 D2 D3 DP12 DP23 DP13 : Type u}
 `⋆` is the convolution of kernels.  The proof is the same computation as in
 [Huybrechts, *Fourier--Mukai transforms in algebraic geometry*, Proposition 5.10]
 and uses the projection formula (Stacks tag 08IN) and tor-independent base change
-(Stacks tag 08IR). -/
+(Stacks tag 08IR).
+
+This is the **bare interface rendering**, kept only as a specification: `conv` is
+an arbitrary function and the three contexts are unrelated, so the proposition
+does not follow from its arguments, and `Scheme/ConvolutionCounterexample.lean`
+refutes it (`bare_lemma_2_26_has_countermodel`).  The faithful form supplies the
+derived triple-product cube, the projection formulas (08IN), monoidality and
+pseudofunctoriality of pullback, and an invertible 08IR mate; see
+`Scheme/AffineConvolution.lean` and
+`RelativeFM.Convolution.NoetherianBridge.CorrectedConvolutionData`.  GL26's lemma
+itself is not in question -- as with Lemma 2.25, the defect is the interface. -/
 theorem lemma_2_26 (C12 : FMContext D1 D2 DP12) (C23 : FMContext D2 D3 DP23)
     (C13 : FMContext D1 D3 DP13) (conv : DP12 → DP23 → DP13) (K₁ : DP12) (K₂ : DP23) :
     Nonempty (C12.transform K₁ ⋙ C23.transform K₂ ≅ C13.transform (conv K₁ K₂)) := by

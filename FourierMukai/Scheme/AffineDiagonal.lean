@@ -7,14 +7,17 @@ import Mathlib.Algebra.Homology.DerivedCategory.Basic
 import Mathlib.RingTheory.Noetherian.Defs
 import Mathlib.RingTheory.TensorProduct.Maps
 import FourierMukai.Scheme.Affine
+import FourierMukai.Scheme.DiagonalIdentity
 
 /-!
 # GL26 Lemma 2.25 for affine schemes
 
-GL26's Lemma 2.25 says `Φ_{RΔ_*O_Y} ≅ 𝟭`.  `FourierMukai/Paper/InterfaceAudit.lean`
-shows it is *not* a consequence of the abstract `FMContext`: the functors there
-are free fields, so a degenerate legal context refutes it.  This file supplies
-the missing data explicitly and proves the lemma in the affine model.
+GL26's Lemma 2.25 says `Φ_{RΔ_*O_Y} ≅ 𝟭`, and it is correct.
+`FourierMukai/Paper/InterfaceAudit.lean` shows that its *bare* rendering over the
+abstract `FMContext` is not a consequence of that interface: the functors there
+are free fields, so a degenerate legal context refutes the bare rendering.  This
+file supplies the missing data explicitly and proves the lemma in the affine
+derived-module model, conditionally on that data.
 
 * `affine_pullDiagonalUnderived` and `affine_diagonalPushUnderived` are the
   ordinary restriction/extension functors along the tensor inclusions and the
@@ -24,8 +27,12 @@ the missing data explicitly and proves the lemma in the affine model.
   diagonal retractions.  `identity_transform_isId` derives the identity
   transform from them.
 * `AffineDiagonalContext.toFMContext` is an honest `FMContext` whose
-  `diagonalKernel` is `RΔ_*(A[0])`, and `affine_lemma_2_25` proves
-  `Nonempty (transform diagonalKernel ≅ 𝟭)` for Noetherian base and fibre rings.
+  `diagonalKernel` is `C.core.diagonal.obj (affineUnit A)`, where the supplied
+  `diagonal` is *intended* to model `RΔ_*`; and `affine_lemma_2_25` proves
+  `Nonempty (transform diagonalKernel ≅ 𝟭)` for any supplied context over
+  Noetherian rings.  Nothing here constructs that context from the rings: it is
+  a conditional derived-module form of the lemma, not a ring-only construction of
+  the geometric six-functor inputs.
 
 Every remaining derived input (derived tensor, change of rings) is a documented
 field with its source; there are no `True` placeholders.
@@ -121,90 +128,12 @@ noncomputable def affine_diagonalPushUnderived (R A : Type u) [CommRing R]
       (Algebra.TensorProduct.lmul'_comp_includeRight (R := R) (S := A))
   exact e.symm ≪≫ ModuleCat.restrictScalarsCongr h ≪≫ ModuleCat.restrictScalarsId A
 
-/-! ## The corrected diagonal interface and the kernel computation -/
+/-! ## The corrected diagonal interface and the kernel computation
 
-/-- The geometric input for GL26 Lemma 2.25.  Here `unit` is intended to be
-`O_Y`; in the affine specialization it is definitionally `affineUnit A`.
+`DiagonalIdentityData` and the computation of the identity transform now live in
+`FourierMukai/Scheme/DiagonalIdentity.lean`, so that both statement layers can use
+them.  They are imported here and instantiated in `AffineDiagonalContext` below. -/
 
-`projectionFormula` is the diagonal case of Stacks 08IN.  The other three fields
-are the tensor-unit isomorphism and the two derived diagonal identities.  All
-are natural isomorphisms, so their naturality, not merely objectwise existence,
-is available in the proof. -/
-structure DiagonalIdentityData (D DP : Type u) [Category.{v} D] [Category.{v} DP]
-    (unit : D) where
-  /-- `K ↦ K ⊗^L (-)` on the fibre-product category. -/
-  tensorRight : DP → DP ⥤ DP
-  /-- `E ↦ E ⊗^L (-)` on the source, used at the structure unit. -/
-  tensorSource : D → D ⥤ D
-  /-- Derived pullback along the first projection, `L(f₁')^*`. -/
-  pull : D ⥤ DP
-  /-- Derived pushforward along the second projection, `R(f₂')_*`. -/
-  push : DP ⥤ D
-  /-- `RΔ_*`; the identity kernel is `diagonal.obj unit`. -/
-  diagonal : D ⥤ DP
-  /-- `LΔ^*`. -/
-  diagonalPull : DP ⥤ D
-  /-- Stacks 08IN for `RΔ_* O_Y`: the first line of the kernel computation. -/
-  projectionFormula :
-    pull ⋙ tensorRight (diagonal.obj unit) ≅
-      pull ⋙ diagonalPull ⋙ tensorSource unit ⋙ diagonal
-  /-- The derived tensor unit `O_Y ⊗^L (-) ≅ 1`, used in line 1532 of GL26. -/
-  tensorUnit : tensorSource unit ≅ 𝟭 D
-  /-- Pseudofunctoriality and `f₁' ∘ Δ = 1`: `LΔ^* L(f₁')^* ≅ 1`. -/
-  pull_diagonal : pull ⋙ diagonalPull ≅ 𝟭 D
-  /-- Pseudofunctoriality and `f₂' ∘ Δ = 1`: `R(f₂')_* RΔ_* ≅ 1`. -/
-  diagonal_push : diagonal ⋙ push ≅ 𝟭 D
-
-namespace DiagonalIdentityData
-
-variable {D DP : Type u} [Category.{v} D] [Category.{v} DP] {unit : D}
-  (C : DiagonalIdentityData D DP unit)
-
-/-- The objectwise GL26 Lemma 2.25 computation.  This is the promised kernel
-calculation: no object is identified by fiat with the identity transform. -/
-noncomputable def identityComponent (E : D) :
-    C.push.obj ((C.tensorRight (C.diagonal.obj unit)).obj (C.pull.obj E)) ≅ E :=
-  C.push.mapIso (C.projectionFormula.app E) ≪≫
-    C.push.mapIso (C.diagonal.mapIso
-      (((C.tensorSource unit).mapIso (C.pull_diagonal.app E)) ≪≫
-        C.tensorUnit.app E)) ≪≫
-    C.diagonal_push.app E
-
-/-- **GL26 Lemma 2.25 (`lem:funct_on_kernel`), categorical computation.**
-
-The explicit isomorphisms `identityComponent` assemble into a natural
-isomorphism.  The proof uses exactly the naturality of the projection formula,
-the two diagonal identities, and the tensor unit. -/
-noncomputable def identityIso :
-    C.pull ⋙ C.tensorRight (C.diagonal.obj unit) ⋙ C.push ≅ 𝟭 D := by
-  refine NatIso.ofComponents C.identityComponent (naturality := ?_)
-  intro X Y f
-  have hp := C.projectionFormula.hom.naturality f
-  have hpd := C.pull_diagonal.hom.naturality f
-  have htu := C.tensorUnit.hom.naturality f
-  have hdp := C.diagonal_push.hom.naturality f
-  simp only [Functor.comp_map, Functor.id_map] at hp hpd htu hdp
-  dsimp [identityComponent]
-  simp only [Category.assoc]
-  rw [← hdp]
-  simp only [← C.push.map_comp_assoc]
-  congr 1
-  rw [reassoc_of% hp]
-  apply congrArg C.push.map
-  simp only [← C.diagonal.map_comp]
-  rw [← (C.tensorSource unit).map_comp_assoc]
-  rw [hpd]
-  rw [(C.tensorSource unit).map_comp_assoc]
-  rw [htu]
-  simp only [Category.assoc]
-
-/-- `identityIso` is an isomorphism onto the identity functor, not merely an
-objectwise assertion. -/
-theorem identity_transform_isId :
-    Nonempty (C.pull ⋙ C.tensorRight (C.diagonal.obj unit) ⋙ C.push ≅ 𝟭 D) :=
-  ⟨C.identityIso⟩
-
-end DiagonalIdentityData
 
 /-! ## Affine `FMContext` and the Noetherian statement -/
 
@@ -232,9 +161,10 @@ namespace AffineDiagonalContext
 variable {R A : Type u} [CommRing R] [CommRing A] [Algebra R A]
   (C : AffineDiagonalContext R A)
 
-/-- Package affine diagonal data as the repository's `FMContext`.  Crucially,
-its diagonal kernel is *defined* as `RΔ_*(A[0])`, rather than supplied as an
-unrelated object. -/
+/-- Package affine diagonal data as the repository's `FMContext`.  Its diagonal
+kernel is `C.core.diagonal.obj (affineUnit A)`, i.e. it is *built from* the
+supplied `diagonal` functor rather than being an unrelated object; the functor
+itself is still supplied, not constructed. -/
 noncomputable def toFMContext :
     FMContext (AffineD A) (AffineD A) (AffineSelfProductD R A) where
   tensorRight := C.core.tensorRight
@@ -252,13 +182,15 @@ noncomputable def diagonalTransformIso :
     C.toFMContext.transform C.toFMContext.diagonalKernel ≅ 𝟭 (AffineD A) :=
   C.core.identityIso
 
-/-- **GL26 Lemma 2.25 (`lem:funct_on_kernel`) over affine Noetherian schemes.**
+/-- **Conditional affine derived-module form of GL26 Lemma 2.25.**
 
-For `Y = Spec A` over `S = Spec ABase`, with both rings Noetherian, the
-integral transform with kernel `RΔ_*O_Y` is naturally isomorphic to the identity.
-The fields of `C` listed in its docstring are precisely the remaining derived
-geometric inputs; no additional properness, flatness, or vacuous hypothesis is
-introduced. -/
+Given an `AffineDiagonalContext RB A` -- which supplies the derived functors, the
+08IN projection formula, the tensor unit and the two diagonal identities -- the
+transform on `AffineD A` with kernel `RΔ_*O_Y` is naturally isomorphic to the
+identity.  The rings enter only as the parameters of `AffineD`; **no such context
+is constructed from the Noetherian-ring hypotheses here**, so this is not a
+ring-only construction of the geometric inputs, and it introduces no additional
+properness, flatness or vacuous hypothesis either. -/
 theorem affine_lemma_2_25 {RB A : Type u} [CommRing RB] [CommRing A]
     [Algebra RB A] [IsNoetherianRing RB] [IsNoetherianRing A]
     (C : AffineDiagonalContext RB A) :
