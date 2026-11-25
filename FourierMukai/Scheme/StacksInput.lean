@@ -1,6 +1,16 @@
 /-
 Copyright (c) 2026 Relative Fourier--Mukai formalization project.
 Released under Apache 2.0 license as described in the file LICENSE.
+
+**POLICY (see `results/STACKS_POLICY.md`).**  The formalization and results of
+AxiomMath/Stacks may be used freely in this repository, and every use is marked.  This
+file is the machine-readable register of that use: each field below is a statement
+taken from the Stacks Project as formalized by Axiom Math, carries its tag number, and
+is a `Prop` rather than an axiom.  A theorem that relies on one of them takes the
+corresponding field as a hypothesis, so the dependency is visible in its type.
+
+If Axiom's repository is added to Mathlib or Lean, each field here is replaced by the
+imported declaration and the theorems taking it lose that hypothesis.
 -/
 import FourierMukai.Scheme.AffineJUpperTensorHom
 import FourierMukai.Scheme.AffineLocalCohomologyRingObject
