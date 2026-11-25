@@ -1,29 +1,33 @@
 name = "FourierMukai"
 version = "0.1.0"
-defaultTargets = ["FourierMukai", "WeakApprox"]
+defaultTargets = ["FourierMukai", "WeakApprox", "StatementCheck"]
 lintDriver = "batteries/runLinter"
 
-# The [leanOptions] block is kept from the AxiomMath/Stacks build configuration:
-# it is what every module in this repository has been checked against.
-[leanOptions]
-pp.unicode.fun = true
-autoImplicit = false
-relaxedAutoImplicit = false
-maxSynthPendingDepth = 3
-weak.linter.flexible = true
-weak.linter.mathlibStandardSet = true
-weak.linter.style.header = false
-weak.linter.overlappingInstances = false
-
-# This pin follows the toolchain in `lean-toolchain` (Lean 4.33.1), which is the
-# one every module here has been verified against.  Note that there is no Lake
-# build in the verification environment: `/opt/mathlib` is a prebuilt, read-only
-# Mathlib checked out on LEAN_PATH, and `scripts/build.sh` calls `lean` directly.
-# The Lake configuration is therefore not exercised there; see `README.md`.
+# Lean 4.33.1, as pinned in `lean-toolchain`.  CI builds through Lake against
+# Mathlib's olean cache; the development VM has a prebuilt, read-only Mathlib on
+# `LEAN_PATH` and no writable package directory, so `scripts/build.sh` calls
+# `lean` directly there.  Same sources, same toolchain, two entry points.
 [[require]]
 name = "mathlib"
 scope = "leanprover-community"
 rev = "v4.33.1"
+
+# Compiler options used by the Lake build.  `scripts/build.sh` passes no `-D`
+# flags, so the two paths must agree: everything below is either a printing
+# option or a linter toggle, and neither affects elaboration.
+#
+# The stricter options inherited from the AxiomMath/Stacks configuration --
+#   autoImplicit = false, relaxedAutoImplicit = false, maxSynthPendingDepth = 3
+# -- are deliberately NOT enabled: the sources were written with Lean's default
+# `autoImplicit = true`, and enabling the flag breaks modules that rely on it
+# (see `results/VERIFICATION.md`).  Turning it on is a separate, mechanical
+# clean-up, not a build setting.
+[leanOptions]
+pp.unicode.fun = true
+weak.linter.flexible = true
+weak.linter.mathlibStandardSet = true
+weak.linter.style.header = false
+weak.linter.overlappingInstances = false
 
 [[lean_lib]]
 name = "FourierMukai"
@@ -32,3 +36,10 @@ roots = ["FourierMukai"]
 [[lean_lib]]
 name = "WeakApprox"
 roots = ["WeakApprox"]
+
+# The statement surface: the types and axioms of the headline results, checked
+# against a recorded baseline by `scripts/check_statements.sh` independently of
+# the proofs.  See `StatementCheck.lean` and `results/statement-baseline.txt`.
+[[lean_lib]]
+name = "StatementCheck"
+roots = ["StatementCheck"]

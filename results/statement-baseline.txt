@@ -1,0 +1,223 @@
+@RelativeFM.Noetherian.lemma_2_25Statement_proved : ∀ {D DP : Type u_2} [inst : CategoryTheory.Category.{u_3, u_2} D]
+  [inst_1 : CategoryTheory.Category.{u_3, u_2} DP] (C : RelativeFM.Noetherian.FMContext D D DP) (hC : C.IsProperFlat)
+  (Δ : RelativeFM.Noetherian.DiagonalFMData C) (E : RelativeFM.Noetherian.Lemma25DiagonalData C Δ),
+  RelativeFM.Noetherian.lemma_2_25Statement C hC Δ E
+@RelativeFM.Noetherian.lemma_2_25Statement_proved_no_properFlat : ∀ {D DP : Type u_2}
+  [inst : CategoryTheory.Category.{u_3, u_2} D] [inst_1 : CategoryTheory.Category.{u_3, u_2} DP]
+  (C : RelativeFM.Noetherian.FMContext D D DP) (Δ : RelativeFM.Noetherian.DiagonalFMData C)
+  (E : RelativeFM.Noetherian.Lemma25DiagonalData C Δ),
+  Nonempty (C.transform (Δ.push.obj Δ.unit) ≅ CategoryTheory.Functor.id D)
+@RelativeFM.lemma_2_25 : ∀ {D DP : Type u_1} [inst : CategoryTheory.Category.{u_2, u_1} D]
+  [inst_1 : CategoryTheory.Category.{u_2, u_1} DP] (C : RelativeFM.FMContext D D DP) (unit : D)
+  (core : RelativeFM.DiagonalIdentityData D DP unit),
+  C.diagonalKernel = core.diagonal.obj unit →
+    C.tensorRight = core.tensorRight →
+      C.pull = core.pull → C.push = core.push → Nonempty (C.transform C.diagonalKernel ≅ CategoryTheory.Functor.id D)
+@RelativeFM.AffineDiagonalContext.affine_lemma_2_25 : ∀ {RB A : Type u_1} [inst : CommRing RB] [inst_1 : CommRing A]
+  [inst_2 : Algebra RB A] [IsNoetherianRing RB] [IsNoetherianRing A] (C : RelativeFM.AffineDiagonalContext RB A),
+  Nonempty (C.toFMContext.transform C.toFMContext.diagonalKernel ≅ CategoryTheory.Functor.id (RelativeFM.AffineD A))
+@RelativeFM.DerivedDiagonalInput.identityIso : {D DP : Type u_1} →
+  [inst : CategoryTheory.Category.{u_2, u_1} D] →
+    [inst_1 : CategoryTheory.Category.{u_2, u_1} DP] →
+      {TD : RelativeFM.DerivedTensorHomData D} →
+        {TP : RelativeFM.DerivedTensorHomData DP} →
+          (C : RelativeFM.DerivedDiagonalInput TD TP) →
+            C.first.pull.comp ((TP.tensorRight (C.diagonal.push.obj TD.unit)).comp C.second.push) ≅
+              CategoryTheory.Functor.id D
+@RelativeFM.DiagonalFunctorialityInput.identityTransformIso : {Spaces : Type u_1} →
+  [inst : CategoryTheory.Category.{u_2, u_1} Spaces] →
+    {D : Spaces → Type u_3} →
+      [inst_1 : (X : Spaces) → CategoryTheory.Category.{u_4, u_3} (D X)] →
+        {F : RelativeFM.DerivedFunctorialityData D} →
+          {Y P : Spaces} →
+            {Δ : Y ⟶ P} →
+              {p₁ p₂ : P ⟶ Y} →
+                {unit : D Y} →
+                  (I : RelativeFM.DiagonalFunctorialityInput F Δ p₁ p₂ unit) →
+                    (F.pull p₁).comp ((I.tensorRight ((F.push Δ).obj unit)).comp (F.push p₂)) ≅
+                      CategoryTheory.Functor.id (D Y)
+'RelativeFM.Noetherian.lemma_2_25Statement_proved' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.Noetherian.lemma_2_25Statement_proved_no_properFlat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.lemma_2_25' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.AffineDiagonalContext.affine_lemma_2_25' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.DerivedDiagonalInput.identityIso' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.DiagonalFunctorialityInput.identityTransformIso' depends on axioms: [propext, Classical.choice, Quot.sound]
+@RelativeFM.Convolution.NoetherianBridge.lemma_2_26_of_correction : ∀ {D₁ D₂ D₃ D₁₂ D₂₃ D₁₃ : Type u_2}
+  [inst : CategoryTheory.Category.{u_1, u_2} D₁] [inst_1 : CategoryTheory.Category.{u_1, u_2} D₂]
+  [inst_2 : CategoryTheory.Category.{u_1, u_2} D₃] [inst_3 : CategoryTheory.Category.{u_1, u_2} D₁₂]
+  [inst_4 : CategoryTheory.Category.{u_1, u_2} D₂₃] [inst_5 : CategoryTheory.Category.{u_1, u_2} D₁₃]
+  {B : RelativeFM.Noetherian.ConvolutionData} (E : RelativeFM.Convolution.NoetherianBridge.CorrectedConvolutionData B)
+  (h12 : B.C12.IsProperFlat) (h23 : B.C23.IsProperFlat) (h13 : B.C13.IsProperFlat) (K₁ : D₁₂) (K₂ : D₂₃),
+  RelativeFM.Noetherian.lemma_2_26Statement B h12 h23 h13 K₁ K₂
+@RelativeFM.Lemma54.externalTensor_compactlyGenerates : ∀ {D₁ D₂ DP DU DT : Type u_2}
+  [inst : CategoryTheory.Category.{u_1, u_2} D₁] [inst_1 : CategoryTheory.Category.{u_1, u_2} D₂]
+  [inst_2 : CategoryTheory.Category.{u_1, u_2} DP] [inst_3 : CategoryTheory.Category.{u_1, u_2} DU]
+  [inst_4 : CategoryTheory.Category.{u_1, u_2} DT] [inst_5 : CategoryTheory.Limits.HasZeroObject D₁]
+  [inst_6 : CategoryTheory.Limits.HasZeroObject D₂] [inst_7 : CategoryTheory.Limits.HasZeroObject DP]
+  [inst_8 : CategoryTheory.Limits.HasZeroObject DU] [inst_9 : CategoryTheory.Limits.HasZeroObject DT]
+  [inst_10 : CategoryTheory.Preadditive D₁] [inst_11 : CategoryTheory.Preadditive D₂]
+  [inst_12 : CategoryTheory.Preadditive DP] [inst_13 : CategoryTheory.Preadditive DU]
+  [inst_14 : CategoryTheory.Preadditive DT] [inst_15 : CategoryTheory.HasShift D₁ ℤ]
+  [inst_16 : CategoryTheory.HasShift D₂ ℤ] [inst_17 : CategoryTheory.HasShift DP ℤ]
+  [inst_18 : CategoryTheory.HasShift DU ℤ] [inst_19 : CategoryTheory.HasShift DT ℤ]
+  [inst_20 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor D₁ n).Additive]
+  [inst_21 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor D₂ n).Additive]
+  [inst_22 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DP n).Additive]
+  [inst_23 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DU n).Additive]
+  [inst_24 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DT n).Additive] [inst_25 : CategoryTheory.Pretriangulated D₁]
+  [inst_26 : CategoryTheory.Pretriangulated D₂] [inst_27 : CategoryTheory.Pretriangulated DP]
+  [inst_28 : CategoryTheory.Pretriangulated DU] [inst_29 : CategoryTheory.Pretriangulated DT]
+  {T₁ : RelativeFM.DerivedTensorHomData D₁} {T₂ : RelativeFM.DerivedTensorHomData D₂}
+  {TP : RelativeFM.DerivedTensorHomData DP} {TU : RelativeFM.DerivedTensorHomData DU}
+  {TT : RelativeFM.DerivedTensorHomData DT} (g₁ : RelativeFM.DerivedMorphismData T₁ TP)
+  (g₂ : RelativeFM.DerivedMorphismData T₂ TP) (s : RelativeFM.DerivedMorphismData T₁ TU)
+  (t : RelativeFM.DerivedMorphismData TP TT) (h₁ : RelativeFM.DerivedMorphismData TU TT)
+  (h₂ : RelativeFM.DerivedMorphismData T₂ TT) (g₁t : RelativeFM.TriangulatedMorphismData g₁)
+  (st : RelativeFM.TriangulatedMorphismData s) (h₁t : RelativeFM.TriangulatedMorphismData h₁)
+  (h₂t : RelativeFM.TriangulatedMorphismData h₂) (TPt : RelativeFM.TriangulatedTensorHomData TP)
+  (TTt : RelativeFM.TriangulatedTensorHomData TT) (C : RelativeFM.Lemma54.CoverComparisonInput g₁ g₂ s t h₁ h₂),
+  RelativeFM.Lemma54.ProductPerfectCompactInput g₁ g₂ t → ∀ {P₁ : D₁}, ⋯
+'RelativeFM.Convolution.NoetherianBridge.lemma_2_26_of_correction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.Lemma54.externalTensor_compactlyGenerates' depends on axioms: [propext, Classical.choice, Quot.sound]
+RelativeFM.affine_theorem_1_1_neeman_only : ∀ (A : Type u_1) [inst : CommRing A] (DZ : Type u_2) (DU : Type u_3)
+  [inst_1 : CategoryTheory.Category.{u_1 + 1, u_2} DZ] [inst_2 : CategoryTheory.Category.{u_1 + 1, u_3} DU]
+  [inst_3 : CategoryTheory.Preadditive DZ] [inst_4 : CategoryTheory.Preadditive DU]
+  [inst_5 : CategoryTheory.Limits.HasZeroObject DZ] [inst_6 : CategoryTheory.Limits.HasZeroObject DU]
+  [inst_7 : CategoryTheory.HasShift DZ ℤ] [inst_8 : CategoryTheory.HasShift DU ℤ]
+  [inst_9 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DZ n).Additive]
+  [inst_10 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DU n).Additive] [inst_11 : CategoryTheory.Pretriangulated DZ]
+  [inst_12 : CategoryTheory.Pretriangulated DU] [inst_13 : CategoryTheory.IsTriangulated DZ]
+  [inst_14 : CategoryTheory.IsTriangulated DU] (S : RelativeWeakApprox.SetupMainMinimal DZ (RelativeFM.AffineD A) DU),
+  RelativeFM.AffineDerivedCoproducts A DZ DU →
+    RelativeFM.CompactPerfectInput A →
+      (RelativeWeakApprox.SatisfiesWA (RelativeFM.AffineD A) ↔ RelativeFM.AffineEventualSelfVanishing S.G')
+RelativeFM.StacksGluing.affine_theorem_1_1_stacks07LT : ∀ (A : Type u_1) [inst : CommRing A] (DZ : Type u_2)
+  (DU : Type u_3) [inst_1 : CategoryTheory.Category.{u_1 + 1, u_2} DZ]
+  [inst_2 : CategoryTheory.Category.{u_1 + 1, u_3} DU] [inst_3 : CategoryTheory.Preadditive DZ]
+  [inst_4 : CategoryTheory.Preadditive DU] [inst_5 : CategoryTheory.Limits.HasZeroObject DZ]
+  [inst_6 : CategoryTheory.Limits.HasZeroObject DU] [inst_7 : CategoryTheory.HasShift DZ ℤ]
+  [inst_8 : CategoryTheory.HasShift DU ℤ] [inst_9 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DZ n).Additive]
+  [inst_10 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DU n).Additive] [inst_11 : CategoryTheory.Pretriangulated DZ]
+  [inst_12 : CategoryTheory.Pretriangulated DU] [inst_13 : CategoryTheory.IsTriangulated DZ]
+  [inst_14 : CategoryTheory.IsTriangulated DU] (S : RelativeWeakApprox.SetupMainMinimal DZ (RelativeFM.AffineD A) DU),
+  RelativeFM.AffineDerivedCoproducts A DZ DU →
+    RelativeFM.Stacks07LTCompactModelInput A →
+      (RelativeWeakApprox.SatisfiesWA (RelativeFM.AffineD A) ↔ RelativeFM.AffineEventualSelfVanishing S.G')
+RelativeFM.affine_theorem_1_1_small : ∀ (A : Type u_1) [inst : CommRing A] (H : RelativeFM.AffineSpaltensteinInput A)
+  (DZ : Type u_2) (DU : Type u_3) [inst_1 : CategoryTheory.Category.{u_1, u_2} DZ]
+  [inst_2 : CategoryTheory.Category.{u_1, u_3} DU] [inst_3 : CategoryTheory.Preadditive DZ]
+  [inst_4 : CategoryTheory.Preadditive DU] [inst_5 : CategoryTheory.Limits.HasZeroObject DZ]
+  [inst_6 : CategoryTheory.Limits.HasZeroObject DU] [inst_7 : CategoryTheory.HasShift DZ ℤ]
+  [inst_8 : CategoryTheory.HasShift DU ℤ] [inst_9 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DZ n).Additive]
+  [inst_10 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DU n).Additive] [inst_11 : CategoryTheory.Pretriangulated DZ]
+  [inst_12 : CategoryTheory.Pretriangulated DU] [inst_13 : CategoryTheory.IsTriangulated DZ]
+  [inst_14 : CategoryTheory.IsTriangulated DU]
+  (S : RelativeWeakApprox.SetupMainMinimal DZ (RelativeFM.SmallAffineD A H) DU),
+  RelativeFM.SmallAffineDerivedCoproducts A H DZ DU →
+    RelativeWeakApprox.Stacks09SR (RelativeFM.SmallAffineD A H) →
+      (RelativeWeakApprox.SatisfiesWA (RelativeFM.SmallAffineD A H) ↔
+        ∃ N,
+          ∀ (n : ℤ),
+            N ≤ n → ∀ (f : S.G' ⟶ (CategoryTheory.shiftFunctor (RelativeFM.SmallAffineD A H) n).obj S.G'), f = 0)
+'RelativeFM.affine_theorem_1_1_neeman_only' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.StacksGluing.affine_theorem_1_1_stacks07LT' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.affine_theorem_1_1_small' depends on axioms: [propext, Classical.choice, Quot.sound]
+@RelativeWeakApprox.PaperM2.PaperSetupMainMinimal.theorem_1_1 : ∀ {DZ : Type u_3} {D : Type u_2} {DU : Type u_4}
+  [inst : CategoryTheory.Category.{u_1, u_3} DZ] [inst_1 : CategoryTheory.Category.{u_1, u_2} D]
+  [inst_2 : CategoryTheory.Category.{u_1, u_4} DU] [inst_3 : CategoryTheory.Preadditive DZ]
+  [inst_4 : CategoryTheory.Preadditive D] [inst_5 : CategoryTheory.Preadditive DU]
+  [inst_6 : CategoryTheory.Limits.HasZeroObject DZ] [inst_7 : CategoryTheory.Limits.HasZeroObject D]
+  [inst_8 : CategoryTheory.Limits.HasZeroObject DU] [inst_9 : CategoryTheory.HasShift DZ ℤ]
+  [inst_10 : CategoryTheory.HasShift D ℤ] [inst_11 : CategoryTheory.HasShift DU ℤ]
+  [inst_12 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DZ n).Additive]
+  [inst_13 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor D n).Additive]
+  [inst_14 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DU n).Additive] [inst_15 : CategoryTheory.Pretriangulated DZ]
+  [inst_16 : CategoryTheory.Pretriangulated D] [inst_17 : CategoryTheory.Pretriangulated DU]
+  [inst_18 : CategoryTheory.IsTriangulated DZ] [inst_19 : CategoryTheory.IsTriangulated D]
+  [inst_20 : CategoryTheory.IsTriangulated DU] (S : RelativeWeakApprox.PaperM2.PaperSetupMainMinimal DZ D DU)
+  [CategoryTheory.Limits.HasCoproducts DZ] [CategoryTheory.Limits.HasCoproducts D]
+  [CategoryTheory.Limits.HasCoproducts DU],
+  (∀ (G : D),
+      RelativeWeakApprox.IsPaperGenerator G →
+        RelativeWeakApprox.IsCompactAb G → RelativeWeakApprox.IsClassicalGeneratorOnCompacts G) →
+    (RelativeWeakApprox.PaperM2.SatisfiesPaperWA D ↔
+      ∃ N, ∀ (n : ℤ), N ≤ n → ∀ (f : S.G' ⟶ (CategoryTheory.shiftFunctor D n).obj S.G'), f = 0)
+@RelativeWeakApprox.SetupMainMinimal.theorem_1_1 : ∀ {DZ : Type u_3} {D : Type u_2} {DU : Type u_4}
+  [inst : CategoryTheory.Category.{u_1, u_3} DZ] [inst_1 : CategoryTheory.Category.{u_1, u_2} D]
+  [inst_2 : CategoryTheory.Category.{u_1, u_4} DU] [inst_3 : CategoryTheory.Preadditive DZ]
+  [inst_4 : CategoryTheory.Preadditive D] [inst_5 : CategoryTheory.Preadditive DU]
+  [inst_6 : CategoryTheory.Limits.HasZeroObject DZ] [inst_7 : CategoryTheory.Limits.HasZeroObject D]
+  [inst_8 : CategoryTheory.Limits.HasZeroObject DU] [inst_9 : CategoryTheory.HasShift DZ ℤ]
+  [inst_10 : CategoryTheory.HasShift D ℤ] [inst_11 : CategoryTheory.HasShift DU ℤ]
+  [inst_12 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DZ n).Additive]
+  [inst_13 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor D n).Additive]
+  [inst_14 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DU n).Additive] [inst_15 : CategoryTheory.Pretriangulated DZ]
+  [inst_16 : CategoryTheory.Pretriangulated D] [inst_17 : CategoryTheory.Pretriangulated DU]
+  [inst_18 : CategoryTheory.IsTriangulated DZ] [inst_19 : CategoryTheory.IsTriangulated D]
+  [inst_20 : CategoryTheory.IsTriangulated DU] (S : RelativeWeakApprox.SetupMainMinimal DZ D DU)
+  [CategoryTheory.Limits.HasCoproducts DZ] [CategoryTheory.Limits.HasCoproducts D]
+  [CategoryTheory.Limits.HasCoproducts DU],
+  (∀ (G : D),
+      RelativeWeakApprox.IsGenerator G →
+        RelativeWeakApprox.IsCompactAb G → RelativeWeakApprox.IsClassicalGeneratorOnCompacts G) →
+    (RelativeWeakApprox.SatisfiesWA D ↔
+      ∃ N, ∀ (n : ℤ), N ≤ n → ∀ (f : S.G' ⟶ (CategoryTheory.shiftFunctor D n).obj S.G'), f = 0)
+'RelativeWeakApprox.PaperM2.PaperSetupMainMinimal.theorem_1_1' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeWeakApprox.SetupMainMinimal.theorem_1_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+RelativeFM.PrincipalNeemanM1.satisfiesPaperWA : ∀ (A : Type u_1) [inst : CommRing A] (f : A),
+  RelativeWeakApprox.IsCompactAb (RelativeFM.ringObject A) →
+    RelativeWeakApprox.PaperM2.SatisfiesPaperWA (RelativeFM.AffineDZ A f)
+RelativeFM.IdealNeemanM1.satisfiesPaperWA_idealSupported : ∀ (A : Type u_1) [inst : CommRing A]
+  (hS : RelativeFM.StacksInterface.KoszulScalarSupportInput A) (fs : List A),
+  RelativeFM.StacksInterface.IdealSupportedCoproductInput A (RelativeFM.FiniteKoszulM1.functionIdeal A fs) →
+    RelativeFM.FiniteKoszulM1.KoszulPowerCoprodInput A hS fs →
+      RelativeFM.StacksInterface.IdealSupportedCompactnessInput A (RelativeFM.FiniteKoszulM1.functionIdeal A fs) →
+        RelativeFM.StacksInterface.KoszulDetectionInput A hS fs →
+          RelativeWeakApprox.IsCompactAb (RelativeFM.ringObject A) →
+            RelativeWeakApprox.PaperM2.SatisfiesPaperWA
+              (RelativeFM.NeemanFiniteSupportM4.AffineDZIdeal A (RelativeFM.FiniteKoszulM1.functionIdeal A fs))
+RelativeFM.AffineSupportedSchemeBaseM1.neemanSupported_of_qc_closedComplement : ∀ (A : Type u_1) [inst : CommRing A]
+  (hS : RelativeFM.StacksInterface.KoszulScalarSupportInput A),
+  (∀ (fs : List A),
+      RelativeFM.StacksInterface.IdealSupportedCoproductInput A (RelativeFM.FiniteKoszulM1.functionIdeal A fs)) →
+    (∀ (fs : List A), RelativeFM.FiniteKoszulM1.KoszulPowerCoprodInput A hS fs) →
+      (∀ (fs : List A),
+          RelativeFM.StacksInterface.IdealSupportedCompactnessInput A (RelativeFM.FiniteKoszulM1.functionIdeal A fs)) →
+        (∀ (fs : List A), RelativeFM.StacksInterface.KoszulDetectionInput A hS fs) →
+          (∀ (fs : List A),
+              RelativeFM.AffineSupportedSchemeBaseM1.AffineSupportedSchemeComparisonInput A
+                (RelativeFM.FiniteKoszulM1.functionIdeal A fs)) →
+            RelativeWeakApprox.IsCompactAb (RelativeFM.ringObject A) →
+              ∀ (Z : TopologicalSpace.Closeds ↥(AlgebraicGeometry.Spec (CommRingCat.of A))),
+                RelativeFM.SchemeNeemanFiniteCoverAssemblyM5.IsCompactClosedComplement Z →
+                  RelativeFM.SchemeWeakApproxStatementM1.NeemanSupportedWeakApproximability
+                    (AlgebraicGeometry.Spec (CommRingCat.of A)) Z
+RelativeFM.AffineSupportedSchemeBaseM1.neemanSupportedWeakApproximability_of_isAffine : ∀
+  (hS : ∀ (A : Type u_1) [inst : CommRing A], RelativeFM.StacksInterface.KoszulScalarSupportInput A),
+  (∀ (A : Type u_1) [inst : CommRing A] (fs : List A),
+      RelativeFM.StacksInterface.IdealSupportedCoproductInput A (RelativeFM.FiniteKoszulM1.functionIdeal A fs)) →
+    (∀ (A : Type u_1) [inst : CommRing A] (fs : List A), RelativeFM.FiniteKoszulM1.KoszulPowerCoprodInput A ⋯ fs) →
+      (∀ (A : Type u_1) [inst : CommRing A] (fs : List A),
+          RelativeFM.StacksInterface.IdealSupportedCompactnessInput A (RelativeFM.FiniteKoszulM1.functionIdeal A fs)) →
+        (∀ (A : Type u_1) [inst : CommRing A] (fs : List A), RelativeFM.StacksInterface.KoszulDetectionInput A ⋯ fs) →
+          (∀ (A : Type u_1) [inst : CommRing A] (fs : List A),
+              RelativeFM.AffineSupportedSchemeBaseM1.AffineSupportedSchemeComparisonInput A
+                (RelativeFM.FiniteKoszulM1.functionIdeal A fs)) →
+            (∀ (A : Type u_1) [inst : CommRing A], RelativeWeakApprox.IsCompactAb (RelativeFM.ringObject A)) →
+              ∀ (X : AlgebraicGeometry.Scheme) [AlgebraicGeometry.IsAffine X] (Z : TopologicalSpace.Closeds ↥X),
+                RelativeFM.SchemeNeemanFiniteCoverAssemblyM5.IsCompactClosedComplement Z →
+                  RelativeFM.SchemeWeakApproxStatementM1.NeemanSupportedWeakApproximability X Z
+'RelativeFM.PrincipalNeemanM1.satisfiesPaperWA' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.IdealNeemanM1.satisfiesPaperWA_idealSupported' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.AffineSupportedSchemeBaseM1.neemanSupported_of_qc_closedComplement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.AffineSupportedSchemeBaseM1.neemanSupportedWeakApproximability_of_isAffine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
