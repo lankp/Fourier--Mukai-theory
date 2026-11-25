@@ -97,12 +97,50 @@ One job, `build-and-check`, in this order:
 7. the linters, advisory;
 8. upload of the re-elaborated statement surface.
 
-**The installed copy is still the two-job version** — `build` then a separate
-`statement-check` that repeats `lake update` and the cache fetch.  The one-job
-version above has not been pasted in yet; until it is, CI costs about four
-minutes instead of about three.
+The installed copy runs this single job — it was pasted in as commit `0cf48dc`
+and went green as run 9, measured below.
 
-### Why one job and not two
+### The single job, as it now runs
+
+`CI` run 9 (commit `0cf48dc`, the paste of the folded workflow): **success**, one
+job, every step green, 8m36s.
+
+| step | time |
+|---|---|
+| Resolve dependencies | 91s |
+| Restore olean cache | 14s |
+| Get Mathlib cache | 5s |
+| **Build** | **333s** |
+| Axiom audit | 3s |
+| Check statements against the baseline | 3s |
+| Linters (advisory) | 20s |
+| Upload the re-elaborated surface | 1s |
+| Post Restore olean cache (save) | 42s |
+
+That is *slower* than the two-job version it replaced (run 4: 2m15s + 1m43s),
+and the reason is visible in the same table: the build recompiled all 203
+modules.  In run 4 the `Build` step took **2s**, because the olean cache then
+held the project's own `.lake/build` and Lake found everything up to date.  Run 9
+restored a cache whose contents did not let Lake skip the compile, so it built
+from scratch and then spent 42s saving the new one.
+
+What the new cache contains, measured from the Actions caches API immediately
+after run 9:
+
+| entry | size | contents |
+|---|---|---|
+| created 15:31 (run 9, end) | 1.9 GB | `.lake/build` **and** `.lake/packages/*/.lake/build` |
+| created 15:00 (earlier runs) | 47 MB | `.lake/build` only |
+
+Both share the same key.  The 1.9 GB figure is GitHub's compressed size and is
+the whole repository's cache footprint — comfortably inside the 10 GB budget, so
+the caveat about the dependency cache costing too much does not currently bite.
+
+The structural saving is real and independent of the cache: one `lake update`
+(91s) instead of two (91s + 77s in run 4), no artifact hand-off, and `Build`,
+`Axiom audit` and `Check statements` share the same working tree.  Whether the
+bigger cache also makes `Build` incremental again will show in the next run that
+is not documentation-only.
 
 The statement check needs exactly the oleans the build produces.  A second job
 bought a second `lake update`, a second Mathlib cache fetch and an artifact
