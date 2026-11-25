@@ -39,7 +39,7 @@ permitted assumptions: a theorem that takes one is recorded as conditional (C in
 
 | input | Lean name | used by | source | to discharge |
 |---|---|---|---|---|
-| Bousfield localization at a compact object: every `E` sits in a triangle `S → E → R → S⟦1⟧` with `S ∈ ⟨G⟩‾` and `R` right orthogonal to the shifts of `G` | `HasBousfieldTriangles G`, `CompactBousfieldLocalization C` (`Prelim/Lemma24.lean`) | converse direction of GL26 Lemma 2.4 (`lemma_2_4`, `isLocalizingGenerator_of_isPaperGenerator`, `singlyCompactlyGenerated_iff`) | Neeman, *Triangulated categories* (2001), Rmk 1.16, Thm 1.17, Prop 9.1.19 | Brown representability for compactly generated triangulated categories, or a Stacks tag if AxiomMath has it |
+| Bousfield localization at a compact object: every `E` sits in a triangle `S → E → R → S⟦1⟧` with `S ∈ ⟨G⟩‾` and `R` right orthogonal to the shifts of `G` | `HasBousfieldTriangles G` (`Prelim/Lemma24.lean`) | only the secondary route `isLocalizingGenerator_of_isPaperGenerator`, `isPaperGenerator_iff_isLocalizingGenerator`; **no longer used by the headline GL26 Lemma 2.4** (`lemma_2_4` now uses Stacks 09SN, see §4).  `CompactBousfieldLocalization C` was deleted (it was stated with the refuted `Type`-valued `IsCompact`, hence trivially true; `Prelim/CompactnessAudit.lean`) | Neeman, *Triangulated categories* (2001), Rmk 1.16, Thm 1.17, Prop 9.1.19 | not needed for GL26 Lemma 2.4; Brown representability if the route is wanted |
 
 ## 2. The affine endpoint and what is actually proved
 
@@ -210,7 +210,8 @@ general Stacks tag. New interface/companion-module tags follow this table.
 | 07A6 | P for concrete affine scalar restriction/extension; S for general geometric derived pull/push. |
 | 0BFF | **R, and the citation was wrong.** 0BFF is Lemma 39.9.7, the formula `[n]^*L = L^(n(n+1)/2) (x) ([-1]^*L)^(n(n-1)/2)` for abelian varieties; it has nothing to do with the localization sequence. The citation has been removed from `AffineRecollement.lean` and `AFFINE.md`, and the sources for the recollement are Gao--Psaroudakis 2.2(ii), Balmer--Dell'Ambrogio--Sanders 2.3 and Krause section 4. The power-torsion and localization-vanishing facts are proved here independently of any tag. |
 | 08D5, 08DQ | R: an alternative proof of eventual vanishing documented in `Scheme/Inputs.lean`, not an affine dependency. |
-| 094A, 09SN, 09SP | R now; S only if the Brown-representability/09SR route is instantiated. |
+| 094A, 09SP | R now; S only if the Brown-representability/09SR route is instantiated. |
+| 09SN | **S, active** (25 Nov 2026): see the 09SN/090Z rows below; used by GL26 Lemmas 2.4 and 2.5. |
 | 08IN, 08IR | P for abstract computations/mates once data is supplied; S for the geometric projection formula and Tor-independent base change. |
 | 08CR, 08CS, 0FPU, 0FPV | S for general perfect-thickness and vector-bundle dual/tensor interfaces. Ring analogues do not inhabit these scheme structures. |
 | 08J9, 08JJ, 0E55, 0E5D | S for the perfect-duality and exceptional-functor interface fields; categorical consequences after those inputs are P. |
@@ -235,6 +236,8 @@ These were not in the original 57-tag census.
 | 0A8Z | S only for the alternative complex-level internal-Hom/tensor adjunction; unnecessary if the derived package is built directly. |
 | 08J8 (08DI on ringed spaces) | S if derived tensor--Hom is taken from Stacks. The categorical adapter proves internal currying from this adjunction, so currying is not another assumption. |
 | 09IR, 0A9A, 09M1 (affine supported base) | S: the affine supported base consumes `KoszulScalarSupportInput` (09IR: scalar-cone support and `≤ 0` bounds; a `StacksInterface` field), `KoszulDetectionInput` (0A9A: finite Koszul zero detection) and `IdealSupportedCompactnessInput` (09M1 form), plus three named inputs that are not Stacks results -- `IdealSupportedCoproductInput` (supported direct sums), `KoszulPowerCoprodInput` (Neeman, Construction 7.3, finite-power envelope) and `AffineSupportedSchemeComparisonInput` (supported module/scheme comparison). Together with `IsCompactAb (ringObject A)` they give `NeemanSupportedWeakApproximability` for `Spec A` with closed support of quasi-compact complement, and for every affine scheme (`AffineSupportedSchemeBaseM1`). The **principal** closed support `V(f)` needs none of them (`PrincipalNeemanM1`). |
+| 090Z | Definition, not an assumption: `RelativeFM.StacksInterface.IsHomotopyColimit` (`Prelim/Stacks09SN.lean`), verbatim from AxiomMath/Stacks `CategoryTheory.Pretriangulated.IsHomotopyColimit` (`StacksFrontier/CategoryTheory/Triangulated/HomotopyColimit.lean`). |
+| 09SN | S: `RelativeFM.StacksInterface.Tag09SN D` (`Prelim/Stacks09SN.lean`), verbatim from AxiomMath/Stacks `CategoryTheory.Pretriangulated.exists_isHomotopyColimit_of_compactlyGenerated` (`StacksFrontier/CategoryTheory/Triangulated/CompactObjects/CellStructure.lean`) with `IsCompactObject.{v}` replaced by `RelativeWeakApprox.IsCompactAb` (same notion: the `AddCommGrpCat` coproduct is the direct sum; the comparison of the two predicates is not proved here).  Taken as a hypothesis by `StacksInterface.isLocalizingGenerator_of_tag09SN`, GL26 Lemma 2.4 `RelativeFM.lemma_2_4`, `singlyCompactlyGenerated_iff`, `lemma_2_5_of_tag09SN`, and `singlyCompactlyGenerated_smallRingObject`.  `RelativeFM.lemma_2_5` itself does not take it. |
 
 ## 5. Verification
 

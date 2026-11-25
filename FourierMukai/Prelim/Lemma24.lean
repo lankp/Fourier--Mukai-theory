@@ -1,5 +1,6 @@
 /- Copyright (c) 2026 Formalization of Lank--Pauwels. Released under Apache 2.0 license as described in the file LICENSE. -/
 import FourierMukai.Prelim.Lemma25
+import FourierMukai.Prelim.Stacks09SN
 import WeakApprox.GeneratorBridge
 
 /-!
@@ -15,6 +16,7 @@ containing `G` is all of `T`.
 
 ## Rendering
 
+* "`G ∈ T^c`" is `RelativeWeakApprox.IsCompactAb G` (additive compactness).
 * "`G` compactly generates `T`" is zero detection by the shifts of `G`:
   `RelativeWeakApprox.IsPaperGenerator G`, i.e. `Hom(G⟦n⟧, E) = 0` for all `n : ℤ`
   implies `IsZero E`.
@@ -35,29 +37,34 @@ containing `G` is all of `T`.
   fixed `E`, the objects `A` with `Hom(A, E⟦n⟧) = 0` for all `n` form a localizing
   subcategory; this is `IsLocalizingGenerator.isZero_of_rightOrthogonal` of
   `Prelim/Lemma25.lean`, applied to the shift closure of `G`.
-* `isLocalizingGenerator_of_isPaperGenerator`: the converse, from the named input
-  `HasBousfieldTriangles G`: every `E` sits in a distinguished triangle
-  `S → E → R → S⟦1⟧` with `S ∈ ⟨G⟩‾` and `Hom(G⟦n⟧, R) = 0` for all `n`.  This is
-  the input the paper's proof takes from Neeman (*Triangulated categories*,
-  Remark 1.16, Theorem 1.17 and Proposition 9.1.19: the Verdier quotient
-  `T → T/⟨G⟩‾` has a right adjoint `Q`, and the triangle is
-  `S_E → E → QπE → S_E⟦1⟧`).  Bousfield localization is not in Mathlib; the input
-  is carried as a hypothesis, never as an axiom.
-* `lemma_2_4`: the paper's equivalence, for a compact `G` in a category with
-  `w`-small coproducts, from the named input `CompactBousfieldLocalization C`
-  (Neeman's theorem for every compact object).
+* `lemma_2_4` (headline): for a compact `G` (`RelativeWeakApprox.IsCompactAb`) in a
+  pretriangulated category with small coproducts, `IsPaperGenerator G ↔ ⟨G⟩‾ = T`.  The
+  converse direction is `StacksInterface.isLocalizingGenerator_of_tag09SN`
+  (`Prelim/Stacks09SN.lean`), from the tagged input `StacksInterface.Tag09SN C`
+  (Stacks 09SN, AxiomMath's `exists_isHomotopyColimit_of_compactlyGenerated`): every
+  object is a homotopy colimit of cells built from sums of shifts of `G`, hence lies in
+  every localizing subcategory containing `G`.  This replaces the paper's appeal to
+  Neeman's Bousfield localization; the paper's §2.1 cites 09SN for the related fact.
+* `singlyCompactlyGenerated_iff` and `lemma_2_5_of_tag09SN`: under 09SN, the rendering
+  `SinglyCompactlyGenerated` of Lemma 2.5 is the paper's "compact and detects zero", and
+  Lemma 2.5 holds with the paper's hypothesis.
+* Secondary route, not used by the headline: `isLocalizingGenerator_of_isPaperGenerator`
+  from the named input `HasBousfieldTriangles G` (every `E` sits in a distinguished
+  triangle `S → E → R → S⟦1⟧` with `S ∈ ⟨G⟩‾` and `Hom(G⟦n⟧, R) = 0` for all `n`), which
+  is what the paper takes from Neeman (*Triangulated categories*, Remark 1.16,
+  Theorem 1.17 and Proposition 9.1.19).  It is a hypothesis, never an axiom.
 
 ## Deviations from the paper's statement
 
-* The paper's hypothesis "`T` is compactly generated" is not assumed: the proof
-  uses it nowhere (Neeman's Theorem 1.17 needs only that `G` is compact and that
-  `T` has small coproducts), so the Lean statement is stronger in this respect.
-* The converse direction depends on the named input above.  The input asks only
-  `R ∈ {G⟦n⟧}^⊥`, which is weaker than the `R ∈ ⟨G⟩‾^⊥` that Neeman provides.
-* Neeman's theorem is stated for locally small categories with small coproducts,
-  i.e. `w = v₁` here; `CompactBousfieldLocalization.{w}` is stated for an
-  arbitrary coproduct universe `w`, as in `Prelim/Lemma25.lean`, and is a
-  consequence of Neeman's theorem only in that case.
+* Compactness is `RelativeWeakApprox.IsCompactAb` (the additive `Hom(G, -)` preserves
+  `Type v₁`-small coproducts), and `⟨G⟩‾` is formed with `Type v₁`-small coproducts.
+* The paper's hypothesis "`T` is compactly generated" is not assumed: the proof uses only
+  that `G` is compact, that `T` has small coproducts, and 09SN (whose own hypothesis is
+  that the given compact family generates).  The Lean statement is stronger in this
+  respect.
+* The converse direction depends on the tagged Stacks input `Tag09SN C` (row in
+  `results/ASSUMPTIONS.md`), with AxiomMath's `IsCompactObject` replaced by `IsCompactAb`
+  (see `Prelim/Stacks09SN.lean`).
 -/
 
 @[expose] public section
@@ -146,16 +153,6 @@ structure HasBousfieldTriangles (G : C) : Prop where
       localizingClosure.{w} (ObjectProperty.singleton G) S ∧
       ∀ (n : ℤ) (a : G⟦n⟧ ⟶ R), a = 0
 
-/-- Neeman's Bousfield localization for compact objects, as a named input: every
-`w`-compact object `G` has the triangles of `HasBousfieldTriangles`.  Neeman
-(*Triangulated categories*, Remark 1.16, Theorem 1.17, Proposition 9.1.19) proves
-this for a triangulated category with small coproducts, i.e. for `w = v₁` here;
-see the module docstring. -/
-def CompactBousfieldLocalization (C : Type u₁) [Category.{v₁} C]
-    [HasZeroObject C] [HasShift C ℤ] [Preadditive C]
-    [∀ (n : ℤ), (shiftFunctor C n).Additive] [Pretriangulated C] : Prop :=
-  ∀ G : C, IsCompact.{w} G → HasBousfieldTriangles.{w} G
-
 /-- **Lemma 2.4** (`lem:localizing_iff_cpt_gen`), direction `⟨G⟩‾ = T ⇒ G compactly
 generates`: if `G` generates by shifts, cones and `w`-small coproducts, then `G`
 detects zero objects through its shifts.  No compactness, coproducts or compact
@@ -192,26 +189,72 @@ theorem isPaperGenerator_iff_isLocalizingGenerator {G : C}
       ObjectProperty.IsLocalizingGenerator.{w} (ObjectProperty.singleton G) :=
   ⟨isLocalizingGenerator_of_isPaperGenerator hB, isPaperGenerator_of_isLocalizingGenerator⟩
 
-/-- **Lemma 2.4** (`lem:localizing_iff_cpt_gen`), in the paper's form.  In a
-triangulated category with `w`-small coproducts, a compact object `G` compactly
-generates (detects zero through its shifts) if and only if `⟨G⟩‾ = T`.  The
-converse direction uses Neeman's Bousfield localization, carried as the named
-input `CompactBousfieldLocalization`; the paper's hypothesis that `T` is compactly
-generated is not needed (see the module docstring). -/
-theorem lemma_2_4 [HasCoproducts.{w} C] (hN : CompactBousfieldLocalization.{w} C)
-    {G : C} (hG : IsCompact.{w} G) :
+section Tag09SN
+
+open StacksInterface
+
+/-- **Lemma 2.4** (`lem:localizing_iff_cpt_gen`), direction `G compactly generates ⇒
+⟨G⟩‾ = T`, from Stacks 09SN (`StacksInterface.Tag09SN`, a tagged input): a compact `G`
+detecting zero through its shifts lies in no proper localizing subcategory. -/
+theorem isLocalizingGenerator_of_isPaperGenerator_of_tag09SN [HasCoproducts.{v₁} C]
+    (h09SN : Tag09SN C) {G : C} (hGc : IsCompactAb G) (hG : IsPaperGenerator G) :
+    ObjectProperty.IsLocalizingGenerator.{v₁} (ObjectProperty.singleton G) :=
+  have : IsCompactAb G := hGc
+  isLocalizingGenerator_of_tag09SN h09SN hG
+
+/-- **Lemma 2.4** (`lem:localizing_iff_cpt_gen`).  Let `C` be a pretriangulated category
+with small (`Type v₁`-indexed) coproducts satisfying Stacks 09SN, and `G` a compact object
+(`RelativeWeakApprox.IsCompactAb`).  Then `G` compactly generates `C` (zero detection by
+the shifts of `G`, `IsPaperGenerator G`) if and only if `⟨G⟩‾ = C`.
+
+The paper assumes in addition that `C` is compactly generated; this is not needed.  The
+converse direction uses Stacks 09SN in place of Neeman's Bousfield localization (module
+docstring). -/
+theorem lemma_2_4 [HasCoproducts.{v₁} C] (h09SN : Tag09SN C)
+    {G : C} (hG : IsCompactAb G) :
     IsPaperGenerator G ↔
-      ObjectProperty.localizingClosure.{w} (ObjectProperty.singleton G) = ⊤ :=
-  (isPaperGenerator_iff_isLocalizingGenerator (hN G hG)).trans
+      ObjectProperty.localizingClosure.{v₁} (ObjectProperty.singleton G) = ⊤ :=
+  (Iff.intro (isLocalizingGenerator_of_isPaperGenerator_of_tag09SN h09SN hG)
+      isPaperGenerator_of_isLocalizingGenerator).trans
     (ObjectProperty.isLocalizingGenerator_iff_localizingClosure_eq_top _)
 
 /-- **Lemma 2.4** (`lem:localizing_iff_cpt_gen`) in the language of Lemma 2.5: under
-Neeman's input, `G` is a single compact generator in the sense of
-`SinglyCompactlyGenerated` iff it is compact and detects zero through its shifts. -/
-theorem singlyCompactlyGenerated_iff [HasCoproducts.{w} C]
-    (hN : CompactBousfieldLocalization.{w} C) (G : C) :
-    SinglyCompactlyGenerated.{w} C G ↔ IsCompact.{w} G ∧ IsPaperGenerator G :=
+Stacks 09SN, `G` is a single compact generator in the sense of `SinglyCompactlyGenerated`
+(compact and `⟨G⟩‾ = C`) iff it is compact and detects zero through its shifts (the
+paper's definition, GL26 §2.1). -/
+theorem singlyCompactlyGenerated_iff [HasCoproducts.{v₁} C] (h09SN : Tag09SN C) (G : C) :
+    SinglyCompactlyGenerated C G ↔ IsCompactAb G ∧ IsPaperGenerator G :=
   ⟨fun h => ⟨h.1, isPaperGenerator_of_isLocalizingGenerator h.2⟩,
-    fun h => ⟨h.1, isLocalizingGenerator_of_isPaperGenerator (hN G h.1) h.2⟩⟩
+    fun h => ⟨h.1, isLocalizingGenerator_of_isPaperGenerator_of_tag09SN h09SN h.1 h.2⟩⟩
+
+end Tag09SN
+
+section Lemma25Paper
+
+open StacksInterface
+
+variable {D : Type u₁} [Category.{v₁} D] [HasZeroObject D] [HasShift D ℤ] [Preadditive D]
+  [∀ (n : ℤ), (shiftFunctor D n).Additive] [Pretriangulated D]
+
+/-- **Lemma 2.5** (`lem:equivalence_or_fully_faithful_via_compacts`) with the paper's
+hypothesis "compactly generated by a single object" read as in GL26 §2.1: `GT` and `GS`
+are compact (`IsCompactAb`) and detect zero objects through their shifts
+(`IsPaperGenerator`).  Both categories have small coproducts and satisfy Stacks 09SN
+(tagged input), which is the paper's own justification that every object is built from
+compacts.  `F ⊣ G` with `F` exact and `G` preserving small coproducts; then `F` is an
+equivalence iff its restriction to compact objects is.  Reduced to `lemma_2_5` through
+`singlyCompactlyGenerated_iff`. -/
+theorem lemma_2_5_of_tag09SN [HasCoproducts.{v₁} C] [HasCoproducts.{v₁} D]
+    (h09SN_C : Tag09SN C) (h09SN_D : Tag09SN D)
+    {F : C ⥤ D} {G : D ⥤ C} (adj : F ⊣ G)
+    (GT : C) (hGTc : IsCompactAb GT) (hGTg : IsPaperGenerator GT)
+    (GS : D) (hGSc : IsCompactAb GS) (hGSg : IsPaperGenerator GS)
+    [∀ (J : Type v₁), PreservesColimitsOfShape (Discrete J) G]
+    [F.CommShift ℤ] [F.IsTriangulated] :
+    F.IsEquivalence ↔ (Adjunction.compactRestriction adj).IsEquivalence :=
+  lemma_2_5 adj GT ((singlyCompactlyGenerated_iff h09SN_C GT).2 ⟨hGTc, hGTg⟩)
+    GS ((singlyCompactlyGenerated_iff h09SN_D GS).2 ⟨hGSc, hGSg⟩)
+
+end Lemma25Paper
 
 end RelativeFM
