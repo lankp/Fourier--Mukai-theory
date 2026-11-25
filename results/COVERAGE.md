@@ -214,7 +214,7 @@ absent.
 | Lem A.1 | `lem:BNP_weak_version_for_glueing` | H | `Scheme/Inputs.lean` |
 | Lem A.2 | `lem:support_for_pullback` | — | |
 | Lem A.3 | `lem:support_for_pushforward` | — | |
-| Lem A.4 | `lem:spacey_recollement` | C (affine) | `Scheme/AffineRecollement*.lean`: every field of the affine recollement except `jUpper` with `jStar ⊣ jUpper` |
+| Lem A.4 | `lem:spacey_recollement` | C (affine; Stacks only) | `Scheme/AffineJUpperConstruction.lean` (`affineRecollementInputOfStacks0E55`): all fields of the affine recollement, from Stacks 0E55; unconditional when coextension of scalars is right exact (`affineRecollementInputOfExactCoextension`); `jUpper` is a chosen cone, isomorphic to `RHom(RΓ_Z A, -)` by uniqueness of adjoints (not formalized) |
 | Lem A.6 | `lem:etale_nbhd_preferred_class_equivalences` | — | |
 | Lem A.7 | `lem:pullback_compact_generator` | — | |
 | Lem A.8 | `lem:etale_nbhd_preferred_class` | H | `Scheme/Inputs.lean` |

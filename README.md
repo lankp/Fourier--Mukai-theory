@@ -73,7 +73,7 @@ declarations are pinned in
 | the Hovey route to the same replacement data | `ProjectiveModel`, `SmallObjectPresentable`, `GeneratingCofibrations` |
 | 01LA(6) and 01IE extension closure, without cohomology | `QCohSerre`, `QCohSerreExtension`, `QCohSerreExtension01IE` |
 | coproducts on `D(A-Mod)`: the universe decision, with `AffineD A ≌ SmallAffineD A H` | `AffineUniverse` |
-| the affine recollement `D(A[1/f]) → D(A) → D_Z(A)` in the GL26/LP26 orientation, all fields but one | `AffineRecollement`, `AffineLocalCohomology`, `AffineLocalCohomologySupport`, `AffineGluing`, `AffineSupportedAssembly`, `AffineMixedZero`, `AffineIShriek`, `AffineSecondGluing`, `AffineRecollementAssembly` |
+| the affine recollement `D(A[1/f]) → D(A) → D_Z(A)` in the GL26/LP26 orientation, all fields, from Stacks 0E55 (a right adjoint of `Rj_*`); unconditionally when coextension of scalars is right exact | `AffineJUpperConstruction`, `AffineRecollement`, `AffineLocalCohomology`, `AffineLocalCohomologySupport`, `AffineGluing`, `AffineSupportedAssembly`, `AffineMixedZero`, `AffineIShriek`, `AffineSecondGluing`, `AffineRecollementAssembly` |
 | LP26 Theorem 1.1, affine case | `AffineMain`, `SmallAffineAssembly`, `AffineUniverse`, `PerfectRingStacks` |
 
 ### GL26 results
@@ -246,12 +246,14 @@ a standalone challenge library and a `comparator` run.
    that the open/closed glue asks for; compactness of the regular module is proved
    (`Scheme/RegularCompact.lean`).  The accounting is in
    [`results/SCHEMES.md`](results/SCHEMES.md).
-2. **The last adjunction of the affine recollement.**  Every field of
-   `AffineRecollementInput` is constructed except `jUpper` together with
-   `jStar ⊣ jUpper`.  What remains is a tensor–Hom adjunction on `RΓ_Z(A)`,
-   `C ⊗^L (-) ⊣ RHom(C, -)` (Stacks 0A6R), to which `AffineJUpperTensorHom`
-   reduces it.  `AffineJUpperCandidateRefuted` shows that the obvious guess
-   `jUpper = Rj_* Lj^*` is zero, so it is not that.
+2. **The affine recollement without Stacks 0E55.**  Every field of
+   `AffineRecollementInput`, including `jUpper` with `jStar ⊣ jUpper`, is now
+   constructed (`Scheme/AffineJUpperConstruction.lean`, by a Bousfield-localization
+   argument that needs neither the tensor–Hom adjunction nor 0A6R), from a right
+   adjoint of restriction of scalars `Rj_*` (Stacks 0E55, an allowed tagged input).
+   What is left is that right adjoint without 0E55 (`RHom_A(A_f, -)` on unbounded
+   complexes), and the identification of `jUpper` with `RHom(RΓ_Z A, -)`.
+   `AffineJUpperCandidateRefuted` shows that the guess `jUpper = Rj_* Lj^*` is zero.
 3. **The `SetupMainMinimal` data from ring data.**  `AffineSetupInventory.lean`
    packages what is left.  Neeman's preferred `t`-structure equivalence and the
    normalized weak approximation data do not by themselves give the literal aisle
