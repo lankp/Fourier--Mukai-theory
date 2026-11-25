@@ -120,18 +120,21 @@ Of its four inputs, three are now reductions rather than gaps:
   approximation packages as an explicit hypothesis.
 * **Affine supported base** — now in place at three strengths
   (`AffineSupportedBaseM1` … `AffineSupportedSchemeBaseM1`): the **principal**
-  closed support `V(f)` is proved from nothing but
-  `IsCompactAb (ringObject A)`; a finite list `V(f₁,…,fₙ)` and the exact
-  `Spec A` / `IsAffine` statements are proved from that plus five named tagged
+  closed support `V(f)` is proved unconditionally
+  (`principalSupported_satisfiesPaperWA`, `Scheme/RegularCompactEndpoints.lean`,
+  since `IsCompactAb (ringObject A)` is now proved in `Scheme/RegularCompact.lean`);
+  a finite list `V(f₁,…,fₙ)` and the exact `Spec A` / `IsAffine` statements are
+  proved from five named tagged
   inputs (`KoszulScalarSupportInput` 09IR, `IdealSupportedCoproductInput`,
   `IdealSupportedCompactnessInput`, `KoszulPowerCoprodInput`,
   `KoszulDetectionInput` 0A9A, and a supported module/scheme comparison).  No
   `IsGenerator` is used anywhere in that chain.
 
-So the remaining work on this input is the five tagged statements themselves and
-compactness of the regular module, not weak approximability.  Everything is
-conditional as stated: the `IsAffine` theorem takes the five families over all
-commutative rings and `IsCompactAb (ringObject A)` for each ring.
+So the remaining work on this input is the five tagged statements themselves, not
+weak approximability and not compactness of the regular module (proved,
+`ringObject_isCompactAb`).  The `IsAffine` theorem takes the five families over all
+commutative rings; its unconditional-compactness form is
+`neemanSupportedWeakApproximability_of_isAffine` in `Scheme/RegularCompactEndpoints.lean`.
 
 The old algebraic-space interface (`FourierMukai/Paper/DerivedSetup.lean`) and
 targets (`FourierMukai/Paper/Statements.lean`) are kept until the scheme
