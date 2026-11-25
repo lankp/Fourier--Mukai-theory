@@ -140,33 +140,34 @@ price of the 330s it saves.
 `lake-manifest.json` was not committed and every run re-resolved Mathlib.  The
 manifest is committed now (see below) and the step is gone from the mirror.
 
-### Dropping `lake update`
+### `lake update`, kept on purpose
 
-`lake-manifest.json` is committed, pinning Mathlib at
-`0df444a360eaa60ab8c11dca51a86af692955474` (the `v4.33.1` tag), and the workflow
-no longer runs `lake update`.  Three things were checked before making that
-change, in a scratch directory holding only `lakefile.toml`, `lean-toolchain`
-and the manifest:
+The manifest is committed, so `lake update` no longer does resolution work — but
+it was removed once and put back, because it is what clones Mathlib.  The two
+runs, same tree otherwise:
 
-* `lake exe cache get` alone fetches every dependency — it exit-0s and leaves
-  `.lake/packages/mathlib` a complete 7.2 GB checkout with sources and oleans;
-* it does so **even when the olean cache has already put files under
-  `.lake/packages/mathlib/.lake/build`**, which is the order the workflow now
-  uses (restore, then fetch): no clobbered clone, no conflict, and the restored
-  oleans survive;
-* re-running `lake update` reproduces the manifest byte for byte, so committing
-  it freezes nothing that was moving.
+| step | run 12 (with `lake update`) | run 13 (without) |
+|---|---|---|
+| resolve dependencies | 72s | — |
+| restore olean cache | 50s | 73s |
+| get Mathlib cache | 3s | **119s** |
+| build | 2s | 2s |
+| axiom audit | 2s | 4s |
+| statement check | 3s | 3s |
+| linters (advisory) | 6s | 16s |
+| cache save | 6s | 39s |
+| **total** | **157s** | **265s** |
 
-What that does *not* explain is run 9.  The cache key contains
-`hashFiles('lake-manifest.json')`, and since `lake update` was deterministic the
-key did not move between runs — the two cache entries share one key — so run 9's
-full rebuild came from something else, and that is still unidentified.  What is
-established is the effect: run 10 restored the larger cache and built in 3s.
+Without the step the clone happens inside `lake exe cache get`, which then costs
+119s on top of the cache restore instead of 3s; the cache save also grew.  So the
+step pays for itself and the mirror keeps it.
 
-Committing the manifest does not break the *installed* workflow, which still
-runs `lake update`: runs 11 and 12 (commit `e79850c`, `main` and `formalization`)
-are green, 3m03s and 2m37s, with `Resolve dependencies` at 89s and 72s — the step
-the update to `ci/ci.yml` removes.
+**This is the floor for this setup.**  Each run has to materialise about 1.5 GB of
+Mathlib sources and 1.9 GB of oleans, and the steps that move them — cache
+restore, clone, cache save — are 128s of run 12's 157s.  Getting under 90s needs
+a machine that does not start from nothing each time: a self-hosted runner with a
+persistent `.lake`, or a container image with Mathlib already built.  That is an
+infrastructure decision, not a workflow tweak.
 
 The statement check needs exactly the oleans the build produces.  A second job
 bought a second `lake update`, a second Mathlib cache fetch and an artifact
@@ -234,8 +235,8 @@ workflow compiles explicitly.  So the Lake path covers what the script path
 covers.
 
 `lake-manifest.json` is committed, pinning Mathlib at `0df444a3` (the `v4.33.1`
-tag), so the workflow starts from `lake exe cache get` with no resolution step;
-the checks that this needs nothing else are above.
+tag), so the resolution cannot drift between runs even though `lake update` still
+runs -- it is there for the clone, which is the measured reason it stays.
 
 **A known cost, since fixed.** This section used to end by noting that
 `statement-check` re-ran `lake update` and `lake exe cache get`, roughly four

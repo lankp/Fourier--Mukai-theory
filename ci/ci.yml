@@ -8,10 +8,10 @@
 #
 #   diff <(sed -n '/^name: CI/,$p' ci/ci.yml) .github/workflows/ci.yml
 #
-# State of the installed copy: the single `build-and-check` job (commit
-# 0cf48dc), green on runs 9 and 10.  This version additionally commits
-# `lake-manifest.json` and drops the `lake update` step; see
-# `results/VERIFICATION.md`.
+# State of the installed copy: the single `build-and-check` job at commit
+# 36684a6, which had `lake update` removed.  This version puts it back -- it is
+# what clones Mathlib, and removing it made the job 265s instead of 157s.  See
+# `results/VERIFICATION.md` for the two step tables.
 
 name: CI
 
@@ -64,12 +64,15 @@ jobs:
             | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
 
-      # No `lake update`: `lake-manifest.json` is committed, so the resolution
-      # is fixed and `lake exe cache get` below fetches the packages it names.
-      # That removes about 95s per run.  It is not a cache fix: `lake update`
-      # was already deterministic here (re-running it reproduces the same
-      # manifest byte for byte), so the cache key did not move -- run 9's full
-      # rebuild had some other cause, which is not yet identified.
+      # `lake update` is kept even though `lake-manifest.json` is committed and
+      # already pins the resolution.  It is not doing resolution work here: it is
+      # what clones Mathlib, about 70s.  Dropping it moved that clone inside
+      # `lake exe cache get`, which then cost 119s on top of the cache restore:
+      # run 13 took 265s against run 12's 157s with this step present.  Measured,
+      # then reverted; see results/VERIFICATION.md.
+      - name: Resolve dependencies
+        run: lake update
+
 
       # Two caches: the project's own oleans, and the dependency build
       # directories that `lake exe cache get` would otherwise repopulate from
