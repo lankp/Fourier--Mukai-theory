@@ -72,6 +72,7 @@ import FourierMukai.Scheme.AisleGenRingGeneration
 import FourierMukai.Scheme.AisleGenDD
 import FourierMukai.Scheme.AffineSpecificAisleGeneration
 import FourierMukai.Scheme.NeemanApproximation
+import FourierMukai.Scheme.NeemanPreferred
 import FourierMukai.Scheme.AffineRecollementAssembly
 import FourierMukai.Scheme.AffineSetupInventory
 import FourierMukai.Scheme.AffineJUpperAdjoint

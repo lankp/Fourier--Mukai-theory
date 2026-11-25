@@ -73,6 +73,7 @@ for f in \
   FourierMukai/Scheme/AisleGenDD.lean \
   FourierMukai/Scheme/AffineSpecificAisleGeneration.lean \
   FourierMukai/Scheme/NeemanApproximation.lean \
+  FourierMukai/Scheme/NeemanPreferred.lean \
   FourierMukai/Scheme/AffineRecollementAssembly.lean \
   FourierMukai/Scheme/AffineSetupInventory.lean \
   FourierMukai/Scheme/AffineJUpperAdjoint.lean \
