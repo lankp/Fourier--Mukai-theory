@@ -140,6 +140,7 @@ for f in \
   FourierMukai/Scheme/SchemeFiniteCoverInduction.lean \
   FourierMukai/Scheme/SchemeSupportedFiniteCoverInduction.lean \
   FourierMukai/Scheme/SchemeNeemanFiniteCoverAssembly.lean \
+  FourierMukai/Scheme/SchemeSupportedExcision.lean \
   FourierMukai/Scheme/FinalStatementCrosscheck.lean \
   FourierMukai/Scheme/Affine066S.lean \
   FourierMukai/Paper/Statements.lean \
