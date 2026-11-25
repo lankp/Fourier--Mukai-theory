@@ -71,9 +71,12 @@ that idempotents split in `R`-Mod at the bottom degree and `splitsWithin_third`
 to cross the triangle `σ_{≥a+1}P → P → P^a`.  Concrete, bounded work.
 
 **(2) Spaltenstein's Theorem C.**  `Scheme/SpaltensteinReplacement.lean`,
-`TheoremCInput`: the canonical-truncation successor maps, exactness of the
-sequential colimit on quasi-isomorphisms, and the filtration-colimit-to-`A`
-quasi-isomorphism.  Everything else is proved:
+`TheoremCInput`: of its three fields, the canonical-truncation successor maps are
+now **proved** (`Scheme/SpaltensteinCanonicalTruncation.lean`:
+`canonicalTruncation A` for arbitrary abelian `C`, with `truncLESucc` explicit and
+compatible, so `canonicalFiltration (canonicalTruncation A)` typechecks).  The two
+remaining fields are `exactSequentialColimit` and `quasiIso_colimitToA`.
+Everything else is proved:
 
 * `Scheme/KProjectiveResolution.lean` + `AffineBoundedAboveCoproducts.lean`: the
   bounded-above case, for any abelian category with enough projectives;

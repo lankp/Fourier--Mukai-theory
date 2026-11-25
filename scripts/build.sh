@@ -22,6 +22,7 @@ for f in \
   FourierMukai/Scheme/SpaltensteinIteration.lean \
   FourierMukai/Scheme/SpaltensteinColimit.lean \
   FourierMukai/Scheme/SpaltensteinReplacement.lean \
+  FourierMukai/Scheme/SpaltensteinCanonicalTruncation.lean \
   FourierMukai/Scheme/ProjectiveModel.lean \
   FourierMukai/Scheme/SmallObjectPresentable.lean \
   FourierMukai/Scheme/GeneratingCofibrations.lean \

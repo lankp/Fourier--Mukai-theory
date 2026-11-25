@@ -21,6 +21,7 @@ import FourierMukai.Scheme.SpaltensteinStage
 import FourierMukai.Scheme.SpaltensteinIteration
 import FourierMukai.Scheme.SpaltensteinColimit
 import FourierMukai.Scheme.SpaltensteinReplacement
+import FourierMukai.Scheme.SpaltensteinCanonicalTruncation
 import FourierMukai.Scheme.ProjectiveModel
 import FourierMukai.Scheme.SmallObjectPresentable
 import FourierMukai.Scheme.GeneratingCofibrations
