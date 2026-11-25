@@ -29,6 +29,7 @@ for f in \
   FourierMukai/Scheme/PerfectRing.lean \
   FourierMukai/Scheme/PerfectModel.lean \
   FourierMukai/Scheme/PerfectModelConverse.lean \
+  FourierMukai/Scheme/LeChen.lean \
   FourierMukai/Scheme/PerfectField.lean \
   FourierMukai/Scheme/Affine.lean \
   FourierMukai/Scheme/AffineCoproducts.lean \
