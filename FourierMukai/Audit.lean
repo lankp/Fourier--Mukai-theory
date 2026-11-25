@@ -47,6 +47,14 @@ open RelativeFM
 #print axioms RelativeFM.Adjunction.existsUnique_twist_eq
 #print axioms RelativeFM.representablyFullyFaithful_iff
 #print axioms RelativeFM.lemmaDef_7_10
+#print axioms RelativeFM.mates_hom_square
+#print axioms RelativeFM.mates_hom_square_eq_mate
+#print axioms RelativeFM.lemma_7_4
+#print axioms RelativeFM.unit_isMate
+#print axioms RelativeFM.counit_isMate
+#print axioms RelativeFM.lemma_7_6
+#print axioms RelativeFM.lemma_7_9_id
+#print axioms RelativeFM.lemma_7_9_comp
 #print axioms RelativeFM.Trinatural.isIso_iff_of_precomp_essentiallyDense₀
 #print axioms RelativeFM.lemma_2_5
 #print axioms RelativeFM.Trinatural.ofNatTrans
