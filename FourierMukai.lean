@@ -53,6 +53,7 @@ import FourierMukai.Scheme.AffineLocalCohomology
 import FourierMukai.Scheme.AffineGluing
 import FourierMukai.Scheme.AffineLocalCohomologySupport
 import FourierMukai.Scheme.AffineMixedZero
+import FourierMukai.Scheme.AffineJUpperCandidateRefuted
 import FourierMukai.Scheme.AffineSupportedAssembly
 import FourierMukai.Scheme.AffineMain
 import FourierMukai.Scheme.AffineDictionary

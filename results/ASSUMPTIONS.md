@@ -124,8 +124,20 @@ injectives:
   orthogonality on the rotated triangle.  No Brown representability and no
   right-adjoint existence is assumed.
 
-Still missing: `iShriek`, `jUpper`, their two adjunctions, `iShriek_jUpper`,
-`secondConnecting`, and `second_distinguished`.  So `AffineRecollementInput` is
+`Scheme/AffineMixedZero.lean` supplies `iShriek_jUpper` (`jUpper ⋙ iShriek ≅ 0`)
+from the two adjunctions alone, via the general fact that if `F ⊣ G`, `F' ⊣ G'`
+and `F ⋙ F' = 0` then `G' ⋙ G = 0` — so that field needs no explicit formulas.
+
+Still missing: `iShriek`, `jUpper`, their two adjunctions, `secondConnecting`,
+and `second_distinguished`.
+
+**Dead end, recorded so it is not retried.** The natural guess `jUpper = Rj_* Lj^*`
+on the supported category is *zero* for every `A`, `f`
+(`Scheme/AffineJUpperCandidateRefuted.lean`, `tensorLocalizationCandidateIsoZero`),
+so it cannot be `jUpper`: the counit would have to be an isomorphism and `jUpper`
+fully faithful, which a zero functor into a nontrivial category cannot be —
+witnessed by `ZMod 2` in degree 0 over `A = ℤ`, `f = 2`.  The RHom/coextend
+formula (`Hom_A(A[1/f], -)` or `coextendScalars`) is still untested.  So `AffineRecollementInput` is
 not yet inhabited, but eight of its fields are now theorems.
 
 ## 2. Assembly items (no open mathematics)
