@@ -14,8 +14,10 @@ This file formalizes the following results of Appendix B of
   E. Guisado Villalgordo, P. Lank, *Relative Fourier--Mukai theory for algebraic spaces*
   (GL26):
 
-* **Lemma B.4** (`lem:equiv_transadj`): `Trans.lemma_B4` (a `List.TFAE` of the five
-  conditions);
+* **Lemma B.4** (`lem:equiv_transadj`): `Trans.lemma_B4_unitCounit` (a `List.TFAE` of the
+  five conditions, (5) in its unit/counit form `Trans.IsTransAdjunction`, universe
+  polymorphic); the paper's form of (5), an adjunction in the 2-category `Trans`, is
+  `Trans.lemma_B4` in `Prelim/TransTwoCategory.lean`;
 * **Lemma B.5** (`lem:adj_and_equiv_in_trans`): `Trans.lemma_B5_existsUnique`,
   `Trans.lemma_B5_iff`, `Trans.lemma_B5_equivalence`;
 * **Lemma B.7** (`lem:transnat_is_trinat`): `lemma_B7`, and its comparison with
@@ -24,7 +26,8 @@ This file formalizes the following results of Appendix B of
   `lemma_B10_exists`, `lemma_B10_unique`, `lemma_B10_commShiftIso`,
   `lemma_B10_equivalence`.
 
-Lemma B.2 (`lem:trans_is_2-cat`, the strict 2-category `Trans`) is not formalized.
+Lemma B.2 (`lem:trans_is_2-cat`, the strict 2-category `Trans`) is formalized in
+`Prelim/TransTwoCategory.lean`, which imports this file.
 
 Nothing is assumed: no Stacks field, no hypothesis beyond the paper's.
 
@@ -37,13 +40,14 @@ transnatural transformation (paper, diagram `diag:transnat`) is `Trans.IsTransna
 composite of `(F, ξ)` and `(G, ζ)` is `(F ⋙ G, Trans.compIso ξ ζ)`, whose component at `c`
 is `G ξ_c ≫ ζ_{F c}` (the paper's `ζ_F · Gξ`); the identity is `(𝟭, Trans.idIso T)`.
 
-Since Lemma B.2 (that these data form a strict 2-category whose 2-cells compose as in
-`Cat`) is out of scope, an adjunction in `Trans` with underlying 1-cells `(F, ξ)`, `(G, ζ)`
-and underlying `Cat`-adjunction `adj` is *defined* (`Trans.IsTransAdjunction`) as: the unit
-and counit are transnatural.  This is what an adjunction in `Trans` is, because the
-triangle identities in `Trans` are the triangle identities in `Cat` (2-cells of `Trans` are
-2-cells of `Cat` and are composed as such); with this definition B.4 (5) ⇔ (2)+(3) is by
-definition, as in the paper ("is clear").  Similarly an equivalence in `Trans` is rendered
+Condition (5) of B.4 ("`(F, ξ) ⊣ (G, ζ)` in `Trans` with unit `η` and counit `ε`") is
+rendered here by `Trans.IsTransAdjunction`: the unit and counit of the `Cat`-adjunction
+`adj` are transnatural.  `Prelim/TransTwoCategory.lean` builds the 2-category `Trans`
+(Lemma B.2) as a Mathlib bicategory and proves (`Trans.isTransAdjunction_iff`) that
+`Trans.IsTransAdjunction` is equivalent to "`(F, ξ) ⊣ (G, ζ)` is a `Bicategory.Adjunction`
+in `Trans` with unit `η` and counit `ε`"; `Trans.lemma_B4` there is the TFAE with (5) in that
+form, so B.4(5) is formalized without deviation (at fixed universes, as objects of `Trans`
+are bundled).  Similarly an equivalence in `Trans` is rendered
 in `Trans.lemma_B5_equivalence` by transnatural isomorphisms `𝟭 ≅ F ⋙ G`, `G ⋙ F ≅ 𝟭`; the
 inverse of a transnatural isomorphism is transnatural (`Trans.IsTransnatural.inv`), so
 these are 2-isomorphisms of `Trans`.
@@ -161,10 +165,11 @@ def HomSquare : Prop :=
     T.map (adj.homEquiv c d f) ≫ ζ.inv.app d =
       adj.homEquiv (T.obj c) (T'.obj d) (ξ.hom.app c ≫ T'.map f)
 
-/-- Condition (5) of Lemma B.4: `(F, ξ) ⊣ (G, ζ)` in `Trans` with unit `η` and counit `ε`.
-See the module docstring: since 2-cells of `Trans` are composed as in `Cat` (Lemma B.2, not
-formalized), the triangle identities are those of `adj`, and the condition is that `η` and
-`ε` be 2-cells of `Trans`. -/
+/-- Condition (5) of Lemma B.4, unit/counit form: `η` and `ε` are 2-cells of `Trans`.
+Since 2-cells of `Trans` are composed as in `Cat` (Lemma B.2), the triangle identities in
+`Trans` are those of `adj`; `Trans.isTransAdjunction_iff` (`Prelim/TransTwoCategory.lean`)
+proves that this is equivalent to `(F, ξ) ⊣ (G, ζ)` being an adjunction in the bicategory
+`Trans` with unit `η` and counit `ε`. -/
 def IsTransAdjunction : Prop := UnitTransnatural adj ξ ζ ∧ CounitTransnatural adj ξ ζ
 
 /-- The unit identity of the mate (Mathlib's `unit_mateEquiv`). -/
@@ -273,11 +278,14 @@ lemma homSquare_iff_unitSquare : HomSquare adj ξ ζ ↔ UnitSquare adj ξ ζ :=
 an adjunction in `Cat`.  The following are equivalent:
 (1) `(ξ, ζ⁻¹)` are mates; (2) the counit is transnatural; (3) the unit is transnatural;
 (4) the Hom-set square commutes; (5) `(F, ξ) ⊣ (G, ζ)` in `Trans` with the same unit and
-counit (rendered as in `IsTransAdjunction`).  `T` and `T'` are arbitrary endofunctors.
+counit, here in the unit/counit form `IsTransAdjunction` (equivalent to an adjunction in
+the bicategory `Trans` by `Trans.isTransAdjunction_iff`; the TFAE with that form of (5) is
+`Trans.lemma_B4`).  `T` and `T'` are arbitrary endofunctors, and the categories are in
+arbitrary universes.
 
 The paper derives (1)–(4) from Lemma 7.4 (`lem:morph_adj`); here they are proved directly
 from Mathlib's `unit_mateEquiv` and `mateEquiv_counit`. -/
-theorem lemma_B4 :
+theorem lemma_B4_unitCounit :
     List.TFAE [AreMates adj ξ ζ, CounitTransnatural adj ξ ζ, UnitTransnatural adj ξ ζ,
       HomSquare adj ξ ζ, IsTransAdjunction adj ξ ζ] := by
   tfae_have 1 ↔ 2 := (counitTransnatural_iff_areMates adj ξ ζ).symm
@@ -372,7 +380,7 @@ theorem lemma_B5_existsUnique [T.IsEquivalence] [T'.IsEquivalence] :
     ∃! ζ : T' ⋙ G ≅ G ⋙ T, IsTransAdjunction adj ξ ζ := by
   refine ⟨rightAdjointIso adj ξ, ?_, fun ζ hζ => ?_⟩
   · have h1 : AreMates adj ξ (rightAdjointIso adj ξ) := rfl
-    have := lemma_B4 adj ξ (rightAdjointIso adj ξ)
+    have := lemma_B4_unitCounit adj ξ (rightAdjointIso adj ξ)
     exact (this.out 0 4).1 h1
   · have h := inv_eq_mate_of_isTransAdjunction adj ξ ζ hζ
     ext1
@@ -409,7 +417,7 @@ theorem lemma_B5_equivalence :
     have := RelativeFM.isIso_mate adj adj ξ.hom
     let ζ : T' ⋙ F.inv ≅ F.inv ⋙ T := (asIso (mate adj adj ξ.hom)).symm
     have h1 : AreMates adj ξ ζ := rfl
-    have h5 := ((lemma_B4 adj ξ ζ).out 0 4).1 h1
+    have h5 := ((lemma_B4_unitCounit adj ξ ζ).out 0 4).1 h1
     exact ⟨F.inv, ζ, F.asEquivalence.unitIso, F.asEquivalence.counitIso, h5.1, h5.2⟩
   · rintro ⟨G, -, u, v, -, -⟩
     exact (CategoryTheory.Equivalence.mk F G u v).isEquivalence_functor
@@ -627,7 +635,7 @@ theorem lemma_B10_commShiftIso [G.CommShift ℤ]
     simp only [Functor.commShiftIso_comp_hom_app, Functor.commShiftIso_id_hom_app,
       Functor.id_obj, Functor.comp_obj, id_comp] at this
     simpa using this.symm
-  have := ((Trans.lemma_B4 adj (F.commShiftIso n) (G.commShiftIso n)).out 2 0).1 hu
+  have := ((Trans.lemma_B4_unitCounit adj (F.commShiftIso n) (G.commShiftIso n)).out 2 0).1 hu
   exact this.symm
 
 /-- **Lemma B.10(2)** (`lem:triequiv_iff_equiv`).  A triangulated functor `F` is an
