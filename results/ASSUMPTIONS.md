@@ -111,8 +111,10 @@ injectives:
 * `Scheme/AffineLocalCohomologySupport.lean` proves `RΓ_Z` lands in the supported
   subcategory (`derivedFunctor_isSupported`: every cohomology module is
   power-torsion, via `exists_pow_smul_of_one_tmul_eq_zero`), so `jStar` is an
-  honest functor `AffineD A ⥤ AffineDZ A f`, with `jStarFactors` and the
-  shift-compatibility instances;
+  honest functor `AffineD A ⥤ AffineDZ A f`, with `jStarFactors` and, from the
+  supported adjunction plus Mathlib's right-adjoint shift and triangulated
+  theorems, `jStar_commShift`, `jStar_exact`, and via the comparison
+  `derivedFunctor_commShift`, `derivedFunctor_exact`;
 * `Scheme/AffineGluing.lean` constructs the mapping-cocone counit and connecting
   transformations and proves the associated triangle distinguished on every
   object;
