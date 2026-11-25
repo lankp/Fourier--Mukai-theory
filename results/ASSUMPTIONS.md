@@ -165,6 +165,15 @@ preferred-`t`-structure equivalence and the normalized weak approximation data d
 generator).  So even with the recollement complete, those three aisle fields
 remain to be checked rather than assumed to follow.
 
+**`C = RΓ_Z(A)` is computed explicitly.**  `Scheme/AffineLocalCohomologyRingObject.lean`
+identifies the ring object: `RΓ_Z(A[0]) ≅ Q(cone(A[0] → A_f[0])[-1])`, whose terms
+vanish outside degrees 0 and 1, with the 0→1 differential equal to the negative
+localization unit; it proves the distinguished triangle
+`C → A[0] → Rj_*(A_f[0]) → C[1]`, that the derived cohomology is concentrated in
+degrees 0 and 1, and the universal properties `H⁰ = ker(A → A_f)`,
+`H¹ = coker`.  So `C` is a two-term complex, and `C ⊗^L X` is the localization
+fibre once the exact derived tensor and its flat-extension comparison are available.
+
 **`jUpper`: reduced to one tensor–Hom adjunction.**  `Scheme/AffineJUpperAdjoint.lean`
 proves, given `jUpper` and `jStarAdj`, the adjoint triple, `IsIso jStarAdj.counit`
 (from Mathlib's triple lemma and full faithfulness of the supported inclusion, not

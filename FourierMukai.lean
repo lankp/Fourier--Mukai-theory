@@ -51,6 +51,7 @@ import FourierMukai.Scheme.SmallAffineAssembly
 import FourierMukai.Scheme.AffineRecollement
 import FourierMukai.Scheme.AffineLocalCohomology
 import FourierMukai.Scheme.AffineGluing
+import FourierMukai.Scheme.AffineLocalCohomologyRingObject
 import FourierMukai.Scheme.AffineLocalCohomologySupport
 import FourierMukai.Scheme.AffineMixedZero
 import FourierMukai.Scheme.AffineIShriek

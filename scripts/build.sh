@@ -52,6 +52,7 @@ for f in \
   FourierMukai/Scheme/AffineRecollement.lean \
   FourierMukai/Scheme/AffineLocalCohomology.lean \
   FourierMukai/Scheme/AffineGluing.lean \
+  FourierMukai/Scheme/AffineLocalCohomologyRingObject.lean \
   FourierMukai/Scheme/AffineLocalCohomologySupport.lean \
   FourierMukai/Scheme/AffineMixedZero.lean \
   FourierMukai/Scheme/AffineIShriek.lean \
