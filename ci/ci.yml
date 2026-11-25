@@ -1,23 +1,16 @@
-# Install as `.github/workflows/ci.yml`.  Everything below the header is a
-# complete, ready-to-use workflow: open
+# Mirror of the installed workflow `.github/workflows/ci.yml`.
 #
-#   https://github.com/lankp/Fourier--Mukai-theory/new/formalization?filename=.github/workflows/ci.yml
+# Edit here, then paste from `name: CI` onwards into
+#   https://github.com/lankp/Fourier--Mukai-theory/edit/formalization/.github/workflows/ci.yml
+# The GitHub connection this project is committed through cannot write under
+# `.github/workflows/` itself (it lacks the `workflows` permission), though it can
+# delete files there.  Check that the two copies agree with
 #
-# and paste from `name: CI` onwards, or, from a checkout with `workflows`
-# permission,
+#   diff <(sed -n '/^name: CI/,$p' ci/ci.yml) .github/workflows/ci.yml
 #
-#   git mv ci/ci.yml .github/workflows/ci.yml && git commit -m "Activate CI"
-#
-# The move cannot be made through the GitHub connection this project is
-# committed through: GitHub refuses any app push that creates or updates a file
-# under `.github/workflows/` without the `workflows` permission, which that app
-# does not have.  Both jobs of this workflow have been run locally against the
-# same tree — see `results/VERIFICATION.md`, "Both jobs were run locally before
-# installation" — so the first real run should not be its first run.
-#
-# Nothing else in the repository depends on this file's path;
-# `scripts/check_statements.sh` and `results/VERIFICATION.md` describe the same
-# two jobs.
+# First run of the installed workflow: commit 4546aed, build job green on every
+# step, statement-check cancelled by hand before it started.  See
+# `results/VERIFICATION.md`.
 
 name: CI
 
