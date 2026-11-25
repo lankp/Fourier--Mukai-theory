@@ -7,6 +7,7 @@ import FourierMukai.Prelim.Coproduct
 import FourierMukai.Prelim.EssentiallyDense
 import FourierMukai.Prelim.Mates
 import FourierMukai.Prelim.Lemma25
+import FourierMukai.Prelim.Lemma24
 import FourierMukai.Prelim.Thickness
 import FourierMukai.Prelim.Generation
 import FourierMukai.Paper.DerivedSetup
