@@ -83,12 +83,21 @@ tasks, each in new files except `wave2/trans-2cat`, which also owns
 
 Done by the orchestrator between waves: the numbering cleanup (`dd45ef4`).
 
-## Wave 3 candidates
+## Wave 3
 
-* wiring `Prelim/BaseChangeMates.lean` into `Scheme/Duality.lean` (replacing the
-  7.12 coherence field and the pasting facts by theorems);
-* the remaining tagged inputs of the affine supported base (`results/SCHEMES.md`);
-* the open/closed glue completion of `Scheme/OpenClosedGlue.lean`;
+Launched 25 November 2026 after wave 2 was merged.  Briefs in `results/swarm/wave3/`.
+
+| task | goal | files |
+|---|---|---|
+| `wave3/fm-cube` | GL26 Lemmas 6.11, 10.1, 10.2 (`α^K`, `β^K`, and that they are mates) in six-functor form over the cube of Setup 2.20, from named inputs (flat base change, projection formula, monoidality, pseudofunctoriality) | new `Scheme/FMCube.lean` |
+| `wave3/duality-wiring` | build `PullPushData` from `Scheme/Duality.lean`'s data and turn its 7.12-type coherence fields into theorems via `Prelim/BaseChangeMates.lean` | `Scheme/Duality.lean` + new files |
+| `wave3/koszul-inputs` | prove the non-Stacks named inputs of the finite-support affine supported base | new files |
+| `wave3/open-closed-glue` | discharge the completion hypothesis of `Scheme/OpenClosedGlue.lean`, towards weak approximability for qcqs schemes with support | new files |
+
+## Wave 4 candidates
+
+* a right adjoint of `Rj_*` without Stacks 0E55 (makes the affine recollement unconditional);
+* GL26 Proposition 10.5 and Lemma 10.9 on top of `wave3/fm-cube` (10.5 needs Proposition 9.3 and Lemma 9.1, the latter a `Duality.lean` field);
 * Lemma 7.8 (double categories) only if something downstream needs it.
 
 ## Log
