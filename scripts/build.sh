@@ -146,6 +146,13 @@ for f in \
   WeakApprox/Setup44Reduced.lean \
   WeakApprox/MainMinimal.lean \
   WeakApprox/Setup44Minimal.lean \
+  WeakApprox/PaperGeneratorM2.lean \
+  WeakApprox/PaperLemma34M2.lean \
+  WeakApprox/PaperSetup44M2.lean \
+  WeakApprox/PaperLemma46M2.lean \
+  WeakApprox/PaperTwoStageM2.lean \
+  WeakApprox/PaperMainMinimalM2.lean \
+  WeakApprox/PaperLemma43M2.lean \
   WeakApprox/CoprodRetract.lean \
   WeakApprox/CompactThick.lean \
   WeakApprox.lean ; do

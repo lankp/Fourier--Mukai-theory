@@ -38,6 +38,13 @@ import WeakApprox.Setup44Minimal
 import WeakApprox.Main
 import WeakApprox.MainMinimal
 import WeakApprox.CompactThick
+import WeakApprox.PaperGeneratorM2
+import WeakApprox.PaperLemma34M2
+import WeakApprox.PaperSetup44M2
+import WeakApprox.PaperLemma46M2
+import WeakApprox.PaperTwoStageM2
+import WeakApprox.PaperMainMinimalM2
+import WeakApprox.PaperLemma43M2
 
 /-!
 # Weak approximability along recollements
