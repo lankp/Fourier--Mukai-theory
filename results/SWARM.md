@@ -113,3 +113,7 @@ Launched 25 November 2026 after wave 2 was merged.  Briefs in `results/swarm/wav
 | 2 | `wave2/jupper` | `session_0111iGd6ZSNTZ4tDzCc8YEFT` | `2f36bbb` (merge of `9b53b9b`, audit conflict resolved by keeping both) | affine recollement complete from Stacks 0E55; verified: build, audit 74 clean, statement check OK, non-vacuity (f = 0 instance; 0E55 a Stacks result) |
 | 2 | `wave2/trans-2cat` | `session_0111iGd7v9afb51rwCpst8LU` | `2c3fee0` (merge of `3072a05`) | B.2 P (strict bicategory, forgetful strict pseudofunctor, uniqueness), B.4(5) honest; verified: build, audit 94 clean, statement check OK, non-vacuity shown |
 | 2 | `wave2/base-change-mates` | `session_0111iGd8cvXVrvgCi69XkqVF` | `4beb203` (merge of `3805c22`) | 7.12, 7.17 P (abstract), 7.13–7.15 defined; verified: build, audit 82 clean, statement check OK, non-vacuity (`constPullPushData`) |
+| 3 | `wave3/duality-wiring` | `session_0111iGd7thGvestxwvBAa75L` | | started 25 Nov 2026, 20:48 UTC |
+| 3 | `wave3/koszul-inputs` | `session_0111iGd9g3poYVdXRe3zUiNo` | | started 25 Nov 2026, 20:48 UTC |
+| 3 | `wave3/open-closed-glue` | `session_0111iGd6pPXkVdZh7E3aUHJS` | | started 25 Nov 2026, 20:48 UTC |
+| 3 | `wave3/fm-cube` | `session_0111iGd7XkC9wt1eqC3VpBdh` | | started 25 Nov 2026, 20:48 UTC |
