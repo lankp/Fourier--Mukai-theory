@@ -77,8 +77,10 @@ structure on `G`, not only `ζ = G.commShiftIso 1`.  We therefore prove:
 * its degree-`n` iso is the inverse of the mate of `F.commShiftIso n` (`lemma_B10_commShiftIso`);
   for `n = 1` this says the paper's `ζ` is the one of Lemma B.5.
 
-The displayed "`(G, ζ) ⊣ (F, ξ)`" in item (1) of the paper's lemma reads as a typo for
-`(F, ξ) ⊣ (G, ζ)`; the latter is what is formalized (as Mathlib's `Adjunction.IsTriangulated`).
+The manuscript's display "`(G, ζ) ⊣ (F, ξ)`" in item (1) of Lemma B.10 is a typo, confirmed by
+the authors, for `(F, ξ) ⊣ (G, ζ)`; the intended statement `(F, ξ) ⊣ (G, ζ)` is what is
+formalized (as Mathlib's `Adjunction.IsTriangulated`).  This is not a deviation from the
+paper's intent.
 The "similar statements for left adjoints" are not formalized.
 -/
 
