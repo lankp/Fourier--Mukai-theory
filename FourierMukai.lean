@@ -11,6 +11,7 @@ import FourierMukai.Prelim.MatesCalculus
 import FourierMukai.Prelim.Lemma25
 import FourierMukai.Prelim.Lemma24
 import FourierMukai.Prelim.CompactnessAudit
+import FourierMukai.Prelim.AppendixB
 import FourierMukai.Prelim.Thickness
 import FourierMukai.Prelim.Generation
 import FourierMukai.Paper.DerivedSetup

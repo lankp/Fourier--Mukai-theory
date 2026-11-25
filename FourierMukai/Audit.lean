@@ -62,6 +62,17 @@ open RelativeFM
 #print axioms RelativeFM.Trinatural.isIso_iff_of_precomp_essentiallyDense₀
 #print axioms RelativeFM.lemma_2_5
 #print axioms RelativeFM.Trinatural.ofNatTrans
+#print axioms RelativeFM.Trans.lemma_B4
+#print axioms RelativeFM.Trans.lemma_B5_existsUnique
+#print axioms RelativeFM.Trans.lemma_B5_iff
+#print axioms RelativeFM.Trans.lemma_B5_equivalence
+#print axioms RelativeFM.lemma_B7
+#print axioms RelativeFM.lemma_B7_natTrans
+#print axioms RelativeFM.natTransCommShift_of_one
+#print axioms RelativeFM.lemma_B10_exists
+#print axioms RelativeFM.lemma_B10_unique
+#print axioms RelativeFM.lemma_B10_commShiftIso
+#print axioms RelativeFM.lemma_B10_equivalence
 #print axioms RelativeFM.lemma_2_25
 #print axioms RelativeFM.Noetherian.lemma_2_25Statement_proved
 #print axioms RelativeFM.AffineDiagonalContext.affine_lemma_2_25
