@@ -21,6 +21,7 @@ import FourierMukai.Scheme.OpenImmersion
 import FourierMukai.Scheme.Derived
 import FourierMukai.Scheme.QCohSerre
 import FourierMukai.Scheme.QCohSerreExtension
+import FourierMukai.Scheme.QCohSerreExtension01IE
 import FourierMukai.Scheme.Statements
 import FourierMukai.Scheme.Duality
 import FourierMukai.Scheme.Lemma54

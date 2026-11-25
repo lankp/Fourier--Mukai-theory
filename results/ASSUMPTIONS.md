@@ -36,7 +36,7 @@ does not touch.
 
 | item | Lean name | now |
 |---|---|---|
-| extension closure of quasicoherent sheaves (Stacks **01LA(6)**) | `QuasicoherentExtensionInput`, `Scheme/QCohSerre.lean` | reduced to the affine statement of **01IE**, proved equivalent to it, by `Scheme/QCohSerreExtension.lean`; arbitrary-scheme closure is *derived*. Coproducts (01LA(3)), biproducts and split extensions are proved unconditionally. |
+| extension closure of quasicoherent sheaves (Stacks **01LA(6)**, **01IE**) | `QuasicoherentExtensionInput`, `Scheme/QCohSerre.lean` | **discharged**: `Scheme/QCohSerreExtension01IE.lean` proves 01IE (`AffineExtension.surjective_appTop`) and hence extension closure on every scheme and triangulated `D_qc`. 01LA(3) coproducts, biproducts and split extensions were already unconditional. |
 | compact ⇒ perfect (Stacks **09M1**, **0AED**) | `CompactPerfectInput`, `Scheme/PerfectRing.lean` | split into `CompactToPerfectInput` (used) and `PerfectToCompactInput` (never used); the used half follows from 07LT's hard direction plus the proved filtration. |
 | perfect ⇒ bounded model | `BoundedProjectiveModelConverseInput`, `Scheme/PerfectModel.lean` | equivalent to 066S by `Scheme/PerfectModelConverse.lean`. |
 | eventual Hom vanishing (Stacks **09MB**) | `CompactHomZeroAtTop`, `Scheme/Inputs.lean` | **proved** for rings (`perf_eventuallyHomZero`); not on the affine path. |

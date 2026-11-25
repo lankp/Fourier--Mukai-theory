@@ -22,6 +22,7 @@ for f in \
   FourierMukai/Scheme/Derived.lean \
   FourierMukai/Scheme/QCohSerre.lean \
   FourierMukai/Scheme/QCohSerreExtension.lean \
+  FourierMukai/Scheme/QCohSerreExtension01IE.lean \
   FourierMukai/Scheme/Statements.lean \
   FourierMukai/Scheme/Duality.lean \
   FourierMukai/Scheme/Lemma54.lean \
