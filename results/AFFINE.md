@@ -28,19 +28,40 @@ with no residue; "proved from X" means no residue beyond the named input;
 | 2 | two models of `D_qc` | `D(A-Mod) ≌ D_qc(Spec A)` | Stacks 06Z0, 079W, 08D4+01XB | `Scheme/AffineQCoh.lean` (`affineRingCohomologyEquivalence`, `affineCohomologyComparisonOfInput`) | proved from `AffineDerivedGammaInput`; 01HV discharged (`affineDerivedGammaInputOfTildeExact`) |
 | 3 | quasicoherence is Serre | extensions of quasicoherent sheaves are quasicoherent | Stacks 01LA(6), 01IE, 01LA(3) | `Scheme/QCohSerre.lean`, `Scheme/QCohSerreExtension.lean`, `Scheme/QCohSerreExtension01IE.lean`, `Scheme/Derived.lean` | **proved, no assumptions**: 01IE is a theorem (`AffineExtension.surjective_appTop`, via the denominator ideal, local lifts, quasicoherence of the kernel over `D(fg)`, quasi-compactness of `Spec R` and sheaf gluing), hence extension closure on every scheme and triangulated `D_qc`; kernels, cokernels, coproducts, biproducts and split extensions were already proved |
 | 4 | `Perf` for rings | `Perf A` thick envelope; closure under `0`, shifts, biproducts, cones, retracts; `⊆ D^b`, `⊆ D^b_coh` (Noetherian) | — | `Scheme/PerfectRing.lean` | proved |
-| 5 | perfect = bounded projectives | `Perf A` = bounded complexes of f.g. projectives | Stacks 07LT (= 0657 + 066S) | `Scheme/PerfectModel.lean`, `Scheme/PerfectModelConverse.lean` | `model ⇒ Perf` **proved for every ring**; `Perf ⇒ model` reduced to the direct-summand case: `Perf A ≤ model ↔ model stable under retracts`, and the old converse input implies that retract closure.  The residue is exactly Stacks 066S |
-| 6 | compacts = perfect | compact objects of `D(A-Mod)` are `Perf A` | Stacks 09M1 (schemes, biconditional; affine case via 06Z0 and 07LT) or 0AED (algebraic spaces, with support) | `Scheme/PerfectRing.lean` (`CompactPerfectInput`), `Scheme/PerfectRingStacks.lean` (`CompactToPerfectInput`) | cited, and **only the implication `compact ⇒ Perf` is ever used** |
+| 5 | perfect = bounded projectives | `Perf A` = bounded complexes of f.g. projectives | Stacks 07LT (= 0657 + 066S) | `Scheme/PerfectModel.lean`, `PerfectModelConverse.lean`, `LeChen.lean`, `CompactToPerfect.lean` | `model ⇒ Perf` **proved for every ring**; `Perf ⇒ model` reduced to retract closure of the model class, and that reduced further to **Le–Chen 2.3 (proved)** plus a truncation induction on a bounded complex.  Residue: that induction |
+| 6 | compacts = perfect | compact objects of `D(A-Mod)` are `Perf A` | Stacks 09M1 (schemes, biconditional; affine case via 06Z0 and 07LT) or 0AED (algebraic spaces, with support) | `Scheme/PerfectRing.lean` (`CompactPerfectInput`), `PerfectRingStacks.lean` (`CompactToPerfectInput`), `CompactToPerfect.lean`, `PerfectCompactThick.lean` | **only `compact ⇒ Perf` is used**, and it follows from 07LT's compact-to-model half plus the proved filtration; the reverse implication is proved up to compactness of the regular module (`WeakApprox/CompactThick.lean`) and is never needed |
 | 7 | `Perf` bridge | ring envelope vs scheme-local 0BCJ model at `Spec A` | Stacks 0BCJ / 08CM / 06Z0 | `Scheme/PerfectModel.lean` (`perf_iff_affineThickGenerated`, under `AffineAllSheavesBridgeInput` + row 3), `Scheme/PerfectField.lean` (`perf_eq_dbcoh`) | proved over a field; in general reduced to row 5 plus the 06Z0 coherence fields |
 | 8 | affine recollement | `D(A[1/f]) → D(A) → D_Z(A)` as `WeakApprox.Recollement`, i.e. `D_Z` slot = open, `D_U` slot = `f`-power torsion | localization sequence (Gao–Psaroudakis 2.2(ii), BDS 2.3, Krause §4, Stacks 0BFF) | `Scheme/AffineRecollement.lean` | proved, modulo the named `AffineRecollementInput` fields |
 | 9 | open functors | `j_! ⊣ j^* ⊣ j_*`, exactness, derived recollement | Stacks 00A6, 00AB, 079W | `Scheme/OpenImmersion.lean` | proved |
-| 10 | Setup 4.4 from ring data | the 20 fields for the affine recollement | LP §4 | `Scheme/Affine.lean` (partial) | open, and **not instantiable at this toolchain** — see below |
+| 10 | Setup 4.4 from ring data | the 20 fields for the affine recollement | LP §4 | `Scheme/Affine.lean`, `AffineUniverse.lean`, `AisleCoproducts.lean`, `AffineLocalCohomology.lean` | the **coproduct field is gone from the LP chain** (aisle-local coproducts, from bounded-above resolutions) and the **universe mismatch is decided** (small-Hom model).  Remaining: the recollement's functor fields (`RΓ_Z` support, shift/triangulated structure, adjunction, `i⇕`, `i^*`, gluing triangles) — `RΓ_Z` itself is built with three fields proved — plus the assembly items `hT` and the transport across `D ≌ D_small` |
 | 11 | LP Theorem 1.1 (abstract) | the gluing theorem, minimal setup | LP Thm 1.1 | `WeakApprox/MainMinimal.lean` | proved |
-| 12 | **affine Theorem 1.1** | `SatisfiesWA (D(A-Mod))` and the iff | rows 1–11 + row 6 | `Scheme/AffineMain.lean` (`affine_theorem_1_1_neeman_only`), `Scheme/PerfectRingStacks.lean` (`StacksGluing.affine_theorem_1_1_stacks07LT`) | proved modulo row 10; 09SR and the eventual-vanishing hypothesis (Stacks 09MB) removed, and the row-6 input reduced to its `compact ⇒ Perf` half, itself derived from the compact-to-model half of 07LT |
+| 12 | **affine Theorem 1.1** | `SatisfiesWA (D(A-Mod))` and the iff | rows 1–11 + row 6 | `Scheme/AffineMain.lean` (`affine_theorem_1_1_neeman_only`), `PerfectRingStacks.lean` (`affine_theorem_1_1_stacks07LT`), `AisleCoproducts.lean` (`affine_theorem_1_1_small_noCoproducts`), `AffineUniverse.lean` (`affine_theorem_1_1_small`) | proved modulo row 10 and the two assembly items; 09SR, the eventual-vanishing hypothesis (09MB) and the coproduct package are all out of the hypotheses, and the compact/perfect input is down to `compact ⇒ Perf` |
 | 13 | GL26 Lemma 2.25 | `Φ_{RΔ_*O} ≅ 𝟭` for affine `Y → S` | GL26 §2.5, Stacks 08IN | `Scheme/AffineDiagonal.lean` (`affine_lemma_2_25`) | proved |
 | 14 | weak approximability of `D_qc,Z(Spec A)` | the published input | Neeman, Acta 233 (2024) Thm 3.2 | `Scheme/Inputs.lean` | cited |
 | 15 | **GL26 Lemma 5.4** | `Lg₁*P₁ ⊗^L Lg₂*P₂` compactly generates `D_qc(Y₁ ×_S Y₂)` when `P_i` generate | GL26 §5 (Neeman 2023 Cor. 5.10) | `Scheme/Lemma54.lean` | the whole cover argument **proved** in abstract six-functor form, in the paper's `IsPaperGenerator` (zero-detection) sense; residue is the cover square itself: flat base change, `Lt*` conservative, `Rh₂*` conservative (quasi-affine), and the perfect/compact calculus |
+| 16 | Stacks 066S infrastructure | idempotents split; Le–Chen 2.3 in a triangle | Le–Chen, J. Algebra 310 (2007) Prop. 2.3 | `Scheme/LeChen.lean` | **proved**: `splitsWithin_third`, plus strong splittings, biproduct-of-triangles and `comp_eq_zero_of_distTriang`; no octahedral axiom |
+| 17 | Stacks 09M8 infrastructure | perfect objects are compact | Stacks 09M8 | `WeakApprox/CompactThick.lean`, `Scheme/PerfectCompactThick.lean` | **proved up to compactness of the regular module**: compact objects are closed under thick envelopes, by two-out-of-three on a triangle with no AB4 |
+| 18 | Spaltenstein infrastructure | K-projective replacements | Spaltenstein, Compositio Math. 65 (1988) Thm C | `Scheme/KProjectiveResolution.lean`, `AffineBoundedAboveCoproducts.lean`, `SpecialDirectLimits.lean`, `Spaltenstein{Stage,Iteration,Colimit,Replacement}.lean` | bounded-above case **proved**; ℕ-indexed split-mono colimits **proved**; the cone stage and countable induction **proved**; residue is `TheoremCInput`'s three comparisons |
+| 19 | Hovey route to replacements | model structure on complexes | Hovey, *Model Categories*, Prop. 2.3.5 and 2.3.2 | `Scheme/ProjectiveModel.lean`, `SmallObjectPresentable.lean`, `GeneratingCofibrations.lean` | replacement data **derived** down to two inputs about a set of morphisms |
+| 20 | aisle-local coproducts | the LP proof needs coproducts only inside a fixed aisle | — | `Scheme/AisleCoproducts.lean` | **proved**, and `hasAisleCoproducts_standard` supplies them from bounded-above resolutions, so no unbounded replacement is needed for coproducts |
+| 21 | universe decision | where `HasCoproducts` of `D(A-Mod)` can be stated | — | `Scheme/AffineUniverse.lean` | **decided**: `HasCoproducts.{w} (ModuleCat.{u} A)` for `UnivLE.{w,u}`, and the small-Hom model `SmallAffineD` with `HasCoproducts.{u}`; `AffineD A ≌ SmallAffineD A H` |
 
-## Row 10: why it is not instantiable here
+## Row 10: history of the obstruction, and what actually blocks it now
+
+> **Status update.** Two of the three obstructions recorded below have since been
+> discharged, and the section is kept only because it states them precisely.
+> **(a) is gone from the LP chain**: `Scheme/AisleCoproducts.lean` shows the proof
+> only ever forms coproducts of families inside a fixed aisle, and
+> `hasAisleCoproducts_standard` supplies those from bounded-above resolutions, so
+> no ambient `HasCoproducts` is needed.  **(a') is decided**:
+> `Scheme/AffineUniverse.lean` puts the endpoint in the small-Hom derived category
+> where `HasCoproducts.{u}` is expressible, and proves `AffineD A ≌ SmallAffineD A H`
+> so this is bookkeeping.
+> What still blocks the row is the recollement's remaining functor fields, plus
+> the two assembly items: `hT` (the middle `t`-structure is the standard one) and
+> the transport of the old affine inputs across `D ≌ D_small`.
+
+## Row 10 as originally diagnosed (historical)
 
 Row 10 asks for `SetupMainMinimal (AffineD (Away A f)) (AffineD A) (AffineDZ A f)`.
 Three of its twenty fields cannot be furnished at this toolchain, for two
@@ -179,12 +200,19 @@ the two covers.
 
 Reductions already in place, to be used rather than re-derived:
 
+* **Aisle-local coproducts** (`Scheme/AisleCoproducts.lean`): the LP proof only
+  ever forms coproducts of families inside a fixed aisle, and the standard
+  `t`-structure supplies those from bounded-above resolutions, so no ambient
+  `HasCoproducts` and no unbounded replacement is needed for them.
 * **`CompactHomZeroAtTop`** (`WeakApprox/CompactVanishing.lean`): the §4 chain
   needs only eventual vanishing between compacts, which is *weaker* than Stacks
   09SR and is exactly Stacks Tag 09MB for qcqs schemes (via Tag 0AED).
-* **`QuasicoherentExtensionInput`** (`Scheme/QCohSerre.lean`) is now the single
-  obstruction to `D_qc` being triangulated; the older `QuasicoherentSerreInput`
-  (subobjects, quotients, extensions) is stronger than needed.
+* **Extension closure is proved**, so `D_qc(X)` is triangulated with no
+  assumption: `Scheme/QCohSerreExtension01IE.lean` proves Stacks 01IE and
+  `Scheme/QCohSerreExtension.lean` derives the rest.  The older
+  `QuasicoherentSerreInput` (subobjects, quotients, extensions) and
+  `QuasicoherentExtensionInput` are no longer needed and are kept only as
+  interfaces.
 * **`ringObject_eventuallyHomZero_self` + `perf_eventuallyHomZero`**
   (`Scheme/AffineMain.lean`): the ring form of Stacks Tag 09MB is *proved* for
   every commutative ring by transport along the thick envelope, so the only use
