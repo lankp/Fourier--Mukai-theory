@@ -74,6 +74,9 @@ for f in \
   FourierMukai/Scheme/AffineSpecificAisleGeneration.lean \
   FourierMukai/Scheme/NeemanApproximation.lean \
   FourierMukai/Scheme/NeemanPreferred.lean \
+  FourierMukai/Scheme/NeemanGeneratorBoundsM5.lean \
+  FourierMukai/Scheme/GeneratorCounterexampleM5.lean \
+  FourierMukai/Scheme/PaperGeneratorM5.lean \
   FourierMukai/Scheme/AffineRecollementAssembly.lean \
   FourierMukai/Scheme/AffineSetupInventory.lean \
   FourierMukai/Scheme/AffineJUpperAdjoint.lean \

@@ -73,6 +73,9 @@ import FourierMukai.Scheme.AisleGenDD
 import FourierMukai.Scheme.AffineSpecificAisleGeneration
 import FourierMukai.Scheme.NeemanApproximation
 import FourierMukai.Scheme.NeemanPreferred
+import FourierMukai.Scheme.NeemanGeneratorBoundsM5
+import FourierMukai.Scheme.GeneratorCounterexampleM5
+import FourierMukai.Scheme.PaperGeneratorM5
 import FourierMukai.Scheme.AffineRecollementAssembly
 import FourierMukai.Scheme.AffineSetupInventory
 import FourierMukai.Scheme.AffineJUpperAdjoint
