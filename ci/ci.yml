@@ -1,16 +1,23 @@
-# Install as `.github/workflows/ci.yml`.
+# Install as `.github/workflows/ci.yml`.  Everything below the header is a
+# complete, ready-to-use workflow: open
 #
-# Kept here rather than in place because the GitHub connection this project is
-# committed through has no `workflows` permission: GitHub refuses any push that
-# creates or updates a file under `.github/workflows/`.  Two ways to activate it:
+#   https://github.com/lankp/Fourier--Mukai-theory/new/formalization?filename=.github/workflows/ci.yml
+#
+# and paste from `name: CI` onwards, or, from a checkout with `workflows`
+# permission,
 #
 #   git mv ci/ci.yml .github/workflows/ci.yml && git commit -m "Activate CI"
 #
-# from a checkout whose credentials carry `workflows` permission, or add the file
-# with GitHub's web editor.  Until then this file documents exactly what CI runs.
+# The move cannot be made through the GitHub connection this project is
+# committed through: GitHub refuses any app push that creates or updates a file
+# under `.github/workflows/` without the `workflows` permission, which that app
+# does not have.  Both jobs of this workflow have been run locally against the
+# same tree — see `results/VERIFICATION.md`, "Both jobs were run locally before
+# installation" — so the first real run should not be its first run.
 #
-# Nothing else in the repository depends on its path; `scripts/check_statements.sh`
-# and `results/VERIFICATION.md` describe the same two jobs.
+# Nothing else in the repository depends on this file's path;
+# `scripts/check_statements.sh` and `results/VERIFICATION.md` describe the same
+# two jobs.
 
 name: CI
 
