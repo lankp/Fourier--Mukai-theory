@@ -54,6 +54,10 @@ for f in \
   FourierMukai/Scheme/AffineGluing.lean \
   FourierMukai/Scheme/AffineLocalCohomologySupport.lean \
   FourierMukai/Scheme/AffineMixedZero.lean \
+  FourierMukai/Scheme/AffineIShriek.lean \
+  FourierMukai/Scheme/AffineSupportedTStructure.lean \
+  FourierMukai/Scheme/AffineRecollementAssembly.lean \
+  FourierMukai/Scheme/AffineSetupInventory.lean \
   FourierMukai/Scheme/AffineJUpperCandidateRefuted.lean \
   FourierMukai/Scheme/AffineSupportedAssembly.lean \
   FourierMukai/Scheme/AffineMain.lean \

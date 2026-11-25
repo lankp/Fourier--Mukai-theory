@@ -131,6 +131,30 @@ and `F ⋙ F' = 0` then `G' ⋙ G = 0` — so that field needs no explicit formu
 Still missing: `iShriek`, `jUpper`, their two adjunctions, `secondConnecting`,
 and `second_distinguished`.
 
+**`iShriek` is now built.** `Scheme/AffineIShriek.lean` takes the right adjoint of
+restriction of scalars to be *coextension*: `derivedCoextendScalars A f`, with
+`derivedRestrictionCoextendAdjunction : derivedRestrictionScalars A f ⊣
+derivedCoextendScalars A f`, and its `CommShift` and `IsTriangulated` derived from
+the adjunction rather than assumed.
+
+**Assembly and the exact residue.** `Scheme/AffineRecollementAssembly.lean` reduces
+`AffineRecollementInput` to a structure with exactly seven fields — `iShriek`,
+`iLowerAdj`, `jUpper`, `jStarAdj`, the iso-counit condition, `secondConnecting`,
+`second_distinguished` — and fills the rest (local cohomology, the first triangle,
+the mixed zero composite, and the four right-adjoint shift/exactness fields) from
+what is landed, returning `AffineRecollement`.  `Scheme/AffineSupportedTStructure.lean`
+constructs the standard `t`-structure on the supported category directly, via
+induced `t`-structures and truncation/homology, so `tU` is no longer a Neeman
+input.  `Scheme/AffineSetupInventory.lean` packages the post-recollement
+`SetupMainMinimal` residue with standard `tD` and `tZ`.
+
+**One caveat the inventory raises, which matters for the endpoint.**  Neeman's
+preferred-`t`-structure equivalence and the normalized weak approximation data do
+*not* automatically yield the literal aisle *equalities* that the
+`SetupMainMinimal` fields ask for (`tD.le 0 = Coprod (...)` with a specific
+generator).  So even with the recollement complete, those three aisle fields
+remain to be checked rather than assumed to follow.
+
 **Dead end, recorded so it is not retried.** The natural guess `jUpper = Rj_* Lj^*`
 on the supported category is *zero* for every `A`, `f`
 (`Scheme/AffineJUpperCandidateRefuted.lean`, `tensorLocalizationCandidateIsoZero`),
