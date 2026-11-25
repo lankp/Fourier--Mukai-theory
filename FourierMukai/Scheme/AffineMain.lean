@@ -14,14 +14,16 @@ a coproduct package and `CompactPerfectInput A`,
   `SatisfiesWA (AffineD A) ↔ AffineEventualSelfVanishing S.G'`.
 
 What this removes is the point of the file.  The earlier affine theorem carried
-Stacks 09SR and Bondal--Van den Bergh; here both are gone.  The cited input is
-Neeman, Acta Math. 233 (2024), Theorem 3.2(i), through `CompactPerfectInput`,
-used **only** to turn compactness into `Perf A`.  The vanishing itself is proved:
+Stacks 09SR and a cited eventual-vanishing hypothesis; here both are gone.  The
+cited input is `CompactPerfectInput` — in Stacks form Tag 0AED (compacts of
+`D_QCoh,T` are perfect), equivalently Neeman, Acta Math. 233 (2024),
+Theorem 3.2(i) — used **only** to turn compactness into `Perf A`.  The vanishing
+itself is proved:
 
 * `ringObject_eventuallyHomZero_self`: `Hom(A, A⟦n⟧) = 0` for `n ≥ 1`;
 * `perf_eventuallyHomZero`: every pair of perfect complexes has eventually
-  vanishing positive Homs, with no input at all — this is Bondal--Van den Bergh's
-  Lemma 3.3.8 for rings, proved from the thick-envelope transport
+  vanishing positive Homs, with no input at all — this is the ring form of
+  Stacks Tag 09MB, proved from the thick-envelope transport
   (`eventuallyHomZero_of_mem_triangEnvelope`).
 
 Also proved: the standard-`t`-structure bounds for the ring object
@@ -109,7 +111,8 @@ theorem perf_eventuallyHomZero (A : Type u) [CommRing A]
 through `CompactPerfectInput`.  Every pair of compact objects of `D(A-Mod)` has
 eventually vanishing positive Homs.  The geometric input is used only to turn
 compactness into `Perf A`; the vanishing itself is `perf_eventuallyHomZero`.
-It does not use Bondal--Van den Bergh or Stacks 09SR. -/
+It uses neither Stacks 09SR nor a vanishing hypothesis: the vanishing is
+`perf_eventuallyHomZero`. -/
 theorem affineCompactHomZeroAtTop_of_compactPerfectInput
     (A : Type u) [CommRing A] (I : CompactPerfectInput A) :
     AffineCompactHomZeroAtTop A := by
@@ -150,7 +153,7 @@ variable (A : Type u) [CommRing A]
 published residue.**  `CompactPerfectInput` is Neeman 2024, Theorem 3.2(i).
 The recollement, coproduct, normalization and preferred-aisle fields remain
 exactly those in `SetupMainMinimal`; this theorem supplies no invented geometry.
-Neither Stacks 09SR nor a separate Bondal--Van den Bergh vanishing hypothesis is
+Neither Stacks 09SR nor a separate eventual-vanishing hypothesis (Stacks 09MB) is
 used. -/
 theorem satisfiesWA_of_neemanCompactPerfectInput
     (S : SetupMainMinimal DZ (AffineD A) DU)

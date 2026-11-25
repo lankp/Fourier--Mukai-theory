@@ -29,13 +29,13 @@ with no residue; "proved from X" means no residue beyond the named input;
 | 3 | quasicoherence is Serre | extensions of quasicoherent sheaves are quasicoherent | Stacks 01LA | `Scheme/QCohSerre.lean`, `Scheme/Derived.lean` | kernels and cokernels **proved**; extension closure open, and it alone is what `D_qc` needs |
 | 4 | `Perf` for rings | `Perf A` thick envelope; closure under `0`, shifts, biproducts, cones, retracts; `⊆ D^b`, `⊆ D^b_coh` (Noetherian) | — | `Scheme/PerfectRing.lean` | proved |
 | 5 | perfect = bounded projectives | `Perf A` = bounded complexes of f.g. projectives | Stacks 066T/09M1 | `Scheme/PerfectModel.lean` | `Perf ⇒? model` open (`BoundedProjectiveModelConverseInput`); `model ⇒ Perf` **proved for every ring** |
-| 6 | compacts = perfect | compact objects of `D(A-Mod)` are `Perf A` | Bondal–Van den Bergh 3.1.1, Neeman 3.2(i) | `Scheme/PerfectRing.lean` (`CompactPerfectInput`) | cited |
+| 6 | compacts = perfect | compact objects of `D(A-Mod)` are `Perf A` | Stacks 0AED (with 09M8, 0AEC, 09SR); same statement as Neeman 3.2(i) | `Scheme/PerfectRing.lean` (`CompactPerfectInput`) | cited |
 | 7 | `Perf` bridge | ring envelope vs scheme-local 0BCJ model at `Spec A` | Stacks 0BCJ / 08CM / 06Z0 | `Scheme/PerfectModel.lean` (`perf_iff_affineThickGenerated`, under `AffineAllSheavesBridgeInput` + row 3), `Scheme/PerfectField.lean` (`perf_eq_dbcoh`) | proved over a field; in general reduced to row 5 plus the 06Z0 coherence fields |
 | 8 | affine recollement | `D(A[1/f]) → D(A) → D_Z(A)` as `WeakApprox.Recollement`, i.e. `D_Z` slot = open, `D_U` slot = `f`-power torsion | localization sequence (Gao–Psaroudakis 2.2(ii), BDS 2.3, Krause §4, Stacks 0BFF) | `Scheme/AffineRecollement.lean` | proved, modulo the named `AffineRecollementInput` fields |
 | 9 | open functors | `j_! ⊣ j^* ⊣ j_*`, exactness, derived recollement | Stacks 00A6, 00AB, 079W | `Scheme/OpenImmersion.lean` | proved |
 | 10 | Setup 4.4 from ring data | the 20 fields for the affine recollement | LP §4 | `Scheme/Affine.lean` (partial) | open, and **not instantiable at this toolchain** — see below |
 | 11 | LP Theorem 1.1 (abstract) | the gluing theorem, minimal setup | LP Thm 1.1 | `WeakApprox/MainMinimal.lean` | proved |
-| 12 | **affine Theorem 1.1** | `SatisfiesWA (D(A-Mod))` and the iff | rows 1–11 + Neeman | `Scheme/AffineMain.lean` (`affine_theorem_1_1_neeman_only`) | proved modulo row 10; 09SR and Bondal–Van den Bergh removed from the hypotheses |
+| 12 | **affine Theorem 1.1** | `SatisfiesWA (D(A-Mod))` and the iff | rows 1–11 + row 6 | `Scheme/AffineMain.lean` (`affine_theorem_1_1_neeman_only`) | proved modulo row 10; 09SR and the eventual-vanishing hypothesis (Stacks 09MB) removed |
 | 13 | GL26 Lemma 2.25 | `Φ_{RΔ_*O} ≅ 𝟭` for affine `Y → S` | GL26 §2.5, Stacks 08IN | `Scheme/AffineDiagonal.lean` (`affine_lemma_2_25`) | proved |
 | 14 | weak approximability of `D_qc,Z(Spec A)` | the published input | Neeman, Acta 233 (2024) Thm 3.2 | `Scheme/Inputs.lean` | cited |
 
@@ -128,11 +128,39 @@ Reductions already in place, to be used rather than re-derived:
 
 * **`CompactHomZeroAtTop`** (`WeakApprox/CompactVanishing.lean`): the §4 chain
   needs only eventual vanishing between compacts, which is *weaker* than Stacks
-  09SR and is exactly what Bondal–Van den Bergh supply for qcqs schemes.
+  09SR and is exactly Stacks Tag 09MB for qcqs schemes (via Tag 0AED).
 * **`QuasicoherentExtensionInput`** (`Scheme/QCohSerre.lean`) is now the single
   obstruction to `D_qc` being triangulated; the older `QuasicoherentSerreInput`
   (subobjects, quotients, extensions) is stronger than needed.
 * **`ringObject_eventuallyHomZero_self` + `perf_eventuallyHomZero`**
-  (`Scheme/AffineMain.lean`): Bondal–Van den Bergh's Lemma 3.3.8 is *proved* for
+  (`Scheme/AffineMain.lean`): the ring form of Stacks Tag 09MB is *proved* for
   every commutative ring by transport along the thick envelope, so the only use
-  of a compact/perfect theorem in row 12 is `compact ⇒ Perf`.
+  of a compact/perfect theorem in row 12 is `compact ⇒ Perf` (row 6).
+
+## Provenance of the compact/perfect and vanishing inputs
+
+The two inputs that used to be cited to Bondal--Van den Bergh, *Generators and
+representability of functors…*, Mosc. Math. J. 3 (2003), are now cited to Stacks
+Project tags from Part 1, Chapter 36 (`derived` / `spaces-perfect`), which prove
+the same statements with tag-numbered dependencies:
+
+| what is needed | Stacks tag | statement |
+|---|---|---|
+| perfect objects are compact | **09M8** (Prop. 75.16.1) | a perfect object of `D(O_X)` is compact |
+| a perfect compact generator exists | **0AEC** (Lemma 75.15.6) | `D_QCoh,T(O_X)` has a generator which is a perfect complex |
+| the generator generates the compacts | **09SR** (Prop. 13.37.6) | a compact generator is a classical generator of the compacts |
+| compacts are perfect (the hard direction) | **0AED** (Lemma 75.16.3) | an object of `D_QCoh,T(O_X)` is compact iff it is perfect as an object of `D(O_X)`; the proof uses 09M8, 0AEC and 09SR |
+| perfect complexes are bounded | **0BCJ** (Lemma 36.35.2) / **08CM** | perfect = locally quasi-isomorphic to a bounded complex of finite locally free modules |
+| eventual vanishing | **09MB** (Lemma 75.17.2) | for perfect `K` there are `a ≤ b` with `Hom(K,L) = 0` whenever `H^i(L) = 0` for `i ∈ [a,b]`, and `Ext^n(K,L) = 0` for all but finitely many `n` when `L` is bounded |
+
+Read on 2026-11-24 at `https://stacks.math.columbia.edu/tag/<tag>`.  There `X` is
+a quasi-compact quasi-separated algebraic space over a scheme, with `T ⊆ |X|`
+closed and `|X| ∖ T` quasi-compact (`T = |X|` for the unsupported statement), so
+every tag applies to Noetherian schemes after specialization, and to `Spec A`
+through the affine dictionary.
+
+Consequence for this project: row 6 (`CompactPerfectInput`) is Tag 0AED, and the
+eventual-vanishing hypothesis is Tag 09MB.  For `X = Spec A` the vanishing half
+is not cited at all — `perf_eventuallyHomZero` proves it for every commutative
+ring — so the single remaining cited item on the affine path is `compact ⇒ Perf`,
+the hard direction of Tag 0AED.

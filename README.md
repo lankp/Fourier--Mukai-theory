@@ -44,7 +44,7 @@ precise obstruction and for the two ways past it.
 | `j_! ⊣ j^* ⊣ j_*` for an open immersion, `j_!` and `j^*` exact, the derived recollement interface | `OpenImmersion.lean` |
 | derived pushforward/pullback from Kan extensions; `RHom`, `⊗^L`, `f^×`, `f^!` interface with the projection formula and base change as a mate | `Duality.lean` |
 | the ten GL26 targets over Noetherian schemes as `Prop`-valued statements, with no vacuous hypotheses | `Statements.lean` |
-| the published inputs (Neeman, Bondal–Van den Bergh) as `Prop` templates with citations | `Inputs.lean` |
+| the published inputs (Neeman; Stacks chapter 36 tags 0AED, 09M8, 0AEC, 09SR, 0BCJ, 09MB) as `Prop` templates with citations | `Inputs.lean` |
 
 **Affine results** (the current focus):
 
@@ -56,7 +56,7 @@ precise obstruction and for the two ways past it.
 | the two models of `D_qc(Spec A)`: `D(A-Mod) ≌ D_qc(Spec A)`, a *construction* from the `tilde ⊣ RΓ` input rather than a black-box equivalence, with `tilde` exactness (Stacks 01HV) now proved rather than cited | `AffineQCoh.lean` |
 | the affine recollement `D(A[1/f]) → D(A) → D_Z(A)` in the GL26/LP orientation: power-torsion Serre class, `Lj^* i_* ≅ 0`, `RΓ_Z Rj_* ≅ 0`, both gluing triangles | `AffineRecollement.lean` |
 | **LP Theorem 1.1 for `D(A-Mod)`**: weak approximability iff eventual self-vanishing of the generator | `Affine.lean` |
-| the same with Stacks 09SR *and* Bondal–Van den Bergh removed: `compact ⇒ Perf` is the only use of Neeman 3.2(i), and Bondal–Van den Bergh's Lemma 3.3.8 is proved for every ring | `AffineMain.lean` |
+| the same with Stacks 09SR *and* the eventual-vanishing hypothesis removed: `compact ⇒ Perf` (Stacks 0AED) is the only cited input, and the ring form of Stacks 09MB is proved for every commutative ring | `AffineMain.lean` |
 | **GL26 Lemma 2.25 for affine schemes**, proved: `Φ_{RΔ_*O} ≅ 𝟭`, with the projection formula, the tensor unit and the diagonal retractions as data | `AffineDiagonal.lean` |
 
 Everything above is `sorry`-free and depends only on `propext`, `Classical.choice`
@@ -79,9 +79,13 @@ citation, never as a `sorry`:
 * **Neeman**, *Bounded `t`-structures on the category of perfect complexes*,
   Acta Math. 233 (2024), Theorem 3.2 — weak approximability, compact generation,
   compact = supported perfect, preferred `t`-structure, for qcqs schemes.
-* **Bondal–Van den Bergh**, *Generators and representability of functors…*,
-  Mosc. Math. J. 3 (2003), Theorem 3.1.1 and Lemma 3.3.8 — compacts are perfect,
-  and eventual vanishing between them.
+* **Stacks Project, Chapter 36 tags** for the compact/perfect and vanishing
+  inputs, which are the textbook form of the classical Bondal–Van den Bergh
+  statements: Tag 0AED (Lemma 75.16.3, an object of `D_{QCoh,T}` is compact iff
+  perfect), Tag 09M8 (perfect implies compact), Tag 0AEC (a perfect compact
+  generator exists), Tag 09SR (the generator generates the compacts), Tag 0BCJ
+  (perfect complexes are locally bounded), Tag 09MB (Lemma 75.17.2, eventual
+  vanishing of `Hom` and `Ext` out of a perfect object).
 * Stacks tags for the individual facts still being formalized: 01LA
   (quasicoherence is closed under extensions), 06Z0/079W/08D4/01XB (unbounded
   `RΓ` and the two cohomology computations defining the two models of `D_qc`),

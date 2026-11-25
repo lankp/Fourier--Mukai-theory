@@ -22,7 +22,7 @@ relative-perfect/mate/base-change mathematics.  Counting only the three inputs
 in the question gives **3/3 published scheme inputs**.  Counting the two extra
 inputs explicitly used by Remark 2.6 leaves **2 further preprint-level inputs
 outside that published Neeman theorem**.  The eventual-vanishing citation is
-Bondal--Van den Bergh, not Neeman.
+Stacks Tag 09MB, not Neeman's Theorem 3.2.
 
 ## (i)--(iii): exact statements and publication status
 
@@ -33,14 +33,16 @@ primary text, not as evidence of journal publication.
 | input | exact scheme theorem | hypotheses | status |
 |---|---|---|---|
 | (i) weak approximation | Amnon Neeman, *Bounded t-structures on the category of perfect complexes*, Theorem 3.2(iv): `D_qc,Z(X)` is weakly approximable | `X` qcqs, `Z` closed with qc complement; take `Z=X` for `D_qc(X)` | **Published and proved**, Acta Math. 233 (2024), no. 2, 239--284, DOI `10.4310/ACTA.2024.v233.n2.a2`; final published arXiv text: https://arxiv.org/html/2202.08861v4#S3.Thmtheorem2 |
-| (ii.a) compacts | Neeman, Theorem 3.2(i): compacts of `D_qc,Z(X)` are perfect complexes on `X` with cohomology supported on `Z`; independently Bondal--Van den Bergh, Theorem 3.1.1(1) for `Z=X` | qcqs in both | **Published and proved**, Neeman as above; A. Bondal and M. Van den Bergh, *Generators and representability of functors in commutative and noncommutative geometry*, Mosc. Math. J. 3 (2003), no. 1, 1--36, 258, https://arxiv.org/pdf/math/0204218 |
-| (ii.b) one generator | Neeman, Theorem 3.2(ii); independently Bondal--Van den Bergh, Theorem 3.1.1(2); for supports, Rouquier, Theorem 6.8 | qcqs; for supports, qc complement | **Published and proved**, same sources; R. Rouquier, *Dimensions of triangulated categories*, J. K-Theory 1 (2008), 193--256, https://www.math.ucla.edu/~rouquier/papers/dimension.pdf |
-| (iii) eventual Hom zero | Bondal--Van den Bergh, Lemma 3.3.8 says `RHom(E,F)` is bounded for perfect `E`; Theorem 3.1.1 says every compact is perfect.  Hence, for compacts `G,G'`, `Hom(G,G'[n])=0` for `n≫0` | qcqs; also gives the supported statement because compacts there are perfect on `X` and the subcategory is full | **Published ingredients with an immediate proof**, same 2003 article.  It is not accurate to attribute (iii) to Neeman's Theorem 3.2 alone |
+| (ii.a) compacts | Stacks Project, Tag 0AED (Lemma 75.16.3): an object of `D_QCoh,T(O_X)` is compact **iff** it is perfect as an object of `D(O_X)`.  The easy direction is Tag 09M8 (Proposition 75.16.1, perfect objects are compact); the converse uses the perfect compact generator of Tag 0AEC and the generator theorem Tag 09SR | `X` qcqs algebraic space over a scheme, `T` closed with quasi-compact complement; take `T = |X|` for all of `D_qc(X)` | **Published with proof**, https://stacks.math.columbia.edu/tag/0AED (with Tags 09M8, 0AEC, 09SR), which is the textbook form of Neeman, Theorem 3.2(i) |
+| (ii.b) one generator | Stacks Project, Tag 0AEC (Lemma 75.15.6): there is a generator of `D_QCoh,T(O_X)` which is a perfect complex; it is compact by Tag 09M8 and it generates the compacts by Tag 09SR | qcqs; `T` closed with quasi-compact complement | **Published with proof**, https://stacks.math.columbia.edu/tag/0AEC (with Tags 09M8, 09SR), the textbook form of Neeman, Theorem 3.2(ii) |
+| (iii) eventual Hom zero | Stacks Project, Tag 09MB (Lemma 75.17.2): for a perfect `K` there are integers `a ≤ b` with `Hom(K,L) = 0` for every `L ∈ D_QCoh` whose cohomology sheaves vanish in degrees `[a,b]`, and `Ext^n(K,L) = 0` for all but finitely many `n` when `L` is bounded.  With Tag 0AED (compacts are perfect) and Tag 0BCJ (perfect complexes have bounded cohomology), this gives `Hom(G,G'[n]) = 0` for `n ≫ 0` | qcqs; also gives the supported statement because compacts of `D_QCoh,T` are perfect on `X` (Tag 0AED) and the subcategory is full | **Published with proof**, https://stacks.math.columbia.edu/tag/09MB.  It is not accurate to attribute (iii) to Neeman's Theorem 3.2 alone |
 
 For (iii), the proof is literally two lines.  Compacts `G,G'` are perfect by
-Theorem 3.1.1.  Perfect complexes are bounded, and Lemma 3.3.8 makes the
-derived global Hom complex bounded; shifting its bounded nonzero cohomology
-window beyond zero gives the cutoff.  An independent amplitude proof is:
+Tag 0AED, and a perfect complex has bounded cohomology by Tag 0BCJ.  If
+`H^i(G') = 0` for `i ∉ [c,d]`, then `H^i(G'[n]) = 0` for `i ∉ [c+n,d+n]`, so
+Tag 09MB gives `Hom(G,G'[n]) = 0` as soon as `c+n > b` with `b` the upper end of
+the window supplied by 09MB; Tag 09MB(2) gives the same conclusion directly
+from boundedness of `G'`.  An independent amplitude proof is:
 Stacks Tag 08DQ (Lemma 20.50.5) writes `Hom(G,M)` as
 `H^0(X,G^∨ ⊗^L M)`, Tag 08D5 (Lemma 36.4.1(2)) gives uniform high-degree
 vanishing for a qcqs pushforward, and `G^∨⊗G'` is bounded.  Primary sources:
@@ -49,8 +51,8 @@ https://stacks.math.columbia.edu/tag/08D5 .  Rouquier, Proposition 6.9, is a
 second published amplitude statement (same URL as above).
 
 Neeman's Remark 6.1 is also useful provenance: it identifies Theorem 3.2(i,ii)
-as older results (Bondal--Van den Bergh and Rouquier), and (iii,iv) as the new
-parts.  See https://arxiv.org/html/2202.08861v4#S6.Thmtheorem1 .
+as older results, whose textbook proofs are Stacks Tags 0AED and 0AEC, and
+(iii,iv) as the new parts.  See https://arxiv.org/html/2202.08861v4#S6.Thmtheorem1 .
 
 **Weak is not strong.**  Neeman's Remark 8.1 constructs supported examples
 which are not approximable in the non-weak sense; Remark 8.2 recalls the older
@@ -69,11 +71,11 @@ from theorem names.
 
 | GL26 location | use of (i)--(iii) and other inputs | scheme replacement / status |
 |---|---|---|
-| §2, Example 2.2 | compact = perfect and a classical compact generator; supported generation cites Rouquier | Bondal--Van den Bergh 3.1.1, Rouquier 6.8, or Neeman 3.2(i,ii); published |
+| §2, Example 2.2 | compact = perfect and a classical compact generator; supported generation cites Rouquier | Stacks Tags 0AED and 0AEC, or Neeman 3.2(i,ii); published |
 | Remark 2.6 (`rmk:equivalences_induced`) | assumes `D_qc(Y_i)` weakly approximable **and coherent**, then CHNS Theorem B gives equivalence on `D_qc ⇒ D^-_coh ⇒ D^b_coh ⇒ Perf`; the return implication uses a coproduct-preserving right adjoint and compacts | Neeman 3.2(iii,iv) gives the weak/preferred parts.  Coherence for qcqs coherent schemes (in particular Noetherian) is Neeman, arXiv:1806.06471v2, Example 5.4 (**preprint**, no journal reference on the abstract page): https://arxiv.org/html/1806.06471v2#S5.Thmtheorem4 .  CHNS Theorem B is Canonaco--Haesemeyer--Neeman--Stellari, arXiv:2402.04605v1 (**preprint**, no journal reference on the abstract page): https://arxiv.org/abs/2402.04605 .  The right-adjoint/compact input is Neeman, *The Grothendieck duality theorem via Bousfield's techniques and Brown representability*, JAMS 9 (1996), Theorem 5.1 (published) |
 | §10, Lemma 10.9 (`lem:equivalences_induced`) | alternative generation proof of `(D_qc ⇔ D^b_coh ⇔ Perf)` under relative-perfect hypotheses | weak approximability is expressly **not used**; Remark 2.6 itself says so.  Compact generation remains |
 | §12, Definition 12.1 | defines the loci only | no approximability input |
-| §12, Theorem 12.3 and Proposition 12.8 | chooses compact generators and identifies compacts with perfect complexes to detect relative perfection and openness | covered by Bondal--Van den Bergh 3.1.1 / Neeman 3.2(i,ii); no eventual-vanishing step |
+| §12, Theorem 12.3 and Proposition 12.8 | chooses compact generators and identifies compacts with perfect complexes to detect relative perfection and openness | covered by Stacks Tags 0AED / 0AEC (or Neeman 3.2(i,ii)); no eventual-vanishing step |
 | §12, Theorem 12.9 (`thm:fm_locus_weak_approx`) | through Remark 2.7 (`rem:rel_perfect_is_free`), an equivalence on any decorated category forces the kernel to be relatively perfect.  This puts `FM(E)` inside the open relative-perfect locus; Theorem 12.3 finishes | weak approximability **is used** (together with coherence and CHNS B via Remark 2.6).  Compact generation is also used.  There is no direct use of eventual Hom vanishing |
 | Theorem 1.2(1) (`thm:fm_locus`) | is exactly Theorem 12.9(1) | therefore (i) and (ii) are genuinely used, indirectly as above; (iii) is not directly used |
 | Appendix A, Lemmas `lem:BNP_weak_version_for_glueing` and `lem:etale_nbhd_preferred_class` | the gluing hypothesis includes eventual self-Hom vanishing, and the second proof asserts it for a perfect compact generator (with the paper's negative-shift convention) | covered by the same boundedness argument, but this is not a dependency of Theorem 1.2(1) |
@@ -143,27 +145,38 @@ paper, not proved by this file.  Source:
 https://arxiv.org/html/2202.08861v4#S3.Thmtheorem2 . -/
 def Neeman_3_2_iv : Prop := SatisfiesWA C
 
-/-- **External literature hypothesis, Neeman 2024, Theorem 3.2(ii)** (also
-Bondal--Van den Bergh 2003, Theorem 3.1.1(2), and Rouquier 2008, Theorem 6.8
-for supports).  For a qcqs scheme, `D_qc,Z(X)` has a single compact generator.
-Source: https://arxiv.org/html/2202.08861v4#S3.Thmtheorem2 . -/
+/-- **External literature hypothesis, Neeman 2024, Theorem 3.2(ii)**, whose
+textbook proof for a qcqs scheme is Stacks Tags 0AEC (a perfect generator
+exists), 09M8 (it is compact) and 09SR (it generates).  For a qcqs scheme,
+`D_qc,Z(X)` has a single compact generator.
+Sources: https://stacks.math.columbia.edu/tag/0AEC and
+https://arxiv.org/html/2202.08861v4#S3.Thmtheorem2 . -/
 def Neeman_3_2_ii : Prop :=
   ∃ G : C, IsCompactAb G ∧ IsGenerator G
 
-/-- **External literature hypothesis, Neeman 2024, Theorem 3.2(i)** (also
-Bondal--Van den Bergh 2003, Theorem 3.1.1(1)).  Instantiate `PerfectSupported`
-by the perfect complexes on `X` whose cohomology is supported on `Z`; perfection
-is deliberately a parameter rather than a fictitious Mathlib declaration.
-Source: https://arxiv.org/html/2202.08861v4#S3.Thmtheorem2 . -/
+/-- **External literature hypothesis, Neeman 2024, Theorem 3.2(i)**, whose
+textbook form is Stacks Tag 0AED: an object of `D_QCoh,T(O_X)` is compact if and
+only if it is perfect as an object of `D(O_X)` (the two directions are Tags 09M8
+and 0AED, the latter via 0AEC and 09SR).  Instantiate `PerfectSupported` by the
+perfect complexes on `X` whose cohomology is supported on `Z`; perfection is
+deliberately a parameter rather than a fictitious Mathlib declaration.
+Sources: https://stacks.math.columbia.edu/tag/0AED and
+https://arxiv.org/html/2202.08861v4#S3.Thmtheorem2 . -/
 def Neeman_3_2_i (PerfectSupported : C → Prop) : Prop :=
   ∀ P : C, IsCompactAb P ↔ PerfectSupported P
 
-/-- **External literature hypothesis, Bondal--Van den Bergh 2003**,
-Theorem 3.1.1 and Lemma 3.3.8: for every pair of compacts of `D_qc(X)` on a
-qcqs scheme, positive-shift Hom eventually vanishes.  The same statement for a
-full supported subcategory follows using Neeman 3.2(i).  Sources:
-https://arxiv.org/pdf/math/0204218 and
-https://arxiv.org/html/2202.08861v4#S3.Thmtheorem2 . -/
+/-- **External literature hypothesis, Stacks Tag 09MB** (Lemma 75.17.2): for
+every pair of compacts of `D_qc(X)` on a qcqs scheme, positive-shift Hom
+eventually vanishes.  Compacts are perfect by Tag 0AED, perfect complexes have
+bounded cohomology (Tag 0BCJ), and 09MB then bounds the Hom.  The same statement
+for a full supported subcategory follows from the supported form of 0AED.
+Sources: https://stacks.math.columbia.edu/tag/09MB,
+https://stacks.math.columbia.edu/tag/0AED and
+https://stacks.math.columbia.edu/tag/0BCJ .
+
+For `X = Spec A` the vanishing half is **proved** here rather than assumed:
+`perf_eventuallyHomZero` in `FourierMukai/Scheme/AffineMain.lean` proves the
+ring analogue of 09MB for every commutative ring, with no input at all. -/
 def CompactHomZeroAtTop : Prop :=
   ∀ G G' : C, IsCompactAb G → IsCompactAb G' → EventuallyHomZero G G'
 

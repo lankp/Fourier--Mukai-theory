@@ -19,9 +19,8 @@ is rebuilt for schemes.
   Theorem 3.2(iv) (arXiv:2202.08861). The same theorem gives, in (i)–(iii), that
   the compacts of `D_qc,Z(X)` are the perfect complexes supported on `Z`, that a
   single compact generator exists, and the preferred standard `t`-structure.
-  Eventual Hom vanishing between compacts is Bondal–Van den Bergh, *Generators
-  and representability of functors…*, Mosc. Math. J. 3 (2003), Theorem 3.1.1 +
-  Lemma 3.3.8. The algebraic-space version is LP, *Corollary 1.2*, which rests
+  Eventual Hom vanishing between compacts is Stacks Tag 09MB (with compacts =
+  perfect from Tag 0AED, and boundedness of perfect complexes from Tag 0BCJ). The algebraic-space version is LP, *Corollary 1.2*, which rests
   on Hall–Rydh's induction principle and is unpublished.  Note the class: qcqs,
   not Noetherian — Noetherian buys nothing extra for these inputs.
 * **Two inputs of GL26 Remark 2.6 remain preprint-level**: coherence of
@@ -99,7 +98,7 @@ categorical gluing.
 |---|---|---|
 | `Derived.lean` | `D(X) := DerivedCategory (SheafOfModules X)`, cohomology sheaves, `IsDQCoh`, triangulated subcategory structure | to build |
 | `QCoh.lean` | quasicoherence via the tilde functor on affine opens; `D_qc(Spec A) ≃ D(A-Mod)` | to build |
-| `Perfect.lean` | vector bundles, `IsPerfect`, `Perf ⊆ D_qc`, `Perf = (D_qc)^c` (cited: Bondal–Van den Bergh, Hall–Rydh) | to build |
+| `Perfect.lean` | vector bundles, `IsPerfect`, `Perf ⊆ D_qc`, `Perf = (D_qc)^c` (cited: Stacks 0AED / 09M8 / 09SR) | to build |
 | `Functors.lean` | `f^*`, `f_*`, `j_!` on sheaves of modules; adjunctions; exactness for open immersions | to build |
 | `Duality.lean` | `RHom`, `⊗^L`, `f^!`, projection formula, base change (interface + proved compatibilities) | to build |
 | `Recollement.lean` | open/closed recollement of `D_qc`; feeds `WeakApprox.Recollement` | to build |

@@ -23,7 +23,7 @@ import Mathlib.CategoryTheory.Triangulated.Subcategory
 * Interfaces with the facts that are not in Mathlib: `VectorBundleCalculus`
   (restriction, tensor, dual, extensions and retracts, with 08CR/08CS thickness),
   `PerfectToDQCohInterface` (`Perf ⊆ D_qc`, the 09M1 direction), and
-  `PerfectCompactInterface` (compacts = perfect, 09M1 / Bondal–Van den Bergh).
+  `PerfectCompactInterface` (compacts = perfect, Stacks 09M1 + 0AED).
 * The affine comparison: `affineThickGenerated` for `Perf(Spec A)` as the thick
   envelope of the structure sheaf, `AffinePerfectCharacterization` stating the
   two agree, and `affineThickGenerated_le_perfect` proving one inclusion under
@@ -474,15 +474,19 @@ def PerfectCompactStatement {X : Scheme.{u}} [HasDerivedCategory.{w} X.Modules]
     (H : PerfectToDQCohInterface X) (compact : ObjectProperty (SchemeD X)) : Prop :=
   ∀ E, H.DQCoh E → (compact E ↔ IsPerfect E)
 
-/-- PROVISIONAL interface for **Bondal--Van den Bergh / Stacks Tag 09M1**:
-on a qcqs scheme, an object of `D_qc(X)` is compact exactly when it is perfect.
-For Noetherian schemes see also Hall--Rydh.  This theorem is *not* proved here.
-The qcqs hypotheses follow from the Noetherian-scheme target. -/
+/-- PROVISIONAL interface for **Stacks Tags 0AED and 09M1**: on a qcqs scheme
+(or a qcqs algebraic space over a scheme), an object of `D_qc(X)` is compact
+exactly when it is perfect.  Tag 09M1 is the easy direction (perfect implies
+compact); the converse is Tag 0AED, proved there from the perfect compact
+generator of Tag 0AEC and the generator theorem Tag 09SR.  This theorem is
+*not* proved here.  The qcqs hypotheses follow from the Noetherian-scheme
+target. -/
 structure PerfectCompactInterface (X : Scheme.{u}) [HasDerivedCategory.{w} X.Modules]
     [CompactSpace X] [QuasiSeparatedSpace X] (H : PerfectToDQCohInterface X) where
   /-- Compact objects of `D_qc(X)`, supplied by the categorical layer. -/
   compact : ObjectProperty (SchemeD X)
-  /-- Stacks Tag **09M1**. -/
+  /-- Stacks Tags **09M1** (perfect implies compact) and **0AED** (the
+  converse, via 0AEC and 09SR). -/
   compact_iff_perfect : PerfectCompactStatement H compact
 
 /-! ### The affine thick-generation characterization -/

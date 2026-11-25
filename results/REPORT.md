@@ -385,8 +385,9 @@ then writes `f^× K` and `RHom(Rf_* L, K)`; for `f^× : D_qc(X) → D_qc(Y)` the
 correct variances are `L ∈ D_qc(Y)` and `K ∈ D_qc(X)`.
 
 **(d) [RESOLVED] The filtration `⟨S⟩_n`.**  §2.1 sets
-`⟨S⟩_n := add{cone(φ) : φ ∈ Hom_T(⟨S⟩_{n-1}, ⟨S⟩_1)}`.  The standard
-Bondal–Van den Bergh filtration (and Mathlib's `triangEnvelopeIter`) uses
+`⟨S⟩_n := add{cone(φ) : φ ∈ Hom_T(⟨S⟩_{n-1}, ⟨S⟩_1)}`.  The standard iterative
+envelope filtration (as in the classical generators literature, and Mathlib's
+`triangEnvelopeIter`) uses
 morphisms between objects of `⟨S⟩_{n-1}` (or a recursive `⟨S⟩_n = add(⟨S⟩_{n-1} ∪
 cones of maps in ⟨S⟩_{n-1})`).  With `Hom(⟨S⟩_{n-1}, ⟨S⟩_1)` the filtration is
 coarser and it is not immediate that `⋃_n ⟨S⟩_n` is thick or that it is closed

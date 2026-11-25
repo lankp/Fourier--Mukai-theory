@@ -21,8 +21,9 @@ so that `AffineGluingInput.satisfiesWA` is a non-vacuous instance; the transport
 across the affine dictionary is `satisfiesWA_of_affineDictionary`.
 
 Everything residual is explicit and sourced: weak approximability on the two
-ends of the recollement, compact generation, coproducts, 09SR and the
-Bondal--Van den Bergh vanishing.  No trivial recollement is manufactured.
+ends of the recollement, compact generation, coproducts, 09SR and the eventual
+vanishing (Stacks Tag 09MB, proved for rings in `AffineMain`).  No trivial
+recollement is manufactured.
 
 Found by a member of the Ultramath run `smwuz1thx` (direction B4).
 -/
@@ -66,9 +67,10 @@ def AffineEventualSelfVanishing {A : Type u} [CommRing A] (G : AffineD A) : Prop
   EventuallyHomZero G G
 
 /-- Pairwise eventual positive Hom vanishing for compact objects of
-`D(A-Mod)`.  After B1/B2 identify affine compacts with perfect complexes, this
-is the bounded-derived-Hom consequence of Bondal--Van den Bergh 2003, Theorem
-3.1.1 and Lemma 3.3.8. -/
+`D(A-Mod)`.  For rings this is *proved* unconditionally
+(`AffineMain.perf_eventuallyHomZero`, via the thick envelope of the regular
+module); in the Stacks form of the general statement it is Tag 09MB, with
+compacts = perfect from Tag 0AED. -/
 def AffineCompactHomZeroAtTop (A : Type u) [CommRing A] : Prop :=
   CompactHomZeroAtTop (AffineD A)
 
@@ -135,9 +137,11 @@ theorem satisfiesWA_of_affine_eventual
   (affine_theorem_1_1 A DZ DU S C h09SR).mpr hG'
 
 /-- Reverse direction using the published pairwise compact boundedness input
-instead of assuming self-vanishing separately.  In an affine geometric
-instantiation `AffineCompactHomZeroAtTop A` is supplied by
-Bondal--Van den Bergh 2003, Theorem 3.1.1 and Lemma 3.3.8 through B1/B2. -/
+instead of assuming self-vanishing separately.  For a ring,
+`AffineCompactHomZeroAtTop A` is supplied unconditionally by
+`AffineMain.affineCompactHomZeroAtTop_of_compactPerfectInput`, whose only input
+is `compact ⇒ Perf` (Stacks Tag 0AED); the Stacks form of the general statement
+is Tag 09MB. -/
 theorem satisfiesWA_of_compactHomZeroAtTop
     (S : SetupMainMinimal DZ (AffineD A) DU)
     (C : AffineDerivedCoproducts A DZ DU)
@@ -158,9 +162,9 @@ structure AffineGluingInput where
   setup : SetupMainMinimal DZ (AffineD A) DU
   /-- Stacks Tag 09SR for the affine middle category. -/
   h09SR : AffineStacks09SR A
-  /-- Eventual positive self-Hom vanishing of the selected middle generator,
-  supplied geometrically by the perfect-complex boundedness argument of
-  Bondal--Van den Bergh 2003, Lemma 3.3.8. -/
+  /-- Eventual positive self-Hom vanishing of the selected middle generator:
+  for a ring this holds with no input at all (`AffineMain.perf_eventuallyHomZero`);
+  in the Stacks form of the general statement it is Tag 09MB. -/
   eventual : AffineEventualSelfVanishing setup.G'
 
 namespace AffineGluingInput

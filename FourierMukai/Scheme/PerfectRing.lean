@@ -27,7 +27,8 @@ in a Serre class form a thick triangulated subcategory, `DerivedCohomology.Bound
 Two external inputs are named rather than assumed: `BoundedProjectiveModelInput`
 identifies `Perf A` with bounded complexes of finitely generated projectives, and
 `CompactPerfectInput` states that the compact objects of `D(A-Mod)` are exactly
-`Perf A` (Neeman; Bondal--Van den Bergh for schemes, Stacks 09M1).  Neither is
+`Perf A` (Stacks Tag 0AED for schemes, Tag 09M8 for the easy direction; the same
+statement is Neeman, Acta Math. 233 (2024), Theorem 3.2(i)).  Neither is
 used by the proved inclusions, and no compactness claim is made for a field or a
 PID, so the file does not overstate what is known.
 
@@ -323,12 +324,14 @@ structure BoundedProjectiveModelInput (A : Type u) [CommRing A] where
 /-- **External compactness input.**  For an affine scheme, the compact objects
 of the unbounded derived category are exactly the perfect complexes.
 
-This is the affine case of Bondal--Van den Bergh, *Generators and
-representability of functors in commutative and noncommutative geometry*,
-Theorem 3.1.1(1), and of Neeman, *Bounded `t`-structures on the category of
-perfect complexes*, Acta Math. 233 (2024), Theorem 3.2(i) (take `Z = Spec A`).
-It is packaged as a structure field so every use must carry the hypothesis
-explicitly; it is not an axiom. -/
+This is the affine case (take `T = |X|`) of Stacks Project Tag **0AED**
+(Lemma 75.16.3): an object of `D_QCoh,T(O_X)` is compact if and only if it is
+perfect as an object of `D(O_X)`; the two directions inside that proof are
+Tag **09M8** (perfect objects are compact) and Tag **09SR** (the perfect
+generator of Tag **0AEC** generates the compacts).  The same statement is
+Neeman, *Bounded `t`-structures on the category of perfect complexes*,
+Acta Math. 233 (2024), Theorem 3.2(i).  It is packaged as a structure field so
+every use must carry the hypothesis explicitly; it is not an axiom. -/
 structure CompactPerfectInput (A : Type u) [CommRing A] where
   /-- `IsCompactAb` is the coproduct-compactness notion used by the completed
   `WeakApprox` layer. -/
