@@ -16,6 +16,7 @@ import FourierMukai.Examples.Identity
 import FourierMukai.Scheme.Inputs
 import FourierMukai.Scheme.DerivedCoproducts
 import FourierMukai.Scheme.KProjectiveResolution
+import FourierMukai.Scheme.SpecialDirectLimits
 import FourierMukai.Scheme.ProjectiveModel
 import FourierMukai.Scheme.SmallObjectPresentable
 import FourierMukai.Scheme.GeneratingCofibrations

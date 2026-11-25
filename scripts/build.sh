@@ -17,6 +17,7 @@ for f in \
   FourierMukai/Scheme/Inputs.lean \
   FourierMukai/Scheme/DerivedCoproducts.lean \
   FourierMukai/Scheme/KProjectiveResolution.lean \
+  FourierMukai/Scheme/SpecialDirectLimits.lean \
   FourierMukai/Scheme/ProjectiveModel.lean \
   FourierMukai/Scheme/SmallObjectPresentable.lean \
   FourierMukai/Scheme/GeneratingCofibrations.lean \
