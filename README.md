@@ -145,10 +145,9 @@ in `[leanOptions]`.
 The workflow is [`.github/workflows/ci.yml`](.github/workflows/ci.yml), live on
 push to every branch; [`ci/ci.yml`](ci/ci.yml) is a byte-identical mirror kept
 for editing, because this project's GitHub connection cannot itself write under
-`.github/workflows/`.  Its first run built the whole tree on a GitHub runner with
-every step green (`lake build`, the axiom audit, the artifact upload); the
-statement-check job in that run was cancelled by hand and has not yet run in CI.
-It runs three things:
+`.github/workflows/`.  Both jobs are green on a GitHub runner — the Lake build of
+the whole tree with its axiom audit (2m15s), and the independent statement check
+against the recorded baseline (1m43s).  It runs three things:
 
 1. **Lake build** — elan, `lake update`, `lake exe cache get`, `lake build`, then
    `lake env lean FourierMukai/Audit.lean`, which prints every headline

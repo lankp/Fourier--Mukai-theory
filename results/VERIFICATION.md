@@ -91,25 +91,48 @@ diff <(sed -n '/^name: CI/,$p' ci/ci.yml) .github/workflows/ci.yml
 2. **`statement-check`** — depends on `build`, reuses its oleans, and runs
    `scripts/check_statements.sh`.
 
-### First run, on the installed workflow
+### First runs, on the installed workflow
 
-Run 1 of `CI` (commit `4546aed`, `push` to `formalization`):
+`CI` run 4 (commit `b8269d4`, `push` to `formalization`) — and run 3, the same
+commit on `main`:
 
-| job | every step | result |
-|---|---|---|
-| `Lake build (Mathlib cache)` | resolve deps, olean cache, Mathlib cache, `lake build`, axiom audit, linters (advisory), upload oleans | **success** |
-| `Independent statement check` | cancelled by hand during "Resolve dependencies"; steps 5–7 skipped | cancelled |
+| job | every step | result | time |
+|---|---|---|---|
+| `Lake build (Mathlib cache)` | resolve deps, olean cache, Mathlib cache, `lake build`, axiom audit, linters (advisory), upload oleans | **success** | 2m15s |
+| `Independent statement check` | resolve deps, download oleans, Mathlib cache, check against the baseline, upload the re-elaborated surface | **success** | 1m43s |
 
-So the build gate is proven in CI: the Lake build of the full tree, the
-`FourierMukai/Audit.lean` axiom print, and the artifact upload all pass on a
-GitHub runner.  The statement-check gate is proven locally (see below) but has
-not yet run in CI.
+Both green on both branches.  The step that matters in the second job is
+`scripts/check_statements.sh`: it exits non-zero on any drift from
+`results/statement-baseline.txt` or on any `sorryAx`, so a green step means the
+17 pinned statements still match their recorded types and axiom sets.
 
-The starter workflow `blank.yml`, which GitHub's template added and which
-echoed "Hello, world!", has been deleted; it was reporting green on commits
-whose real CI had not run.
+Runs 1 and 2 of the installed workflow were cancelled by hand mid-flight, and
+runs on superseded commits are cancelled automatically by the `concurrency`
+group (`${{ github.workflow }}-${{ github.ref }}`), which is the intended
+behaviour for a repository that pushes both branches in lockstep.
 
-### Both jobs were run locally before installation
+The starter workflow `blank.yml`, which GitHub's template added and which echoed
+"Hello, world!", has been deleted; it was reporting green on commits whose real
+CI had not run.
+
+### What the first runs cost
+
+`lake exe cache get` plus the olean restore make the build job about two
+minutes; the statement check adds under two more, of which roughly one is the
+duplicated `lake update` + `lake exe cache get` in that job.  Two further
+economies are available and neither is done, because both mean hand-editing the
+installed file:
+
+* fold `statement-check` into the `build` job, removing the second dependency
+  resolution and Mathlib cache fetch;
+* cache `.lake/packages/*/.lake/build` alongside the project's `.lake/build`,
+  which the current cache key does not cover.
+
+A `paths-ignore` filter for `results/**`, `*.md` and `ci/**` would also stop a
+documentation-only push from spending four minutes of runner time; it has the
+same cost of a hand edit.
+
+### Both jobs were also run locally before installation
 
 The workflow was also executed end to end in a Lake copy of the tree on the
 development VM:
