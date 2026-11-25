@@ -31,6 +31,16 @@ Conditional theorems are not constructions from ring data until their inputs are
 inhabited. Proved code uses only `propext`, `Classical.choice`, and `Quot.sound`;
 no new global axioms are allowed.
 
+## 1b. Named hypotheses outside the contract (not assumed)
+
+These inputs appear as hypotheses of conditional theorems.  They are **not**
+permitted assumptions: a theorem that takes one is recorded as conditional (C in
+`results/COVERAGE.md`), and the input stays open until it is proved here.
+
+| input | Lean name | used by | source | to discharge |
+|---|---|---|---|---|
+| Bousfield localization at a compact object: every `E` sits in a triangle `S → E → R → S⟦1⟧` with `S ∈ ⟨G⟩‾` and `R` right orthogonal to the shifts of `G` | `HasBousfieldTriangles G`, `CompactBousfieldLocalization C` (`Prelim/Lemma24.lean`) | converse direction of GL26 Lemma 2.4 (`lemma_2_4`, `isLocalizingGenerator_of_isPaperGenerator`, `singlyCompactlyGenerated_iff`) | Neeman, *Triangulated categories* (2001), Rmk 1.16, Thm 1.17, Prop 9.1.19 | Brown representability for compactly generated triangulated categories, or a Stacks tag if AxiomMath has it |
+
 ## 2. The affine endpoint and what is actually proved
 
 The universe-correct endpoint in `Scheme/SmallAffineAssembly.lean` is
