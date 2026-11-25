@@ -29,11 +29,11 @@ the end.
 
 | | P | C | H | T | D | — | total |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| theorems, propositions, corollaries, lemmas | 7 | 5 | 16 | 15 | – | 73 | 116 |
+| theorems, propositions, corollaries, lemmas | 11 | 5 | 16 | 15 | – | 69 | 116 |
 | definitions, setups, lemma-definitions | 1 | – | – | – | 13 | 5 | 19 |
 
-Seven results are proved outright (Lemmas 2.3, 7.2, 7.4, 7.6, 7.9, 7.11, C.1;
-7.4, 7.6, 7.9 and C.1 (2) in `Cat`), as is Lemma-Definition 7.10 (in `Cat`), five conditionally (Lemmas 2.4, 2.25, 2.26, 5.4, and A.4 in the
+Eleven results are proved outright (Lemmas 2.3, 7.2, 7.4, 7.6, 7.9, 7.11, B.4, B.5,
+B.7, B.10, C.1; 7.4, 7.6, 7.9 and C.1 (2) in `Cat`), as is Lemma-Definition 7.10 (in `Cat`), five conditionally (Lemmas 2.4, 2.25, 2.26, 5.4, and A.4 in the
 affine case).  Lemma 2.5 was listed as P until 25 November 2026; its rendering turned out to be vacuous (see its row), and it is now counted as T.  The other 14 target rows are 10 distinct targets (1.2 = 12.9, 1.3 = 6.2 + 6.8,
 1.6 = 10.13, 1.7 = 11.4), none proved.  Sections 3, 4, 6, 8, 9, 10, 11 and 12
 have no proved result: everything there is a target, an interface field, or
@@ -222,13 +222,13 @@ absent.
 | Def B.1 | `def:cat_with_trans` | D | Mathlib's `HasShift C ℤ` and `Functor.CommShift` stand in |
 | Lem B.2 | `lem:trans_is_2-cat` | — | |
 | Def B.3 | | — | |
-| Lem B.4 | `lem:equiv_transadj` | — | |
-| Lem B.5 | `lem:adj_and_equiv_in_trans` | — | |
+| Lem B.4 | `lem:equiv_transadj` | P | `Trans.lemma_B4` (`Prelim/AppendixB.lean`), all five conditions; (5) is rendered as "unit and counit transnatural", which is the paper's notion only given Lemma B.2 (not formalized) |
+| Lem B.5 | `lem:adj_and_equiv_in_trans` | P | `Trans.lemma_B5_existsUnique` (T, T′ autoequivalences, as in the paper), `Trans.lemma_B5_equivalence`; left-adjoint variant not done |
 | Def B.6 | `def:trinat_trans` | D | `Trinatural` (`Prelim/Triangulated.lean`) |
-| Lem B.7 | `lem:transnat_is_trinat` | — | `Trinatural.ofNatTrans` in `Prelim/Lemma25.lean` is the analogous statement; not checked to be the same |
+| Lem B.7 | `lem:transnat_is_trinat` | P | `lemma_B7`, `lemma_B7_natTrans` (also ⇔ Mathlib's `NatTrans.CommShift` ⇔ `RelativeFM.Trinatural`); triangulatedness of F, G not needed |
 | Def B.8 | `def:triang` | D | Mathlib's pretriangulated categories and `Functor.IsTriangulated` |
 | Def B.9 | | D | `Prelim/Triangulated.lean` cites "B.9" and "B.11" |
-| Lem B.10 | `lem:triadjoint_iff_adjoint` | — | |
+| Lem B.10 | `lem:triadjoint_iff_adjoint` | P | `lemma_B10_exists`, `lemma_B10_unique` (stronger: uniqueness of the whole `CommShift ℤ` from trinaturality of the unit), `lemma_B10_equivalence`; the manuscript's "(G,ζ) ⊣ (F,ξ)" is a typo for (F,ξ) ⊣ (G,ζ), confirmed by the author |
 | Lem C.1 | `cmp:lem:units` | P | `Prelim/AdjunctionUnits.lean` (`lemma_C_1`, `Adjunction.twist`): (1) in any bicategory (`Bicategorical.twist`), (2) in `Cat`; the Aut(G)-torsor half of the remark after it is proved; transfer to `Triang` not proved |
 | Def C.3 | `cmp:def:induced` | — | |
 
