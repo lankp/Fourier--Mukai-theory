@@ -79,6 +79,9 @@ import FourierMukai.Scheme.PaperGeneratorM5
 import FourierMukai.Scheme.AffineNeemanAssembly
 import FourierMukai.Scheme.AffineCompactness
 import FourierMukai.Scheme.SchemeNeemanTransport
+import FourierMukai.Scheme.NeemanSmallApproximationM3
+import FourierMukai.Scheme.NeemanSmallAisleGenerationM3
+import FourierMukai.Scheme.AffineNeemanEndpointM3
 import FourierMukai.Scheme.AffineRecollementAssembly
 import FourierMukai.Scheme.AffineSetupInventory
 import FourierMukai.Scheme.AffineJUpperAdjoint

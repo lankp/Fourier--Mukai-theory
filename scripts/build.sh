@@ -80,6 +80,9 @@ for f in \
   FourierMukai/Scheme/AffineNeemanAssembly.lean \
   FourierMukai/Scheme/AffineCompactness.lean \
   FourierMukai/Scheme/SchemeNeemanTransport.lean \
+  FourierMukai/Scheme/NeemanSmallApproximationM3.lean \
+  FourierMukai/Scheme/NeemanSmallAisleGenerationM3.lean \
+  FourierMukai/Scheme/AffineNeemanEndpointM3.lean \
   FourierMukai/Scheme/AffineRecollementAssembly.lean \
   FourierMukai/Scheme/AffineSetupInventory.lean \
   FourierMukai/Scheme/AffineJUpperAdjoint.lean \
