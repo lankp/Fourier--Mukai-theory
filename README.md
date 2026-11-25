@@ -14,9 +14,10 @@ exceptional-functor package of the affine recollement.
 
 202 modules, about 50 000 lines, `sorry`-free except for nine declarations that are
 deliberately left as specifications (see [What is stated, not
-proved](#what-is-stated-not-proved)).  Every statement is checked against the
-25 November 2026 manuscript of GL26 (`main-4.tex`, not the arXiv posting); line
-references in [`results/`](results) name that file.
+proved](#what-is-stated-not-proved)).  The GL26 statements are checked against the
+25 November 2026 manuscript (`main-4.tex`, not the arXiv posting), theorem by
+theorem in [`results/GL26_SCHEME_DEPENDENCE.md`](results/GL26_SCHEME_DEPENDENCE.md);
+line references in `results/` name that file.
 
 ## Goals
 
@@ -231,11 +232,17 @@ statements recorded in the interface.
 
 Weak approximability is used in the form LP uses it — the paper's
 `PaperWeakApproximationData` with `IsPaperGenerator`: a generator is one whose
-vanishing detects zero.  It is never stated with the stronger `IsGenerator`, which
-is **uninhabitable** for the regular module over `ℤ` and is proved so twice in this
-repository (`Scheme/GeneratorCounterexampleM5.lean`,
-`Scheme/AffineNeemanAssembly.lean`).  The whole LP chain is reproved under zero
-detection in `WeakApprox/Paper*M2.lean`.
+vanishing detects zero.  The stronger `IsGenerator` used by the earlier
+`WeakApproximationData` interface is **uninhabitable** for the regular module over
+`ℤ`, and that is proved twice here (`Scheme/GeneratorCounterexampleM5.lean`: the
+non-split `ℤ --2--> ℤ` gives a ghost; `Scheme/AffineNeemanAssembly.lean`: a nonzero
+`Ext¹(ℤ/2, ℤ)`), so nothing may require it of the structure sheaf.  The LP chain is
+therefore reproved under zero detection (`WeakApprox/Paper*M2.lean`), and the
+affine endpoint and the supported-base results are stated in that form.  The old
+`IsGenerator` interface is still in the tree — `WeakApprox/WeakApproximable.lean`,
+`WeakApprox/MainMinimal.lean` — because the abstract LP theorem is stated over it;
+`PaperWeakApproximationData.ofStrong` records that the old data forgets to the new,
+so the zero-detection results are the stronger ones.
 
 ### Statements must be faithful
 
