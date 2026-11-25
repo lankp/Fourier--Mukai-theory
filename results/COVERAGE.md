@@ -29,11 +29,11 @@ the end.
 
 | | P | C | H | T | D | — | total |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| theorems, propositions, corollaries, lemmas | 12 | 5 | 16 | 14 | – | 69 | 116 |
+| theorems, propositions, corollaries, lemmas | 14 | 5 | 15 | 14 | – | 68 | 116 |
 | definitions, setups, lemma-definitions | 1 | – | – | – | 13 | 5 | 19 |
 
-Twelve results are proved outright (Lemmas 2.3, 2.5, 7.2, 7.4, 7.6, 7.9, 7.11, B.4,
-B.5, B.7, B.10, C.1; 7.4, 7.6, 7.9 and C.1 (2) in `Cat`), as is Lemma-Definition 7.10 (in `Cat`), five conditionally (Lemmas 2.4, 2.25, 2.26, 5.4, and A.4 in the
+Fourteen results are proved outright (Lemmas 2.3, 2.5, 7.2, 7.4, 7.6, 7.9, 7.11, 7.12,
+7.17, B.4, B.5, B.7, B.10, C.1; 7.12 and 7.17 over abstract pseudofunctor data; 7.4, 7.6, 7.9 and C.1 (2) in `Cat`), as is Lemma-Definition 7.10 (in `Cat`), five conditionally (Lemmas 2.4, 2.25, 2.26, 5.4, and A.4 in the
 affine case).  Lemma 2.5 was briefly vacuous on 25 November 2026 and has been re-proved (see its row).  The 14 target rows are 10 distinct targets (1.2 = 12.9, 1.3 = 6.2 + 6.8,
 1.6 = 10.13, 1.7 = 11.4), none proved.  Sections 3, 4, 6, 8, 9, 10, 11 and 12
 have no proved result: everything there is a target, an interface field, or
@@ -157,11 +157,11 @@ absent.
 | Lem 7.9 | `lem:conjugates_are_functorial` | P (in `Cat`) | `lemma_7_9_id`, `lemma_7_9_comp`, from Mathlib's `conjugateEquiv_id`/`_comp`; does not use 7.8 |
 | Lem-Def 7.10 | `def:adj_equiv` | P (in `Cat`) | `Prelim/AdjunctionUnits.lean` (`lemmaDef_7_10`); the footnote's "representably fully faithful ⇔ fully faithful" is proved (`representablyFullyFaithful_iff`) |
 | Lem 7.11 | `lem:when_mate_correspondence_preserves_isos` | P | `isIso_mate`, `isIso_of_isIso_mate`, `isIso_mate_iff` |
-| Lem 7.12 | `lem:pseudofunctoriality_isos_are_conjugate` | H | `Scheme/Duality.lean` records the coherence |
-| Lem-Def 7.13 | `def:upper_star_lower_star_bc` | D | `theta` built as a mate in `Scheme/Duality.lean` |
-| Def 7.14 | `def:lower_star_upper_cross_bc` | D | as its conjugate |
-| Lem-Def 7.15 | `def:upper_star_upper_cross_bc` | D | `beta` from `theta⁻¹` |
-| Lem 7.17 | `lem:base_change_mates_pasting` | — | |
+| Lem 7.12 | `lem:pseudofunctoriality_isos_are_conjugate` | P (abstract) | `PullPushData.lemma_7_12` (`Prelim/BaseChangeMates.lean`), over abstract pseudofunctor data whose structure isos are conjugate (Lipman 3.6.2 / Lemma 2.13 as fields); not yet wired into `Scheme/Duality.lean`, where it is still a coherence field |
+| Lem-Def 7.13 | `def:upper_star_lower_star_bc` | D | `theta`, `thetaLeftMate`, `lemma_7_13` (the two descriptions agree) in `Prelim/BaseChangeMates.lean`; `theta` in `Scheme/Duality.lean` |
+| Def 7.14 | `def:lower_star_upper_cross_bc` | D | `xi`, with `isIso_xi` ⇔ `isIso_theta` (`Prelim/BaseChangeMates.lean`) |
+| Lem-Def 7.15 | `def:upper_star_upper_cross_bc` | D | `beta`, `betaLeftMate`, `lemma_7_15` (the two descriptions agree) (`Prelim/BaseChangeMates.lean`) |
+| Lem 7.17 | `lem:base_change_mates_pasting` | P (abstract) | `lemma_7_17_theta`, `lemma_7_17_xi` (`Prelim/BaseChangeMates.lean`), over the same abstract data; without Lemma 7.8, via Mathlib's `mateEquiv_vcomp` |
 | Lem 7.19 | `lem:etale_presen_bc` | — | algebraic spaces |
 | Lem 7.20 | `lem:characterize_tor-independence` | — | |
 | Lem 7.21 | `lem:tor-independence_and_beta_pasting` | — | |
