@@ -14,6 +14,7 @@ import FourierMukai.Paper.Statements
 import FourierMukai.Paper.InterfaceAudit
 import FourierMukai.Examples.Identity
 import FourierMukai.Scheme.Inputs
+import FourierMukai.Scheme.DerivedCoproducts
 import FourierMukai.Scheme.WeakApprox
 import FourierMukai.Scheme.OpenImmersion
 import FourierMukai.Scheme.Derived
@@ -21,10 +22,13 @@ import FourierMukai.Scheme.QCohSerre
 import FourierMukai.Scheme.QCohSerreExtension
 import FourierMukai.Scheme.Statements
 import FourierMukai.Scheme.Duality
+import FourierMukai.Scheme.Lemma54
 import FourierMukai.Scheme.PerfectRing
 import FourierMukai.Scheme.PerfectField
 import FourierMukai.Scheme.PerfectModel
+import FourierMukai.Scheme.PerfectModelConverse
 import FourierMukai.Scheme.Affine
+import FourierMukai.Scheme.AffineCoproducts
 import FourierMukai.Scheme.AffineRecollement
 import FourierMukai.Scheme.AffineMain
 import FourierMukai.Scheme.AffineDictionary

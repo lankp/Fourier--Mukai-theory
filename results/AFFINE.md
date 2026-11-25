@@ -28,7 +28,7 @@ with no residue; "proved from X" means no residue beyond the named input;
 | 2 | two models of `D_qc` | `D(A-Mod) ≌ D_qc(Spec A)` | Stacks 06Z0, 079W, 08D4+01XB | `Scheme/AffineQCoh.lean` (`affineRingCohomologyEquivalence`, `affineCohomologyComparisonOfInput`) | proved from `AffineDerivedGammaInput`; 01HV discharged (`affineDerivedGammaInputOfTildeExact`) |
 | 3 | quasicoherence is Serre | extensions of quasicoherent sheaves are quasicoherent | Stacks 01LA(6), 01IE, 01LA(3) | `Scheme/QCohSerre.lean`, `Scheme/QCohSerreExtension.lean`, `Scheme/Derived.lean` | kernels, cokernels, **coproducts**, biproducts and split extensions **proved**; arbitrary-scheme extension closure **derived** from the affine Lemma 01IE; the residue is 01IE itself, proved equivalent to affine extension closure |
 | 4 | `Perf` for rings | `Perf A` thick envelope; closure under `0`, shifts, biproducts, cones, retracts; `⊆ D^b`, `⊆ D^b_coh` (Noetherian) | — | `Scheme/PerfectRing.lean` | proved |
-| 5 | perfect = bounded projectives | `Perf A` = bounded complexes of f.g. projectives | Stacks 066T/09M1 | `Scheme/PerfectModel.lean` | `Perf ⇒? model` open (`BoundedProjectiveModelConverseInput`); `model ⇒ Perf` **proved for every ring** |
+| 5 | perfect = bounded projectives | `Perf A` = bounded complexes of f.g. projectives | Stacks 07LT (= 0657 + 066S) | `Scheme/PerfectModel.lean`, `Scheme/PerfectModelConverse.lean` | `model ⇒ Perf` **proved for every ring**; `Perf ⇒ model` reduced to the direct-summand case: `Perf A ≤ model ↔ model stable under retracts`, and the old converse input implies that retract closure.  The residue is exactly Stacks 066S |
 | 6 | compacts = perfect | compact objects of `D(A-Mod)` are `Perf A` | Stacks 09M1 (schemes, biconditional; affine case via 06Z0 and 07LT) or 0AED (algebraic spaces, with support) | `Scheme/PerfectRing.lean` (`CompactPerfectInput`), `Scheme/PerfectRingStacks.lean` (`CompactToPerfectInput`) | cited, and **only the implication `compact ⇒ Perf` is ever used** |
 | 7 | `Perf` bridge | ring envelope vs scheme-local 0BCJ model at `Spec A` | Stacks 0BCJ / 08CM / 06Z0 | `Scheme/PerfectModel.lean` (`perf_iff_affineThickGenerated`, under `AffineAllSheavesBridgeInput` + row 3), `Scheme/PerfectField.lean` (`perf_eq_dbcoh`) | proved over a field; in general reduced to row 5 plus the 06Z0 coherence fields |
 | 8 | affine recollement | `D(A[1/f]) → D(A) → D_Z(A)` as `WeakApprox.Recollement`, i.e. `D_Z` slot = open, `D_U` slot = `f`-power torsion | localization sequence (Gao–Psaroudakis 2.2(ii), BDS 2.3, Krause §4, Stacks 0BFF) | `Scheme/AffineRecollement.lean` | proved, modulo the named `AffineRecollementInput` fields |
@@ -38,6 +38,7 @@ with no residue; "proved from X" means no residue beyond the named input;
 | 12 | **affine Theorem 1.1** | `SatisfiesWA (D(A-Mod))` and the iff | rows 1–11 + row 6 | `Scheme/AffineMain.lean` (`affine_theorem_1_1_neeman_only`), `Scheme/PerfectRingStacks.lean` (`StacksGluing.affine_theorem_1_1_stacks07LT`) | proved modulo row 10; 09SR and the eventual-vanishing hypothesis (Stacks 09MB) removed, and the row-6 input reduced to its `compact ⇒ Perf` half, itself derived from the compact-to-model half of 07LT |
 | 13 | GL26 Lemma 2.25 | `Φ_{RΔ_*O} ≅ 𝟭` for affine `Y → S` | GL26 §2.5, Stacks 08IN | `Scheme/AffineDiagonal.lean` (`affine_lemma_2_25`) | proved |
 | 14 | weak approximability of `D_qc,Z(Spec A)` | the published input | Neeman, Acta 233 (2024) Thm 3.2 | `Scheme/Inputs.lean` | cited |
+| 15 | **GL26 Lemma 5.4** | `Lg₁*P₁ ⊗^L Lg₂*P₂` compactly generates `D_qc(Y₁ ×_S Y₂)` when `P_i` generate | GL26 §5 (Neeman 2023 Cor. 5.10) | `Scheme/Lemma54.lean` | the whole cover argument **proved** in abstract six-functor form, in the paper's `IsPaperGenerator` (zero-detection) sense; residue is the cover square itself: flat base change, `Lt*` conservative, `Rh₂*` conservative (quasi-affine), and the perfect/compact calculus |
 
 ## Row 10: why it is not instantiable here
 
@@ -62,11 +63,13 @@ The two standard routes are not available either:
   K-injectives need not be K-injective.
 
 What is needed is a Spaltenstein-style replacement theorem (every complex has a
-K-projective resolution), which is not in Mathlib.  Until it exists, every field
-of `SetupMainMinimal` that mentions `Coprod`, and `IsCompactAb` itself (it
+K-projective resolution), which is not in Mathlib; `Scheme/DerivedCoproducts.lean`
+now proves everything downstream of it.  Until it exists, every field of
+`SetupMainMinimal` that mentions `Coprod`, and `IsCompactAb` itself (it
 quantifies over coproducts in `D`) — and hence `WeakApproximationData
 (AffineD A)` and the `AffineDerivedCoproducts.hasCoproductsA` field — cannot
-even be *stated*.
+even be *stated*.  See (a') for the independent universe obstruction at the
+exact size that row 10 asks for.
 
 **(b) The aisle identities are Neeman-strength.**  The fields
 `tD_compactlyGenerated : tD.le 0 = Coprod (shiftTail (G'⟦m⟧ ⊞ R.jShriek.obj GU) 0)`
@@ -82,6 +85,20 @@ Proposition 4.8), so they cannot be produced from the ring data here.
 `t`-structure on the supported category `AffineDZ A f`, which is a full
 subcategory of `AffineD A`.  Both are again Neeman-strength, and both are blocked
 by (a) as well.
+
+**(a') A second, independent obstruction at the exact size of the field.**  Row 10
+asks for `HasCoproducts.{u+1} (AffineD A)` with `AffineD A = D(ModuleCat.{u} A)`.
+A `Type (u+1)`-indexed coproduct of `Type u`-small modules need not stay `Type u`-small,
+and indeed `HasCoproducts.{0} (ModuleCat.{0} A)` is synthesizable while
+`HasCoproducts.{1} (ModuleCat.{0} A)` is not (checked directly).  So Spaltenstein
+replacements would not by themselves close the field as written: either the
+categorical layer must index its coproducts in the smaller universe, or the module
+category must be resized with a comparison proved.  `Scheme/DerivedCoproducts.lean`
+proves the replacement-free coproduct construction (degreewise coproducts of
+K-projective complexes, no AB4 needed) and the reduction from a K-projective
+replacement datum to `HasCoproducts` of the derived category, and
+`Scheme/AffineCoproducts.lean` specializes both to `AffineD A`; neither claims the
+field at universe `u+1`.
 
 So the affine case cannot be *closed* by constructing the setup: what can be
 closed is the theorem scheme `Setup 4.4 ⟹ LP Theorem 1.1 ⟹ weak approximability`,

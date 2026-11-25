@@ -15,6 +15,7 @@ for f in \
   FourierMukai/Prelim/Lemma25.lean \
   FourierMukai/Paper/DerivedSetup.lean \
   FourierMukai/Scheme/Inputs.lean \
+  FourierMukai/Scheme/DerivedCoproducts.lean \
   FourierMukai/Scheme/WeakApprox.lean \
   FourierMukai/Scheme/OpenImmersion.lean \
   FourierMukai/Scheme/Derived.lean \
@@ -22,10 +23,13 @@ for f in \
   FourierMukai/Scheme/QCohSerreExtension.lean \
   FourierMukai/Scheme/Statements.lean \
   FourierMukai/Scheme/Duality.lean \
+  FourierMukai/Scheme/Lemma54.lean \
   FourierMukai/Scheme/PerfectRing.lean \
   FourierMukai/Scheme/PerfectModel.lean \
+  FourierMukai/Scheme/PerfectModelConverse.lean \
   FourierMukai/Scheme/PerfectField.lean \
   FourierMukai/Scheme/Affine.lean \
+  FourierMukai/Scheme/AffineCoproducts.lean \
   FourierMukai/Scheme/AffineRecollement.lean \
   FourierMukai/Scheme/AffineMain.lean \
   FourierMukai/Scheme/AffineDictionary.lean \

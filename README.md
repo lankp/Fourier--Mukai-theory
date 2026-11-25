@@ -44,6 +44,8 @@ precise obstruction and for the two ways past it.
 | `j_! ⊣ j^* ⊣ j_*` for an open immersion, `j_!` and `j^*` exact, the derived recollement interface | `OpenImmersion.lean` |
 | derived pushforward/pullback from Kan extensions; `RHom`, `⊗^L`, `f^×`, `f^!` interface with the projection formula and base change as a mate | `Duality.lean` |
 | the ten GL26 targets over Noetherian schemes as `Prop`-valued statements, with no vacuous hypotheses | `Statements.lean` |
+| **GL26 Lemma 5.4** (external tensor of compact generators on a fibre product), proved in abstract six-functor form: both shift/tensor/Hom adjunction chains, the affine-projection global-sections chain, the cover comparison, and the full zero-detection argument; residue is the cover square itself | `Lemma54.lean` |
+| derived-category coproducts: degreewise coproducts of K-projective complexes are K-projective (no AB4 needed) and are coproducts in `D(C)`, giving `HasCoproducts` from a K-projective replacement datum | `DerivedCoproducts.lean`, `AffineCoproducts.lean` |
 | the published inputs (Neeman; Stacks chapter 36 tags 0AED, 09M8, 0AEC, 09SR, 0BCJ, 09MB) as `Prop` templates with citations | `Inputs.lean` |
 
 **Affine results** (the current focus):
@@ -52,6 +54,8 @@ precise obstruction and for the two ways past it.
 |---|---|
 | `Perf A`, `Db A`, `Dbcoh A` for a ring: closure under `0`, shifts, biproducts, cones, retracts; `Perf ⊆ D^b`; `Perf ⊆ D^b_coh` for Noetherian `A`; `Perf k = D^b_coh k` over a field, proved by truncation induction | `PerfectRing.lean`, `PerfectField.lean` |
 | bounded complexes of finitely generated projective modules are perfect, for **every** commutative ring (Stacks 066T, `sorry`-free, no Noetherian hypothesis) | `PerfectModel.lean` |
+| the converse reduced to one Stacks lemma: `Perf A ≤ model ↔ model stable under retracts`, with the model class proved triangulated, K-projective and closed under cones; residue is exactly 066S | `PerfectModelConverse.lean` |
+| extension closure of quasicoherent sheaves: kernels, cokernels, coproducts, biproducts and split extensions proved; arbitrary-scheme closure derived from the affine Lemma 01IE, proved equivalent to it | `QCohSerreExtension.lean` |
 | the affine dictionary `D(A-Mod) ≌ D(QCoh(Spec A))`, from a general derived-transport theorem for equivalences of abelian categories | `AffineDictionary.lean` |
 | the two models of `D_qc(Spec A)`: `D(A-Mod) ≌ D_qc(Spec A)`, a *construction* from the `tilde ⊣ RΓ` input rather than a black-box equivalence, with `tilde` exactness (Stacks 01HV) now proved rather than cited | `AffineQCoh.lean` |
 | the affine recollement `D(A[1/f]) → D(A) → D_Z(A)` in the GL26/LP orientation: power-torsion Serre class, `Lj^* i_* ≅ 0`, `RΓ_Z Rj_* ≅ 0`, both gluing triangles | `AffineRecollement.lean` |
