@@ -18,6 +18,7 @@ import FourierMukai.Scheme.WeakApprox
 import FourierMukai.Scheme.OpenImmersion
 import FourierMukai.Scheme.Derived
 import FourierMukai.Scheme.QCohSerre
+import FourierMukai.Scheme.QCohSerreExtension
 import FourierMukai.Scheme.Statements
 import FourierMukai.Scheme.Duality
 import FourierMukai.Scheme.PerfectRing

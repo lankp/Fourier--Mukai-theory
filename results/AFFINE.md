@@ -26,7 +26,7 @@ with no residue; "proved from X" means no residue beyond the named input;
 |---|---|---|---|---|---|
 | 1 | affine dictionary | `D(A-Mod) ≌ D(QCoh(Spec A))` | — | `Scheme/AffineDictionary.lean` (`affineDerivedEquivalence`) | proved |
 | 2 | two models of `D_qc` | `D(A-Mod) ≌ D_qc(Spec A)` | Stacks 06Z0, 079W, 08D4+01XB | `Scheme/AffineQCoh.lean` (`affineRingCohomologyEquivalence`, `affineCohomologyComparisonOfInput`) | proved from `AffineDerivedGammaInput`; 01HV discharged (`affineDerivedGammaInputOfTildeExact`) |
-| 3 | quasicoherence is Serre | extensions of quasicoherent sheaves are quasicoherent | Stacks 01LA | `Scheme/QCohSerre.lean`, `Scheme/Derived.lean` | kernels and cokernels **proved**; extension closure open, and it alone is what `D_qc` needs |
+| 3 | quasicoherence is Serre | extensions of quasicoherent sheaves are quasicoherent | Stacks 01LA(6), 01IE, 01LA(3) | `Scheme/QCohSerre.lean`, `Scheme/QCohSerreExtension.lean`, `Scheme/Derived.lean` | kernels, cokernels, **coproducts**, biproducts and split extensions **proved**; arbitrary-scheme extension closure **derived** from the affine Lemma 01IE; the residue is 01IE itself, proved equivalent to affine extension closure |
 | 4 | `Perf` for rings | `Perf A` thick envelope; closure under `0`, shifts, biproducts, cones, retracts; `⊆ D^b`, `⊆ D^b_coh` (Noetherian) | — | `Scheme/PerfectRing.lean` | proved |
 | 5 | perfect = bounded projectives | `Perf A` = bounded complexes of f.g. projectives | Stacks 066T/09M1 | `Scheme/PerfectModel.lean` | `Perf ⇒? model` open (`BoundedProjectiveModelConverseInput`); `model ⇒ Perf` **proved for every ring** |
 | 6 | compacts = perfect | compact objects of `D(A-Mod)` are `Perf A` | Stacks 09M1 (schemes, biconditional; affine case via 06Z0 and 07LT) or 0AED (algebraic spaces, with support) | `Scheme/PerfectRing.lean` (`CompactPerfectInput`), `Scheme/PerfectRingStacks.lean` (`CompactToPerfectInput`) | cited, and **only the implication `compact ⇒ Perf` is ever used** |
@@ -97,7 +97,30 @@ and compacts = perfect) as the external input.  The next real advance is either
   sense.  This is the cheaper route and would make rows 10–12 unconditional
   modulo rows 5–7.
 
-## Row 3: what is left, and one route that does not work
+## Row 3: the exact residue after `QCohSerreExtension.lean`
+
+`Scheme/QCohSerreExtension.lean` closes the categorical side of Stacks 01IE.  The
+one remaining statement is `AffineExtensionSurjectivityInput`: for a short exact
+sequence of `O_{Spec R}`-modules whose *outer* terms are quasicoherent, global
+sections are surjective on the right map.  That is exactly the assertion which
+01IE's own proof reduces to (`0 → M₁ → M₂ → M₃ → 0` exact, where `M_i = Γ(F_i)`),
+and the file proves the converse, so
+
+  `AffineExtensionSurjectivityInput ↔ ∀ R, (quasiCoherent (Spec R)).IsClosedUnderExtensions`,
+
+i.e. the residue is the affine case and nothing more.  From it:
+extension closure on every scheme (`quasiCoherent_isClosedUnderExtensions`, via
+the affine-local criterion and `X.isoSpec`), hence `QuasicoherentExtensionInput`
+and triangulated `D_qc` (`isDQCohTriangulatedOfAffineExtensionSurjectivityInput`).
+What 01IE's proof still needs, and this project does not have, is the
+quasi-compact `D(f)`/`D(g)` patching: for `m ∈ Γ(F₃)`, the ideal
+`I = {f | f·m lifts}` is shown to be all of `R` by lifting locally at each prime,
+using quasi-compactness of `V(f)` and the sheaf property.  No cohomology is
+needed, so this is a bounded piece of sheaf theory rather than a new theorem.
+
+### The route that does not work
+
+
 
 `Scheme/QCohSerre.lean` proves, unconditionally: quasicoherence is affine-local
 (01BD), `tilde` is exact (00NX), quasicoherent sheaves are closed under kernels

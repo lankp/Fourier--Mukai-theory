@@ -27,7 +27,11 @@ assembles the strong interface from three explicitly named 01LA fields, so a
 future proof of extension closure plugs in without touching `Derived.lean`.
 
 Not proved: extension closure itself, and arbitrary subobject or quotient
-closure.  No claim of full 01LA is made.
+closure.  No claim of full 01LA is made.  `QCohSerreExtension.lean` carries the
+reduction further: it proves extension closure on an arbitrary scheme from the
+single affine statement of Stacks 01IE (Lemma 26.7.8), proves that statement
+equivalent to affine extension closure, and proves coproduct, biproduct and
+split-extension closure with no input at all.
 
 Found by a member of the Ultramath run `smwv1bkrk` (direction AF1).
 -/

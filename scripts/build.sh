@@ -19,6 +19,7 @@ for f in \
   FourierMukai/Scheme/OpenImmersion.lean \
   FourierMukai/Scheme/Derived.lean \
   FourierMukai/Scheme/QCohSerre.lean \
+  FourierMukai/Scheme/QCohSerreExtension.lean \
   FourierMukai/Scheme/Statements.lean \
   FourierMukai/Scheme/Duality.lean \
   FourierMukai/Scheme/PerfectRing.lean \
