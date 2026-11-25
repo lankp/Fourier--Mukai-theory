@@ -131,7 +131,7 @@ auditable on its own.
 
 | path | what it does | where it runs |
 |---|---|---|
-| `lake build` | Lake + `lake exe cache get`; builds `FourierMukai`, `WeakApprox`, `StatementCheck` | CI ([`ci/ci.yml`](ci/ci.yml), installed at `.github/workflows/ci.yml`) |
+| `lake build` | Lake + `lake exe cache get`; builds `FourierMukai`, `WeakApprox`, `StatementCheck` | CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) |
 | `./scripts/build.sh` | calls `lean` directly in dependency order, against a prebuilt read-only Mathlib on `LEAN_PATH` | the development VM, where there is no writable package directory |
 
 Both use the same sources, the toolchain pinned by `lean-toolchain` (Lean
@@ -142,10 +142,13 @@ in `[leanOptions]`.
 
 ### CI
 
-The workflow is [`ci/ci.yml`](ci/ci.yml) — written against GitHub Actions, kept
-one `git mv` away from active because this project's GitHub connection has no
-`workflows` permission and GitHub refuses a push that creates
-`.github/workflows/*`.  It runs three things:
+The workflow is [`.github/workflows/ci.yml`](.github/workflows/ci.yml), live on
+push to every branch; [`ci/ci.yml`](ci/ci.yml) is a byte-identical mirror kept
+for editing, because this project's GitHub connection cannot itself write under
+`.github/workflows/`.  Its first run built the whole tree on a GitHub runner with
+every step green (`lake build`, the axiom audit, the artifact upload); the
+statement-check job in that run was cancelled by hand and has not yet run in CI.
+It runs three things:
 
 1. **Lake build** — elan, `lake update`, `lake exe cache get`, `lake build`, then
    `lake env lean FourierMukai/Audit.lean`, which prints every headline
