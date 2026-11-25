@@ -53,6 +53,7 @@ for f in \
   FourierMukai/Scheme/AffineLocalCohomology.lean \
   FourierMukai/Scheme/AffineGluing.lean \
   FourierMukai/Scheme/AffineLocalCohomologySupport.lean \
+  FourierMukai/Scheme/AffineMixedZero.lean \
   FourierMukai/Scheme/AffineSupportedAssembly.lean \
   FourierMukai/Scheme/AffineMain.lean \
   FourierMukai/Scheme/AffineDictionary.lean \
