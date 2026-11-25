@@ -156,14 +156,24 @@ precomposition together with uniqueness of maps out of an orthogonal triangle.
 from those four.
 
 So the entire residue of the recollement is: **`jUpper` with `jStar ⊣ jUpper`, and
-`iShriek` with `iLowerAdj`**.  `iShriek` is built (coextension); `jUpper` is reduced
-to one tensor–Hom adjunction on `RΓ_Z(A)` (Stacks 0A6R).
+`iShriek` with `iLowerAdj`** — and, as the correction below explains, both are
+instances of one closed structure rather than of two independent theorems.
 
-**`iShriek` is now built.** `Scheme/AffineIShriek.lean` takes the right adjoint of
-restriction of scalars to be *coextension*: `derivedCoextendScalars A f`, with
-`derivedRestrictionCoextendAdjunction : derivedRestrictionScalars A f ⊣
-derivedCoextendScalars A f`, and its `CommShift` and `IsTriangulated` derived from
-the adjunction rather than assumed.
+**`iShriek` is NOT built — correction.**  `Scheme/AffineIShriek.lean` constructs
+the right adjoint of derived restriction of scalars as *coextension* and proves the
+adjunction, but only under the instance
+`PreservesFiniteColimits (coextendScalars (A → A[1/f]))`, as its own docstring says
+("a conditional special case, not a construction for an arbitrary localization").
+That instance asks `Hom_A(A[1/f], -)` to be right exact, i.e. `A[1/f]` to be a
+projective `A`-module; for `A = ℤ`, `f = 2` this fails, since `ℤ[1/2]` is
+torsion-free of rank 1 and not free, hence not projective over the PID `ℤ` (the
+last step is prose, not Lean).  So the coextension route does not give `iShriek`, and
+an earlier version of this file wrongly said it did.
+
+What `iShriek` actually is: `RHom_A(A[1/f], -)`, the total right derived functor of
+coextension, which is the same derived-Hom machinery the `jUpper` adjunction needs.
+So the recollement's residue is not two independent adjunctions but **one closed
+structure**, consumed twice.
 
 **Assembly and the exact residue.** `Scheme/AffineRecollementAssembly.lean` reduces
 `AffineRecollementInput` to a structure with exactly seven fields — `iShriek`,
