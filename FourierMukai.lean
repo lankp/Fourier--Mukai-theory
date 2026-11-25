@@ -117,6 +117,13 @@ import FourierMukai.Scheme.PerfectCompactThick
 import FourierMukai.Scheme.CompactToPerfect
 import FourierMukai.Scheme.CompactBoundedAbove
 import FourierMukai.Scheme.CompactToPerfectBoundedFree
+import FourierMukai.Scheme.M4FiniteFreeBody
+import FourierMukai.Scheme.M4StageFiniteFree
+import FourierMukai.Scheme.M4ProjectionFiniteFree
+import FourierMukai.Scheme.M4TransitionFiniteFree
+import FourierMukai.Scheme.M4CompactM
+import FourierMukai.Scheme.M4Improvement
+import FourierMukai.Scheme.M4Unconditional
 import FourierMukai.Scheme.Affine066S
 
 /-!
