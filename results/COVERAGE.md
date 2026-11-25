@@ -29,11 +29,11 @@ the end.
 
 | | P | C | H | T | D | — | total |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| theorems, propositions, corollaries, lemmas | 5 | 5 | 16 | 14 | – | 76 | 116 |
+| theorems, propositions, corollaries, lemmas | 8 | 5 | 16 | 14 | – | 73 | 116 |
 | definitions, setups, lemma-definitions | 1 | – | – | – | 13 | 5 | 19 |
 
-Five results are proved outright (Lemmas 2.3, 2.5, 7.2, 7.11, C.1; 7.2 is Mathlib's
-`mateEquiv`; C.1 (2) in `Cat`), as is Lemma-Definition 7.10 (in `Cat`), five conditionally (Lemmas 2.4, 2.25, 2.26, 5.4, and A.4 in the
+Eight results are proved outright (Lemmas 2.3, 2.5, 7.2, 7.4, 7.6, 7.9, 7.11, C.1;
+7.4, 7.6, 7.9 and C.1 (2) in `Cat`), as is Lemma-Definition 7.10 (in `Cat`), five conditionally (Lemmas 2.4, 2.25, 2.26, 5.4, and A.4 in the
 affine case).  The 14 target rows are 10 distinct targets (1.2 = 12.9, 1.3 = 6.2 + 6.8,
 1.6 = 10.13, 1.7 = 11.4), none proved.  Sections 3, 4, 6, 8, 9, 10, 11 and 12
 have no proved result: everything there is a target, an interface field, or
@@ -148,13 +148,13 @@ absent.
 | # | label | status | note |
 |---|---|---|---|
 | Setup 7.1 | `setup:mates` | D | Mathlib adjunctions |
-| Lem 7.2 | `lem:mates_bijection` | P | `Prelim/Mates.lean`; definitionally Mathlib's `mateEquiv`.  The Hom-set square ("7.1(1)" in the file) is listed there as still to add |
+| Lem 7.2 | `lem:mates_bijection` | P | (2): `Prelim/Mates.lean`, definitionally Mathlib's `mateEquiv`; (1), the Hom-set square: `mates_hom_square` (`Prelim/MatesCalculus.lean`) |
 | Def 7.3 | | D | `mate` in `Prelim/Mates.lean` |
-| Lem 7.4 | `lem:morph_adj` | — | |
-| Lem 7.6 | `lem:taking_conjugates_is_taking_mates_twice` | — | Mathlib has `conjugateEquiv` |
+| Lem 7.4 | `lem:morph_adj` | P (in `Cat`) | `lemma_7_4` (`Prelim/MatesCalculus.lean`), all four conditions as a `List.TFAE` |
+| Lem 7.6 | `lem:taking_conjugates_is_taking_mates_twice` | P (in `Cat`) | `lemma_7_6`; it is Mathlib's `iterated_mateEquiv_conjugateEquiv` |
 | Def 7.7 | `def:mates_double_cat` | — | |
 | Lem 7.8 | `lem:mates_double_cat_iso` | — | `Prelim/Mates.lean` cites "Lemma 7.8(2)" for what is now 7.11 |
-| Lem 7.9 | `lem:conjugates_are_functorial` | — | |
+| Lem 7.9 | `lem:conjugates_are_functorial` | P (in `Cat`) | `lemma_7_9_id`, `lemma_7_9_comp`, from Mathlib's `conjugateEquiv_id`/`_comp`; does not use 7.8 |
 | Lem-Def 7.10 | `def:adj_equiv` | P (in `Cat`) | `Prelim/AdjunctionUnits.lean` (`lemmaDef_7_10`); the footnote's "representably fully faithful ⇔ fully faithful" is proved (`representablyFullyFaithful_iff`) |
 | Lem 7.11 | `lem:when_mate_correspondence_preserves_isos` | P | `isIso_mate`, `isIso_of_isIso_mate`, `isIso_mate_iff` |
 | Lem 7.12 | `lem:pseudofunctoriality_isos_are_conjugate` | H | `Scheme/Duality.lean` records the coherence |
