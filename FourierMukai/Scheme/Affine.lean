@@ -5,10 +5,10 @@ import Mathlib.Algebra.Category.ModuleCat.Abelian
 import Mathlib.Algebra.Homology.DerivedCategory.TStructure
 
 /-!
-# GL26 Theorem 1.1 for affine schemes
+# LP26 Theorem 1.1 for affine schemes
 
 `AffineD A` is `D(A-Mod)`, the affine model of `D_qc(Spec A)`, with its canonical
-`t`-structure.  `affine_theorem_1_1` states LP/GL26 Theorem 1.1 in that model:
+`t`-structure.  `affine_theorem_1_1` states LP26 Theorem 1.1 in that model:
 
   `SatisfiesWA (AffineD A) ↔ AffineEventualSelfVanishing S.G'`
 

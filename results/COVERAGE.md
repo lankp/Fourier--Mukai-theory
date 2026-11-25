@@ -201,7 +201,7 @@ absent.
 | Def 12.1 | `def:fm_locus` | D | `FM`, `fm` |
 | Lem 12.2 | `lem:independence_for_rep_with_ff_or_eq` | T | `lemma_12_2Statement` |
 | Thm 12.3 | `thm:openness_for_equivalence_fullfaithful_dbcoh` | T | `theorem_12_3Statement` |
-| Cor 12.4 | `cor:deform` | T | `corollary_12_10Statement` (numbered 12.10 in the tree) |
+| Cor 12.4 | `cor:deform` | T | `corollary_12_4Statement` |
 | Cor 12.5 | `cor:FM_partners_detects_surjectivity` | — | |
 | Lem 12.7 | | — | |
 | Prop 12.8 | `prop:relatively_perfect_locus` | H | residue of `GL26Theorem12Reduction.lean` (openness of `CanonicalRelativePerfectLocus`) |
@@ -260,23 +260,14 @@ The geometric §5 is not; the tree records it in `results/WEAK_APPROX.md`.
 | Prop 5.8 | `prop:A8` | — | the affine recollement (`AffineRecollement.lean`) is the input it uses |
 | Lem 5.9 | `lem:characterize_T-_c` | — | |
 
-## Numbering that disagrees with the current GL26 manuscript
+## Numbering that disagreed with the current GL26 manuscript
 
-The tree mostly uses the current numbering.  These places do not:
-
-| in the tree | current manuscript | places |
-|---|---|---|
-| "GL26 Theorem 1.1" | LP26 Theorem 1.1 (GL26 1.1 is a Question) | `README.md` (3×), `StatementCheck.lean:52`, `Scheme/Affine.lean:8,11`, `results/VERIFICATION.md:264` |
-| Corollary 12.10 (`cor:deform`) | Corollary 12.4 | `Paper/Statements.lean:129`, `Scheme/Statements.lean:603` (and the name `corollary_12_10Statement`), `GL26Theorem12Reduction.lean:39,259`, `results/GL26_SCHEME_DEPENDENCE.md:116` |
-| Theorem 6.2 | Proposition 6.2 | `Paper/Statements.lean:47`, `Scheme/Statements.lean:556` |
-| Theorem 11.4 | Proposition 11.4 | `Paper/Statements.lean:230`, `Scheme/Statements.lean:491,785` |
-| Lemma 7.8(2) (mates of isomorphisms) | Lemma 7.11 | `Prelim/Mates.lean:159–184` |
-| Lemma 7.1(1), 7.2(2) | Lemma 7.2 | `Prelim/Mates.lean` |
-| Definition B.11 | Definition B.9 | `Prelim/Triangulated.lean:97` |
-
-`corollary_12_10Statement` is not pinned in `results/statement-baseline.txt`, so
-renaming it does not touch the statement check.  `StatementCheck.lean:52` is a
-section heading, so correcting it changes no pinned output either.
+Corrected on 25 November 2026: "GL26 Theorem 1.1" → LP26 Theorem 1.1 (README,
+`StatementCheck.lean`, `Scheme/Affine.lean`, `VERIFICATION.md`); Corollary 12.10 →
+12.4 for `cor:deform`, including the rename `corollary_12_10Statement` →
+`corollary_12_4Statement` (not pinned); Theorems 6.2 and 11.4 → Propositions; the
+mates file's 7.1/7.8 → 7.2/7.11; Definition B.11 → B.9.  `results/REPORT.md` is a
+historical report and keeps the numbering of the version it was written against.
 
 ## Verification of this map
 

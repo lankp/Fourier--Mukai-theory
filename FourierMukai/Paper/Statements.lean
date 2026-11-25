@@ -44,7 +44,7 @@ section Perfectness
 
 variable {DX DY : Type u} [Category.{v} DX] [Category.{v} DY]
 
-/-- **Theorem 1.3** (paper) = Theorem 6.2 + Proposition 6.8 (`thm:stacky_all_coincide`).
+/-- **Theorem 1.3** (paper) = Proposition 6.2 + Proposition 6.8 (`thm:stacky_all_coincide`).
 
 For a proper morphism `f : Y ⟶ X` of Noetherian algebraic spaces and a
 pseudocoherent `E ∈ D_qc(Y)`, the following are equivalent:
@@ -126,7 +126,7 @@ theorem theorem_1_2_open (hX : X.IsProperFlat) {K : X.DP}
     IsOpen (X.FM K) := by
   sorry
 
-/-- **Theorem 1.2(2) / Corollary 12.10** (`cor:deform`): `FM` and `fm` commute with
+/-- **Theorem 1.2(2) / Corollary 12.4** (`cor:deform`): `FM` and `fm` commute with
 arbitrary Noetherian base change:
 `t^{-1}(FM(K)) = FM(L(t')^*K)`. -/
 theorem theorem_1_2_baseChange (hX : X.IsProperFlat) {K : X.DP}
@@ -227,7 +227,7 @@ end Convolution
 
 /-! ### Elliptic fibrations (Section 11) -/
 
-/-- **Theorem 1.7 / Theorem 11.4** (`thm:elliptic_fibration_autoequivalence`): if
+/-- **Theorem 1.7 / Proposition 11.4** (`thm:elliptic_fibration_autoequivalence`): if
 `f : Y ⟶ X` is an elliptic `X`-fibration and `I_Δ` is the ideal sheaf of the
 diagonal, then `Φ_{I_Δ}` induces an autoequivalence of `D^b_coh(Y)`.
 

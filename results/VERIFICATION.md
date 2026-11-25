@@ -261,7 +261,7 @@ scripts/check_statements.sh            # check against the baseline
 scripts/check_statements.sh --update   # re-record after an intended change
 ```
 
-17 declarations are pinned: GL26 Theorem 1.1 (affine, three variants), Lemmas
+17 declarations are pinned: LP26 Theorem 1.1, affine case (three variants), Lemmas
 2.25 (six forms, including the no-proper-flat one), 2.26 and 5.4, LP Theorem 1.1
 (two forms), and the four supported-base results.  All 17 print
 `[propext, Classical.choice, Quot.sound]`; the last run recorded 17 axiom lines

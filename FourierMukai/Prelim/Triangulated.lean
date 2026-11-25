@@ -94,7 +94,7 @@ def id (F : C ⥤ D) [F.CommShift ℤ] : Trinatural F F where
   triangle_lift T _ := ⟨𝟙 _, rfl, rfl, rfl⟩
 
 /-- Vertical composition of trinatural transformations (the composition of
-2-cells in the 2-category `Triang` of the paper, Definition B.11). -/
+2-cells in the 2-category `Triang` of the paper, Definition B.9). -/
 def comp {F G H : C ⥤ D} [F.CommShift ℤ] [G.CommShift ℤ] [H.CommShift ℤ]
     (η : Trinatural F G) (θ : Trinatural G H) : Trinatural F H where
   toNatTrans := NatTrans.vcomp η.toNatTrans θ.toNatTrans
