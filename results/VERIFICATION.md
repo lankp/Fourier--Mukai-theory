@@ -163,6 +163,11 @@ key did not move between runs — the two cache entries share one key — so run
 full rebuild came from something else, and that is still unidentified.  What is
 established is the effect: run 10 restored the larger cache and built in 3s.
 
+Committing the manifest does not break the *installed* workflow, which still
+runs `lake update`: runs 11 and 12 (commit `e79850c`, `main` and `formalization`)
+are green, 3m03s and 2m37s, with `Resolve dependencies` at 89s and 72s — the step
+the update to `ci/ci.yml` removes.
+
 The statement check needs exactly the oleans the build produces.  A second job
 bought a second `lake update`, a second Mathlib cache fetch and an artifact
 hand-off, for no parallelism — the check always waits for the build.  Measured on
