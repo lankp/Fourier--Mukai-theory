@@ -29,6 +29,7 @@ import FourierMukai.Scheme.ProjectiveModel
 import FourierMukai.Scheme.SmallObjectPresentable
 import FourierMukai.Scheme.GeneratingCofibrations
 import FourierMukai.Scheme.WeakApprox
+import FourierMukai.Scheme.SchemeGluingReduction
 import FourierMukai.Scheme.OpenImmersion
 import FourierMukai.Scheme.Derived
 import FourierMukai.Scheme.QCohSerre

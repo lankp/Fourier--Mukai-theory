@@ -30,6 +30,7 @@ for f in \
   FourierMukai/Scheme/SmallObjectPresentable.lean \
   FourierMukai/Scheme/GeneratingCofibrations.lean \
   FourierMukai/Scheme/WeakApprox.lean \
+  FourierMukai/Scheme/SchemeGluingReduction.lean \
   FourierMukai/Scheme/OpenImmersion.lean \
   FourierMukai/Scheme/Derived.lean \
   FourierMukai/Scheme/QCohSerre.lean \
