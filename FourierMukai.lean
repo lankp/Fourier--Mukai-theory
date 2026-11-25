@@ -131,6 +131,7 @@ import FourierMukai.Scheme.M6LargeInputs
 import FourierMukai.Scheme.M6SmallBoundedAbove
 import FourierMukai.Scheme.M6Transport
 import FourierMukai.Scheme.M6Unconditional
+import FourierMukai.Scheme.SchemeNeemanAffineInstance
 import FourierMukai.Scheme.Affine066S
 
 /-!

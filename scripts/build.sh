@@ -132,6 +132,7 @@ for f in \
   FourierMukai/Scheme/M6SmallBoundedAbove.lean \
   FourierMukai/Scheme/M6Transport.lean \
   FourierMukai/Scheme/M6Unconditional.lean \
+  FourierMukai/Scheme/SchemeNeemanAffineInstance.lean \
   FourierMukai/Scheme/Affine066S.lean \
   FourierMukai/Paper/Statements.lean \
   FourierMukai/Paper/InterfaceAudit.lean \
