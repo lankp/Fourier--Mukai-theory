@@ -128,6 +128,10 @@ for f in \
   FourierMukai/Scheme/SmallHomTransportM5.lean \
   FourierMukai/Scheme/SmallAffineBridgeM5.lean \
   FourierMukai/Scheme/SmallCompactToPerfectM5.lean \
+  FourierMukai/Scheme/M6LargeInputs.lean \
+  FourierMukai/Scheme/M6SmallBoundedAbove.lean \
+  FourierMukai/Scheme/M6Transport.lean \
+  FourierMukai/Scheme/M6Unconditional.lean \
   FourierMukai/Scheme/Affine066S.lean \
   FourierMukai/Paper/Statements.lean \
   FourierMukai/Paper/InterfaceAudit.lean \

@@ -127,6 +127,10 @@ import FourierMukai.Scheme.M4Unconditional
 import FourierMukai.Scheme.SmallHomTransportM5
 import FourierMukai.Scheme.SmallAffineBridgeM5
 import FourierMukai.Scheme.SmallCompactToPerfectM5
+import FourierMukai.Scheme.M6LargeInputs
+import FourierMukai.Scheme.M6SmallBoundedAbove
+import FourierMukai.Scheme.M6Transport
+import FourierMukai.Scheme.M6Unconditional
 import FourierMukai.Scheme.Affine066S
 
 /-!
