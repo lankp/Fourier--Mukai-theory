@@ -18,6 +18,10 @@ for f in \
   FourierMukai/Scheme/DerivedCoproducts.lean \
   FourierMukai/Scheme/KProjectiveResolution.lean \
   FourierMukai/Scheme/SpecialDirectLimits.lean \
+  FourierMukai/Scheme/SpaltensteinStage.lean \
+  FourierMukai/Scheme/SpaltensteinIteration.lean \
+  FourierMukai/Scheme/SpaltensteinColimit.lean \
+  FourierMukai/Scheme/SpaltensteinReplacement.lean \
   FourierMukai/Scheme/ProjectiveModel.lean \
   FourierMukai/Scheme/SmallObjectPresentable.lean \
   FourierMukai/Scheme/GeneratingCofibrations.lean \
