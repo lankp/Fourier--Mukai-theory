@@ -34,7 +34,7 @@ namespace RelativeWeakApprox
 open CategoryTheory CategoryTheory.Limits
 open CategoryTheory.Pretriangulated CategoryTheory.Triangulated
 
-universe v uZ uD uU
+universe v u uZ uD uU
 
 section BoundMonotonicity
 

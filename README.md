@@ -134,8 +134,11 @@ auditable on its own.
 | `lake build` | Lake + `lake exe cache get`; builds `FourierMukai`, `WeakApprox`, `StatementCheck` | CI ([`ci/ci.yml`](ci/ci.yml), installed at `.github/workflows/ci.yml`) |
 | `./scripts/build.sh` | calls `lean` directly in dependency order, against a prebuilt read-only Mathlib on `LEAN_PATH` | the development VM, where there is no writable package directory |
 
-Both use the same sources and the toolchain pinned by `lean-toolchain`
-(Lean 4.33.1) and `lakefile.toml` (Mathlib `v4.33.1`).
+Both use the same sources, the toolchain pinned by `lean-toolchain` (Lean
+4.33.1) and Mathlib `v4.33.1` from `lakefile.toml`, and the same strict
+elaboration options — `autoImplicit = false`, `relaxedAutoImplicit = false`,
+`maxSynthPendingDepth = 3` — the script passing them with `-D` and the lakefile
+in `[leanOptions]`.
 
 ### CI
 
@@ -172,9 +175,10 @@ proof still compiles.  What it does not establish is that the proofs are correct
 against a trusted kernel — that is the `lean4export` + `comparator` step of the
 BridgelandStability setup, and it is the natural next step here once a standalone
 challenge library exists.  [`results/VERIFICATION.md`](results/VERIFICATION.md)
-records the measured details, including why the strict `autoImplicit = false`
-option block inherited from AxiomMath/Stacks cannot be enabled on the current
-sources (9 modules, `autoImplicit` alone).
+records the measured details: the strict `autoImplicit = false` block inherited
+from AxiomMath/Stacks is now enforced on both build paths, nine modules were
+given explicit binders to satisfy it, and the 502 declarations involved were
+checked to have byte-identical elaborated signatures before and after.
 
 ### The protocol used for every claim in this repository
 
@@ -298,11 +302,12 @@ scripts/check_statements.sh
 ```
 
 `lake-manifest.json` is not committed; the first `lake update` creates it, and
-committing it afterwards freezes the resolution.  The `[leanOptions]` block in
-`lakefile.toml` is inherited from the AxiomMath/Stacks build configuration; note
-that `autoImplicit = false` is **not** currently supported by the sources and is
-left disabled, so the Lake build uses Lean's defaults and matches
-`scripts/build.sh`.
+committing it afterwards freezes the resolution.  The `[leanOptions]` block is
+inherited from the AxiomMath/Stacks build configuration and is enforced:
+`autoImplicit = false`, `relaxedAutoImplicit = false`,
+`maxSynthPendingDepth = 3`.  `scripts/build.sh` passes the same three with `-D`,
+so the two paths elaborate identically; a module that relies on Lean's automatic
+implicit binders fails both.
 
 ### Without Lake (the development VM)
 

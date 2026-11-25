@@ -268,7 +268,7 @@ open RelativeWeakApprox
 open CategoryTheory CategoryTheory.Limits
 open CategoryTheory.Pretriangulated CategoryTheory.Triangulated
 
-universe u
+universe u v
 
 noncomputable section
 

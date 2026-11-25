@@ -56,6 +56,8 @@ structure OpenCoverInductionData (P : Scheme.{u} → Prop) : Prop where
     IsCompact (U : Set X) → IsCompact (V : Set X) →
     P U → P V → P ((U ⊓ V : X.Opens) : Scheme.{u}) → P ((U ⊔ V : X.Opens) : Scheme.{u})
 
+variable {P : Scheme.{u} → Prop}
+
 /-- Build the local-open gluing input from the more familiar version in which
 `U` and `V` cover the ambient scheme.  All the isomorphisms below are the
 canonical isomorphisms between an open immersion and its range. -/

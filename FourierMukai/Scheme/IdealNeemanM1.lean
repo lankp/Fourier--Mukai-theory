@@ -17,6 +17,8 @@ namespace RelativeFM.FiniteKoszulM1
 
 open RelativeFM RelativeWeakApprox
 
+universe u
+
 /-- All exponents one. -/
 def unitExponents (A : Type u) [CommRing A] (fs : List A) : List (A × ℕ) :=
   fs.map (fun a => (a, 1))

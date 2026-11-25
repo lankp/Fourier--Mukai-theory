@@ -210,6 +210,7 @@ for f in \
   WeakApprox/CompactThick.lean \
   WeakApprox.lean ; do
   echo "== compiling $f"
-  lean -o "${f%.lean}.olean" "$f"
+  lean -DautoImplicit=false -DrelaxedAutoImplicit=false \
+    -DmaxSynthPendingDepth=3 -o "${f%.lean}.olean" "$f"
 done
 echo "all modules compiled"

@@ -151,7 +151,7 @@ namespace RelativeWeakApprox
 open CategoryTheory CategoryTheory.Limits
 open CategoryTheory.Pretriangulated CategoryTheory.Triangulated
 
-universe uZ uD
+universe uZ uD v u
 
 noncomputable section
 
@@ -337,6 +337,8 @@ namespace RelativeWeakApprox
 open CategoryTheory CategoryTheory.Limits
 open CategoryTheory.Pretriangulated CategoryTheory.Triangulated
 
+universe u v uD
+
 noncomputable section
 
 variable {C : Type u} [Category.{v} C] [HasZeroObject C] [HasShift C ℤ]
@@ -404,7 +406,7 @@ namespace RelativeWeakApprox
 open CategoryTheory CategoryTheory.Limits
 open CategoryTheory.Pretriangulated CategoryTheory.Triangulated
 
-universe uU
+universe uU uZ uD v
 
 noncomputable section
 
@@ -453,6 +455,8 @@ namespace RelativeWeakApprox
 
 open CategoryTheory CategoryTheory.Limits
 open CategoryTheory.Pretriangulated CategoryTheory.Triangulated
+
+universe uZ uD uU v
 
 noncomputable section
 
@@ -576,6 +580,8 @@ namespace RelativeWeakApprox
 open CategoryTheory CategoryTheory.Limits
 open CategoryTheory.Pretriangulated CategoryTheory.Triangulated
 
+universe uZ uD uU v
+
 noncomputable section
 
 namespace Setup44
@@ -686,6 +692,8 @@ namespace RelativeWeakApprox
 open CategoryTheory CategoryTheory.Limits
 open CategoryTheory.Pretriangulated CategoryTheory.Triangulated
 
+universe uZ uD uU v
+
 noncomputable section
 
 namespace Setup44
@@ -755,6 +763,8 @@ namespace RelativeWeakApprox
 
 open CategoryTheory CategoryTheory.Limits
 open CategoryTheory.Pretriangulated CategoryTheory.Triangulated
+
+universe uZ uD uU v
 
 noncomputable section
 
@@ -879,6 +889,8 @@ namespace RelativeWeakApprox
 open CategoryTheory CategoryTheory.Limits
 open CategoryTheory.Pretriangulated CategoryTheory.Triangulated
 
+universe uZ uD uU v
+
 noncomputable section
 
 namespace SetupMainMinimal
@@ -933,14 +945,12 @@ namespace RelativeWeakApprox
 open CategoryTheory CategoryTheory.Limits
 open CategoryTheory.Pretriangulated CategoryTheory.Triangulated
 
-universe uC
-
 noncomputable section
 
 /-- Reflect one coproduct, rather than assuming every coproduct of the same
 shape in the ambient category. This is the construction inside Mathlib's
 `hasColimitsOfShape_of_reflective`, specialized to the displayed family. -/
-theorem hasCoproduct_of_reflective {C : Type uC} {D : Type uD}
+theorem hasCoproduct_of_reflective.{uC, uD, v} {C : Type uC} {D : Type uD}
     [Category.{v} C] [Category.{v} D] (R : D ⥤ C) [Reflective R]
     {ι : Type v} (X : ι → D) [HasCoproduct (fun i => R.obj (X i))] :
     HasCoproduct X := by
@@ -954,6 +964,8 @@ theorem hasCoproduct_of_reflective {C : Type uC} {D : Type uD}
   apply HasColimit.mk ⟨_, (IsColimit.precomposeInvEquiv _ _).symm t⟩
   apply (Functor.isoWhiskerLeft (Discrete.functor X) (asIso (monadicAdjunction R).counit) :) ≪≫
     (Discrete.functor X).rightUnitor
+
+universe uZ uD uU v
 
 section ClosedAisle
 

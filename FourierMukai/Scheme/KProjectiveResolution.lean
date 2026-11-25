@@ -130,6 +130,8 @@ end ComplexShape.Embedding
 
 section RestrictionQuasiIso
 
+universe u v
+
 open CategoryTheory CategoryTheory.Limits
 
 variable {C : Type u} [Category.{v} C] [Abelian C]
@@ -182,6 +184,8 @@ namespace RelativeFM.KProjectiveResolution
 end RelativeFM.KProjectiveResolution
 section OppositeQuasiIso
 
+universe u v
+
 open CategoryTheory CategoryTheory.Limits Opposite
 
 variable {C : Type u} [Category.{v} C] [Abelian C]
@@ -203,6 +207,8 @@ lemma CochainComplex.quasiIso_unop_opEquivalence_inverse_map_iff
 end OppositeQuasiIso
 
 namespace RelativeFM.KProjectiveResolution
+
+universe u v
 
 open CategoryTheory CategoryTheory.Limits Opposite
 
@@ -249,6 +255,8 @@ end RelativeFM.KProjectiveResolution
 
 namespace RelativeFM.KProjectiveResolution
 
+universe u v
+
 open CategoryTheory CategoryTheory.Limits
 
 variable {C : Type u} [Category.{v} C] [Abelian C]
@@ -281,7 +289,7 @@ namespace RelativeFM.KProjectiveResolution
 
 open CategoryTheory CategoryTheory.Limits
 
-universe w
+universe w u v
 
 variable {C : Type u} [Category.{v} C] [Abelian C]
 variable {ι : Type w} (K : ι → CochainComplex C ℤ) (d : ι → ℤ)

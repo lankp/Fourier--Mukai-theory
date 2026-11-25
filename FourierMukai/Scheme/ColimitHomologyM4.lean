@@ -11,9 +11,11 @@ namespace RelativeFM.NeemanFiniteSupportM4
 
 open CategoryTheory CategoryTheory.Limits
 
-universe w v u ι
+universe w v u ι u_1 _wD
 
 noncomputable section
+
+variable {ι : Type ι}
 
 set_option maxHeartbeats 1000000
 set_option backward.isDefEq.respectTransparency false
@@ -92,7 +94,7 @@ open CochainComplex
 /-- Cohomology of the explicit derived coproduct of K-projective complexes is
 the coproduct of the cohomologies. -/
 noncomputable def derivedCoproductHomologyIso
-    {C : Type u} [Category.{v} C] [Abelian C] {_wD : Type*} [HasDerivedCategory.{_wD} C]
+    {C : Type u} [Category.{v} C] [Abelian C] {_wD : Type u_1} [HasDerivedCategory.{_wD} C]
     {κ : Type w} (K : κ → CochainComplex C ℤ) [∀ i, (K i).IsKProjective]
     (n : ℤ) [HasCoproductsOfShape κ C] [HasExactColimitsOfShape (Discrete κ) C] :
     (DerivedCategory.homologyFunctor C n).obj

@@ -12,18 +12,19 @@ name = "mathlib"
 scope = "leanprover-community"
 rev = "v4.33.1"
 
-# Compiler options used by the Lake build.  `scripts/build.sh` passes no `-D`
-# flags, so the two paths must agree: everything below is either a printing
-# option or a linter toggle, and neither affects elaboration.
+# Compiler options used by the Lake build.  `scripts/build.sh` passes the same
+# three strictness options with `-D`, so the Lake path and the offline path
+# elaborate identically — that is the point of having both.
 #
-# The stricter options inherited from the AxiomMath/Stacks configuration --
-#   autoImplicit = false, relaxedAutoImplicit = false, maxSynthPendingDepth = 3
-# -- are deliberately NOT enabled: the sources were written with Lean's default
-# `autoImplicit = true`, and enabling the flag breaks modules that rely on it
-# (see `results/VERIFICATION.md`).  Turning it on is a separate, mechanical
-# clean-up, not a build setting.
+# `autoImplicit = false` is the AxiomMath/Stacks setting and it is enforced here:
+# nine modules used to rely on Lean's automatic implicit binders, and their
+# binders are now declared (see `results/VERIFICATION.md` for the measurement and
+# the fix).  A new module that relies on `autoImplicit` fails the build.
 [leanOptions]
 pp.unicode.fun = true
+autoImplicit = false
+relaxedAutoImplicit = false
+maxSynthPendingDepth = 3
 weak.linter.flexible = true
 weak.linter.mathlibStandardSet = true
 weak.linter.style.header = false

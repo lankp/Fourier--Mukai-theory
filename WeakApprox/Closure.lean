@@ -32,6 +32,10 @@ official `envelope` of `WeakApprox/Basic.lean`.
 
 open CategoryTheory CategoryTheory.Limits CategoryTheory.Pretriangulated
 
+section
+
+universe u v w
+
 namespace CategoryTheory.ObjectProperty
 
 variable {C : Type u} [Category.{v} C]
@@ -72,6 +76,8 @@ instance (P : ObjectProperty C) (J : Type w) [HasCoproducts.{w} C]
       (prop_colimit_retractClosure P hX.diag hX.prop_diag_obj)
 
 end CategoryTheory.ObjectProperty
+
+end
 
 namespace RelativeWeakApprox
 

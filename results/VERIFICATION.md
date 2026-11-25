@@ -17,10 +17,10 @@ Both compile the same 203 `.lean` files with the toolchain pinned in
 (`v4.33.1`).  `scripts/build.sh` lists the modules in dependency order by hand,
 so a new module must be added there as well as to `FourierMukai.lean`.
 
-### The `[leanOptions]` question, measured
+### Strict elaboration: `autoImplicit = false` is enforced
 
-`lakefile.toml` originally carried the option block inherited from the
-AxiomMath/Stacks configuration, including
+`lakefile.toml` carries the option block inherited from the AxiomMath/Stacks
+configuration, and all three strictness options are now on:
 
 ```
 autoImplicit = false
@@ -28,28 +28,48 @@ relaxedAutoImplicit = false
 maxSynthPendingDepth = 3
 ```
 
-Those are **not** compatible with the current sources.  Running the full module
-list with them:
+`scripts/build.sh` passes the same three with `-D`, so the Lake path and the
+offline path elaborate identically — which is the point of having both.
 
-```
-lean -DautoImplicit=false -DrelaxedAutoImplicit=false -DmaxSynthPendingDepth=3 \
-     -o <X>.olean <X>.lean
-```
+They were not always on.  When first enabled, the module list failed in 9 of 203
+modules with `unknown universe level `u`` and `Unknown identifier `C``:
 
-fails in 9 modules — `AisleCoproducts` (101 errors), `KProjectiveResolution`
-(28), `ColimitHomologyM4` (13), `WeakApprox/Closure` (12),
-`SchemeFiniteCoverInduction` (11), `AffineMain` (4), `IdealNeemanM1` (3),
-`NeemanFiniteSupportM4` (2), `WeakApprox/Setup44Minimal` (1) — with errors of the
-form `unknown universe level `u`` and `Unknown identifier `D``, which is what
-`autoImplicit = false` produces when a declaration relies on Lean's automatic
-implicit binders.  Isolating the options on `WeakApprox/Closure.lean`:
-`-DautoImplicit=false` alone gives the same 12 errors, while
-`-DmaxSynthPendingDepth=3` alone produces none.
+| module | errors | | module | errors |
+|---|---|---|---|---|
+| `AisleCoproducts` | 101 | | `SchemeFiniteCoverInduction` | 11 |
+| `KProjectiveResolution` | 28 | | `AffineMain` | 4 |
+| `ColimitHomologyM4` | 13 | | `IdealNeemanM1` | 3 |
+| `WeakApprox/Closure` | 12 | | `NeemanFiniteSupportM4` | 2 |
+| | | | `WeakApprox/Setup44Minimal` | 1 |
 
-Conclusion recorded in `lakefile.toml`: the two paths must elaborate the same
-way, so the strict options are left off and the build runs with Lean's defaults.
-Turning `autoImplicit = false` on is a mechanical clean-up across those 9
-modules, not a build setting; it is not done here.
+Isolated on `WeakApprox/Closure.lean`, `-DautoImplicit=false` alone reproduced
+the 12 errors while `-DmaxSynthPendingDepth=3` alone gave none, so
+`autoImplicit` was the cause rather than the other two options.
+
+**One cause, in all nine.**  `universe` and `variable` commands are scoped to the
+enclosing `namespace`/`section`.  Each of the nine files closes and reopens a
+namespace with a new, partial prelude, so later blocks used level names and
+variables that had gone out of scope and were silently re-bound as implicit
+binders.  (This diagnosis is from member m6 of run `smww7domt`, which was asked
+to look across all nine files after fixing one; it matched every file.)  The fix
+restores the complete prelude in each reopened block: one or two `universe` lines
+per block, plus three declarations that needed an explicit
+`variable` (`{ι : Type ι}` in `ColimitHomologyM4`, `{P : Scheme.{u} → Prop}` in
+`SchemeFiniteCoverInduction`) or explicit universe parameters
+(`hasCoproduct_of_reflective.{uC, uD, v}`).  The whole change is 44 inserted and
+10 deleted lines across the nine files; no proof, import or option inside a file
+was touched.
+
+**Why this cannot have changed a statement.**  Before touching anything, every
+declaration in the nine modules was dumped with `#check @name` under
+`set_option pp.all true` — 502 declarations, which prints the fully qualified
+type with every implicit binder, instance argument and universe level.  After the
+fix the dumps are **byte-identical**, not merely isomorphic: a bindered name that
+moved, an instance that appeared, or a universe that merged would have shown in
+the diff.  Then the full strict build was run over all 203 modules with zero
+errors.  The scripts and the baseline dumps are the ones used for the earlier
+measurement; the procedure is the one under "The protocol used for every claim"
+below.
 
 ## 2. CI jobs
 
