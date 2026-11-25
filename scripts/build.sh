@@ -117,6 +117,7 @@ for f in \
   FourierMukai/Scheme/PerfectCompactThick.lean \
   FourierMukai/Scheme/CompactToPerfect.lean \
   FourierMukai/Scheme/CompactBoundedAbove.lean \
+  FourierMukai/Scheme/CompactToPerfectBoundedFree.lean \
   FourierMukai/Scheme/Affine066S.lean \
   FourierMukai/Paper/Statements.lean \
   FourierMukai/Paper/InterfaceAudit.lean \

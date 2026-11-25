@@ -116,6 +116,7 @@ import FourierMukai.Scheme.PerfectRingStacks
 import FourierMukai.Scheme.PerfectCompactThick
 import FourierMukai.Scheme.CompactToPerfect
 import FourierMukai.Scheme.CompactBoundedAbove
+import FourierMukai.Scheme.CompactToPerfectBoundedFree
 import FourierMukai.Scheme.Affine066S
 
 /-!
