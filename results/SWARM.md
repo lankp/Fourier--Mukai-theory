@@ -103,4 +103,4 @@ Done by the orchestrator between waves: the numbering cleanup (`dd45ef4`).
 | 2 | `wave2/regular-compact` | `session_0111iGd8gkx8KKuiS4T2BpnU` | `fe99a83` (merge of `92e0ca0`) | `IsCompactAb (ringObject A)` proved directly; D(A-Mod) and D_{V(f)} weakly approximable unconditionally; verified: build, audit 69 clean, statement check OK, non-vacuity shown |
 | 2 | `wave2/jupper` | `session_0111iGd6ZSNTZ4tDzCc8YEFT` | `2f36bbb` (merge of `9b53b9b`, audit conflict resolved by keeping both) | affine recollement complete from Stacks 0E55; verified: build, audit 74 clean, statement check OK, non-vacuity (f = 0 instance; 0E55 a Stacks result) |
 | 2 | `wave2/trans-2cat` | `session_0111iGd7v9afb51rwCpst8LU` | | started 25 Nov 2026, 20:09 UTC |
-| 2 | `wave2/base-change-mates` | `session_0111iGd8cvXVrvgCi69XkqVF` | | started 25 Nov 2026, 20:11 UTC |
+| 2 | `wave2/base-change-mates` | `session_0111iGd8cvXVrvgCi69XkqVF` | `4beb203` (merge of `3805c22`) | 7.12, 7.17 P (abstract), 7.13–7.15 defined; verified: build, audit 82 clean, statement check OK, non-vacuity (`constPullPushData`) |
