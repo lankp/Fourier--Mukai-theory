@@ -77,6 +77,7 @@ import FourierMukai.Scheme.NeemanGeneratorBoundsM5
 import FourierMukai.Scheme.GeneratorCounterexampleM5
 import FourierMukai.Scheme.PaperGeneratorM5
 import FourierMukai.Scheme.AffineNeemanAssembly
+import FourierMukai.Scheme.AffineCompactness
 import FourierMukai.Scheme.AffineRecollementAssembly
 import FourierMukai.Scheme.AffineSetupInventory
 import FourierMukai.Scheme.AffineJUpperAdjoint
