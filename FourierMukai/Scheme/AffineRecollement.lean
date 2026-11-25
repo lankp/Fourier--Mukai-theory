@@ -37,7 +37,8 @@ restriction of scalars and their adjunction, built on a degreewise
 `RΓ_Z` and `i^*` with their exactness, adjunctions and counit condition, the
 kernel, the mixed zero composite and the two gluing triangles, each citing
 Gao–Psaroudakis 2018 Lemma 2.2(ii), Balmer–Dell'Ambrogio–Sanders 2016
-Corollary 2.3, Krause 2010 §4, and Stacks 0BFF in its affine form.
+Corollary 2.3 and Krause 2010 §4; no Stacks tag is claimed for the sequence, since
+0BFF (Lemma 39.9.7) is about abelian varieties and is not this statement.
 `AffineRecollementInput.toRecollement` assembles the exact
 `RelativeWeakApprox.Recollement`, with all four adjunctions, all full
 faithfulness fields, the kernel condition, the three zero composites and both
@@ -66,7 +67,7 @@ attribute [local instance] HasDerivedCategory.standard
 abbrev Away (A : Type u) [CommRing A] (f : A) : Type u := Localization.Away f
 
 /-- `f`-power-torsion modules, using Mathlib's torsion predicate.  This is the
-abelian-category shadow of support in `V(f)` (Stacks Tag 0BFF). -/
+abelian-category shadow of support in `V(f)`.-/
 def PowerTorsion (A : Type u) [CommRing A] (f : A) :
     ObjectProperty (ModuleCat.{u} A) :=
   fun M ↦ Module.IsTorsion' M (Submonoid.powers f)
@@ -118,7 +119,7 @@ instance powerTorsion_isSerreClass (A : Type u) [CommRing A] (f : A) :
     (PowerTorsion A f).IsSerreClass where
 
 /-- The object condition defining `D_Z(A)`, namely power torsion in every
-cohomology degree (GL26, Lemma `lem:spacey_recollement`; Stacks Tag 0BFF). -/
+cohomology degree (GL26, Lemma `lem:spacey_recollement`). -/
 def AffineIsSupported (A : Type u) [CommRing A] (f : A) :
     ObjectProperty (AffineD A) :=
   cohomologyWithin (PowerTorsion A f)
@@ -431,7 +432,7 @@ lemma exactAt_map_extendScalars_of_powerTorsion (A : Type u) [CommRing A] (f : A
 
 /-- Away-from-`f` localization kills a complex all of whose cohomology is
 `f`-power torsion.  This is the affine support statement behind
-`Lj^* i_* ≅ 0` (GL26, Lemma `lem:spacey_recollement`; Stacks Tag 0BFF). -/
+`Lj^* i_* ≅ 0` (GL26, Lemma `lem:spacey_recollement`). -/
 lemma isZero_derivedExtensionScalars_of_support (A : Type u) [CommRing A] (f : A)
     {X : AffineD A} (hX : AffineIsSupported A f X) :
     IsZero ((derivedExtensionScalars A f).obj X) := by
@@ -496,7 +497,7 @@ These fields are the compactly-generated localization/colocalization package
 used in the proof of GL26, Lemma `lem:spacey_recollement`: Gao--Psaroudakis
 2018, Lemma 2.2(ii), Balmer--Dell'Ambrogio--Sanders 2016, Corollary 2.3, and
 Krause 2010, §4.  The kernel and gluing-triangle statements are the usual
-Verdier localization sequence (Stacks Tag 0BFF in its affine form).  No field
+Verdier localization sequence.  No field
 asserts weak approximability or another later theorem. -/
 structure AffineRecollementInput (A : Type u) [CommRing A] (f : A) where
   /-- The exceptional inverse image `j^×`, right adjoint to `Rj_*`;

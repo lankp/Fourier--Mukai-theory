@@ -85,6 +85,7 @@ for f in \
   FourierMukai/Scheme/AffineConvolution.lean \
   FourierMukai/Scheme/ConvolutionCounterexample.lean \
   FourierMukai/Scheme/Perfect.lean \
+  FourierMukai/Scheme/StacksInput.lean \
   FourierMukai/Scheme/PerfectRingStacks.lean \
   FourierMukai/Scheme/PerfectCompactThick.lean \
   FourierMukai/Scheme/CompactToPerfect.lean \
