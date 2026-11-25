@@ -57,6 +57,9 @@ for f in \
   FourierMukai/Scheme/AffineMixedZero.lean \
   FourierMukai/Scheme/AffineIShriek.lean \
   FourierMukai/Scheme/AffineSupportedTStructure.lean \
+  FourierMukai/Scheme/AffineSupportedAisle.lean \
+  FourierMukai/Scheme/AffineSupportedCoprodLift.lean \
+  FourierMukai/Scheme/AffineKoszulGenerator.lean \
   FourierMukai/Scheme/AffineRecollementAssembly.lean \
   FourierMukai/Scheme/AffineSetupInventory.lean \
   FourierMukai/Scheme/AffineJUpperAdjoint.lean \
