@@ -120,6 +120,7 @@ import FourierMukai.Scheme.KProjIndependence
 import FourierMukai.Scheme.KProjHomContravariant
 import FourierMukai.Scheme.FixedDerivedTensorHom
 import FourierMukai.Scheme.AffineDerivedTensorHom
+import FourierMukai.Scheme.AffineJUpperConstruction
 import FourierMukai.Scheme.TensorHom
 import FourierMukai.Scheme.PerfectRingStacks
 import FourierMukai.Scheme.PerfectCompactThick
