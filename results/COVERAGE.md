@@ -29,11 +29,11 @@ the end.
 
 | | P | C | H | T | D | — | total |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| theorems, propositions, corollaries, lemmas | 4 | 5 | 16 | 14 | – | 77 | 116 |
-| definitions, setups, lemma-definitions | – | – | – | – | 13 | 6 | 19 |
+| theorems, propositions, corollaries, lemmas | 5 | 5 | 16 | 14 | – | 76 | 116 |
+| definitions, setups, lemma-definitions | 1 | – | – | – | 13 | 5 | 19 |
 
-Four results are proved outright (Lemmas 2.3, 2.5, 7.2, 7.11; 7.2 is Mathlib's
-`mateEquiv`), five conditionally (Lemmas 2.4, 2.25, 2.26, 5.4, and A.4 in the
+Five results are proved outright (Lemmas 2.3, 2.5, 7.2, 7.11, C.1; 7.2 is Mathlib's
+`mateEquiv`; C.1 (2) in `Cat`), as is Lemma-Definition 7.10 (in `Cat`), five conditionally (Lemmas 2.4, 2.25, 2.26, 5.4, and A.4 in the
 affine case).  The 14 target rows are 10 distinct targets (1.2 = 12.9, 1.3 = 6.2 + 6.8,
 1.6 = 10.13, 1.7 = 11.4), none proved.  Sections 3, 4, 6, 8, 9, 10, 11 and 12
 have no proved result: everything there is a target, an interface field, or
@@ -155,7 +155,7 @@ absent.
 | Def 7.7 | `def:mates_double_cat` | — | |
 | Lem 7.8 | `lem:mates_double_cat_iso` | — | `Prelim/Mates.lean` cites "Lemma 7.8(2)" for what is now 7.11 |
 | Lem 7.9 | `lem:conjugates_are_functorial` | — | |
-| Lem-Def 7.10 | `def:adj_equiv` | — | |
+| Lem-Def 7.10 | `def:adj_equiv` | P (in `Cat`) | `Prelim/AdjunctionUnits.lean` (`lemmaDef_7_10`); the footnote's "representably fully faithful ⇔ fully faithful" is proved (`representablyFullyFaithful_iff`) |
 | Lem 7.11 | `lem:when_mate_correspondence_preserves_isos` | P | `isIso_mate`, `isIso_of_isIso_mate`, `isIso_mate_iff` |
 | Lem 7.12 | `lem:pseudofunctoriality_isos_are_conjugate` | H | `Scheme/Duality.lean` records the coherence |
 | Lem-Def 7.13 | `def:upper_star_lower_star_bc` | D | `theta` built as a mate in `Scheme/Duality.lean` |
@@ -229,7 +229,7 @@ absent.
 | Def B.8 | `def:triang` | D | Mathlib's pretriangulated categories and `Functor.IsTriangulated` |
 | Def B.9 | | D | `Prelim/Triangulated.lean` cites "B.9" and "B.11" |
 | Lem B.10 | `lem:triadjoint_iff_adjoint` | — | |
-| Lem C.1 | `cmp:lem:units` | — | |
+| Lem C.1 | `cmp:lem:units` | P | `Prelim/AdjunctionUnits.lean` (`lemma_C_1`, `Adjunction.twist`): (1) in any bicategory (`Bicategorical.twist`), (2) in `Cat`; the Aut(G)-torsor half of the remark after it is proved; transfer to `Triang` not proved |
 | Def C.3 | `cmp:def:induced` | — | |
 
 ## LP26, *Gluing weak approximability along recollements*
