@@ -23,6 +23,31 @@ AisleCoproducts.affine_theorem_1_1_small_noCoproducts
     SatisfiesWA (SmallAffineD A H) ↔ eventual self-vanishing of S.G'
 ```
 
+## 0. The endpoint now exists
+
+`Scheme/SmallAffineAssembly.lean` proves, in the universe-correct small-Hom model,
+
+```
+affine_theorem_1_1_small_neeman_only
+    (S : SetupMainMinimal DZ (SmallAffineD A H) DU)
+    (hT : S.tD = standard t-structure)
+    (I : SmallNeemanCompactToPerfectInput A H) :
+    SatisfiesWA (SmallAffineD A H) ↔ EventuallyHomZero S.G' S.G'
+```
+
+with **no Stacks 09SR, no coproduct package and no vanishing hypothesis**: the
+external input `I` is exactly Neeman's `compact ⇒ perfect`, and the vanishing is
+proved inside the small model (`smallPerf_eventuallyHomZero`).  The variant
+`affine_theorem_1_1_small_standard_neeman_only` removes `hT` altogether by
+rebuilding `SetupMainMinimal` with the standard middle `t`-structure
+(`replaceMiddleTStructure`, which reproves only the compact-generation field, so
+`hT` becomes `rfl`) and displays that single field as its remaining hypothesis.
+
+What `S` still carries is what LP Theorem 1.1 takes as data by design: the
+recollement, the weak approximation data on the two ends, the glued generator and
+its normalization, and the aisle identities.  What remains open below is therefore
+about *constructing* `S` from ring data, not about the theorem.
+
 ## 1. The three open items
 
 **(1) Stacks 066S, i.e. the residue of 07LT.**  `Perf A ≤ HasBoundedFiniteProjectiveModel A`.
