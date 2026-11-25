@@ -9,6 +9,7 @@ import FourierMukai.Prelim.Mates
 import FourierMukai.Prelim.AdjunctionUnits
 import FourierMukai.Prelim.MatesCalculus
 import FourierMukai.Prelim.Lemma25
+import FourierMukai.Prelim.Stacks09SN
 import FourierMukai.Prelim.Lemma24
 import FourierMukai.Prelim.CompactnessAudit
 import FourierMukai.Prelim.AppendixB
