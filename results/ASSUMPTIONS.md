@@ -100,6 +100,24 @@ endpoint's remaining hypotheses are the `SetupMainMinimal` data, the standard-`t
 identity (or the one compact-generation field), and Neeman's `compact ⇒ Perf` —
 nothing else.
 
+**(2b) The aisle equalities.**  `SetupMainMinimal` asks for three equalities of the
+form `t.le 0 = Coprod (shiftTail G 0)`.  The ring form is **proved** for every
+commutative ring: `Scheme/AisleGenRingGeneration.lean`,
+`AisleGeneration.Ring.standard_le_zero_eq_coprod`,
+
+```
+(AffineD.standardTStructure A).le 0 = Coprod (shiftTail (ringObject A) 0)
+```
+
+The easy inclusion is aisle closure; the hard one replaces `X` by a complex strictly
+bounded above in degree 0 and generates it by brutal truncation, free resolutions in
+a single degree, bounded-above projective resolutions and a degreewise-split
+telescope (nine modules, `Scheme/AisleGen*.lean`).  The supported case is analysed in
+`Scheme/AffineSupportedAisle.lean` and `AffineSupportedCoprodLift.lean`, which reduce
+it to one generation statement, and `Scheme/AffineKoszulGenerator.lean` supplies a
+*perfect* supported generator (the cone of `f`).  Still open: the equalities for the
+*specific* generators `G'⟦m⟧ ⊞ jShriek GU` and `iStar` of it.
+
 **(3) The affine recollement.**  `Scheme/AffineRecollement.lean`,
 `AffineRecollementInput`.  Substantial progress, all from ring data and without
 injectives:
@@ -230,13 +248,24 @@ six-functor form).
 
 ## 5. The short version
 
-With Neeman 3.2 allowed, the affine endpoint needs:
+With Neeman 3.2 allowed, what the affine endpoint still needs is:
 
-1. **066S** — a truncation induction on top of the proved Le–Chen 2.3;
-2. **`TheoremCInput`** — the three comparisons left of Spaltenstein's Theorem C,
-   needed because the endpoint lives in the small-Hom model;
-3. **the recollement's remaining fields** — support, shift/triangulated structure,
-   adjunction, `i⇕`, `i^*`, gluing triangles, with `RΓ_Z` already constructed.
+1. **One tensor–Hom adjunction.**  `C ⊗^L (-) ⊣ RHom(C, -)` for `C = RΓ_Z(A)`.
+   `C` itself is computed (`Scheme/AffineLocalCohomologyRingObject.lean`: a two-term
+   complex, degrees 0 and 1, differential the negative localization unit, with
+   `H⁰ = ker` and `H¹ = coker`), and `Scheme/AffineJUpperTensorHom.lean` reduces
+   `jStarAdj` to this adjunction given Stacks 0A6R.  Everything else in
+   `AffineRecollementInput` is constructed.
+2. **The two remaining aisle equalities**, i.e. the `tD`- and `tZ`-equalities for the
+   *specific* generators `G'⟦m⟧ ⊞ jShriek GU` and `iStar` applied to it.  The ring
+   form `t.le 0 = Coprod (shiftTail (ringObject A) 0)` is **proved**
+   (`Scheme/AisleGenRingGeneration.lean`), and the supported case is reduced to one
+   generation statement (`Scheme/AffineSupportedCoprodLift.lean`), with a perfect
+   supported generator supplied by `Scheme/AffineKoszulGenerator.lean`.
+3. **The `SetupMainMinimal` remainder** — weak approximation data on both ends, the
+   glued generator and its normalization — which after (1) and (2) is Neeman input
+   plus assembly, not open mathematics.
 
-Then `hT` and the transport across the equivalence are assembly.  Nothing else in
-the tree blocks the affine statement.
+Two things that used to be on this list and are no longer: 066S (derived from
+Neeman, `Scheme/Affine066S.lean`) and Spaltenstein's Theorem C (proved,
+`Scheme/SpaltensteinTheoremC.lean`, `Scheme/AffineSpaltenstein.lean`).

@@ -60,6 +60,15 @@ for f in \
   FourierMukai/Scheme/AffineSupportedAisle.lean \
   FourierMukai/Scheme/AffineSupportedCoprodLift.lean \
   FourierMukai/Scheme/AffineKoszulGenerator.lean \
+  FourierMukai/Scheme/AisleGenBrutal.lean \
+  FourierMukai/Scheme/AisleGenBounded.lean \
+  FourierMukai/Scheme/AisleGenFiltration.lean \
+  FourierMukai/Scheme/AisleGenUnbounded.lean \
+  FourierMukai/Scheme/AisleGenFreeResolution.lean \
+  FourierMukai/Scheme/AisleGenDerivedCoproduct.lean \
+  FourierMukai/Scheme/AisleGenRingAisle.lean \
+  FourierMukai/Scheme/AisleGenRingGeneration.lean \
+  FourierMukai/Scheme/AisleGenDD.lean \
   FourierMukai/Scheme/AffineRecollementAssembly.lean \
   FourierMukai/Scheme/AffineSetupInventory.lean \
   FourierMukai/Scheme/AffineJUpperAdjoint.lean \
