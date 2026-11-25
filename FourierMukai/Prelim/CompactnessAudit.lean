@@ -1,5 +1,9 @@
 /- Copyright (c) 2026 Formalization of Lank--Pauwels. Released under Apache 2.0 license as described in the file LICENSE. -/
 import FourierMukai.Prelim.Lemma24
+import FourierMukai.Scheme.AffineCompactness
+import FourierMukai.Scheme.AffineSpaltenstein
+import FourierMukai.Scheme.PaperGeneratorM5
+import WeakApprox.CompactThick
 
 /-!
 # Audit: the `Type`-valued compactness `RelativeFM.IsCompact` is never satisfied
@@ -8,27 +12,38 @@ import FourierMukai.Prelim.Lemma24
 `Hom(X, -)` preserve coproducts indexed by `Type w`.  A coproduct in `Type` is a disjoint
 union, so in any category with zero morphisms and a zero object this fails for every `X`:
 the coproduct `0 ⨿ 0 ≅ 0` indexed by `ULift Bool` would have to be sent to a two-element
-set, but `Hom(X, 0)` is a singleton.  `WeakApprox/Basic.lean` already notes that this
-`Type`-valued notion (there `IsCoproductCompact`) is strictly stronger than the paper's
-additive compactness `IsCompactAb`; this file proves that in a pretriangulated category
-it is uninhabited.
+set, but `Hom(X, 0)` is a singleton (`not_isCompact_of_hasZeroObject`).
+`WeakApprox/Basic.lean` already notes that this `Type`-valued notion (there
+`IsCoproductCompact`) is strictly stronger than the paper's additive compactness
+`IsCompactAb`.
 
-## Consequences (25 November 2026)
+## History and fix (25 November 2026)
 
-* `SinglyCompactlyGenerated C G` (`Prelim/Lemma25.lean`) is false for every `G` in a
-  pretriangulated category (`not_singlyCompactlyGenerated`), so `RelativeFM.lemma_2_5`,
-  GL26 Lemma 2.5 as rendered there, holds vacuously.
-* In `Prelim/Lemma24.lean`, `CompactBousfieldLocalization C` holds trivially
-  (`compactBousfieldLocalization_trivial`), and `lemma_2_4` and
-  `singlyCompactlyGenerated_iff` are vacuous.  The compactness-free results there,
-  `isPaperGenerator_of_isLocalizingGenerator` and
-  `isPaperGenerator_iff_isLocalizingGenerator` (from `HasBousfieldTriangles G`), are not
-  affected.
-* `WeakApprox` is not affected: the LP26 chain assumes `IsCompactAb`.
+Until this date, `SinglyCompactlyGenerated` (`Prelim/Lemma25.lean`) was stated with
+`IsCompact`, so it was never satisfied and `RelativeFM.lemma_2_5` (GL26 Lemma 2.5) held
+vacuously; in `Prelim/Lemma24.lean` the input `CompactBousfieldLocalization` held
+trivially and `lemma_2_4`, `singlyCompactlyGenerated_iff` were vacuous.
 
-The fix is to render compactness additively (`IsCompactAb`, the `AddCommGrpCat`-valued
-`Hom(X, -)` preserving coproducts) and re-prove Lemmas 2.4 and 2.5 under it; see
-`results/SWARM.md`.
+The defect is fixed:
+
+* compactness in Lemmas 2.4 and 2.5 is now the paper's additive one,
+  `RelativeWeakApprox.IsCompactAb` (the `AddCommGrpCat`-valued `Hom(X, -)` preserves
+  `Type v`-small coproducts); `IsCompact` is kept only as the refuted notion;
+* `CompactBousfieldLocalization` and the old `lemma_2_4`/`singlyCompactlyGenerated_iff`
+  are deleted; the new `lemma_2_4` uses the tagged Stacks input `Tag09SN`
+  (`Prelim/Stacks09SN.lean`).
+
+## Non-vacuity of the new hypotheses
+
+* `isCompactAb_zero`: the zero object of any preadditive category is `IsCompactAb`.
+* `smallRingObject_isCompactAb_and_isPaperGenerator`: for every commutative ring `A`, the
+  regular module `A` in the derived category `D(A)` (small-Hom model
+  `SmallAffineD A (affineSpaltensteinInput A)`, with `Type u`-small coproducts) is
+  `IsCompactAb` and detects zero through its shifts (`IsPaperGenerator`).  Both are proved
+  in the tree (`NeemanM1.smallRingObject_isCompactAb`,
+  `NeemanGeneratorM5.Paper.smallRingObject_isPaperGenerator`).
+* `singlyCompactlyGenerated_smallRingObject`: hence, given Stacks 09SN for `D(A)`, the
+  hypothesis `SinglyCompactlyGenerated` of `lemma_2_5` holds for `A ∈ D(A)`.
 -/
 
 @[expose] public section
@@ -64,17 +79,39 @@ theorem not_isCompact_of_hasZeroObject {C : Type u} [Category.{v} C] [HasZeroMor
   simp [s, c] at h0 h1
   exact Bool.false_ne_true (congrArg ULift.down (h0.symm.trans h1))
 
-variable {C : Type u} [Category.{v} C] [HasZeroObject C] [HasShift C ℤ] [Preadditive C]
-  [∀ (n : ℤ), (shiftFunctor C n).Additive] [Pretriangulated C]
+open RelativeWeakApprox ZeroObject in
+/-- Non-vacuity of `IsCompactAb`: a zero object is compact (in any preadditive
+category). -/
+theorem isCompactAb_zero {C : Type u} [Category.{v} C] [Preadditive C] [HasZeroObject C] :
+    IsCompactAb (0 : C) :=
+  isCompactAb_of_isZero (isZero_zero C)
 
-/-- `SinglyCompactlyGenerated` (`Prelim/Lemma25.lean`) is never satisfied, so
-`RelativeFM.lemma_2_5` is vacuous as stated. -/
-theorem not_singlyCompactlyGenerated (G : C) : ¬ SinglyCompactlyGenerated.{w} C G :=
-  fun h => not_isCompact_of_hasZeroObject G h.1
+section AffineExample
 
-/-- `CompactBousfieldLocalization` (`Prelim/Lemma24.lean`) holds trivially, so
-`RelativeFM.lemma_2_4` and `singlyCompactlyGenerated_iff` are vacuous as stated. -/
-theorem compactBousfieldLocalization_trivial : CompactBousfieldLocalization.{w} C :=
-  fun G hG => absurd hG (not_isCompact_of_hasZeroObject G)
+open RelativeWeakApprox
+
+/-- Non-vacuity, explicit example: for every commutative ring `A`, the regular module in
+the derived category `D(A)` (small-Hom model) is compact (`IsCompactAb`) and detects zero
+through its shifts (`IsPaperGenerator`). -/
+theorem smallRingObject_isCompactAb_and_isPaperGenerator (A : Type u) [CommRing A] :
+    IsCompactAb (smallRingObject A (Spaltenstein.affineSpaltensteinInput A)) ∧
+      IsPaperGenerator (smallRingObject A (Spaltenstein.affineSpaltensteinInput A)) :=
+  ⟨NeemanM1.smallRingObject_isCompactAb A _,
+    NeemanGeneratorM5.Paper.smallRingObject_isPaperGenerator A _⟩
+
+/-- Non-vacuity of the hypothesis of **Lemma 2.5**
+(`lem:equivalence_or_fully_faithful_via_compacts`): given Stacks 09SN for `D(A)` (the
+tagged input `StacksInterface.Tag09SN`), the regular module singly compactly generates
+`D(A)` in the sense of `SinglyCompactlyGenerated`. -/
+theorem singlyCompactlyGenerated_smallRingObject (A : Type u) [CommRing A]
+    (h09SN : letI := smallAffineHasCoproducts A (Spaltenstein.affineSpaltensteinInput A)
+      StacksInterface.Tag09SN (SmallAffineD A (Spaltenstein.affineSpaltensteinInput A))) :
+    SinglyCompactlyGenerated (SmallAffineD A (Spaltenstein.affineSpaltensteinInput A))
+      (smallRingObject A (Spaltenstein.affineSpaltensteinInput A)) := by
+  have := smallAffineHasCoproducts A (Spaltenstein.affineSpaltensteinInput A)
+  exact (singlyCompactlyGenerated_iff h09SN _).2
+    (smallRingObject_isCompactAb_and_isPaperGenerator A)
+
+end AffineExample
 
 end RelativeFM

@@ -26,15 +26,22 @@ open RelativeFM
 #print axioms RelativeFM.isClassicalGenerator_iff
 -- Audit: the Type-valued `IsCompact` is uninhabited (`Prelim/CompactnessAudit.lean`):
 #print axioms RelativeFM.not_isCompact_of_hasZeroObject
-#print axioms RelativeFM.not_singlyCompactlyGenerated
-#print axioms RelativeFM.compactBousfieldLocalization_trivial
+-- Non-vacuity of the additive compactness used by Lemmas 2.4 and 2.5:
+#print axioms RelativeFM.isCompactAb_zero
+#print axioms RelativeFM.smallRingObject_isCompactAb_and_isPaperGenerator
+#print axioms RelativeFM.singlyCompactlyGenerated_smallRingObject
+-- Stacks 09SN consequence (`Prelim/Stacks09SN.lean`):
+#print axioms RelativeFM.StacksInterface.isZero_of_rightOrthogonal_ofObj_punit_iff
+#print axioms RelativeFM.StacksInterface.isLocalizingGenerator_of_tag09SN
 -- Lemma 2.4 (`lem:localizing_iff_cpt_gen`), `Prelim/Lemma24.lean`:
 #print axioms RelativeFM.ObjectProperty.isLocalizingGenerator_iff_localizingClosure_eq_top
 #print axioms RelativeFM.isPaperGenerator_of_isLocalizingGenerator
 #print axioms RelativeFM.isLocalizingGenerator_of_isPaperGenerator
 #print axioms RelativeFM.isPaperGenerator_iff_isLocalizingGenerator
+#print axioms RelativeFM.isLocalizingGenerator_of_isPaperGenerator_of_tag09SN
 #print axioms RelativeFM.lemma_2_4
 #print axioms RelativeFM.singlyCompactlyGenerated_iff
+#print axioms RelativeFM.lemma_2_5_of_tag09SN
 #print axioms RelativeFM.Trinatural.id
 #print axioms RelativeFM.Trinatural.comp
 #print axioms RelativeFM.isIso_app_of_retract
@@ -61,6 +68,7 @@ open RelativeFM
 #print axioms RelativeFM.lemma_7_9_comp
 #print axioms RelativeFM.Trinatural.isIso_iff_of_precomp_essentiallyDense₀
 #print axioms RelativeFM.lemma_2_5
+#print axioms RelativeFM.Adjunction.isCompactAb_leftAdjoint_obj
 #print axioms RelativeFM.Trinatural.ofNatTrans
 #print axioms RelativeFM.Trans.lemma_B4
 #print axioms RelativeFM.Trans.lemma_B5_existsUnique
