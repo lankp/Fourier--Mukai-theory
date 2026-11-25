@@ -30,7 +30,7 @@ schemes, in the supported form `D_qc,Z(X)`.
 | | |
 |---|---|
 | LP26, the whole categorical layer (Sections 2–4 and Theorem 1.1) | proved, unconditionally |
-| GL26 Theorem 1.1, affine case, with Neeman 3.2 as the only published input | proved |
+| LP26 Theorem 1.1, affine case, with Neeman 3.2 as the only published input | proved |
 | GL26 Lemma 2.25 | proved from the inputs its own proof uses |
 | GL26 Lemma 2.26 | proved in categorical form; affine wrapper proved |
 | GL26 Lemma 5.4 | proved in six-functor form, modulo the cover square |
@@ -73,7 +73,7 @@ declarations are pinned in
 | 01LA(6) and 01IE extension closure, without cohomology | `QCohSerre`, `QCohSerreExtension`, `QCohSerreExtension01IE` |
 | coproducts on `D(A-Mod)`: the universe decision, with `AffineD A ≌ SmallAffineD A H` | `AffineUniverse` |
 | the affine recollement `D(A[1/f]) → D(A) → D_Z(A)` in the GL26/LP26 orientation, all fields but one | `AffineRecollement`, `AffineLocalCohomology`, `AffineLocalCohomologySupport`, `AffineGluing`, `AffineSupportedAssembly`, `AffineMixedZero`, `AffineIShriek`, `AffineSecondGluing`, `AffineRecollementAssembly` |
-| GL26 Theorem 1.1, affine case | `AffineMain`, `SmallAffineAssembly`, `AffineUniverse`, `PerfectRingStacks` |
+| LP26 Theorem 1.1, affine case | `AffineMain`, `SmallAffineAssembly`, `AffineUniverse`, `PerfectRingStacks` |
 
 ### GL26 results
 
@@ -82,7 +82,6 @@ declarations are pinned in
 | Lemma 2.25, `Φ_{RΔ_*O_Y} ≅ 𝟭` | `DiagonalIdentity`, `DiagonalFunctoriality`, `DiagonalDuality`, `Statements` | Stacks 08IN and functoriality of derived pullback and pushforward.  The tensor unit and the two diagonal retractions are derived rather than assumed, and the proper-flat hypothesis is proved unused |
 | Lemma 2.26, convolution | `AffineConvolution`, `GL26OtherTargets` | the derived cube, Stacks 08IN and 08IR, and one monoidal compatibility, packaged as `CorrectedConvolutionData` |
 | Lemma 5.4, the external tensor of compact generators generates the product | `Lemma54` | the cover square (flat base change, conservativity, the perfect/compact calculus).  The argument itself is proved in six-functor form |
-| Theorem 1.1, affine case | see above | Neeman 3.2 |
 | Neeman 3.2(iv), affine supported base | `PrincipalNeemanM1`, `IdealNeemanM1`, `AffineSupportedSchemeBaseM1` | for a principal closed support, only `IsCompactAb (ringObject A)`; for finite `V(I)` and `IsAffine X`, that plus five named tagged inputs |
 
 ### What is stated but not proved

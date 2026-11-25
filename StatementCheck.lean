@@ -49,7 +49,7 @@ Regenerate after an intentional change:
 #print axioms RelativeFM.Convolution.NoetherianBridge.lemma_2_26_of_correction
 #print axioms RelativeFM.Lemma54.externalTensor_compactlyGenerates
 
-/-! ## GL26 Theorem 1.1, affine case -/
+/-! ## LP26 Theorem 1.1, affine case -/
 
 #check @RelativeFM.affine_theorem_1_1_neeman_only
 #check @RelativeFM.StacksGluing.affine_theorem_1_1_stacks07LT

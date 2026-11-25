@@ -36,7 +36,7 @@ kept separate:
 * openness of `CanonicalRelativePerfectLocus` (Proposition 12.8);
 * on that open locus, Theorem 12.3 and pseudofunctoriality (for part (1));
 * comparison of the relatively perfect loci under base change (Corollary 6.18
-  plus faithfully flat field reflection) and Corollary 12.10 plus
+  plus faithfully flat field reflection) and Corollary 12.4 plus
   pseudofunctoriality (for part (2)).
 
 The last two theorems prove the existing
@@ -256,7 +256,7 @@ theorem theorem_1_2_open_of_relative_perfect_localization
 
 The local comparison below is only quantified on the base-changed relatively
 perfect locus.  It is therefore strictly weaker than assuming the target set
-equality.  It is supplied by Corollary 12.10 on that locus and by
+equality.  It is supplied by Corollary 12.4 on that locus and by
 pseudofunctoriality.  The equality `hUV` records Corollary 6.18 in one
 _direction and faithfully flat reflection for residue-field extensions in the
 other.  Outside these loci, Remark 2.7 rules out both equivalence loci.

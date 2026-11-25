@@ -488,7 +488,7 @@ structure DiagonalFMData {D DP : Type u} [Category.{v} D] [Category.{v} DP]
 
 /-- The ideal-sheaf kernel of the diagonal, identified by its distinguished
 triangle.  This is the triangle appearing in GL26 Lemma 11.1 and in the proof of
-Theorem 11.4:
+Proposition 11.4:
 `I_Δ ⟶ O_(Y×_S Y) ⟶ RΔ_*O_Y ⟶ I_Δ[1]`.
 
 The structure-sheaf object on the product and the unit comparison map remain
@@ -553,7 +553,7 @@ def IsEllipticFibration (P : EllipticFibrationPredicates.{w}) {Y S : Scheme.{w}}
 
 /-! # The ten GL26 targets -/
 
-/-- **GL26 Theorem 1.3** (`thm:stacky_all_coincide`; Theorem 6.2 and
+/-- **GL26 Theorem 1.3** (`thm:stacky_all_coincide`; Proposition 6.2 and
 Proposition 6.8).  For a proper morphism of Noetherian schemes and a
 pseudocoherent `E`, relative perfectness, the bounded-coherent tensor test, and
 relative quasi-perfectness are equivalent.
@@ -600,14 +600,14 @@ def theorem_1_2_baseChangeStatement (X : FMSetup.{w, u, v}) (hX : X.ctx.IsProper
     (hK : X.ctx.SP.Dcoh K) (t : BaseChange X) : Prop :=
   t.mapBase ⁻¹' X.FM K = t.over.FM (t.pullKernel.obj K)
 
-/-- **GL26 Corollary 12.10** (`cor:deform`), the relative-perfect strengthening
+/-- **GL26 Corollary 12.4** (`cor:deform`), the relative-perfect strengthening
 used for the second half of Theorem 1.2.  Both the full-faithfulness and
 equivalence loci commute with arbitrary Noetherian base change.
 
 The residue-field squares used in the proof are genuine scheme squares here;
 the remaining input is affine faithfully flat descent and base change of the
 adjoint transforms. -/
-def corollary_12_10Statement (X : FMSetup.{w, u, v}) (hX : X.ctx.IsProperFlat) {K : X.DP}
+def corollary_12_4Statement (X : FMSetup.{w, u, v}) (hX : X.ctx.IsProperFlat) {K : X.DP}
     (hK : X.ctx.SP.IsPseudocoherent K)
     (hrel1 : X.ctx.IsRelativelyPerfectOverOne K)
     (hrel2 : X.ctx.IsRelativelyPerfectOverTwo K) (t : BaseChange X) : Prop :=
@@ -782,7 +782,7 @@ def corollary_6_18Statement (X : FMSetup.{w, u, v}) (hX : X.ctx.IsProperFlat) {K
     (t : BaseChange X) : Prop :=
   t.over.ctx.IsRelativelyPerfectOverOne (t.pullKernel.obj K)
 
-/-- **GL26 Theorem 1.7, Theorem 11.4**
+/-- **GL26 Theorem 1.7, Proposition 11.4**
 (`thm:elliptic_fibration_autoequivalence`).  For an elliptic fibration, the
 ideal-sheaf kernel `I_Δ` induces an autoequivalence of `D^b_coh(Y)`.
 

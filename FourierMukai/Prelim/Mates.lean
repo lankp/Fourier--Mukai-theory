@@ -30,9 +30,9 @@ between `NatTrans` types, the proof that it is *definitionally* Mathlib's
 `mateEquiv` (so the paper's formula and Mathlib's agree), the componentwise
 formulas `mate_app` and `mateInv_app`, and the packaged bijection `matesEquiv`.
 
-Still to add (paper Lemma 7.1(1)): the commutativity of the Hom-set square, i.e.
-compatibility of the correspondence with pre- and post-composition
-(`CategoryTheory.mateEquiv_vcomp` and `mateEquiv_hcomp` are the tools).
+The commutativity of the Hom-set square (paper Lemma 7.2(1)) is proved in
+`Prelim/MatesCalculus.lean` (`mates_hom_square`).  Result numbers here follow the
+current GL26 manuscript; earlier versions of this file used 7.1 for 7.2 and 7.8 for 7.11.
 
 The file was produced by a member of the Ultramath run `smwufdjq4` (direction D1).
 -/
@@ -137,8 +137,7 @@ def matesEquiv (adj : F ⊣ G) (adj' : F' ⊣ G') :
   left_inv := mateInv_mate adj adj'
   right_inv := mate_mateInv adj adj'
 
-/-- Function form of the mate bijection (Lemma 7.2(2) of the paper, called
-Lemma 7.1 in the task).
+/-- Function form of the mate bijection (Lemma 7.2(2) of the paper).
 -/
 theorem mate_bijective (adj : F ⊣ G) (adj' : F' ⊣ G') :
     Function.Bijective (mate (H := H) (K := K) adj adj') :=
@@ -156,9 +155,9 @@ theorem mate_eq_iff (adj : F ⊣ G) (adj' : F' ⊣ G')
   · intro h
     rw [← h, mate_mateInv]
 
-/-! ### Lemma 7.8: mates of isomorphisms -/
+/-! ### Lemma 7.11: mates of isomorphisms -/
 
-/-- **Lemma 7.8(2)**, forward direction: if the unit of `adj'` and the counit of
+/-- **Lemma 7.11** (`lem:when_mate_correspondence_preserves_isos`), forward direction: if the unit of `adj'` and the counit of
 `adj` are isomorphisms, then the mate of an isomorphism is an isomorphism.  (Only
 these two of the four unit/counit 2-cells occur in the formula for `mate`.) -/
 theorem isIso_mate (adj : F ⊣ G) (adj' : F' ⊣ G') (α : H ⋙ F' ⟶ F ⋙ K) [IsIso α]
@@ -166,7 +165,7 @@ theorem isIso_mate (adj : F ⊣ G) (adj' : F' ⊣ G') (α : H ⋙ F' ⟶ F ⋙ K
   unfold mate
   infer_instance
 
-/-- **Lemma 7.8(2)**, converse direction: if the unit of `adj` and the counit of
+/-- **Lemma 7.11** (`lem:when_mate_correspondence_preserves_isos`), converse direction: if the unit of `adj` and the counit of
 `adj'` are isomorphisms, then `α` is an isomorphism as soon as its mate is.  (Only
 these two occur in the formula for `mateInv`.) -/
 theorem isIso_of_isIso_mate (adj : F ⊣ G) (adj' : F' ⊣ G') (α : H ⋙ F' ⟶ F ⋙ K)
@@ -179,7 +178,7 @@ theorem isIso_of_isIso_mate (adj : F ⊣ G) (adj' : F' ⊣ G') (α : H ⋙ F' �
     infer_instance
   exact NatIso.isIso_of_isIso_app _
 
-/-- **Lemma 7.8(2)**: if both adjunctions are adjoint equivalences, the mate
+/-- **Lemma 7.11** (`lem:when_mate_correspondence_preserves_isos`): if both adjunctions are adjoint equivalences, the mate
 correspondence preserves and reflects isomorphisms. -/
 theorem isIso_mate_iff (adj : F ⊣ G) (adj' : F' ⊣ G') (α : H ⋙ F' ⟶ F ⋙ K)
     [IsIso adj.unit] [IsIso adj.counit] [IsIso adj'.unit] [IsIso adj'.counit] :
