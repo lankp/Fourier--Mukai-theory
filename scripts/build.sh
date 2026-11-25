@@ -79,6 +79,7 @@ for f in \
   FourierMukai/Scheme/PaperGeneratorM5.lean \
   FourierMukai/Scheme/AffineNeemanAssembly.lean \
   FourierMukai/Scheme/AffineCompactness.lean \
+  FourierMukai/Scheme/SchemeNeemanTransport.lean \
   FourierMukai/Scheme/AffineRecollementAssembly.lean \
   FourierMukai/Scheme/AffineSetupInventory.lean \
   FourierMukai/Scheme/AffineJUpperAdjoint.lean \
