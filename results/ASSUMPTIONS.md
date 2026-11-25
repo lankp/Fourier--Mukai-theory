@@ -55,6 +55,30 @@ ring**: `S` and `hgen` still contain geometric and setup data.
 | Affine diagonal and product generation | Lemma 2.25's categorical computation and Lemma 5.4's abstract cover argument, conditional on their explicit geometric data (`AffineDiagonal.lean`, `Lemma54.lean`). |
 | Convolution | Lemma 2.26's categorical core, corrected statement bridge and affine wrapper (`AffineConvolution.lean`), conditional on a derived cube with projection formulas, tensor compatibilities and an invertible 08IR mate. |
 
+## 2b. What of Neeman is now proved (weak approximability)
+
+The campaign now aims to *prove* Neeman's weak approximability rather than cite it.
+Progress, all `P` (no external input):
+
+| Neeman 3.2 component | status |
+|---|---|
+| the approximation triangles | **proved**: `Scheme/NeemanApproximation.lean`, `exists_approximation_triangle` — for `F` in the standard aisle of `D(A-Mod)` there is a distinguished triangle `E → F → D → E⟦1⟧` with `E ∈ ⟨A⟩^[-1,1]` and `D ∈ t^{≤-1}`; any bound `N ≥ 1` by monotonicity |
+| zero detection (generation) | **proved**: `ringObject_isPaperGenerator`, `Scheme/NeemanPreferred.lean` and `Scheme/PaperGeneratorM5.lean`, for every commutative ring, by projective lifts to cycles |
+| the preferred `t`-structure | **proved modulo compactness of `A[0]`**: `standard_inPreferredClass`, plus `le_zero_eq_coprod_compactInAisle` showing the two aisle formulations agree (no counterexample) |
+| the generator bounds | **proved**: `Scheme/NeemanGeneratorBoundsM5.lean`, in both the large-Hom and small-Hom models |
+| compactness of `A[0]` | open; this is what `PerfectToCompactInput` still lacks |
+| scheme case | reduced, not proved: `Scheme/SchemeGluingReduction.lean` proves the gluing steps from `SetupMainMinimal` + compact Hom vanishing and notes that LP's Corollary 1.2 cites Neeman for schemes rather than proving it by gluing |
+
+**A constraint discovered on the way, which changes the target.**  For `A = ℤ` the
+regular module is **not** `IsGenerator`: `Scheme/GeneratorCounterexampleM5.lean`
+exhibits the non-split injection `ℤ --2--> ℤ`, whose connecting map is a nonzero
+ghost out of the shifts of `ℤ`; and consequently no `WeakApproximationData` on
+`SmallAffineD ℤ` can have `G = smallRingObject`.  So LP's structure *as formalised*
+cannot be inhabited by the regular module: either the generator must be a different
+object, or the `G_generates` field must be weakened to the paper's zero detection
+(`IsPaperGenerator`), which is what Neeman and LP actually use and what survives for
+the regular module.  This is the sharpest open design question in the project.
+
 `D(A-Mod) ≌ D(QCoh(Spec A))` is proved in `AffineDictionary.lean`. The stronger
 comparison with the **all-sheaves quasicoherent-cohomology** model is conditional
 on `AffineDerivedGammaInput` or `AffineCohomologyComparison`; the small ring-valued
