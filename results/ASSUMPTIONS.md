@@ -128,8 +128,18 @@ injectives:
 from the two adjunctions alone, via the general fact that if `F ⊣ G`, `F' ⊣ G'`
 and `F ⋙ F' = 0` then `G' ⋙ G = 0` — so that field needs no explicit formulas.
 
-Still missing: `iShriek`, `jUpper`, their two adjunctions, `secondConnecting`,
-and `second_distinguished`.
+`Scheme/AffineSecondGluing.lean` and `AffineSecondGluingAssembly.lean` construct the
+second connecting morphism and prove the second triangle distinguished, purely
+categorically: complete the counit, identify its cone with the open-image object by
+right orthogonality and the kernel vanishing, and get naturality from injectivity on
+precomposition together with uniqueness of maps out of an orthogonal triangle.
+`AdjointInput.toAffineRecollementInput` then needs only `iShriek`, `iLowerAdj`,
+`jUpper`, `jStarAdj` — everything else in `AffineRecollementInput` is constructed
+from those four.
+
+So the entire residue of the recollement is: **`jUpper` with `jStar ⊣ jUpper`, and
+`iShriek` with `iLowerAdj`**.  `iShriek` is built (coextension); `jUpper` is reduced
+to one tensor–Hom adjunction on `RΓ_Z(A)` (Stacks 0A6R).
 
 **`iShriek` is now built.** `Scheme/AffineIShriek.lean` takes the right adjoint of
 restriction of scalars to be *coextension*: `derivedCoextendScalars A f`, with

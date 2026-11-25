@@ -58,6 +58,8 @@ import FourierMukai.Scheme.AffineSupportedTStructure
 import FourierMukai.Scheme.AffineRecollementAssembly
 import FourierMukai.Scheme.AffineSetupInventory
 import FourierMukai.Scheme.AffineJUpperAdjoint
+import FourierMukai.Scheme.AffineSecondGluing
+import FourierMukai.Scheme.AffineSecondGluingAssembly
 import FourierMukai.Scheme.AffineJUpperTensorHom
 import FourierMukai.Scheme.AffineJUpperCandidateRefuted
 import FourierMukai.Scheme.AffineSupportedAssembly

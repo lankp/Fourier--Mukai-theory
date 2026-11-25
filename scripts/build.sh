@@ -59,6 +59,8 @@ for f in \
   FourierMukai/Scheme/AffineRecollementAssembly.lean \
   FourierMukai/Scheme/AffineSetupInventory.lean \
   FourierMukai/Scheme/AffineJUpperAdjoint.lean \
+  FourierMukai/Scheme/AffineSecondGluing.lean \
+  FourierMukai/Scheme/AffineSecondGluingAssembly.lean \
   FourierMukai/Scheme/AffineJUpperTensorHom.lean \
   FourierMukai/Scheme/AffineJUpperCandidateRefuted.lean \
   FourierMukai/Scheme/AffineSupportedAssembly.lean \
