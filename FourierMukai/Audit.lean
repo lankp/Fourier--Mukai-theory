@@ -97,3 +97,7 @@ open RelativeFM
 #print axioms RelativeFM.theorem_1_6
 #print axioms RelativeFM.lemma_2_26
 #print axioms RelativeFM.theorem_1_7
+#print axioms RelativeFM.RegularCompact.ringObject_isCompactAb
+#print axioms RelativeFM.RegularCompact.affine_satisfiesPaperWA
+#print axioms RelativeFM.RegularCompact.principalSupported_satisfiesPaperWA
+#print axioms RelativeFM.RegularCompact.neemanWeakApproximability_spec
