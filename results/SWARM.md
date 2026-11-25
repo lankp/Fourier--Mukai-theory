@@ -84,7 +84,7 @@ From `README.md`, "What is open", and the coverage map:
 
 | wave | task | session | merged as | outcome |
 |---|---|---|---|---|
-| 1 | `wave1/units` | `session_0111iGd6mLyx21wsZDAN46ta` | | started 25 Nov 2026 |
+| 1 | `wave1/units` | `session_0111iGd6mLyx21wsZDAN46ta` | `611bba9` (merge of `3e2b208`) | C.1 and 7.10: P (C.1 (2), 7.10 in `Cat`); verified: build, audit 37 clean, statement check OK |
 | 1 | `wave1/lemma-2-4` | `session_0111iGd8UAfu1fhMqf2yVMaq` | `22ecf48` (merge of `b0d3f63`) | Lemma 2.4: C (converse on Neeman's Bousfield triangles); verified: build, audit 31 clean, statement check OK |
 | 1 | `wave1/appendix-b` | `session_0111iGd5Q2nuaHDR5zbDA1gd` | | started 25 Nov 2026 |
 | 1 | `wave1/mates-calculus` | `session_0111iGd55yqjemjonMmL7vdQ` | | started 25 Nov 2026 |
