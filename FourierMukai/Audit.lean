@@ -101,3 +101,8 @@ open RelativeFM
 #print axioms RelativeFM.RegularCompact.affine_satisfiesPaperWA
 #print axioms RelativeFM.RegularCompact.principalSupported_satisfiesPaperWA
 #print axioms RelativeFM.RegularCompact.neemanWeakApproximability_spec
+#print axioms RelativeFM.Recollement.JUpperConstruction.adjunction
+#print axioms RelativeFM.Recollement.JUpperConstruction.jStarAdjOfIShriek
+#print axioms RelativeFM.Recollement.JUpperConstruction.affineRecollementInputOfIShriek
+#print axioms RelativeFM.Recollement.JUpperConstruction.affineRecollementInputOfStacks0E55
+#print axioms RelativeFM.Recollement.JUpperConstruction.affineRecollementInputOfExactCoextension
