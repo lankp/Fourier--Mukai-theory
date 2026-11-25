@@ -84,4 +84,7 @@ From `README.md`, "What is open", and the coverage map:
 
 | wave | task | session | merged as | outcome |
 |---|---|---|---|---|
-| 1 | | | | |
+| 1 | `wave1/units` | `session_0111iGd6mLyx21wsZDAN46ta` | | started 25 Nov 2026 |
+| 1 | `wave1/lemma-2-4` | `session_0111iGd8UAfu1fhMqf2yVMaq` | | started 25 Nov 2026 |
+| 1 | `wave1/appendix-b` | `session_0111iGd5Q2nuaHDR5zbDA1gd` | | started 25 Nov 2026 |
+| 1 | `wave1/mates-calculus` | `session_0111iGd55yqjemjonMmL7vdQ` | | started 25 Nov 2026 |
