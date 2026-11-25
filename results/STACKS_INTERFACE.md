@@ -57,6 +57,15 @@ the statements, which matters because a tag can be instantiated in several ways.
   04LX, 08JB, 0A6H, 0D0S are all available as interface fields if we want them — even
   though we have proved most of them here already.
 
+## The ledger rule, as decided
+
+The person confirmed (in conversation) the rule proposed below: **keep our own
+proofs; use Stacks tags only for genuine gaps.**  So a tag is assumed only where the
+tree has no proof of it.  The list of such genuine gaps is short and is maintained
+in [`ASSUMPTIONS.md`](ASSUMPTIONS.md); at the time of writing it is the derived
+tensor with its tensor–Hom adjunction (0A6R and the K-flat/K-projective material it
+rests on).
+
 ## Consequence for the assumption ledger
 
 For every tag the tree currently cites, there is now a choice: **prove it here** (as
