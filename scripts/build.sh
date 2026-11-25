@@ -37,6 +37,7 @@ for f in \
   FourierMukai/Scheme/AffineDiagonal.lean \
   FourierMukai/Scheme/Perfect.lean \
   FourierMukai/Scheme/PerfectRingStacks.lean \
+  FourierMukai/Scheme/PerfectCompactThick.lean \
   FourierMukai/Paper/Statements.lean \
   FourierMukai/Paper/InterfaceAudit.lean \
   FourierMukai/Examples/Identity.lean \
@@ -77,6 +78,7 @@ for f in \
   WeakApprox/Setup44Reduced.lean \
   WeakApprox/MainMinimal.lean \
   WeakApprox/Setup44Minimal.lean \
+  WeakApprox/CompactThick.lean \
   WeakApprox.lean ; do
   echo "== compiling $f"
   lean -o "${f%.lean}.olean" "$f"

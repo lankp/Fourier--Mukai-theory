@@ -37,6 +37,7 @@ import WeakApprox.Setup44Reduced
 import WeakApprox.Setup44Minimal
 import WeakApprox.Main
 import WeakApprox.MainMinimal
+import WeakApprox.CompactThick
 
 /-!
 # Weak approximability along recollements

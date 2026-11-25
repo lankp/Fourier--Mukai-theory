@@ -38,6 +38,7 @@ does not touch.
 | compact ⇒ perfect (Stacks **09M1**, **0AED**) | `CompactPerfectInput`, `Scheme/PerfectRing.lean` | split into `CompactToPerfectInput` (used) and `PerfectToCompactInput` (never used); the used half follows from 07LT's hard direction plus the proved filtration. |
 | perfect ⇒ bounded model | `BoundedProjectiveModelConverseInput`, `Scheme/PerfectModel.lean` | equivalent to 066S by `Scheme/PerfectModelConverse.lean`. |
 | eventual Hom vanishing (Stacks **09MB**) | `CompactHomZeroAtTop`, `Scheme/Inputs.lean` | **proved** for rings (`perf_eventuallyHomZero`); not on the affine path. |
+| perfect ⇒ compact (Stacks **09M8**, the thick-envelope half) | `PerfectToCompactInput`, `Scheme/PerfectRingStacks.lean` | reduced to compactness of the regular module: `Perf A ≤ compactObjectProperty` whenever `IsCompactAb (ringObject A)` (`WeakApprox/CompactThick.lean` proves compact objects are closed under thick envelopes by triangle two-out-of-three, with no AB4; `Scheme/PerfectCompactThick.lean` derives `PerfectToCompactInput`). Not on the affine path. |
 | Stacks **09SR** | `AffineStacks09SR`, `Scheme/Affine.lean` | removed from the current endpoint; only the older `affine_theorem_1_1` still carries it. |
 
 ## C. Not on the affine endpoint's path
