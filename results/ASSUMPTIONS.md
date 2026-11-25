@@ -1,78 +1,133 @@
 # What is still assumed, and what would discharge it
 
-**Goal of this file.** The campaign target is: the affine case of GL26 Theorem 1.1
-with **Neeman, Acta Math. 233 (2024), Theorem 3.2 as the only published input**.
-This is the inventory of everything else that is currently assumed anywhere in the
-tree, where it is assumed, and what would discharge it.  It supersedes the
-"open" entries of [`AFFINE.md`](AFFINE.md) as the planning document.
+**Goal.** The affine case of GL26 Theorem 1.1 with **Neeman, Acta Math. 233
+(2024), Theorem 3.2 as the only published input**.  This file is the current
+inventory of every other assumption, where it is made, and what would discharge
+it.  It replaces the earlier append-only version: the labels below are stable.
 
-The current endpoint is
+The endpoint is
 
 ```
 PerfectRingStacks.StacksGluing.affine_theorem_1_1_stacks07LT
-    (S : SetupMainMinimal DZ (AffineD A) DU)
-    (C : AffineDerivedCoproducts A DZ DU)
+    (S : SetupMainMinimal DZ (AffineD A) DU) (C : AffineDerivedCoproducts A DZ DU)
     (I : Stacks07LTCompactModelInput A) :
     SatisfiesWA (AffineD A) ↔ AffineEventualSelfVanishing S.G'
 ```
 
-so its assumptions are exactly `S`, `C`, `I`.  Everything else in the tree is
-either proved or belongs to the general-scheme layer that the affine endpoint
-does not touch.
+and, in the universe-correct small-Hom model,
 
-## A. On the affine endpoint's path
+```
+AisleCoproducts.affine_theorem_1_1_small_noCoproducts
+    (H : AffineSpaltensteinInput A) (S : SetupMainMinimal DZ (SmallAffineD A H) DU)
+    (hT : S.tD = standard t-structure) (h09SR : Stacks09SR _) :
+    SatisfiesWA (SmallAffineD A H) ↔ eventual self-vanishing of S.G'
+```
 
-| # | assumption | Lean name, file | what it says | discharge |
-|---|---|---|---|---|
-| A1 | Stacks **07LT**, hard direction | `Stacks07LTCompactModelInput.model_of_compact`, `Scheme/PerfectRingStacks.lean` | a compact object of `D(R)` has a bounded complex of finitely generated projective modules as a model | 07LT's own proof: truncate to `D^-(R)`, factor the identity through a bounded complex of frees, make the terms finite by induction, finish with **066S** (retract closure). `Scheme/PerfectModelConverse.lean` proves every step *after* 066S: `Perf A ≤ model ↔ model.IsStableUnderRetracts`. **Residue: 066S alone.** |
-| A1' | 07LT's induction | `FourierMukai/Scheme/CompactToPerfect.lean` | the finite-free induction, the `DFinsupp` support extraction, the 07LR lifting step and the truncation-coproduct datum are now **proved**; `CompactToPerfectInput` (compact ⇒ `Perf`) follows from `FilteredFreeModelInput` together with `FiniteFreeImprovementInput` | construct those two inputs for a ring. The first is a free complex model with exhaustive bounded truncations having jointly surjective derived Hom maps, i.e. the same Spaltenstein-shaped dependency as A3; 066S is *not* needed for compact ⇒ `Perf` (only for the model form), since `Perf` is the thick envelope. Residue unchanged in status, but its induction is done. |
-| A2 | Stacks **066S** | not assumed as a Lean hypothesis; it is the residue of A1 | a direct summand in `D(R)` of a strictly perfect complex is strictly perfect | reduced to one classical lemma: Le–Chen, *Karoubianness of a triangulated category*, J. Algebra 310 (2007), Proposition 2.3, in the form "in a triangle whose three components are idempotent, splitting of the two end components gives splitting of the middle". **Le–Chen 2.3 is now proved** (`Scheme/LeChen.lean`, `LeChen.splitsWithin_third`): for a triangulated object property `T` and a morphism of distinguished triangles whose three components are idempotents, splitting of the first two within `T` implies splitting of the third. The file also has `SplitsWithin`, strong splittings as biproduct decompositions, the biproduct-of-triangles construction (`biproductTriangle_distinguished`), `exists_biprod_map_of_comm` and `comp_eq_zero_of_distTriang`. `T`-images are constrained, which is the form 066S needs. No octahedral axiom is used — the source's Remark 2.4 and the proof agree on that.
-The residue of 066S is now the **truncation induction**: split the idempotent on a bounded finite-projective complex by induction on its length, using that idempotents split in `R`-Mod at the bottom degree and `splitsWithin_third` to pass across the triangle `σ_{≥a+1}P → P → P^a`. Two earlier attempts produced nothing usable: `PerfectModelRetract.lean` (base cases only, never compiled) and a run that died on a type-coercion artifact in the assembly. |
-| A3' | Spaltenstein, bounded above | `Scheme/KProjectiveResolution.lean`, `Scheme/AffineBoundedAboveCoproducts.lean` | a `KProjectiveResolution` for a complex strictly bounded above in degree `d`, for any abelian category with enough projectives, feeding `Scheme/DerivedCoproducts.lean`; coproducts of bounded-above families in `D(C)` follow | the unbounded case of Spaltenstein's Theorem C, which is the genuinely hard one (filtration plus Mittag-Leffler) |
-| A3'' | the universe decision | `Scheme/AffineUniverse.lean` | **decided, and proved**: instead of `HasCoproducts.{u+1}` on a category of `u`-small modules (impossible), use the *small-Hom* derived category `SmallAffineD A H = DerivedCategory` at `HasDerivedCategory.{u}`, where the category is `Category.{u}` and `HasCoproducts.{u}` follows from K-projective replacement data plus coproducts in `ModuleCat`. Also `HasCoproducts.{w} (ModuleCat.{u} A)` for every `w` with `UnivLE.{w,u}`, `AffineD A ≌ SmallAffineD A H`, and `affine_theorem_1_1_small` proving LP Theorem 1.1 with the **unchanged** `SetupMainMinimal.theorem_1_1` and `v = u`, so `Coprod`, `IsCompactAb` and `WeakApproximationData` need no re-indexing | remaining: `AffineSpaltensteinInput` (A3), and packaging the transport of the existing affine inputs across `AffineD ≌ SmallAffineD` with shift compatibility |
-| A3⁗ | sequential special direct limits | `Scheme/SpecialDirectLimits.lean` | for a `ℕ`-indexed sequence of K-projective complexes whose successor maps carry degreewise split monomorphisms, the colimit is K-projective — with **no AB4, AB5, Mittag–Leffler or lim¹ hypothesis**, because the explicit telescope section/retraction kills the obstruction in that case. Plus the three degreewise-split triangle closure forms and `resolutionOfSequentialSpecialDirectLimit` | Spaltenstein 3.3's stages and the quasi-isomorphism from the colimit; well-ordered (non-`ℕ`) limits are not covered |
-| A3''' | Spaltenstein via a model structure | `Scheme/ProjectiveModel.lean`, `Scheme/SmallObjectPresentable.lean`, `Scheme/GeneratingCofibrations.lean` | K-projective replacement data is **derived** from cofibrant lifting, or from the RLP identity plus Mathlib's small-object argument; the ordinal preservation condition is discharged from cardinal presentability; Hovey's generating cofibrations are encoded with their smallness proved; and `hasCoproductsDerivedOfGeneratingCofibrations` feeds the existing `DerivedCoproducts` theorem | two named inputs, neither claimed: Hovey, *Model Categories*, Prop. 2.3.5 (`I.rlp = degreewiseEpiQuasiIso`) and presentability of the sphere objects (Hovey 2.3.2 for modules). Each is a statement about a *set* of morphisms, not about an arbitrary complex, so it is the most tractable form the obstruction has taken |
-| A3'''' | coproducts removed from the LP chain | `Scheme/AisleCoproducts.lean` | **the coproduct hypothesis is gone from the affine endpoint**: `HasAisleCoproducts t` asks only for coproducts of families lying in a *fixed* aisle `t.le d`, which the LP proof is the only place that needs them, and for the standard `t`-structure on `D(C)` this follows from the landed bounded-above K-projective resolutions (`hasAisleCoproducts_standard`). `affine_theorem_1_1_small_noCoproducts` therefore takes **no coproduct package at all**. Supporting: bounded envelope/colimit lemmas, Lemma 3.1(5), Proposition 4.8 lifting, Lemma 4.6, the reverse implication, `theorem_1_1_of_middleAisleCoproducts`, and closed-aisle coproducts reflected from the middle | remaining: `hT` (the middle `t`-structure is the standard one), Stacks 09SR in this version (removable by combining with `AffineMain`'s Neeman-only route), and the transfer of old affine inputs across `AffineD ≌ SmallAffineD` |
-| A3⁵ | Spaltenstein's cone stage and iteration | `Scheme/SpaltensteinStage.lean`, `SpaltensteinIteration.lean`, `SpaltensteinColimit.lean`, `SpaltensteinReplacement.lean` | the cone stage `Cone(g ≫ fst) → B` with strict predecessor compatibility, K-projectivity and quasi-isomorphism (explicit homotopy plus the derived-triangle five lemma); the iteration via bounded-above projective resolutions only, giving bounded K-projective `P n` with split transitions and K-projective `Q n [1]` cokernels; the colimit step consuming `SpecialDirectLimits.isKProjective_colimit`; and `replacementOfInput` producing a `KProjectiveResolution` for an arbitrary complex | `TheoremCInput`: the canonical-truncation successor maps, exact preservation of quasi-isomorphisms by the sequential colimit, and the filtration-colimit-to-`A` quasi-isomorphism |
-| A3 | coproducts on `D(A-Mod)` | `AffineDerivedCoproducts.hasCoproductsA`, `Scheme/Affine.lean` | `HasCoproducts.{u+1} (D(ModuleCat.{u} A))` | two independent obstructions: (i) **Spaltenstein** Theorem C, K-projective replacement for every complex — `Scheme/DerivedCoproducts.lean` already turns replacements into coproducts; (ii) a **universe** obstruction, since the field asks for a `Type (u+1)`-indexed coproduct in a category of `Type u`-small modules (`HasCoproducts.{0}` is synthesizable, `.{1}` is not). Needs either a Spaltenstein construction or a decision to index the categorical layer in the smaller universe. |
-| A4' | `RΓ_Z` cone model | `Scheme/AffineLocalCohomology.lean` | the degreewise cone of the localization unit, shifted by `-1`, is proved to preserve quasi-isomorphisms and descends to `derivedFunctor : AffineD A ⥤ AffineD A`; three `AffineRecollementInput` fields are proved for it — `Rj_* RΓ_Z ≅ 0`, `Lj^* RΓ_Z ≅ 0`, and `RΓ_Z X ≅ 0 ↔ X ∈ essIm Rj_*` | no injectives, no Noetherian hypothesis. Still missing: `RΓ_Z` landing in `AffineDZ` (power-torsion support), its shift/triangulated structure, the adjunction to the inclusion, `iShriek`, `jUpper`, and the two gluing triangles |
-| A4 | affine recollement | `AffineRecollementInput`, `Scheme/AffineRecollement.lean` | `j^×`, `RΓ_Z`, `i^*`, their exactness and adjunctions, the kernel characterization, the two mixed zero composites and both gluing triangles | the open/closed recollement for `Z = V(f)` is explicit, so no injective resolutions are needed: `RΓ_Z(K)` is the cone of `K → K ⊗_A A[1/f]` (degreewise, since `A[1/f]` is flat), `j^×` and `i^*` are the corresponding cone/adjunction functors. Currently being attempted. |
-| A5 | `SetupMainMinimal`'s data | `WeakApprox/MainMinimal.lean`, 20 fields | recollement, three `t`-structures, `WeakApproximationData` on both ends, the glued generator `G'`, its compactness and generation, the normalization `m`, the three aisle identities | after A4, the fields are exactly Neeman 3.2(i)–(iv) applied to `Spec A` and to `Z = V(f)`: compacts are perfect (i), a compact generator exists (ii), the preferred `t`-structure and the aisle identities (iii), weak approximability of `D_qc,Z` (iv) — plus A1 for the compactness of the chosen generator. **This is assembly work, not new mathematics**, but it needs A3 to be stateable. |
+## 1. The three open items
 
-## B. Reduced or proved, but still listed as inputs for compatibility
+**(1) Stacks 066S, i.e. the residue of 07LT.**  `Perf A ≤ HasBoundedFiniteProjectiveModel A`.
+Reduced twice and now in a good position:
 
-| item | Lean name | now |
+* `Scheme/PerfectModelConverse.lean`: `Perf A ≤ model ↔ model.IsStableUnderRetracts`,
+  with the model class proved closed under zero, isomorphisms, shifts, single
+  finite-projective complexes and cones (explicit mapping-cone models), so
+  triangulated.
+* `Scheme/LeChen.lean`: **Le–Chen 2.3 is proved** (`LeChen.splitsWithin_third`):
+  for a triangulated object property `T` and a morphism of distinguished triangles
+  whose three components are idempotents, splitting of the first two within `T`
+  gives splitting of the third.  No octahedral axiom is used.
+* `Scheme/CompactToPerfect.lean`: the whole finite-free induction of 07LT, and
+  `compact ⇒ Perf` follows from `FilteredFreeModelInput` + `FiniteFreeImprovementInput`.
+  066S is **not** needed for that implication (the thick envelope absorbs the
+  retract), only for the model form.
+
+Residue: the truncation induction on a bounded finite-projective complex, using
+that idempotents split in `R`-Mod at the bottom degree and `splitsWithin_third`
+to cross the triangle `σ_{≥a+1}P → P → P^a`.  Concrete, bounded work.
+
+**(2) Spaltenstein's Theorem C.**  `Scheme/SpaltensteinReplacement.lean`,
+`TheoremCInput`: the canonical-truncation successor maps, exactness of the
+sequential colimit on quasi-isomorphisms, and the filtration-colimit-to-`A`
+quasi-isomorphism.  Everything else is proved:
+
+* `Scheme/KProjectiveResolution.lean` + `AffineBoundedAboveCoproducts.lean`: the
+  bounded-above case, for any abelian category with enough projectives;
+* `Scheme/SpecialDirectLimits.lean`: an `ℕ`-indexed colimit of K-projectives with
+  degreewise split monomorphisms is K-projective — no AB4, AB5, Mittag-Leffler
+  or `lim¹` hypothesis, because an explicit telescope section kills the
+  obstruction in that case;
+* `Scheme/SpaltensteinStage.lean`, `SpaltensteinIteration.lean`,
+  `SpaltensteinColimit.lean`: the cone stage with its homotopy and five-lemma
+  quasi-isomorphism, and the countable induction using only bounded-above
+  projective resolutions;
+* `Scheme/ProjectiveModel.lean`, `SmallObjectPresentable.lean`,
+  `GeneratingCofibrations.lean`: an alternative route, deriving replacement data
+  from Hovey's projective model structure down to two inputs (Prop. 2.3.5 and
+  sphere presentability), each a statement about a *set* of morphisms.
+
+**Why it is still load-bearing, precisely.**  It is *not* needed for coproducts:
+`Scheme/AisleCoproducts.lean` shows the LP proof only ever forms coproducts of
+families lying in a fixed aisle, and those come from bounded-above resolutions.
+But the universe decision (`Scheme/AffineUniverse.lean`) puts the endpoint in the
+**small-Hom** derived category, `HasDerivedCategory.{u}`, whose *existence* is
+what the replacement data supplies — `HasDerivedCategory.{u} (ModuleCat.{u} A)`
+is not synthesizable on its own (checked directly).  So the dilemma is: large-Hom
+model, where `HasAisleCoproducts` would need coproducts indexed by `Type (u+1)` in
+a category of `u`-small modules (impossible); or small-Hom model, which exists
+only given replacements.  Spaltenstein is therefore still on the critical path,
+and `TheoremCInput` is the smallest form it has taken.
+
+**(3) The affine recollement.**  `Scheme/AffineRecollement.lean`,
+`AffineRecollementInput`.  `Scheme/AffineLocalCohomology.lean` builds `RΓ_Z` as
+the degreewise cone of the localization unit, shifted by `-1`, proves it preserves
+quasi-isomorphisms, descends it to `D(A)`, and proves three of the input's fields:
+`Rj_* RΓ_Z ≅ 0`, `Lj^* RΓ_Z ≅ 0`, and `RΓ_Z X ≅ 0 ↔ X ∈ essIm Rj_*`.  No
+injectives and no Noetherian hypothesis.  Missing: `RΓ_Z` landing in `AffineDZ`
+(power-torsion support), its shift and triangulated structure, the adjunction to
+the inclusion, `iShriek`, `jUpper`, and the two gluing triangles.
+
+## 2. Assembly items (no open mathematics)
+
+| item | why it is needed | where |
 |---|---|---|
-| extension closure of quasicoherent sheaves (Stacks **01LA(6)**, **01IE**) | `QuasicoherentExtensionInput`, `Scheme/QCohSerre.lean` | **discharged**: `Scheme/QCohSerreExtension01IE.lean` proves 01IE (`AffineExtension.surjective_appTop`) and hence extension closure on every scheme and triangulated `D_qc`. 01LA(3) coproducts, biproducts and split extensions were already unconditional. |
-| compact ⇒ perfect (Stacks **09M1**, **0AED**) | `CompactPerfectInput`, `Scheme/PerfectRing.lean` | split into `CompactToPerfectInput` (used) and `PerfectToCompactInput` (never used); the used half follows from 07LT's hard direction plus the proved filtration. |
-| perfect ⇒ bounded model | `BoundedProjectiveModelConverseInput`, `Scheme/PerfectModel.lean` | equivalent to 066S by `Scheme/PerfectModelConverse.lean`. |
-| eventual Hom vanishing (Stacks **09MB**) | `CompactHomZeroAtTop`, `Scheme/Inputs.lean` | **proved** for rings (`perf_eventuallyHomZero`); not on the affine path. |
-| perfect ⇒ compact (Stacks **09M8**, the thick-envelope half) | `PerfectToCompactInput`, `Scheme/PerfectRingStacks.lean` | reduced to compactness of the regular module: `Perf A ≤ compactObjectProperty` whenever `IsCompactAb (ringObject A)` (`WeakApprox/CompactThick.lean` proves compact objects are closed under thick envelopes by triangle two-out-of-three, with no AB4; `Scheme/PerfectCompactThick.lean` derives `PerfectToCompactInput`). Not on the affine path. |
-| Stacks **09SR** | `AffineStacks09SR`, `Scheme/Affine.lean` | removed from the current endpoint; only the older `affine_theorem_1_1` still carries it. |
+| `hT` | the middle `t`-structure of `SetupMainMinimal` must be identified with the standard one before `hasAisleCoproducts_standard` applies | stated as a hypothesis in `affine_theorem_1_1_small_noCoproducts` |
+| transfer across `AffineD A ≌ SmallAffineD A H` | the existing affine inputs (recollement, generator data) live on the large-Hom model | `Scheme/AffineUniverse.lean` proves the equivalence; the transport with shift compatibility is not packaged |
+| Stacks 09SR in this version | removed in `AffineMain.lean` by `CompactHomZeroAtTop`; not yet combined with the small-Hom endpoint | `Scheme/AffineMain.lean`, `Scheme/PerfectRingStacks.lean` |
 
-## C. Not on the affine endpoint's path
+## 3. Proved, previously assumed
 
-These belong to the general-scheme layer and are not needed for the affine
-statement: `AffineDerivedGammaInput` (Stacks 06Z0/079W/08D4/01XB, the two models
-of `D_qc`; `Scheme/AffineQCoh.lean`), `AffineAllSheavesBridgeInput`
-(`Scheme/PerfectModel.lean`), `DiagonalIdentityData` including 08IN
-(`Scheme/AffineDiagonal.lean`), `VectorBundleCalculus` and
-`PerfectToDQCohInterface` (08CR/08CS, `Scheme/Perfect.lean`),
-`QuasicoherentStrongClosureInput` and `DQCohCoproductInput` (`Scheme/Derived.lean`,
-superseded by the extension input), the duality interfaces in
-`Scheme/Duality.lean` (`DerivedTensorHomData`, `PerfectDualityData`,
-`UpperShriekBaseChangeData`, `BaseChangeCoherenceData`), and
-`CoverComparisonInput` / `ProductPerfectCompactInput` for GL26 Lemma 5.4
-(`Scheme/Lemma54.lean`).
+| was | now |
+|---|---|
+| Stacks **01LA(6)** extension closure of quasicoherent sheaves, and **01IE** | **proved** (`Scheme/QCohSerreExtension01IE.lean`): the denominator-ideal argument, no cohomology; extension closure on every scheme and triangulated `D_qc` follow. Row 3 of `AFFINE.md` closed |
+| Stacks **09MB** eventual Hom vanishing | **proved** for rings (`perf_eventuallyHomZero`), no input |
+| Stacks **09M8**, perfect ⇒ compact | thick-envelope half proved (`WeakApprox/CompactThick.lean`, `Scheme/PerfectCompactThick.lean`); whole statement reduced to compactness of the regular module |
+| Stacks **066T** (models are perfect) | **proved** for every commutative ring |
+| Stacks **09SR** | removed from `affine_theorem_1_1_neeman_only` |
+| Bondal–Van den Bergh | replaced by Stacks tags 0AED/09M8/0AEC/09SR/0BCJ/09MB throughout |
+| the coproduct field of `AffineDerivedCoproducts` | no longer used by the LP chain: `Scheme/AisleCoproducts.lean` localizes coproducts to fixed aisles, and `theorem_1_1_of_middleAisleCoproducts` needs only those |
+| the universe mismatch | **decided**: `HasCoproducts.{w} (ModuleCat.{u} A)` for `w` with `UnivLE.{w,u}`, and the small-Hom model where `HasCoproducts.{u}` of the derived category is expressible (`Scheme/AffineUniverse.lean`) |
+| Stacks **01HV** (`tilde` is exact) | **proved**; `affineDerivedGammaInputOfTildeExact` fills the field |
 
-## D. The short version
+## 4. Not on the affine path
 
-With Neeman 3.2 allowed, closing the affine case needs exactly three things:
+The general-scheme layer: `AffineDerivedGammaInput` (06Z0/079W/08D4/01XB, the two
+models of `D_qc`, `Scheme/AffineQCoh.lean`), `AffineAllSheavesBridgeInput`,
+`DiagonalIdentityData` including 08IN (`Scheme/AffineDiagonal.lean`),
+`VectorBundleCalculus` and `PerfectToDQCohInterface` (08CR/08CS),
+`QuasicoherentStrongClosureInput`, `DQCohCoproductInput`, the duality interfaces in
+`Scheme/Duality.lean`, and `CoverComparisonInput`/`ProductPerfectCompactInput` for
+GL26 Lemma 5.4 (`Scheme/Lemma54.lean`, whose cover argument is proved in abstract
+six-functor form).
 
-1. **066S** — the only residue of 07LT (= A1 + A2);
-2. the **explicit cone model** of `RΓ_Z`, `j^×`, `i^*` for a principal open, i.e.
-   the affine recollement from ring data (= A4);
-3. **coproducts on `D(A-Mod)`**, which needs Spaltenstein plus a universe decision
-   (= A3).
+## 5. The short version
 
-Then A5 is assembly.  Nothing else in the tree blocks the affine statement.
+With Neeman 3.2 allowed, the affine endpoint needs:
+
+1. **066S** — a truncation induction on top of the proved Le–Chen 2.3;
+2. **`TheoremCInput`** — the three comparisons left of Spaltenstein's Theorem C,
+   needed because the endpoint lives in the small-Hom model;
+3. **the recollement's remaining fields** — support, shift/triangulated structure,
+   adjunction, `i⇕`, `i^*`, gluing triangles, with `RΓ_Z` already constructed.
+
+Then `hT` and the transport across the equivalence are assembly.  Nothing else in
+the tree blocks the affine statement.
