@@ -16,6 +16,7 @@ for f in \
   FourierMukai/Paper/DerivedSetup.lean \
   FourierMukai/Scheme/Inputs.lean \
   FourierMukai/Scheme/DerivedCoproducts.lean \
+  FourierMukai/Scheme/KProjectiveResolution.lean \
   FourierMukai/Scheme/WeakApprox.lean \
   FourierMukai/Scheme/OpenImmersion.lean \
   FourierMukai/Scheme/Derived.lean \
@@ -30,6 +31,7 @@ for f in \
   FourierMukai/Scheme/PerfectField.lean \
   FourierMukai/Scheme/Affine.lean \
   FourierMukai/Scheme/AffineCoproducts.lean \
+  FourierMukai/Scheme/AffineBoundedAboveCoproducts.lean \
   FourierMukai/Scheme/AffineRecollement.lean \
   FourierMukai/Scheme/AffineMain.lean \
   FourierMukai/Scheme/AffineDictionary.lean \
@@ -38,6 +40,7 @@ for f in \
   FourierMukai/Scheme/Perfect.lean \
   FourierMukai/Scheme/PerfectRingStacks.lean \
   FourierMukai/Scheme/PerfectCompactThick.lean \
+  FourierMukai/Scheme/CompactToPerfect.lean \
   FourierMukai/Paper/Statements.lean \
   FourierMukai/Paper/InterfaceAudit.lean \
   FourierMukai/Examples/Identity.lean \

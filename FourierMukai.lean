@@ -15,6 +15,7 @@ import FourierMukai.Paper.InterfaceAudit
 import FourierMukai.Examples.Identity
 import FourierMukai.Scheme.Inputs
 import FourierMukai.Scheme.DerivedCoproducts
+import FourierMukai.Scheme.KProjectiveResolution
 import FourierMukai.Scheme.WeakApprox
 import FourierMukai.Scheme.OpenImmersion
 import FourierMukai.Scheme.Derived
@@ -29,6 +30,7 @@ import FourierMukai.Scheme.PerfectModel
 import FourierMukai.Scheme.PerfectModelConverse
 import FourierMukai.Scheme.Affine
 import FourierMukai.Scheme.AffineCoproducts
+import FourierMukai.Scheme.AffineBoundedAboveCoproducts
 import FourierMukai.Scheme.AffineRecollement
 import FourierMukai.Scheme.AffineMain
 import FourierMukai.Scheme.AffineDictionary
@@ -37,6 +39,7 @@ import FourierMukai.Scheme.AffineDiagonal
 import FourierMukai.Scheme.Perfect
 import FourierMukai.Scheme.PerfectRingStacks
 import FourierMukai.Scheme.PerfectCompactThick
+import FourierMukai.Scheme.CompactToPerfect
 
 /-!
 # Relative Fourier--Mukai theory for algebraic spaces: Lean formalization
