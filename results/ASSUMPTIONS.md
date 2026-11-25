@@ -75,16 +75,45 @@ paper's own zero-detection formulation.
 | the same package transported to the all-sheaves `D_qc(Spec A)` model, by generic equivalence-invariance lemmas | `Scheme/SchemeNeemanTransport.lean` |
 | closed-support infrastructure for `Z ⊆ X`: support `= V(I)`, Serre closure, triangulated supported category with induced `t`-structure, supported `H⁰` cover and triangle, principal Koszul factorization | `Scheme/NeemanFiniteSupportM4.lean`, `PrincipalChainM4`, `PrincipalKoszulM4`, `IdealKoszulM4`, `DerivedSingleM4`, `ColimitHomologyM4` |
 
-**The one direction still open: `compact ⇒ perfect`.**  What remains of it after
-`CompactBoundedAbove` is boundedness below, the bounded free factorization, the
-finitely generated refinement, and 066S's retract closure.  `Scheme/PerfectModelConverse`
-+ `Scheme/LeChen` give 066S modulo splitting idempotents on a bounded complex, and
-`Scheme/CompactToPerfect` has the induction skeleton with two named residues.
+**`compact ⇒ perfect` is proved, unconditionally.**  `Scheme/M4Unconditional.lean`:
 
-**What is not proved.**  The closed-support case `Z ⊊ X` is infrastructure only: the
-finite tensor Koszul `B_n`, the supported coproduct `H⁰` assembly, the compact
-zero-detection generator there, and `SatisfiesWA` are outstanding.  The scheme case
-beyond `X` affine is a reduction (`Scheme/SchemeGluingReduction.lean`), not a theorem.
+```
+compactToPerfectInput_unconditional : CompactToPerfectInput A
+perf_of_compact_unconditional {X : AffineD A} : IsCompactAb X → Perf A X
+```
+
+for every commutative ring, with no external input.  The chain, each link landed:
+compact ⇒ bounded above (`CompactBoundedAbove`, Stacks 07LT's first paragraph, via the
+truncation diagonal and an AB4 exact-coproduct transport); free resolutions with the
+07LR Hom lift, the biproduct refinement and arbitrary-upper-bound transport
+(`CompactToPerfectBoundedFree`, with 05T7(1) proved); the finite-free refinement
+(`M4Improvement`: finite-support basis tails, a finite-free kernel of `tailMap`, a
+K-projective coproduct epimorphism, `Shrink` enlargement, the short-exact improvement
+triangle).  Two members reached the capstone independently.
+
+The **model form** of 07LT is separate and still conditional: 066S's retract closure is
+a named hypothesis in `model_of_compact_of_stableUnderRetracts_unconditional`.  It is
+not needed for compact ⇒ `Perf`, because `Perf` is the thick envelope and absorbs the
+retract.
+
+**Consequences.**  The affine case of Neeman's weak approximability now has no unproved
+input: `AffineNeemanEndpointM3.small_affine_neeman_3_2_iii_iv_base` was already
+unconditional, and `Scheme/SmallAffineBridgeM5.lean`, `SmallHomTransportM5.lean` and
+`SmallCompactToPerfectM5.lean` carry compactness and perfection between the large- and
+small-Hom models (`Perf ↔ SmallPerf`, the equivalence triangulated), with
+`SmallNeemanCompactToPerfectInput` constructed from a named factorization input.
+`Scheme/SchemeNeemanTransport.lean` transports the package to the all-sheaves
+`D_qc(Spec A)` model.
+
+**What is not proved.**  066S's model form (retract closure of the bounded
+finite-projective class, amplitude ≥ 2), where
+`Scheme/StupidTruncCounterexample.lean` proves the naive truncation route cannot work
+and `Scheme/Affine066SRetracts.lean` covers strict idempotents and one degree.  The
+closed-support case `Z ⊊ X` is infrastructure only: the finite tensor Koszul `B_n`, the
+supported coproduct `H⁰` assembly, the compact zero-detection generator there, and
+`SatisfiesWA` are outstanding.  The scheme case beyond `X` affine is a reduction
+(`Scheme/SchemeGluingReduction.lean`), not a theorem — Mathlib has no scheme-level
+`D_qc` construction, which is the obstacle to stating it at all.
 
 **A constraint discovered on the way, which changes the target.**  For `A = ℤ` the
 regular module is **not** `IsGenerator` — `Scheme/GeneratorCounterexampleM5.lean` uses
