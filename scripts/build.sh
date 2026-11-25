@@ -125,6 +125,9 @@ for f in \
   FourierMukai/Scheme/M4CompactM.lean \
   FourierMukai/Scheme/M4Improvement.lean \
   FourierMukai/Scheme/M4Unconditional.lean \
+  FourierMukai/Scheme/SmallHomTransportM5.lean \
+  FourierMukai/Scheme/SmallAffineBridgeM5.lean \
+  FourierMukai/Scheme/SmallCompactToPerfectM5.lean \
   FourierMukai/Scheme/Affine066S.lean \
   FourierMukai/Paper/Statements.lean \
   FourierMukai/Paper/InterfaceAudit.lean \
