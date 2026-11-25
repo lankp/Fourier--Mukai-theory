@@ -3,15 +3,30 @@ name: CI
 # Verification setup modelled on
 # https://github.com/mattrobball/BridgelandStability:
 #   * a Lake build against Mathlib's olean cache (`lake exe cache get`), and
-#   * an independent check of the *statements* the project claims, run after the
-#     build, in its own job.
+#   * an independent check of the *statements* the project claims.
 #
-# Job graph:
-#   build ──> statement-check
+# Both used to be separate jobs.  They are one job now: the statement check
+# needs exactly the oleans the build produces, so a second job only bought a
+# second `lake update` and a second Mathlib cache fetch.
 
 on:
   push:
+    # A documentation-only push does not change anything the build or the
+    # statement check can see.  `results/statement-baseline.txt` is deliberately
+    # NOT ignored: it is the file the statement check compares against.
+    paths-ignore:
+      - '**.md'
+      - 'ci/**'
+      - 'attachments/**'
+      - 'LICENSE'
+      - 'formalization.yaml'
   pull_request:
+    paths-ignore:
+      - '**.md'
+      - 'ci/**'
+      - 'attachments/**'
+      - 'LICENSE'
+      - 'formalization.yaml'
   workflow_dispatch:
 
 concurrency:
@@ -22,8 +37,8 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    name: Lake build (Mathlib cache)
+  build-and-check:
+    name: Build and statement check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -41,14 +56,23 @@ jobs:
       - name: Resolve dependencies
         run: lake update
 
+      # Two caches: the project's own oleans, and the dependency build
+      # directories that `lake exe cache get` would otherwise repopulate from
+      # the network.  The dependency cache is large (Mathlib's `.lake/build` is
+      # several GB) and counts against GitHub's 10 GB per-repository cache
+      # budget, so if this repository ever approaches that limit, dropping the
+      # second path costs one cache fetch and nothing else.
       - name: Restore olean cache
         uses: actions/cache@v4
         with:
-          path: .lake/build
+          path: |
+            .lake/build
+            .lake/packages/*/.lake/build
           key: oleans-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-${{ hashFiles('**/*.lean') }}
           restore-keys: |
             oleans-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-
 
+      # Fast when the cache above restored: it then only checks hashes.
       - name: Get Mathlib cache
         run: lake exe cache get
 
@@ -60,8 +84,14 @@ jobs:
       - name: Axiom audit
         run: lake env lean FourierMukai/Audit.lean
 
+      # Exit status is 1 on any drift from results/statement-baseline.txt or on
+      # any sorryAx; the printed types and axiom sets are in the log and in the
+      # artifact below.
+      - name: Check statements against the baseline
+        run: ./scripts/check_statements.sh
+
       # Advisory while the tree is brought up to Mathlib's linter standard; the
-      # statement check below is the blocking quality gate.
+      # statement check above is the blocking quality gate.
       - name: Declaration and style linters (advisory)
         continue-on-error: true
         run: |
@@ -69,43 +99,6 @@ jobs:
           lake exe lint-style
         env:
           LAKE_NO_CACHE: "1"
-
-      - name: Upload oleans
-        uses: actions/upload-artifact@v4
-        with:
-          name: oleans
-          path: .lake/build
-          retention-days: 1
-
-  statement-check:
-    name: Independent statement check
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install elan
-        run: |
-          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
-            | sh -s -- -y --default-toolchain none
-          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-
-      - name: Resolve dependencies
-        run: lake update
-
-      - name: Download oleans
-        uses: actions/download-artifact@v4
-        with:
-          name: oleans
-          path: .lake/build
-
-      - name: Get Mathlib cache
-        run: lake exe cache get
-
-      # Re-elaborates StatementCheck.lean, refuses `sorryAx`, and diffs the
-      # printed signatures and axiom lists against results/statement-baseline.txt.
-      - name: Check statements against the baseline
-        run: ./scripts/check_statements.sh
 
       - name: Upload the re-elaborated statement surface
         if: always()
