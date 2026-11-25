@@ -164,10 +164,14 @@ step pays for itself and the mirror keeps it.
 
 **This is the floor for this setup.**  Each run has to materialise about 1.5 GB of
 Mathlib sources and 1.9 GB of oleans, and the steps that move them — cache
-restore, clone, cache save — are 128s of run 12's 157s.  Getting under 90s needs
-a machine that does not start from nothing each time: a self-hosted runner with a
-persistent `.lake`, or a container image with Mathlib already built.  That is an
-infrastructure decision, not a workflow tweak.
+restore, clone, cache save — are 128s of run 12's 157s.  Getting under 90s needs a
+machine that does not start from nothing each time.  Three routes, with their
+measured and estimated costs, are sketched in
+[`CI_PERFORMANCE.md`](CI_PERFORMANCE.md); the short version is that caching more
+is worth one experiment at about two minutes, a prebuilt image mostly relocates
+the same gigabytes, and a self-hosted runner is the only thing that gets under a
+minute — with the caveat that GitHub advises against self-hosted runners on public
+repositories, and this one is public.
 
 The statement check needs exactly the oleans the build produces.  A second job
 bought a second `lake update`, a second Mathlib cache fetch and an artifact
