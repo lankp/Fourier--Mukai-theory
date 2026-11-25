@@ -68,17 +68,28 @@ Out of wave 1 on purpose:
   stated over the base-change maps of `Scheme/Duality.lean`, a shared file.
   Wave 2.
 
-## Wave 2 candidates
+## Wave 2
 
-From `README.md`, "What is open", and the coverage map:
+Launched once wave 1 (including 1b, the compactness re-rendering) is merged.  Four
+tasks, each in new files except `wave2/trans-2cat`, which also owns
+`Prelim/AppendixB.lean`.
 
-* the last adjunction of the affine recollement (`jStar ⊣ jUpper`, via the
-  tensor–Hom adjunction on `RΓ_Z(A)`, Stacks 0A6R);
-* Lemma 7.17 in the abstract form of `Scheme/Duality.lean`;
-* correcting the stale numbering listed at the end of `results/COVERAGE.md`
-  (`corollary_12_10Statement` → `corollary_12_4Statement` and docstrings);
-* the remaining pieces of weak approximability for qcqs schemes with support
-  (`results/SCHEMES.md`).
+| task | goal | new files | source |
+|---|---|---|---|
+| `wave2/regular-compact` | `IsCompactAb (ringObject A)` without Neeman's input, after settling in which model (`AffineD` vs `SmallAffineD`) the statement is meaningful; unconditional principal-support weak approximability as a corollary | `Scheme/RegularCompact.lean` | README "What is open" 1; `results/SCHEMES.md` |
+| `wave2/jupper` | the last field of `AffineRecollementInput`: `jUpper` with `jStar ⊣ jUpper`, via the tensor–Hom reduction of `Scheme/AffineJUpperTensorHom.lean` | `Scheme/AffineJUpperConstruction.lean` | README "What is open" 2; GL26 Lemma A.4 (affine) |
+| `wave2/trans-2cat` | Lemma B.2 (`Trans` is a 2-category over `Cat`), then B.4(5) as an adjunction in that bicategory, removing the B.4 deviation | `Prelim/TransTwoCategory.lean` (+ `Prelim/AppendixB.lean`) | GL26 App. B |
+| `wave2/base-change-mates` | Lemmas 7.12 and 7.17, and the maps of 7.13–7.15, over abstract pseudofunctor data, so that they can later discharge fields of `Scheme/Duality.lean` | `Prelim/BaseChangeMates.lean` | GL26 §7.2 |
+
+Done by the orchestrator between waves: the numbering cleanup (`dd45ef4`).
+
+## Wave 3 candidates
+
+* wiring `Prelim/BaseChangeMates.lean` into `Scheme/Duality.lean` (replacing the
+  7.12 coherence field and the pasting facts by theorems);
+* the remaining tagged inputs of the affine supported base (`results/SCHEMES.md`);
+* the open/closed glue completion of `Scheme/OpenClosedGlue.lean`;
+* Lemma 7.8 (double categories) only if something downstream needs it.
 
 ## Log
 
