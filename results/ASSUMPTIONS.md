@@ -17,11 +17,16 @@ PerfectRingStacks.StacksGluing.affine_theorem_1_1_stacks07LT
 and, in the universe-correct small-Hom model,
 
 ```
-AisleCoproducts.affine_theorem_1_1_small_noCoproducts
-    (H : AffineSpaltensteinInput A) (S : SetupMainMinimal DZ (SmallAffineD A H) DU)
-    (hT : S.tD = standard t-structure) (h09SR : Stacks09SR _) :
-    SatisfiesWA (SmallAffineD A H) ↔ eventual self-vanishing of S.G'
+SmallAffineAssembly.affine_theorem_1_1_small_standard_neeman_only
+    (S : SetupMainMinimal DZ (SmallAffineD A H) DU)
+    (hgen : standardT.le 0 = Coprod (shiftTail (S.G'⟦S.m⟧ ⊞ S.R.jShriek.obj S.GU) 0))
+    (I : SmallNeemanCompactToPerfectInput A H) :
+    SatisfiesWA (SmallAffineD A H) ↔ EventuallyHomZero S.G' S.G'
 ```
+
+where `H : AffineSpaltensteinInput A` is **no longer an assumption** in the sense
+of an unproved input: `AffineSpaltenstein.affineSpaltensteinInput A` inhabits it
+for every commutative ring (see item (2) below).
 
 ## 0. The endpoint now exists
 
@@ -70,40 +75,29 @@ Residue: the truncation induction on a bounded finite-projective complex, using
 that idempotents split in `R`-Mod at the bottom degree and `splitsWithin_third`
 to cross the triangle `σ_{≥a+1}P → P → P^a`.  Concrete, bounded work.
 
-**(2) Spaltenstein's Theorem C.**  `Scheme/SpaltensteinReplacement.lean`,
-`TheoremCInput`: of its three fields, the canonical-truncation successor maps are
-now **proved** (`Scheme/SpaltensteinCanonicalTruncation.lean`:
-`canonicalTruncation A` for arbitrary abelian `C`, with `truncLESucc` explicit and
-compatible, so `canonicalFiltration (canonicalTruncation A)` typechecks).  The two
-remaining fields are `exactSequentialColimit` and `quasiIso_colimitToA`.
-Everything else is proved:
+**(2) Spaltenstein's Theorem C — PROVED.**  `Scheme/SpaltensteinTheoremC.lean`
+gives `theoremCInput : TheoremCInput C` for an arbitrary abelian category, all
+three fields supplied: the canonical-truncation successor maps
+(`SpaltensteinCanonicalTruncation.lean`), exact sequential colimits preserving
+quasi-isomorphisms (`SpaltensteinSequentialComparisons.lean`), and the
+filtration-colimit-to-`A` comparison, which is degreewise an isomorphism because
+each evaluation diagram is eventually constant and therefore needs no exactness.
+With `Scheme/AffineSpaltenstein.lean`, `affineSpaltensteinInput A` gives
+`AffineSpaltensteinInput A` — unbounded K-projective replacement data — for
+**every commutative ring**, using Mathlib's `AB5OfSize_of_univLE` for the AB5
+instance.  Supporting work, all proved: the bounded-above case
+(`KProjectiveResolution.lean`, `AffineBoundedAboveCoproducts.lean`), ℕ-indexed
+split-mono colimits (`SpecialDirectLimits.lean`, no `lim¹` hypothesis), the cone
+stage and countable induction (`SpaltensteinStage/Iteration/Colimit.lean`), and
+the alternative Hovey route (`ProjectiveModel.lean`, `SmallObjectPresentable.lean`,
+`GeneratingCofibrations.lean`).
 
-* `Scheme/KProjectiveResolution.lean` + `AffineBoundedAboveCoproducts.lean`: the
-  bounded-above case, for any abelian category with enough projectives;
-* `Scheme/SpecialDirectLimits.lean`: an `ℕ`-indexed colimit of K-projectives with
-  degreewise split monomorphisms is K-projective — no AB4, AB5, Mittag-Leffler
-  or `lim¹` hypothesis, because an explicit telescope section kills the
-  obstruction in that case;
-* `Scheme/SpaltensteinStage.lean`, `SpaltensteinIteration.lean`,
-  `SpaltensteinColimit.lean`: the cone stage with its homotopy and five-lemma
-  quasi-isomorphism, and the countable induction using only bounded-above
-  projective resolutions;
-* `Scheme/ProjectiveModel.lean`, `SmallObjectPresentable.lean`,
-  `GeneratingCofibrations.lean`: an alternative route, deriving replacement data
-  from Hovey's projective model structure down to two inputs (Prop. 2.3.5 and
-  sphere presentability), each a statement about a *set* of morphisms.
-
-**Why it is still load-bearing, precisely.**  It is *not* needed for coproducts:
-`Scheme/AisleCoproducts.lean` shows the LP proof only ever forms coproducts of
-families lying in a fixed aisle, and those come from bounded-above resolutions.
-But the universe decision (`Scheme/AffineUniverse.lean`) puts the endpoint in the
-**small-Hom** derived category, `HasDerivedCategory.{u}`, whose *existence* is
-what the replacement data supplies — `HasDerivedCategory.{u} (ModuleCat.{u} A)`
-is not synthesizable on its own (checked directly).  So the dilemma is: large-Hom
-model, where `HasAisleCoproducts` would need coproducts indexed by `Type (u+1)` in
-a category of `u`-small modules (impossible); or small-Hom model, which exists
-only given replacements.  Spaltenstein is therefore still on the critical path,
-and `TheoremCInput` is the smallest form it has taken.
+**What this changes.**  Spaltenstein is no longer an assumption anywhere: the
+small-Hom model `SmallAffineD A H` now exists unconditionally, since
+`AffineSpaltensteinInput A` is inhabited for every commutative ring.  So the
+endpoint's remaining hypotheses are the `SetupMainMinimal` data, the standard-`t`
+identity (or the one compact-generation field), and Neeman's `compact ⇒ Perf` —
+nothing else.
 
 **(3) The affine recollement.**  `Scheme/AffineRecollement.lean`,
 `AffineRecollementInput`.  `Scheme/AffineLocalCohomology.lean` builds `RΓ_Z` as
