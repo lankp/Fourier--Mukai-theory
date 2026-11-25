@@ -29,12 +29,12 @@ the end.
 
 | | P | C | H | T | D | — | total |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| theorems, propositions, corollaries, lemmas | 4 | 4 | 16 | 14 | – | 78 | 116 |
+| theorems, propositions, corollaries, lemmas | 4 | 5 | 16 | 14 | – | 77 | 116 |
 | definitions, setups, lemma-definitions | – | – | – | – | 13 | 6 | 19 |
 
 Four results are proved outright (Lemmas 2.3, 2.5, 7.2, 7.11; 7.2 is Mathlib's
-`mateEquiv`), four conditionally (Lemmas 2.25, 2.26, 5.4, and A.4 in the affine
-case).  The 14 target rows are 10 distinct targets (1.2 = 12.9, 1.3 = 6.2 + 6.8,
+`mateEquiv`), five conditionally (Lemmas 2.4, 2.25, 2.26, 5.4, and A.4 in the
+affine case).  The 14 target rows are 10 distinct targets (1.2 = 12.9, 1.3 = 6.2 + 6.8,
 1.6 = 10.13, 1.7 = 11.4), none proved.  Sections 3, 4, 6, 8, 9, 10, 11 and 12
 have no proved result: everything there is a target, an interface field, or
 absent.
@@ -56,7 +56,7 @@ absent.
 | # | label | status | where | note |
 |---|---|---|---|---|
 | Lem 2.3 | `lem:subcat_wher_nat_is_iso_is_closed_under_coprod_and_cofacts` | P | `Prelim/Coproduct.lean` (1), `Prelim/Triangulated.lean` + `Prelim/Thickness.lean` (2), `Prelim/EssentiallyDense.lean` (3) | (1) assumes only the one coproduct used |
-| Lem 2.4 | `lem:localizing_iff_cpt_gen` | — | | |
+| Lem 2.4 | `lem:localizing_iff_cpt_gen` | C | `Prelim/Lemma24.lean` (`lemma_2_4`) | ⟨G⟩‾ = T ⇒ G generates: P, with no hypotheses.  Converse: from `HasBousfieldTriangles G` (Neeman 2001, Rmk 1.16, Thm 1.17, Prop 9.1.19), a named hypothesis outside the assumption contract.  "T compactly generated" is not needed |
 | Lem 2.5 | `lem:equivalence_or_fully_faithful_via_compacts` | P | `Prelim/Lemma25.lean` | "singly compactly generated" is re-rendered; equivalence with the paper's Brown-representability packaging is not proved |
 | Rmk 2.6 | `rmk:equivalences_induced` | H | `Scheme/Inputs.lean`, `GL26Theorem12Reduction.lean` | weak approximability (Neeman 3.2), coherence (Neeman), CHNS Thm B as proposition parameters |
 | Rmk 2.7 | `rem:rel_perfect_is_free` | H | `TransformPreservationForcesRelativePerfect` | |
