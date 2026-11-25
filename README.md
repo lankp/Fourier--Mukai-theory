@@ -15,7 +15,9 @@ those rest on: perfect complexes, quasicoherent cohomology, K-projective
 resolutions, and the exceptional-functor package of the affine recollement.
 
 **Scope: the affine base case.**  Everything here is aimed at `S = Spec A` with
-`A` Noetherian, on Mathlib alone.  The separated-base case and then algebraic
+`A` Noetherian, on Mathlib plus a small tagged interface for the few statements we
+take from the Stacks Project formalization (see [What is assumed](#what-is-assumed)).
+The separated-base case and then algebraic
 spaces are future targets.
 
 ## The headline
@@ -171,6 +173,39 @@ for `error` before believing a compile; the build script does both.
 | `FourierMukai/Examples/` | a non-vacuous instantiation on Mathlib's derived category |
 | `results/` | `AFFINE.md` (the 21-row verification chain), `ASSUMPTIONS.md` (what is assumed and what would discharge it), `WEAK_APPROX.md`, `MATHLIB_INVENTORY.md`, `STACKS_PORTABILITY.md`, `GL26_SCHEME_DEPENDENCE.md`, `SCHEMES.md`, `REPORT.md` |
 | `scripts/build.sh` | the offline build |
+
+## What Ultramath is, and who checked what
+
+Most of the proofs in this repository that are dated after the initial
+infrastructure were produced by **Ultramath**: a swarm of identical model instances
+(`moonshotai/kimi-k3.1-pro`, maximum reasoning effort) run in parallel on one
+problem, each member working a registered, non-duplicating direction in its own
+directory under `.ultramath/`, sharing findings on a board, and submitting reports.
+Members never edit the repository and never commit; their output is a directory of
+Lean files plus a report.
+
+**Every submission was checked by the coordinating agent before it entered the
+tree.** The check was the same each time, and it is deliberately mechanical:
+
+1. compile the submitted modules from the repository root with
+   `LEAN_PATH="$LEAN_PATH:." lean -o <X>.olean <X>.lean`;
+2. check the **exit status** and `grep` the output for `error` — because
+   `#print axioms` prints even when a file does not compile, so an audit line on its
+   own proves nothing;
+3. `grep` for `sorryAx` and flatten every `depends on axioms` line, to see the
+   actual axiom set rather than a wrapped preview;
+4. read the proof, not only the statement, for the parts where a gap would hide;
+5. integrate, then run the **full** `./scripts/build.sh` — a per-file compile can
+   read a stale `.olean` and miss a name clash that the umbrella build catches.
+
+Rejections and corrections are recorded in the commit messages and in
+[`results/ASSUMPTIONS.md`](results/ASSUMPTIONS.md), including the cases where the
+agent was wrong: a submitted module that did not compile was withdrawn, a
+mis-cited Stacks tag (0BFF, which is a formula for abelian varieties) was removed
+after checking it at the source, and a construction of `iShriek` was downgraded from
+"proved" to "conditional on an instance that fails for `A = ℤ`, `f = 2`".  A reader
+who wants to know which theorem was verified by whom should read those two files:
+nothing here is claimed on a member's report alone.
 
 ## On provenance
 

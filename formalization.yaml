@@ -5,13 +5,17 @@ version: "v0.4"
 project:
   name: "FourierMukai"
   authors: [Pat Lank, Elías Guisado Villalgordo, Bregje Pauwels]
-  description: >
-    A Lean 4 formalization, on top of the Axiom Math formalization of the Stacks Project and
-    Mathlib, of two papers on derived categories of algebraic spaces: *Relative Fourier–Mukai
-    theory for algebraic spaces* (Guisado Villalgordo–Lank) and *Gluing weak approximability
-    along recollements* (Lank–Pauwels). The `FourierMukai` library formalizes the 2-categorical
-    and triangulated-category foundations of the first paper together with statements of its
-    main theorems; the `WeakApprox` library formalizes the second paper.
+  description: >-
+    A Lean 4 formalization, on Mathlib alone, of two papers on derived categories
+    of algebraic spaces: *Relative Fourier–Mukai theory for algebraic spaces*
+    (Guisado Villalgordo–Lank, arXiv:2609.01298) and *Gluing weak approximability
+    along recollements* (Lank–Pauwels).  The `WeakApprox` library formalizes the
+    second paper in full (§2–§4 and Theorem 1.1); the `FourierMukai` library
+    formalizes the scheme and affine layers of the first paper, and the affine case
+    of its Theorem 1.1 with Neeman's theorem as the only published input.
+    Classical inputs that Mathlib lacks (quasicoherent cohomology, K-projective
+    resolutions, perfect complexes, the affine recollement) are proved here rather
+    than imported.
   responsible_maintainers: [Pat Lank]
   license: "Apache-2.0"
 
@@ -21,36 +25,47 @@ sources:
     id: "arXiv:2609.01298"
     type: "article"
     relationship: "formalizes"
-    note: "Parts 0 and 1 (preliminaries, Appendix B, Section 2.1, Section 7) are formalized; the main theorems are stated."
+    note: >-
+      Affine base case.  Proved: Theorem 1.1 (affine, with Neeman's compact/perfect
+      theorem as the only external input), Lemma 2.25, Lemma 2.26, Lemma 5.4 (in
+      abstract six-functor form).  Stated over Noetherian schemes, not proved:
+      Theorems 1.2, 1.3, 1.6, 1.7, 12.3, Corollary 6.18, Lemmas 2.26-as-scheme,
+      12.2 (see `FourierMukai/Scheme/Statements.lean`).
   - title: "Gluing weak approximability along recollements"
     authors: [Pat Lank, Bregje Pauwels]
     id: "preprint, November 2026"
     type: "article"
     relationship: "formalizes"
-    note: "Sections 2 and 3 are formalized; Sections 4 and 5 are in progress."
+    note: "§2–§4 and Theorem 1.1, in full, scheme-agnostically."
 
 classification:
   arxiv: [math.AG, math.CT]
   msc2020: [14F08, 18G80, 14A20, 18E30]
 
 status:
-  scope: "The triangulated-category and 2-categorical foundations of both papers, with the geometric layer stated over an interface."
+  scope: >-
+    The affine base case of the first paper and the whole categorical layer of the
+    second.  The one published input on the affine path is Neeman, Acta Math. 233
+    (2024), Theorem 3.2, used only in the direction `compact ⇒ perfect`.
   sorry_count: 10
   sorry_in_definitions: 0
+  sorry_location: >-
+    All ten are in `FourierMukai/Paper/Statements.lean`: the paper's targets stated
+    over a superseded abstract interface, kept as specifications and printed by
+    `FourierMukai/Audit.lean`.  Nothing on the affine path depends on them.
   axioms: [propext, Classical.choice, Quot.sound]
+  build: "./scripts/build.sh (there is no Lake build in the verification environment)"
 
-automation:
-  methods:
-    - method: "autonomous"
-      models: [Ultramath]
-    - method: "manual"
-  notes: "Most lemmas were produced by Ultramath runs and checked by the maintainer against the compiler and the paper."
-
-review:
-  status: "self-assessed"
-  reviewers: [Pat Lank]
-  notes: >
-    Every declaration outside `FourierMukai/Paper/Statements.lean` is sorry-free and depends only
-    on the standard axioms; the statements in that file are formalization targets.
-
-acknowledgements: "The project builds on the Axiom Math formalization of the Stacks Project, and on Mathlib."
+assumptions:
+  - name: "Neeman, Acta Math. 233 (2024), Theorem 3.2(i)"
+    used_for: "compact objects of D(A-Mod) are perfect, i.e. `compact ⇒ Perf`"
+    in_tree: "SmallNeemanCompactToPerfectInput, NeemanAffineCompactModelInput"
+  - name: "AxiomMath/Stacks, as a tagged interface"
+    used_for: >-
+      only the derived tensor with its tensor–Hom adjunction and the Čech formula for
+      local cohomology, where this tree has no proof
+    in_tree: "FourierMukai/Scheme/StacksInput.lean, Scheme/AffineDerivedTensorHom.lean"
+    note: >-
+      The library itself cannot be imported here (it pins Lean 4.35.0 with no build
+      artifacts; this environment has 4.33.1, a read-only Mathlib and no Lake), so
+      each assumed statement is a `Prop`-valued field carrying its tag.
