@@ -164,6 +164,8 @@ import FourierMukai.Scheme.GL26Theorem12Reduction
 import FourierMukai.Scheme.OpenClosedGlue
 import FourierMukai.Scheme.FinalStatementCrosscheck
 import FourierMukai.Scheme.Affine066S
+import FourierMukai.Scheme.RegularCompact
+import FourierMukai.Scheme.RegularCompactEndpoints
 
 /-!
 # Relative Fourier--Mukai theory for algebraic spaces: Lean formalization
