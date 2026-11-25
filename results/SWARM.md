@@ -100,3 +100,7 @@ Done by the orchestrator between waves: the numbering cleanup (`dd45ef4`).
 | 1 | `wave1/appendix-b` | `session_0111iGd5Q2nuaHDR5zbDA1gd` | `7fa701b` (merge of `7ef8d66`, import conflict resolved by keeping both) | B.4, B.5, B.7, B.10: P; verified: build, audit 59 clean, statement check OK, hypotheses satisfiable |
 | 1 | `wave1/mates-calculus` | `session_0111iGd55yqjemjonMmL7vdQ` | `e25c447` (merge of `0a93ce8`, import/audit conflict resolved by keeping both) | 7.2(1), 7.4, 7.6, 7.9: P in `Cat`; verified: build, audit 45 clean, statement check OK |
 | 1b | `wave1b/compactness-09sn` | `session_0111iGd5kWqnDCBrK3MiDM4G` | `d4177b8` (merge of `1e6714e`) | merged: Lemma 2.5 P, Lemma 2.4 from Stacks 09SN; verified: build, audit 65 clean, statement check OK, non-vacuity shown. Task was: additive compactness for Lemmas 2.4/2.5 after `IsCompact` was found uninhabited (`fdea729`); Lemma 2.4's converse from Stacks 09SN |
+| 2 | `wave2/regular-compact` | `session_0111iGd8gkx8KKuiS4T2BpnU` | | started 25 Nov 2026, 20:08 UTC |
+| 2 | `wave2/jupper` | `session_0111iGd6ZSNTZ4tDzCc8YEFT` | | started 25 Nov 2026, 20:09 UTC |
+| 2 | `wave2/trans-2cat` | `session_0111iGd7v9afb51rwCpst8LU` | | started 25 Nov 2026, 20:09 UTC |
+| 2 | `wave2/base-change-mates` | `session_0111iGd8cvXVrvgCi69XkqVF` | | started 25 Nov 2026, 20:11 UTC |
