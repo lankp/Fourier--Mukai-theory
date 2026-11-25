@@ -37,6 +37,7 @@ import FourierMukai.Scheme.Affine
 import FourierMukai.Scheme.AffineCoproducts
 import FourierMukai.Scheme.AffineBoundedAboveCoproducts
 import FourierMukai.Scheme.AffineUniverse
+import FourierMukai.Scheme.AisleCoproducts
 import FourierMukai.Scheme.AffineRecollement
 import FourierMukai.Scheme.AffineLocalCohomology
 import FourierMukai.Scheme.AffineMain
