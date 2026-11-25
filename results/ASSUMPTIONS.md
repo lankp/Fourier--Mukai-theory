@@ -55,29 +55,43 @@ ring**: `S` and `hgen` still contain geometric and setup data.
 | Affine diagonal and product generation | Lemma 2.25's categorical computation and Lemma 5.4's abstract cover argument, conditional on their explicit geometric data (`AffineDiagonal.lean`, `Lemma54.lean`). |
 | Convolution | Lemma 2.26's categorical core, corrected statement bridge and affine wrapper (`AffineConvolution.lean`), conditional on a derived cube with projection formulas, tensor compatibilities and an invertible 08IR mate. |
 
-## 2b. What of Neeman is now proved (weak approximability)
+## 2b. Neeman's weak approximability: what is now proved
 
-The campaign now aims to *prove* Neeman's weak approximability rather than cite it.
-Progress, all `P` (no external input):
+The campaign now *proves* Neeman's weak approximability instead of citing it, in the
+paper's own zero-detection formulation.
 
-| Neeman 3.2 component | status |
+**Proved, with no external input.**
+
+| component | module |
 |---|---|
-| the approximation triangles | **proved**: `Scheme/NeemanApproximation.lean`, `exists_approximation_triangle` — for `F` in the standard aisle of `D(A-Mod)` there is a distinguished triangle `E → F → D → E⟦1⟧` with `E ∈ ⟨A⟩^[-1,1]` and `D ∈ t^{≤-1}`; any bound `N ≥ 1` by monotonicity |
-| zero detection (generation) | **proved**: `ringObject_isPaperGenerator`, `Scheme/NeemanPreferred.lean` and `Scheme/PaperGeneratorM5.lean`, for every commutative ring, by projective lifts to cycles |
-| the preferred `t`-structure | **proved modulo compactness of `A[0]`**: `standard_inPreferredClass`, plus `le_zero_eq_coprod_compactInAisle` showing the two aisle formulations agree (no counterexample) |
-| the generator bounds | **proved**: `Scheme/NeemanGeneratorBoundsM5.lean`, in both the large-Hom and small-Hom models |
-| compactness of `A[0]` | open; this is what `PerfectToCompactInput` still lacks |
-| scheme case | reduced, not proved: `Scheme/SchemeGluingReduction.lean` proves the gluing steps from `SetupMainMinimal` + compact Hom vanishing and notes that LP's Corollary 1.2 cites Neeman for schemes rather than proving it by gluing |
+| `PaperWeakApproximationData` — `WeakApproximationData` with `IsGenerator` replaced by the paper's `IsPaperGenerator` — and **LP Theorem 1.1 reproved** under zero detection throughout, including the two-stage approximation and Lemma 4.3(2) by retract/shift/left-adjoint transport of zero detection | `WeakApprox/Paper*M2.lean` (7 modules) |
+| the approximation triangles, any bound `N ≥ 1` | `Scheme/NeemanApproximation.lean` |
+| zero detection of the regular module, every commutative ring | `Scheme/NeemanPreferred.lean`, `Scheme/PaperGeneratorM5.lean` |
+| the preferred `t`-structure, and the two aisle formulations agree | `Scheme/NeemanPreferred.lean` |
+| generator bounds, in the large- and small-Hom models | `Scheme/NeemanGeneratorBoundsM5.lean` |
+| compactness of `A[0]` and **perfect ⇒ compact** | `Scheme/AffineCompactness.lean` |
+| **compact ⇒ bounded above** (Stacks 07LT's first paragraph) | `Scheme/CompactBoundedAbove.lean` |
+| **the affine base case of Neeman 3.2(iii)–(iv)**, unconditionally for every commutative ring: `SatisfiesPaperWA` and `InPreferredClass` in the small-Hom model | `Scheme/AffineNeemanEndpointM3.lean` |
+| the same package transported to the all-sheaves `D_qc(Spec A)` model, by generic equivalence-invariance lemmas | `Scheme/SchemeNeemanTransport.lean` |
+| closed-support infrastructure for `Z ⊆ X`: support `= V(I)`, Serre closure, triangulated supported category with induced `t`-structure, supported `H⁰` cover and triangle, principal Koszul factorization | `Scheme/NeemanFiniteSupportM4.lean`, `PrincipalChainM4`, `PrincipalKoszulM4`, `IdealKoszulM4`, `DerivedSingleM4`, `ColimitHomologyM4` |
+
+**The one direction still open: `compact ⇒ perfect`.**  What remains of it after
+`CompactBoundedAbove` is boundedness below, the bounded free factorization, the
+finitely generated refinement, and 066S's retract closure.  `Scheme/PerfectModelConverse`
++ `Scheme/LeChen` give 066S modulo splitting idempotents on a bounded complex, and
+`Scheme/CompactToPerfect` has the induction skeleton with two named residues.
+
+**What is not proved.**  The closed-support case `Z ⊊ X` is infrastructure only: the
+finite tensor Koszul `B_n`, the supported coproduct `H⁰` assembly, the compact
+zero-detection generator there, and `SatisfiesWA` are outstanding.  The scheme case
+beyond `X` affine is a reduction (`Scheme/SchemeGluingReduction.lean`), not a theorem.
 
 **A constraint discovered on the way, which changes the target.**  For `A = ℤ` the
-regular module is **not** `IsGenerator`: `Scheme/GeneratorCounterexampleM5.lean`
-exhibits the non-split injection `ℤ --2--> ℤ`, whose connecting map is a nonzero
-ghost out of the shifts of `ℤ`; and consequently no `WeakApproximationData` on
-`SmallAffineD ℤ` can have `G = smallRingObject`.  So LP's structure *as formalised*
-cannot be inhabited by the regular module: either the generator must be a different
-object, or the `G_generates` field must be weakened to the paper's zero detection
-(`IsPaperGenerator`), which is what Neeman and LP actually use and what survives for
-the regular module.  This is the sharpest open design question in the project.
+regular module is **not** `IsGenerator` — `Scheme/GeneratorCounterexampleM5.lean` uses
+the non-split injection `ℤ --2--> ℤ` and `Scheme/AffineNeemanAssembly.lean` uses a
+nonzero `Ext¹(ℤ/2, ℤ)` class, two independent proofs — so no `WeakApproximationData`
+with `G = ringObject` exists, and the original `G_generates` field had to be replaced
+by the paper's zero detection.  That repair is the `Paper*M2` development above.
 
 `D(A-Mod) ≌ D(QCoh(Spec A))` is proved in `AffineDictionary.lean`. The stronger
 comparison with the **all-sheaves quasicoherent-cohomology** model is conditional
