@@ -24,6 +24,10 @@ open RelativeFM
 #print axioms RelativeFM.Trinatural.isoLocus_isClosedUnderIsomorphisms
 #print axioms RelativeFM.FinitelyBuiltBy.mono
 #print axioms RelativeFM.isClassicalGenerator_iff
+-- Audit: the Type-valued `IsCompact` is uninhabited (`Prelim/CompactnessAudit.lean`):
+#print axioms RelativeFM.not_isCompact_of_hasZeroObject
+#print axioms RelativeFM.not_singlyCompactlyGenerated
+#print axioms RelativeFM.compactBousfieldLocalization_trivial
 -- Lemma 2.4 (`lem:localizing_iff_cpt_gen`), `Prelim/Lemma24.lean`:
 #print axioms RelativeFM.ObjectProperty.isLocalizingGenerator_iff_localizingClosure_eq_top
 #print axioms RelativeFM.isPaperGenerator_of_isLocalizingGenerator
