@@ -1,281 +1,164 @@
-# What is still assumed, and what would discharge it
+# Assumption ledger: AxiomMath/Stacks + Neeman
 
-**Goal.** The affine case of GL26 Theorem 1.1 with **Neeman, Acta Math. 233
-(2024), Theorem 3.2 as the only published input**.  This file is the current
-inventory of every other assumption, where it is made, and what would discharge
-it.  It replaces the earlier append-only version: the labels below are stable.
+## 1. Contract and terminology
 
-The endpoint is
+The only permitted external mathematical inputs are the **tagged Stacks
+interface** and **Neeman, Acta Math. 233 (2024), Theorem 3.2**. The interface is
+`FourierMukai/Scheme/StacksInput.lean`, in `RelativeFM.StacksInterface`; its
+fields record exact statements and tag numbers from AxiomMath/Stacks. See also
+`results/STACKS_INTERFACE.md`.
 
-```
-PerfectRingStacks.StacksGluing.affine_theorem_1_1_stacks07LT
-    (S : SetupMainMinimal DZ (AffineD A) DU) (C : AffineDerivedCoproducts A DZ DU)
-    (I : Stacks07LTCompactModelInput A) :
-    SatisfiesWA (AffineD A) ↔ AffineEventualSelfVanishing S.G'
-```
+AxiomMath/Stacks is **read, not imported**: `.scratch/stacks` uses Lean/Mathlib
+4.35.0 and has no build artifacts, while this VM has Lean 4.33.1, read-only
+Mathlib 4.33.1, and no Lake. Thus “assume Stacks” means supplying a `Prop`-valued
+interface field, not adding an `axiom` or pretending an import works. All other
+literature results used below must be proved here. In particular, Spaltenstein
+and Le--Chen 2.3 are formalized, not extra allowances; CHNS and other preprints
+mentioned in older notes are not extra assumptions either.
 
-and, in the universe-correct small-Hom model,
+Here **P** means proved in the stated scope, **N** means derived from an explicit
+Neeman 3.2 input, **S** means supplied by the tagged interface if that layer is
+used, and **R** means a bibliographic reference not consumed by a current proof.
+Conditional theorems are not constructions from ring data until their inputs are
+inhabited. Proved code uses only `propext`, `Classical.choice`, and `Quot.sound`;
+no new global axioms are allowed.
 
-```
-SmallAffineAssembly.affine_theorem_1_1_small_standard_neeman_only
+## 2. The affine endpoint and what is actually proved
+
+The universe-correct endpoint in `Scheme/SmallAffineAssembly.lean` is
+
+```lean
+RelativeFM.affine_theorem_1_1_small_standard_neeman_only
     (S : SetupMainMinimal DZ (SmallAffineD A H) DU)
-    (hgen : standardT.le 0 = Coprod (shiftTail (S.G'⟦S.m⟧ ⊞ S.R.jShriek.obj S.GU) 0))
+    (hgen : standardT.le 0 =
+      Coprod (shiftTail (S.G'⟦S.m⟧ ⊞ S.R.jShriek.obj S.GU) 0))
     (I : SmallNeemanCompactToPerfectInput A H) :
     SatisfiesWA (SmallAffineD A H) ↔ EventuallyHomZero S.G' S.G'
 ```
 
-where `H : AffineSpaltensteinInput A` is **no longer an assumption** in the sense
-of an unproved input: `AffineSpaltenstein.affineSpaltensteinInput A` inhabits it
-for every commutative ring (see item (2) below).
+`H` can be `RelativeFM.Spaltenstein.affineSpaltensteinInput A`; it is not an
+open assumption. `I` is Neeman 3.2(i), compact implies perfect. This formulation
+uses no Stacks 09SR, ambient derived-coproduct package, or separate Hom-vanishing
+hypothesis. It is nevertheless **not yet an unconditional construction from a
+ring**: `S` and `hgen` still contain geometric and setup data.
 
-## 0. The endpoint now exists
-
-`Scheme/SmallAffineAssembly.lean` proves, in the universe-correct small-Hom model,
-
-```
-affine_theorem_1_1_small_neeman_only
-    (S : SetupMainMinimal DZ (SmallAffineD A H) DU)
-    (hT : S.tD = standard t-structure)
-    (I : SmallNeemanCompactToPerfectInput A H) :
-    SatisfiesWA (SmallAffineD A H) ↔ EventuallyHomZero S.G' S.G'
-```
-
-with **no Stacks 09SR, no coproduct package and no vanishing hypothesis**: the
-external input `I` is exactly Neeman's `compact ⇒ perfect`, and the vanishing is
-proved inside the small model (`smallPerf_eventuallyHomZero`).  The variant
-`affine_theorem_1_1_small_standard_neeman_only` removes `hT` altogether by
-rebuilding `SetupMainMinimal` with the standard middle `t`-structure
-(`replaceMiddleTStructure`, which reproves only the compact-generation field, so
-`hT` becomes `rfl`) and displays that single field as its remaining hypothesis.
-
-What `S` still carries is what LP Theorem 1.1 takes as data by design: the
-recollement, the weak approximation data on the two ends, the glued generator and
-its normalization, and the aisle identities.  What remains open below is therefore
-about *constructing* `S` from ring data, not about the theorem.
-
-## 1. The three open items
-
-**(1) Stacks 066S — no longer needed as an independent assumption.**
-`Scheme/Affine066S.lean` derives it from Neeman alone: `NeemanAffineCompactModelInput`
-instantiates Neeman 3.2(i) at the *literal* bounded finite-projective model
-property, and then Y ∈ model ⇒ Y compact ⇒ X compact for a retract X of Y ⇒ X ∈
-model, so the model class is retract-closed and `Perf A ≤ model` follows.  From
-that: `Perf A ↔ model`, `BoundedProjectiveModelConverseInput`,
-`BoundedProjectiveModelInput`, `Stacks07LTCompactModelInput`, and both
-`CompactPerfectInput` and `CompactToPerfectInput`.  The tree therefore needs no
-separate 066S hypothesis, only Neeman.
-
-What is *not* done, and should not be claimed: 066S is not proved unconditionally.
-The truncation induction that would do it fails, and the reason is now recorded
-rather than guessed — brutal truncation is not homotopy-functorial at the boundary,
-so the idempotent cannot simply be restricted to a subcomplex.  A genuine proof
-needs the homotopy-idempotent lifting that `LeChen` does not supply.
-
-Supporting infrastructure, all proved: `Scheme/LeChen.lean` (Le–Chen 2.3 for split
-idempotents in a triangle), `Scheme/PerfectModelConverse.lean`
-(`Perf ≤ model ↔ model retract-closed`, with the model class triangulated), and
-`Scheme/CompactToPerfect.lean` (07LT's finite-free induction).
-
-**(2) Spaltenstein's Theorem C — PROVED.**  `Scheme/SpaltensteinTheoremC.lean`
-gives `theoremCInput : TheoremCInput C` for an arbitrary abelian category, all
-three fields supplied: the canonical-truncation successor maps
-(`SpaltensteinCanonicalTruncation.lean`), exact sequential colimits preserving
-quasi-isomorphisms (`SpaltensteinSequentialComparisons.lean`), and the
-filtration-colimit-to-`A` comparison, which is degreewise an isomorphism because
-each evaluation diagram is eventually constant and therefore needs no exactness.
-With `Scheme/AffineSpaltenstein.lean`, `affineSpaltensteinInput A` gives
-`AffineSpaltensteinInput A` — unbounded K-projective replacement data — for
-**every commutative ring**, using Mathlib's `AB5OfSize_of_univLE` for the AB5
-instance.  Supporting work, all proved: the bounded-above case
-(`KProjectiveResolution.lean`, `AffineBoundedAboveCoproducts.lean`), ℕ-indexed
-split-mono colimits (`SpecialDirectLimits.lean`, no `lim¹` hypothesis), the cone
-stage and countable induction (`SpaltensteinStage/Iteration/Colimit.lean`), and
-the alternative Hovey route (`ProjectiveModel.lean`, `SmallObjectPresentable.lean`,
-`GeneratingCofibrations.lean`).
-
-**What this changes.**  Spaltenstein is no longer an assumption anywhere: the
-small-Hom model `SmallAffineD A H` now exists unconditionally, since
-`AffineSpaltensteinInput A` is inhabited for every commutative ring.  So the
-endpoint's remaining hypotheses are the `SetupMainMinimal` data, the standard-`t`
-identity (or the one compact-generation field), and Neeman's `compact ⇒ Perf` —
-nothing else.
-
-**(2b) The aisle equalities.**  `SetupMainMinimal` asks for three equalities of the
-form `t.le 0 = Coprod (shiftTail G 0)`.  The ring form is **proved** for every
-commutative ring: `Scheme/AisleGenRingGeneration.lean`,
-`AisleGeneration.Ring.standard_le_zero_eq_coprod`,
-
-```
-(AffineD.standardTStructure A).le 0 = Coprod (shiftTail (ringObject A) 0)
-```
-
-The easy inclusion is aisle closure; the hard one replaces `X` by a complex strictly
-bounded above in degree 0 and generates it by brutal truncation, free resolutions in
-a single degree, bounded-above projective resolutions and a degreewise-split
-telescope (nine modules, `Scheme/AisleGen*.lean`).  The supported case is analysed in
-`Scheme/AffineSupportedAisle.lean` and `AffineSupportedCoprodLift.lean`, which reduce
-it to one generation statement, and `Scheme/AffineKoszulGenerator.lean` supplies a
-*perfect* supported generator (the cone of `f`).  Still open: the equalities for the
-*specific* generators `G'⟦m⟧ ⊞ jShriek GU` and `iStar` of it.
-
-**(3) The affine recollement.**  `Scheme/AffineRecollement.lean`,
-`AffineRecollementInput`.  Substantial progress, all from ring data and without
-injectives:
-
-* `Scheme/AffineLocalCohomology.lean` builds `RΓ_Z` as the degreewise cone of the
-  localization unit shifted by `-1`, proves it preserves quasi-isomorphisms,
-  descends it to `D(A)`, and proves `Rj_* RΓ_Z ≅ 0`, `Lj^* RΓ_Z ≅ 0` and
-  `RΓ_Z X ≅ 0 ↔ X ∈ essIm Rj_*`;
-* `Scheme/AffineLocalCohomologySupport.lean` proves `RΓ_Z` lands in the supported
-  subcategory (`derivedFunctor_isSupported`: every cohomology module is
-  power-torsion, via `exists_pow_smul_of_one_tmul_eq_zero`), so `jStar` is an
-  honest functor `AffineD A ⥤ AffineDZ A f`, with `jStarFactors` and, from the
-  supported adjunction plus Mathlib's right-adjoint shift and triangulated
-  theorems, `jStar_commShift`, `jStar_exact`, and via the comparison
-  `derivedFunctor_commShift`, `derivedFunctor_exact`;
-* `Scheme/AffineGluing.lean` constructs the mapping-cocone counit and connecting
-  transformations and proves the associated triangle distinguished on every
-  object;
-* `Scheme/AffineSupportedAssembly.lean` supplies the four input fields
-  `jShriekAdj`, `kernel`, `firstConnecting`, `first_distinguished` by concrete
-  constructions, obtaining the supported adjunction from a Hom-bijection with
-  orthogonality on the rotated triangle.  No Brown representability and no
-  right-adjoint existence is assumed.
-
-`Scheme/AffineMixedZero.lean` supplies `iShriek_jUpper` (`jUpper ⋙ iShriek ≅ 0`)
-from the two adjunctions alone, via the general fact that if `F ⊣ G`, `F' ⊣ G'`
-and `F ⋙ F' = 0` then `G' ⋙ G = 0` — so that field needs no explicit formulas.
-
-`Scheme/AffineSecondGluing.lean` and `AffineSecondGluingAssembly.lean` construct the
-second connecting morphism and prove the second triangle distinguished, purely
-categorically: complete the counit, identify its cone with the open-image object by
-right orthogonality and the kernel vanishing, and get naturality from injectivity on
-precomposition together with uniqueness of maps out of an orthogonal triangle.
-`AdjointInput.toAffineRecollementInput` then needs only `iShriek`, `iLowerAdj`,
-`jUpper`, `jStarAdj` — everything else in `AffineRecollementInput` is constructed
-from those four.
-
-So the entire residue of the recollement is: **`jUpper` with `jStar ⊣ jUpper`, and
-`iShriek` with `iLowerAdj`** — and, as the correction below explains, both are
-instances of one closed structure rather than of two independent theorems.
-
-**`iShriek` is NOT built — correction.**  `Scheme/AffineIShriek.lean` constructs
-the right adjoint of derived restriction of scalars as *coextension* and proves the
-adjunction, but only under the instance
-`PreservesFiniteColimits (coextendScalars (A → A[1/f]))`, as its own docstring says
-("a conditional special case, not a construction for an arbitrary localization").
-That instance asks `Hom_A(A[1/f], -)` to be right exact, i.e. `A[1/f]` to be a
-projective `A`-module; for `A = ℤ`, `f = 2` this fails, since `ℤ[1/2]` is
-torsion-free of rank 1 and not free, hence not projective over the PID `ℤ` (the
-last step is prose, not Lean).  So the coextension route does not give `iShriek`, and
-an earlier version of this file wrongly said it did.
-
-What `iShriek` actually is: `RHom_A(A[1/f], -)`, the total right derived functor of
-coextension, which is the same derived-Hom machinery the `jUpper` adjunction needs.
-So the recollement's residue is not two independent adjunctions but **one closed
-structure**, consumed twice.
-
-**Assembly and the exact residue.** `Scheme/AffineRecollementAssembly.lean` reduces
-`AffineRecollementInput` to a structure with exactly seven fields — `iShriek`,
-`iLowerAdj`, `jUpper`, `jStarAdj`, the iso-counit condition, `secondConnecting`,
-`second_distinguished` — and fills the rest (local cohomology, the first triangle,
-the mixed zero composite, and the four right-adjoint shift/exactness fields) from
-what is landed, returning `AffineRecollement`.  `Scheme/AffineSupportedTStructure.lean`
-constructs the standard `t`-structure on the supported category directly, via
-induced `t`-structures and truncation/homology, so `tU` is no longer a Neeman
-input.  `Scheme/AffineSetupInventory.lean` packages the post-recollement
-`SetupMainMinimal` residue with standard `tD` and `tZ`.
-
-**One caveat the inventory raises, which matters for the endpoint.**  Neeman's
-preferred-`t`-structure equivalence and the normalized weak approximation data do
-*not* automatically yield the literal aisle *equalities* that the
-`SetupMainMinimal` fields ask for (`tD.le 0 = Coprod (...)` with a specific
-generator).  So even with the recollement complete, those three aisle fields
-remain to be checked rather than assumed to follow.
-
-**`C = RΓ_Z(A)` is computed explicitly.**  `Scheme/AffineLocalCohomologyRingObject.lean`
-identifies the ring object: `RΓ_Z(A[0]) ≅ Q(cone(A[0] → A_f[0])[-1])`, whose terms
-vanish outside degrees 0 and 1, with the 0→1 differential equal to the negative
-localization unit; it proves the distinguished triangle
-`C → A[0] → Rj_*(A_f[0]) → C[1]`, that the derived cohomology is concentrated in
-degrees 0 and 1, and the universal properties `H⁰ = ker(A → A_f)`,
-`H¹ = coker`.  So `C` is a two-term complex, and `C ⊗^L X` is the localization
-fibre once the exact derived tensor and its flat-extension comparison are available.
-
-**`jUpper`: reduced to one tensor–Hom adjunction.**  `Scheme/AffineJUpperAdjoint.lean`
-proves, given `jUpper` and `jStarAdj`, the adjoint triple, `IsIso jStarAdj.counit`
-(from Mathlib's triple lemma and full faithfulness of the supported inclusion, not
-assumed), `jUpper`'s full faithfulness, its `CommShift`, the adjunction's
-`CommShift` and `IsTriangulated`.  It also rules out `jUpper = affineDZι`: that
-would force every map from the open essential image into a supported object to
-vanish.  `Scheme/AffineJUpperTensorHom.lean` gives the general reduction — if `E`
-is fully faithful, `J ⊣` something with `J ⋙ E ≅ T` and `T ⊣ H`, then
-`J ⊣ E ⋙ H` — so `jStarAdj` follows from a tensor–Hom adjunction with
-`T = C ⊗^L (-)`, `H = RHom(C, -)` and `C = RΓ_Z(A)`, the comparison being Stacks
-**0A6R**.  That single adjunction is what remains of `jUpper`.
-
-**Dead end, recorded so it is not retried.** The natural guess `jUpper = Rj_* Lj^*`
-on the supported category is *zero* for every `A`, `f`
-(`Scheme/AffineJUpperCandidateRefuted.lean`, `tensorLocalizationCandidateIsoZero`),
-so it cannot be `jUpper`: the counit would have to be an isomorphism and `jUpper`
-fully faithful, which a zero functor into a nontrivial category cannot be —
-witnessed by `ZMod 2` in degree 0 over `A = ℤ`, `f = 2`.  The RHom/coextend
-formula (`Hom_A(A[1/f], -)` or `coextendScalars`) is still untested.  So `AffineRecollementInput` is
-not yet inhabited, but eight of its fields are now theorems.
-
-## 2. Assembly items (no open mathematics)
-
-| item | why it is needed | where |
-|---|---|---|
-| `hT` | the middle `t`-structure of `SetupMainMinimal` must be identified with the standard one before `hasAisleCoproducts_standard` applies | stated as a hypothesis in `affine_theorem_1_1_small_noCoproducts` |
-| transfer across `AffineD A ≌ SmallAffineD A H` | the existing affine inputs (recollement, generator data) live on the large-Hom model | `Scheme/AffineUniverse.lean` proves the equivalence; the transport with shift compatibility is not packaged |
-| Stacks 09SR in this version | removed in `AffineMain.lean` by `CompactHomZeroAtTop`; not yet combined with the small-Hom endpoint | `Scheme/AffineMain.lean`, `Scheme/PerfectRingStacks.lean` |
-
-## 3. Proved, previously assumed
-
-| was | now |
+| Proved result | Scope and remaining input |
 |---|---|
-| Stacks **01LA(6)** extension closure of quasicoherent sheaves, and **01IE** | **proved** (`Scheme/QCohSerreExtension01IE.lean`): the denominator-ideal argument, no cohomology; extension closure on every scheme and triangulated `D_qc` follow. Row 3 of `AFFINE.md` closed |
-| Stacks **09MB** eventual Hom vanishing | **proved** for rings (`perf_eventuallyHomZero`), no input |
-| Stacks **09M8**, perfect ⇒ compact | thick-envelope half proved (`WeakApprox/CompactThick.lean`, `Scheme/PerfectCompactThick.lean`); whole statement reduced to compactness of the regular module |
-| Stacks **066T** (models are perfect) | **proved** for every commutative ring |
-| Stacks **09SR** | removed from `affine_theorem_1_1_neeman_only` |
-| Bondal–Van den Bergh | replaced by Stacks tags 0AED/09M8/0AEC/09SR/0BCJ/09MB throughout |
-| the coproduct field of `AffineDerivedCoproducts` | no longer used by the LP chain: `Scheme/AisleCoproducts.lean` localizes coproducts to fixed aisles, and `theorem_1_1_of_middleAisleCoproducts` needs only those |
-| the universe mismatch | **decided**: `HasCoproducts.{w} (ModuleCat.{u} A)` for `w` with `UnivLE.{w,u}`, and the small-Hom model where `HasCoproducts.{u}` of the derived category is expressible (`Scheme/AffineUniverse.lean`) |
-| Stacks **01HV** (`tilde` is exact) | **proved**; `affineDerivedGammaInputOfTildeExact` fills the field |
+| LP gluing Theorem 1.1 | Abstract development in `WeakApprox/` and `SmallAffineAssembly.lean`; only its displayed hypotheses. |
+| Spaltenstein Theorem C and the small-Hom model | Unbounded K-projective replacements over every commutative ring; `SmallAffineD A H` and its equivalence with `AffineD A`. No literature input. |
+| Standard ring generation | `standardT.le 0 = Coprod (shiftTail (ringObject A) 0)`, via `AisleGeneration.Ring.standard_le_zero_eq_coprod`. No input. |
+| Specific-generator identities | `SpecificM3.concrete_tD_and_tZ_compactlyGenerated`: **both** standard-aisle identities, for `G' = ringObject A`, `m = 0` and `GU` the perfect supported generator, `R = I.toRecollement`. Unconditional: no large-coproduct package and no Stacks input is consumed. |
+| Quasicoherent closure | 01IE patching, extension closure, triangulated `D_qc`, and the elementary kernel/cokernel/coproduct results in `QCohSerre*.lean`. No input for these statements. |
+| Perfect modules and affine vanishing | Thick-envelope and boundedness calculus; model implies `Perf A`; Le--Chen 2.3; `perf_eventuallyHomZero` and its small-model analogue. Compact-to-`Perf` and 066S-style retract closure use only Neeman 3.2(i). |
+| Perfect-to-compact reduction | Only thick-envelope closure is proved (`PerfectCompactThick.lean`). Compactness of the regular module is not thereby proved, and the small endpoint does not need it. |
+| Local cohomology and most of the recollement | Concrete `RΓ_Z`, support, open adjunction, `iShriek`, kernel, mixed zero and both triangles. `C = RΓ_Z(A)` is the explicit two-term cone with `H⁰ = ker`, `H¹ = coker`. The last adjunction is below. |
+| Affine diagonal and product generation | Lemma 2.25's categorical computation and Lemma 5.4's abstract cover argument, conditional on their explicit geometric data (`AffineDiagonal.lean`, `Lemma54.lean`). |
+| Convolution | Lemma 2.26's categorical core, corrected statement bridge and affine wrapper (`AffineConvolution.lean`), conditional on a derived cube with projection formulas, tensor compatibilities and an invertible 08IR mate. |
 
-## 4. Not on the affine path
+`D(A-Mod) ≌ D(QCoh(Spec A))` is proved in `AffineDictionary.lean`. The stronger
+comparison with the **all-sheaves quasicoherent-cohomology** model is conditional
+on `AffineDerivedGammaInput` or `AffineCohomologyComparison`; the small ring-valued
+endpoint does not use it.
 
-The general-scheme layer: `AffineDerivedGammaInput` (06Z0/079W/08D4/01XB, the two
-models of `D_qc`, `Scheme/AffineQCoh.lean`), `AffineAllSheavesBridgeInput`,
-`DiagonalIdentityData` including 08IN (`Scheme/AffineDiagonal.lean`),
-`VectorBundleCalculus` and `PerfectToDQCohInterface` (08CR/08CS),
-`QuasicoherentStrongClosureInput`, `DQCohCoproductInput`, the duality interfaces in
-`Scheme/Duality.lean`, and `CoverComparisonInput`/`ProductPerfectCompactInput` for
-GL26 Lemma 5.4 (`Scheme/Lemma54.lean`, whose cover argument is proved in abstract
-six-functor form).
+## 3. Stacks assumptions and the remaining work
 
-## 5. The short version
+**Active recollement assumptions.**
 
-With Neeman 3.2 allowed, what the affine endpoint still needs is:
+* **0A6R: assume.** Its normalized natural Čech comparison has the orientation
+  required by `AffineJUpperTensorHom.e : jStar ⋙ affineDZι ≅ T`.
+* **Derived tensor/RHom data: construct it, or assume it explicitly.** It is a
+  separate input to `AffineCechTensorData.tensorHom`, whereas 0A6R is
+  `AffineStacksInput.tag_0A6R`. The tensor data also includes the natural
+  augmentation `cechToId`, which must be constructed before stating 0A6R's
+  normalization. Together these give `jUpper` and `jStar ⊣ jUpper`; shift,
+  exactness and full-faithfulness consequences are already proved in
+  `AffineJUpperAdjoint.lean`. In particular, **0A6R is not the tensor--Hom
+  adjunction**. The wrong candidate `Rj_* Lj^*` is proved zero in
+  `AffineJUpperCandidateRefuted.lean`.
 
-1. **One tensor–Hom adjunction.**  `C ⊗^L (-) ⊣ RHom(C, -)` for `C = RΓ_Z(A)`.
-   `C` itself is computed (`Scheme/AffineLocalCohomologyRingObject.lean`: a two-term
-   complex, degrees 0 and 1, differential the negative localization unit, with
-   `H⁰ = ker` and `H¹ = coker`), and `Scheme/AffineJUpperTensorHom.lean` reduces
-   `jStarAdj` to this adjunction given Stacks 0A6R.  Everything else in
-   `AffineRecollementInput` is constructed.
-2. **The two remaining aisle equalities**, i.e. the `tD`- and `tZ`-equalities for the
-   *specific* generators `G'⟦m⟧ ⊞ jShriek GU` and `iStar` applied to it.  The ring
-   form `t.le 0 = Coprod (shiftTail (ringObject A) 0)` is **proved**
-   (`Scheme/AisleGenRingGeneration.lean`), and the supported case is reduced to one
-   generation statement (`Scheme/AffineSupportedCoprodLift.lean`), with a perfect
-   supported generator supplied by `Scheme/AffineKoszulGenerator.lean`.
-3. **The `SetupMainMinimal` remainder** — weak approximation data on both ends, the
-   glued generator and its normalization — which after (1) and (2) is Neeman input
-   plus assembly, not open mathematics.
+For the ordinary all-sheaves comparison, direct **06Z0** is the shortest allowed
+route. The stronger `AffineDerivedGammaInput` route uses 06Z0/079W/08D4/01XB;
+01HV is already proved. Other GL26 layers use the tags in the census only when
+their proofs actually invoke those fields. Existing cheap proofs (01IE, 066T,
+Spaltenstein, ring generation and vanishing) should not be replaced by stronger
+assumptions.
 
-Two things that used to be on this list and are no longer: 066S (derived from
-Neeman, `Scheme/Affine066S.lean`) and Spaltenstein's Theorem C (proved,
-`Scheme/SpaltensteinTheoremC.lean`, `Scheme/AffineSpaltenstein.lean`).
+**Open or incomplete.**
+
+1. Construct/instantiate `DerivedTensorHomData`, the Čech augmentation
+   `cechToId`, and the 0A6R comparison to finish the sole remaining concrete
+   recollement adjunction.
+2. Construct the remaining approximation, normalization, glued-generator and
+   large/small transport data from ring data and Neeman. An abstract
+   `SetupMainMinimal` argument is not such a construction.
+3. Prove the other GL26 targets against corrected interfaces. The old ten
+   `sorry`s in `FourierMukai/Paper/Statements.lean` are superseded specifications,
+   not dependencies of the affine endpoint.
+
+A Neeman-free proof of all of 066S remains optional; its affine consequence is
+already N. Full scheme/algebraic-space GL26 is outside the affine-base claim.
+
+## 4. Census of every tag cited in the original Lean sources
+
+The original census covers `FourierMukai/**/*.lean` and `WeakApprox/*.lean` (57
+tags). Hybrid rows are deliberate: an affine consequence does not prove a whole
+general Stacks tag. New interface/companion-module tags follow this table.
+
+| Tags | Status and exact scope |
+|---|---|
+| 0096, 00A6, 00AB, 00NX, 01BD | P: the cited sheaf-level pullback/extension-by-zero, associated-sheaf, and affine-local quasicoherence facts. Derived functors are separate. |
+| 01HV, 01IE | P: exact affine `tilde`; affine extension patching and its extension-closure/triangulated consequences. |
+| 01LA, 01LB | P for active coproduct/kernel/cokernel/extension closure; S only for stronger uninstantiated legacy interfaces. Arbitrary subobject/quotient instances are not claimed. |
+| 01C6 | P for elementary finite-locally-free facts; S for the remaining vector-bundle calculus fields. |
+| 0657, 066R, 066T | P in the module-model development: definitions/elementary retract facts and model implies `Perf A`. |
+| 066S | N for affine retract closure. No unconditional full-tag proof is claimed. |
+| 07LR, 07LT | P for finite-free induction lemmas; N for compact-to-model/`Perf` used by the endpoint. The two 07LR input packages are not silently inhabited. Reverse perfect-to-compact does not follow. |
+| 09M1, 0AED | N in the affine ring model (`compactPerfectInput_of_neemanModel`); S for general supported schemes/spaces. The small endpoint uses only compact-to-perfect. |
+| 09M8 | P for the thick-envelope reduction only; S if full perfect-to-compact is required. |
+| 09MB | P for the perfect-pair affine ring form used here; S for the general amplitude statement. |
+| 09SR | P for abstract reductions, absent from the small affine endpoint; S for a geometric instance that really needs classical generation. |
+| 0AEC | N for the compact-generator package from Neeman 3.2(ii); S for another geometric instance. No independent construction is asserted. |
+| 08CM, 0BCJ | P for proved ring boundedness/model facts; S for the general scheme-local characterization and all-sheaves bridge. Definitions of perfectness are not silently identified. |
+| 0GFH, 0GFI | S for general GL26 boundedness criteria; R for the affine ring-vanishing proof, which proves only its stated special case. |
+| 06Z0 | S for the actual all-sheaves `D_qc` comparison/coherence. The separate ordinary QCoh equivalence is P without it. |
+| 079W, 08D4, 01XB | S for `AffineDerivedGammaInput`; R for the small ring endpoint. |
+| 07A6 | P for concrete affine scalar restriction/extension; S for general geometric derived pull/push. |
+| 0BFF | **R, and the citation was wrong.** 0BFF is Lemma 39.9.7, the formula `[n]^*L = L^(n(n+1)/2) (x) ([-1]^*L)^(n(n-1)/2)` for abelian varieties; it has nothing to do with the localization sequence. The citation has been removed from `AffineRecollement.lean` and `AFFINE.md`, and the sources for the recollement are Gao--Psaroudakis 2.2(ii), Balmer--Dell'Ambrogio--Sanders 2.3 and Krause section 4. The power-torsion and localization-vanishing facts are proved here independently of any tag. |
+| 08D5, 08DQ | R: an alternative proof of eventual vanishing documented in `Scheme/Inputs.lean`, not an affine dependency. |
+| 094A, 09SN, 09SP | R now; S only if the Brown-representability/09SR route is instantiated. |
+| 08IN, 08IR | P for abstract computations/mates once data is supplied; S for the geometric projection formula and Tor-independent base change. |
+| 08CR, 08CS, 0FPU, 0FPV | S for general perfect-thickness and vector-bundle dual/tensor interfaces. Ring analogues do not inhabit these scheme structures. |
+| 08J9, 08JJ, 0E55, 0E5D | S for the perfect-duality and exceptional-functor interface fields; categorical consequences after those inputs are P. |
+| 08H4 | S: derived pullback preserves pseudocoherence via `PullbackStacksInput`; its occurrence in `Scheme/Statements.lean` alone proves no target. |
+| 09IY, 07TZ, 09TF | S for future GL26 proofs; currently specification-only in `Scheme/Statements.lean`. |
+| 0BY7, 0BY9, 0FD2, 0FW1, 0A26 | S for the elliptic-fibration target; currently specification-only. |
+| 0A6R | **S, active:** normalized local-cohomology/Čech-tensor comparison, not the derived tensor--Hom adjunction. |
+| 07A4, 0D6D, 0D6E | New in `AffineConvolution.lean`: P for the categorical convolution; S for geometric pullback--tensor and pseudofunctoriality data used to build its cube. |
+
+### Additional tagged-interface fields and alternative inputs
+
+These were not in the original 57-tag census.
+
+| Tags | Status and exact scope |
+|---|---|
+| 0E56 | S: quantitative bounded-below statement for `f^×`, with uniform bound loss `N`; boundedness of `f^× O_X` is a special case. |
+| 0A8A | S: `RHom(K,L)` has quasicoherent cohomology under either the pseudocoherent/`D^+_qc` or perfect/`D_qc` alternative. |
+| 04LX, 08JB | S: étale-chart site identification and invertibility of derived-`RHom` restriction. 04M1/04M3 are subsidiary references in 04LX, not extra fields. Not used by the small LP endpoint. |
+| 0A6H, 0D0S | S: global 0A6H(1),(2), excluding clauses (3),(4); and coherent bounded-below cohomology of `RHom`, respectively. |
+| 08H6 | S: derived pullback preserves perfectness, companion to 08H4 in `PullbackStacksInput`. |
+| 08F5, 0FPQ | S for 08F5: derived tensor preserves quasicoherent cohomology. 0FPQ records construction provenance, not an independent `Prop` field. |
+| 0A8Z | S only for the alternative complex-level internal-Hom/tensor adjunction; unnecessary if the derived package is built directly. |
+| 08J8 (08DI on ringed spaces) | S if derived tensor--Hom is taken from Stacks. The categorical adapter proves internal currying from this adjunction, so currying is not another assumption. |
+
+## 5. Verification
+
+From the repository root run `./scripts/build.sh`, or compile one module with
+
+```bash
+LEAN_PATH="$LEAN_PATH:." lean -o FourierMukai/Scheme/<Module>.olean \
+  FourierMukai/Scheme/<Module>.lean
+```
+
+Allow at least 300 seconds. Check the exit status and grep for `error`:
+`#print axioms` prints even after errors. Audits belong in the defining module;
+only a full build detects stale `.olean` files and duplicate umbrella names.
