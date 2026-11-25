@@ -58,6 +58,15 @@ open RelativeFM
 #print axioms RelativeFM.Adjunction.existsUnique_twist_eq
 #print axioms RelativeFM.representablyFullyFaithful_iff
 #print axioms RelativeFM.lemmaDef_7_10
+-- GL26 §7.2, Lemmas 7.12, 7.13, 7.15, 7.17 (`Prelim/BaseChangeMates.lean`):
+#print axioms RelativeFM.BaseChangeMates.PullPushData.lemma_7_12
+#print axioms RelativeFM.BaseChangeMates.PullPushData.lemma_7_13
+#print axioms RelativeFM.BaseChangeMates.PullPushData.isIso_theta_of_isIso_xi
+#print axioms RelativeFM.BaseChangeMates.PullPushData.lemma_7_15
+#print axioms RelativeFM.BaseChangeMates.PullPushData.lemma_7_17_theta
+#print axioms RelativeFM.BaseChangeMates.PullPushData.lemma_7_17_xi
+#print axioms RelativeFM.BaseChangeMates.constPullPushData
+#print axioms RelativeFM.BaseChangeMates.constPullPushData_isIso_theta
 #print axioms RelativeFM.mates_hom_square
 #print axioms RelativeFM.mates_hom_square_eq_mate
 #print axioms RelativeFM.lemma_7_4
