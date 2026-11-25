@@ -60,12 +60,19 @@ assumptions:
   - name: "Neeman, Acta Math. 233 (2024), Theorem 3.2(i)"
     used_for: "compact objects of D(A-Mod) are perfect, i.e. `compact ⇒ Perf`"
     in_tree: "SmallNeemanCompactToPerfectInput, NeemanAffineCompactModelInput"
-  - name: "AxiomMath/Stacks, as a tagged interface"
+  - name: "AxiomMath/Stacks"
     used_for: >-
-      only the derived tensor with its tensor–Hom adjunction and the Čech formula for
-      local cohomology, where this tree has no proof
-    in_tree: "FourierMukai/Scheme/StacksInput.lean, Scheme/AffineDerivedTensorHom.lean"
+      any result the Axiom Math formalization of the Stacks Project provides, used
+      freely and marked where used.  Currently relied on for the derived tensor with
+      its tensor–Hom adjunction, the Čech formula for local cohomology, and the
+      scheme-level comparison 06Z0 and large-Hom 09M8.
+    in_tree: >-
+      results/ASSUMPTIONS.md (ledger, status S), FourierMukai/Scheme/StacksInput.lean
+      (machine-readable register), results/STACKS_POLICY.md (policy)
     note: >-
-      The library itself cannot be imported here (it pins Lean 4.35.0 with no build
-      artifacts; this environment has 4.33.1, a read-only Mathlib and no Lake), so
-      each assumed statement is a `Prop`-valued field carrying its tag.
+      The library cannot be imported here - it pins Lean 4.35.0 and Mathlib 4.35.0
+      with no build artifacts, while this environment has 4.33.1, a read-only Mathlib
+      and no Lake.  Assumptions are therefore `Prop`-valued interface fields carrying
+      their tags.  If Axiom's repository is added to Mathlib or Lean, this repository
+      can be updated accordingly: fields become imports, and theorems taking them lose
+      the hypothesis.

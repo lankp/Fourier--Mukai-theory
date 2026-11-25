@@ -8,10 +8,18 @@ interface** and **Neeman, Acta Math. 233 (2024), Theorem 3.2**. The interface is
 fields record exact statements and tag numbers from AxiomMath/Stacks. See also
 `results/STACKS_INTERFACE.md`.
 
+**Policy (see [`STACKS_POLICY.md`](STACKS_POLICY.md)).**  The formalization and results
+of AxiomMath/Stacks may be used **freely**; a Stacks result that Axiom has formalized
+counts as available and is not re-proved here merely to avoid depending on it.  Every
+use is marked, and a proved result already here is kept, since replacing a proof by an
+assumption would make the development depend on more.
+
 AxiomMath/Stacks is **read, not imported**: `.scratch/stacks` uses Lean/Mathlib
 4.35.0 and has no build artifacts, while this VM has Lean 4.33.1, read-only
 Mathlib 4.33.1, and no Lake. Thus “assume Stacks” means supplying a `Prop`-valued
-interface field, not adding an `axiom` or pretending an import works. All other
+interface field, not adding an `axiom` or pretending an import works.  If Axiom's
+repository is added to Mathlib or Lean, these fields become imports and the theorems
+taking them lose the hypothesis. All other
 literature results used below must be proved here. In particular, Spaltenstein
 and Le--Chen 2.3 are formalized, not extra allowances; CHNS and other preprints
 mentioned in older notes are not extra assumptions either.

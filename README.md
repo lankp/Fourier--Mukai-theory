@@ -92,10 +92,43 @@ results.
 
 ## What is assumed
 
-**Neeman**, *Bounded `t`-structures on the category of perfect complexes*,
-Acta Math. 233 (2024), Theorem 3.2 — specifically the direction *compact implies
-perfect*, packaged as `SmallNeemanCompactToPerfectInput`.  Nothing else external is
-assumed on the affine path.
+**Two sources, and nothing else.**
+
+1. **AxiomMath/Stacks** — the Axiom Math formalization of the Stacks Project,
+   <https://github.com/AxiomMath/Stacks>.  **Its formalization and results may be used
+   freely here**, and are marked where used (see below).  A Stacks result that Axiom
+   has formalized counts as available; we do not re-prove it merely to avoid depending
+   on it.
+2. **Neeman**, *Bounded `t`-structures on the category of perfect complexes*, Acta
+   Math. 233 (2024), Theorem 3.2 — needed only in the direction *compact implies
+   perfect*, and only where a statement is made for the large-Hom model.
+
+### How a use of AxiomMath/Stacks is marked
+
+* **`results/ASSUMPTIONS.md`** is the ledger: one row per Stacks tag, with status `P`
+  proved here, `N` derived from an explicit Neeman input, **`S` supplied by
+  AxiomMath/Stacks**, `R` bibliographic and not consumed.
+* **`FourierMukai/Scheme/StacksInput.lean`** is the machine-readable register: a
+  `Prop`-valued field per assumed statement, in `RelativeFM.StacksInterface`, each
+  carrying its tag and its exact statement.  A file that relies on an assumed Stacks
+  result takes such a field as a *hypothesis*, so the dependency appears in the
+  theorem's type rather than only in a comment.
+* Module docstrings name the tags a file's mathematics rests on.
+
+A tag mentioned in prose is not a mark.  The full policy, and the reason it is done
+this way, is in [`results/STACKS_POLICY.md`](results/STACKS_POLICY.md).
+
+### Import, and what happens if Stacks enters Mathlib
+
+`AxiomMath/Stacks` **cannot be imported here**: it pins Lean `v4.35.0` and Mathlib
+`v4.35.0` and ships no build artifacts, while this VM has Lean 4.33.1, a read-only
+prebuilt Mathlib at 4.33.1, and no Lake.  That is why the assumptions are interface
+fields rather than imports.  **If Axiom's repository is added to Mathlib or to Lean,
+this repository can be updated accordingly, and the update is mechanical**: each
+`StacksInput` field is replaced by the imported declaration, its `S` row becomes a `P`
+row with a note, and the theorems that took the field lose that hypothesis.  No proof
+here is written against Axiom's *names*, only against the statements recorded in the
+interface — which is what keeps that update mechanical rather than a rewrite.
 
 Hypotheses that remain in the endpoint are hypotheses of LP Theorem 1.1 by design,
 not gaps: the `SetupMainMinimal` data (the recollement, weak approximation on both
