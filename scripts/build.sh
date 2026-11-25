@@ -145,6 +145,15 @@ for f in \
   FourierMukai/Scheme/SchemeNeemanFiniteCoverAssembly.lean \
   FourierMukai/Scheme/SchemeSupportedExcision.lean \
   FourierMukai/Scheme/SchemeNeemanIsoTransport.lean \
+  FourierMukai/Scheme/AffineSupportedBaseM1.lean \
+  FourierMukai/Scheme/PerfectPowerTorsionM1.lean \
+  FourierMukai/Scheme/FreeDerivedCoverM1.lean \
+  FourierMukai/Scheme/SupportedCoproductM1.lean \
+  FourierMukai/Scheme/PrincipalH0CoverM1.lean \
+  FourierMukai/Scheme/PrincipalNeemanM1.lean \
+  FourierMukai/Scheme/FiniteKoszulM1.lean \
+  FourierMukai/Scheme/IdealNeemanM1.lean \
+  FourierMukai/Scheme/AffineSupportedSchemeBaseM1.lean \
   FourierMukai/Scheme/GL26OtherTargets.lean \
   FourierMukai/Scheme/GL26Theorem12Reduction.lean \
   FourierMukai/Scheme/OpenClosedGlue.lean \

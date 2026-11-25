@@ -102,8 +102,36 @@ categorical gluing.
 | `Functors.lean` | `f^*`, `f_*`, `j_!` on sheaves of modules; adjunctions; exactness for open immersions | to build |
 | `Duality.lean` | `RHom`, `⊗^L`, `f^!`, projection formula, base change (interface + proved compatibilities) | to build |
 | `Recollement.lean` | open/closed recollement of `D_qc`; feeds `WeakApprox.Recollement` | to build |
-| `WeakApprox.lean` | `D_qc,Z(X)` weakly approximable: Neeman's theorem as the named input, glued by `WeakApprox/MainMinimal.lean` | to build |
+| `WeakApprox.lean` | `D_qc,Z(X)` weakly approximable: Neeman's theorem as the named input, glued by `WeakApprox/MainMinimal.lean` | in progress — see below |
 | `Statements.lean` | the ten GL26 targets for Noetherian schemes, as `Prop`-valued definitions | to build |
+
+### Scheme-level Neeman 3.2(iv): state of the four gluing inputs
+
+The statement is `NeemanSupportedWeakApproximability X Z` in the repository's
+`D_qc` model, with the `t`-structure pinned and compactness taken inside `D_qc X`.
+Of its four inputs, three are now reductions rather than gaps:
+
+* **Supported excision** — discharged from Stacks 08DF (`SchemeSupportedExcision`).
+* **Isomorphism transport** — proved (`SchemeNeemanIsoTransport`).
+* **Open/closed glue** — landed as a reduction (`OpenClosedGlue`): the LP gluing
+  hypotheses are weakened from object equalities to isomorphisms and from
+  `t`-structure equalities to bounded equivalences, using only zero-detection
+  generation; the geometric theorem still takes a completion of the two endpoint
+  approximation packages as an explicit hypothesis.
+* **Affine supported base** — now in place at three strengths
+  (`AffineSupportedBaseM1` … `AffineSupportedSchemeBaseM1`): the **principal**
+  closed support `V(f)` is proved from nothing but
+  `IsCompactAb (ringObject A)`; a finite list `V(f₁,…,fₙ)` and the exact
+  `Spec A` / `IsAffine` statements are proved from that plus five named tagged
+  inputs (`KoszulScalarSupportInput` 09IR, `IdealSupportedCoproductInput`,
+  `IdealSupportedCompactnessInput`, `KoszulPowerCoprodInput`,
+  `KoszulDetectionInput` 0A9A, and a supported module/scheme comparison).  No
+  `IsGenerator` is used anywhere in that chain.
+
+So the remaining work on this input is the five tagged statements themselves and
+compactness of the regular module, not weak approximability.  Everything is
+conditional as stated: the `IsAffine` theorem takes the five families over all
+commutative rings and `IsCompactAb (ringObject A)` for each ring.
 
 The old algebraic-space interface (`FourierMukai/Paper/DerivedSetup.lean`) and
 targets (`FourierMukai/Paper/Statements.lean`) are kept until the scheme

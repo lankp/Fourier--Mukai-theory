@@ -224,6 +224,7 @@ These were not in the original 57-tag census.
 | 08F5, 0FPQ | S for 08F5: derived tensor preserves quasicoherent cohomology. 0FPQ records construction provenance, not an independent `Prop` field. |
 | 0A8Z | S only for the alternative complex-level internal-Hom/tensor adjunction; unnecessary if the derived package is built directly. |
 | 08J8 (08DI on ringed spaces) | S if derived tensor--Hom is taken from Stacks. The categorical adapter proves internal currying from this adjunction, so currying is not another assumption. |
+| 09IR, 0A9A, 09M1 (affine supported base) | S: the affine supported base consumes `KoszulScalarSupportInput` (09IR: scalar-cone support and `≤ 0` bounds; a `StacksInterface` field), `KoszulDetectionInput` (0A9A: finite Koszul zero detection) and `IdealSupportedCompactnessInput` (09M1 form), plus three named inputs that are not Stacks results -- `IdealSupportedCoproductInput` (supported direct sums), `KoszulPowerCoprodInput` (Neeman, Construction 7.3, finite-power envelope) and `AffineSupportedSchemeComparisonInput` (supported module/scheme comparison). Together with `IsCompactAb (ringObject A)` they give `NeemanSupportedWeakApproximability` for `Spec A` with closed support of quasi-compact complement, and for every affine scheme (`AffineSupportedSchemeBaseM1`). The **principal** closed support `V(f)` needs none of them (`PrincipalNeemanM1`). |
 
 ## 5. Verification
 

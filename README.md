@@ -171,6 +171,14 @@ Two caveats worth stating plainly:
    need the Stacks library (porting it to this toolchain is a person-months
    programme — see [`results/STACKS_PORTABILITY.md`](results/STACKS_PORTABILITY.md)),
    and the remaining GL26 targets 1.2, 1.3, 1.6, 1.7, 12.3, 2.26, 12.2, 6.18.
+5. **Neeman 3.2(iv) for schemes.**  Of the four gluing inputs, supported excision
+   is discharged and isomorphism transport is proved; the open/closed glue is a
+   reduction (`OpenClosedGlue`); the affine supported base is proved for a
+   principal closed support from `IsCompactAb (ringObject A)` alone, and for
+   finite `V(I)` and `IsAffine X` from that plus five named tagged inputs.  What
+   is left there is those five statements and compactness of the regular module —
+   not weak approximability.  The accounting is in
+   [`results/SCHEMES.md`](results/SCHEMES.md).
 
 ## Building
 
