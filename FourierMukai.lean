@@ -85,6 +85,12 @@ import FourierMukai.Scheme.AffineConvolution
 import FourierMukai.Scheme.ConvolutionCounterexample
 import FourierMukai.Scheme.Perfect
 import FourierMukai.Scheme.StacksInput
+import FourierMukai.Scheme.KProjHomComplex
+import FourierMukai.Scheme.KProjIndependence
+import FourierMukai.Scheme.KProjHomContravariant
+import FourierMukai.Scheme.FixedDerivedTensorHom
+import FourierMukai.Scheme.AffineDerivedTensorHom
+import FourierMukai.Scheme.TensorHom
 import FourierMukai.Scheme.PerfectRingStacks
 import FourierMukai.Scheme.PerfectCompactThick
 import FourierMukai.Scheme.CompactToPerfect

@@ -7,7 +7,7 @@ A Lean 4 formalization of
 
 together with the gluing theorem it rests on,
 
-> **LP** — Pat Lank, Ruben Pauwels, *Gluing weak approximability along
+> **LP** — Pat Lank, Bregje Pauwels, *Gluing weak approximability along
 > recollements* (2026),
 
 and, where they are needed and not yet available in Mathlib, the classical inputs

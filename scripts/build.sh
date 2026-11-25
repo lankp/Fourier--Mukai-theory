@@ -86,6 +86,12 @@ for f in \
   FourierMukai/Scheme/ConvolutionCounterexample.lean \
   FourierMukai/Scheme/Perfect.lean \
   FourierMukai/Scheme/StacksInput.lean \
+  FourierMukai/Scheme/KProjHomComplex.lean \
+  FourierMukai/Scheme/KProjIndependence.lean \
+  FourierMukai/Scheme/KProjHomContravariant.lean \
+  FourierMukai/Scheme/FixedDerivedTensorHom.lean \
+  FourierMukai/Scheme/AffineDerivedTensorHom.lean \
+  FourierMukai/Scheme/TensorHom.lean \
   FourierMukai/Scheme/PerfectRingStacks.lean \
   FourierMukai/Scheme/PerfectCompactThick.lean \
   FourierMukai/Scheme/CompactToPerfect.lean \
