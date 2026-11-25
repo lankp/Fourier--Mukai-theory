@@ -102,45 +102,45 @@ and went green as run 9, measured below.
 
 ### The single job, as it now runs
 
-`CI` run 9 (commit `0cf48dc`, the paste of the folded workflow): **success**, one
-job, every step green, 8m36s.
+`CI` run 9 (commit `0cf48dc`, the paste of the folded workflow) and run 10
+(commit `318364a`): both **success**, one job, every step green.
 
-| step | time |
-|---|---|
-| Resolve dependencies | 91s |
-| Restore olean cache | 14s |
-| Get Mathlib cache | 5s |
-| **Build** | **333s** |
-| Axiom audit | 3s |
-| Check statements against the baseline | 3s |
-| Linters (advisory) | 20s |
-| Upload the re-elaborated surface | 1s |
-| Post Restore olean cache (save) | 42s |
+| step | run 9 (cache miss) | run 10 (cache hit) |
+|---|---|---|
+| Resolve dependencies | 91s | 97s |
+| Restore olean cache | 14s | 72s |
+| Get Mathlib cache | 5s | 5s |
+| **Build** | **333s** | **3s** |
+| Axiom audit | 3s | 3s |
+| Check statements against the baseline | 3s | 3s |
+| Linters (advisory) | 20s | 9s |
+| Upload the re-elaborated surface | 1s | 1s |
+| Post Restore olean cache (save) | 42s | 9s |
+| **job total** | **516s** | **208s** |
 
-That is *slower* than the two-job version it replaced (run 4: 2m15s + 1m43s),
-and the reason is visible in the same table: the build recompiled all 203
-modules.  In run 4 the `Build` step took **2s**, because the olean cache then
-held the project's own `.lake/build` and Lake found everything up to date.  Run 9
-restored a cache whose contents did not let Lake skip the compile, so it built
-from scratch and then spent 42s saving the new one.
+Run 9 was slower than the two-job version it replaced (2m15s + 1m43s), and the
+table shows why: the olean cache it restored did not let Lake skip the compile,
+so it rebuilt all 203 modules and then saved a bigger cache.  Run 10 restored
+that cache and `Build` fell to 3s, so the job is now **3m28s against 3m58s** for
+the two jobs it replaced, with one `lake update` instead of two.
 
-What the new cache contains, measured from the Actions caches API immediately
-after run 9:
+What the caches API shows, measured after run 9:
 
 | entry | size | contents |
 |---|---|---|
-| created 15:31 (run 9, end) | 1.9 GB | `.lake/build` **and** `.lake/packages/*/.lake/build` |
+| created 15:31 (end of run 9) | 1.9 GB | `.lake/build` **and** `.lake/packages/*/.lake/build` |
 | created 15:00 (earlier runs) | 47 MB | `.lake/build` only |
 
-Both share the same key.  The 1.9 GB figure is GitHub's compressed size and is
-the whole repository's cache footprint — comfortably inside the 10 GB budget, so
-the caveat about the dependency cache costing too much does not currently bite.
+1.9 GB is GitHub's compressed size and the repository's whole cache footprint —
+comfortably inside the 10 GB budget, so the caveat about the dependency cache
+costing too much does not currently bite.  Restoring it costs 72s, which is the
+price of the 330s it saves.
 
-The structural saving is real and independent of the cache: one `lake update`
-(91s) instead of two (91s + 77s in run 4), no artifact hand-off, and `Build`,
-`Axiom audit` and `Check statements` share the same working tree.  Whether the
-bigger cache also makes `Build` incremental again will show in the next run that
-is not documentation-only.
+**The dominant cost is now `lake update` at about 95s**, because
+`lake-manifest.json` is not committed and every run re-resolves Mathlib.
+Committing the manifest would remove most of that; it is a one-line change to the
+workflow plus the file itself, and it needs another hand paste, so it is not
+done.
 
 The statement check needs exactly the oleans the build produces.  A second job
 bought a second `lake update`, a second Mathlib cache fetch and an artifact
