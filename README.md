@@ -200,10 +200,12 @@ One job.  It restores an olean cache covering both `.lake/build` and
 `.lake/packages/*/.lake/build`, runs `lake update` to clone Mathlib, fetches
 Mathlib's oleans, builds, prints the axiom audit, runs the statement check, and
 runs the linters (advisory).  Documentation-only pushes are skipped.
-A run takes about 2 minutes 40 seconds, of which about 128 seconds is moving
-Mathlib's sources and oleans into place; the step-by-step numbers, and why
-`lake update` stays even though the manifest is committed, are in
-[`results/VERIFICATION.md`](results/VERIFICATION.md).
+A run takes about 2 minutes 35 seconds, of which about 128 seconds is moving
+Mathlib's sources and oleans into place.  Why `lake update` stays even though the
+manifest is committed, and what it would take to get under 90 seconds — a bigger
+cache, a prebuilt image, or a self-hosted runner — is in
+[`results/CI_PERFORMANCE.md`](results/CI_PERFORMANCE.md); the answer is that a
+hosted runner cannot do it.
 
 ### The independent statement check
 
@@ -301,7 +303,7 @@ Allow 300 seconds per module: the first `import Mathlib` in a process reads abou
 | `FourierMukai/Paper/` | the early algebraic-space interface, its targets, and the interface audit |
 | `FourierMukai/Examples/` | a non-vacuous instantiation on Mathlib's derived category |
 | `StatementCheck.lean` | the pinned statement surface, 17 declarations |
-| `results/` | `AFFINE.md` (the verification chain, one row per cited input), `ASSUMPTIONS.md` (what is assumed and what would discharge it), `VERIFICATION.md` (the build and statement check, measured), `SCHEMES.md`, `GL26_SCHEME_DEPENDENCE.md`, `WEAK_APPROX.md`, `MATHLIB_INVENTORY.md`, `STACKS_POLICY.md`, `STACKS_PORTABILITY.md`, `REPORT.md`, `INTEGRATION.md` |
+| `results/` | `AFFINE.md` (the verification chain, one row per cited input), `ASSUMPTIONS.md` (what is assumed and what would discharge it), `VERIFICATION.md` (the build and statement check, measured), `CI_PERFORMANCE.md` (where CI's time goes, and the three ways to cut it), `SCHEMES.md`, `GL26_SCHEME_DEPENDENCE.md`, `WEAK_APPROX.md`, `MATHLIB_INVENTORY.md`, `STACKS_POLICY.md`, `STACKS_PORTABILITY.md`, `REPORT.md`, `INTEGRATION.md` |
 | `scripts/` | `build.sh`, `check_statements.sh` |
 
 ## How the work was produced
