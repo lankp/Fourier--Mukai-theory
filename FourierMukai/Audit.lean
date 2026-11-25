@@ -24,6 +24,13 @@ open RelativeFM
 #print axioms RelativeFM.Trinatural.isoLocus_isClosedUnderIsomorphisms
 #print axioms RelativeFM.FinitelyBuiltBy.mono
 #print axioms RelativeFM.isClassicalGenerator_iff
+-- Lemma 2.4 (`lem:localizing_iff_cpt_gen`), `Prelim/Lemma24.lean`:
+#print axioms RelativeFM.ObjectProperty.isLocalizingGenerator_iff_localizingClosure_eq_top
+#print axioms RelativeFM.isPaperGenerator_of_isLocalizingGenerator
+#print axioms RelativeFM.isLocalizingGenerator_of_isPaperGenerator
+#print axioms RelativeFM.isPaperGenerator_iff_isLocalizingGenerator
+#print axioms RelativeFM.lemma_2_4
+#print axioms RelativeFM.singlyCompactlyGenerated_iff
 #print axioms RelativeFM.Trinatural.id
 #print axioms RelativeFM.Trinatural.comp
 #print axioms RelativeFM.isIso_app_of_retract
