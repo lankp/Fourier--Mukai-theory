@@ -22,7 +22,7 @@ both papers with its status in the tree.  Start there.
 
 The repository is **public**.  The current manuscripts of GL26 and LP26 are not.
 Never commit their `.tex`, `.pdf` or `.bib`, or paste long passages of them into
-files, commit messages or PR descriptions.  Refer to results by number **and**
+files, commit messages or reports.  Refer to results by number **and**
 TeX label (`Lemma 7.4, lem:morph_adj`); labels are stable across versions.  A
 worker receives the TeX excerpt it needs in its task message.
 
@@ -66,14 +66,15 @@ The project compiles with `autoImplicit = false`, `relaxedAutoImplicit = false`,
    rather than keep it as a target.  An interface whose functors are free fields
    does not imply geometric statements; see `Paper/InterfaceAudit.lean`.
 4. **Do not change a pinned statement.**  `results/statement-baseline.txt` pins the
-   headline declarations.  `scripts/check_statements.sh --update` is run only by a
-   human, or by the orchestrator after a human approved the change.
+   headline declarations.  `scripts/check_statements.sh --update` is run only by
+   the orchestrator, for a change it has checked against the manuscript and
+   recorded in the commit message.
 5. **Mathlib first.**  Before proving a categorical lemma, search Mathlib
    (`mateEquiv`, `conjugateEquiv`, `Adjunction.CommShift`, `Functor.IsTriangulated`,
    `ObjectProperty.triangEnvelope`, ...).  If Mathlib has it, prove the paper's
    form by reduction to Mathlib's and say so in the docstring.
 6. **Never write under `.github/workflows/`.**  This repository's GitHub
-   connection cannot.  Change `ci/ci.yml` and say in the PR that the workflow
+   connection cannot.  Change `ci/ci.yml` and say in the commit message that the workflow
    must be updated by hand.
 
 ## Verification before you claim anything
@@ -109,22 +110,26 @@ Report the outcome of each step.  If a step was skipped, say so.
 * Update the row in `results/COVERAGE.md`, and `results/ASSUMPTIONS.md` if you
   used a Stacks field.
 
-## Git and pull requests
+## Git (no pull requests)
 
-* The integration branch is `formalization`.  Never push to it directly, never
-  force-push it, never rewrite its history.
-* One task, one branch: `wave<N>/<short-slug>`, branched from the latest
-  `formalization`.  Push with
-  `git -c push.negotiate=true push -u origin <branch>`.
-* Touch only the files your task names, plus the root import line, `Audit.lean`
-  and your `COVERAGE.md` rows.  If you need to change a shared file
-  (`StacksInput.lean`, `Duality.lean`, `Statements.lean`, ...), stop and report
-  instead.
+The maintainer has delegated merging to the orchestrator session: work reaches
+`formalization` by direct push, without pull requests.
+
+* The integration branch is `formalization`.  Only the **orchestrator** pushes to
+  it, and only after running the six verification steps on the result of the
+  merge.  Nobody force-pushes it or rewrites its history.
+* A **worker** works on one branch, `wave<N>/<short-slug>`, branched from the
+  latest `formalization`, and pushes only that branch, with
+  `git -c push.negotiate=true push -u origin <branch>`.  It opens no PR.
+* Touch only the files your task names, plus the root import line and
+  `Audit.lean`.  If you need to change a shared file (`StacksInput.lean`,
+  `Duality.lean`, `Statements.lean`, ...), stop and report instead.
 * Commit messages say what was proved and what it depends on, in the style of
   the existing history.
-* The PR description lists: results covered (number + label), files, the axiom
-  set printed, the six verification steps with outcomes, and any deviation from
-  the paper's statement.  Merging is a human decision.
+* A worker's final report lists: results covered (number + label), files, the
+  axiom sets printed, the six verification steps with outcomes, and any
+  deviation from the paper's statement.  The orchestrator reads it, re-verifies,
+  checks the statements against the manuscript, and merges or sends it back.
 
 ## Swarm protocol
 
@@ -136,4 +141,5 @@ The orchestration plan, the task queue and the current wave are in
 3. stops and reports (rather than improvising) if the task turns out to need
    an assumption outside rule 2, a change to a shared file, or a statement that
    differs from the paper's;
-4. ends with a pushed branch and an open PR, or with a written report of why not.
+4. ends with a pushed branch and a final report, or with a written report of why
+   nothing was pushed.
