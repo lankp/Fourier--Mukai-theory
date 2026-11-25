@@ -307,14 +307,14 @@ author is Bregje Pauwels.  Code licence: Apache 2.0 (below).
 ### With Lake (the CI path)
 
 ```bash
-lake update          # writes lake-manifest.json from lakefile.toml
-lake exe cache get   # Mathlib's oleans
+lake exe cache get   # fetches the packages in lake-manifest.json and Mathlib's oleans
 lake build           # FourierMukai, WeakApprox, StatementCheck
 scripts/check_statements.sh
 ```
 
-`lake-manifest.json` is not committed; the first `lake update` creates it, and
-committing it afterwards freezes the resolution.  The `[leanOptions]` block is
+`lake-manifest.json` **is** committed, pinning Mathlib at the `v4.33.1` tag, so
+no `lake update` is needed and the resolution cannot drift between runs.  The
+`[leanOptions]` block is
 inherited from the AxiomMath/Stacks build configuration and is enforced:
 `autoImplicit = false`, `relaxedAutoImplicit = false`,
 `maxSynthPendingDepth = 3`.  `scripts/build.sh` passes the same three with `-D`,
