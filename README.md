@@ -12,7 +12,7 @@ does not have: perfect complexes for rings, quasicoherent cohomology through the
 tilde functor, K-projective replacements, Le–Chen's splitting criterion, and the
 exceptional functors of the affine recollement.
 
-217 modules, about 54 000 lines.  There is no `sorry` except in nine declarations
+221 modules, about 56 000 lines.  There is no `sorry` except in nine declarations
 that are deliberately left as targets; see [What is stated but not
 proved](#what-is-stated-but-not-proved).
 
@@ -36,10 +36,11 @@ schemes, in the supported form `D_qc,Z(X)`.
 | GL26 Lemma 5.4 | proved in six-functor form, modulo the cover square |
 | GL26, categorical results of §2.1, §7 and Appendices B, C (Lemmas 2.3, 2.5, 7.2, 7.4, 7.6, 7.9, 7.11, Lemma-Def 7.10, B.2, B.4, B.5, B.7, B.10, C.1) | proved (some in `Cat` rather than an arbitrary 2-category) |
 | GL26 Lemma 2.4 | proved from Stacks 09SN |
-| GL26 Lemmas 7.12 and 7.17 | proved over abstract pseudofunctor data (not yet wired into `Scheme/Duality.lean`) |
+| GL26 Lemmas 7.12 and 7.17 | proved over abstract pseudofunctor data, and for `Scheme/Duality.lean`'s base-change maps from one named input (`DerivedPseudofunctorInput`, Lipman 3.6.2) |
+| GL26 Lemmas 6.11, 10.1, 10.2 | 6.11 and 10.1 proved in six-functor form from Stacks 08IR, 08EU/08IN; 10.2 proved with no input |
 | compactness of the regular module; weak approximability of `D(A-Mod)` and of `D_{V(f)}(A-Mod)` | proved, unconditionally |
 | GL26 Lemma A.4, affine case (the recollement `D(A[1/f]) → D(A) → D_Z(A)`) | every field constructed, from Stacks 0E55 |
-| weak approximability for qcqs schemes with support | reduced to named inputs; three of the four gluing inputs are done |
+| weak approximability for qcqs schemes with support | reduced to named inputs (open/closed glue now package-free; satisfiability of its inputs not yet shown); the finite-support affine base is vacuous until a refuted input is replaced |
 | the remaining numbered results of GL26 | stated over Noetherian schemes, not proved |
 
 The result-by-result status of both papers, in the numbering of the current
@@ -101,6 +102,9 @@ declarations are pinned in
 | Lemmas 7.12, 7.17 and the base-change maps of 7.13–7.15 | `BaseChangeMates` | nothing, over abstract pseudofunctor data (`PullPushData`) |
 | Lemmas B.2, B.4, B.5, B.7, B.10 (the 2-categories `Trans`, `Triang`) | `TransTwoCategory`, `AppendixB` | nothing |
 | Lemma A.4, affine case | `AffineJUpperConstruction` and the `AffineRecollement*` modules | Stacks 0E55; unconditional when coextension of scalars is right exact |
+
+| Lemmas 6.11, 10.1, 10.2 (the base-change cube of Setup 2.20) | `FMCube` | 6.11: Stacks 08IR; 10.1: 08IR and 08EU/08IN; 10.2: nothing |
+| Lemmas 7.12–7.17 for the base-change maps of `Duality.lean` | `DualityMates` | `DerivedPseudofunctorInput` (Lipman 3.6.2; GL26 Lemma 2.13), an open named input |
 
 ### What is stated but not proved
 
@@ -328,7 +332,7 @@ Allow 300 seconds per module: the first `import Mathlib` in a process reads abou
 | path | contents |
 |---|---|
 | `WeakApprox/` | LP26: Sections 2–4 and Theorem 1.1, 45 modules |
-| `FourierMukai/Scheme/` | the scheme and affine layer, the scheme-level statement layer, and the affine theorems, 149 modules |
+| `FourierMukai/Scheme/` | the scheme and affine layer, the scheme-level statement layer, and the affine theorems, 153 modules |
 | `FourierMukai/Prelim/` | triangulated-category and 2-categorical foundations, and the categorical results of GL26 §2.1, §7 and Appendices B, C, 15 modules |
 | `FourierMukai/Paper/` | the early algebraic-space interface, its targets, and the interface audit |
 | `FourierMukai/Examples/` | a non-vacuous instantiation on Mathlib's derived category |
