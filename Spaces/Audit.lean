@@ -1,6 +1,7 @@
 /- Copyright (c) 2026 Formalization of Lank--Pauwels. Released under Apache 2.0 license as described in the file LICENSE. -/
 import Spaces.AxiomMathInputs
 import Spaces.NonVacuity
+import Spaces.BaseChange.Cube
 
 /-!
 # Axiom audit of the algebraic-space layer
@@ -58,3 +59,27 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.isRelativelyPerfect_of_isZero
 #print axioms RelativeFM.Spaces.isQuasiPerfect_of_isZero
 #print axioms RelativeFM.Spaces.isCoherentOnSite_of_isZero
+-- Base change over algebraic spaces (wave 7, `Spaces/BaseChange/`)
+#print axioms RelativeFM.Spaces.BaseChange.PullPseudofunctor.toPullPushData
+#print axioms RelativeFM.Spaces.BaseChange.canonical_iso_comp_id
+#print axioms RelativeFM.Spaces.BaseChange.pullPushData
+#print axioms RelativeFM.Spaces.BaseChange.lemma_7_12
+#print axioms RelativeFM.Spaces.BaseChange.lemma_7_13
+#print axioms RelativeFM.Spaces.BaseChange.lemma_7_17_theta
+#print axioms RelativeFM.Spaces.BaseChange.lemma_7_17_xi
+#print axioms RelativeFM.Spaces.BaseChange.lemma_7_17_xi_id
+#print axioms RelativeFM.Spaces.BaseChange.CompIsoAgreeInput
+#print axioms RelativeFM.Spaces.BaseChange.FlatBaseChangeInput
+#print axioms RelativeFM.Spaces.BaseChange.Tag08INInput
+#print axioms RelativeFM.Spaces.BaseChange.tensorPullPushData
+#print axioms RelativeFM.Spaces.BaseChange.theta_app_eq_baseChangeMap
+#print axioms RelativeFM.Spaces.BaseChange.flatBaseChangeRightQc_of_isFlat
+#print axioms RelativeFM.Spaces.BaseChange.projMap_app_eq
+#print axioms RelativeFM.Spaces.BaseChange.projectionFormulaQc_of
+#print axioms RelativeFM.Spaces.BaseChange.lemma_6_11
+#print axioms RelativeFM.Spaces.BaseChange.lemma_6_11_of_isFlat
+#print axioms RelativeFM.Spaces.BaseChange.lemma_10_1
+#print axioms RelativeFM.Spaces.BaseChange.lemma_10_1_of
+#print axioms RelativeFM.Spaces.BaseChange.lemma_10_2
+#print axioms RelativeFM.Spaces.BaseChange.lemma_6_11_id
+#print axioms RelativeFM.Spaces.BaseChange.lemma_10_1_id
