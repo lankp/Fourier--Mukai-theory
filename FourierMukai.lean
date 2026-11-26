@@ -114,6 +114,7 @@ import FourierMukai.Scheme.AffineDictionary
 import FourierMukai.Scheme.AffineQCoh
 import FourierMukai.Scheme.AffineDiagonal
 import FourierMukai.Scheme.AffineConvolution
+import FourierMukai.Scheme.FMCube
 import FourierMukai.Scheme.ConvolutionCounterexample
 import FourierMukai.Scheme.Perfect
 import FourierMukai.Scheme.StacksInput

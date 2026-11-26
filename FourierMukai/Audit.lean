@@ -67,6 +67,15 @@ open RelativeFM
 #print axioms RelativeFM.BaseChangeMates.PullPushData.lemma_7_17_xi
 #print axioms RelativeFM.BaseChangeMates.constPullPushData
 #print axioms RelativeFM.BaseChangeMates.constPullPushData_isIso_theta
+-- GL26 Lemmas 6.11, 10.1, 10.2 in the cube of Setup 2.20 (`Scheme/FMCube.lean`):
+#print axioms RelativeFM.FMCube.lemma_6_11
+#print axioms RelativeFM.FMCube.lemma_10_1
+#print axioms RelativeFM.FMCube.lemma_10_2
+#print axioms RelativeFM.FMCube.lemma_10_2'
+#print axioms RelativeFM.FMCube.lemma_10_2_iso
+#print axioms RelativeFM.FMCube.constFMCube_flatBaseChangeLeft
+#print axioms RelativeFM.FMCube.constFMCube_flatBaseChangeRight
+#print axioms RelativeFM.FMCube.constFMCube_projectionFormula
 #print axioms RelativeFM.mates_hom_square
 #print axioms RelativeFM.mates_hom_square_eq_mate
 #print axioms RelativeFM.lemma_7_4
