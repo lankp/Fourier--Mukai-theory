@@ -74,7 +74,7 @@ noncomputable def brutalGEι (K : CochainComplex C ℤ) (a : ℤ) : brutalGE K a
         have h : i + 1 = j := hij
         omega
       dsimp [brutalGEιHom]
-      rw [dif_pos hi, dif_pos hj, brutalGE_d K hi hj]
+      rw [dite_eq_left hi, dite_eq_left hj, brutalGE_d K hi hj]
       simp [Category.assoc]
     · exact (isZero_brutalGE_X K (by omega)).eq_of_src _ _
 
@@ -112,7 +112,7 @@ noncomputable def brutalGEιOfLE (K : CochainComplex C ℤ) {a b : ℤ} (hab : b
         have h : i + 1 = j := hij
         omega
       dsimp [brutalGEιOfLEHom]
-      rw [dif_pos hi, dif_pos hj, brutalGE_d K hi hj,
+      rw [dite_eq_left hi, dite_eq_left hj, brutalGE_d K hi hj,
         brutalGE_d K (hab.trans hi) (hab.trans hj)]
       simp [Category.assoc]
     · exact (isZero_brutalGE_X K (by omega)).eq_of_src _ _
@@ -164,7 +164,7 @@ lemma brutalGEToSingle_f_self (K : CochainComplex C ℤ) (a : ℤ) [K.IsStrictly
 lemma brutalGEToSingle_f_of_ne (K : CochainComplex C ℤ) (a i : ℤ) [K.IsStrictlyGE a]
     (hi : i ≠ a) : (brutalGEToSingle K a).f i = 0 := by
   dsimp [brutalGEToSingle, HomologicalComplex.mkHomToSingle]
-  rw [dif_neg hi]
+  rw [dite_eq_right hi]
 
 /-- The degree-split short complex which removes the bottom term of `K`. -/
 noncomputable def brutalGEShortComplex (K : CochainComplex C ℤ) (a : ℤ) [K.IsStrictlyGE a] :

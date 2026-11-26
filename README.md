@@ -200,8 +200,8 @@ second author of LP26 is Bregje Pauwels.  Code is under the Apache 2.0 licence.
 | Lake, with Mathlib's olean cache | `lake exe cache get`, then `lake build` | CI, [`.github/workflows/ci.yml`](.github/workflows/ci.yml) |
 | a script that calls `lean` in dependency order | `./scripts/build.sh` | the development VM, where Mathlib is prebuilt and read-only and there is no Lake package directory |
 
-Both compile the same sources with the toolchain in `lean-toolchain` (Lean 4.33.1)
-and Mathlib pinned in `lakefile.toml` and `lake-manifest.json` (tag `v4.33.1`).
+Both compile the same sources with the toolchain in `lean-toolchain` (Lean 4.35.0)
+and Mathlib pinned in `lakefile.toml` and `lake-manifest.json` (tag `v4.35.0`).
 Both use the same strict options: `autoImplicit = false`,
 `relaxedAutoImplicit = false`, `maxSynthPendingDepth = 3`, the script passing them
 with `-D` and the lakefile in `[leanOptions]`.

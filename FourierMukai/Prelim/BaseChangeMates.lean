@@ -428,7 +428,6 @@ theorem lemma_7_17_theta (sl : CommSq f'' g' h' f') (sr : CommSq f' g h f) :
   rw [hV]
   ext x
   simp [TwoSquare.vComp]
-  rfl
 
 /-- **Lemma 7.17(2)** (`lem:base_change_mates_pasting`), the `_*`-`^×` maps.  With right adjoints
 `Rf_* ⊣ f^×`, `Rf'_* ⊣ (f')^×`, `Rf''_* ⊣ (f'')^×`, the base change morphism of the outer rectangle

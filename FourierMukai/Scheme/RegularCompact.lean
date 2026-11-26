@@ -249,9 +249,9 @@ theorem small_nonzeroSupport [LocallySmall.{w} C] {J : Type v} {X : J → C}
     have hid : (𝟙 (X j)) ≠ 0 := fun h0 => hj ((IsZero.iff_id_eq_zero _).2 h0)
     by_cases hS : (⟨j, hj⟩ : T) ∈ S <;> by_cases hS' : (⟨j, hj⟩ : T) ∈ S'
     · exact iff_of_true hS hS'
-    · rw [if_pos hS, if_neg hS'] at h
+    · rw [ite_eq_left hS, ite_eq_right hS'] at h
       exact absurd h hid
-    · rw [if_neg hS, if_pos hS'] at h
+    · rw [ite_eq_right hS, ite_eq_left hS'] at h
       exact absurd h.symm hid
     · exact iff_of_false hS hS'
   have : Small.{w} (Set T) := small_of_injective he
@@ -291,7 +291,7 @@ theorem factorsFinitelyOfSize_enlarge [LocallySmall.{w} C] [HasCoproducts.{w} C]
     intro j
     rw [← Category.assoc, Cofan.IsColimit.fac, Category.comp_id]
     by_cases hj : ¬ IsZero (X j)
-    · rw [dif_pos hj, Category.assoc, Sigma.ι_desc]
+    · rw [dite_eq_left hj, Category.assoc, Sigma.ι_comp_desc]
       exact eqToHom_comp_inj c (hg j hj).symm
     · exact (not_not.1 hj).eq_of_src _ _
   let d : Cofan Y := Cofan.mk (∐ Y) (Sigma.ι Y)

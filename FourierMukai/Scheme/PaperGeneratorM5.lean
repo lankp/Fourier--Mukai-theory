@@ -54,7 +54,7 @@ variable {C : Type u} [Category.{v} C] [Abelian C]
 lemma exists_nonzero_hom_of_not_isZero {P X : C} (hP : IsSeparator P)
     (hX : ¬ IsZero X) : ∃ f : P ⟶ X, f ≠ 0 := by
   by_contra h
-  push_neg at h
+  push Not at h
   apply hX
   rw [IsZero.iff_id_eq_zero]
   symm

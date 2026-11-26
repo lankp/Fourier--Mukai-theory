@@ -104,7 +104,7 @@ theorem small_exists_piTruncGE_eq_zero_of_isCompactAb
       simp
     · have hd : j.as.down ≠ n.down := by
         intro hd
-        exact h (ULift.ext _ _ hd)
+        exact h (ULift.ext hd)
       simp [h, hd]
   rw [hp] at hn
   refine ⟨n.down, ?_⟩

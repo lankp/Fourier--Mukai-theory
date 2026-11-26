@@ -24,11 +24,11 @@ lemma tailMap_basis {N : Type uA} [AddCommGroup N] [Module A N]
     tailMap b s (b i) = if hi : i ∈ s then 0 else Finsupp.single ⟨i, hi⟩ 1 := by
   classical
   by_cases hi : i ∈ s
-  · simp only [dif_pos hi]
+  · simp only [dite_eq_left hi]
     ext j
     have hij : i ≠ j.1 := fun h => j.property (h ▸ hi)
     simp [tailMap_apply, Finsupp.single_apply, hij]
-  · simp only [dif_neg hi]
+  · simp only [dite_eq_right hi]
     ext j
     by_cases hij : i = j.1
     · have hj : j = (⟨i, hi⟩ : Tail s) := Subtype.ext hij.symm
@@ -89,9 +89,9 @@ lemma stageIntrinsicMap_comp_evalIso {N : Type uA} [AddCommGroup N] [Module A N]
     ModuleCat.hom_ofHom]
   rw [stageIntrinsicMap_basis, tailMap_basis]
   by_cases hi : i ∈ s
-  · simp only [stageBasisImage, dif_pos hi]
+  · simp only [stageBasisImage, dite_eq_left hi]
     exact map_zero _
-  · simp only [stageBasisImage, dif_neg hi]
+  · simp only [stageBasisImage, dite_eq_right hi]
     rw [stageSingleCore_eq_coord]
     rw [← ModuleCat.comp_apply, stageEvalIso_ι]
     simp [stageTailLeg, hi, Category.assoc]
@@ -137,7 +137,7 @@ lemma stageTransitionComponent_coord (s₀ s₁ : Finset ι) (h : s₀ ⊆ s₁)
         (stageSingleCore A s₀ c ⟨i, fun hi₀ => hi (h hi₀)⟩) =
       stageSingleCore A s₁ c ⟨i, hi⟩ := by
   have hi₀ : i ∉ s₀ := fun hi₀ => hi (h hi₀)
-  simp only [stageTransitionComponent, dif_neg hi]
+  simp only [stageTransitionComponent, dite_eq_right hi]
   change (stageSingleIso A s₁ c ⟨i, hi⟩).hom.f c
     ((stageSingleIso A s₀ c ⟨i, hi₀⟩).inv.f c
       ((stageSingleIso A s₀ c ⟨i, hi₀⟩).hom.f c
@@ -172,9 +172,9 @@ lemma stageIntrinsicMap_comp_transition {N : Type uA} [AddCommGroup N] [Module A
   rw [stageIntrinsicMap_basis, stageIntrinsicMap_basis]
   by_cases hi : i ∈ s₁
   · by_cases hi₀ : i ∈ s₀
-    · simp only [stageBasisImage, dif_pos hi, dif_pos hi₀]
+    · simp only [stageBasisImage, dite_eq_left hi, dite_eq_left hi₀]
       exact map_zero _
-    · simp only [stageBasisImage, dif_neg hi₀, dif_pos hi]
+    · simp only [stageBasisImage, dite_eq_right hi₀, dite_eq_left hi]
       change ((coproductComplexCocone (stageComplex A s₀ c)).ι.app ⟨i⟩ ≫
         stageTransition A s₀ s₁ h c).f c
           (stageSingleCore A s₀ c ⟨i, hi₀⟩) = 0
@@ -182,7 +182,7 @@ lemma stageIntrinsicMap_comp_transition {N : Type uA} [AddCommGroup N] [Module A
       simp [stageTransitionLeg, stageTransitionComponent, hi, LinearMap.zero_apply]
       rfl
   · have hi₀ : i ∉ s₀ := fun hi₀ => hi (h hi₀)
-    simp only [stageBasisImage, dif_neg hi₀, dif_neg hi]
+    simp only [stageBasisImage, dite_eq_right hi₀, dite_eq_right hi]
     change ((coproductComplexCocone (stageComplex A s₀ c)).ι.app ⟨i⟩ ≫
       stageTransition A s₀ s₁ h c).f c (stageSingleCore A s₀ c ⟨i, hi₀⟩) = _
     rw [stageTransition_ι]

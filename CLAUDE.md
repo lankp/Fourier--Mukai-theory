@@ -44,7 +44,7 @@ numbering** (maintainer's standing instruction).
 
 ## Building
 
-The toolchain is pinned: Lean `v4.33.1` (`lean-toolchain`), Mathlib tag `v4.33.1`
+The toolchain is pinned: Lean `v4.35.0` (`lean-toolchain`), Mathlib tag `v4.35.0`
 (`lakefile.toml`, `lake-manifest.json`).
 
 ```bash

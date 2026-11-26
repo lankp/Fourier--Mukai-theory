@@ -48,7 +48,6 @@ lemma quotient_map_from_single_eq_zero_of_homologyMap_eq_zero
     dsimp [eC, z]
     simp only [HomologicalComplex.singleObjCyclesSelfIso_hom,
       HomologicalComplex.cyclesMap_i, Category.assoc, K.liftCycles_i, hf]
-    rfl
   have he : ((CochainComplex.singleFunctor C 0).obj P).homologyπ 0 ≫ eH.hom = eC.hom := by
     dsimp [eH, eC]
     exact HomologicalComplex.homologyπ_singleObjHomologySelfIso_hom (.up ℤ) 0 P

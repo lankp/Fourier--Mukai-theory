@@ -124,13 +124,10 @@ def comp {F G H : C ⥤ D} [F.CommShift ℤ] [G.CommShift ℤ] [H.CommShift ℤ]
     refine ⟨θ₁ ≫ θ₂, ?_, ?_, ?_⟩
     · show θ₁.hom₁ ≫ θ₂.hom₁ = η.toNatTrans.app T.obj₁ ≫ θ.toNatTrans.app T.obj₁
       rw [h₁, k₁]
-      rfl
     · show θ₁.hom₂ ≫ θ₂.hom₂ = η.toNatTrans.app T.obj₂ ≫ θ.toNatTrans.app T.obj₂
       rw [h₂, k₂]
-      rfl
     · show θ₁.hom₃ ≫ θ₂.hom₃ = η.toNatTrans.app T.obj₃ ≫ θ.toNatTrans.app T.obj₃
       rw [h₃, k₃]
-      rfl
 
 @[simp] lemma id_app (F : C ⥤ D) [F.CommShift ℤ] (X : C) :
     (id F).toNatTrans.app X = 𝟙 _ := rfl

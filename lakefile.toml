@@ -3,14 +3,14 @@ version = "0.1.0"
 defaultTargets = ["FourierMukai", "WeakApprox", "StatementCheck"]
 lintDriver = "batteries/runLinter"
 
-# Lean 4.33.1, as pinned in `lean-toolchain`.  CI builds through Lake against
+# Lean 4.35.0, as pinned in `lean-toolchain`.  CI builds through Lake against
 # Mathlib's olean cache; the development VM has a prebuilt, read-only Mathlib on
 # `LEAN_PATH` and no writable package directory, so `scripts/build.sh` calls
 # `lean` directly there.  Same sources, same toolchain, two entry points.
 [[require]]
 name = "mathlib"
 scope = "leanprover-community"
-rev = "v4.33.1"
+rev = "v4.35.0"
 
 # Compiler options used by the Lake build.  `scripts/build.sh` passes the same
 # three strictness options with `-D`, so the Lake path and the offline path
