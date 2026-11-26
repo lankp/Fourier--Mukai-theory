@@ -194,10 +194,10 @@ RelativeFM.AffineSupportedSchemeBaseM1.neemanSupported_of_qc_closedComplement : 
               RelativeFM.AffineSupportedSchemeBaseM1.AffineSupportedSchemeComparisonInput A
                 (RelativeFM.FiniteKoszulM1.functionIdeal A fs)) →
             RelativeWeakApprox.IsCompactAb (RelativeFM.ringObject A) →
-              ∀ (Z : TopologicalSpace.Closeds ↥(AlgebraicGeometry.Spec (CommRingCat.of A))),
+              ∀ (Z : TopologicalSpace.Closeds ↥(AlgebraicGeometry.Spec ↧A)),
                 RelativeFM.SchemeNeemanFiniteCoverAssemblyM5.IsCompactClosedComplement Z →
-                  RelativeFM.SchemeWeakApproxStatementM1.NeemanSupportedWeakApproximability
-                    (AlgebraicGeometry.Spec (CommRingCat.of A)) Z
+                  RelativeFM.SchemeWeakApproxStatementM1.NeemanSupportedWeakApproximability (AlgebraicGeometry.Spec ↧A)
+                    Z
 RelativeFM.AffineSupportedSchemeBaseM1.neemanSupportedWeakApproximability_of_isAffine : ∀
   (hS : ∀ (A : Type u_1) [inst : CommRing A], RelativeFM.StacksInterface.KoszulScalarSupportInput A),
   (∀ (A : Type u_1) [inst : CommRing A] (fs : List A),
