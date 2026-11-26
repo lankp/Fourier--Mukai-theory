@@ -73,8 +73,8 @@ below.
 
 ## 2. CI
 
-The workflow is [`.github/workflows/ci.yml`](.github/workflows/ci.yml); it fires on
-`push`, `pull_request` and `workflow_dispatch`.  [`ci/ci.yml`](ci/ci.yml) is a
+The workflow is [`.github/workflows/ci.yml`](../.github/workflows/ci.yml); it fires on
+`push`, `pull_request` and `workflow_dispatch`.  [`ci/ci.yml`](../ci/ci.yml) is a
 byte-identical mirror kept for editing: the GitHub connection this project is
 committed through cannot create or update a file under `.github/workflows/`
 (it lacks the `workflows` permission), so a change made here has to be pasted

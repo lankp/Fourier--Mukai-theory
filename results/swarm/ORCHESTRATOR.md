@@ -32,7 +32,9 @@ to you.
 4. Prepare the next wave when the current one nears completion, and **launch it as soon as
    the current wave is closed** (maintainer, 26 November 2026): its tasks come from the top
    of `results/TODO.md` (`python3 scripts/todo.py` after updating `COVERAGE.md`), LP26
-   before GL26; continue until `TODO.md` is empty.  **If the 5-hour
+   before GL26; continue until `TODO.md` is empty.  **Before launching, clean up**: every
+   Markdown file updated to the merged tree, superseded files archived, generated files
+   regenerated, `python3 scripts/check_docs.py` clean (CLAUDE.md, "Cleanliness first").  **If the 5-hour
    usage limit is near (status `allowed_warning`, or the window is already
    heavily used), do not launch; schedule the launch (`send_later`) for just
    after the next reset.**  Launch at most four workers at a time.

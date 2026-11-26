@@ -197,7 +197,16 @@ The maintainer has delegated merging to the orchestrator session: work reaches
   is a to-do in `results/TODO.md`, generated from `COVERAGE.md` by
   `python3 scripts/todo.py`.  Record a finding in `COVERAGE.md` (never edit `TODO.md` by
   hand) and regenerate.  To-dos are filled in order: LP26 first, then GL26.
-* **Next wave** (maintainer, 26 November 2026): as soon as a wave is closed, the
+* **Cleanliness first** (maintainer, 26 November 2026: cleanliness is a priority).  Before
+  a new wave is launched, the repository is cleaned up and **every Markdown file is
+  brought up to date** with the merged tree: README, `CLAUDE.md`, `results/*.md` (COVERAGE,
+  ASSUMPTIONS, OPEN_INPUTS, STACKS_POLICY, VERIFICATION, the AxiomMath maps, SWARM) and
+  `results/swarm/ORCHESTRATOR.md`; generated files regenerated (`scripts/todo.py`,
+  `scripts/progress.py`); superseded files moved to `results/archive/`, finished briefs to
+  `results/swarm/archive/`; scratch files, stale branches' leftovers and dead code removed.
+  `python3 scripts/check_docs.py` must report no problem.  Wording stays short and plain.
+* **Next wave** (maintainer, 26 November 2026): as soon as a wave is closed (and cleaned up,
+  above), the
   orchestrator prepares the next one from the top of `results/TODO.md` (briefs in
   `results/swarm/wave<N>/`, a section in `SWARM.md`) and launches it, subject to the
   usage rule in `results/swarm/ORCHESTRATOR.md`.  It stops only when `TODO.md` is empty.

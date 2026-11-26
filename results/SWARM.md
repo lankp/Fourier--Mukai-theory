@@ -224,7 +224,10 @@ the wave 7 results (affine base, GL26 Lemma A.9):
 | `wave8/lp26-recollement` | LP26 Proposition 5.8 (`prop:A8`): the open–closed recollement of `D_qc,Z` over a qcqs space, from AxiomMath |
 | `wave8/lp26-corollary-1-2` | LP26 Corollary 1.2 (`cor:weak_approx_spaces`): the induction over qcqs algebraic spaces, from Theorem 1.1, the affine base and the two tasks above |
 
-Needs the LP26 TeX (ask the maintainer whether the copy shared earlier is current).  The
+The LP26 TeX is the copy in the orchestrator's session uploads, confirmed current by the
+maintainer (26 November 2026); it is not in the repository, so the LP26 tasks run as local
+subagents in the orchestrator's container (like `wave7/spaces-statements`), or receive only
+statement numbers and labels.  The
 wave 7 GL26 tasks (`spaces-base-change`, `spaces-statements`) were already running when the
 order was set; they finish, and GL26 resumes after LP26.
 
