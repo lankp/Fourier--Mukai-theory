@@ -215,9 +215,6 @@ noncomputable def derivedFirstTriangleIsoQ (A : Type u) [CommRing A] (f : A)
   · simp [derivedFirstTriangle]
   · simp [derivedFirstTriangle]
   · simp [derivedFirstTriangle, derivedShiftFactors]
-    rw [← Functor.map_comp, Iso.inv_hom_id_app]
-    rw [(shiftFunctor (AffineD A) (1 : ℤ)).map_id
-      ((complexFunctor A f ⋙ DerivedCategory.Q).obj K)]
     simp [complexConnecting]
     rfl
 
