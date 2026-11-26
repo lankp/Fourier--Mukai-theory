@@ -157,11 +157,11 @@ absent.
 | Lem 7.9 | `lem:conjugates_are_functorial` | P (in `Cat`) | `lemma_7_9_id`, `lemma_7_9_comp`, from Mathlib's `conjugateEquiv_id`/`_comp`; does not use 7.8 |
 | Lem-Def 7.10 | `def:adj_equiv` | P (in `Cat`) | `Prelim/AdjunctionUnits.lean` (`lemmaDef_7_10`); the footnote's "representably fully faithful ⇔ fully faithful" is proved (`representablyFullyFaithful_iff`) |
 | Lem 7.11 | `lem:when_mate_correspondence_preserves_isos` | P | `isIso_mate`, `isIso_of_isIso_mate`, `isIso_mate_iff` |
-| Lem 7.12 | `lem:pseudofunctoriality_isos_are_conjugate` | P (abstract) | `PullPushData.lemma_7_12` (`Prelim/BaseChangeMates.lean`), over abstract pseudofunctor data whose structure isos are conjugate (Lipman 3.6.2 / Lemma 2.13 as fields); not yet wired into `Scheme/Duality.lean`, where it is still a coherence field |
+| Lem 7.12 | `lem:pseudofunctoriality_isos_are_conjugate` | P (abstract) | `PullPushData.lemma_7_12` (`Prelim/BaseChangeMates.lean`), over abstract pseudofunctor data whose structure isos are conjugate (Lipman 3.6.2 / Lemma 2.13 as fields); wired into `Scheme/Duality.lean` by `Scheme/DualityMates.lean` (`DerivedPseudofunctorInput.lemma_7_12`; the coherence field `pushConjugate` is now proved for squares from that input) |
 | Lem-Def 7.13 | `def:upper_star_lower_star_bc` | D | `theta`, `thetaLeftMate`, `lemma_7_13` (the two descriptions agree) in `Prelim/BaseChangeMates.lean`; `theta` in `Scheme/Duality.lean` |
 | Def 7.14 | `def:lower_star_upper_cross_bc` | D | `xi`, with `isIso_xi` ⇔ `isIso_theta` (`Prelim/BaseChangeMates.lean`) |
 | Lem-Def 7.15 | `def:upper_star_upper_cross_bc` | D | `beta`, `betaLeftMate`, `lemma_7_15` (the two descriptions agree) (`Prelim/BaseChangeMates.lean`) |
-| Lem 7.17 | `lem:base_change_mates_pasting` | P (abstract) | `lemma_7_17_theta`, `lemma_7_17_xi` (`Prelim/BaseChangeMates.lean`), over the same abstract data; without Lemma 7.8, via Mathlib's `mateEquiv_vcomp` |
+| Lem 7.17 | `lem:base_change_mates_pasting` | P (abstract) | `lemma_7_17_theta`, `lemma_7_17_xi` (`Prelim/BaseChangeMates.lean`), over the same abstract data; without Lemma 7.8, via Mathlib's `mateEquiv_vcomp`; for `Duality.lean`'s maps: `DerivedPseudofunctorInput.lemma_7_17_theta`, `lemma_7_17_lowerStarUpperCross` |
 | Lem 7.19 | `lem:etale_presen_bc` | — | algebraic spaces |
 | Lem 7.20 | `lem:characterize_tor-independence` | — | |
 | Lem 7.21 | `lem:tor-independence_and_beta_pasting` | — | |

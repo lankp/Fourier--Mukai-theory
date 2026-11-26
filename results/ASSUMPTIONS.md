@@ -39,6 +39,7 @@ permitted assumptions: a theorem that takes one is recorded as conditional (C in
 
 | input | Lean name | used by | source | to discharge |
 |---|---|---|---|---|
+| Pseudofunctoriality of `L(-)^*` and `R(-)_*` as a family indexed by morphisms, with conjugate composition and unit isomorphisms | `DerivedPseudofunctorInput S` (`Scheme/DualityMates.lean`) | GL26 Lemmas 7.12–7.17 for `Duality.lean`'s base-change maps (`DerivedPseudofunctorInput.lemma_7_12`, `coherence`, `lemma_7_15`, `lemma_7_17_*`) | Lipman 2009, (3.6.2); GL26 Lemma 2.13 (`lem:spacey_Lipman_Hashimoto`) | construct `L(-)^*`, `R(-)_*` on the scheme model as pseudofunctors and prove (3.6.2) |
 | Bousfield localization at a compact object: every `E` sits in a triangle `S → E → R → S⟦1⟧` with `S ∈ ⟨G⟩‾` and `R` right orthogonal to the shifts of `G` | `HasBousfieldTriangles G` (`Prelim/Lemma24.lean`) | only the secondary route `isLocalizingGenerator_of_isPaperGenerator`, `isPaperGenerator_iff_isLocalizingGenerator`; **no longer used by the headline GL26 Lemma 2.4** (`lemma_2_4` now uses Stacks 09SN, see §4).  `CompactBousfieldLocalization C` was deleted (it was stated with the refuted `Type`-valued `IsCompact`, hence trivially true; `Prelim/CompactnessAudit.lean`) | Neeman, *Triangulated categories* (2001), Rmk 1.16, Thm 1.17, Prop 9.1.19 | not needed for GL26 Lemma 2.4; Brown representability if the route is wanted |
 
 ## 2. The affine endpoint and what is actually proved
