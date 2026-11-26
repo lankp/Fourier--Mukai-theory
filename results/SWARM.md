@@ -157,6 +157,7 @@ finite-list case `V(f₁,…,fₙ)` goes through the refuted `KoszulScalarSuppor
 | task | goal |
 |---|---|
 | `wave5/neeman-affine-support` | weak approximability of `D_{V(I)}(A-Mod)` for every finitely generated `I` (every finite list), with **no** named input: drop the refuted input (the deferred `koszul-repair` brief), prove `KoszulPowerCoprodInput`, and prove or import (AxiomMath 0A9A) `KoszulDetectionInput`; non-vacuity by an instance |
+| `wave5/neeman-3-2-inputs` | maintainer, 26 Nov 2026: Neeman 2024 Thm 3.2 is no longer assumed; inventory its uses (`results/NEEMAN_3_2.md`), prove what a GL26/LP26 path needs (first (i) compact ⇒ perfect for `D(A)`, both models, via compactness of the regular module and Stacks 09SR), unconditional corollaries in new files |
 | `wave5/spaces-foundations` (after the AxiomMath bundle is published) | the algebraic-space layer `FourierMukai/Spaces/`: `D_qc`, `Perf`, `D^b_coh`, support; `Lf^*`, `Rf_*`, `⊗^L`; GL26's `f`-perfect and `f`-quasi-perfect; integral transforms `Φ_K`; all non-vacuous |
 | `wave5/neeman-affine-transport` (after AxiomMath is imported) | transport it along AxiomMath's `D_qc(Spec A) ≃ D(A)` with supports matched: `D_qc,Z(Spec A)` weakly approximable for `Z` closed with quasi-compact complement, in AxiomMath's model — the base case of LP26 Cor 1.2 |
 

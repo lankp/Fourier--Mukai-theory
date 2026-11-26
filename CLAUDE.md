@@ -69,11 +69,17 @@ The project compiles with `autoImplicit = false`, `relaxedAutoImplicit = false`,
 1. **No `sorry` and no `axiom`** in anything you add.  The only `sorry`s in the
    tree are the nine targets in `FourierMukai/Paper/Statements.lean`.  A proof
    that is not finished is not committed.  Do not commit a "partial" file.
-2. **What may be assumed** is exactly two things (see `results/STACKS_POLICY.md`):
-   * a result of AxiomMath/Stacks, taken as a `Prop`-valued field of
-     `RelativeFM.StacksInterface` (`FourierMukai/Scheme/StacksInput.lean`) with its
-     tag, plus a row in `results/ASSUMPTIONS.md`;
-   * Neeman, Acta Math. 233 (2024), Thm 3.2, direction "compact ⇒ perfect".
+2. **What may be assumed** is exactly one thing (see `results/STACKS_POLICY.md`):
+   a result of AxiomMath/Stacks, taken as a `Prop`-valued field of
+   `RelativeFM.StacksInterface` (`FourierMukai/Scheme/StacksInput.lean`) with its
+   tag, plus a row in `results/ASSUMPTIONS.md` (once AxiomMath is imported, its
+   proved theorem instead).  **Neeman, Acta Math. 233 (2024), Theorem 3.2 is no
+   longer an allowed assumption** (maintainer, 26 November 2026, including the
+   direction "compact ⇒ perfect" that used to be allowed): what this project needs
+   from it is formalized and verified here, and only that.  The inputs that still
+   carry it (`CompactPerfectInput`, `SmallNeemanCompactToPerfectInput`,
+   `Neeman_3_2_*` in `Scheme/Inputs.lean`, the 3.2(iii) field of
+   `SupportedCategoryInput`) are open items to discharge, not permitted inputs.
    Anything else is proved, or carried as an explicitly named hypothesis whose
    name says what it is.
 3. **Statements are faithful.**  No hypothesis is `True`.  No result is reworded to

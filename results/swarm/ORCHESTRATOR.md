@@ -67,6 +67,12 @@ to you.
    case `D_qc,V(I)(Spec A)`, `I` finitely generated) formalized and verified.  See
    `results/SWARM.md`, "Wave 5".
 
+10. **Neeman 2024, Theorem 3.2 is not assumed** (26 November 2026): "the goal should
+   include not assuming Neeman … Theorem 3.2 … compact implies perfect …  We should
+   only formalize/verify what is needed from loc. cit. in this project."  CLAUDE.md
+   rule 2 now allows AxiomMath/Stacks only; every remaining Neeman input is an open
+   item.
+
 ## Infrastructure
 
 * Repository: `lankp/Fourier--Mukai-theory` (lower-case alias

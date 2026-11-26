@@ -2,8 +2,10 @@
 
 ## 1. Contract and terminology
 
-The only permitted external mathematical inputs are the **tagged Stacks
-interface** and **Neeman, Acta Math. 233 (2024), Theorem 3.2**. The interface is
+The only permitted external mathematical input is the **tagged Stacks
+interface**.  **Neeman, Acta Math. 233 (2024), Theorem 3.2** was a second one; since
+26 November 2026 it is not (maintainer's instruction): the rows below marked `N` are
+open items whose content is to be formalized here, not permitted inputs. The interface is
 `FourierMukai/Scheme/StacksInput.lean`, in `RelativeFM.StacksInterface`; its
 fields record exact statements and tag numbers from AxiomMath/Stacks. See also
 `results/STACKS_INTERFACE.md`.

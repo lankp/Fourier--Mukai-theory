@@ -23,6 +23,7 @@ export PATH="$HOME/.elan/bin:$PATH"; lean --version; lake exe cache get
 ## Rules (summary of CLAUDE.md; CLAUDE.md wins)
 - No `sorry`, no `axiom`, no `True` hypotheses, no `set_option` overriding autoImplicit. Unfinished work is not committed.
 - Statements faithful; any difference from the source stated precisely in the docstring. A false or vacuous rendering is refuted in the tree, never kept as a target.
+- **Assumptions:** AxiomMath/Stacks only (CLAUDE.md rule 2). Neeman 2024, Theorem 3.2 is **not** an allowed assumption any more (maintainer, 26 Nov 2026); do not add a new use of `CompactPerfectInput`, `SmallNeemanCompactToPerfectInput`, `Neeman_3_2_*` or the 3.2(iii) field of `SupportedCategoryInput`.
 - **Non-vacuity (step 5)**: every hypothesis-carrying notion your headline statements rely on must be shown satisfiable.
 - Mathlib first, then AxiomMath/Stacks; reduce to them where possible and say so.
 - Touch only the files your task names. Do NOT edit `results/COVERAGE.md` or `results/statement-baseline.txt`. If you need another file, stop and report.

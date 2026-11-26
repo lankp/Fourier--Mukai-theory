@@ -145,15 +145,19 @@ imply these lemmas, which is why the Lean statements carry those inputs explicit
 
 ### What may be assumed
 
-Two sources, and nothing else.
+One source, and nothing else: **AxiomMath/Stacks**, the formalization of the
+Stacks Project at <https://github.com/AxiomMath/Stacks>.  Its results may be used
+freely.  A Stacks result that Axiom has formalized counts as available; we do not
+reprove it merely to avoid depending on it.
 
-1. **AxiomMath/Stacks**, the formalization of the Stacks Project at
-   <https://github.com/AxiomMath/Stacks>.  Its results may be used freely.  A
-   Stacks result that Axiom has formalized counts as available; we do not reprove
-   it merely to avoid depending on it.
-2. **Neeman**, *Bounded `t`-structures on the category of perfect complexes*,
-   Acta Math. 233 (2024), Theorem 3.2, and only in the direction "compact implies
-   perfect", where a statement is made in the large-Hom model.
+**Neeman**, *Bounded `t`-structures on the category of perfect complexes*, Acta
+Math. 233 (2024), Theorem 3.2, was the second permitted source (direction "compact
+implies perfect", large-Hom model).  Since 26 November 2026 it is **not** assumed
+(maintainer's instruction): what the project needs from it is formalized and
+verified here, and only that.  The tree's remaining uses of it
+(`CompactPerfectInput`, `SmallNeemanCompactToPerfectInput`, `Neeman_3_2_*`, the
+3.2(iii) field of `SupportedCategoryInput`) are open items, listed under
+[What is open](#what-is-open).
 
 Everything else is proved here.  The hypotheses that remain in the affine
 endpoint are hypotheses of LP26 Theorem 1.1 by design, not gaps: the
@@ -328,7 +332,13 @@ a standalone challenge library and a `comparator` run.
    `D_qc` (conditional there), the closed symmetric monoidal structure and the
    coherator on `D_qc`, `f^×` base change over non-affine bases, and a bridge
    between AxiomMath's compactness and `IsCompactAb`.
-6. **Neeman's weak approximability for affine schemes with support, proved.**  The
+6. **Neeman 2024, Theorem 3.2, no longer assumed.**  Part (i) (compact ⇒
+   perfect) is carried as `CompactPerfectInput` / `SmallNeemanCompactToPerfectInput`
+   by the affine endpoints, (ii)–(iii) by `Scheme/Inputs.lean` and
+   `SupportedCategoryInput`.  Each is to be proved in the form the project uses
+   (for `D(A)`: from compactness of the regular module, proved, and the
+   thick-closure theorem Stacks 09SR; for spaces: AxiomMath's 09M8, 0AED, 0AEC).
+7. **Neeman's weak approximability for affine schemes with support, proved.**  The
    maintainer's goal for wave 5: `D_{V(I)}(A-Mod)` weakly approximable for every
    finitely generated `I` with no named input, then transported to AxiomMath's
    `D_qc,Z(Spec A)` as the base case of LP26 Corollary 1.2.
