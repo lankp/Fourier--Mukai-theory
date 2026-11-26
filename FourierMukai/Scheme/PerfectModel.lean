@@ -571,7 +571,7 @@ theorem mem_Q_of_bounded_of_le
     ∀ (b : ℤ), a ≤ b → ∀ (K : CochainComplex C ℤ) [K.IsStrictlyGE a]
       [K.IsStrictlyLE b], (∀ n, P (K.X n)) → T (DerivedCategory.Q.obj K) := by
   intro b hab
-  induction b, hab using Int.le_induction with
+  induction b, hab using Int.leInduction with
   | base =>
       intro K hGE hLE hK
       exact mem_Q_of_single P T hsingle K a (hK a)

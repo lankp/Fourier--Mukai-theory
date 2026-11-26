@@ -381,7 +381,7 @@ theorem lemma_B5_existsUnique [T.IsEquivalence] [T'.IsEquivalence] :
   refine ⟨rightAdjointIso adj ξ, ?_, fun ζ hζ => ?_⟩
   · have h1 : AreMates adj ξ (rightAdjointIso adj ξ) := rfl
     have := lemma_B4_unitCounit adj ξ (rightAdjointIso adj ξ)
-    exact (this.out 0 4).1 h1
+    exact (this.out 1 5).1 h1
   · have h := inv_eq_mate_of_isTransAdjunction adj ξ ζ hζ
     ext1
     rw [← Iso.inv_eq_inv]
@@ -417,7 +417,7 @@ theorem lemma_B5_equivalence :
     have := RelativeFM.isIso_mate adj adj ξ.hom
     let ζ : T' ⋙ F.inv ≅ F.inv ⋙ T := (asIso (mate adj adj ξ.hom)).symm
     have h1 : AreMates adj ξ ζ := rfl
-    have h5 := ((lemma_B4_unitCounit adj ξ ζ).out 0 4).1 h1
+    have h5 := ((lemma_B4_unitCounit adj ξ ζ).out 1 5).1 h1
     exact ⟨F.inv, ζ, F.asEquivalence.unitIso, F.asEquivalence.counitIso, h5.1, h5.2⟩
   · rintro ⟨G, -, u, v, -, -⟩
     exact (CategoryTheory.Equivalence.mk F G u v).isEquivalence_functor
@@ -635,7 +635,7 @@ theorem lemma_B10_commShiftIso [G.CommShift ℤ]
     simp only [Functor.commShiftIso_comp_hom_app, Functor.commShiftIso_id_hom_app,
       Functor.id_obj, Functor.comp_obj, id_comp] at this
     simpa using this.symm
-  have := ((Trans.lemma_B4_unitCounit adj (F.commShiftIso n) (G.commShiftIso n)).out 2 0).1 hu
+  have := ((Trans.lemma_B4_unitCounit adj (F.commShiftIso n) (G.commShiftIso n)).out 3 1).1 hu
   exact this.symm
 
 /-- **Lemma B.10(2)** (`lem:triequiv_iff_equiv`).  A triangulated functor `F` is an

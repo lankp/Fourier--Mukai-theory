@@ -476,10 +476,10 @@ theorem lemma_B4 :
   have h := lemma_B4_unitCounit adj ξ ζ
   have h5 : IsTransAdjunction adj ξ ζ ↔ IsAdjunctionInTrans (Hom.of F ξ) (Hom.of G ζ) adj :=
     isTransAdjunction_iff (Hom.of F ξ) (Hom.of G ζ) adj
-  tfae_have 1 ↔ 2 := h.out 0 1
-  tfae_have 1 ↔ 3 := h.out 0 2
-  tfae_have 1 ↔ 4 := h.out 0 3
-  tfae_have 1 ↔ 5 := (h.out 0 4).trans h5
+  tfae_have 1 ↔ 2 := h.out 1 2
+  tfae_have 1 ↔ 3 := h.out 1 3
+  tfae_have 1 ↔ 4 := h.out 1 4
+  tfae_have 1 ↔ 5 := (h.out 1 5).trans h5
   tfae_finish
 
 /-- **Lemma B.5(1)** (`lem:adj_and_equiv_in_trans`) with adjunctions in the 2-category
@@ -512,7 +512,7 @@ theorem isAdjunctionInTrans_ofId {C C' : Type u} [Category.{v} C] [Category.{v} 
     {F : C ⥤ C'} {G : C' ⥤ C} (adj : F ⊣ G) :
     IsAdjunctionInTrans (Hom.of (T := 𝟭 C) (T' := 𝟭 C') F (Iso.refl F))
       (Hom.of (T := 𝟭 C') (T' := 𝟭 C) G (Iso.refl G)) adj := by
-  refine ((lemma_B4 adj (T := 𝟭 C) (T' := 𝟭 C') (Iso.refl F) (Iso.refl G)).out 2 4).1 ?_
+  refine ((lemma_B4 adj (T := 𝟭 C) (T' := 𝟭 C') (Iso.refl F) (Iso.refl G)).out 3 5).1 ?_
   intro c
   simp
 

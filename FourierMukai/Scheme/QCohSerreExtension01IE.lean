@@ -91,7 +91,7 @@ lemma preservesFiniteColimits_toSheaf :
   letI : PreservesFiniteColimits (L ⋙ T) :=
     preservesFiniteColimits_of_natIso
       (PresheafOfModules.sheafificationCompToSheaf (J := J) (𝟙 𝓡.obj)).symm
-  rw [((Functor.preservesFiniteColimits_tfae T).out 3 2 :)]
+  rw [((Functor.preservesFiniteColimits_tfae T).out 4 3 :)]
   intro X Y f
   let ε := (PresheafOfModules.sheafificationAdjunction (J := J) (𝟙 𝓡.obj)).counit
   have hdiag : parallelPair (L.map f.val) 0 ≅ parallelPair f 0 :=
