@@ -1,0 +1,104 @@
+# Orchestrator handoff
+
+Current orchestrator session: `session_0111iGd9QDKToChKA2B4cz5n`
+
+(A session that takes over replaces this id with its own, in a commit of its own,
+so that the watchdog scheduled task watches the right session.)
+
+Read this if you are a Claude session taking over as the **orchestrator** of the
+swarm that formalizes GL26 and LP26 in this repository (for example because the
+previous orchestrator session ended).  Together with `CLAUDE.md`,
+`results/SWARM.md`, `results/COVERAGE.md` and `results/ASSUMPTIONS.md` it is
+everything you need; the previous orchestrator's conversation is not available
+to you.
+
+## Who decides what
+
+* **Maintainer**: Pat Lank (GitHub `lankp`), an author of both papers.  The
+  maintainer's standing instructions are below; follow them without asking again.
+* **Orchestrator** (you): plans waves, launches worker sessions, verifies and
+  merges their branches into `formalization`, keeps the documentation current.
+* **Workers**: one cloud session per task, branch `wave<N>/<slug>`, no PRs.
+
+## Standing instructions from the maintainer
+
+1. Make all changes, edits and commits as needed; push directly to
+   `formalization` (no pull requests), but only after the seven verification steps
+   of `CLAUDE.md` pass on the merge result.
+2. **Update `README.md` after every wave** (counts, Status table, "What is proved"
+   tables, "What is open", Layout), together with `results/COVERAGE.md`,
+   `results/SWARM.md`, `results/ASSUMPTIONS.md`, `results/SCHEMES.md` as relevant.
+3. **Archive every worker session of a wave once it is merged, before the next
+   wave is launched.**
+4. Prepare the next wave when the current one nears completion.  **If the 5-hour
+   usage limit is near (status `allowed_warning`, or the window is already
+   heavily used), do not launch; schedule the launch (`send_later`) for just
+   after the next reset.**  Launch at most four workers at a time.
+5. If the orchestrator session ends, a new orchestrator session continues.  A
+   watchdog scheduled task (every 6 hours, fresh session) reads the id above: if
+   that session is archived or gone, the watchdog session becomes the orchestrator;
+   if its last turn failed (for example on the usage limit), the watchdog first
+   sends it a message to continue.
+6. The GL26 and LP26 manuscripts are **unpublished** and the repository is
+   **public**: never commit their TeX/PDF or long passages.  Workers get the TeX
+   excerpts they need inside their task message.  The maintainer uploaded the
+   current manuscripts to the first orchestrator session only; if a task needs
+   manuscript text and you do not have it, ask the maintainer to upload
+   `main.tex` of GL26 (and LP26) to your session.
+7. GL26 is correct as stated in the current manuscript (the maintainer confirmed,
+   for example, that Lemma B.10's displayed "(G,ζ) ⊣ (F,ξ)" is a typo for
+   "(F,ξ) ⊣ (G,ζ)").  A Lean rendering that turns out false or vacuous is refuted
+   in the tree; it does not mean the paper is wrong.
+
+## Infrastructure
+
+* Repository: `lankp/Fourier--Mukai-theory` (lower-case alias
+  `lankp/fourier--mukai-theory`), integration branch `formalization`.  In a new
+  session: `add_repo` (owner `lankp`, repo `Fourier--Mukai-theory`, access
+  `push`), then clone as it instructs.
+* Cloud environment: `fourier--mukai-theory`, id `env_018GWtxMGwCU3sde5wadUMxL`.
+  Its network allows GitHub release downloads, `releases.lean-lang.org`,
+  `lakecache.blob.core.windows.net` and `arxiv.org`; its setup script installs
+  elan, Lean 4.33.1 and Mathlib's cache for a checkout named
+  `Fourier--Mukai-theory` or `fourier--mukai-theory`.  If `lean` is missing, use
+  the install commands in `results/swarm/wave4/00-preamble.md`.  Do not call
+  `elan toolchain install` (refused by the proxy).
+* Launching a worker: `create_session` with `environment_id`
+  `env_018GWtxMGwCU3sde5wadUMxL`, `source_url`
+  `https://github.com/lankp/Fourier--Mukai-theory`, `source_revision`
+  `formalization`, tags `fm-swarm` and `fm-wave<N>`, and a short prompt pointing
+  to `results/swarm/wave<N>/00-preamble.md` and `results/swarm/wave<N>/<task>.md`
+  (see the wave-3 and wave-4 launches in `results/SWARM.md`), plus any manuscript
+  excerpt the task needs.  Tell workers not to call cloud-environment tools.
+* Verifying a branch: `scripts/swarm/verify_branch.sh wave<N>/<slug>`.  It merges
+  the branch onto `origin/formalization` locally, resolves import/audit-line
+  conflicts by keeping both sides, and runs build, single-file compiles, the
+  axiom audit and the statement check.  Then **you** do steps 4 and 5 by hand:
+  read each headline statement against the manuscript, and check that every
+  hypothesis-carrying notion is satisfiable.  Record the result in
+  `results/COVERAGE.md` and the log in `results/SWARM.md`, then push with
+  `git -c push.negotiate=true push origin HEAD:formalization` (fast-forward only).
+* Watching for pushes: a `Monitor` on `git ls-remote origin 'refs/heads/wave<N>*'`.
+* Workers stopped by the usage limit: send them a message to continue once the
+  window has reset.
+
+## Lessons that cost something to learn
+
+* The `Type`-valued compactness `RelativeFM.IsCompact` is uninhabited; compactness
+  is `RelativeWeakApprox.IsCompactAb` (`Prelim/CompactnessAudit.lean`).
+* `StacksInterface.KoszulScalarSupportInput` is false for every nonzero ring
+  (`Scheme/KoszulInputs.lean`); wave 4 repairs the endpoints that used it.
+* Always check non-vacuity yourself; workers' reports have twice been right about
+  everything except whether the hypotheses can hold.
+* Merge conflicts in `FourierMukai.lean`, `FourierMukai/Audit.lean` and
+  `results/ASSUMPTIONS.md` are routine (parallel appends); keep both sides.
+* Shallow clones may need `--depth=200` to find merge bases.
+
+## Current state
+
+See the end of `results/SWARM.md` (the log) and its current wave section.  At the
+time of writing (26 November 2026, 03:30 UTC): waves 1, 2, 3 are merged, their
+workers archived, the README updated; wave 4 (briefs in `results/swarm/wave4/`)
+is scheduled to be launched at 06:05 UTC by the previous orchestrator.  If you
+take over and no `wave4/*` worker sessions exist (`list_sessions`, tag
+`fm-wave4`), launch wave 4 yourself, respecting the usage rule above.

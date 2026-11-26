@@ -156,7 +156,8 @@ The maintainer has delegated merging to the orchestrator session: work reaches
 ## Swarm protocol
 
 The orchestration plan, the task queue and the current wave are in
-`results/SWARM.md`.  A worker session:
+`results/SWARM.md`.  A session taking over as orchestrator starts from
+`results/swarm/ORCHESTRATOR.md`.  A worker session:
 
 1. reads this file, `results/SWARM.md` and the task message;
 2. works only on its task, in the files its task names;
