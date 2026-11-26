@@ -83,29 +83,6 @@
  Classical.choice,
  Quot.sound]
 'RelativeFM.Lemma54.externalTensor_compactlyGenerates' depends on axioms: [propext, Classical.choice, Quot.sound]
-RelativeFM.affine_theorem_1_1_unconditional : ∀ (A : Type u_1) [inst : CommRing A] (DZ : Type u_2) (DU : Type u_3)
-  [inst_1 : CategoryTheory.Category.{u_1 + 1, u_2} DZ] [inst_2 : CategoryTheory.Category.{u_1 + 1, u_3} DU]
-  [inst_3 : CategoryTheory.Preadditive DZ] [inst_4 : CategoryTheory.Preadditive DU]
-  [inst_5 : CategoryTheory.Limits.HasZeroObject DZ] [inst_6 : CategoryTheory.Limits.HasZeroObject DU]
-  [inst_7 : CategoryTheory.HasShift DZ ℤ] [inst_8 : CategoryTheory.HasShift DU ℤ]
-  [inst_9 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DZ n).Additive]
-  [inst_10 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DU n).Additive] [inst_11 : CategoryTheory.Pretriangulated DZ]
-  [inst_12 : CategoryTheory.Pretriangulated DU] [inst_13 : CategoryTheory.IsTriangulated DZ]
-  [inst_14 : CategoryTheory.IsTriangulated DU] (S : RelativeWeakApprox.SetupMainMinimal DZ (RelativeFM.AffineD A) DU),
-  RelativeFM.AffineDerivedCoproducts A DZ DU →
-    (RelativeWeakApprox.SatisfiesWA (RelativeFM.AffineD A) ↔ RelativeFM.AffineEventualSelfVanishing S.G')
-RelativeFM.StacksGluing.affine_theorem_1_1_stacks07LT : ∀ (A : Type u_1) [inst : CommRing A] (DZ : Type u_2)
-  (DU : Type u_3) [inst_1 : CategoryTheory.Category.{u_1 + 1, u_2} DZ]
-  [inst_2 : CategoryTheory.Category.{u_1 + 1, u_3} DU] [inst_3 : CategoryTheory.Preadditive DZ]
-  [inst_4 : CategoryTheory.Preadditive DU] [inst_5 : CategoryTheory.Limits.HasZeroObject DZ]
-  [inst_6 : CategoryTheory.Limits.HasZeroObject DU] [inst_7 : CategoryTheory.HasShift DZ ℤ]
-  [inst_8 : CategoryTheory.HasShift DU ℤ] [inst_9 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DZ n).Additive]
-  [inst_10 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DU n).Additive] [inst_11 : CategoryTheory.Pretriangulated DZ]
-  [inst_12 : CategoryTheory.Pretriangulated DU] [inst_13 : CategoryTheory.IsTriangulated DZ]
-  [inst_14 : CategoryTheory.IsTriangulated DU] (S : RelativeWeakApprox.SetupMainMinimal DZ (RelativeFM.AffineD A) DU),
-  RelativeFM.AffineDerivedCoproducts A DZ DU →
-    RelativeFM.Stacks07LTCompactModelInput A →
-      (RelativeWeakApprox.SatisfiesWA (RelativeFM.AffineD A) ↔ RelativeFM.AffineEventualSelfVanishing S.G')
 RelativeFM.affine_theorem_1_1_small : ∀ (A : Type u_1) [inst : CommRing A] (H : RelativeFM.AffineSpaltensteinInput A)
   (DZ : Type u_2) (DU : Type u_3) [inst_1 : CategoryTheory.Category.{u_1, u_2} DZ]
   [inst_2 : CategoryTheory.Category.{u_1, u_3} DU] [inst_3 : CategoryTheory.Preadditive DZ]
@@ -122,8 +99,6 @@ RelativeFM.affine_theorem_1_1_small : ∀ (A : Type u_1) [inst : CommRing A] (H 
         ∃ N,
           ∀ (n : ℤ),
             N ≤ n → ∀ (f : S.G' ⟶ (CategoryTheory.shiftFunctor (RelativeFM.SmallAffineD A H) n).obj S.G'), f = 0)
-'RelativeFM.affine_theorem_1_1_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
-'RelativeFM.StacksGluing.affine_theorem_1_1_stacks07LT' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RelativeFM.affine_theorem_1_1_small' depends on axioms: [propext, Classical.choice, Quot.sound]
 @RelativeWeakApprox.PaperM2.PaperSetupMainMinimal.theorem_1_1 : ∀ {DZ : Type u_3} {D : Type u_2} {DU : Type u_4}
   [inst : CategoryTheory.Category.{u_1, u_3} DZ] [inst_1 : CategoryTheory.Category.{u_1, u_2} D]

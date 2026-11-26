@@ -36,8 +36,9 @@ the size estimates are for that restatement.
 
 ## 0. Items that look false or vacuous as stated (read first)
 
-These were found during the triage.  None is refuted in the tree yet, except where a
-refutation is named.  F1–F3 are new.
+These were found during the triage.  **F1–F3 are now proved in the tree** (wave 6,
+`Scheme/RefuteLargeCoproducts.lean`, `RefuteIntGenerator.lean`,
+`RefuteIntGeneratorSmall.lean`, `RefuteQCohSerre.lean`); the two F1 endpoints were unpinned.
 
 * **F1. `HasCoproducts.{u+1} (AffineD A)` is false for every nonzero ring `A`.**
   So `AffineDerivedCoproducts A DZ DU` (field `hasCoproductsA`) has no instance, and

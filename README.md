@@ -45,7 +45,7 @@ schemes, in the supported form `D_qc,Z(X)`.
 | | |
 |---|---|
 | LP26, the whole categorical layer (Sections 2–4 and Theorem 1.1) | proved, unconditionally |
-| LP26 Theorem 1.1, affine case | proved with no Neeman input (`affine_theorem_1_1_unconditional`); the wave-5 triage found its coproduct hypothesis `HasCoproducts.{u+1} (AffineD A)` false for `A ≠ 0` (F1, `results/OPEN_INPUTS.md`), so this endpoint is to be refuted and replaced in wave 6 |
+| LP26 Theorem 1.1, affine case | the large-model endpoints `affine_theorem_1_1_unconditional`, `affine_theorem_1_1_stacks07LT` are **proved vacuous** for every nontrivial ring (`RefuteLargeCoproducts`: `¬ HasCoproducts.{u+1} (AffineD A)`, wave 6) and unpinned; the `IsGenerator` endpoints `SetupMainMinimal.theorem_1_1`, `affine_theorem_1_1_small` are proved vacuous at `ℤ` (`RefuteIntGenerator*`); LP26 Thm 1.1 stands as `PaperSetupMainMinimal.theorem_1_1` (zero-detecting generator), with the paper-hypotheses form in progress (wave 6) |
 | GL26 Lemma 2.25 | proved from the inputs its own proof uses |
 | GL26 Lemma 2.26 | proved in categorical form; affine wrapper proved |
 | GL26 Lemma 5.4 | proved in six-functor form, modulo the cover square |
