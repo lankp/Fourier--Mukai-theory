@@ -173,6 +173,7 @@ import FourierMukai.Scheme.Affine066S
 import FourierMukai.Scheme.RegularCompact
 import FourierMukai.Scheme.RegularCompactEndpoints
 import FourierMukai.Scheme.KoszulInputs
+import FourierMukai.Scheme.Neeman32Inputs
 
 /-!
 # Relative Fourier--Mukai theory for algebraic spaces: Lean formalization

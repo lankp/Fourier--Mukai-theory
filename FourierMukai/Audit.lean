@@ -159,3 +159,9 @@ open RelativeFM
 #print axioms RelativeFM.KoszulInputs.scalarConeData_le_zero
 #print axioms RelativeFM.KoszulInputs.idealSupportedCoproductInput
 #print axioms RelativeFM.KoszulInputs.idealSupportedCompactnessInput
+#print axioms RelativeFM.Neeman32Inputs.smallNeemanCompactToPerfectInput
+#print axioms RelativeFM.Neeman32Inputs.compactPerfectInput
+#print axioms RelativeFM.Neeman32Inputs.affine_neeman_3_2_i
+#print axioms RelativeFM.Neeman32Inputs.affine_neeman_3_2_ii
+#print axioms RelativeFM.Neeman32Inputs.affine_theorem_1_1_of_tag09SR
+#print axioms RelativeFM.Neeman32Inputs.affine_theorem_1_1_small_standard_of_tag09SR
