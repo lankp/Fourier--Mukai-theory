@@ -256,11 +256,19 @@ a standalone challenge library and a `comparator` run.
    part of the goal.  The statement is `NeemanSupportedWeakApproximability X Z` in
    the repository's model of `D_qc`.  Of the four gluing inputs, supported
    excision is discharged from Stacks 08DF and isomorphism transport is proved;
-   the open/closed glue is a reduction (`OpenClosedGlue`); the affine supported
+   the open/closed glue is a reduction (`OpenClosedGlue`), and since wave 3 it no
+   longer asks for a completion of two given approximation packages but for smaller,
+   package-free inputs (`OpenClosedFrameInput`, `SupportedCategoryInput`:
+   coproducts, Stacks 09SR, Neeman 3.2(iii), compact Hom vanishing), with headline
+   `neemanSupported_of_qcqs_of_frameInput` (`Scheme/OpenClosedCompletion.lean`).
+   **Whether those inputs are satisfiable is not yet shown**, in particular the
+   coproduct input at the large Hom universe, so the qcqs headline is a reduction,
+   not a proof; the affine supported
    base is proved unconditionally for a principal closed support
    (`principalSupported_satisfiesPaperWA`), and for finite `V(I)` and `IsAffine X`
-   from five named tagged inputs.  What is left is those inputs and the completion
-   that the open/closed glue asks for; compactness of the regular module is proved
+   from five named tagged inputs.  What is left is those inputs and the
+   satisfiability of the open/closed inputs (a concrete frame, and the right Hom
+   universe for coproducts); compactness of the regular module is proved
    (`Scheme/RegularCompact.lean`).  The accounting is in
    [`results/SCHEMES.md`](results/SCHEMES.md).
 2. **The affine recollement without Stacks 0E55.**  Every field of

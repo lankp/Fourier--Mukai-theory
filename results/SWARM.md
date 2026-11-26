@@ -99,6 +99,8 @@ Launched 25 November 2026 after wave 2 was merged.  Briefs in `results/swarm/wav
 
 ## Wave 4 candidates
 
+* **non-vacuity of the open/closed inputs** of `Scheme/OpenClosedCompletion.lean`: build a concrete `OpenClosedFrameInput` (at least in the affine principal case), and settle the Hom universe of the coproduct field of `SupportedCategoryInput` (restate at the small-Hom model if the large one fails);
+* the non-Stacks inputs of `koszul-inputs` left open by wave 3, if any;
 * a right adjoint of `Rj_*` without Stacks 0E55 (makes the affine recollement unconditional);
 * GL26 Proposition 10.5 and Lemma 10.9 on top of `wave3/fm-cube` (10.5 needs Proposition 9.3 and Lemma 9.1, the latter a `Duality.lean` field);
 * Lemma 7.8 (double categories) only if something downstream needs it.

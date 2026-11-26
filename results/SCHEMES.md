@@ -116,8 +116,16 @@ Of its four inputs, three are now reductions rather than gaps:
 * **Open/closed glue** — landed as a reduction (`OpenClosedGlue`): the LP gluing
   hypotheses are weakened from object equalities to isomorphisms and from
   `t`-structure equalities to bounded equivalences, using only zero-detection
-  generation; the geometric theorem still takes a completion of the two endpoint
-  approximation packages as an explicit hypothesis.
+  generation; the geometric theorem took a completion of the two endpoint
+  approximation packages as an explicit hypothesis.  Since wave 3
+  (`OpenClosedCompletion.lean`) that hypothesis is replaced by package-free inputs:
+  `OpenClosedFrameInput` (the LP26 Lemma 4.3 / Setup 4.4 frame without the open
+  package; implied by the old seed, `ofPaperOpenEndpointSetup`) and
+  `SupportedCategoryInput` (coproducts, Stacks 09SR, Neeman 3.2(iii),
+  `CompactHomZeroAtTop`).  Generator change (`exists_changeGenerator`) is proved
+  with no input.  **Non-vacuity of the new inputs is not established**: no concrete
+  frame is constructed, and the coproduct input is stated at the large Hom
+  universe, which the large-Hom `D_qc` model may not satisfy.
 * **Affine supported base** — now in place at three strengths
   (`AffineSupportedBaseM1` … `AffineSupportedSchemeBaseM1`): the **principal**
   closed support `V(f)` is proved unconditionally
