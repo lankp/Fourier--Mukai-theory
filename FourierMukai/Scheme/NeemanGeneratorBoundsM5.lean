@@ -5,7 +5,7 @@ The large-Hom assertions at bound one are already in `AffineMain`.  This module
 provides the general positive-bound forms and, more importantly, proves the
 same assertions directly in the small-Hom model.  We do not use equivalence
 invariance: `AffineD A` has Hom universe `u + 1`, while `SmallAffineD A H` has
-Hom universe `u`, so `transportWeakApproximationData` does not apply.
+Hom universe `u`, so transport along an equivalence does not apply.
 -/
 import FourierMukai.Scheme.SmallAffineAssembly
 

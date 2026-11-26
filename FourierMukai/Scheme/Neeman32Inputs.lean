@@ -91,7 +91,8 @@ Each of the following took `CompactPerfectInput A` or
   `smallCompactHomZeroAtTop_of_neeman` → `smallCompactHomZeroAtTop_of_tag09SR`;
   `affine_theorem_1_1_small_neeman_only` → `affine_theorem_1_1_small_of_tag09SR`;
   `affine_theorem_1_1_small_standard_neeman_only` →
-  `affine_theorem_1_1_small_standard_of_tag09SR`;
+  `affine_theorem_1_1_small_standard_of_tag09SR` (both deleted in wave 7: they
+  concluded `SetupMainMinimal`/`SatisfiesWA`, the `IsGenerator` form, row 7.3);
   `NeemanM1.isCompactAb_iff_smallPerf_of_neeman` →
   `NeemanM1.isCompactAb_iff_smallPerf_of_tag09SR`;
   `AffineNeemanEndpointM3.small_compact_iff_smallPerf` and
@@ -287,57 +288,6 @@ theorem AffineNeemanEndpointM3.small_affine_regularGenerator_package (A : Type u
     AffineNeemanEndpointM3.smallRegularModule_preferred A H,
     AffineNeemanEndpointM3.small_compact_iff_smallPerf A H h09⟩
 
-section Endpoint
-
-variable (A : Type u) [CommRing A] (H : AffineSpaltensteinInput A)
-  (DZ : Type uZ) (DU : Type uU)
-  [Category.{u} DZ] [Category.{u} DU]
-  [Preadditive DZ] [Preadditive DU]
-  [HasZeroObject DZ] [HasZeroObject DU]
-  [HasShift DZ ℤ] [HasShift DU ℤ]
-  [∀ n : ℤ, (shiftFunctor DZ n).Additive]
-  [∀ n : ℤ, (shiftFunctor DU n).Additive]
-  [Pretriangulated DZ] [Pretriangulated DU]
-  [CategoryTheory.IsTriangulated DZ] [CategoryTheory.IsTriangulated DU]
-
-/-- **LP26 Theorem 1.1** (`thm:glueing_weak_approx`), affine middle term in the
-universe-correct small-Hom model, with `hT` identifying the middle `t`-structure
-with the standard one.  The only input beyond `S` and `hT` is Stacks 09SR for
-`SmallAffineD A H` (`h09`), replacing the former Neeman 2024, Theorem 3.2(i)
-interface `SmallNeemanCompactToPerfectInput A H`.  No coproduct package. -/
-theorem affine_theorem_1_1_small_of_tag09SR
-    (S : SetupMainMinimal DZ (SmallAffineD A H) DU)
-    (hT : S.tD = @DerivedCategory.TStructure.t (ModuleCat.{u} A) _ _
-      (UniverseDecision.hasDerivedCategoryOfKProjectiveReplacementData H))
-    (h09 : Tag09SRPaper (SmallAffineD A H)) :
-    SatisfiesWA (SmallAffineD A H) ↔ EventuallyHomZero S.G' S.G' := by
-  letI : HasDerivedCategory.{u} (ModuleCat.{u} A) :=
-    UniverseDecision.hasDerivedCategoryOfKProjectiveReplacementData H
-  letI : HasAisleCoproducts S.tD := by
-    rw [hT]
-    exact KProjectiveResolution.hasAisleCoproducts_standard (C := ModuleCat.{u} A)
-  exact S.theorem_1_1_of_middleAisleCoproducts_of_compactHomZeroAtTop
-    (smallCompactHomZeroAtTop_of_tag09SR A H h09)
-
-/-- **LP26 Theorem 1.1** (`thm:glueing_weak_approx`), small-Hom affine middle
-term with the standard middle `t`-structure (`hgen` is the one Setup 4.4 field
-to be stated for it).  The only other input is Stacks 09SR (`h09`), replacing
-the former `SmallNeemanCompactToPerfectInput A H`. -/
-theorem affine_theorem_1_1_small_standard_of_tag09SR
-    (S : SetupMainMinimal DZ (SmallAffineD A H) DU)
-    (hgen : (@DerivedCategory.TStructure.t (ModuleCat.{u} A) _ _
-      (UniverseDecision.hasDerivedCategoryOfKProjectiveReplacementData H)).le 0 =
-        Coprod (shiftTail (S.G'⟦S.m⟧ ⊞ S.R.jShriek.obj S.GU) 0))
-    (h09 : Tag09SRPaper (SmallAffineD A H)) :
-    SatisfiesWA (SmallAffineD A H) ↔ EventuallyHomZero S.G' S.G' :=
-  affine_theorem_1_1_small_of_tag09SR A H DZ DU
-    (S.replaceMiddleTStructure
-      (@DerivedCategory.TStructure.t (ModuleCat.{u} A) _ _
-        (UniverseDecision.hasDerivedCategoryOfKProjectiveReplacementData H)) hgen)
-    rfl h09
-
-end Endpoint
-
 end
 
 end RelativeFM
@@ -384,5 +334,3 @@ end RelativeFM.Neeman32Inputs
 #print axioms RelativeFM.NeemanM1.isCompactAb_iff_smallPerf_of_tag09SR
 #print axioms RelativeFM.AffineNeemanEndpointM3.small_compact_iff_smallPerf
 #print axioms RelativeFM.AffineNeemanEndpointM3.small_affine_regularGenerator_package
-#print axioms RelativeFM.affine_theorem_1_1_small_of_tag09SR
-#print axioms RelativeFM.affine_theorem_1_1_small_standard_of_tag09SR

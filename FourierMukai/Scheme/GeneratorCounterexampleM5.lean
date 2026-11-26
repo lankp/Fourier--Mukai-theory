@@ -160,16 +160,6 @@ lemma ringObject_int_not_isGenerator : ¬ IsGenerator (ringObject ℤ) := by
   exact DerivedSingle.not_isGenerator_single_of_projective
     extension_shortExact extension_f_not_isSplitMono
 
-/-- Consequently no weak approximation data over the integers can use the
-regular module as its generator, regardless of its t-structure or its other
-fields. -/
-lemma weakApproximationData_int_G_ne_ringObject
-    (W : WeakApproximationData (AffineD ℤ)) : W.G ≠ ringObject ℤ := by
-  intro hG
-  apply ringObject_int_not_isGenerator
-  rw [← hG]
-  exact W.G_generates
-
 end LargeHom
 
 /-- The same counterexample applies verbatim to the small-Hom localization. -/
@@ -179,16 +169,6 @@ lemma smallRingObject_int_not_isGenerator (H : AffineSpaltensteinInput ℤ) :
     UniverseDecision.hasDerivedCategoryOfKProjectiveReplacementData H
   exact DerivedSingle.not_isGenerator_single_of_projective
     extension_shortExact extension_f_not_isSplitMono
-
-/-- The small-Hom regular generator is likewise impossible for the current
-`WeakApproximationData` structure. -/
-lemma smallWeakApproximationData_int_G_ne_ringObject
-    (H : AffineSpaltensteinInput ℤ)
-    (W : WeakApproximationData (SmallAffineD ℤ H)) : W.G ≠ smallRingObject ℤ H := by
-  intro hG
-  apply smallRingObject_int_not_isGenerator H
-  rw [← hG]
-  exact W.G_generates
 
 end IntExample
 
@@ -204,6 +184,4 @@ end RelativeFM.NeemanGeneratorM5.Counterexample
 #print axioms RelativeFM.NeemanGeneratorM5.Counterexample.DerivedSingle.not_isGenerator_single_of_projective
 #print axioms RelativeFM.NeemanGeneratorM5.Counterexample.IntExample.extension_singleδ_ne_zero
 #print axioms RelativeFM.NeemanGeneratorM5.Counterexample.IntExample.ringObject_int_not_isGenerator
-#print axioms RelativeFM.NeemanGeneratorM5.Counterexample.IntExample.weakApproximationData_int_G_ne_ringObject
 #print axioms RelativeFM.NeemanGeneratorM5.Counterexample.IntExample.smallRingObject_int_not_isGenerator
-#print axioms RelativeFM.NeemanGeneratorM5.Counterexample.IntExample.smallWeakApproximationData_int_G_ne_ringObject

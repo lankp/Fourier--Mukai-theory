@@ -159,28 +159,6 @@ def B : ℤ := 3 * S.A
 /-- The class `P = ⟨G⟩^[-B,B] ∩ D^{≤K}`. -/
 def P : ObjectProperty D := envelope S.G (-S.B) S.B ⊓ S.tD.le S.K
 
-/-- `GU` is coproduct-compact, transported from the supplied data on `D_U`. -/
-theorem GU_compact : IsCompactAb S.GU := by
-  rw [← S.approxU_G]
-  exact S.approxU.G_compact
-
-/-- `GU` generates, transported from the supplied data on `D_U`. -/
-theorem GU_generates : IsGenerator S.GU := by
-  rw [← S.approxU_G]
-  exact S.approxU.G_generates
-
-/-- `i^*G` is coproduct-compact, transported from the supplied data on `D_Z`. -/
-theorem iStar_G_compact : IsCompactAb (S.R.iStar.obj S.G) := by
-  dsimp only [G]
-  rw [← S.approxZ_G]
-  exact S.approxZ.G_compact
-
-/-- `i^*G` generates, transported from the supplied data on `D_Z`. -/
-theorem iStar_G_generates : IsGenerator (S.R.iStar.obj S.G) := by
-  dsimp only [G]
-  rw [← S.approxZ_G]
-  exact S.approxZ.G_generates
-
 /-- Compact generation of the degree-zero aisle on `D`, with `G` unfolded only
 up to its definition. -/
 theorem tD_le_zero_eq_coprod : S.tD.le 0 = Coprod (shiftTail S.G 0) :=
@@ -209,10 +187,6 @@ theorem jShriek_GU_mem_envelope_zero : envelope S.G 0 0 (S.R.jShriek.obj S.GU) :
     lemma_3_1_1_summands S.G 0 0
   exact ObjectProperty.IsStableUnderRetracts.of_biprod_right
     (envelope S.G 0 0) S.G_mem_envelope_zero
-
-/-- Membership in `P` has the two expected components. -/
-theorem mem_P_iff {X : D} : S.P X ↔ envelope S.G (-S.B) S.B X ∧ S.tD.le S.K X :=
-  Iff.rfl
 
 end Setup44
 

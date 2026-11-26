@@ -3,7 +3,7 @@ Copyright (c) 2026 Formalization of Lank--Pauwels.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import WeakApprox.Setup44Minimal
-import WeakApprox.Main
+import WeakApprox.TwoStage
 import WeakApprox.EventualVanishing
 
 /-!
@@ -24,8 +24,8 @@ The two directions use 09SR differently, and both uses are documented:
 
 * forward: 09SR applied to the generator of the given weak approximation data
   places `G'` in its thick envelope, and `WeakApproximationData.eventuallyHomZero_self`
-  transports the vanishing (the argument of `WeakApprox/Main.lean`'s forward
-  direction when it is not assumed);
+  transports the vanishing (the argument of the forward direction of the former
+  `SetupMain.theorem_1_1`, deleted in wave 7);
 * reverse: the hypothesis of the equivalence supplies `G'_eventual`, and 09SR
   for `G'` produces condition (3) inside `Setup44Minimal.toSetup44`, after which
   the two-stage approximation of `WeakApprox/TwoStage.lean` applies.
@@ -152,7 +152,7 @@ variable [HasCoproducts.{v} DZ] [HasCoproducts.{v} D] [HasCoproducts.{v} DU]
 /-- **Theorem 1.1, forward direction, with 09SR.**  Weak approximability of `D`
 implies eventual vanishing of the positive self-shifts of `G'`.
 
-The argument is the one of `WeakApprox/Main.lean`'s forward direction but with
+The argument is the one of the former `SetupMain.theorem_1_1_forward` but with
 `SatisfiesWA D` in place of condition (3): 09SR applied to the generator of the
 data places `G'` in its thick envelope, and the data's own self-vanishing
 transports along the envelope. -/

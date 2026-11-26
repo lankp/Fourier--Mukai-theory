@@ -151,8 +151,6 @@ open RelativeFM
 -- Wave 5 (neeman-prune): endpoints that took Neeman 3.2(i) inputs (large model: no input; small: Stacks 09SR)
 #print axioms RelativeFM.affineCompactHomZeroAtTop
 #print axioms RelativeFM.compact_iff_dbcoh
-#print axioms RelativeFM.affine_theorem_1_1_small_of_tag09SR
-#print axioms RelativeFM.affine_theorem_1_1_small_standard_of_tag09SR
 #print axioms RelativeFM.AffineNeemanEndpointM3.small_affine_regularGenerator_package
 #print axioms RelativeFM.Stacks07LT.M4.compactToPerfectInput_unconditional
 #print axioms RelativeFM.KoszulInputs.isLeftAdjoint_affineDZIdealι

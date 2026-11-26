@@ -32,10 +32,8 @@ import WeakApprox.NineSR
 import WeakApprox.GeneratorBridge
 import WeakApprox.Lemma433TStructure
 import WeakApprox.Setup44Vanishing
-import WeakApprox.Proposition48Paper
 import WeakApprox.Setup44Reduced
 import WeakApprox.Setup44Minimal
-import WeakApprox.Main
 import WeakApprox.MainMinimal
 import WeakApprox.CompactThick
 import WeakApprox.PaperGeneratorM2
