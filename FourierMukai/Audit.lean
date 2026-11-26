@@ -3,6 +3,7 @@ Copyright (c) 2026 Relative Fourier--Mukai formalization project.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import FourierMukai
+import WeakApprox.Theorem11PaperNonVacuity
 
 /-!
 # Axiom audit
@@ -200,3 +201,13 @@ open RelativeFM
 #print axioms RelativeFM.VacuityF3.not_quasiCoherent_isClosedUnderSubobjects_spec_int
 #print axioms RelativeFM.VacuityF3.not_quasicoherentSerreInput_spec_int
 #print axioms RelativeFM.VacuityF3.not_quasicoherentStrongClosureInput_spec_int
+-- LP26 Theorem 1.1 with the paper's hypotheses (wave 6, `WeakApprox/Theorem11Paper.lean`):
+#print axioms RelativeWeakApprox.CompactTStructureW6.compactTStructure_le_zero
+#print axioms RelativeWeakApprox.WABoundsW6.bnp_3_10_1
+#print axioms RelativeWeakApprox.WABoundsW6.ge_of_hom_vanishing
+#print axioms RelativeWeakApprox.PaperHypothesesW6.inPreferredClass_of_paperData
+#print axioms RelativeWeakApprox.PaperHypothesesW6.bnp310Input_of_tag09SR
+#print axioms RelativeWeakApprox.PaperHypothesesW6.exists_paperSetupMainMinimal
+#print axioms RelativeWeakApprox.PaperHypothesesW6.theorem_1_1_paper
+#print axioms RelativeWeakApprox.PaperHypothesesW6.NonVacuity.theorem_1_1_paper_zero
+#print axioms RelativeWeakApprox.PaperHypothesesW6.NonVacuity.theorem_1_1_paper_affine
