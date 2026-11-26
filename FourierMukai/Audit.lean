@@ -127,3 +127,10 @@ open RelativeFM
 #print axioms RelativeFM.Recollement.JUpperConstruction.affineRecollementInputOfIShriek
 #print axioms RelativeFM.Recollement.JUpperConstruction.affineRecollementInputOfStacks0E55
 #print axioms RelativeFM.Recollement.JUpperConstruction.affineRecollementInputOfExactCoextension
+
+-- Wave 3: open/closed glue without per-package completion (`Scheme/OpenClosedCompletion.lean`)
+#print axioms RelativeFM.OpenClosedCompletionW3.exists_changeGenerator
+#print axioms RelativeFM.OpenClosedCompletionW3.tStructureEquivalent_of_inPreferredClass
+#print axioms RelativeFM.OpenClosedCompletionW3.OpenClosedFrame.exists_paperData
+#print axioms RelativeFM.OpenClosedCompletionW3.compact_open_closed_glue_of_frameInput
+#print axioms RelativeFM.OpenClosedCompletionW3.neemanSupported_of_qcqs_of_frameInput
