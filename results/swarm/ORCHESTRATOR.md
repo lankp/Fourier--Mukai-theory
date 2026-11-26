@@ -137,10 +137,9 @@ to you.
 See the end of `results/SWARM.md` (the log) and its current wave section.  At the
 time of writing (26 November 2026, 19:20 UTC): waves 1–6 are merged and their workers
 archived; `SpacesVerified` discharges every tagged input of `Spaces`
-(`scripts/check_statements.sh --verified`); the README describes the merged tree.  Wave 7
-is prepared (`results/swarm/wave7/`, `results/SWARM.md`) and not launched: launch its three
-Lean tasks (tag `fm-wave7`, effort high), and ask the maintainer for the GL26 TeX before
-launching `wave7/spaces-statements`.  The AxiomMath checkout with its build lives in the
+(`scripts/check_statements.sh --verified`); the README describes the merged tree.  Wave 7's
+three Lean tasks were launched at 19:12 UTC (tag `fm-wave7`, sessions in `results/SWARM.md`);
+ask the maintainer for the GL26 TeX before launching `wave7/spaces-statements`.  The AxiomMath checkout with its build lives in the
 orchestrator's scratchpad (`.lake/packages/Stacks` is a symlink to it); after a container
 restart, re-enable swap (`swapon /home/user/.swapfile`) and `sysctl -w
 vm.max_map_count=262144` before `lake build SpacesVerified`.
