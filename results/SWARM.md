@@ -99,6 +99,7 @@ Launched 25 November 2026 after wave 2 was merged.  Briefs in `results/swarm/wav
 
 ## Wave 4 candidates
 
+* **repair the finite-support affine base** (highest priority): `KoszulScalarSupportInput` is refuted (`KoszulInputs.not_koszulScalarSupportInput`); drop it from `koszulListData` in `Scheme/FiniteKoszulM1.lean`, use `scalarConeData_isSupported` / `scalarConeData_le_zero` instead, and re-derive the finite-list and `IsAffine` endpoints with `IdealSupportedCoproductInput` / `IdealSupportedCompactnessInput` discharged (`Scheme/KoszulInputs.lean`); then `KoszulPowerCoprodInput` (needs a 3×3-type cone lemma) and 0A9A's AxiomMath name;
 * **non-vacuity of the open/closed inputs** of `Scheme/OpenClosedCompletion.lean`: build a concrete `OpenClosedFrameInput` (at least in the affine principal case), and settle the Hom universe of the coproduct field of `SupportedCategoryInput` (restate at the small-Hom model if the large one fails);
 * the non-Stacks inputs of `koszul-inputs` left open by wave 3, if any;
 * a right adjoint of `Rj_*` without Stacks 0E55 (makes the affine recollement unconditional);

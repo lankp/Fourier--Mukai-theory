@@ -138,7 +138,9 @@ Of its four inputs, three are now reductions rather than gaps:
   `KoszulDetectionInput` 0A9A, and a supported module/scheme comparison).  No
   `IsGenerator` is used anywhere in that chain.
 
-So the remaining work on this input is the five tagged statements themselves, not
+**Caution (wave 3):** one of these inputs, `KoszulScalarSupportInput` (tagged Stacks 09IR), is false for every nonzero ring (`KoszulInputs.not_koszulScalarSupportInput`), so the finite-list and `IsAffine` endpoints that take it are vacuous until `FiniteKoszulM1.lean` is repaired to use the true lemmas `scalarConeData_isSupported` and `scalarConeData_le_zero` (queued for wave 4).
+
+So the remaining work on this input is the tagged statements themselves, not
 weak approximability and not compactness of the regular module (proved,
 `ringObject_isCompactAb`).  The `IsAffine` theorem takes the five families over all
 commutative rings; its unconditional-compactness form is

@@ -92,7 +92,7 @@ declarations are pinned in
 | Lemma 2.25, `Φ_{RΔ_*O_Y} ≅ 𝟭` | `DiagonalIdentity`, `DiagonalFunctoriality`, `DiagonalDuality`, `Statements` | Stacks 08IN and functoriality of derived pullback and pushforward.  The tensor unit and the two diagonal retractions are derived rather than assumed, and the proper-flat hypothesis is proved unused |
 | Lemma 2.26, convolution | `AffineConvolution`, `GL26OtherTargets` | the derived cube, Stacks 08IN and 08IR, and one monoidal compatibility, packaged as `CorrectedConvolutionData` |
 | Lemma 5.4, the external tensor of compact generators generates the product | `Lemma54` | the cover square (flat base change, conservativity, the perfect/compact calculus).  The argument itself is proved in six-functor form |
-| Neeman 3.2(iv), affine supported base | `PrincipalNeemanM1`, `IdealNeemanM1`, `AffineSupportedSchemeBaseM1` | for a principal closed support, nothing (compactness of the regular module is proved in `RegularCompact`); for finite `V(I)` and `IsAffine X`, five named tagged inputs |
+| Neeman 3.2(iv), affine supported base | `PrincipalNeemanM1`, `IdealNeemanM1`, `AffineSupportedSchemeBaseM1` | for a principal closed support, nothing (compactness of the regular module is proved in `RegularCompact`); for finite `V(I)` and `IsAffine X`, named inputs, one of which is refuted (see "What is open") |
 
 | Lemma 2.3, iso-loci of (tri)natural transformations | `Coproduct`, `Triangulated`, `Thickness`, `EssentiallyDense` | nothing |
 | Lemma 2.4, `G` compactly generates iff `⟨G⟩‾ = T` | `Lemma24` | Stacks 09SN (`Stacks09SN`); the direction `⟨G⟩‾ = T ⇒` is unconditional |
@@ -265,8 +265,13 @@ a standalone challenge library and a `comparator` run.
    coproduct input at the large Hom universe, so the qcqs headline is a reduction,
    not a proof; the affine supported
    base is proved unconditionally for a principal closed support
-   (`principalSupported_satisfiesPaperWA`), and for finite `V(I)` and `IsAffine X`
-   from five named tagged inputs.  What is left is those inputs and the
+   (`principalSupported_satisfiesPaperWA`); the finite `V(I)` and `IsAffine X`
+   forms take named inputs, and since wave 3 we know one of them,
+   `KoszulScalarSupportInput`, is false for every nonzero ring
+   (`KoszulInputs.not_koszulScalarSupportInput`), so those forms are vacuous until
+   `FiniteKoszulM1.lean` is repaired (two of the other inputs,
+   `IdealSupportedCoproductInput` and `IdealSupportedCompactnessInput`, are now
+   proved).  What is left is those inputs and the
    satisfiability of the open/closed inputs (a concrete frame, and the right Hom
    universe for coproducts); compactness of the regular module is proved
    (`Scheme/RegularCompact.lean`).  The accounting is in
