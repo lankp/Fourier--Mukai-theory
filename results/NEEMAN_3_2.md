@@ -107,28 +107,35 @@ are not inhabited in the tree.
 Task brief: `results/swarm/wave5/neeman-prune.md`.  After this branch the tree
 carries **no** Neeman 3.2 input in the affine models.
 
-**Relocated, same name, hypothesis replaced by Stacks 09SR.**  Every declaration
-that took `CompactPerfectInput A` or `SmallNeemanCompactToPerfectInput A H` now
-lives in `Scheme/Neeman32Inputs.lean` (the 09SR proof sits downstream of the old
-files in the import graph) and takes `h09 : Tag09SRPaper (CanonicalSmallAffineD A)`
-(large model) or `h09 : Tag09SRPaper (SmallAffineD A H)` (small model):
+**Relocated and renamed.**  Every declaration that took `CompactPerfectInput A`
+or `SmallNeemanCompactToPerfectInput A H` now lives in
+`Scheme/Neeman32Inputs.lean` (the proofs it needs sit downstream of the old files
+in the import graph).  Large model: **no hypothesis** (compact ⇒ `Perf` is
+`Stacks07LT.M4.perf_of_compact_unconditional`).  Small model:
+`h09 : Tag09SRPaper (SmallAffineD A H)`, because the small statement does not
+follow from the large one with what is proved: the transport gives only large ⇒
+small for compactness, and small ⇒ large is the unproved `liftCompact` parameter
+of `CapstoneM6.perfectToCompactInput_of_small`.
 
-| declaration | was in | statement change |
-|---|---|---|
-| `RelativeFM.affine_theorem_1_1_neeman_only` (**pinned**) | `AffineMain` | `CompactPerfectInput A` → `h09` (authorized) |
-| `RelativeFM.satisfiesWA_of_neemanCompactPerfectInput` | `AffineMain` | same |
-| `RelativeFM.affineCompactHomZeroAtTop_of_compactPerfectInput` | `AffineMain` | same |
-| `RelativeFM.ringObject_isClassicalGeneratorOnCompacts_of_compactPerfectInput` | `AffineMain` | same |
-| `RelativeFM.compact_iff_dbcoh_of_input` | `PerfectField` | same |
-| `RelativeFM.smallCompactHomZeroAtTop_of_neeman` | `SmallAffineAssembly` | `SmallNeemanCompactToPerfectInput A H` → `h09` |
-| `RelativeFM.affine_theorem_1_1_small_neeman_only` | `SmallAffineAssembly` | same |
-| `RelativeFM.affine_theorem_1_1_small_standard_neeman_only` | `SmallAffineAssembly` | same |
-| `RelativeFM.NeemanM1.isCompactAb_iff_smallPerf_of_neeman` | `AffineCompactness` | same |
-| `RelativeFM.AffineNeemanEndpointM3.small_compact_iff_smallPerf` | `AffineNeemanEndpointM3` | same |
-| `RelativeFM.AffineNeemanEndpointM3.small_affine_regularGenerator_package` | `AffineNeemanEndpointM3` | same |
+| old name | was in | new name | hypothesis now |
+|---|---|---|---|
+| `RelativeFM.affine_theorem_1_1_neeman_only` (**pinned**) | `AffineMain` | `RelativeFM.affine_theorem_1_1_unconditional` | only `S`, `C` |
+| `RelativeFM.satisfiesWA_of_neemanCompactPerfectInput` | `AffineMain` | `RelativeFM.affine_satisfiesWA_of_setup` | only `S`, `C` |
+| `RelativeFM.affineCompactHomZeroAtTop_of_compactPerfectInput` | `AffineMain` | `RelativeFM.affineCompactHomZeroAtTop` | none |
+| `RelativeFM.ringObject_isClassicalGeneratorOnCompacts_of_compactPerfectInput` | `AffineMain` | `RelativeFM.ringObject_isClassicalGeneratorOnCompacts` | none |
+| `RelativeFM.compact_iff_dbcoh_of_input` | `PerfectField` | `RelativeFM.compact_iff_dbcoh` | none |
+| `RelativeFM.smallCompactHomZeroAtTop_of_neeman` | `SmallAffineAssembly` | `RelativeFM.smallCompactHomZeroAtTop_of_tag09SR` | `h09` |
+| `RelativeFM.affine_theorem_1_1_small_neeman_only` | `SmallAffineAssembly` | `RelativeFM.affine_theorem_1_1_small_of_tag09SR` | `S`, `hT`, `h09` |
+| `RelativeFM.affine_theorem_1_1_small_standard_neeman_only` | `SmallAffineAssembly` | `RelativeFM.affine_theorem_1_1_small_standard_of_tag09SR` | `S`, `hgen`, `h09` |
+| `RelativeFM.NeemanM1.isCompactAb_iff_smallPerf_of_neeman` | `AffineCompactness` | `RelativeFM.NeemanM1.isCompactAb_iff_smallPerf_of_tag09SR` | `h09` |
+| `RelativeFM.AffineNeemanEndpointM3.small_compact_iff_smallPerf` | `AffineNeemanEndpointM3` | (name kept) | `h09` |
+| `RelativeFM.AffineNeemanEndpointM3.small_affine_regularGenerator_package` | `AffineNeemanEndpointM3` | (name kept) | `h09` |
 
-The names still say "neeman"/"input"; renaming is the orchestrator's call
-(proposal for the pinned one: `affine_theorem_1_1_of_tag09SR`).
+Also in `Neeman32Inputs`: `perf_of_isCompactAb`, `compactToPerfectInput`,
+`affine_neeman_3_2_i` and `affine_regularGenerator_package` (large model) lost
+their `h09` and are unconditional.  The pinned `affine_theorem_1_1_unconditional`
+subsumes the pinned `StacksGluing.affine_theorem_1_1_stacks07LT` (same conclusion,
+which additionally takes a Stacks 07LT input); the latter is kept.
 
 **Deleted structures and templates.** `RelativeFM.CompactPerfectInput`
 (`PerfectRing`), `RelativeFM.SmallNeemanCompactToPerfectInput`
@@ -176,10 +183,9 @@ It was imported only by `M6Transport`, `M6LargeInputs` and the root file.
 
 **Kept as a proved interface.** `RelativeFM.CompactToPerfectInput A`
 (`PerfectRingStacks`): it is inhabited with **no input** by
-`Stacks07LT.M4.compactToPerfectInput_unconditional` (`M4Unconditional`;
-also `CapstoneM6.compactToPerfectInput_unconditional`) and from 09SR by
-`Neeman32Inputs.compactToPerfectInput`.  Its consumers
-(`affineCompactHomZeroAtTop_of_compactToPerfectInput`,
+`Stacks07LT.M4.compactToPerfectInput_unconditional` (`M4Unconditional`; also
+`CapstoneM6.compactToPerfectInput_unconditional`, `Neeman32Inputs.compactToPerfectInput`).
+Its consumers (`affineCompactHomZeroAtTop_of_compactToPerfectInput`,
 `ringObject_isClassicalGeneratorOnCompacts_of_compactToPerfectInput`,
 `StacksGluing.satisfiesWA_of_compactToPerfectInput`,
 `StacksGluing.affine_theorem_1_1_of_compactToPerfectInput` (used by the pinned
@@ -187,11 +193,6 @@ also `CapstoneM6.compactToPerfectInput_unconditional`) and from 09SR by
 `RegularCompact.affine_regularGenerator_package`) are reductions whose hypothesis
 is a theorem; the proof of compact ⇒ `Perf` lies downstream of them in the import
 graph, so they keep the argument.
-
-**Observation.** In the large model `D(A-Mod)` compact ⇒ `Perf` needs no input at
-all (`M4Unconditional`), so the large-model endpoints above could drop `h09`
-entirely, including the pinned `affine_theorem_1_1_neeman_only`.  This branch
-uses `h09` as authorized; dropping it is a follow-up for the orchestrator.
 
 **Still carrying Thm 3.2 content (scheme level, not touched here).**
 `OpenClosedCompletionW3.SupportedCategoryInput.neeman_3_2_iii` (see §2) and the

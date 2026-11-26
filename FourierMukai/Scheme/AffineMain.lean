@@ -23,9 +23,11 @@ Also proved: the standard-`t`-structure bounds for the ring object
 
 The endpoint `affine_theorem_1_1_neeman_only` and the other declarations that
 used to take the Neeman 2024, Theorem 3.2(i) interface `CompactPerfectInput A`
-here were moved on `wave5/neeman-prune` to `Scheme/Neeman32Inputs.lean`, where
-they take Stacks 09SR (`Tag09SRPaper`) instead; `CompactPerfectInput` was
-deleted (`results/NEEMAN_3_2.md`).
+here were moved on `wave5/neeman-prune` to `Scheme/Neeman32Inputs.lean` and
+renamed; they now take no hypothesis beyond the setup (the endpoint is
+`affine_theorem_1_1_unconditional`), since compact ⇒ `Perf` is proved in
+`Scheme/M4Unconditional.lean`.  `CompactPerfectInput` was deleted
+(`results/NEEMAN_3_2.md`).
 
 Found by a member of the Ultramath run `smwv1bkrk` (direction AF6).
 -/

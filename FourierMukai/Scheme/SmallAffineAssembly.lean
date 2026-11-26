@@ -7,8 +7,9 @@ it does not add axioms or use `sorry`.
 The small-Hom endpoints `affine_theorem_1_1_small_neeman_only` and
 `affine_theorem_1_1_small_standard_neeman_only` (and
 `smallCompactHomZeroAtTop_of_neeman`) moved to `Scheme/Neeman32Inputs.lean` on
-`wave5/neeman-prune`: they took the Neeman 2024, Theorem 3.2(i) interface
-`SmallNeemanCompactToPerfectInput`, which was deleted, and now take Stacks 09SR.
+`wave5/neeman-prune`, renamed `…_of_tag09SR`: they took the Neeman 2024,
+Theorem 3.2(i) interface `SmallNeemanCompactToPerfectInput`, which was deleted,
+and now take Stacks 09SR.
 -/
 import FourierMukai.Scheme.AisleCoproducts
 import FourierMukai.Scheme.AffineMain

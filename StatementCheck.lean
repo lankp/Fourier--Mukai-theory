@@ -51,10 +51,10 @@ Regenerate after an intentional change:
 
 /-! ## LP26 Theorem 1.1, affine case -/
 
-#check @RelativeFM.affine_theorem_1_1_neeman_only
+#check @RelativeFM.affine_theorem_1_1_unconditional
 #check @RelativeFM.StacksGluing.affine_theorem_1_1_stacks07LT
 #check @RelativeFM.affine_theorem_1_1_small
-#print axioms RelativeFM.affine_theorem_1_1_neeman_only
+#print axioms RelativeFM.affine_theorem_1_1_unconditional
 #print axioms RelativeFM.StacksGluing.affine_theorem_1_1_stacks07LT
 #print axioms RelativeFM.affine_theorem_1_1_small
 

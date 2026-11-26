@@ -70,7 +70,7 @@ structure Stacks07LTCompactModelInput (A : Type u) [CommRing A] where
 **This is a proved interface, not an assumption.**  It is inhabited for every
 commutative ring with no input by `Stacks07LT.M4.compactToPerfectInput_unconditional`
 (`Scheme/M4Unconditional.lean`; also `CapstoneM6.compactToPerfectInput_unconditional`),
-and from Stacks 09SR by `Neeman32Inputs.compactToPerfectInput`.  Declarations
+restated as `Neeman32Inputs.compactToPerfectInput`.  Declarations
 taking it as an argument are reductions; it is kept as a structure because the
 proof of compact ⇒ `Perf` (`CompactToPerfect*.lean`, `M4Unconditional.lean`)
 lies downstream of those reductions in the import graph. -/

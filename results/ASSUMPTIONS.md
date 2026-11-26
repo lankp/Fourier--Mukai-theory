@@ -9,8 +9,9 @@ open items whose content is to be formalized here, not permitted inputs.  Since
 `wave5/neeman-prune` no Neeman input remains in the affine models: the interfaces
 `CompactPerfectInput`, `SmallNeemanCompactToPerfectInput`,
 `AffinePerfect.NeemanAffineCompactModelInput`, the templates `Neeman_3_2_i/ii/iv`
-and `NeemanPublishedWeakApproximation` are deleted, and their consumers take Stacks
-09SR (`Tag09SRPaper`) instead (`results/NEEMAN_3_2.md` §5).  The remaining Thm 3.2
+and `NeemanPublishedWeakApproximation` are deleted, and their consumers take no input in
+`D(A-Mod)` (compact ⇒ `Perf` is proved, `Scheme/M4Unconditional.lean`) and Stacks
+09SR (`Tag09SRPaper`) in the small-Hom model (`results/NEEMAN_3_2.md` §5).  The remaining Thm 3.2
 carriers are scheme-level: `SupportedCategoryInput.neeman_3_2_iii` and the
 `CompactsArePerfect` fields of the scheme gluing interfaces. The interface is
 `FourierMukai/Scheme/StacksInput.lean`, in `RelativeFM.StacksInterface`; its
@@ -56,7 +57,7 @@ permitted assumptions: a theorem that takes one is recorded as conditional (C in
 The universe-correct endpoint in `Scheme/SmallAffineAssembly.lean` is
 
 ```lean
-RelativeFM.affine_theorem_1_1_small_standard_neeman_only
+RelativeFM.affine_theorem_1_1_small_standard_of_tag09SR
     (S : SetupMainMinimal DZ (SmallAffineD A H) DU)
     (hgen : standardT.le 0 =
       Coprod (shiftTail (S.G'⟦S.m⟧ ⊞ S.R.jShriek.obj S.GU) 0))
@@ -64,7 +65,10 @@ RelativeFM.affine_theorem_1_1_small_standard_neeman_only
     SatisfiesWA (SmallAffineD A H) ↔ EventuallyHomZero S.G' S.G'
 ```
 
-(in `Scheme/Neeman32Inputs.lean` since `wave5/neeman-prune`).
+(in `Scheme/Neeman32Inputs.lean` since `wave5/neeman-prune`, formerly
+`affine_theorem_1_1_small_standard_neeman_only`).  The large-Hom endpoint
+`RelativeFM.affine_theorem_1_1_unconditional` (formerly the pinned
+`affine_theorem_1_1_neeman_only`) takes only `S` and the coproduct package.
 
 `H` can be `RelativeFM.Spaltenstein.affineSpaltensteinInput A`; it is not an
 open assumption. Until `wave5/neeman-prune` the last argument was
@@ -213,8 +217,8 @@ general Stacks tag. New interface/companion-module tags follow this table.
 | 01C6 | P for elementary finite-locally-free facts; S for the remaining vector-bundle calculus fields. |
 | 0657, 066R, 066T | P in the module-model development: definitions/elementary retract facts and model implies `Perf A`. |
 | 066S | **Open, off the paper path** (`wave5/neeman-prune`): the N route (`Affine066S.lean`, from `NeemanAffineCompactModelInput`) is deleted. Partial results in `Affine066SRetracts.lean`; lemmas needing it take the retract closure `hR` as an explicit hypothesis. No full-tag proof is claimed. |
-| 07LR, 07LT | P for finite-free induction lemmas; compact-to-`Perf` used by the endpoints is **no longer N** (wave 5): P in `D(A-Mod)` (`Stacks07LT.M4.compactToPerfectInput_unconditional`, no input), S through 09SR in both models (`Neeman32Inputs.compactToPerfectInput`, `smallPerf_of_isCompactAb`); compact-to-*model* (`Stacks07LTCompactModelInput`) stays open and off the paper path. The two 07LR input packages are not silently inhabited. Reverse perfect-to-compact does not follow. |
-| 09M1, 0AED | Affine ring model, `Z = X` (wave 5): **S via 09SR only**, no Neeman: `RelativeFM.Neeman32Inputs.affine_neeman_3_2_i A h09` and `smallAffine_neeman_3_2_i A H h09` (compact ⇔ perfect), `h09 : Tag09SRPaper` of the (canonical) small model (the interfaces `CompactPerfectInput`, `SmallNeemanCompactToPerfectInput` are deleted); perfect ⇒ compact is P (`RegularCompact.ringObject_isCompactAb`). S for general supported schemes/spaces. See `results/NEEMAN_3_2.md`. |
+| 07LR, 07LT | P for finite-free induction lemmas; compact-to-`Perf` used by the endpoints is **no longer N** (wave 5): P in `D(A-Mod)` (`Stacks07LT.M4.compactToPerfectInput_unconditional`, no input), S through 09SR in the small model (`Neeman32Inputs.smallPerf_of_isCompactAb`); compact-to-*model* (`Stacks07LTCompactModelInput`) stays open and off the paper path. The two 07LR input packages are not silently inhabited. Reverse perfect-to-compact does not follow. |
+| 09M1, 0AED | Affine ring model, `Z = X` (wave 5): no Neeman: `RelativeFM.Neeman32Inputs.affine_neeman_3_2_i A` (compact ⇔ perfect in `D(A-Mod)`, **P**, no input) and `smallAffine_neeman_3_2_i A H h09` (small model, **S** via `h09 : Tag09SRPaper (SmallAffineD A H)`) (the interfaces `CompactPerfectInput`, `SmallNeemanCompactToPerfectInput` are deleted); perfect ⇒ compact is P (`RegularCompact.ringObject_isCompactAb`). S for general supported schemes/spaces. See `results/NEEMAN_3_2.md`. |
 | 09M8 | P for the thick-envelope reduction only; S if full perfect-to-compact is required. |
 | 09MB | P for the perfect-pair affine ring form used here; S for the general amplitude statement. |
 | 09SR | P for abstract reductions, absent from the small affine endpoint; S for a geometric instance that really needs classical generation. |

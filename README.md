@@ -91,7 +91,6 @@ declarations are pinned in
 | bounded finite-projective models are perfect, over any commutative ring (066T) | `PerfectModel` |
 | `Perf ≤ model ↔ model` is closed under retracts, and the model class is triangulated | `PerfectModelConverse` |
 | Le–Chen 2.3: two out of three for split idempotents in a triangle | `LeChen` |
-| 066S from Neeman, hence `BoundedProjectiveModelConverseInput`, `Stacks07LTCompactModelInput` and `CompactPerfectInput` | `Affine066S` |
 | the finite-free induction of 07LT, and `compact ⇒ Perf` | `CompactToPerfect` |
 | perfect ⇒ compact (the thick half of 09M8), with compactness of the regular module now proved | `PerfectCompactThick`, `RegularCompact`, `RegularCompactEndpoints` |
 | compactness of the regular module in `D(A-Mod)`, and unconditional weak approximability of `D(A-Mod)` and of `D_{V(f)}(A-Mod)` | `RegularCompact` (`ringObject_isCompactAb`), `RegularCompactEndpoints` (`affine_satisfiesPaperWA`, `principalSupported_satisfiesPaperWA`) |
@@ -159,10 +158,11 @@ reprove it merely to avoid depending on it.
 Math. 233 (2024), Theorem 3.2, was the second permitted source (direction "compact
 implies perfect", large-Hom model).  Since 26 November 2026 it is **not** assumed
 (maintainer's instruction): what the project needs from it is formalized and
-verified here, and only that.  The tree's remaining uses of it
-(`CompactPerfectInput`, `SmallNeemanCompactToPerfectInput`, `Neeman_3_2_*`, the
-3.2(iii) field of `SupportedCategoryInput`) are open items, listed under
-[What is open](#what-is-open).
+verified here, and only that.  Its affine interfaces (`CompactPerfectInput`,
+`SmallNeemanCompactToPerfectInput`, `Neeman_3_2_*`, the 066S module `Affine066S`)
+were deleted on `wave5/neeman-prune`; the remaining uses (the 3.2(iii) field of
+`SupportedCategoryInput`, the `CompactsArePerfect` fields of the scheme gluing
+interfaces) are open items, listed under [What is open](#what-is-open).
 
 Everything else is proved here.  The hypotheses that remain in the affine
 endpoint are hypotheses of LP26 Theorem 1.1 by design, not gaps: the
@@ -338,11 +338,12 @@ a standalone challenge library and a `comparator` run.
    coherator on `D_qc`, `f^×` base change over non-affine bases, and a bridge
    between AxiomMath's compactness and `IsCompactAb`.
 6. **Neeman 2024, Theorem 3.2, no longer assumed.**  Part (i) (compact ⇒
-   perfect) is carried as `CompactPerfectInput` / `SmallNeemanCompactToPerfectInput`
-   by the affine endpoints, (ii)–(iii) by `Scheme/Inputs.lean` and
-   `SupportedCategoryInput`.  Each is to be proved in the form the project uses
-   (for `D(A)`: from compactness of the regular module, proved, and the
-   thick-closure theorem Stacks 09SR; for spaces: AxiomMath's 09M8, 0AED, 0AEC).
+   perfect) is proved for `D(A-Mod)` with no input
+   (`Stacks07LT.M4.perf_of_compact_unconditional`; the affine endpoint is
+   `affine_theorem_1_1_unconditional`) and in the small-Hom model from Stacks
+   09SR (`Scheme/Neeman32Inputs.lean`).  Still open: (iii) as the field of
+   `SupportedCategoryInput` and (i) as the `CompactsArePerfect` fields of the
+   scheme gluing interfaces, to come from AxiomMath's 09M8, 0AED, 0AEC, 09SR.
 7. **Neeman's weak approximability for affine schemes with support, proved.**  The
    maintainer's goal for wave 5: `D_{V(I)}(A-Mod)` weakly approximable for every
    finitely generated `I` with no named input, then transported to AxiomMath's

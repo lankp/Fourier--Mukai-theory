@@ -22,10 +22,11 @@ exactly the complexes with bounded, degreewise finite-dimensional cohomology.
   finitely many finite pieces.
 * `dbcoh_le_perf` and `perf_eq_dbcoh`: hence `Dbcoh k ≤ Perf k`, and equality with
   the forward inclusion `perf_le_dbcoh` from `PerfectRing.lean`.
-* The compact-object classification `compact_iff_dbcoh_of_input` (compact ⇔
-  bounded finite-dimensional cohomology) is in `Scheme/Neeman32Inputs.lean`, with
-  Stacks 09SR as its input (moved there on `wave5/neeman-prune`, when the
-  interface `CompactPerfectInput` it used to take was deleted).
+* The compact-object classification `compact_iff_dbcoh` (compact ⇔ bounded
+  finite-dimensional cohomology, formerly `compact_iff_dbcoh_of_input`) is in
+  `Scheme/Neeman32Inputs.lean`, with no input (moved there on
+  `wave5/neeman-prune`, when the interface `CompactPerfectInput` it used to take
+  was deleted).
 
 Found by a member of the Ultramath run `smwv1bkrk` (direction AF3).
 -/
