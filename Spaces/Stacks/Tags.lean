@@ -38,12 +38,8 @@ This file proves the repository's two `Prop`s from those theorems, through the b
   `tag09SN` holds for every such `D`; nothing is lost.
 * **09SR.**  AxiomMath's theorem assumes `[IsTriangulated D]` (the octahedron axiom: the
   triangulated envelope is closed under extensions only there).  The repository's
-  `Tag09SRPaper C` is stated for a *pretriangulated* `C`, without `IsTriangulated C`, so
-  `Tag09SRPaper C` is formally stronger than AxiomMath's 09SR.  `tag09SRPaper` proves it
-  under `[IsTriangulated C]`.  Every consumer of `Tag09SRPaper` in the tree (LP26
-  Theorem 1.1, the small-model Neeman 3.2(i) endpoints) works with a triangulated
-  category, so this is no loss there.  Whether `Tag09SRPaper C` holds for every
-  pretriangulated `C` is not decided here.
+  `Tag09SRPaper C` is stated under the same `[IsTriangulated C]`, so `tag09SRPaper` proves it
+  exactly as AxiomMath states the tag; nothing is lost and nothing is strengthened.
 -/
 
 namespace RelativeFM.Spaces.Stacks

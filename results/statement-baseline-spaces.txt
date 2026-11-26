@@ -47,7 +47,7 @@
 RelativeFM.Spaces.Stacks.tag09SRPaper : ∀ (C : Type u_2) [inst : CategoryTheory.Category.{u_1, u_2} C]
   [inst_1 : CategoryTheory.Preadditive C] [inst_2 : CategoryTheory.Limits.HasZeroObject C]
   [inst_3 : CategoryTheory.HasShift C ℤ] [inst_4 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor C n).Additive]
-  [inst_5 : CategoryTheory.Pretriangulated C] [CategoryTheory.IsTriangulated C],
+  [inst_5 : CategoryTheory.Pretriangulated C] [inst_6 : CategoryTheory.IsTriangulated C],
   RelativeFM.OpenClosedCompletionW3.Tag09SRPaper C
 RelativeFM.Spaces.Stacks.tag09SN : ∀ (D : Type u_2) [inst : CategoryTheory.Category.{u_1, u_2} D]
   [inst_1 : CategoryTheory.Preadditive D] [inst_2 : CategoryTheory.Limits.HasZeroObject D]
