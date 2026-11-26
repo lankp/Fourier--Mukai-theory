@@ -2,8 +2,7 @@
 
 Current orchestrator session: `session_0111iGd9QDKToChKA2B4cz5n`
 
-(A session that takes over replaces this id with its own, in a commit of its own,
-so that the watchdog scheduled task watches the right session.)
+(A session that takes over replaces this id with its own, in a commit of its own.)
 
 Read this if you are a Claude session taking over as the **orchestrator** of the
 swarm that formalizes GL26 and LP26 in this repository (for example because the
@@ -34,11 +33,16 @@ to you.
    usage limit is near (status `allowed_warning`, or the window is already
    heavily used), do not launch; schedule the launch (`send_later`) for just
    after the next reset.**  Launch at most four workers at a time.
-5. If the orchestrator session ends, a new orchestrator session continues.  A
-   watchdog scheduled task (every 6 hours, fresh session) reads the id above: if
-   that session is archived or gone, the watchdog session becomes the orchestrator;
-   if its last turn failed (for example on the usage limit), the watchdog first
-   sends it a message to continue.
+5. If the orchestrator session ends, a new orchestrator session continues.  An
+   automatic successor is **not** possible: sessions started by a scheduled task,
+   and worker sessions, do not get the session-management tools (`get_session`,
+   `create_session`, `send_message`, `add_repo`), which was tested on 26 November
+   2026.  So a new orchestrator is a session **the maintainer starts** on this
+   repository with the message *"Take over as orchestrator: follow
+   results/swarm/ORCHESTRATOR.md."*  That session replaces the id at the top of
+   this file with its own (get_session with no argument), commits, and continues.
+   The running orchestrator survives usage-limit stops and worker restarts on its
+   own: scheduled messages (`send_later`) into it resume it after the reset.
 6. The GL26 and LP26 manuscripts are **unpublished** and the repository is
    **public**: never commit their TeX/PDF or long passages.  Workers get the TeX
    excerpts they need inside their task message.  The maintainer uploaded the
