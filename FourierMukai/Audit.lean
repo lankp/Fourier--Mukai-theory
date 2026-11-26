@@ -8,11 +8,8 @@ import WeakApprox.Theorem11PaperNonVacuity
 /-!
 # Axiom audit
 
-Run `lean FourierMukai/Audit.lean` to see which declarations depend on `sorryAx`.
-Everything under `FourierMukai.Prelim` and `FourierMukai.Examples` should be free
-of `sorryAx`; the statements in `FourierMukai.Paper.Statements` are expected to
-depend on it (they are formalization targets, not proved theorems), with the one
-exception of `lemma_2_25`, which is proved from the inputs its paper proof uses.
+Run `lean FourierMukai/Audit.lean` to print the axioms of the headline declarations.
+None depends on `sorryAx`: the tree has no `sorry`.
 -/
 
 open RelativeFM
@@ -127,16 +124,6 @@ open RelativeFM
 #print axioms RelativeFM.DerivedDiagonalInput.identityIso
 #print axioms RelativeFM.DiagonalFunctorialityInput.identityTransformIso
 
--- Stated only (expected to depend on `sorryAx`):
-#print axioms RelativeFM.theorem_1_3
-#print axioms RelativeFM.theorem_12_3
-#print axioms RelativeFM.theorem_1_2_open
-#print axioms RelativeFM.theorem_1_2_baseChange
-#print axioms RelativeFM.corollary_6_18
-#print axioms RelativeFM.lemma_12_2
-#print axioms RelativeFM.theorem_1_6
-#print axioms RelativeFM.lemma_2_26
-#print axioms RelativeFM.theorem_1_7
 #print axioms RelativeFM.RegularCompact.ringObject_isCompactAb
 #print axioms RelativeFM.RegularCompact.affine_satisfiesPaperWA
 #print axioms RelativeFM.RegularCompact.principalSupported_satisfiesPaperWA

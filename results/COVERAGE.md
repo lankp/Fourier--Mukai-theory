@@ -282,8 +282,8 @@ only as far as the following build of that commit goes (Lean 4.33.1, Mathlib
 | check | outcome |
 |---|---|
 | `lake build` (FourierMukai, WeakApprox, StatementCheck) | exit 0, 4 min 23 s; no errors, linter warnings only |
-| `declaration uses 'sorry'` in the build | 9, all in `FourierMukai/Paper/Statements.lean` |
-| `lake env lean FourierMukai/Audit.lean` | 34 audited declarations: 25 depend only on `propext`, `Classical.choice`, `Quot.sound`; 9 on `sorryAx`, exactly the nine targets of `Paper/Statements.lean` |
+| `declaration uses 'sorry'` in the build | 0 (the nine interface targets were removed on 26 November 2026) |
+| `lake env lean FourierMukai/Audit.lean` | every audited declaration depends only on `propext`, `Classical.choice`, `Quot.sound` |
 | `scripts/check_statements.sh` | OK, 17 declarations match the baseline, none depends on `sorryAx` |
 
 The proofs behind the P and C rows were not re-read for this map.

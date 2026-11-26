@@ -94,10 +94,10 @@ def render():
           f'{ntask} swarm tasks in waves {", ".join(waves)} are logged in [`SWARM.md`](SWARM.md); '
           f'{nmerged} of them are merged into `formalization` after the orchestrator\'s seven-step verification '
           '(the others were stopped, deferred or are in progress; see the log).', '',
-          '## Size and open `sorry`s', '',
+          '## Size and `sorry`s', '',
           f'{nfiles} Lean modules, {nlines:,} lines (`FourierMukai/`, `WeakApprox/`, `Spaces/`, `SpacesVerified/`).  '
           f'Files containing `sorry`: {", ".join("`"+f+"`" for f in sorry_files) or "none"} '
-          '(the deliberate specification targets; nothing proved depends on them).', '']
+          '(the project keeps none: no assumptions or unproven parts except AxiomMath/Stacks).', '']
     return '\n'.join(L)
 
 if __name__ == '__main__':

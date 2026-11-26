@@ -51,13 +51,11 @@ status:
     with the paper's hypotheses.  Neeman, Acta Math. 233 (2024), Theorem 3.2 is
     not assumed: what the project needs from it is proved here.  The only external
     input is AxiomMath/Stacks.
-  sorry_count: 9
+  sorry_count: 0
   sorry_in_definitions: 0
   sorry_location: >-
-    All nine are in `FourierMukai/Paper/Statements.lean`: the paper's targets stated
-    over a superseded abstract interface, kept as specifications and printed by
-    `FourierMukai/Audit.lean`; they are to be replaced by statements over
-    algebraic spaces.  No proved result depends on them.
+    None.  The nine interface targets that used to be `sorry` were removed on 26
+    November 2026; the open results are listed in results/COVERAGE.md.
   axioms: [propext, Classical.choice, Quot.sound]
   build: >-
     `lake exe cache get && lake build` (Lean and Mathlib v4.35.0); the

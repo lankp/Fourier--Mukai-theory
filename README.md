@@ -13,9 +13,9 @@ Project](https://github.com/AxiomMath/Stacks) (a pinned Lake dependency); everyt
 else comes from Mathlib or is proved here.  **Order:** LP26 first, with the parts of
 the literature it needs, then GL26.
 
-247 Lean modules, about 59 000 lines.  No `sorry` except nine statements left as
-targets in `FourierMukai/Paper/Statements.lean`.  Every result below depends only on
-the axioms `propext`, `Classical.choice`, `Quot.sound`.
+247 Lean modules, about 59 000 lines, no `sorry`.  Every result depends only on the
+axioms `propext`, `Classical.choice`, `Quot.sound`.  **Rule:** no assumptions and no
+unproven parts except the Stacks Project as formalized by AxiomMath.
 
 ## Status
 
@@ -35,8 +35,8 @@ the axioms `propext`, `Classical.choice`, `Quot.sound`.
 | §2.2 over algebraic spaces: `D_qc`, `D^b_coh`, `Perf`, support, `Lf^* ⊣ Rf_*`, `⊗^L`; Definitions 4.1, 5.1; integral transforms | defined (`Spaces/`), nothing assumed (`SpacesVerified/`) |
 | Lemmas 2.3, 2.4, 2.5 | proved |
 | Lemmas 7.2, 7.4, 7.6, 7.9, 7.11, 7.12, 7.17, Lemma-Definition 7.10, Lemmas 10.2, B.2, B.4, B.5, B.7, B.10, C.1 | proved, over abstract data or in `Cat`; for algebraic spaces in progress |
-| Lemmas 2.25, 2.26, 5.4, 6.11, 10.1, A.4 (affine case) | proved from named inputs, not yet over algebraic spaces |
-| Theorems 1.2, 1.3, 1.6, 1.7 and the rest | stated over an abstract interface; restatement over algebraic spaces in progress |
+| Lemmas 2.25, 2.26, 5.4, 6.11, 10.1, A.4 (affine case) | conditional on named inputs: not counted as proved; being redone over algebraic spaces |
+| Theorems 1.2, 1.3, 1.6, 1.7 and the rest | open; being stated over algebraic spaces |
 
 Result by result: [`results/COVERAGE.md`](results/COVERAGE.md).  A generated summary:
 [`results/PROGRESS.md`](results/PROGRESS.md).
@@ -49,8 +49,10 @@ replaces each such hypothesis by the AxiomMath theorem itself, so the results ov
 algebraic spaces are unconditional.  Neeman's Theorem 3.2 (Acta Math. 2024) is not
 assumed; what the papers need from it is proved here.
 
-A few older results still take a named hypothesis that is not a Stacks theorem; each
-is an open item, and a result that uses one is recorded as conditional.  Ledger:
+Some older results still take a named hypothesis that is not a Stacks theorem (for
+example `DerivedPseudofunctorInput`, Lipman 3.6.2).  These are not counted as proved:
+each hypothesis is being proved, from AxiomMath where it is a Stacks result, or the
+result is removed.  Ledger:
 [`results/ASSUMPTIONS.md`](results/ASSUMPTIONS.md); open items:
 [`results/OPEN_INPUTS.md`](results/OPEN_INPUTS.md); policy:
 [`results/STACKS_POLICY.md`](results/STACKS_POLICY.md).

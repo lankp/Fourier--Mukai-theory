@@ -74,9 +74,10 @@ The project compiles with `autoImplicit = false`, `relaxedAutoImplicit = false`,
 
 ## Hard rules
 
-1. **No `sorry` and no `axiom`** in anything you add.  The only `sorry`s in the
-   tree are the nine targets in `FourierMukai/Paper/Statements.lean`.  A proof
-   that is not finished is not committed.  Do not commit a "partial" file.
+1. **No `sorry` and no `axiom`.**  The tree has none (since 26 November 2026) and
+   must stay so.  A proof that is not finished is not committed.  Do not commit a
+   "partial" file.  A target not yet proved is recorded in `results/COVERAGE.md`
+   (or stated as a `def …Statement : Prop`), never as a theorem with `sorry`.
 2. **What may be relied on** is exactly one thing (see `results/STACKS_POLICY.md`):
    AxiomMath/Stacks, a pinned Lake dependency.  In the algebraic-space library
    `Spaces`, import only the definition modules of
@@ -92,13 +93,14 @@ The project compiles with `autoImplicit = false`, `relaxedAutoImplicit = false`,
    carry it (`CompactPerfectInput`, `SmallNeemanCompactToPerfectInput`,
    `Neeman_3_2_*` in `Scheme/Inputs.lean`, the 3.2(iii) field of
    `SupportedCategoryInput`) are open items to discharge, not permitted inputs.
-   **Goal (maintainer, 26 November 2026): AxiomMath's Stacks Project is the only
-   assumption; every other result GL26 and LP26 need comes from Mathlib or is
-   proved here, as needed.**  An explicitly named hypothesis whose name says what it
-   is (`DerivedPseudofunctorInput`, `AffineSupportedSchemeComparisonInput`, the other
-   non-Stacks inputs of `results/ASSUMPTIONS.md` §1b) is allowed only as an
-   intermediate step: it is an open item to prove or delete, and a result that
-   depends on one is recorded as conditional, not proved.
+   **Rule (maintainer, 26 November 2026): there are no assumptions and no unproven
+   parts except AxiomMath's Stacks Project; every other result GL26 and LP26 need
+   comes from Mathlib or is proved here.**  Do not add a named hypothesis that is not
+   an AxiomMath theorem.  The named hypotheses still in the tree that are not
+   AxiomMath theorems (`DerivedPseudofunctorInput`, `AffineSupportedSchemeComparisonInput`,
+   the rest of `results/ASSUMPTIONS.md` §1b and `results/OPEN_INPUTS.md`) are open items:
+   each is proved (from AxiomMath where it is a Stacks result) or the results that use it
+   are deleted, and until then those results are recorded as not proved.
 3. **Statements are faithful.**  No hypothesis is `True`.  No result is reworded to
    fit what is available.  If a Lean statement is weaker than the paper's, its
    docstring names the gap.  If a rendering is false, prove it false in the tree
