@@ -34,9 +34,12 @@ imported as a Lake dependency (see `results/SWARM.md`, "Direction").
 The repository is **public**.  The current GL26 and LP26 manuscripts are newer than
 the arXiv postings and are **not stored in the repository** (they were removed from
 the whole git history on 26 November 2026, when the maintainer made the repository
-public).  **Whenever a task needs the manuscripts' text, ask the maintainer
-explicitly** (maintainer's standing instruction): a worker stops and reports, and the
-orchestrator asks the maintainer, who uploads the TeX to the session that needs it.
+public).  The maintainer has given the current TeX of both papers to the orchestrator's
+session; **unless the maintainer says otherwise, those files are unchanged** and current
+(maintainer, 26 November 2026; the maintainer announces any new version).  Tasks that need
+the text run where it is, in the orchestrator's container; a worker elsewhere that needs it
+stops and reports.  If the orchestrator no longer has the files (a new orchestrator
+session), it asks the maintainer to upload them again.
 Never commit manuscript TeX or PDF, and never quote more than a statement's number,
 TeX label or a short paraphrase in the repository, commit messages or anywhere public.
 Refer to results by number **and** TeX label (`Lemma 7.4, lem:morph_adj`); labels are

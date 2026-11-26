@@ -50,10 +50,12 @@ to you.
    own: scheduled messages (`send_later`) into it resume it after the reset.
 6. **The repository is public; the manuscripts are not in it** (26 November 2026:
    the maintainer made it public; `manuscripts/` was removed from the entire history
-   and every branch was force-pushed).  **Ask the maintainer explicitly whenever the
-   manuscripts are needed** — do not rely on old copies, and never commit or quote
-   manuscript TeX.  A worker that needs TeX stops and reports; you ask the maintainer,
-   who uploads it to the session that needs it.  When a new version is provided,
+   and every branch was force-pushed).  The maintainer uploaded the current TeX of both
+   papers to this orchestrator session (LP26 `44b730a8-main.tex`, GL26 `46ab67e2-main.tex`
+   in the session's uploads); **unless the maintainer says otherwise they are unchanged**,
+   so do not ask again.  Run tasks that need the text here (local subagents), never commit
+   or quote manuscript TeX.  If this session's uploads are gone (new orchestrator), ask the
+   maintainer to upload them again.  When the maintainer announces a new version,
    re-check `results/COVERAGE.md` against its numbering.
 7. GL26 is correct as stated in the current manuscript (the maintainer confirmed,
    for example, that Lemma B.10's displayed "(G,ζ) ⊣ (F,ξ)" is a typo for
@@ -144,7 +146,7 @@ time of writing (26 November 2026, 19:20 UTC): waves 1–6 are merged and their 
 archived; `SpacesVerified` discharges every tagged input of `Spaces`
 (`scripts/check_statements.sh --verified`); the README describes the merged tree.  Wave 7's
 three Lean tasks were launched at 19:12 UTC (tag `fm-wave7`, sessions in `results/SWARM.md`);
-ask the maintainer for the GL26 TeX before launching `wave7/spaces-statements`.  The AxiomMath checkout with its build lives in the
+`wave7/spaces-statements` ran as a local subagent with the GL26 TeX and is merged.  The AxiomMath checkout with its build lives in the
 orchestrator's scratchpad (`.lake/packages/Stacks` is a symlink to it); after a container
 restart, re-enable swap (`swapon /home/user/.swapfile`) and `sysctl -w
 vm.max_map_count=262144` before `lake build SpacesVerified`.
