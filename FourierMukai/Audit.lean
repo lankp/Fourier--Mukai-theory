@@ -67,6 +67,17 @@ open RelativeFM
 #print axioms RelativeFM.BaseChangeMates.PullPushData.lemma_7_17_xi
 #print axioms RelativeFM.BaseChangeMates.constPullPushData
 #print axioms RelativeFM.BaseChangeMates.constPullPushData_isIso_theta
+-- GL26 §7.2 wired into `Scheme/Duality.lean` (`Scheme/DualityMates.lean`):
+#print axioms RelativeFM.DualityMates.BaseChangeCoherenceData.pushComp_hom_eq
+#print axioms RelativeFM.DualityMates.BaseChangeCoherenceData.subsingleton
+#print axioms RelativeFM.DualityMates.DerivedPseudofunctorInput.lemma_7_12
+#print axioms RelativeFM.DualityMates.DerivedPseudofunctorInput.coherence
+#print axioms RelativeFM.DualityMates.DerivedPseudofunctorInput.coherence_eq
+#print axioms RelativeFM.DualityMates.DerivedPseudofunctorInput.lemma_7_15
+#print axioms RelativeFM.DualityMates.DerivedPseudofunctorInput.lemma_7_17_theta
+#print axioms RelativeFM.DualityMates.DerivedPseudofunctorInput.lemma_7_17_lowerStarUpperCross
+#print axioms RelativeFM.DualityMates.trivialInput
+#print axioms RelativeFM.DualityMates.trivialInput_isIso_theta
 #print axioms RelativeFM.mates_hom_square
 #print axioms RelativeFM.mates_hom_square_eq_mate
 #print axioms RelativeFM.lemma_7_4
