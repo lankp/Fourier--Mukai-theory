@@ -134,7 +134,13 @@ stopped minutes later when the direction changed.  Briefs in `results/swarm/wave
 | `wave4/axiommath-tag-map` | every Stacks tag cited in GL26/LP26 against AxiomMath: declaration, scope, spaces vs schemes, verdict; `S` rows of `ASSUMPTIONS.md` against AxiomMath | `results/AXIOMMATH_TAGS.md`, `scripts/axiommath/` |
 | `wave4/toolchain-435` | migrate the tree to Lean/Mathlib v4.35.0 (no new dependency yet) | toolchain files, any `.lean` file the build needs |
 
-## Wave 5 (planned; starts once wave 4 is merged and archived)
+Wave 4 closed 26 Nov 2026, 08:50 UTC: all branches merged, README updated, workers archived.
+Environment: `cache.mathlib.org` added to the allowed hosts (Mathlib v4.35.0's cache).
+AxiomMath build trial: the 67-module base slice builds in 90 s; the 8.9k-module
+statement slice (T1) is building in the orchestrator session (about 4–5 h on 4 cores);
+build products are about 0.6 MB per module without the `ir/*.setup.json` intermediates.
+
+## Wave 5 (briefs in `results/swarm/wave5/`)
 
 **Maintainer's goal for wave 5 (26 November 2026):** besides the geometric layer,
 LP26 is addressed with **Neeman's weak approximability for affine schemes with
@@ -151,6 +157,7 @@ finite-list case `V(f₁,…,fₙ)` goes through the refuted `KoszulScalarSuppor
 | task | goal |
 |---|---|
 | `wave5/neeman-affine-support` | weak approximability of `D_{V(I)}(A-Mod)` for every finitely generated `I` (every finite list), with **no** named input: drop the refuted input (the deferred `koszul-repair` brief), prove `KoszulPowerCoprodInput`, and prove or import (AxiomMath 0A9A) `KoszulDetectionInput`; non-vacuity by an instance |
+| `wave5/spaces-foundations` (after the AxiomMath bundle is published) | the algebraic-space layer `FourierMukai/Spaces/`: `D_qc`, `Perf`, `D^b_coh`, support; `Lf^*`, `Rf_*`, `⊗^L`; GL26's `f`-perfect and `f`-quasi-perfect; integral transforms `Φ_K`; all non-vacuous |
 | `wave5/neeman-affine-transport` (after AxiomMath is imported) | transport it along AxiomMath's `D_qc(Spec A) ≃ D(A)` with supports matched: `D_qc,Z(Spec A)` weakly approximable for `Z` closed with quasi-compact complement, in AxiomMath's model — the base case of LP26 Cor 1.2 |
 
 Then (wave 6 or later): Neeman's Theorem 3.2(iv) for qcqs schemes and LP26 Cor 1.2
@@ -180,4 +187,4 @@ GL26 Proposition 10.5 and Lemma 10.9 on `Scheme/FMCube.lean`; `DerivedPseudofunc
 | 4 | `wave4/koszul-repair` (old plan) | `session_0111iGd5EpQmrcMq2EVMYxSR` | — | launched 26 Nov 07:27 UTC under the earlier wave-4 plan, stopped at 07:30 when the maintainer set the full-generality direction; nothing pushed; archived. Brief in `results/swarm/deferred/` |
 | 4 | `wave4/axiommath-api-map` | `session_0111iGd7KmNg4hyA9gC1E4Hh` | `b50af08` (merge of `4af8b4f`) | `results/AXIOMMATH_MAP.md`: notions and functors faithful in the canonical model; gaps C.1–C.12; statement layer T1 = 8.9k AxiomMath modules, all named T3 = 16.6k. Documentation only; verified: one markdown file, no Lean changed. launched 07:39 UTC |
 | 4 | `wave4/axiommath-tag-map` | `session_0111iGd5VH4ANnfPagE5ET8s` | `35f0c62d` (merge of `41dc007`) | `results/AXIOMMATH_TAGS.md`: 147 cited tags; 114 usable, 8 usable via untagged space-level declarations, 23 partial (mostly universe: site-level results at `{u,u,u}`), 2 schemes only, 0 absent; ASSUMPTIONS S rows cross-checked. Documentation and scripts only (local parsing, no network); verified: no Lean changed. launched 07:39 UTC |
-| 4 | `wave4/toolchain-435` | `session_0111iGd75PvwesuGTUxJTGcP` | | launched 26 Nov 07:39 UTC |
+| 4 | `wave4/toolchain-435` | `session_0111iGd75PvwesuGTUxJTGcP` | `a80e03e` (merge of `13bd116`) + baseline `7c8cf28` | tree on Lean/Mathlib v4.35.0; 18 `.lean` files, proofs only (`List.TFAE.out` now 1-based, renames, closing tactics); verified: build 9 min, audit 121 clean + the 9 targets, statement check OK after re-recording one pretty-printing drift (`Spec (CommRingCat.of A)` → `Spec ↧A`, same term). launched 07:39 UTC |

@@ -39,8 +39,8 @@ for f in $NEW; do
   lake env lean "$f" > "$LOG.$(basename $f).out" 2>&1; echo "exit=$?"
   grep -n 'error' "$LOG.$(basename $f).out" | head -5 || true
 done
-echo "sorry warnings: $(grep -c "declaration uses 'sorry'" "$LOG.build")  (expected 9, all in Paper/Statements.lean)"
-grep "declaration uses 'sorry'" "$LOG.build" | grep -v 'Paper/Statements.lean' | head
+echo "sorry warnings: $(grep -cE "declaration uses .sorry." "$LOG.build")  (expected 9, all in Paper/Statements.lean)"
+grep -E "declaration uses .sorry." "$LOG.build" | grep -v 'Paper/Statements.lean' | head
 echo "== axiom audit"
 lake env lean FourierMukai/Audit.lean > "$LOG.audit" 2>&1; echo "exit=$?"
 tr '\n' ' ' < "$LOG.audit" | grep -oE "'[^']+' depends on axioms: \[[^]]*\]" | awk '{print ($0 ~ /sorryAx/) ? "SORRY" : "clean"}' | sort | uniq -c

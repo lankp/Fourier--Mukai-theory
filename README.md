@@ -20,8 +20,23 @@ proved](#what-is-stated-but-not-proved).
 
 **Verify GL26 completely, all of its results.**
 
-That is the target, and nothing in the repository is a substitute for it.  The
-work goes in order.  The first part is weak approximability — the theorem of
+That is the target, and nothing in the repository is a substitute for it.
+
+**In full generality** (maintainer's standing instruction, 26 November 2026): the
+results are to be proved as the current manuscripts state them, for algebraic
+spaces, with `D_qc`, `Perf`, `D^b_coh`, `Lf^*`, `Rf_*`, `⊗^L` as in GL26 §2.2.  The
+abstract interfaces and the affine `D(A-Mod)` model below are the categorical
+engine; a result proved only there is recorded as such and is not the paper's
+result.  The geometric foundation is
+[AxiomMath/Stacks](https://github.com/AxiomMath/Stacks), imported as a Lake
+dependency: its algebraic spaces, `D(𝒪_X)` on the small étale site, `D_QCoh`,
+perfect and pseudo-coherent objects, `f^×`, compact generation and Nagata
+compactification were mapped against GL26 and judged faithful
+([`results/AXIOMMATH_MAP.md`](results/AXIOMMATH_MAP.md)), and 147 Stacks tags cited
+by the two papers were checked against it
+([`results/AXIOMMATH_TAGS.md`](results/AXIOMMATH_TAGS.md)).
+
+The work goes in order.  The first part is weak approximability — the theorem of
 LP26 and Neeman's theorem, with support — for quasi-compact quasi-separated
 schemes, in the supported form `D_qc,Z(X)`.
 
@@ -41,7 +56,8 @@ schemes, in the supported form `D_qc,Z(X)`.
 | compactness of the regular module; weak approximability of `D(A-Mod)` and of `D_{V(f)}(A-Mod)` | proved, unconditionally |
 | GL26 Lemma A.4, affine case (the recollement `D(A[1/f]) → D(A) → D_Z(A)`) | every field constructed, from Stacks 0E55 |
 | weak approximability for qcqs schemes with support | reduced to named inputs (open/closed glue now package-free; satisfiability of its inputs not yet shown); the finite-support affine base is vacuous until a refuted input is replaced |
-| the remaining numbered results of GL26 | stated over Noetherian schemes, not proved |
+| the remaining numbered results of GL26 | stated over Noetherian schemes, or over the abstract interface of `Paper/`, not proved; not yet stated over algebraic spaces |
+| foundation for full generality | AxiomMath/Stacks mapped and audited against GL26 §2.2–2.4 (wave 4); toolchain migrated to Lean/Mathlib v4.35.0 to match it; the dependency and the algebraic-space layer `FourierMukai/Spaces/` are wave 5 |
 
 The result-by-result status of both papers, in the numbering of the current
 manuscripts, is in [`results/COVERAGE.md`](results/COVERAGE.md); the orchestration
@@ -159,12 +175,16 @@ with status `P` proved here, `N` derived from a stated Neeman input, `S` supplie
 by AxiomMath/Stacks, `R` bibliographic and not used.  The policy is in
 [`results/STACKS_POLICY.md`](results/STACKS_POLICY.md).
 
-AxiomMath/Stacks cannot be imported here: it pins Lean and Mathlib 4.35.0 and
-ships no build artifacts.  If it should enter Mathlib, the update is mechanical.
-Each interface field is replaced by the imported declaration, its `S` row becomes
-a `P` row, and the theorems that took the field lose that hypothesis.  No proof
-here is written against Axiom's names, only against the statements recorded in the
-interface.
+AxiomMath/Stacks pins Lean and Mathlib 4.35.0 and ships no build artifacts.  The
+repository moved to 4.35.0 in wave 4 so that AxiomMath can be imported as a Lake
+dependency; its build products are produced once by the orchestrator and shared
+with the workers (`results/SWARM.md`).  Once imported, each interface field is
+discharged by the AxiomMath declaration that
+[`results/AXIOMMATH_TAGS.md`](results/AXIOMMATH_TAGS.md) names for it (most after
+instantiating the field's free signature with AxiomMath's functors), its `S` row
+becomes a theorem, and the theorems that took the field lose that hypothesis.
+Neeman's "compact implies perfect" is AxiomMath's 09M8, proved for spaces, so that
+assumption can then be dropped too.
 
 ### Generation is zero detection
 
@@ -296,9 +316,22 @@ a standalone challenge library and a `comparator` run.
    endpoint, but not proved from scratch; the truncation induction fails because
    brutal truncation is not homotopy-functorial at the boundary
    (`Scheme/StupidTruncCounterexample.lean`).
-5. **The rest of GL26.**  Beyond the affine case: separated Noetherian bases,
-   then algebraic spaces, which need the Stacks library; and the numbered results
-   1.2, 1.3, 1.6, 1.7, 12.3, 12.2 and 6.18.
+5. **The rest of GL26, over algebraic spaces.**  The numbered results 1.2, 1.3,
+   1.6, 1.7, 12.3, 12.2 and 6.18 are stated only over the abstract interface of
+   `Paper/` (`theorem_12_3` even carries two `True` hypotheses, a rule violation
+   that the restatement over spaces removes).  The plan: import AxiomMath, build
+   the algebraic-space layer (`D_qc`, GL26's `f`-perfect and `f`-quasi-perfect,
+   integral transforms `Φ_K`), state the headline results there, and prove them on
+   the categorical engine.  What AxiomMath lacks is listed in
+   [`results/AXIOMMATH_MAP.md`](results/AXIOMMATH_MAP.md), part C: integral
+   transforms, weak approximability, Neeman's `f^!`, monoidality of `Lf^*` on
+   `D_qc` (conditional there), the closed symmetric monoidal structure and the
+   coherator on `D_qc`, `f^×` base change over non-affine bases, and a bridge
+   between AxiomMath's compactness and `IsCompactAb`.
+6. **Neeman's weak approximability for affine schemes with support, proved.**  The
+   maintainer's goal for wave 5: `D_{V(I)}(A-Mod)` weakly approximable for every
+   finitely generated `I` with no named input, then transported to AxiomMath's
+   `D_qc,Z(Spec A)` as the base case of LP26 Corollary 1.2.
 
 ## Building
 
@@ -338,8 +371,8 @@ Allow 300 seconds per module: the first `import Mathlib` in a process reads abou
 | `FourierMukai/Examples/` | a non-vacuous instantiation on Mathlib's derived category |
 | `StatementCheck.lean` | the pinned statement surface, 17 declarations |
 | `manuscripts/` | the current LaTeX of GL26 and LP26 (unpublished; the repository is private); replaced whenever the maintainer uploads a new version, see `manuscripts/README.md` |
-| `results/` | `AFFINE.md` (the verification chain, one row per cited input), `ASSUMPTIONS.md` (what is assumed and what would discharge it), `VERIFICATION.md` (the build and statement check, measured), `CI_PERFORMANCE.md` (where CI's time goes, and the three ways to cut it), `SCHEMES.md`, `GL26_SCHEME_DEPENDENCE.md`, `WEAK_APPROX.md`, `MATHLIB_INVENTORY.md`, `STACKS_POLICY.md`, `STACKS_PORTABILITY.md`, `REPORT.md`, `INTEGRATION.md` |
-| `scripts/` | `build.sh`, `check_statements.sh` |
+| `results/` | `AXIOMMATH_MAP.md` (GL26's notions and functors against AxiomMath/Stacks, with fidelity verdicts, gaps and build cost), `AXIOMMATH_TAGS.md` (every cited Stacks tag against AxiomMath), `AFFINE.md` (the verification chain, one row per cited input), `ASSUMPTIONS.md` (what is assumed and what would discharge it), `VERIFICATION.md` (the build and statement check, measured), `CI_PERFORMANCE.md` (where CI's time goes, and the three ways to cut it), `SCHEMES.md`, `GL26_SCHEME_DEPENDENCE.md`, `WEAK_APPROX.md`, `MATHLIB_INVENTORY.md`, `STACKS_POLICY.md`, `STACKS_PORTABILITY.md`, `REPORT.md`, `INTEGRATION.md` |
+| `scripts/` | `build.sh`, `check_statements.sh`, `swarm/` (the orchestrator's branch verification), `axiommath/` (import-closure and tag-map scripts) |
 
 ## How the work was produced
 
