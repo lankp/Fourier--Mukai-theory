@@ -207,6 +207,7 @@ orchestrator can discharge their inputs in `SpacesVerified` at merge.
 | `wave7/spaces-compact-generation` (`session_0111iGd895xp83khYFFveVy2`) | high | GL26 Lemma A.9 / Neeman 3.2(iii) over qcqs spaces from AxiomMath 0AEC, 0AED, 09M8, 09SR (replaces OPEN_INPUTS 2.10) |
 | `wave7/spaces-base-change` (`session_0111iGd9Cxes2MsiML9Zjf5L`) | high | `PullPushData` for spaces (0D6D, 0D6E, 07A6; removes `DerivedPseudofunctorInput` for spaces) and GL26 Lemmas 7.12, 7.17, 6.11, 10.1 over spaces (08IR, 08IN, 08EU) |
 | `wave7/spaces-statements` (local subagent in the orchestrator's container) | high | state GL26 1.2, 1.3, 1.6, 1.7, 6.18, 12.2, 12.3 over `Spaces`, replacing the `Paper/` interface targets; launched 26 Nov after the maintainer confirmed the current GL26 TeX is the one shared earlier, which is only in the orchestrator's session (not in the repository) |
+| `wave7/prune-named-inputs` | medium | delete the conditional results whose named non-Stacks inputs are marked delete / being removed / false in `OPEN_INPUTS.md` (maintainer's rule: no assumptions or unproven parts except AxiomMath/Stacks); pinned ones listed for the orchestrator |
 
 Order after wave 7: the qcqs induction for supported weak approximability over spaces
 (LP26 Cor 1.2) once the affine base and Lemma A.9 are in; then GL26 §§3–6 over spaces.
