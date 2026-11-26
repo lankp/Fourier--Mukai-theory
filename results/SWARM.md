@@ -212,24 +212,20 @@ orchestrator can discharge their inputs in `SpacesVerified` at merge.
 Order after wave 7: the qcqs induction for supported weak approximability over spaces
 (LP26 Cor 1.2) once the affine base and Lemma A.9 are in; then GL26 §§3–6 over spaces.
 
-## Wave 8 (planned): LP26 in full generality
+## Wave 8 (prepared; briefs in `results/swarm/wave8/`): LP26 in full generality
 
-Maintainer, 26 November 2026: focus on LP26 in full generality (and the literature it
-needs) before GL26.  Wave 8 finishes LP26 over algebraic spaces, on the `Spaces` layer and
-the wave 7 results (affine base, GL26 Lemma A.9):
+Launches when wave 7 is closed and the repository cleaned up.  Order of need: the universe
+bridge and the preferred class first, then §5, then Corollary 1.2.
 
-| task | goal |
-|---|---|
-| `wave8/lp26-section5` | LP26 Definition 5.3 (`def:wa_spaces`) and Lemmas 5.5 (`lem:compact_ext_vanishing`), 5.6 (`lem:perf_vanishing`), 5.7 (`lem:qcqs_open_pushforward`), 5.9 (`lem:characterize_T-_c`) over algebraic spaces |
-| `wave8/lp26-recollement` | LP26 Proposition 5.8 (`prop:A8`): the open–closed recollement of `D_qc,Z` over a qcqs space, from AxiomMath |
-| `wave8/lp26-corollary-1-2` | LP26 Corollary 1.2 (`cor:weak_approx_spaces`): the induction over qcqs algebraic spaces, from Theorem 1.1, the affine base and the two tasks above |
+| task | effort | goal |
+|---|---|---|
+| `wave8/universe-bridge` | high | LP26 Thm 1.1 and compactness with a coproduct universe independent of the Hom universe, so they apply to AxiomMath's `D(𝒪_X)` (Hom in `Type (u+1)`, sums over `Type u`) |
+| `wave8/neeman-approximability` | high | the part of Neeman's approximability needed for GL26 Lemma A.9's preferred-class clause over qcqs spaces, proved here |
+| `wave8/lp26-section5` (local, LP26 TeX) | high | LP26 Def 5.3, Lemmas 5.5–5.7, 5.9, Prop 5.8 over algebraic spaces |
+| `wave8/lp26-corollary-1-2` (local, after the others) | high | LP26 Corollary 1.2 over qcqs algebraic spaces with support |
 
-The LP26 TeX is the copy in the orchestrator's session uploads, confirmed current by the
-maintainer (26 November 2026); it is not in the repository, so the LP26 tasks run as local
-subagents in the orchestrator's container (like `wave7/spaces-statements`), or receive only
-statement numbers and labels.  The
-wave 7 GL26 tasks (`spaces-base-change`, `spaces-statements`) were already running when the
-order was set; they finish, and GL26 resumes after LP26.
+The LP26 TeX is the copy in the orchestrator's session uploads (current unless the maintainer
+says otherwise); tasks that need it run as local subagents.
 
 ## Log
 
