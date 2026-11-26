@@ -84,6 +84,10 @@ to you.
    documentation and mechanical refactor/prune workers with `effort: "medium"`
    (`create_session` parameter `effort`).  Applies to every future wave.
 
+13. **Public progress page**: regenerate `results/PROGRESS.md` with
+   `python3 scripts/progress.py` whenever a wave closes (and after any merge that
+   changes `COVERAGE.md`, the baseline or the SWARM log); commit it with the docs.
+
 ## Infrastructure
 
 * Repository: `lankp/Fourier--Mukai-theory` (lower-case alias
