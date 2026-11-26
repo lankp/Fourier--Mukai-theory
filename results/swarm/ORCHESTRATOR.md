@@ -79,6 +79,11 @@ to you.
    is an open item; plan waves to prove or delete them, and report results that
    still take one as conditional.
 
+12. **Worker effort** (26 November 2026, maintainer approved): launch workers that
+   write or repair Lean proofs with `effort: "high"`, and reading, triage, mapping,
+   documentation and mechanical refactor/prune workers with `effort: "medium"`
+   (`create_session` parameter `effort`).  Applies to every future wave.
+
 ## Infrastructure
 
 * Repository: `lankp/Fourier--Mukai-theory` (lower-case alias
