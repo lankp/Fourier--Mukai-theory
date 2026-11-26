@@ -4,7 +4,7 @@ You are a worker in a swarm formalizing Guisado Villalgordo–Lank, *Relative Fo
 
 The maintainer has directed that the whole repository now aims at the results **in their full generality as stated in the current GL26 and LP26 manuscripts**: for algebraic spaces, with `D_qc`, `Perf`, `D^b_coh`, `Lf^*`, `Rf_*`, `⊗^L` as in GL26 §2.2 (`sec:preliminaries_stacks`), which follows the Stacks Project's conventions. The abstract interfaces of the tree (`Paper/DerivedSetup.lean`, `FMSetup`, `StacksInterface`) are the categorical engine; they are no longer the target.
 
-The geometric foundation is **AxiomMath/Stacks** (https://github.com/AxiomMath/Stacks), a kernel-checked, `sorry`-free Lean formalization of the Stacks Project, with algebraic spaces (`AlgebraicGeometry.Space`, `IsAlgebraicSpace B S hS`, `AlgebraicSpaces B S hS`), `D(𝒪_X)` on the small étale site, `D_QCoh` (`QcohDerived`), perfect and pseudo-coherent objects, relative perfectness (Stacks 0DKN), compact generation of `D_qc` for qcqs spaces, derived duality for spaces, and Nagata compactification. It pins Lean **v4.35.0** and Mathlib **v4.35.0**; this repository is on v4.33.1 and is being migrated. The orchestrator pins AxiomMath/Stacks at commit `f56a316ddf7a930906d88b78d6f9a2668cffd0cf`.
+The geometric foundation is **AxiomMath/Stacks** (https://github.com/AxiomMath/Stacks), a kernel-checked, `sorry`-free Lean formalization of the Stacks Project, with algebraic spaces (`AlgebraicGeometry.Space`, `IsAlgebraicSpace B S hS`, `AlgebraicSpaces B S hS`), `D(𝒪_X)` on the small étale site, `D_QCoh` (`QcohDerived`), perfect and pseudo-coherent objects, relative perfectness (Stacks 0DKN), compact generation of `D_qc` for qcqs spaces, derived duality for spaces, and Nagata compactification. It pins Lean **v4.35.0** and Mathlib **v4.35.0**; this repository is on v4.35.0 (migrated by `wave4/toolchain-435`). The orchestrator pins AxiomMath/Stacks at commit `f56a316ddf7a930906d88b78d6f9a2668cffd0cf`.
 
 ## Before anything
 1. `cd` into the repository checkout and follow the git instructions of your task. Read `CLAUDE.md` (in particular the SEVEN verification steps, including step 5, non-vacuity), `results/SWARM.md`, `README.md`, `results/STACKS_POLICY.md`, `results/ASSUMPTIONS.md`, and the rows of `results/COVERAGE.md` relevant to your task.
@@ -14,7 +14,7 @@ The geometric foundation is **AxiomMath/Stacks** (https://github.com/AxiomMath/S
 ```bash
 [ -x "$HOME/.elan/bin/elan" ] || (curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none)
 python3 -c 'import zstandard' 2>/dev/null || pip install -q zstandard
-V=4.35.0   # or 4.33.1
+V=4.35.0   # the project version (4.33.1 before wave 4)
 mkdir -p ~/.elan/toolchains
 [ -x ~/.elan/toolchains/leanprover--lean4---v$V/bin/lean ] || (curl -sSfL https://releases.lean-lang.org/lean4/v$V/lean-$V-linux.tar.zst | python3 -c 'import sys,zstandard; zstandard.ZstdDecompressor().copy_stream(sys.stdin.buffer, sys.stdout.buffer)' | tar -x -C ~/.elan/toolchains && mv ~/.elan/toolchains/lean-$V-linux ~/.elan/toolchains/leanprover--lean4---v$V)
 export PATH="$HOME/.elan/bin:$PATH"; lean --version; lake exe cache get
