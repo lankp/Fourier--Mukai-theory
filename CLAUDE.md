@@ -142,6 +142,11 @@ The maintainer has delegated merging to the orchestrator session: work reaches
   axiom sets printed, the seven verification steps with outcomes, and any
   deviation from the paper's statement.  The orchestrator reads it, re-verifies,
   checks the statements against the manuscript, and merges or sends it back.
+* **After every wave** the orchestrator updates `README.md` (the module and line
+  counts, the Status table, the "What is proved" tables, "What is open" and the
+  Layout table) as well as `results/COVERAGE.md` and `results/SWARM.md`, so that the
+  README always describes the tree as merged.  This is the maintainer's standing
+  instruction.
 
 ## Swarm protocol
 

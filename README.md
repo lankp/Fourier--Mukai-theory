@@ -12,7 +12,7 @@ does not have: perfect complexes for rings, quasicoherent cohomology through the
 tilde functor, K-projective replacements, Le–Chen's splitting criterion, and the
 exceptional functors of the affine recollement.
 
-202 modules, about 50 000 lines.  There is no `sorry` except in nine declarations
+217 modules, about 54 000 lines.  There is no `sorry` except in nine declarations
 that are deliberately left as targets; see [What is stated but not
 proved](#what-is-stated-but-not-proved).
 
@@ -34,8 +34,17 @@ schemes, in the supported form `D_qc,Z(X)`.
 | GL26 Lemma 2.25 | proved from the inputs its own proof uses |
 | GL26 Lemma 2.26 | proved in categorical form; affine wrapper proved |
 | GL26 Lemma 5.4 | proved in six-functor form, modulo the cover square |
+| GL26, categorical results of §2.1, §7 and Appendices B, C (Lemmas 2.3, 2.5, 7.2, 7.4, 7.6, 7.9, 7.11, Lemma-Def 7.10, B.2, B.4, B.5, B.7, B.10, C.1) | proved (some in `Cat` rather than an arbitrary 2-category) |
+| GL26 Lemma 2.4 | proved from Stacks 09SN |
+| GL26 Lemmas 7.12 and 7.17 | proved over abstract pseudofunctor data (not yet wired into `Scheme/Duality.lean`) |
+| compactness of the regular module; weak approximability of `D(A-Mod)` and of `D_{V(f)}(A-Mod)` | proved, unconditionally |
+| GL26 Lemma A.4, affine case (the recollement `D(A[1/f]) → D(A) → D_Z(A)`) | every field constructed, from Stacks 0E55 |
 | weak approximability for qcqs schemes with support | reduced to named inputs; three of the four gluing inputs are done |
 | the remaining numbered results of GL26 | stated over Noetherian schemes, not proved |
+
+The result-by-result status of both papers, in the numbering of the current
+manuscripts, is in [`results/COVERAGE.md`](results/COVERAGE.md); the orchestration
+of the work is in [`results/SWARM.md`](results/SWARM.md).
 
 ## What is proved
 
@@ -84,6 +93,14 @@ declarations are pinned in
 | Lemma 2.26, convolution | `AffineConvolution`, `GL26OtherTargets` | the derived cube, Stacks 08IN and 08IR, and one monoidal compatibility, packaged as `CorrectedConvolutionData` |
 | Lemma 5.4, the external tensor of compact generators generates the product | `Lemma54` | the cover square (flat base change, conservativity, the perfect/compact calculus).  The argument itself is proved in six-functor form |
 | Neeman 3.2(iv), affine supported base | `PrincipalNeemanM1`, `IdealNeemanM1`, `AffineSupportedSchemeBaseM1` | for a principal closed support, nothing (compactness of the regular module is proved in `RegularCompact`); for finite `V(I)` and `IsAffine X`, five named tagged inputs |
+
+| Lemma 2.3, iso-loci of (tri)natural transformations | `Coproduct`, `Triangulated`, `Thickness`, `EssentiallyDense` | nothing |
+| Lemma 2.4, `G` compactly generates iff `⟨G⟩‾ = T` | `Lemma24` | Stacks 09SN (`Stacks09SN`); the direction `⟨G⟩‾ = T ⇒` is unconditional |
+| Lemma 2.5, equivalences detected on compacts | `Lemma25` | nothing (compactness is `IsCompactAb`; see `CompactnessAudit` for the earlier vacuous rendering) |
+| Lemmas 7.2, 7.4, 7.6, 7.9, 7.11, Lemma-Definition 7.10, Lemma C.1 (mates, conjugates, adjoint equivalences, units) | `Mates`, `MatesCalculus`, `AdjunctionUnits` | nothing; in `Cat` (C.1 (1) in any bicategory) |
+| Lemmas 7.12, 7.17 and the base-change maps of 7.13–7.15 | `BaseChangeMates` | nothing, over abstract pseudofunctor data (`PullPushData`) |
+| Lemmas B.2, B.4, B.5, B.7, B.10 (the 2-categories `Trans`, `Triang`) | `TransTwoCategory`, `AppendixB` | nothing |
+| Lemma A.4, affine case | `AffineJUpperConstruction` and the `AffineRecollement*` modules | Stacks 0E55; unconditional when coextension of scalars is right exact |
 
 ### What is stated but not proved
 
@@ -298,8 +315,8 @@ Allow 300 seconds per module: the first `import Mathlib` in a process reads abou
 | path | contents |
 |---|---|
 | `WeakApprox/` | LP26: Sections 2–4 and Theorem 1.1, 45 modules |
-| `FourierMukai/Scheme/` | the scheme and affine layer, the scheme-level statement layer, and the affine theorems, 146 modules |
-| `FourierMukai/Prelim/` | triangulated-category and 2-categorical foundations |
+| `FourierMukai/Scheme/` | the scheme and affine layer, the scheme-level statement layer, and the affine theorems, 149 modules |
+| `FourierMukai/Prelim/` | triangulated-category and 2-categorical foundations, and the categorical results of GL26 §2.1, §7 and Appendices B, C, 15 modules |
 | `FourierMukai/Paper/` | the early algebraic-space interface, its targets, and the interface audit |
 | `FourierMukai/Examples/` | a non-vacuous instantiation on Mathlib's derived category |
 | `StatementCheck.lean` | the pinned statement surface, 17 declarations |
@@ -326,6 +343,14 @@ abelian varieties) was removed after reading it at the source, a construction of
 `iShriek` was downgraded from proved to conditional on an instance that fails for
 `A = ℤ` and `f = 2`, and three times a member's reading of a paper corrected the
 brief it had been given.
+
+Since 25 November 2026 the work is organised as a swarm of Claude Code sessions
+([`results/SWARM.md`](results/SWARM.md)): an orchestrator session splits the queue in
+[`results/COVERAGE.md`](results/COVERAGE.md) into waves of independent tasks, each
+worker session proves its task on its own branch, and the orchestrator re-runs the
+seven checks of [`CLAUDE.md`](CLAUDE.md) (including non-vacuity of hypotheses) on
+the merge, reads each statement against the manuscript, and only then merges into
+`formalization`.  The task briefs are in [`results/swarm/`](results/swarm/).
 
 ## Provenance
 
