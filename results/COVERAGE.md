@@ -98,7 +98,7 @@ absent.
 
 | # | label | status | note |
 |---|---|---|---|
-| Def 4.1 | `def:relative_perf_stacks` | D | `IsRelativelyPerfect`, over the interface |
+| Def 4.1 | `def:relative_perf_stacks` | D (over algebraic spaces: `Spaces/RelativePerfect.lean` `IsRelativelyPerfect`, wave 6) | `IsRelativelyPerfect`, over the interface |
 | Lem 4.3 | `lem:finite_coh_dim_implies_restriction_to_bounded` | — | |
 | Lem 4.4 | `lem:quasi_affine_reflects_boundedness` | — | |
 | Prop 4.5 | `prop:relative_perfect_smooth_locality_ascent` | — | |
@@ -110,7 +110,7 @@ absent.
 
 | # | label | status | note |
 |---|---|---|---|
-| Def 5.1 | `def:quasi_perf` | D | `IsQuasiPerfect` |
+| Def 5.1 | `def:quasi_perf` | D (over algebraic spaces: `Spaces/RelativePerfect.lean` `IsQuasiPerfect`, wave 6) | `IsQuasiPerfect` |
 | Lem 5.3 | `lem:quasi-perfect_bounded` | H | `Scheme/StacksInput.lean` |
 | Lem 5.4 | `lem:neeman2023cor5_10` | C | `Scheme/Lemma54.lean`: the cover argument in six-functor form; residue is the cover square (flat base change, conservativity, perfect/compact calculus) |
 | Prop 5.6 | `prop:preservation_of_perfect` | — | a lemma in the arXiv version |
