@@ -208,6 +208,13 @@ The maintainer has delegated merging to the orchestrator session: work reaches
   `scripts/progress.py`); superseded files moved to `results/archive/`, finished briefs to
   `results/swarm/archive/`; scratch files, stale branches' leftovers and dead code removed.
   `python3 scripts/check_docs.py` must report no problem.  Wording stays short and plain.
+* **Handoff** (maintainer, 26 November 2026): anything the orchestrator keeps outside the
+  repository (scratchpad files, uploads, background processes, scheduled tasks, local
+  subagents) that a new orchestrator session would need is shared with it.  Reusable tools go
+  into `scripts/`; the rest is listed in `results/swarm/HANDOFF.md`, kept current whenever such
+  an item starts, ends or changes; private items (the manuscripts, other private material) are
+  never committed and are passed to the new session by session message.  A new orchestrator
+  reads `HANDOFF.md` first.
 * **Next wave** (maintainer, 26 November 2026): as soon as a wave is closed (and cleaned up,
   above), the
   orchestrator prepares the next one from the top of `results/TODO.md` (briefs in

@@ -139,6 +139,12 @@ to you.
   `results/ASSUMPTIONS.md` are routine (parallel appends); keep both sides.
 * Shallow clones may need `--depth=200` to find merge bases.
 
+## Handoff
+
+Read [`HANDOFF.md`](HANDOFF.md) first: what the previous orchestrator kept outside the
+repository (background builds, scheduled tasks, uploads, local clones) and how to redo it.
+Keep it current; private items reach a successor only by session message.
+
 ## Current state
 
 See the end of `results/SWARM.md` (the log) and its current wave section.  At the
