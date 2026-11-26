@@ -29,12 +29,15 @@ the end.
 
 | | P | C | H | T | D | — | total |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| theorems, propositions, corollaries, lemmas | 16 | 7 | 15 | 14 | – | 64 | 116 |
+| theorems, propositions, corollaries, lemmas | 17 | 6 | 15 | 14 | – | 64 | 116 |
 | definitions, setups, lemma-definitions | 1 | – | – | – | 13 | 5 | 19 |
 
-Sixteen results are proved outright (Lemmas 2.3, 2.5, 7.2, 7.4, 7.6, 7.9, 7.11, 7.12,
-7.17, 10.2, B.2, B.4, B.5, B.7, B.10, C.1; 10.2 over abstract data; 7.12 and 7.17 over abstract pseudofunctor data; 7.4, 7.6, 7.9 and C.1 (2) in `Cat`), as is Lemma-Definition 7.10 (in `Cat`), five conditionally (Lemmas 2.4, 2.25, 2.26, 5.4, and A.4 in the
-affine case).  Lemma 2.5 was briefly vacuous on 25 November 2026 and has been re-proved (see its row).  The 14 target rows are 10 distinct targets (1.2 = 12.9, 1.3 = 6.2 + 6.8,
+Seventeen results are proved outright (Lemmas 2.3, 2.4 (Stacks 09SN proved from AxiomMath, wave 6), 2.5, 7.2, 7.4, 7.6, 7.9, 7.11, 7.12,
+7.17, 10.2, B.2, B.4, B.5, B.7, B.10, C.1; 10.2 over abstract data; 7.12 and 7.17 over abstract pseudofunctor data; 7.4, 7.6, 7.9 and C.1 (2) in `Cat`), as is Lemma-Definition 7.10 (in `Cat`), four conditionally (Lemmas 2.25, 2.26, 5.4, and A.4 in the
+affine case).  Over algebraic spaces (`Spaces/`, on AxiomMath's definitions) GL26 §2.2's
+notions (`D_qc`, `D^b_coh`, `Perf`, support, `Lf^* ⊣ Rf_*`, `⊗^L`) and Defs 4.1, 5.1 are
+defined, and `SpacesVerified` proves every AxiomMath input they use (06UQ, 08F4, 08F5,
+08FA(1)), so that layer assumes nothing.  Lemma 2.5 was briefly vacuous on 25 November 2026 and has been re-proved (see its row).  The 14 target rows are 10 distinct targets (1.2 = 12.9, 1.3 = 6.2 + 6.8,
 1.6 = 10.13, 1.7 = 11.4), none proved.  Sections 3, 4, 6, 8, 9, 10, 11 and 12
 have no proved result: everything there is a target, an interface field, or
 absent.
@@ -56,7 +59,7 @@ absent.
 | # | label | status | where | note |
 |---|---|---|---|---|
 | Lem 2.3 | `lem:subcat_wher_nat_is_iso_is_closed_under_coprod_and_cofacts` | P | `Prelim/Coproduct.lean` (1), `Prelim/Triangulated.lean` + `Prelim/Thickness.lean` (2), `Prelim/EssentiallyDense.lean` (3) | (1) assumes only the one coproduct used |
-| Lem 2.4 | `lem:localizing_iff_cpt_gen` | C (Stacks only) | `Prelim/Lemma24.lean` (`lemma_2_4`) | from the tagged Stacks input `Tag09SN` (`Prelim/Stacks09SN.lean`, AxiomMath's `exists_isHomotopyColimit_of_compactlyGenerated`) and `IsCompactAb G`; ⟨G⟩‾ = T ⇒ G generates is unconditional; "T compactly generated" not needed; Neeman's Bousfield localization no longer used |
+| Lem 2.4 | `lem:localizing_iff_cpt_gen` | P | `Spaces/Stacks/Corollaries.lean` (`Spaces.Stacks.lemma_2_4`, pinned, wave 6), from `Prelim/Lemma24.lean` (`lemma_2_4`) with Stacks 09SN proved from AxiomMath (`Spaces.Stacks.tag09SN`); the paper's assumption that `C` is compactly generated is not needed.  Before wave 6: from the tagged Stacks input `Tag09SN` (`Prelim/Stacks09SN.lean`, AxiomMath's `exists_isHomotopyColimit_of_compactlyGenerated`) and `IsCompactAb G`; ⟨G⟩‾ = T ⇒ G generates is unconditional; "T compactly generated" not needed; Neeman's Bousfield localization no longer used |
 | Lem 2.5 | `lem:equivalence_or_fully_faithful_via_compacts` | P | `Prelim/Lemma25.lean` (`lemma_2_5`), with "singly compactly generated" = `IsCompactAb G` ∧ localizing generation; `lemma_2_5_of_tag09SN` in the paper's zero-detection form, from 09SN.  Re-rendered 25 Nov 2026 after the earlier version was found vacuous (`Prelim/CompactnessAudit.lean`); hypotheses shown satisfiable (`singlyCompactlyGenerated_smallRingObject`) |
 | Rmk 2.6 | `rmk:equivalences_induced` | H | `Scheme/Inputs.lean`, `GL26Theorem12Reduction.lean` | weak approximability (Neeman 3.2), coherence (Neeman), CHNS Thm B as proposition parameters |
 | Rmk 2.7 | `rem:rel_perfect_is_free` | H | `TransformPreservationForcesRelativePerfect` | |

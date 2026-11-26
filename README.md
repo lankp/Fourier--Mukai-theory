@@ -12,7 +12,7 @@ does not have: perfect complexes for rings, quasicoherent cohomology through the
 tilde functor, K-projective replacements, Le–Chen's splitting criterion, and the
 exceptional functors of the affine recollement.
 
-228 modules, about 57 000 lines.  There is no `sorry` except in nine declarations
+247 modules, about 59 000 lines.  There is no `sorry` except in nine declarations
 that are deliberately left as targets; see [What is stated but not
 proved](#what-is-stated-but-not-proved).
 
@@ -44,13 +44,13 @@ schemes, in the supported form `D_qc,Z(X)`.
 
 | | |
 |---|---|
-| LP26, the whole categorical layer (Sections 2–4 and Theorem 1.1) | proved; **Theorem 1.1 with exactly the paper's hypotheses** (`PaperHypothesesW6.theorem_1_1_paper`, pinned, wave 6): only Stacks 09SR assumed; compactly generated `t`-structures and BNP Cor 3.10(1) proved |
-| LP26 Theorem 1.1, affine case | the large-model endpoints `affine_theorem_1_1_unconditional`, `affine_theorem_1_1_stacks07LT` are **proved vacuous** for every nontrivial ring (`RefuteLargeCoproducts`: `¬ HasCoproducts.{u+1} (AffineD A)`, wave 6) and unpinned; the `IsGenerator` endpoints `SetupMainMinimal.theorem_1_1`, `affine_theorem_1_1_small` are proved vacuous at `ℤ` (`RefuteIntGenerator*`); LP26 Thm 1.1 stands as `PaperSetupMainMinimal.theorem_1_1` (zero-detecting generator), with the paper-hypotheses form in progress (wave 6) |
+| LP26, the whole categorical layer (Sections 2–4 and Theorem 1.1) | proved; **Theorem 1.1 with exactly the paper's hypotheses and no Stacks hypothesis** (`Spaces.Stacks.theorem_1_1`, pinned, wave 6: Stacks 09SR proved from AxiomMath); compactly generated `t`-structures and BNP Cor 3.10(1) proved |
+| LP26 Theorem 1.1, affine case | the large-model endpoints `affine_theorem_1_1_unconditional`, `affine_theorem_1_1_stacks07LT` are **proved vacuous** for every nontrivial ring (`RefuteLargeCoproducts`: `¬ HasCoproducts.{u+1} (AffineD A)`, wave 6) and unpinned; the `IsGenerator` endpoints `SetupMainMinimal.theorem_1_1`, `affine_theorem_1_1_small` are proved vacuous at `ℤ` (`RefuteIntGenerator*`); LP26 Thm 1.1 stands as `PaperSetupMainMinimal.theorem_1_1` (zero-detecting generator) and, with the paper's hypotheses, as `Spaces.Stacks.theorem_1_1` (row above) |
 | GL26 Lemma 2.25 | proved from the inputs its own proof uses |
 | GL26 Lemma 2.26 | proved in categorical form; affine wrapper proved |
 | GL26 Lemma 5.4 | proved in six-functor form, modulo the cover square |
 | GL26, categorical results of §2.1, §7 and Appendices B, C (Lemmas 2.3, 2.5, 7.2, 7.4, 7.6, 7.9, 7.11, Lemma-Def 7.10, B.2, B.4, B.5, B.7, B.10, C.1) | proved (some in `Cat` rather than an arbitrary 2-category) |
-| GL26 Lemma 2.4 | proved from Stacks 09SN |
+| GL26 Lemma 2.4 | proved, unconditionally (`Spaces.Stacks.lemma_2_4`, pinned: Stacks 09SN proved from AxiomMath, wave 6) |
 | GL26 Lemmas 7.12 and 7.17 | proved over abstract pseudofunctor data, and for `Scheme/Duality.lean`'s base-change maps from one named input (`DerivedPseudofunctorInput`, Lipman 3.6.2) |
 | GL26 Lemmas 6.11, 10.1, 10.2 | 6.11 and 10.1 proved in six-functor form from Stacks 08IR, 08EU/08IN; 10.2 proved with no input |
 | compactness of the regular module; weak approximability of `D(A-Mod)` and of `D_{V(f)}(A-Mod)` | proved, unconditionally |
@@ -59,7 +59,7 @@ schemes, in the supported form `D_qc,Z(X)`.
 | Neeman 2024 Thm 3.2 | no longer assumed: (i) proved for `D(A)`; the Neeman inputs deleted from the tree (wave 5); (iii) for schemes/spaces open |
 | weak approximability for qcqs schemes/spaces with support | open: transport of the affine base to AxiomMath's model, then the induction (wave 6+) |
 | the remaining numbered results of GL26 | stated over Noetherian schemes, or over the abstract interface of `Paper/`, not proved; not yet stated over algebraic spaces |
-| foundation for full generality | AxiomMath/Stacks mapped and audited against GL26 §2.2–2.4 (wave 4); toolchain migrated to Lean/Mathlib v4.35.0 to match it; the dependency and the algebraic-space layer `FourierMukai/Spaces/` are wave 5 |
+| foundation for full generality | AxiomMath/Stacks pinned as a Lake dependency; the algebraic-space layer `Spaces/` (wave 6): GL26 §2.2's `D_qc`, `D^b_coh`, `Perf`, support, `Lf^* ⊣ Rf_*`, `⊗^L`, Defs 4.1 and 5.1, integral transforms `Φ_K`, on AxiomMath's definitions; `SpacesVerified/` proves each AxiomMath input of that layer (06UQ, 08F4, 08F5, 08FA(1)), so it assumes nothing |
 
 A generated summary of progress (results by status, pinned theorems and their axioms, tasks merged) is in [`results/PROGRESS.md`](results/PROGRESS.md), produced by `scripts/progress.py`.
 
@@ -71,9 +71,13 @@ of the work is in [`results/SWARM.md`](results/SWARM.md).
 
 Everything in this section is free of `sorry` and depends only on `propext`,
 `Classical.choice` and `Quot.sound`.  The audit is printed by
-[`FourierMukai/Audit.lean`](FourierMukai/Audit.lean), and 17 headline
-declarations are pinned in
-[`results/statement-baseline.txt`](results/statement-baseline.txt).
+[`FourierMukai/Audit.lean`](FourierMukai/Audit.lean), and the headline declarations
+are pinned in three baselines: 17 in
+[`results/statement-baseline.txt`](results/statement-baseline.txt) (Mathlib only), 7 in
+[`results/statement-baseline-spaces.txt`](results/statement-baseline-spaces.txt)
+(`Spaces`) and 5 in
+[`results/statement-baseline-verified.txt`](results/statement-baseline-verified.txt)
+(`SpacesVerified`).
 
 ### LP26, categorical layer (`WeakApprox/`)
 
@@ -115,7 +119,7 @@ declarations are pinned in
 | Neeman 3.2(iv), affine supported base | `PrincipalNeemanM1`, `IdealNeemanM1`, `AffineSupportedSchemeBaseM1` | for a principal closed support, nothing (compactness of the regular module is proved in `RegularCompact`); for finite `V(I)` and `IsAffine X`, named inputs, one of which is refuted (see "What is open") |
 
 | Lemma 2.3, iso-loci of (tri)natural transformations | `Coproduct`, `Triangulated`, `Thickness`, `EssentiallyDense` | nothing |
-| Lemma 2.4, `G` compactly generates iff `⟨G⟩‾ = T` | `Lemma24` | Stacks 09SN (`Stacks09SN`); the direction `⟨G⟩‾ = T ⇒` is unconditional |
+| Lemma 2.4, `G` compactly generates iff `⟨G⟩‾ = T` | `Lemma24`, `Spaces/Stacks/Corollaries` | nothing: Stacks 09SN is proved from AxiomMath (`Spaces.Stacks.tag09SN`); in the Mathlib-only layer it is the hypothesis `Tag09SN` |
 | Lemma 2.5, equivalences detected on compacts | `Lemma25` | nothing (compactness is `IsCompactAb`; see `CompactnessAudit` for the earlier vacuous rendering) |
 | Lemmas 7.2, 7.4, 7.6, 7.9, 7.11, Lemma-Definition 7.10, Lemma C.1 (mates, conjugates, adjoint equivalences, units) | `Mates`, `MatesCalculus`, `AdjunctionUnits` | nothing; in `Cat` (C.1 (1) in any bicategory) |
 | Lemmas 7.12, 7.17 and the base-change maps of 7.13–7.15 | `BaseChangeMates` | nothing, over abstract pseudofunctor data (`PullPushData`) |
@@ -124,6 +128,16 @@ declarations are pinned in
 
 | Lemmas 6.11, 10.1, 10.2 (the base-change cube of Setup 2.20) | `FMCube` | 6.11: Stacks 08IR; 10.1: 08IR and 08EU/08IN; 10.2: nothing |
 | Lemmas 7.12–7.17 for the base-change maps of `Duality.lean` | `DualityMates` | `DerivedPseudofunctorInput` (Lipman 3.6.2; GL26 Lemma 2.13), an open named input |
+
+### Algebraic-space layer (`Spaces/`, `SpacesVerified/`)
+
+| result | modules | what it takes as input |
+|---|---|---|
+| GL26 §2.2 over algebraic spaces: `D(X)`, `D_qc`, `D^b_qc`, `D^-_coh`, `D^b_coh`, `Perf`, support, `D_{qc,T}`; `Lf^*`, `Rf_*`, `⊗^L`, `Lf^* ⊣ Rf_*` (07A6) | `Spaces/Basic`, `Spaces/Categories`, `Spaces/Functors` | AxiomMath's definitions only |
+| GL26 Defs 4.1 (`f`-perfect) and 5.1 (`f`-quasi-perfect); integral transforms `Φ_K` | `Spaces/RelativePerfect`, `Spaces/IntegralTransform` | nothing |
+| `D_qc(X)` triangulated; `Lf^*`, `⊗^L`, `Rf_*` restricted to `D_qc` | `Spaces/AxiomMathInputs`, `SpacesVerified/Discharge` | nothing: 06UQ, 08F4, 08F5, 08FA(1) are proved by AxiomMath's theorems in `SpacesVerified` |
+| Stacks 09SR, 09SN; `IsCompactObject ↔ IsCompactAb`; weak generator ↔ `IsPaperGenerator` | `Spaces/Stacks/Tags`, `Spaces/Stacks/Bridges` | nothing |
+| LP26 Theorem 1.1 with the paper's hypotheses; GL26 Lemmas 2.4, 2.5 | `Spaces/Stacks/Corollaries` | nothing |
 
 ### What is stated but not proved
 
@@ -320,26 +334,25 @@ a standalone challenge library and a `comparator` run.
    What is left is that right adjoint without 0E55 (`RHom_A(A_f, -)` on unbounded
    complexes), and the identification of `jUpper` with `RHom(RΓ_Z A, -)`.
    `AffineJUpperCandidateRefuted` shows that the guess `jUpper = Rj_* Lj^*` is zero.
-3. **The `SetupMainMinimal` data from ring data.**  `AffineSetupInventory.lean`
-   packages what is left.  Neeman's preferred `t`-structure equivalence and the
-   normalized weak approximation data do not by themselves give the literal aisle
-   equalities that the Setup 4.4 fields ask for, so those have to be checked.
+3. **The `SetupMainMinimal` data from ring data: superseded.**  LP26 Theorem 1.1 is
+   proved with the paper's own hypotheses (`Spaces.Stacks.theorem_1_1`), so the
+   Setup 4.4 data no longer has to be built by hand; `AffineSetupInventory.lean` was
+   deleted in wave 6.
 4. **066S without Neeman.**  It is derived from Neeman, which is enough for the
    endpoint, but not proved from scratch; the truncation induction fails because
    brutal truncation is not homotopy-functorial at the boundary
    (`Scheme/StupidTruncCounterexample.lean`).
-5. **The rest of GL26, over algebraic spaces.**  The numbered results 1.2, 1.3,
-   1.6, 1.7, 12.3, 12.2 and 6.18 are stated only over the abstract interface of
-   `Paper/` (`theorem_12_3` even carries two `True` hypotheses, a rule violation
-   that the restatement over spaces removes).  The plan: import AxiomMath, build
-   the algebraic-space layer (`D_qc`, GL26's `f`-perfect and `f`-quasi-perfect,
-   integral transforms `Φ_K`), state the headline results there, and prove them on
-   the categorical engine.  What AxiomMath lacks is listed in
-   [`results/AXIOMMATH_MAP.md`](results/AXIOMMATH_MAP.md), part C: integral
-   transforms, weak approximability, Neeman's `f^!`, monoidality of `Lf^*` on
-   `D_qc` (conditional there), the closed symmetric monoidal structure and the
-   coherator on `D_qc`, `f^×` base change over non-affine bases, and a bridge
-   between AxiomMath's compactness and `IsCompactAb`.
+5. **The rest of GL26, over algebraic spaces.**  The algebraic-space layer exists
+   (`Spaces/`, wave 6) and assumes nothing (`SpacesVerified/`), but the numbered
+   results 1.2, 1.3, 1.6, 1.7, 12.3, 12.2 and 6.18 are still stated only over the
+   abstract interface of `Paper/` (`theorem_12_3` even carries two `True` hypotheses, a
+   rule violation that the restatement over spaces removes).  Next: state them over
+   `Spaces`, then prove them on the categorical engine.  What AxiomMath lacks is
+   listed in [`results/AXIOMMATH_MAP.md`](results/AXIOMMATH_MAP.md), part C: weak
+   approximability, Neeman's `f^!`, monoidality of `Lf^*` on `D_qc` (conditional
+   there), the closed symmetric monoidal structure and the coherator on `D_qc`, and
+   `f^×` base change over non-affine bases.  (Integral transforms and the bridge
+   between AxiomMath's compactness and `IsCompactAb` were added in wave 6.)
 6. **Neeman 2024, Theorem 3.2, no longer assumed.**  Part (i) (compact ⇒
    perfect) is proved for `D(A-Mod)` with no input
    (`Stacks07LT.M4.perf_of_compact_unconditional`; the affine endpoint is
@@ -384,7 +397,8 @@ Allow 300 seconds per module: the first `import Mathlib` in a process reads abou
 ```bash
 lake build Spaces           # GL26's notions on AxiomMath's definitions (~2 000 AxiomMath modules, ~40 min)
 lake build SpacesVerified   # discharges the tagged AxiomMath inputs (~8 500 AxiomMath modules, ~6 h)
-scripts/check_statements.sh --spaces   # pinned statements of the AxiomMath-based libraries
+scripts/check_statements.sh --spaces     # pinned statements of `Spaces`
+scripts/check_statements.sh --verified   # pinned statements of `SpacesVerified`
 ```
 
 `SpacesVerified` needs about 14 GB of memory: one AxiomMath module
@@ -396,14 +410,14 @@ compile AxiomMath.
 
 | path | contents |
 |---|---|
-| `WeakApprox/` | LP26: Sections 2–4 and Theorem 1.1, 45 modules |
-| `FourierMukai/Scheme/` | the scheme and affine layer, the scheme-level statement layer, and the affine theorems, 153 modules |
+| `WeakApprox/` | LP26: Sections 2–4 and Theorem 1.1, 49 modules |
+| `FourierMukai/Scheme/` | the scheme and affine layer, the scheme-level statement layer, and the affine theorems, 159 modules |
 | `FourierMukai/Prelim/` | triangulated-category and 2-categorical foundations, and the categorical results of GL26 §2.1, §7 and Appendices B, C, 15 modules |
 | `FourierMukai/Paper/` | the early algebraic-space interface, its targets, and the interface audit |
 | `FourierMukai/Examples/` | a non-vacuous instantiation on Mathlib's derived category |
-| `Spaces/` | the algebraic-space layer on AxiomMath's definitions (GL26 §2.2 notions, integral transforms); tagged AxiomMath inputs in `Spaces/AxiomMathInputs.lean` |
+| `Spaces/` | the algebraic-space layer on AxiomMath's definitions (GL26 §2.2 notions, integral transforms), 11 modules; tagged AxiomMath inputs in `Spaces/AxiomMathInputs.lean`; 09SR, 09SN and the LP26/GL26 corollaries in `Spaces/Stacks/` |
 | `SpacesVerified/` | discharge of the tagged AxiomMath inputs; the unconditional statements over algebraic spaces |
-| `StatementCheck.lean` | the pinned statement surface, 17 declarations |
+| `StatementCheck.lean`, `StatementCheckSpaces.lean`, `StatementCheckVerified.lean` | the pinned statement surfaces: 17, 7 and 5 declarations |
 | `results/` | `AXIOMMATH_MAP.md` (GL26's notions and functors against AxiomMath/Stacks, with fidelity verdicts, gaps and build cost), `AXIOMMATH_TAGS.md` (every cited Stacks tag against AxiomMath), `AFFINE.md` (the verification chain, one row per cited input), `ASSUMPTIONS.md` (what is assumed and what would discharge it), `VERIFICATION.md` (the build and statement check, measured), `CI_PERFORMANCE.md` (where CI's time goes, and the three ways to cut it), `SCHEMES.md`, `GL26_SCHEME_DEPENDENCE.md`, `WEAK_APPROX.md`, `MATHLIB_INVENTORY.md`, `STACKS_POLICY.md`, `STACKS_PORTABILITY.md`, `REPORT.md`, `INTEGRATION.md` |
 | `scripts/` | `build.sh`, `check_statements.sh`, `swarm/` (the orchestrator's branch verification), `axiommath/` (import-closure and tag-map scripts) |
 

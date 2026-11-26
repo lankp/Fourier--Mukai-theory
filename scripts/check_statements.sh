@@ -17,10 +17,14 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 # `--spaces`: check the AxiomMath-based libraries instead (needs `lake build Spaces`).
+# `--verified`: check `SpacesVerified` (needs `lake build SpacesVerified`).
 file=StatementCheck.lean
 baseline=results/statement-baseline.txt
 if [ "${1:-}" = "--spaces" ]; then
   shift; file=StatementCheckSpaces.lean; baseline=results/statement-baseline-spaces.txt
+elif [ "${1:-}" = "--verified" ]; then
+  # `--verified`: the discharged AxiomMath inputs (needs `lake build SpacesVerified`).
+  shift; file=StatementCheckVerified.lean; baseline=results/statement-baseline-verified.txt
 fi
 out="${TMPDIR:-.scratch}/statement-check-$(basename "$file" .lean).out"
 mkdir -p "$(dirname "$out")"

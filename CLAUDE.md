@@ -54,10 +54,12 @@ lake build                              # FourierMukai, WeakApprox, StatementChe
 lake env lean FourierMukai/Prelim/Mates.lean   # one file
 scripts/check_statements.sh             # statement surface vs. baseline
 lake build Spaces                       # algebraic-space layer: also builds ~2 000 AxiomMath modules (~40 min) the first time
+scripts/check_statements.sh --spaces    # pinned statements of Spaces
 ```
 
 `lake build SpacesVerified` (full verification) compiles ~8 500 AxiomMath modules and
-needs ~14 GB of memory (add swap on a 16 GB machine); workers do not run it.
+needs ~14 GB of memory (add swap on a 16 GB machine); workers do not run it, nor
+`scripts/check_statements.sh --verified`, which needs it.
 
 In a cloud session, the environment `fourier--mukai-theory` installs all of this
 at start-up.  If `lean` is missing, see `results/SWARM.md` ("Environment").

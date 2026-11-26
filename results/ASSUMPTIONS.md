@@ -173,6 +173,21 @@ endpoint does not use it.
 
 ## 3. Stacks assumptions and the remaining work
 
+**Algebraic-space layer (`Spaces`): nothing assumed (26 November 2026).**  The four tagged
+AxiomMath inputs of `Spaces/AxiomMathInputs.lean` are proved in `SpacesVerified/Discharge.lean`
+by the AxiomMath theorems they name, with axioms `propext`, `Classical.choice`, `Quot.sound`
+(pinned: `scripts/check_statements.sh --verified`):
+
+| input | Stacks | AxiomMath theorem | status |
+|---|---|---|---|
+| `Tag06UQInput` | 06UQ | `AlgebraicGeometry.Space.isTriangulated_quasicoherentDerivedCategory` | P (`SpacesVerified.tag06UQ`) |
+| `Tag08F4Input` | 08F4 | `AlgebraicGeometry.Space.derivedQuasicoherent_smallEtaleDerivedModulePullback` | P (`SpacesVerified.tag08F4`) |
+| `Tag08F5Input` | 08F5 | `AlgebraicGeometry.Space.qcohDerived_smallEtaleDerivedTensor` | P (`SpacesVerified.tag08F5`) |
+| `Tag08FAInput` | 08FA (1) | `AlgebraicGeometry.Space.qcohDerived_derivedModulePushforward_obj` | P (`SpacesVerified.tag08FA`) |
+
+Stacks 09SR and 09SN are likewise theorems (`Spaces.Stacks.tag09SRPaper`, `tag09SN`);
+since 26 November `Tag09SRPaper C` takes `[IsTriangulated C]`, exactly as AxiomMath's 09SR.
+
 **Active recollement assumptions.**
 
 * **0A6R: no longer used.** The 0A6R route to `jUpper` (`AffineCechTensorData`,

@@ -1,0 +1,15 @@
+RelativeFM.SpacesVerified.tag06UQ : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Tag06UQInput B S hS
+RelativeFM.SpacesVerified.tag08F4 : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Tag08F4Input B S hS
+RelativeFM.SpacesVerified.tag08F5 : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Tag08F5Input B S hS
+RelativeFM.SpacesVerified.tag08FA : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Tag08FAInput B S hS
+@RelativeFM.SpacesVerified.Dqc_isTriangulated : ∀ {B : AlgebraicGeometry.BigFppfSite} {S : AlgebraicGeometry.Scheme}
+  {hS : B.Contains S} (X : AlgebraicGeometry.AlgebraicSpaces B S hS), (RelativeFM.Spaces.Dqc X).IsTriangulated
+'RelativeFM.SpacesVerified.tag06UQ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag08F4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag08F5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag08FA' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.Dqc_isTriangulated' depends on axioms: [propext, Classical.choice, Quot.sound]
