@@ -94,8 +94,6 @@ for f in \
   FourierMukai/Scheme/NeemanSmallApproximationM3.lean \
   FourierMukai/Scheme/NeemanSmallAisleGenerationM3.lean \
   FourierMukai/Scheme/AffineNeemanEndpointM3.lean \
-  FourierMukai/Scheme/AffineRecollementAssembly.lean \
-  FourierMukai/Scheme/AffineSetupInventory.lean \
   FourierMukai/Scheme/AffineJUpperAdjoint.lean \
   FourierMukai/Scheme/AffineSecondGluing.lean \
   FourierMukai/Scheme/AffineSecondGluingAssembly.lean \

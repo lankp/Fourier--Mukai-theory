@@ -19,7 +19,8 @@ Acta Math. 233 (2024), Definition 2.9, Corollary 2.8 and Theorem 3.2(iii)--(iv);
 Stacks Project Tag 09SR.
 
 `Scheme/OpenClosedGlue.lean` reduced the open/closed step of the qcqs induction
-for `NeemanSupportedWeakApproximability` to `NeemanCompactOpenClosedCompletionInput`:
+for `NeemanSupportedWeakApproximability` to `NeemanCompactOpenClosedCompletionInput`
+(deleted in wave 6 as superseded by this file):
 for **every** pair of standard endpoint approximation packages `WZ`, `WU` it asks
 for a recollement seed `I` together with
 
@@ -537,7 +538,7 @@ def OpenClosedFrameInput : Prop :=
       (DqcSupported V (openClosedSupport V Z)))
 
 /-- **The compact open/closed field of the qcqs induction**, from a frame and the
-per-category inputs.  Unlike `compact_open_closed_glue_of_completionInput`, the
+per-category inputs.  Unlike the deleted `compact_open_closed_glue_of_completionInput`, the
 geometric input does not depend on the two endpoint packages. -/
 theorem compact_open_closed_glue_of_frameInput
     (K : SupportedCategoryInput.{u}) (J : OpenClosedFrameInput.{u}) :

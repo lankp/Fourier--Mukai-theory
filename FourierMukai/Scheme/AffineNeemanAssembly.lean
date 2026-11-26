@@ -6,13 +6,11 @@ import Mathlib.CategoryTheory.Abelian.Projective.Ext
 /-!
 # Affine Neeman assembly, and an obstruction in the generation predicate
 
-The exact approximation-data assembly is provided by
-`RegularModuleApproximationInput.toWeakApproximationData`: its only residual
-inputs are a positive bound, compactness of the regular module, the repository's
-`IsGenerator` field, and approximation triangles. The standard-t-structure
-bound and negative-aisle Hom vanishing are filled from `AffineMain`.
+The approximation-data assembly `RegularModuleApproximationInput` was deleted in
+wave 6 (`results/OPEN_INPUTS.md` row 3.8): its `IsGenerator` field is false for
+`ℤ`.  The paper form is `RegularCompact.affine_satisfiesPaperWA`.
 
-The literal regular-generator target is nevertheless false for arbitrary rings.
+The literal regular-generator target is false for arbitrary rings.
 `IsGenerator` means separation of morphisms by the whole shift class, whereas
 Neeman and Lank--Pauwels use zero detection (`IsPaperGenerator`). Any nonzero
 class in `Ext^1(M,N)` gives a nonzero ghost for the regular module. For the
@@ -336,55 +334,6 @@ lemma not_regularGeneratorNeemanTarget_int : ¬ RegularGeneratorNeemanTarget ℤ
   rintro ⟨W, -, hG, -, -⟩
   exact no_weakApproximationData_ringObject_int W hG
 
-/-- The remaining inputs for assembling regular-module approximation data.
-The final field is precisely the approximation-triangle obligation; the other
-`WeakApproximationData` fields are discharged below by existing affine lemmas.
-No inhabitance of the strong `generates` field is claimed. -/
-structure RegularModuleApproximationInput (A : Type u) [CommRing A] where
-  bound : ℤ
-  bound_pos : 0 < bound
-  compact : IsCompactAb (ringObject A)
-  generates : IsGenerator (ringObject A)
-  approximates : ∀ F : AffineD A, (AffineD.standardTStructure A).le 0 F →
-    ∃ (E D : AffineD A) (f : E ⟶ F) (g : F ⟶ D) (h : D ⟶ E⟦(1 : ℤ)⟧),
-      Triangle.mk f g h ∈ distTriang (AffineD A) ∧
-      envelope (ringObject A) (-bound) bound E ∧
-      (AffineD.standardTStructure A).le (-1) D
-
-/-- Assemble regular-module approximation data. Only the four mathematical
-inputs above remain: a positive bound, compactness, the strong separation field,
-and approximation triangles. -/
-def RegularModuleApproximationInput.toWeakApproximationData
-    {A : Type u} [CommRing A] (I : RegularModuleApproximationInput A) :
-    WeakApproximationData (AffineD A) where
-  G := ringObject A
-  t := AffineD.standardTStructure A
-  A := I.bound
-  A_pos := I.bound_pos
-  G_compact := I.compact
-  G_generates := I.generates
-  G_mem_le := by
-    have hB := I.bound_pos
-    exact (AffineD.standardTStructure A).le_monotone (by omega) _
-      (ringObject_mem_standard_le_zero A)
-  hom_vanishing := by
-    have hB := I.bound_pos
-    intro Y hY f
-    exact ringObject_hom_zero_of_standard_le_neg_one A
-      ((AffineD.standardTStructure A).le_monotone (show -I.bound ≤ -1 by omega) _ hY) f
-  exists_triangle := I.approximates
-
-/-- Weak approximability from the exact residual regular-module inputs. -/
-theorem RegularModuleApproximationInput.satisfiesWA
-    {A : Type u} [CommRing A] (I : RegularModuleApproximationInput A) :
-    SatisfiesWA (AffineD A) := ⟨I.toWeakApproximationData⟩
-
-/-- The assembled data use the standard `t`-structure and regular generator. -/
-theorem RegularModuleApproximationInput.satisfiesStandardWA
-    {A : Type u} [CommRing A] (I : RegularModuleApproximationInput A) :
-    SatisfiesStandardWA (AffineD A) (AffineD.standardTStructure A) :=
-  ⟨I.toWeakApproximationData, rfl⟩
-
 end
 
 end Assembly
@@ -396,9 +345,6 @@ end Assembly
 #print axioms not_isGenerator_ringObject_int
 #print axioms no_weakApproximationData_ringObject_int
 #print axioms not_regularGeneratorNeemanTarget_int
-#print axioms RegularModuleApproximationInput.toWeakApproximationData
-#print axioms RegularModuleApproximationInput.satisfiesWA
-#print axioms RegularModuleApproximationInput.satisfiesStandardWA
 
 end
 

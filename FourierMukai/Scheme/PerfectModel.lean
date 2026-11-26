@@ -24,15 +24,10 @@ Three things are proved here, and one cited input is left.
 * `boundedFiniteProjectiveModel_mem_perf`: every bounded complex of finitely
   generated projective `A`-modules is perfect, for **every** commutative ring —
   no compactness, Noetherian hypothesis or resolution input (Stacks 066T).
-* `perf_iff_affineThickGenerated`: on `Spec A` the thick envelope of the
-  structure sheaf is the image of `Perf A`, under the derived affine dictionary,
-  from the explicit 06Z0 comparison together with shift, exactness and generator
-  coherence.  The bare comparison alone was insufficient.
-
-`BoundedProjectiveModelConverseInput` is the remaining input — the direction
-`Perf A → bounded finite projective model` — and `boundedProjectiveModelInput_of_converse`
-assembles `BoundedProjectiveModelInput` from it.  That direction is Stacks 07LT;
-it is not asserted proved.
+The off-path inputs `AffineAllSheavesBridgeInput` (with
+`perf_iff_affineThickGenerated`) and `BoundedProjectiveModelConverseInput` (with
+`boundedProjectiveModelInput_of_converse`) were deleted in wave 6
+(`results/OPEN_INPUTS.md` rows 3.7, 3.13).
 
 Found by a member of the Ultramath run `smwv1bkrk` (direction AF4).
 -/
@@ -269,46 +264,6 @@ theorem affineThickGenerated_eq :
     affineThickGenerated A = (ObjectProperty.singleton (affineUnitDerived A)).triangEnvelope := by
   rw [affineThickGenerated, affineUnitGenerators_eq_isoClosure,
     triangEnvelope_isoClosure_singleton]
-
-/-- **Exact residual input for the all-sheaves Perf bridge.**  The canonical
-Stacks 06Z0 comparison must be triangulated and compatible with integer shifts
-and with the regular-module generator.  The first field is the existing
-ordinary comparison; these further coherence fields are not asserted by that
-old interface. -/
-structure AffineAllSheavesBridgeInput
-    [(QuasicoherentCohomology A).IsTriangulated]
-    [(QuasicoherentCohomology A).IsStableUnderRetracts] where
-  /-- The ordinary comparison supplied by Stacks Lemma 36.3.5 (Tag 06Z0). -/
-  comparison : AffineCohomologyComparison A
-  /-- Shift compatibility of the canonical comparison. -/
-  commShift : (affineDerivedCohomologyEquivalence A comparison).functor.CommShift ℤ
-  /-- Exactness of the canonical comparison. -/
-  isTriangulated : (affineDerivedCohomologyEquivalence A comparison).functor.IsTriangulated
-  /-- Naturality at the regular module, again part of the canonical Stacks 06Z0
-  comparison rather than a new perfectness theorem. -/
-  ringObject : Nonempty ((affineDerivedCohomologyEquivalence A comparison).functor.obj
-    (ringObject A) ≅ affineUnitDerivedQC A)
-
-/-- **All-sheaves affine Perf bridge, modulo precisely the named 06Z0
-coherence input.**  Under `AffineAllSheavesBridgeInput`, `Perf A` is exactly
-the preimage of `affineThickGenerated A`. -/
-theorem perf_iff_affineThickGenerated
-    [(QuasicoherentCohomology A).IsTriangulated]
-    [(QuasicoherentCohomology A).IsStableUnderRetracts]
-    (H : AffineAllSheavesBridgeInput A) (X : DerivedCategory (ModuleCat A)) :
-    Perf A X ↔ affineThickGenerated A
-      (((affineDerivedCohomologyEquivalence A H.comparison).functor.obj X).obj) := by
-  let F := (affineDerivedCohomologyEquivalence A H.comparison).functor
-  letI : F.CommShift ℤ := H.commShift
-  letI : F.IsTriangulated := H.isTriangulated
-  obtain ⟨eG⟩ := H.ringObject
-  have hInternal : Perf A X ↔
-      (ObjectProperty.singleton (affineUnitDerivedQC A)).triangEnvelope (F.obj X) := by
-    rw [← triangEnvelope_singleton_eq_of_iso eG]
-    exact (mem_triangEnvelope_singleton_map_iff F (ringObject A) X).symm
-  rw [affineThickGenerated_eq]
-  exact hInternal.trans (mem_triangEnvelope_ι_iff
-    (QuasicoherentCohomology A) (affineUnitDerivedQC A) (F.obj X)).symm
 
 end AllSheavesBridge
 
@@ -662,21 +617,6 @@ theorem model_mem_perf (X : DerivedCategory (ModuleCat A))
     (H : Nonempty (BoundedFiniteProjectiveModel A X)) : Perf A X := by
   obtain ⟨H⟩ := H
   exact boundedFiniteProjectiveModel_mem_perf A X H
-
-/-- **Only the converse remains external.**  This is the `Perf ⇒ bounded
-finite-projective model` part of Stacks 09M1, using the strict model of 0657
-and the resolution/idempotent-completion arguments of 066R, 066S and 066T.
-The opposite implication is proved above and is not duplicated as input. -/
-structure BoundedProjectiveModelConverseInput (A : Type u) [CommRing A] where
-  /-- Produce a bounded finite-projective representative of a perfect object. -/
-  model_of_perf : ∀ X : DerivedCategory (ModuleCat A),
-    Perf A X → Nonempty (BoundedFiniteProjectiveModel A X)
-
-/-- The old `BoundedProjectiveModelInput` is now obtained from its converse
-alone; the forward implication is filled by the proved filtration theorem. -/
-theorem boundedProjectiveModelInput_of_converse (H : BoundedProjectiveModelConverseInput A) :
-    BoundedProjectiveModelInput A where
-  perf_iff_model X := ⟨H.model_of_perf X, model_mem_perf A X⟩
 
 end BoundedProjectiveApplication
 

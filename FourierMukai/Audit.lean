@@ -36,8 +36,6 @@ open RelativeFM
 -- Lemma 2.4 (`lem:localizing_iff_cpt_gen`), `Prelim/Lemma24.lean`:
 #print axioms RelativeFM.ObjectProperty.isLocalizingGenerator_iff_localizingClosure_eq_top
 #print axioms RelativeFM.isPaperGenerator_of_isLocalizingGenerator
-#print axioms RelativeFM.isLocalizingGenerator_of_isPaperGenerator
-#print axioms RelativeFM.isPaperGenerator_iff_isLocalizingGenerator
 #print axioms RelativeFM.isLocalizingGenerator_of_isPaperGenerator_of_tag09SN
 #print axioms RelativeFM.lemma_2_4
 #print axioms RelativeFM.singlyCompactlyGenerated_iff
@@ -163,8 +161,6 @@ open RelativeFM
 #print axioms RelativeFM.Neeman32Inputs.affine_neeman_3_2_i
 #print axioms RelativeFM.Neeman32Inputs.affine_neeman_3_2_ii
 -- Wave 5 (neeman-prune): endpoints that took Neeman 3.2(i) inputs (large model: no input; small: Stacks 09SR)
-#print axioms RelativeFM.affine_theorem_1_1_unconditional
-#print axioms RelativeFM.affine_satisfiesWA_of_setup
 #print axioms RelativeFM.affineCompactHomZeroAtTop
 #print axioms RelativeFM.compact_iff_dbcoh
 #print axioms RelativeFM.affine_theorem_1_1_small_of_tag09SR

@@ -58,9 +58,9 @@ not follow from the large one by the existing transport: `SmallHomM5` proves onl
 large ⇒ small for compactness (`isCompactAb_of_equivalence_large_to_small`); the
 direction needed here, small-Hom compactness ⇒ large-Hom compactness (coproducts
 indexed by `Type (u+1)`), is the unproved `liftCompact` parameter of
-`CapstoneM6.perfectToCompactInput_of_small`.  Proving it, or inhabiting
-`SmallHomM5.SmallFilteredFreeModelInput` / `SmallFiniteFreeImprovementInput`, would
-remove `h09`.
+`CapstoneM6.perfectToCompactInput_of_small`.  Proving it would remove `h09`.  (The
+small-model inputs `SmallHomM5.SmallFilteredFreeModelInput` /
+`SmallFiniteFreeImprovementInput`, never inhabited, were deleted in wave 6.)
 
 ## Difference from the paper's statement
 
@@ -79,7 +79,9 @@ Each of the following took `CompactPerfectInput A` or
 * large model, now with **no** hypothesis (from `AffineMain`, `PerfectField`):
   `affine_theorem_1_1_neeman_only` (pinned; LP26 Theorem 1.1,
   `thm:glueing_weak_approx`) → `affine_theorem_1_1_unconditional`;
-  `satisfiesWA_of_neemanCompactPerfectInput` → `affine_satisfiesWA_of_setup`;
+  `satisfiesWA_of_neemanCompactPerfectInput` → `affine_satisfiesWA_of_setup` (both
+  deleted in wave 6: they took `AffineDerivedCoproducts`, which is uninhabited for
+  `A ≠ 0`, `Scheme/RefuteLargeCoproducts.lean`);
   `affineCompactHomZeroAtTop_of_compactPerfectInput` → `affineCompactHomZeroAtTop`;
   `ringObject_isClassicalGeneratorOnCompacts_of_compactPerfectInput` →
   `ringObject_isClassicalGeneratorOnCompacts`;
@@ -220,53 +222,6 @@ theorem affineCompactHomZeroAtTop (A : Type u) [CommRing A] :
     AffineCompactHomZeroAtTop A := by
   intro X Y hX hY
   exact perf_eventuallyHomZero A (perf_of_isCompactAb A hX) (perf_of_isCompactAb A hY)
-
-section Gluing
-
-variable (A : Type u) [CommRing A]
-  (DZ : Type uZ) (DU : Type uU)
-  [Category.{u + 1} DZ] [Category.{u + 1} DU]
-  [Preadditive DZ] [Preadditive DU]
-  [HasZeroObject DZ] [HasZeroObject DU]
-  [HasShift DZ ℤ] [HasShift DU ℤ]
-  [∀ n : ℤ, (shiftFunctor DZ n).Additive]
-  [∀ n : ℤ, (shiftFunctor DU n).Additive]
-  [Pretriangulated DZ] [Pretriangulated DU]
-  [CategoryTheory.IsTriangulated DZ] [CategoryTheory.IsTriangulated DU]
-
-/-- **LP26 Theorem 1.1** (`thm:glueing_weak_approx`), reverse direction, affine
-middle term `D(A-Mod)`.  The only hypotheses are the setup `S` (Setup 4.4) and
-the coproduct package `C`.  Formerly `satisfiesWA_of_neemanCompactPerfectInput`,
-which took `CompactPerfectInput A`. -/
-theorem affine_satisfiesWA_of_setup
-    (S : SetupMainMinimal DZ (AffineD A) DU)
-    (C : AffineDerivedCoproducts A DZ DU) : SatisfiesWA (AffineD A) := by
-  let _ : HasCoproducts.{u + 1} DZ := C.hasCoproductsZ
-  let _ : HasCoproducts.{u + 1} (AffineD A) := C.hasCoproductsA
-  let _ : HasCoproducts.{u + 1} DU := C.hasCoproductsU
-  exact S.satisfiesWA_of_compactHomZeroAtTop (affineCompactHomZeroAtTop A)
-
-/-- **LP26 Theorem 1.1** (`thm:glueing_weak_approx`), affine middle term
-`D(A-Mod)`: `D(A-Mod)` is weakly approximable iff the chosen compact generator
-`G'` has eventually vanishing positive self-Homs.  The only hypotheses are the
-setup `S` (Setup 4.4: recollement, preferred aisles, normalization, weak
-approximation data on the two ends) and the coproduct package `C`; no Neeman and
-no Stacks input.  This is the former pinned `affine_theorem_1_1_neeman_only`, which
-took Neeman 2024, Theorem 3.2(i) as `CompactPerfectInput A`; compact ⇒ `Perf` is
-now proved (`Stacks07LT.M4.perf_of_compact_unconditional`).  It subsumes
-`StacksGluing.affine_theorem_1_1_stacks07LT`, which has the same conclusion and
-an additional Stacks 07LT input. -/
-theorem affine_theorem_1_1_unconditional
-    (S : SetupMainMinimal DZ (AffineD A) DU)
-    (C : AffineDerivedCoproducts A DZ DU) :
-    SatisfiesWA (AffineD A) ↔ AffineEventualSelfVanishing S.G' := by
-  constructor
-  · intro _
-    exact affineCompactHomZeroAtTop A S.G' S.G' S.G'_compact S.G'_compact
-  · intro _
-    exact affine_satisfiesWA_of_setup A DZ DU S C
-
-end Gluing
 
 /-- Over a field, compact objects of `D(k-Mod)` are exactly those with bounded,
 degreewise finite-dimensional cohomology; no hypothesis (`affine_neeman_3_2_i`
@@ -424,8 +379,6 @@ end RelativeFM.Neeman32Inputs
 #print axioms RelativeFM.Neeman32Inputs.affine_regularGenerator_package
 #print axioms RelativeFM.ringObject_isClassicalGeneratorOnCompacts
 #print axioms RelativeFM.affineCompactHomZeroAtTop
-#print axioms RelativeFM.affine_satisfiesWA_of_setup
-#print axioms RelativeFM.affine_theorem_1_1_unconditional
 #print axioms RelativeFM.compact_iff_dbcoh
 #print axioms RelativeFM.smallCompactHomZeroAtTop_of_tag09SR
 #print axioms RelativeFM.NeemanM1.isCompactAb_iff_smallPerf_of_tag09SR

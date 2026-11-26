@@ -24,16 +24,11 @@ The AxiomMath/Stacks checkout cannot be imported by the Lean 4.33.1 build used
 here. This file records propositions used from it as fields of `Prop`-valued
 structures. No declaration imports, or claims to import, the Stacks library.
 
-For the affine recollement there are two deliberately separate inputs:
-
-* the derived tensor--Hom package, represented by `DerivedTensorHomData`; and
-* **Stacks 0A6R**, the normalized Čech formula for local cohomology.
-
-In particular, 0A6R is not the tensor--Hom adjunction. The AxiomMath source
-which fixes the statement and its normalization is
-`Stacks.LocalCohomology.CechFormula.localCohomologyCechIso` and
-`localCohomologyCechIso_comp_augmentation` in
-`RingTheory/LocalCohomology/CechFormula/Basic.lean`.
+The 0A6R route to the affine recollement (`AffineCechTensorData`, `Tag0A6R`,
+`AffineStacksInput`) and the scheme-level `SchemePerfectStacksInput`
+(08CR/08CS/09M1, with a free `compact` predicate) were deleted in wave 6
+(`results/OPEN_INPUTS.md` rows 1.8, 1.9).  Should 0A6R be wanted again, the
+AxiomMath source is `Stacks.LocalCohomology.CechFormula.localCohomologyCechIso`.
 
 All declarations are in `RelativeFM.StacksInterface`.
 -/
@@ -49,86 +44,6 @@ open RelativeFM RelativeFM.AffineLocalCohomology
 open RelativeFM.TensorHom.ConcreteC
 
 universe v u w
-
-/-! ## Affine local cohomology: Stacks 0A6R -/
-
-/-- Concrete tensor data against which the affine form of Stacks 0A6R is
-stated. The second field is the augmentation
-`C(f) ⊗^L_A (-) ⟶ 𝟙`, with `C(f) = RΓ_Z(A)` equal to the one-generator
-extended Čech object. Supplying this map is part of constructing the derived
-tensor package; it is not a `True` placeholder or an assertion of 0A6R. -/
-structure AffineCechTensorData (A : Type u) [CommRing A] (f : A) where
-  tensorHom : DerivedTensorHomData (AffineD A)
-  cechToId : tensorHom.tensorLeft (ringLocalCohomologyObject A f) ⟶ 𝟭 (AffineD A)
-
-namespace AffineCechTensorData
-
-variable {A : Type u} [CommRing A] {f : A} (G : AffineCechTensorData A f)
-
-/-- **Stacks Project, Tag 0A6R (Lemma 47.9.1), one-generator affine form.**
-There is a natural isomorphism `RΓ_Z ≅ C(f) ⊗^L_A (-)` on `D(A)`,
-normalized so that composition with the Čech augmentation is the canonical
-local-cohomology counit.
-
-This is AxiomMath/Stacks `localCohomologyCechIso` together with
-`localCohomologyCechIso_comp_augmentation`, specialized to `I = (f)`. -/
-def Tag0A6R : Prop :=
-  ∃ e : derivedFunctor A f ≅
-      G.tensorHom.tensorLeft (ringLocalCohomologyObject A f),
-    e.hom ≫ G.cechToId = derivedCounit A f
-
-/-- The external algebraic-geometric proposition which turns a derived
-tensor--Hom package into the remaining adjoint of affine local cohomology.
-The tensor package itself is a parameter and can instead be proved internally. -/
-structure AffineStacksInput (G : AffineCechTensorData A f) : Prop where
-  /-- AxiomMath/Stacks, Tag **0A6R**, including its counit normalization. -/
-  tag_0A6R : Tag0A6R G
-
-variable (I : AffineStacksInput G)
-
-/-- The Čech isomorphism supplied by 0A6R. -/
-noncomputable def cechIso : derivedFunctor A f ≅
-    G.tensorHom.tensorLeft (ringLocalCohomologyObject A f) :=
-  I.tag_0A6R.choose
-
-/-- The normalization of the Čech isomorphism, as required by 0A6R. -/
-theorem cechIso_comp_cechToId :
-    (cechIso G I).hom ≫ G.cechToId = derivedCounit A f :=
-  I.tag_0A6R.choose_spec
-
-/-- Transport the formula from the explicit local-cohomology functor to the
-supported functor used by the recollement. -/
-noncomputable def supportedCechIso :
-    jStar A f ⋙ affineDZι A f ≅
-      G.tensorHom.tensorLeft (ringLocalCohomologyObject A f) :=
-  jStarFactors A f ≪≫ cechIso G I
-
-/-- **Conditional construction of `jStar ⊣ jUpper`.** The only Stacks input
-is 0A6R; the adjunction itself comes from `G.tensorHom`, not from 0A6R. -/
-noncomputable def jStarAdj :
-    jStar A f ⊣
-      affineDZι A f ⋙
-        G.tensorHom.rhom.obj (Opposite.op (ringLocalCohomologyObject A f)) :=
-  Recollement.JUpperM1.TensorHom.jStarAdj A f
-    (G.tensorHom.tensorLeft (ringLocalCohomologyObject A f))
-    (G.tensorHom.rhom.obj (Opposite.op (ringLocalCohomologyObject A f)))
-    (G.tensorHom.tensorHomAdj (ringLocalCohomologyObject A f))
-    (supportedCechIso G I)
-
-/-- The full package of shift, exactness and full-faithfulness consequences
-already proved in `AffineJUpperAdjoint`. -/
-noncomputable def jUpperConsequences :
-    Recollement.JUpperM1.Consequences A f
-      (Recollement.JUpperM1.TensorHom.jUpper A f
-        (G.tensorHom.rhom.obj (Opposite.op (ringLocalCohomologyObject A f))))
-      (jStarAdj G I) :=
-  Recollement.JUpperM1.TensorHom.consequences A f
-    (G.tensorHom.tensorLeft (ringLocalCohomologyObject A f))
-    (G.tensorHom.rhom.obj (Opposite.op (ringLocalCohomologyObject A f)))
-    (G.tensorHom.tensorHomAdj (ringLocalCohomologyObject A f))
-    (supportedCechIso G I)
-
-end AffineCechTensorData
 
 /-! ## The internal-Hom and duality statements used by GL26 -/
 
@@ -433,43 +348,6 @@ noncomputable def ringCohomologyEquivalence :
 
 end AffineComparisonStacksInput
 
-/-- Scheme-level perfectness and compactness, in exactly the shape of the
-provisional interfaces in `Scheme/Perfect.lean`. -/
-structure SchemePerfectStacksInput (X : Scheme.{u})
-    [HasDerivedCategory.{w} X.Modules] [CompactSpace X] [QuasiSeparatedSpace X]
-    (H : PerfectToDQCohInterface X) (compact : ObjectProperty (SchemeD X)) : Prop where
-  /-- Stacks **08CR**: two-out-of-three for perfect objects in a distinguished
-  triangle (in the orientation used by the existing interface). -/
-  tag_08CR : ∀ (T : Triangle (SchemeD X)) (_ : T ∈ distTriang (SchemeD X)),
-    IsPerfect T.obj₁ → IsPerfect T.obj₃ → IsPerfect T.obj₂
-  /-- Stacks **08CS**: perfectness descends to categorical retracts. -/
-  tag_08CS : ∀ {E F : SchemeD X}, Retract E F → IsPerfect F → IsPerfect E
-  /-- Stacks **09M1**: on the qcqs scheme `X`, compact objects of `D_qc(X)`
-  are exactly the perfect objects. -/
-  tag_09M1 : PerfectCompactStatement H compact
-
-namespace SchemePerfectStacksInput
-
-variable {X : Scheme.{u}} [HasDerivedCategory.{w} X.Modules]
-  [CompactSpace X] [QuasiSeparatedSpace X]
-  {H : PerfectToDQCohInterface X} {compact : ObjectProperty (SchemeD X)}
-  (I : SchemePerfectStacksInput X H compact)
-
-include I
-
-/-- Fill the pre-existing triangle/retract interface, with no duplicated
-mathematical assumption hidden in the constructor. -/
-theorem toPerfectThicknessInterface : PerfectThicknessInterface X where
-  cone := I.tag_08CR
-  retract := I.tag_08CS
-
-/-- Fill the pre-existing compact-versus-perfect interface. -/
-def toPerfectCompactInterface : PerfectCompactInterface X H where
-  compact := compact
-  compact_iff_perfect := I.tag_09M1
-
-end SchemePerfectStacksInput
-
 /-- Preservation of pseudocoherence and perfectness by derived pullback.
 These are Stacks 08H4 and 08H6 respectively. -/
 structure PullbackStacksInput {DX DY : Type u} [Category.{v} DX] [Category.{v} DY]
@@ -490,14 +368,9 @@ structure TensorStacksInput {D : Type u} [Category.{v} D]
   cohomology again has quasi-coherent cohomology. -/
   tag_08F5 : ∀ E F : D, G.dqCoh E → G.dqCoh F → G.dqCoh (T.tensor.obj (E, F))
 
-#print axioms RelativeFM.StacksInterface.AffineCechTensorData.cechIso_comp_cechToId
-#print axioms RelativeFM.StacksInterface.AffineCechTensorData.jStarAdj
-#print axioms RelativeFM.StacksInterface.AffineCechTensorData.jUpperConsequences
 #print axioms RelativeFM.StacksInterface.StacksInput.upperCross_maps_boundedBelow
 #print axioms RelativeFM.StacksInterface.StacksInput.rhom_mem_dqCoh_and_locallyBoundedBelow
 #print axioms RelativeFM.StacksInterface.AffineComparisonStacksInput.ringCohomologyEquivalence
-#print axioms RelativeFM.StacksInterface.SchemePerfectStacksInput.toPerfectThicknessInterface
-#print axioms RelativeFM.StacksInterface.SchemePerfectStacksInput.toPerfectCompactInterface
 #print axioms RelativeFM.StacksInterface.PerfectStacksInput.toPerfectDualityData
 
 end RelativeFM.StacksInterface

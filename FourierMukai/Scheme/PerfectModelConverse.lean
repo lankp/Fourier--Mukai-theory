@@ -291,35 +291,9 @@ theorem perf_le_hasModel_iff_stableUnderRetracts :
       (hasModel_le_perf A Y hY))⟩
   · exact perf_le_hasModel_of_stableUnderRetracts A
 
-/-- A separately supplied direct-summand theorem now assembles the original
-converse input, with no other geometric hypotheses. -/
-theorem boundedProjectiveModelConverseInput_of_stableUnderRetracts
-    (hR : (HasBoundedFiniteProjectiveModel A).IsStableUnderRetracts) :
-    BoundedProjectiveModelConverseInput A where
-  model_of_perf X hX := model_of_perf_of_stableUnderRetracts A hR X hX
-
-/-- The full model characterization is likewise obtained from the one named
-summand theorem, with the opposite implication supplied by the existing
-proved filtration argument. -/
-theorem boundedProjectiveModelInput_of_stableUnderRetracts
-    (hR : (HasBoundedFiniteProjectiveModel A).IsStableUnderRetracts) :
-    BoundedProjectiveModelInput A :=
-  boundedProjectiveModelInput_of_converse A
-    (boundedProjectiveModelConverseInput_of_stableUnderRetracts A hR)
-
-/-- Conversely, the original input already implies the direct-summand closure;
-hence the reduction above does not smuggle in an additional hypothesis. -/
-theorem stableUnderRetracts_of_converseInput
-    (I : BoundedProjectiveModelConverseInput A) :
-    (HasBoundedFiniteProjectiveModel A).IsStableUnderRetracts :=
-  (perf_le_hasModel_iff_stableUnderRetracts A).1 (fun X hX ↦ I.model_of_perf X hX)
-
 #print axioms RelativeFM.AffinePerfect.mappingConeModel
 #print axioms RelativeFM.AffinePerfect.hasModel_isTriangulated
 #print axioms RelativeFM.AffinePerfect.perf_le_hasModel_iff_stableUnderRetracts
-#print axioms RelativeFM.AffinePerfect.boundedProjectiveModelConverseInput_of_stableUnderRetracts
-#print axioms RelativeFM.AffinePerfect.boundedProjectiveModelInput_of_stableUnderRetracts
-#print axioms RelativeFM.AffinePerfect.stableUnderRetracts_of_converseInput
 
 end
 end RelativeFM.AffinePerfect

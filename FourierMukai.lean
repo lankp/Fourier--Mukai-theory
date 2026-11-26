@@ -102,8 +102,6 @@ import FourierMukai.Scheme.SchemeNeemanTransport
 import FourierMukai.Scheme.NeemanSmallApproximationM3
 import FourierMukai.Scheme.NeemanSmallAisleGenerationM3
 import FourierMukai.Scheme.AffineNeemanEndpointM3
-import FourierMukai.Scheme.AffineRecollementAssembly
-import FourierMukai.Scheme.AffineSetupInventory
 import FourierMukai.Scheme.AffineJUpperAdjoint
 import FourierMukai.Scheme.AffineSecondGluing
 import FourierMukai.Scheme.AffineSecondGluingAssembly

@@ -1,7 +1,7 @@
 /-
 Specific generators for the two affine standard-aisle identities.
 
-The affine orientation is the one in `AffineSetupInventory`: the `DZ` slot is
+The affine orientation is the one of the (deleted) `AffineSetupInventory`: the `DZ` slot is
 `D(A[1/f])`, the middle category is `D(A)`, and the `DU` slot is the supported
 category.  Throughout this file `G' = ringObject A` and `m = 0`.
 -/

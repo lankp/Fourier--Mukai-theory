@@ -18,4 +18,3 @@ submission and repeats the principal axiom audits in one place.
 #print axioms RelativeFM.KProjectiveTensorHom.derivedHomComplexFunctor
 #print axioms RelativeFM.KProjectiveTensorHom.FixedComplexTensorHomModel.derivedTensorHomAdj
 #print axioms RelativeFM.KProjectiveTensorHom.affineDerivedTensorHomData
-#print axioms RelativeFM.KProjectiveTensorHom.RecollementAssembly.toRecollementOfStacks

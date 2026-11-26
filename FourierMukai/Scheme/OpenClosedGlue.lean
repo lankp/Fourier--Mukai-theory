@@ -232,9 +232,6 @@ def replaceOpenApproximationSeedIso (I : PaperSchemeOpenClosedSeed DZ DX DU)
     (e : WU.G ≅ I.setup.GU) : PaperSchemeOpenClosedSeed DZ DX DU where
   geometry := I.geometry
   setup := replaceOpenApproximationIso I.setup WU ht e
-  perfectX := I.perfectX
-  perfectU := I.perfectU
-  perfectZ := I.perfectZ
   supportedOnZ := I.supportedOnZ
   supported_iff := I.supported_iff
 
@@ -355,78 +352,6 @@ theorem neemanSupportedWeakApproximability_of_completion
     exact K.preferredD
   exact ⟨⟨rebasePaperWeakApproximationDataTStructure W _ heq, rfl⟩⟩
 
-/-- The geometric input needed to populate exactly the fourth field of
-`NeemanSupportedCoverInput`, using the two endpoint hypotheses of that field.
-The completion is allowed to depend on those endpoint data, rather than
-silently replacing them by unrelated approximation packages. -/
-def NeemanOpenClosedCompletionInput : Prop :=
-  ∀ {X : Scheme.{u}} [QuasiSeparatedSpace X] (V : X.Opens)
-    (Z : TopologicalSpace.Closeds X),
-    IsCompactClosedComplement Z → IsCompactOpen V →
-    ∀ (WZ : DqcSupportedStandardPaperWeakApproximationData X (closedDiff V Z))
-      (WU : DqcSupportedStandardPaperWeakApproximationData V (openClosedSupport V Z)),
-    ∃ I : DqcSupportedNeemanOpenClosedSeed.{u, u + 1} (openClosedGeometry V)
-      Z (closedDiff V Z) (openClosedSupport V Z),
-      SupportedNeemanOpenClosedCompletion I WZ WU
-
-/-- Populate the open/closed gluing field from the exact geometric completion.
-This theorem has the field's original non-quasi-compact generality; no Stacks
-09M4 hypothesis is smuggled past its quasi-compactness assumptions. -/
-theorem open_closed_glue_of_completionInput (J : NeemanOpenClosedCompletionInput.{u}) :
-    ∀ {X : Scheme.{u}} [QuasiSeparatedSpace X] (V : X.Opens)
-      (Z : TopologicalSpace.Closeds X),
-      IsCompactClosedComplement Z → IsCompactOpen V →
-      NeemanSupportedWeakApproximability X (closedDiff V Z) →
-      NeemanSupportedWeakApproximability V (openClosedSupport V Z) →
-      NeemanSupportedWeakApproximability X Z := by
-  intro X _ V Z hcZ hcV hclosed hopen
-  obtain ⟨WZ⟩ := hclosed
-  obtain ⟨WU⟩ := hopen
-  obtain ⟨I, K⟩ := J V Z hcZ hcV WZ WU
-  exact neemanSupportedWeakApproximability_of_completion I WZ WU K
-
-/-- Replace only the fourth field of the cover input.  The affine base,
-scheme-isomorphism transport, and excision fields are unchanged. -/
-theorem neemanSupportedCoverInputOfCompletion
-    (of_isAffine : ∀ (X : Scheme.{u}) [IsAffine X]
-      (Z : TopologicalSpace.Closeds X), IsCompactClosedComplement Z →
-      NeemanSupportedWeakApproximability X Z)
-    (of_iso : ∀ {X Y : Scheme.{u}} (e : X ≅ Y)
-      (Z : TopologicalSpace.Closeds Y),
-      NeemanSupportedWeakApproximability X (isoPreimageClosed e Z) →
-      NeemanSupportedWeakApproximability Y Z)
-    (excision : ∀ {X : Scheme.{u}} (U : X.Opens)
-      (Z : TopologicalSpace.Closeds X), (Z : Set X) ⊆ (U : Set X) →
-      NeemanSupportedWeakApproximability U (openClosedSupport U Z) →
-      NeemanSupportedWeakApproximability X Z)
-    (J : NeemanOpenClosedCompletionInput.{u}) :
-    SchemeNeemanFiniteCoverAssemblyM5.NeemanSupportedCoverInput.{u} where
-  of_isAffine := of_isAffine
-  of_iso := of_iso
-  excision := excision
-  open_closed_glue := open_closed_glue_of_completionInput J
-
-/-- Final qcqs assembly with the open/closed step supplied by the normalized
-completion input. -/
-theorem neemanSupported_of_qcqs_of_completionInput
-    (of_isAffine : ∀ (X : Scheme.{u}) [IsAffine X]
-      (Z : TopologicalSpace.Closeds X), IsCompactClosedComplement Z →
-      NeemanSupportedWeakApproximability X Z)
-    (of_iso : ∀ {X Y : Scheme.{u}} (e : X ≅ Y)
-      (Z : TopologicalSpace.Closeds Y),
-      NeemanSupportedWeakApproximability X (isoPreimageClosed e Z) →
-      NeemanSupportedWeakApproximability Y Z)
-    (excision : ∀ {X : Scheme.{u}} (U : X.Opens)
-      (Z : TopologicalSpace.Closeds X), (Z : Set X) ⊆ (U : Set X) →
-      NeemanSupportedWeakApproximability U (openClosedSupport U Z) →
-      NeemanSupportedWeakApproximability X Z)
-    (J : NeemanOpenClosedCompletionInput.{u})
-    (X : Scheme.{u}) [CompactSpace X] [QuasiSeparatedSpace X]
-    (Z : TopologicalSpace.Closeds X) (hcZ : IsCompactClosedComplement Z) :
-    NeemanSupportedWeakApproximability X Z :=
-  SchemeNeemanFiniteCoverAssemblyM5.neemanSupported_of_qcqs
-    (neemanSupportedCoverInputOfCompletion of_isAffine of_iso excision J) X Z hcZ
-
 /-! ### The compact open/closed field actually used by the qcqs induction -/
 
 open RelativeFM.SchemeFiniteCoverInductionM5
@@ -522,54 +447,6 @@ structure NeemanCompactSupportedCoverInput : Prop where
     NeemanSupportedWeakApproximability V (openClosedSupport V Z) →
     NeemanSupportedWeakApproximability X Z
 
-/-- Normalized completions are needed only on qcqs schemes.  In particular an
-instantiation may use the quasi-compactness hypotheses of Stacks 09M4 to
-construct the last `CompactHomZeroAtTop` field. -/
-def NeemanCompactOpenClosedCompletionInput : Prop :=
-  ∀ {X : Scheme.{u}} [CompactSpace X] [QuasiSeparatedSpace X] (V : X.Opens)
-    (Z : TopologicalSpace.Closeds X),
-    IsCompactClosedComplement Z → IsCompactOpen V →
-    ∀ (WZ : DqcSupportedStandardPaperWeakApproximationData X (closedDiff V Z))
-      (WU : DqcSupportedStandardPaperWeakApproximationData V (openClosedSupport V Z)),
-    ∃ I : DqcSupportedNeemanOpenClosedSeed.{u, u + 1} (openClosedGeometry V)
-      Z (closedDiff V Z) (openClosedSupport V Z),
-      SupportedNeemanOpenClosedCompletion I WZ WU
-
-/-- Populate the compact version of the open/closed field. -/
-theorem compact_open_closed_glue_of_completionInput
-    (J : NeemanCompactOpenClosedCompletionInput.{u}) :
-    ∀ {X : Scheme.{u}} [CompactSpace X] [QuasiSeparatedSpace X]
-      (V : X.Opens) (Z : TopologicalSpace.Closeds X),
-      IsCompactClosedComplement Z → IsCompactOpen V →
-      NeemanSupportedWeakApproximability X (closedDiff V Z) →
-      NeemanSupportedWeakApproximability V (openClosedSupport V Z) →
-      NeemanSupportedWeakApproximability X Z := by
-  intro X _ _ V Z hcZ hcV hclosed hopen
-  obtain ⟨WZ⟩ := hclosed
-  obtain ⟨WU⟩ := hopen
-  obtain ⟨I, K⟩ := J V Z hcZ hcV WZ WU
-  exact neemanSupportedWeakApproximability_of_completion I WZ WU K
-
-/-- Package the other three original inputs with the compact completion. -/
-theorem neemanCompactSupportedCoverInputOfCompletion
-    (of_isAffine : ∀ (X : Scheme.{u}) [IsAffine X]
-      (Z : TopologicalSpace.Closeds X), IsCompactClosedComplement Z →
-      NeemanSupportedWeakApproximability X Z)
-    (of_iso : ∀ {X Y : Scheme.{u}} (e : X ≅ Y)
-      (Z : TopologicalSpace.Closeds Y),
-      NeemanSupportedWeakApproximability X (isoPreimageClosed e Z) →
-      NeemanSupportedWeakApproximability Y Z)
-    (excision : ∀ {X : Scheme.{u}} (U : X.Opens)
-      (Z : TopologicalSpace.Closeds X), (Z : Set X) ⊆ (U : Set X) →
-      NeemanSupportedWeakApproximability U (openClosedSupport U Z) →
-      NeemanSupportedWeakApproximability X Z)
-    (J : NeemanCompactOpenClosedCompletionInput.{u}) :
-    NeemanCompactSupportedCoverInput.{u} where
-  of_isAffine := of_isAffine
-  of_iso := of_iso
-  excision := excision
-  open_closed_glue := compact_open_closed_glue_of_completionInput J
-
 variable (K : NeemanCompactSupportedCoverInput.{u})
 
 include K
@@ -605,29 +482,6 @@ theorem neemanSupported_of_qcqs_with_compactGlue
       X (Z : Set X) Z.isClosed hcZ
   exact h Z.isClosed
 
-omit K in
-/-- Final qcqs assembly taking the three other inputs and only the compact
-version of the normalized open/closed completion. -/
-theorem neemanSupported_of_qcqs_of_compactCompletionInput
-    (of_isAffine : ∀ (X : Scheme.{u}) [IsAffine X]
-      (Z : TopologicalSpace.Closeds X), IsCompactClosedComplement Z →
-      NeemanSupportedWeakApproximability X Z)
-    (of_iso : ∀ {X Y : Scheme.{u}} (e : X ≅ Y)
-      (Z : TopologicalSpace.Closeds Y),
-      NeemanSupportedWeakApproximability X (isoPreimageClosed e Z) →
-      NeemanSupportedWeakApproximability Y Z)
-    (excision : ∀ {X : Scheme.{u}} (U : X.Opens)
-      (Z : TopologicalSpace.Closeds X), (Z : Set X) ⊆ (U : Set X) →
-      NeemanSupportedWeakApproximability U (openClosedSupport U Z) →
-      NeemanSupportedWeakApproximability X Z)
-    (J : NeemanCompactOpenClosedCompletionInput.{u})
-    (X : Scheme.{u}) [CompactSpace X] [QuasiSeparatedSpace X]
-    (Z : TopologicalSpace.Closeds X) (hcZ : IsCompactClosedComplement Z) :
-    NeemanSupportedWeakApproximability X Z :=
-  neemanSupported_of_qcqs_with_compactGlue
-    (neemanCompactSupportedCoverInputOfCompletion of_isAffine of_iso excision J)
-    X Z hcZ
-
 end SupportedScheme
 
 end
@@ -642,17 +496,11 @@ end RelativeFM.SchemeOpenClosedGlueM3Smww27cuj
 
 #print axioms RelativeFM.SchemeOpenClosedGlueM3Smww27cuj.neemanSupportedWeakApproximability_of_openClosed_endpointsIso
 #print axioms RelativeFM.SchemeOpenClosedGlueM3Smww27cuj.neemanSupportedWeakApproximability_of_completion
-#print axioms RelativeFM.SchemeOpenClosedGlueM3Smww27cuj.open_closed_glue_of_completionInput
-#print axioms RelativeFM.SchemeOpenClosedGlueM3Smww27cuj.neemanSupportedCoverInputOfCompletion
-#print axioms RelativeFM.SchemeOpenClosedGlueM3Smww27cuj.neemanSupported_of_qcqs_of_completionInput
 
 #print axioms RelativeFM.SchemeOpenClosedGlueM3Smww27cuj.compactSupported_toOpenCoverInductionData
 #print axioms RelativeFM.SchemeOpenClosedGlueM3Smww27cuj.compactSupported_of_qcqs
-#print axioms RelativeFM.SchemeOpenClosedGlueM3Smww27cuj.compact_open_closed_glue_of_completionInput
-#print axioms RelativeFM.SchemeOpenClosedGlueM3Smww27cuj.neemanCompactSupportedCoverInputOfCompletion
 #print axioms RelativeFM.SchemeOpenClosedGlueM3Smww27cuj.neemanCompact_toSetInductionData
 #print axioms RelativeFM.SchemeOpenClosedGlueM3Smww27cuj.neemanSupported_of_qcqs_with_compactGlue
 
 #print axioms RelativeFM.SchemeOpenClosedGlueM3Smww27cuj.rebasePaperWeakApproximationDataTStructure
 
-#print axioms RelativeFM.SchemeOpenClosedGlueM3Smww27cuj.neemanSupported_of_qcqs_of_compactCompletionInput
