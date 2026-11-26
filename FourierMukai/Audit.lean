@@ -207,3 +207,7 @@ open RelativeFM
 #print axioms RelativeWeakApprox.PaperHypothesesW6.theorem_1_1_paper
 #print axioms RelativeWeakApprox.PaperHypothesesW6.NonVacuity.theorem_1_1_paper_zero
 #print axioms RelativeWeakApprox.PaperHypothesesW6.NonVacuity.theorem_1_1_paper_affine
+-- Stacks 09SR and 09SN are discharged from AxiomMath/Stacks in the `Spaces` library
+-- (not a default target, so not imported here): the `#print axioms` lines for
+-- `RelativeFM.Spaces.Stacks.{tag09SRPaper, tag09SN, theorem_1_1, lemma_2_4, lemma_2_5,
+-- smallAffine_neeman_3_2_i, ...}` are at the end of `Spaces/Stacks/{Bridges,Tags,Corollaries}.lean`.
