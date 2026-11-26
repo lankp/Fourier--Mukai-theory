@@ -10,3 +10,5 @@ import Spaces.RelativePerfect
 import Spaces.Stacks.Bridges
 import Spaces.Stacks.Corollaries
 import Spaces.Stacks.Tags
+import Spaces.Supported.CompactGeneration
+import Spaces.Supported.Inputs

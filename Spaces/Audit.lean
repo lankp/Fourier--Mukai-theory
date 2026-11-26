@@ -1,6 +1,7 @@
 /- Copyright (c) 2026 Formalization of Lank--Pauwels. Released under Apache 2.0 license as described in the file LICENSE. -/
 import Spaces.AxiomMathInputs
 import Spaces.NonVacuity
+import Spaces.Supported.CompactGeneration
 
 /-!
 # Axiom audit of the algebraic-space layer
@@ -58,3 +59,29 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.isRelativelyPerfect_of_isZero
 #print axioms RelativeFM.Spaces.isQuasiPerfect_of_isZero
 #print axioms RelativeFM.Spaces.isCoherentOnSite_of_isZero
+-- GL26 Lemma A.9 (`lem:preferred_eq_class`), compact generation of `D_{qc,Z}(X)`
+-- (`Spaces/Supported/`); tagged inputs in `Spaces/Supported/Inputs.lean`
+#print axioms RelativeFM.Spaces.Supported.Tag08F3Input
+#print axioms RelativeFM.Spaces.Supported.SupportTriangulatedInput
+#print axioms RelativeFM.Spaces.Supported.SupportedDirectSumsInput
+#print axioms RelativeFM.Spaces.Supported.Tag0AECInput
+#print axioms RelativeFM.Spaces.Supported.Tag0AEDInput
+#print axioms RelativeFM.Spaces.Supported.Tag0GFDInput
+#print axioms RelativeFM.Spaces.Supported.AffineQuasiSeparatedInput
+#print axioms RelativeFM.Spaces.Supported.ContainsTerminalInput
+#print axioms RelativeFM.Spaces.Supported.isClosedUnderIsomorphisms_cohomologySupportedOn'
+#print axioms RelativeFM.Spaces.Supported.dqcSupported_iff_exists
+#print axioms RelativeFM.Spaces.Supported.perf_iff
+#print axioms RelativeFM.Spaces.Supported.isTriangulated_qcohDerived
+#print axioms RelativeFM.Spaces.Supported.isTriangulated_support
+#print axioms RelativeFM.Spaces.Supported.hasCoproducts
+#print axioms RelativeFM.Spaces.Supported.isPaperGenerator_of_detects
+#print axioms RelativeFM.Spaces.Supported.lemma_A_9_generator
+#print axioms RelativeFM.Spaces.Supported.lemma_A_9_isCompactObject_iff
+#print axioms RelativeFM.Spaces.Supported.lemma_A_9_isCompactObject_iff_perf
+#print axioms RelativeFM.Spaces.Supported.lemma_A_9_triangEnvelope
+#print axioms RelativeFM.Spaces.Supported.lemma_A_9
+#print axioms RelativeFM.Spaces.Supported.nonVacuity_affine_univ
+#print axioms RelativeFM.Spaces.Supported.nonVacuity_base
+#print axioms RelativeFM.Spaces.Supported.isAffine_terminal
+#print axioms RelativeFM.Spaces.Supported.lemma_A_9_affine_univ
