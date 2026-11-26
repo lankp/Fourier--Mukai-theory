@@ -177,6 +177,10 @@ import FourierMukai.Scheme.RegularCompactEndpoints
 import FourierMukai.Scheme.KoszulInputs
 import FourierMukai.Scheme.Neeman32Inputs
 import FourierMukai.Scheme.NeemanAffineSupport
+import FourierMukai.Scheme.RefuteLargeCoproducts
+import FourierMukai.Scheme.RefuteIntGenerator
+import FourierMukai.Scheme.RefuteIntGeneratorSmall
+import FourierMukai.Scheme.RefuteQCohSerre
 
 /-!
 # Relative Fourier--Mukai theory for algebraic spaces: Lean formalization

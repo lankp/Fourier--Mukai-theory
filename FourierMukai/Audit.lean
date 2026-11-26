@@ -181,3 +181,22 @@ open RelativeFM
 #print axioms RelativeFM.IdealNeemanM1.satisfiesPaperWA_idealSupported
 #print axioms RelativeFM.NeemanAffineSupport.satisfiesPaperWA_idealSupported
 #print axioms RelativeFM.NeemanAffineSupport.satisfiesPaperWA_of_fg
+-- Wave 6 (vacuity-refutations): F1--F3 of `results/OPEN_INPUTS.md` §0, proved false in the tree
+#print axioms RelativeFM.VacuityF1.not_hasCoproducts_affineD
+#print axioms RelativeFM.VacuityF1.isEmpty_affineDerivedCoproducts
+#print axioms RelativeFM.VacuityF1.affine_theorem_1_1_unconditional_hypotheses_false
+#print axioms RelativeFM.VacuityF1.affine_theorem_1_1_stacks07LT_hypotheses_false
+#print axioms RelativeFM.VacuityF2.not_isGenerator_of_isCompactAb_int
+#print axioms RelativeFM.VacuityF2.isEmpty_weakApproximationData_int
+#print axioms RelativeFM.VacuityF2.not_satisfiesWA_int
+#print axioms RelativeFM.VacuityF2.isEmpty_setupMainMinimal_int
+#print axioms RelativeFM.VacuityF2.isCompactAb_affineQhComparison_inverse
+#print axioms RelativeFM.VacuityF2.smallPerf_of_isCompactAb
+#print axioms RelativeFM.VacuityF2.not_isGenerator_of_isCompactAb_smallInt
+#print axioms RelativeFM.VacuityF2.isEmpty_weakApproximationData_smallInt
+#print axioms RelativeFM.VacuityF2.not_satisfiesWA_smallInt
+#print axioms RelativeFM.VacuityF2.isEmpty_setupMainMinimal_smallInt
+#print axioms RelativeFM.VacuityF2.affine_theorem_1_1_small_hypotheses_false_int
+#print axioms RelativeFM.VacuityF3.not_quasiCoherent_isClosedUnderSubobjects_spec_int
+#print axioms RelativeFM.VacuityF3.not_quasicoherentSerreInput_spec_int
+#print axioms RelativeFM.VacuityF3.not_quasicoherentStrongClosureInput_spec_int
