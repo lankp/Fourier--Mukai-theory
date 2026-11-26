@@ -193,6 +193,24 @@ orchestrator then fixed `Tag09SRPaper` (09SR for triangulated categories) and la
 `SpacesVerified`, which discharges every tagged AxiomMath input of `Spaces`, so nothing in
 the algebraic-space layer is assumed.  Workers archived.
 
+## Wave 7 (briefs in `results/swarm/wave7/`; prepared 26 November 2026, not launched)
+
+The algebraic-space layer now assumes nothing, so wave 7 builds on it.  Three Lean tasks
+run in parallel, each with its own directory and its own `Inputs.lean` for tagged AxiomMath
+inputs (no shared file but `Spaces.lean` and `Spaces/Audit.lean`, both append-only).  The
+AxiomMath theorem modules they cite are built in the orchestrator's container, so the
+orchestrator can discharge their inputs in `SpacesVerified` at merge.
+
+| task | effort | goal |
+|---|---|---|
+| `wave7/spaces-affine-base` | high | LP26 Cor 1.2 affine base over AxiomMath's model: `D_{V(I)}(A-Mod) ≌ Spaces.DqcSupported (Spec A) V(I)` and transport of `NeemanAffineSupport.satisfiesPaperWA_of_fg` (OPEN_INPUTS 5.1) |
+| `wave7/spaces-compact-generation` | high | GL26 Lemma A.9 / Neeman 3.2(iii) over qcqs spaces from AxiomMath 0AEC, 0AED, 09M8, 09SR (replaces OPEN_INPUTS 2.10) |
+| `wave7/spaces-base-change` | high | `PullPushData` for spaces (0D6D, 0D6E, 07A6; removes `DerivedPseudofunctorInput` for spaces) and GL26 Lemmas 7.12, 7.17, 6.11, 10.1 over spaces (08IR, 08IN, 08EU) |
+| `wave7/spaces-statements` | medium | **blocked on the maintainer**: state GL26 1.2, 1.3, 1.6, 1.7, 6.18, 12.2, 12.3 over `Spaces`, replacing the `Paper/` interface targets; needs the current GL26 TeX (ask the maintainer to upload it to that worker's session) |
+
+Order after wave 7: the qcqs induction for supported weak approximability over spaces
+(LP26 Cor 1.2) once the affine base and Lemma A.9 are in; then GL26 §§3–6 over spaces.
+
 ## Log
 
 | wave | task | session | merged as | outcome |
