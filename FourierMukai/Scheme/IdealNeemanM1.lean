@@ -1,14 +1,33 @@
 import FourierMukai.Scheme.FiniteKoszulM1
 import FourierMukai.Scheme.PrincipalH0CoverM1
+import FourierMukai.Scheme.KoszulSupportAdjoint
+import FourierMukai.Scheme.KoszulFiniteInputs
 
 /-!
 # Finite ideal-supported weak approximation
 
-The external inputs are the explicitly tagged scalar-support, supported-direct
-sum and zero-detection statements (Stacks 09IR/0A9A and the supported direct
-sum layer) and the finite-power envelope of Neeman Construction 7.3.  They are
-separate from the approximation conclusion, which is proved here by the free
-cover and finite simultaneous Koszul factorization.
+LP26 Corollary 1.2 (`cor:weak_approx_spaces`), affine base case = Neeman, *Acta
+Math.* 233 (2024), Theorem 3.2(iv) for `Spec A`, `Z = V(f₁,…,fₙ)`, in the module
+model `AffineD A = D(A-Mod)` with the ideal-supported subcategory
+`AffineDZIdeal A (functionIdeal A fs)`.
+
+The four inputs the finite-list argument used to carry are now theorems:
+
+* `IdealSupportedCoproductInput`, `IdealSupportedCompactnessInput` (supported direct
+  sums; the inclusion is a left adjoint, `KoszulInputs.isLeftAdjoint_affineDZIdealι`):
+  `KoszulInputs.idealSupportedCoproductInput`, `KoszulInputs.idealSupportedCompactnessInput`;
+* `KoszulPowerCoprodInput` (Neeman, Construction 7.3):
+  `FiniteKoszulM1.koszulPowerCoprodInput`, from `KoszulFiniteInputs.koszulList_power_coprod`;
+* `KoszulDetectionInput` (finite Koszul zero detection; formerly labelled Stacks
+  0A9A, which it is not): `StacksInterface.koszulDetectionInput`, from
+  `KoszulFiniteInputs.koszulList_detects_zero`.
+
+The refuted `KoszulScalarSupportInput` is no longer an argument of anything.
+`satisfiesPaperWA_idealSupported` keeps only the ambient regular compactness
+`hAc : IsCompactAb (ringObject A)` (as the pinned principal theorem does); it is
+discharged in `NeemanAffineSupport.lean`, which states the result with no
+hypothesis.  The approximation is proved by the free cover and finite simultaneous
+Koszul factorization.
 -/
 
 @[expose] public section
@@ -19,27 +38,19 @@ open RelativeFM RelativeWeakApprox
 
 universe u
 
-/-- All exponents one. -/
-def unitExponents (A : Type u) [CommRing A] (fs : List A) : List (A × ℕ) :=
-  fs.map (fun a => (a, 1))
-
-/-- The coefficient ideal is unchanged by replacing every exponent by one. -/
-lemma listIdeal_unitExponents (A : Type u) [CommRing A] (fs : List A) :
-    listIdeal A (unitExponents A fs) = functionIdeal A fs := by
-  induction fs with
-  | nil => rfl
-  | cons a fs ih =>
-      change Ideal.span {a} ⊔ listIdeal A (unitExponents A fs) =
-        Ideal.span {a} ⊔ functionIdeal A fs
-      rw [ih]
-
 /-- **Neeman Construction 7.3.** The finite-power coproduct envelope, with no
-approximation or weak-approximability assertion built into the input. -/
-structure KoszulPowerCoprodInput (A : Type u) [CommRing A]
-    (hS : StacksInterface.KoszulScalarSupportInput A) (fs : List A) : Prop where
+approximation or weak-approximability assertion built into the statement.
+(Formerly it also took the refuted `hS : KoszulScalarSupportInput A`.) -/
+structure KoszulPowerCoprodInput (A : Type u) [CommRing A] (fs : List A) : Prop where
   power : ∀ ns : List ℕ, ns.length = fs.length →
-    Coprod (shiftInterval (koszulListData A hS (unitExponents A fs)).obj 0 0)
-      (koszulListData A hS (fs.zip ns)).obj
+    Coprod (shiftInterval (koszulListData A (unitExponents A fs)).obj 0 0)
+      (koszulListData A (fs.zip ns)).obj
+
+/-- **Neeman Construction 7.3, proved** for every finite list
+(`KoszulFiniteInputs.koszulList_power_coprod`). -/
+theorem koszulPowerCoprodInput (A : Type u) [CommRing A] (fs : List A) :
+    KoszulPowerCoprodInput A fs :=
+  ⟨fun ns h => KoszulFiniteInputs.koszulList_power_coprod fs ns h⟩
 
 end RelativeFM.FiniteKoszulM1
 
@@ -63,13 +74,60 @@ structure IdealSupportedCompactnessInput (A : Type u) [CommRing A] (I : Ideal A)
   preserves : ∀ (J : Type (u + 1)),
     PreservesColimitsOfShape (Discrete J) (affineDZIdealι A I)
 
-/-- **Stacks 0A9A.** The degree-one finite Koszul object detects zero on its
-supported derived category. -/
-structure KoszulDetectionInput (A : Type u) [CommRing A]
-    (hS : KoszulScalarSupportInput A) (fs : List A) : Prop where
+/-- **Finite Koszul zero detection.** The degree-one finite Koszul object detects
+zero on its supported derived category.  (Formerly labelled Stacks 0A9A, but 0A9A
+is the existence of a perfect generator of `D_{QCoh,T}`, a different statement;
+formerly it also took the refuted `hS : KoszulScalarSupportInput A`.) -/
+structure KoszulDetectionInput (A : Type u) [CommRing A] (fs : List A) : Prop where
   detect : ∀ F : AffineD A, AffineIsSupportedIdeal A (FiniteKoszulM1.functionIdeal A fs) F →
-    (∀ k : ℤ, ∀ g : (FiniteKoszulM1.koszulListData A hS
+    (∀ k : ℤ, ∀ g : (FiniteKoszulM1.koszulListData A
       (FiniteKoszulM1.unitExponents A fs)).obj⟦k⟧ ⟶ F, g = 0) → IsZero F
+
+/-- **Finite Koszul zero detection, proved** for every finite list
+(`KoszulFiniteInputs.koszulList_detects_zero`). -/
+theorem koszulDetectionInput (A : Type u) [CommRing A] (fs : List A) :
+    KoszulDetectionInput A fs :=
+  ⟨KoszulFiniteInputs.koszulList_detects_zero fs⟩
+
+end RelativeFM.StacksInterface
+
+namespace RelativeFM.KoszulInputs
+
+open RelativeFM RelativeWeakApprox
+open CategoryTheory CategoryTheory.Limits
+open RelativeFM.NeemanFiniteSupportM4
+open RelativeFM.FiniteKoszulM1
+
+universe u
+
+variable (A : Type u) [CommRing A]
+
+/-- **Supported direct sums, proved** (`IdealSupportedCoproductInput`).  The
+supported class `D_{V(f₁,…,fₙ)}` is closed under every coproduct that exists in
+`D(A)`. -/
+theorem idealSupportedCoproductInput (fs : List A) :
+    StacksInterface.IdealSupportedCoproductInput A (functionIdeal A fs) where
+  closed J := by
+    haveI := isLeftAdjoint_affineDZIdealι A fs
+    letI : (AffineIsSupportedIdeal A (functionIdeal A fs)).IsStableUnderRetracts := by
+      unfold AffineIsSupportedIdeal
+      infer_instance
+    exact isClosedUnderColimitsOfShape_of_adjunction _
+      (Adjunction.ofIsLeftAdjoint (affineDZIdealι A (functionIdeal A fs))) (Discrete J)
+
+/-- **Supported compactness descent input, proved**
+(`IdealSupportedCompactnessInput`): the inclusion preserves coproducts, being a
+left adjoint. -/
+theorem idealSupportedCompactnessInput (fs : List A) :
+    StacksInterface.IdealSupportedCompactnessInput A (functionIdeal A fs) where
+  preserves J := by
+    haveI := isLeftAdjoint_affineDZIdealι A fs
+    exact (Adjunction.ofIsLeftAdjoint
+      (affineDZIdealι A (functionIdeal A fs))).leftAdjoint_preservesColimits.preservesColimitsOfShape
+
+end RelativeFM.KoszulInputs
+
+namespace RelativeFM.StacksInterface
 
 end RelativeFM.StacksInterface
 
@@ -194,19 +252,18 @@ lemma shiftInterval_inverseImage_ideal (A : Type u) [CommRing A] (I : Ideal A)
 
 /-- The free-cover construction of Neeman's Lemma 7.6, specialized to a finite
 list.  The approximation map and all of its bounds are proved, not assumed. -/
-theorem idealSupportedH0Cover (A : Type u) [CommRing A]
-    (hS : KoszulScalarSupportInput A) (fs : List A)
-    (hD : IdealSupportedCoproductInput A (functionIdeal A fs))
-    (hP : KoszulPowerCoprodInput A hS fs)
+theorem idealSupportedH0Cover (A : Type u) [CommRing A] (fs : List A)
     (N : ℤ) (hN : 0 < N) :
     ClosedSupportNeemanM4.IdealSupportedH0Cover A (functionIdeal A fs)
-      ⟨(koszulListData A hS (unitExponents A fs)).obj, by
+      ⟨(koszulListData A (unitExponents A fs)).obj, by
       rw [← listIdeal_unitExponents]
-      exact (koszulListData A hS (unitExponents A fs)).supported⟩ N := by
+      exact (koszulListData A (unitExponents A fs)).supported⟩ N := by
   let G : AffineDZIdeal A (functionIdeal A fs) :=
-    ⟨(koszulListData A hS (unitExponents A fs)).obj, by
+    ⟨(koszulListData A (unitExponents A fs)).obj, by
       rw [← listIdeal_unitExponents]
-      exact (koszulListData A hS (unitExponents A fs)).supported⟩
+      exact (koszulListData A (unitExponents A fs)).supported⟩
+  have hD := KoszulInputs.idealSupportedCoproductInput A fs
+  have hP := koszulPowerCoprodInput A fs
   intro F hF
   let H0 := DerivedCategory.homologyFunctor (ModuleCat.{u} A) 0
   let M : Type u := H0.obj F.obj
@@ -229,9 +286,9 @@ theorem idealSupportedH0Cover (A : Type u) [CommRing A]
     DerivedCategory.Q.map ((HomologicalComplex.single (ModuleCat.{u} A)
       (ComplexShape.up ℤ) 0).map (PrincipalH0CoverM1.freeBasisMap A i))
   choose ns hlen hpos β hβ using fun i : M =>
-    exists_koszulList_factorization A hS fs F.property (basis i ≫ ψ)
+    exists_koszulList_factorization A fs F.property (basis i ≫ ψ)
   let S := Spaltenstein.affineSpaltensteinInput A
-  let R := fun i : M => S.resolution ((koszulListData A hS (fs.zip (ns i))).obj)
+  let R := fun i : M => S.resolution ((koszulListData A (fs.zip (ns i))).obj)
   let K' : M → CochainComplex (ModuleCat.{u} A) ℤ := fun i => (R i).complex
   have hK' : ∀ i : M, (K' i).IsKProjective := fun i => (R i).isKProjective
   letI := hK'
@@ -248,7 +305,7 @@ theorem idealSupportedH0Cover (A : Type u) [CommRing A]
     exact CochainComplex.isKProjective_of_projective _ 0
   let tq : Cofan (fun i : M => DerivedCategory.Q.obj (Kreg i)) :=
     Cofan.mk (RelativeFM.DerivedCoproducts.derivedCoproductCofan K').pt (fun i =>
-      (koszulListData A hS (fs.zip (ns i))).second ≫ (R i).iso.inv ≫
+      (koszulListData A (fs.zip (ns i))).second ≫ (R i).iso.inv ≫
         (RelativeFM.DerivedCoproducts.derivedCoproductCofan K').inj i)
   let q0 := @RelativeFM.DerivedCoproducts.derivedCoproductDesc
     (ModuleCat.{u} A) _ _ M Kreg _ _ hKreg tq
@@ -265,7 +322,7 @@ theorem idealSupportedH0Cover (A : Type u) [CommRing A]
       (RelativeFM.DerivedCoproducts.derivedCoproductCofan Kreg).inj i ≫ eL.hom ≫ ψ =
           basis i ≫ ψ := by
         rw [← Category.assoc, PrincipalH0CoverM1.derivedCoproductSingleFreeIso_injection]
-      _ = (koszulListData A hS (fs.zip (ns i))).second ≫ β i := (hβ i).symm
+      _ = (koszulListData A (fs.zip (ns i))).second ≫ β i := (hβ i).symm
       _ = (RelativeFM.DerivedCoproducts.derivedCoproductCofan Kreg).inj i ≫
           eL.hom ≫ eL.inv ≫ q0 ≫ α := by
         rw [Iso.hom_inv_id_assoc]
@@ -311,7 +368,7 @@ theorem idealSupportedH0Cover (A : Type u) [CommRing A]
     subst k
     apply (t₀.le 0).prop_of_iso e.symm
     have hG0 : (affineDZIdealStandardTStructure A (functionIdeal A fs)).le 0 G :=
-      (koszulListData A hS (unitExponents A fs)).mem_le_zero
+      (koszulListData A (unitExponents A fs)).mem_le_zero
     exact (t₀.le 0).prop_of_iso ((shiftFunctorZero (AffineDZIdeal A (functionIdeal A fs)) ℤ).symm.app _) hG0
   let qfree' : E ⟶ F := (affineDZIdealι A (functionIdeal A fs)).preimage α
   refine ⟨E, qfree', hEnv, hEb, ?_⟩
@@ -330,19 +387,18 @@ theorem idealSupportedH0Cover (A : Type u) [CommRing A]
 /-- Supported zero detection descends from the ambient finite Koszul
 zero-detection input along the full inclusion. -/
 lemma isZero_idealSupported_of_ambient_detection
-    (A : Type u) [CommRing A] (hS : KoszulScalarSupportInput A)
-    (fs : List A) (hDet : KoszulDetectionInput A hS fs)
+    (A : Type u) [CommRing A] (fs : List A)
     {F : AffineDZIdeal A (functionIdeal A fs)}
     (h : ∀ k : ℤ, ∀ g :
-      (⟨(koszulListData A hS (unitExponents A fs)).obj, by
+      (⟨(koszulListData A (unitExponents A fs)).obj, by
         rw [← listIdeal_unitExponents]
-        exact (koszulListData A hS (unitExponents A fs)).supported⟩ :
+        exact (koszulListData A (unitExponents A fs)).supported⟩ :
         AffineDZIdeal A (functionIdeal A fs))⟦k⟧ ⟶ F, g = 0) : IsZero F := by
   let G : AffineDZIdeal A (functionIdeal A fs) :=
-    ⟨(koszulListData A hS (unitExponents A fs)).obj, by
+    ⟨(koszulListData A (unitExponents A fs)).obj, by
       rw [← listIdeal_unitExponents]
-      exact (koszulListData A hS (unitExponents A fs)).supported⟩
-  have hz : IsZero F.obj := hDet.detect F.obj F.property (fun k g => by
+      exact (koszulListData A (unitExponents A fs)).supported⟩
+  have hz : IsZero F.obj := (koszulDetectionInput A fs).detect F.obj F.property (fun k g => by
     let e := ((affineDZIdealι A (functionIdeal A fs)).commShiftIso k).app G
     let q : G⟦k⟧ ⟶ F := (affineDZIdealι A (functionIdeal A fs)).preimage (e.hom ≫ g)
     have hq : q = 0 := h k q
@@ -359,50 +415,47 @@ lemma isZero_idealSupported_of_ambient_detection
 /-- Compactness of the degree-one finite Koszul object follows from its
 perfectness and the supported-direct-sum inclusion. -/
 lemma isCompactAb_koszulListData_unitExponents
-    (A : Type u) [CommRing A] (hS : KoszulScalarSupportInput A)
-    (fs : List A) (hC : IdealSupportedCompactnessInput A (functionIdeal A fs))
+    (A : Type u) [CommRing A] (fs : List A)
     (hAc : IsCompactAb (ringObject A)) :
     IsCompactAb (show AffineDZIdeal A (functionIdeal A fs) from
-      ⟨(koszulListData A hS (unitExponents A fs)).obj, by
+      ⟨(koszulListData A (unitExponents A fs)).obj, by
         rw [← listIdeal_unitExponents]
-        exact (koszulListData A hS (unitExponents A fs)).supported⟩) := by
+        exact (koszulListData A (unitExponents A fs)).supported⟩) := by
   let G : AffineDZIdeal A (functionIdeal A fs) :=
-    ⟨(koszulListData A hS (unitExponents A fs)).obj, by
+    ⟨(koszulListData A (unitExponents A fs)).obj, by
       rw [← listIdeal_unitExponents]
-      exact (koszulListData A hS (unitExponents A fs)).supported⟩
+      exact (koszulListData A (unitExponents A fs)).supported⟩
   apply AffineSupportedBaseM1.isCompactAb_of_fullyFaithful
     (affineDZIdealι A (functionIdeal A fs)) G
   · exact RelativeFM.isCompactAb_of_perf A hAc
-      (koszulListData A hS (unitExponents A fs)).perfect
+      (koszulListData A (unitExponents A fs)).perfect
   · intro J
-    exact hC.preserves J
+    exact (KoszulInputs.idealSupportedCompactnessInput A fs).preserves J
 
-/-- **Finite ideal-supported Neeman weak approximability.**  The tagged
-inputs are exactly the finite Koszul support, finite-power envelope, supported
-direct sums, and finite Koszul zero-detection statement.  Ambient regular
-compactness is the only ring-side hypothesis used, as in the principal case. -/
+/-- **LP26 Corollary 1.2, affine base case** (`cor:weak_approx_spaces`), with the
+ambient regular compactness `hAc` as its only argument: `D_{V(f₁,…,fₙ)}(A-Mod)`
+satisfies the paper's weak approximability (LP26 Definition 2.1, `def:weak_approx`).
+Restated in wave 5: the refuted `hS` and the four inputs `hD`, `hP`, `hC`, `hDet`
+(all now theorems) were deleted.  `hAc` is discharged in
+`NeemanAffineSupport.satisfiesPaperWA_idealSupported`. -/
 theorem satisfiesPaperWA_idealSupported
-    (A : Type u) [CommRing A] (hS : KoszulScalarSupportInput A)
-    (fs : List A) (hD : IdealSupportedCoproductInput A (functionIdeal A fs))
-    (hP : KoszulPowerCoprodInput A hS fs)
-    (hC : IdealSupportedCompactnessInput A (functionIdeal A fs))
-    (hDet : KoszulDetectionInput A hS fs)
+    (A : Type u) [CommRing A] (fs : List A)
     (hAc : IsCompactAb (ringObject A)) :
     PaperM2.SatisfiesPaperWA (AffineDZIdeal A (functionIdeal A fs)) := by
   let G : AffineDZIdeal A (functionIdeal A fs) :=
-    ⟨(koszulListData A hS (unitExponents A fs)).obj, by
+    ⟨(koszulListData A (unitExponents A fs)).obj, by
       rw [← listIdeal_unitExponents]
-      exact (koszulListData A hS (unitExponents A fs)).supported⟩
-  have hGc : IsCompactAb G := isCompactAb_koszulListData_unitExponents A hS fs hC hAc
+      exact (koszulListData A (unitExponents A fs)).supported⟩
+  have hGc : IsCompactAb G := isCompactAb_koszulListData_unitExponents A fs hAc
   have hGg : IsPaperGenerator G := by
     intro F hF
-    exact isZero_idealSupported_of_ambient_detection A hS fs hDet hF
+    exact isZero_idealSupported_of_ambient_detection A fs hF
   obtain ⟨N, hN, hGle, hvan⟩ :=
     ClosedSupportNeemanM4.exists_idealSupported_perfect_standard_bounds
-      A (functionIdeal A fs) G (koszulListData A hS (unitExponents A fs)).perfect
+      A (functionIdeal A fs) G (koszulListData A (unitExponents A fs)).perfect
   exact ⟨ClosedSupportNeemanM4.idealSupportedPaperDataOfH0Cover
     A (functionIdeal A fs) G N hN hGc hGg hGle hvan
-      (idealSupportedH0Cover A hS fs hD hP N hN)⟩
+      (idealSupportedH0Cover A fs N hN)⟩
 
 end
 
