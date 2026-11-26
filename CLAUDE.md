@@ -215,6 +215,16 @@ The maintainer has delegated merging to the orchestrator session: work reaches
   an item starts, ends or changes; private items (the manuscripts, other private material) are
   never committed and are passed to the new session by session message.  A new orchestrator
   reads `HANDOFF.md` first.
+* **Scratchpad** (maintainer, 26 November 2026).  *Privacy:* the scratchpad keeps private
+  material private (manuscripts and anything derived from them, the maintainer's private
+  files): never copied into the repository, a commit, a branch, a brief, a worker's message
+  or any public place; readable only by the orchestrator; a local git copy that still
+  reaches removed history is pruned (`git fetch --prune`, reflog expired).  *Clean-up:*
+  before every handoff the scratchpad is cleaned: logs, probes, one-off scripts and copies of
+  the manuscripts that the uploads supersede are deleted, reusable tools are moved into
+  `scripts/`, and what stays is listed in `HANDOFF.md`.  *Read before a wave:* before starting
+  a wave the orchestrator reads `HANDOFF.md` and the scratchpad (what is running, what is
+  kept, what is private) and brings both up to date.
 * **Next wave** (maintainer, 26 November 2026): as soon as a wave is closed (and cleaned up,
   above), the
   orchestrator prepares the next one from the top of `results/TODO.md` (briefs in

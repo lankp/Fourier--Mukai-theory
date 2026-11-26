@@ -6,7 +6,7 @@ processes, and that a successor needs, is listed here (CLAUDE.md, "Handoff").  P
 are never committed: the manuscripts are named here, and anything else private is passed to the
 successor by session message.
 
-Last updated: 26 November 2026, 20:30 UTC.
+Last updated: 26 November 2026, 20:40 UTC (scratchpad cleaned).
 
 ## Running in the background
 
@@ -22,9 +22,16 @@ Last updated: 26 November 2026, 20:30 UTC.
 |---|---|---|
 | AxiomMath checkout with its build (~17 GB) | scratchpad; `.lake/packages/Stacks` is a symlink to it | `lake build Spaces` / `SpacesVerified` rebuilds it (hours; `SpacesVerified` needs ~14 GB of memory: swap, `vm.max_map_count=262144`) |
 | current GL26 and LP26 TeX (private) | the orchestrator session's uploads | ask the maintainer to upload them again; never commit them |
-| other private material of the maintainer's | scratchpad | handed over by session message (`send_message`) to the new orchestrator, never through the repository |
+| other private material of the maintainer's (one directory, readable only by the orchestrator) | scratchpad | handed over by session message (`send_message`) to the new orchestrator, never through the repository |
 | local subagent clones | `/home/user/wt-<slug>` | each pushes its branch; delete after merge |
-| logs, probes, one-off scripts | scratchpad | not needed |
+
+## Scratchpad contents
+
+After the clean-up of 26 November 2026 the scratchpad holds exactly: the AxiomMath checkout,
+the build driver and log of the running AxiomMath build, and one private directory.  Logs,
+probes, old repository copies and manuscript excerpts were deleted; reusable tools are in
+`scripts/axiommath/`.  The local checkout's stale refs to the pre-rewrite history were pruned
+and its reflog expired, so it no longer holds the removed manuscripts.
 
 ## Container set-up after a restart
 

@@ -143,7 +143,9 @@ to you.
 
 Read [`HANDOFF.md`](HANDOFF.md) first: what the previous orchestrator kept outside the
 repository (background builds, scheduled tasks, uploads, local clones) and how to redo it.
-Keep it current; private items reach a successor only by session message.
+Keep it current; private items reach a successor only by session message.  Before starting
+any wave, read `HANDOFF.md` and the scratchpad and bring both up to date; before any handoff,
+clean the scratchpad (CLAUDE.md, "Scratchpad").
 
 ## Current state
 
