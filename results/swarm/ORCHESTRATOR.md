@@ -26,7 +26,7 @@ to you.
    of `CLAUDE.md` pass on the merge result.
 2. **Update `README.md` after every wave** (counts, Status table, "What is proved"
    tables, "What is open", Layout), together with `results/COVERAGE.md`,
-   `results/SWARM.md`, `results/ASSUMPTIONS.md`, `results/SCHEMES.md` as relevant.
+   `results/SWARM.md`, `results/ASSUMPTIONS.md`, `results/archive/SCHEMES.md` as relevant.
 3. **Archive every worker session of a wave once it is merged, before the next
    wave is launched.**
 4. Prepare the next wave when the current one nears completion.  **If the 5-hour
@@ -99,7 +99,7 @@ to you.
   `lakecache.blob.core.windows.net`, `cache.mathlib.org` (Mathlib v4.35.0 serves its olean cache there; added 26 Nov 2026) and `arxiv.org`; its setup script installs
   elan, Lean 4.33.1 and Mathlib's cache for a checkout named
   `Fourier--Mukai-theory` or `fourier--mukai-theory`.  If `lean` is missing, use
-  the install commands in `results/swarm/wave4/00-preamble.md`.  Do not call
+  the install commands in `results/swarm/archive/wave4/00-preamble.md`.  Do not call
   `elan toolchain install` (refused by the proxy).
 * Launching a worker: `create_session` with `environment_id`
   `env_018GWtxMGwCU3sde5wadUMxL`, `source_url`

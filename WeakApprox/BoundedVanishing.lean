@@ -17,7 +17,7 @@ This is deliberately *not* the route to `EventuallyHomZero`, which quantifies
 over `k ≥ N`: eventual vanishing in positive degrees is not a consequence of
 boundedness in this grading, and in the formalization it comes instead from
 membership in the thick envelope of the compact generator (Stacks 09SR), as in
-the paper.  See `results/WEAK_APPROX.md` §0d.
+the paper.  See `results/archive/WEAK_APPROX.md` §0d.
 -/
 
 @[expose] public section

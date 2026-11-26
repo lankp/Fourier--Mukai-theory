@@ -79,7 +79,7 @@ tasks, each in new files except `wave2/trans-2cat`, which also owns
 
 | task | goal | new files | source |
 |---|---|---|---|
-| `wave2/regular-compact` | `IsCompactAb (ringObject A)` without Neeman's input, after settling in which model (`AffineD` vs `SmallAffineD`) the statement is meaningful; unconditional principal-support weak approximability as a corollary | `Scheme/RegularCompact.lean` | README "What is open" 1; `results/SCHEMES.md` |
+| `wave2/regular-compact` | `IsCompactAb (ringObject A)` without Neeman's input, after settling in which model (`AffineD` vs `SmallAffineD`) the statement is meaningful; unconditional principal-support weak approximability as a corollary | `Scheme/RegularCompact.lean` | README "What is open" 1; `results/archive/SCHEMES.md` |
 | `wave2/jupper` | the last field of `AffineRecollementInput`: `jUpper` with `jStar ⊣ jUpper`, via the tensor–Hom reduction of `Scheme/AffineJUpperTensorHom.lean` | `Scheme/AffineJUpperConstruction.lean` | README "What is open" 2; GL26 Lemma A.4 (affine) |
 | `wave2/trans-2cat` | Lemma B.2 (`Trans` is a 2-category over `Cat`), then B.4(5) as an adjunction in that bicategory, removing the B.4 deviation | `Prelim/TransTwoCategory.lean` (+ `Prelim/AppendixB.lean`) | GL26 App. B |
 | `wave2/base-change-mates` | Lemmas 7.12 and 7.17, and the maps of 7.13–7.15, over abstract pseudofunctor data, so that they can later discharge fields of `Scheme/Duality.lean` | `Prelim/BaseChangeMates.lean` | GL26 §7.2 |
@@ -88,7 +88,7 @@ Done by the orchestrator between waves: the numbering cleanup (`dd45ef4`).
 
 ## Wave 3
 
-Launched 25 November 2026 after wave 2 was merged.  Briefs in `results/swarm/wave3/`.
+Launched 25 November 2026 after wave 2 was merged.  Briefs in `results/swarm/archive/wave3/`.
 
 | task | goal | files |
 |---|---|---|
@@ -125,8 +125,8 @@ existing categorical engine.
 
 The wave-4 briefs prepared earlier (affine Koszul repair, open/closed non-vacuity
 in the affine model, `R j` right adjoint, Stacks registration) are deferred to
-`results/swarm/deferred/`; `wave4/koszul-repair` was launched at 07:27 UTC and
-stopped minutes later when the direction changed.  Briefs in `results/swarm/wave4/`.
+`results/swarm/archive/deferred/`; `wave4/koszul-repair` was launched at 07:27 UTC and
+stopped minutes later when the direction changed.  Briefs in `results/swarm/archive/wave4/`.
 
 | task | goal | files |
 |---|---|---|
@@ -145,7 +145,7 @@ neeman-prune and open-inputs merged and archived; `spaces-foundations` moves to 
 (the AxiomMath build is still running: `MilnorPatching.Relative` needs ~13.6 GB and
 builds only with swap; workers cannot build AxiomMath themselves).
 
-## Wave 5 (briefs in `results/swarm/wave5/`)
+## Wave 5 (briefs in `results/swarm/archive/wave5/`)
 
 **Maintainer's goal for wave 5 (26 November 2026):** besides the geometric layer,
 LP26 is addressed with **Neeman's weak approximability for affine schemes with
@@ -162,8 +162,8 @@ finite-list case `V(f₁,…,fₙ)` goes through the refuted `KoszulScalarSuppor
 | task | goal |
 |---|---|
 | `wave5/neeman-affine-support` | weak approximability of `D_{V(I)}(A-Mod)` for every finitely generated `I` (every finite list), with **no** named input: drop the refuted input (the deferred `koszul-repair` brief), prove `KoszulPowerCoprodInput`, and prove or import (AxiomMath 0A9A) `KoszulDetectionInput`; non-vacuity by an instance |
-| `wave5/neeman-3-2-inputs` | maintainer, 26 Nov 2026: Neeman 2024 Thm 3.2 is no longer assumed; inventory its uses (`results/NEEMAN_3_2.md`), prove what a GL26/LP26 path needs (first (i) compact ⇒ perfect for `D(A)`, both models, via compactness of the regular module and Stacks 09SR), unconditional corollaries in new files |
-| `wave5/neeman-prune` | maintainer: discard what is not needed (`results/NEEMAN_3_2.md` §4): endpoints take Stacks 09SR instead of the Neeman inputs (incl. the pinned `affine_theorem_1_1_neeman_only`), delete `Neeman_3_2_ii`, `NeemanPublishedWeakApproximation`, the 066S `NeemanAffineCompactModelInput` chain |
+| `wave5/neeman-3-2-inputs` | maintainer, 26 Nov 2026: Neeman 2024 Thm 3.2 is no longer assumed; inventory its uses (`results/archive/NEEMAN_3_2.md`), prove what a GL26/LP26 path needs (first (i) compact ⇒ perfect for `D(A)`, both models, via compactness of the regular module and Stacks 09SR), unconditional corollaries in new files |
+| `wave5/neeman-prune` | maintainer: discard what is not needed (`results/archive/NEEMAN_3_2.md` §4): endpoints take Stacks 09SR instead of the Neeman inputs (incl. the pinned `affine_theorem_1_1_neeman_only`), delete `Neeman_3_2_ii`, `NeemanPublishedWeakApproximation`, the 066S `NeemanAffineCompactModelInput` chain |
 | `wave5/open-inputs` | maintainer: only AxiomMath/Stacks is assumed; triage every named non-Stacks input (Stacks / Mathlib / prove / delete / setup) into `results/OPEN_INPUTS.md`, with the shortest path to unconditional headlines and a task grouping for the next waves |
 | `wave5/spaces-foundations` (after the AxiomMath bundle is published) | the algebraic-space layer `FourierMukai/Spaces/`: `D_qc`, `Perf`, `D^b_coh`, support; `Lf^*`, `Rf_*`, `⊗^L`; GL26's `f`-perfect and `f`-quasi-perfect; integral transforms `Φ_K`; all non-vacuous |
 | `wave5/neeman-affine-transport` (after AxiomMath is imported) | transport it along AxiomMath's `D_qc(Spec A) ≃ D(A)` with supports matched: `D_qc,Z(Spec A)` weakly approximable for `Z` closed with quasi-compact complement, in AxiomMath's model — the base case of LP26 Cor 1.2 |
@@ -175,7 +175,7 @@ for qcqs algebraic spaces by LP26 Theorem 1.1 and the induction principle (Stack
 Other candidates (from the earlier plan, if they feed the geometric statements):
 GL26 Proposition 10.5 and Lemma 10.9 on `Scheme/FMCube.lean`; `DerivedPseudofunctorInput`.
 
-## Wave 6 (briefs in `results/swarm/wave6/`; effort per ORCHESTRATOR.md item 12)
+## Wave 6 (briefs in `results/swarm/archive/wave6/`; effort per ORCHESTRATOR.md item 12)
 
 Planned from `results/OPEN_INPUTS.md`.  Affine-only versions of what AxiomMath proves
 for spaces (0E55 coextension, `⊗^L` on `D(A-Mod)`) are **not** scheduled: the
@@ -228,12 +228,12 @@ Order after wave 7: the qcqs induction for supported weak approximability over s
 | 3 | `wave3/koszul-inputs` | `session_0111iGd9g3poYVdXRe3zUiNo` | `ebcf8f5` (merge of `2096440`, audit and ledger conflicts resolved) | refuted `KoszulScalarSupportInput` (finite-support endpoints vacuous); proved two of the other inputs; verified: build, audit 121 clean, statement check OK. started 25 Nov 2026, 20:48 UTC; stopped at 20:55 on the 5-hour usage limit; resumed 26 Nov 01:07 UTC |
 | 3 | `wave3/open-closed-glue` | `session_0111iGd6pPXkVdZh7E3aUHJS` | `c2cf3a3` (merge of `ef072ef`) | reduction: completion hypothesis replaced by package-free inputs; generator change proved; non-vacuity of the new inputs NOT established (queued for wave 4); verified: build, audit 116 clean, statement check OK. started 25 Nov 2026, 20:48 UTC; stopped at 20:55 on the 5-hour usage limit; resumed 26 Nov 01:07 UTC |
 | 3 | `wave3/fm-cube` | `session_0111iGd7XkC9wt1eqC3VpBdh` | `3805c58` (merge of `fcc3e57`) | 6.11, 10.1 C (Stacks only), 10.2 P (abstract); verified: build, audit 101 clean, statement check OK, non-vacuity (`constFMCube`). started 25 Nov 2026, 20:48 UTC; stopped at 20:55 on the 5-hour usage limit; resumed 26 Nov 01:07 UTC |
-| 4 | `wave4/koszul-repair` (old plan) | `session_0111iGd5EpQmrcMq2EVMYxSR` | — | launched 26 Nov 07:27 UTC under the earlier wave-4 plan, stopped at 07:30 when the maintainer set the full-generality direction; nothing pushed; archived. Brief in `results/swarm/deferred/` |
+| 4 | `wave4/koszul-repair` (old plan) | `session_0111iGd5EpQmrcMq2EVMYxSR` | — | launched 26 Nov 07:27 UTC under the earlier wave-4 plan, stopped at 07:30 when the maintainer set the full-generality direction; nothing pushed; archived. Brief in `results/swarm/archive/deferred/` |
 | 4 | `wave4/axiommath-api-map` | `session_0111iGd7KmNg4hyA9gC1E4Hh` | `b50af08` (merge of `4af8b4f`) | `results/AXIOMMATH_MAP.md`: notions and functors faithful in the canonical model; gaps C.1–C.12; statement layer T1 = 8.9k AxiomMath modules, all named T3 = 16.6k. Documentation only; verified: one markdown file, no Lean changed. launched 07:39 UTC |
 | 4 | `wave4/axiommath-tag-map` | `session_0111iGd5VH4ANnfPagE5ET8s` | `35f0c62d` (merge of `41dc007`) | `results/AXIOMMATH_TAGS.md`: 147 cited tags; 114 usable, 8 usable via untagged space-level declarations, 23 partial (mostly universe: site-level results at `{u,u,u}`), 2 schemes only, 0 absent; ASSUMPTIONS S rows cross-checked. Documentation and scripts only (local parsing, no network); verified: no Lean changed. launched 07:39 UTC |
 | 4 | `wave4/toolchain-435` | `session_0111iGd75PvwesuGTUxJTGcP` | `a80e03e` (merge of `13bd116`) + baseline `7c8cf28` | tree on Lean/Mathlib v4.35.0; 18 `.lean` files, proofs only (`List.TFAE.out` now 1-based, renames, closing tactics); verified: build 9 min, audit 121 clean + the 9 targets, statement check OK after re-recording one pretty-printing drift (`Spec (CommRingCat.of A)` → `Spec ↧A`, same term). launched 07:39 UTC |
 | 5 | `wave5/neeman-affine-support` | `session_0111iGd7GFY22r3kJrNYZauJ` | `88cb5b9` (merge of `5af4b8e`; conflicts in imports, Audit, ASSUMPTIONS resolved by the orchestrator) + baseline | **LP26 Cor 1.2 affine base = Neeman 3.2(iv) for `Spec A`, `V(I)`, `I` f.g., with no hypothesis** (`NeemanAffineSupport.satisfiesPaperWA_of_fg`, now pinned); refuted `KoszulScalarSupportInput` removed, Construction 7.3 and Koszul detection proved; three pinned declarations restated as authorized (they keep the proved `hAc`; the scheme forms keep the open `AffineSupportedSchemeComparisonInput`); verified: build, 9 modules compiled singly, audit 137 clean + 9 targets, statement check: exactly the 3 authorized entries, re-recorded, plus the new pin. | launched 26 Nov 08:34 UTC (5-hour window at `allowed_warning`, resets 11:00; weekly window at `allowed_warning`) |
-| 5 | `wave5/neeman-3-2-inputs` | `session_0111iGd5q1UJafFAiSvAaNSe` | `2d3006c` (merge of `1a66a2c`) | Neeman 3.2(i) for `D(A)` in both models from Stacks 09SR (`compactPerfectInput`, `smallNeemanCompactToPerfectInput`), (ii) affine with no input; inventory `results/NEEMAN_3_2.md` (neither paper cites (i)/(ii); (iii)–(iv) for schemes are on paper paths); verified: build, audit 127 clean + 9 targets, statement check OK, non-vacuity (examples over ℤ; 09SR antecedents shown). | launched 26 Nov 11:10 UTC (Neeman 3.2 no longer assumed); `neeman-affine-support` stopped on the 5-hour limit at 08:39 and was resumed at 11:10 |
+| 5 | `wave5/neeman-3-2-inputs` | `session_0111iGd5q1UJafFAiSvAaNSe` | `2d3006c` (merge of `1a66a2c`) | Neeman 3.2(i) for `D(A)` in both models from Stacks 09SR (`compactPerfectInput`, `smallNeemanCompactToPerfectInput`), (ii) affine with no input; inventory `results/archive/NEEMAN_3_2.md` (neither paper cites (i)/(ii); (iii)–(iv) for schemes are on paper paths); verified: build, audit 127 clean + 9 targets, statement check OK, non-vacuity (examples over ℤ; 09SR antecedents shown). | launched 26 Nov 11:10 UTC (Neeman 3.2 no longer assumed); `neeman-affine-support` stopped on the 5-hour limit at 08:39 and was resumed at 11:10 |
 | 5 | `wave5/neeman-prune` | `session_0111iGd9N3bRHZc6AEYH1o6J` | `1eb5001` (merge of `7a92091`) + baseline | Neeman 2024 Thm 3.2 inputs removed from the tree: `CompactPerfectInput`, `SmallNeemanCompactToPerfectInput`, `NeemanAffineCompactModelInput`, `Neeman_3_2_i/ii/iv`, `NeemanPublishedWeakApproximation` deleted, `Affine066S.lean` deleted; pinned `affine_theorem_1_1_neeman_only` → `affine_theorem_1_1_unconditional` with no input beyond the paper setup; small-Hom endpoints keep Stacks 09SR (small ⇒ large compactness lift unproved); verified: build, 13 modules singly, audit 142 clean + 9 targets, statement check: exactly the authorized diff, re-recorded. | launched 26 Nov 11:39 UTC |
 | 5 | `wave5/open-inputs` | `session_0111iGd99W3B92SKghvVqXPu` | | launched 26 Nov 11:40 UTC |
 | 6 | `wave6/vacuity-refutations` | `session_0111iGd9N18AtNr9JMXz2qgJ` | `b2c7530` (merge of `0009871` = `220fab5` cherry-picked onto the rewritten history) + baseline | F1 `¬ HasCoproducts.{u+1} (AffineD A)` for nontrivial `A` (two pinned endpoints vacuous → unpinned), F2 no compact `IsGenerator` in `D(ℤ)` (large and small; `SetupMainMinimal` empty at ℤ), F3 `QuasicoherentSerreInput (Spec ℤ)` false; verified: build, 4 modules singly, audit 160 clean + 9 targets, statement check (16 pins after unpinning). | launched 26 Nov 12:38 UTC, effort high (account now Max; 5-hour window `allowed`) |

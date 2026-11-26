@@ -118,7 +118,7 @@ inputs and its relative Fourier--Mukai geometry.
 (26 November 2026): Neeman 2024, Theorem 3.2 is no longer an allowed input,
 `Neeman_3_2_ii` was a false rendering (`IsGenerator` fails for `ℤ[0]`), and the
 affine cases of (i), (ii) are proved in `Scheme/Neeman32Inputs.lean` (see
-`results/NEEMAN_3_2.md`).  The only theorem proved here is the formal
+`results/archive/NEEMAN_3_2.md`).  The only theorem proved here is the formal
 specialization of pairwise compact vanishing to the self-vanishing appearing in
 `SetupMainMinimal.theorem_1_1`.  The `#check`s verify the names used from the
 current project; no claim about a Mathlib `IsPerfect` implementation is made.

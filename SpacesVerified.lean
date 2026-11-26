@@ -7,6 +7,5 @@ import SpacesVerified.Discharge
 Discharges every tagged AxiomMath input of the `Spaces` library by the AxiomMath
 theorem it names (`SpacesVerified/Discharge.lean`), so that the results over algebraic
 spaces hold unconditionally with axioms `propext`, `Classical.choice`, `Quot.sound` only.
-Building it compiles AxiomMath theorem modules beyond `Spaces`' definitions; see README,
-"Full verification".
+Building it compiles AxiomMath theorem modules beyond `Spaces`' definitions; see README, "Building".
 -/

@@ -57,5 +57,5 @@ Root module for the formalization of
 
   P. Lank, B. Pauwels, *Gluing weak approximability along recollements*.
 
-See `results/WEAK_APPROX.md`.
+See `results/archive/WEAK_APPROX.md`.
 -/

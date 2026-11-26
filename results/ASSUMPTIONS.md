@@ -11,13 +11,13 @@ open items whose content is to be formalized here, not permitted inputs.  Since
 `AffinePerfect.NeemanAffineCompactModelInput`, the templates `Neeman_3_2_i/ii/iv`
 and `NeemanPublishedWeakApproximation` are deleted, and their consumers take no input in
 `D(A-Mod)` (compact ⇒ `Perf` is proved, `Scheme/M4Unconditional.lean`) and Stacks
-09SR (`Tag09SRPaper`) in the small-Hom model (`results/NEEMAN_3_2.md` §5).  The remaining Thm 3.2
+09SR (`Tag09SRPaper`) in the small-Hom model (`results/archive/NEEMAN_3_2.md` §5).  The remaining Thm 3.2
 carrier is scheme-level: `SupportedCategoryInput.neeman_3_2_iii` (the
 `CompactsArePerfect` fields of the scheme gluing interfaces were deleted in wave 6,
 `wave6/prune-dead-inputs`: their `Perf` was a free field). The interface is
 `FourierMukai/Scheme/StacksInput.lean`, in `RelativeFM.StacksInterface`; its
 fields record exact statements and tag numbers from AxiomMath/Stacks. See also
-`results/STACKS_INTERFACE.md`.
+`results/archive/STACKS_INTERFACE.md`.
 
 **Policy (see [`STACKS_POLICY.md`](STACKS_POLICY.md)).**  The formalization and results
 of AxiomMath/Stacks may be used **freely**; a Stacks result that Axiom has formalized
@@ -80,7 +80,7 @@ deleted in wave 6.
 open assumption. Until `wave5/neeman-prune` the last argument was
 `I : SmallNeemanCompactToPerfectInput A H` (Neeman 3.2(i), compact implies perfect);
 it is now the Stacks 09SR instance `h09`, from which compact ⇒ `SmallPerf` is proved
-(`Neeman32Inputs.smallPerf_of_isCompactAb`); see `results/NEEMAN_3_2.md`. This
+(`Neeman32Inputs.smallPerf_of_isCompactAb`); see `results/archive/NEEMAN_3_2.md`. This
 formulation uses no ambient derived-coproduct package and no separate Hom-vanishing
 hypothesis. It is nevertheless **not yet an unconditional construction from a
 ring**: `S` and `hgen` still contain geometric and setup data.
@@ -238,7 +238,7 @@ general Stacks tag. New interface/companion-module tags follow this table.
 | 0657, 066R, 066T | P in the module-model development: definitions/elementary retract facts and model implies `Perf A`. |
 | 066S | **Open, off the paper path** (`wave5/neeman-prune`): the N route (`Affine066S.lean`, from `NeemanAffineCompactModelInput`) is deleted. Partial results in `Affine066SRetracts.lean`; lemmas needing it take the retract closure `hR` as an explicit hypothesis. No full-tag proof is claimed. |
 | 07LR, 07LT | P for finite-free induction lemmas; compact-to-`Perf` used by the endpoints is **no longer N** (wave 5): P in `D(A-Mod)` (`Stacks07LT.M4.compactToPerfectInput_unconditional`, no input), S through 09SR in the small model (`Neeman32Inputs.smallPerf_of_isCompactAb`); compact-to-*model* (`Stacks07LTCompactModelInput`) stays open and off the paper path. The two 07LR input packages are not silently inhabited. Reverse perfect-to-compact does not follow. |
-| 09M1, 0AED | Affine ring model, `Z = X` (wave 5): no Neeman: `RelativeFM.Neeman32Inputs.affine_neeman_3_2_i A` (compact ⇔ perfect in `D(A-Mod)`, **P**, no input) and `smallAffine_neeman_3_2_i A H h09` (small model, **S** via `h09 : Tag09SRPaper (SmallAffineD A H)`) (the interfaces `CompactPerfectInput`, `SmallNeemanCompactToPerfectInput` are deleted); perfect ⇒ compact is P (`RegularCompact.ringObject_isCompactAb`). S for general supported schemes/spaces. See `results/NEEMAN_3_2.md`. |
+| 09M1, 0AED | Affine ring model, `Z = X` (wave 5): no Neeman: `RelativeFM.Neeman32Inputs.affine_neeman_3_2_i A` (compact ⇔ perfect in `D(A-Mod)`, **P**, no input) and `smallAffine_neeman_3_2_i A H h09` (small model, **S** via `h09 : Tag09SRPaper (SmallAffineD A H)`) (the interfaces `CompactPerfectInput`, `SmallNeemanCompactToPerfectInput` are deleted); perfect ⇒ compact is P (`RegularCompact.ringObject_isCompactAb`). S for general supported schemes/spaces. See `results/archive/NEEMAN_3_2.md`. |
 | 09M8 | P for the thick-envelope reduction only; S if full perfect-to-compact is required. |
 | 09MB | P for the perfect-pair affine ring form used here; S for the general amplitude statement. |
 | 09SR | **Discharged (wave 6, `wave6/stacks-categorical`): a theorem of AxiomMath/Stacks.** `RelativeFM.Spaces.Stacks.tag09SRPaper C : Tag09SRPaper C` for every *triangulated* `C` (`Spaces/Stacks/Tags.lean`), from AxiomMath `ObjectProperty.isWeakTriangulatedGenerator_iff_triangEnvelope_eq_isCompactObject_and_isCompactlyGenerated` through the proved bridges `IsCompactObject.{v} ↔ IsCompactAb`, `IsWeakTriangulatedGenerator (singleton G) ↔ IsPaperGenerator G`, `triangEnvelope = IsCompactObject ↔ IsClassicalGeneratorOnCompacts` (`Spaces/Stacks/Bridges.lean`). See the 09SR row of §4. |
@@ -248,7 +248,7 @@ general Stacks tag. New interface/companion-module tags follow this table.
 | 06Z0 | S for the actual all-sheaves `D_qc` comparison/coherence. The separate ordinary QCoh equivalence is P without it. |
 | 079W, 08D4, 01XB | S for `AffineDerivedGammaInput`; R for the small ring endpoint. |
 | 07A6 | P for concrete affine scalar restriction/extension; S for general geometric derived pull/push. |
-| 0BFF | **R, and the citation was wrong.** 0BFF is Lemma 39.9.7, the formula `[n]^*L = L^(n(n+1)/2) (x) ([-1]^*L)^(n(n-1)/2)` for abelian varieties; it has nothing to do with the localization sequence. The citation has been removed from `AffineRecollement.lean` and `AFFINE.md`, and the sources for the recollement are Gao--Psaroudakis 2.2(ii), Balmer--Dell'Ambrogio--Sanders 2.3 and Krause section 4. The power-torsion and localization-vanishing facts are proved here independently of any tag. |
+| 0BFF | **R, and the citation was wrong.** 0BFF is Lemma 39.9.7, the formula `[n]^*L = L^(n(n+1)/2) (x) ([-1]^*L)^(n(n-1)/2)` for abelian varieties; it has nothing to do with the localization sequence. The citation has been removed from `AffineRecollement.lean` and `archive/AFFINE.md`, and the sources for the recollement are Gao--Psaroudakis 2.2(ii), Balmer--Dell'Ambrogio--Sanders 2.3 and Krause section 4. The power-torsion and localization-vanishing facts are proved here independently of any tag. |
 | 08D5, 08DQ | R: an alternative proof of eventual vanishing documented in `Scheme/Inputs.lean`, not an affine dependency. |
 | 094A, 09SP | R now; S only if the Brown-representability/09SR route is instantiated. |
 | 09SN | **Discharged (wave 6, `wave6/stacks-categorical`): a theorem of AxiomMath/Stacks**, `RelativeFM.Spaces.Stacks.tag09SN`; see the 09SN row below. GL26 Lemmas 2.4 and 2.5 are unconditional in `Spaces/Stacks/Corollaries.lean`. |

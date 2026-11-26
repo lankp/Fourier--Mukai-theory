@@ -167,7 +167,7 @@ Mathlib sources and 1.9 GB of oleans, and the steps that move them — cache
 restore, clone, cache save — are 128s of run 12's 157s.  Getting under 90s needs a
 machine that does not start from nothing each time.  Three routes, with their
 measured and estimated costs, are sketched in
-[`CI_PERFORMANCE.md`](CI_PERFORMANCE.md); the short version is that caching more
+[`archive/CI_PERFORMANCE.md`](archive/CI_PERFORMANCE.md); the short version is that caching more
 is worth one experiment at about two minutes, a prebuilt image mostly relocates
 the same gigabytes, and a self-hosted runner is the only thing that gets under a
 minute — with the caveat that GitHub advises against self-hosted runners on public
@@ -293,6 +293,6 @@ have — it imports the whole development by design.
    `.olean` and miss a name clash that the umbrella build catches.
 
 A green build does not establish source fidelity either.  Fidelity is checked by
-reading the paper: `results/AFFINE.md` carries one row per cited input,
-`results/GL26_SCHEME_DEPENDENCE.md` carries the theorem-by-theorem audit against
+reading the paper: `results/archive/AFFINE.md` carries one row per cited input,
+`results/archive/GL26_SCHEME_DEPENDENCE.md` carries the theorem-by-theorem audit against
 `main-4.tex`, and the statement layer's docstrings name the results as printed.

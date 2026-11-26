@@ -29,7 +29,7 @@ distinguished triangle, is induced by a morphism of triangles.
   subcategory (the triangulated part of Lemma 2.3(2)).
 
 The thickness part of Lemma 2.3(2) (closure under direct summands) is *not*
-formalized here; see `results/REPORT.md`.
+formalized here; see `results/archive/REPORT.md`.
 
 ## Implementation notes
 

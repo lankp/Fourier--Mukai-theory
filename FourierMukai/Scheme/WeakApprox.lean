@@ -34,7 +34,7 @@ with its kernel characterization.  From that data:
 The categorical implication is done: once the interface is inhabited, weak
 approximability of `D_qc(X)` follows from LP's theorem with no further work.
 The interface fields are the contract the geometric layer must satisfy, and they
-are exactly the objects `results/MATHLIB_INVENTORY.md` reports as missing
+are exactly the objects `results/archive/MATHLIB_INVENTORY.md` reports as missing
 (`D_qc`, `Perf`, support, the derived recollement).  Neeman's published theorem
 supplies the *proof* of the fields' content for qcqs schemes, but not the
 categories in which they are stated.

@@ -6,18 +6,12 @@ project:
   name: "FourierMukai"
   authors: [Pat Lank, Elías Guisado Villalgordo, Bregje Pauwels]
   description: >-
-    A Lean 4 formalization, on Mathlib and AxiomMath/Stacks (the Axiom Math
-    formalization of the Stacks Project, a pinned Lake dependency), of two papers on
-    derived categories of algebraic spaces: *Relative Fourier–Mukai theory for
-    algebraic spaces* (Guisado Villalgordo–Lank, arXiv:2609.01298) and *Gluing weak
-    approximability along recollements* (Lank–Pauwels).  The goal is both papers in
-    full generality, over algebraic spaces, with AxiomMath/Stacks as the only
-    external mathematical input; everything else comes from Mathlib or is proved
-    here.  The `WeakApprox` library formalizes the categorical part of the second
-    paper (§2–§4 and Theorem 1.1, with exactly the paper's hypotheses); the
-    `FourierMukai` library holds the categorical engine and the affine layer; the
-    `Spaces` / `SpacesVerified` libraries build the algebraic-space layer on
-    AxiomMath's definitions and theorems.
+    A Lean 4 formalization of two papers on derived categories of algebraic spaces:
+    *Gluing weak approximability along recollements* (Lank–Pauwels) and *Relative
+    Fourier–Mukai theory for algebraic spaces* (Guisado Villalgordo–Lank,
+    arXiv:2609.01298), in full generality, LP26 first.  The only external input is
+    AxiomMath/Stacks, a pinned Lake dependency; everything else comes from Mathlib or
+    is proved here.
   responsible_maintainers: [Pat Lank]
   license: "Apache-2.0"
 
@@ -33,8 +27,8 @@ sources:
       §2.1, §7 and Appendices B, C (in categorical form), Lemmas 2.25, 2.26 and 5.4
       in abstract six-functor form, Lemmas 6.11, 10.1, 10.2 over a six-functor cube,
       Lemma A.4 in the affine case.  The headline results (Theorems 1.2, 1.3, 1.6,
-      1.7, 12.3, Corollary 6.18, Lemma 12.2) are not yet stated over algebraic
-      spaces; the algebraic-space layer (`Spaces`) is in progress.  Per-result
+      1.7, 12.3, Corollary 6.18, Lemma 12.2) are being restated over algebraic
+      spaces, on the `Spaces` layer (GL26 §2.2, nothing assumed).  Per-result
       status: results/COVERAGE.md.
   - title: "Gluing weak approximability along recollements"
     authors: [Pat Lank, Bregje Pauwels]
@@ -42,8 +36,8 @@ sources:
     type: "article"
     relationship: "formalizes"
     note: >-
-      §2–§4 and Theorem 1.1 with the paper's hypotheses
-      (`PaperHypothesesW6.theorem_1_1_paper`).  Corollary 1.2: the affine base case
+      §2–§4, and Theorem 1.1 with the paper's hypotheses and nothing assumed
+      (`Spaces.Stacks.theorem_1_1`).  Corollary 1.2: the affine base case
       (Neeman's weak approximability of D_{V(I)}(A-Mod), I finitely generated) is
       proved with no input; the case of qcqs algebraic spaces is in progress.
 

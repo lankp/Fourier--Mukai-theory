@@ -23,7 +23,7 @@ unconditionally.
 | `Tag08FAInput` | 08FA (1) | `AlgebraicGeometry.Space.qcohDerived_derivedModulePushforward_obj` |
 
 Building this file compiles the AxiomMath theorem modules above (part of the full
-AxiomMath build; see README, "Full verification").
+AxiomMath build; see README, "Building").
 -/
 
 noncomputable section

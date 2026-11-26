@@ -11,7 +11,7 @@ The declarations that produced or consumed the Neeman 2024, Theorem 3.2(i)
 interfaces (`smallNeemanCompactToPerfectInput_of_large`, `smallAffine_neeman_3_2_i`,
 `affine_theorem_1_1_small_standard_of_compactProof`, the
 `neemanAffineCompactModelInput_*` family) were deleted on `wave5/neeman-prune`;
-see `Scheme/Neeman32Inputs.lean` and `results/NEEMAN_3_2.md`.
+see `Scheme/Neeman32Inputs.lean` and `results/archive/NEEMAN_3_2.md`.
 -/
 import FourierMukai.Scheme.AffineCompactness
 import FourierMukai.Scheme.CompactToPerfect

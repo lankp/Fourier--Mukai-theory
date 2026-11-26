@@ -18,7 +18,7 @@ nine are specifications.  Their proofs are the content of the 102-page paper;
 they depend on Grothendieck duality for algebraic spaces, Nagata
 compactification, weak approximability of `D_qc`, and the theory of relatively
 perfect complexes developed in Parts 1 and 2 of the paper.  None of that is
-available in Lean today; see `results/REPORT.md` for a detailed inventory.
+available in Lean today; see `results/archive/REPORT.md` for a detailed inventory.
 
 Each statement records in its docstring
 

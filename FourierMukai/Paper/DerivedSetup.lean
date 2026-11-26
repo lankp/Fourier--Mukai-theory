@@ -196,7 +196,7 @@ end FMContext
 /-- A relative Fourier--Mukai context together with its fibres at the points of the
 base (Definition 12.1).  The field `fibreTransform` encodes the base change
 `L(t')^*K` of the kernel at a representative `t` of each point; see
-`FMSetup`'s documentation in `results/REPORT.md` for why the geometry behind this
+`FMSetup`'s documentation in `results/archive/REPORT.md` for why the geometry behind this
 field cannot be defined in Mathlib today. -/
 structure FMSetup where
   /-- The underlying topological space `|S|`. -/

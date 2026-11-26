@@ -17,7 +17,7 @@ original theorem (the named geometric comparisons
 compact-to-perfect direction `CompactToPerfectInput`) is kept verbatim.
 
 Sources: GL26 / Neeman, *Acta Math.* 233 (2024), Thm 3.2 (affine case) as
-recorded in `results/SCHEMES.md`.  The headline new fact is unconditional:
+recorded in `results/archive/SCHEMES.md`.  The headline new fact is unconditional:
 weak approximability of `D(A-Mod)` (`affine_satisfiesPaperWA`) and of the
 principal supported category `D_{V(f)}(A-Mod)`
 (`principalSupported_satisfiesPaperWA`), from no input at all.

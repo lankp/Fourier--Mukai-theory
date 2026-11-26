@@ -28,7 +28,7 @@ There are two small differences, recorded here so that they are not forgotten:
 * the paper's definition of `⟨S⟩_n` uses morphisms from `⟨S⟩_{n-1}` to `⟨S⟩_1`;
   Mathlib uses the standard inductive step (extensions of objects in `⟨S⟩_n`).
   The resulting closures agree (both are the thick closure of `S`), but the
-  `⟨S⟩_n` filtrations are not obviously the same; see `results/REPORT.md`.
+  `⟨S⟩_n` filtrations are not obviously the same; see `results/archive/REPORT.md`.
 
 ## Main definitions
 

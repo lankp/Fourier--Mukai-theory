@@ -183,7 +183,7 @@ import FourierMukai.Scheme.RefuteQCohSerre
 /-!
 # Relative Fourier--Mukai theory for algebraic spaces: Lean formalization
 
-Root module.  See `results/REPORT.md` for the state of the formalization, the
+Root module.  See `results/archive/REPORT.md` for the state of the formalization, the
 inventory of missing prerequisites, and the list of statements that are stated
 but not proved.
 -/

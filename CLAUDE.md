@@ -1,9 +1,9 @@
 # Instructions for agents working in this repository
 
 This file is read by every Claude session that works here, including the
-parallel worker sessions of a swarm.  The rules are the ones `README.md` states
-for the project; this file makes them operational.  If the two disagree,
-`README.md` wins and this file should be fixed.
+parallel worker sessions of a swarm.  `README.md` is the short public summary; this
+file holds the project's working rules.  If the two disagree, fix whichever is out of
+date and say so in the commit message.
 
 ## What the project is
 
@@ -15,8 +15,10 @@ A Lean 4 formalization, on Mathlib, of
 * **LP26**: Lank–Pauwels, *Gluing weak approximability along recollements*
   (preprint).
 
-The goal is all of GL26.  `results/COVERAGE.md` lists every numbered result of
-both papers with its status in the tree.  Start there.
+The goal is both papers in full generality: **LP26 first** (with the parts of the
+literature it needs), **then GL26** (maintainer, 26 November 2026).
+`results/COVERAGE.md` lists every numbered result of both papers with its status in
+the tree.  Start there.
 
 **Full generality** (maintainer's standing instruction, 26 November 2026): the
 whole repository aims at the results as stated in the current manuscripts, for
@@ -116,8 +118,7 @@ The project compiles with `autoImplicit = false`, `relaxedAutoImplicit = false`,
 
 ## Verification before you claim anything
 
-A result is "proved" only after all of these, in order (`README.md`,
-"Verification"):
+A result is "proved" only after all of these, in order (`README.md`, "Checking"):
 
 1. the module compiles from the repository root, exit status 0;
 2. the output contains no `error` (`#print axioms` prints even when a file fails);
@@ -180,8 +181,8 @@ The maintainer has delegated merging to the orchestrator session: work reaches
   deviation from the paper's statement.  The orchestrator reads it, re-verifies,
   checks the statements against the manuscript, and merges or sends it back.
 * **After every wave** the orchestrator updates `README.md` (the module and line
-  counts, the Status table, the "What is proved" tables, "What is open" and the
-  Layout table) as well as `results/COVERAGE.md` and `results/SWARM.md`, so that the
+  counts, the Status tables, "Next" and the Layout table; keep it short and plain) as
+  well as `results/COVERAGE.md` and `results/SWARM.md`, so that the
   README always describes the tree as merged.  This is the maintainer's standing
   instruction.
 * **Before a new wave starts**, every worker session of the previous wave has been

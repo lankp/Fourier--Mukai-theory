@@ -29,7 +29,7 @@ forward direction uses only `G ∈ D^{≤0}` and `Hom(G, D^{≤-A}) = 0`, which 
 `G` because `G'⟦m⟧` is a summand of `G`.  Stacks Tag 09SR (Ravenel--Neeman) is
 not used here: it is needed only to derive Setup 4.4 from the paper's own
 hypotheses, i.e. in Lemma 4.3.  See `WeakApprox/NineSR.lean` and
-`results/WEAK_APPROX.md` for what is and is not formalized of it.
+`results/archive/WEAK_APPROX.md` for what is and is not formalized of it.
 
 The reverse direction is `WeakApprox/TwoStage.lean`: `Setup44` produces weak
 approximation data with the normalized generator `G'⟦m⟧ ⊞ j_!G_U`, the glued

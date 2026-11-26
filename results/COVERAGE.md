@@ -238,7 +238,7 @@ absent.
 ## LP26, *Gluing weak approximability along recollements*
 
 All of §2–§4 and Theorem 1.1 are proved, scheme-agnostically, in `WeakApprox/`.
-The geometric §5 is not; the tree records it in `results/WEAK_APPROX.md`.
+The geometric §5 is not; the tree records it in `results/archive/WEAK_APPROX.md`.
 
 | # | label | status | where / note |
 |---|---|---|---|
@@ -269,7 +269,7 @@ Corrected on 25 November 2026: "GL26 Theorem 1.1" → LP26 Theorem 1.1 (README,
 `StatementCheck.lean`, `Scheme/Affine.lean`, `VERIFICATION.md`); Corollary 12.10 →
 12.4 for `cor:deform`, including the rename `corollary_12_10Statement` →
 `corollary_12_4Statement` (not pinned); Theorems 6.2 and 11.4 → Propositions; the
-mates file's 7.1/7.8 → 7.2/7.11; Definition B.11 → B.9.  `results/REPORT.md` is a
+mates file's 7.1/7.8 → 7.2/7.11; Definition B.11 → B.9.  `results/archive/REPORT.md` is a
 historical report and keeps the numbering of the version it was written against.
 
 ## Verification of this map

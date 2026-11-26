@@ -18,7 +18,7 @@ This file holds the definitions of §2.1.2 and §2.1.5 of
   P. Lank, B. Pauwels, *Gluing weak approximability along recollements*.
 
 The development lives in its own tree (`WeakApprox/`) so that it can be moved,
-unchanged, into a repository of its own.  See `results/WEAK_APPROX.md` for the
+unchanged, into a repository of its own.  See `results/archive/WEAK_APPROX.md` for the
 module plan, what Mathlib provides, and what is missing.
 
 ## Main definitions
@@ -40,7 +40,7 @@ module plan, what Mathlib provides, and what is missing.
 * `IsCoproductCompact H` says that `Hom(H, -)` preserves `Type v`-small
   coproducts, i.e. that `H` is compact.
 * `IsGenerator G` says that the shifts of `G` separate morphisms.  See
-  `results/WEAK_APPROX.md` for the (still missing) bridge to the paper's
+  `results/archive/WEAK_APPROX.md` for the (still missing) bridge to the paper's
   formulation "`Hom(G[n], E) = 0` for all `n` implies `E ≅ 0`".
 -/
 

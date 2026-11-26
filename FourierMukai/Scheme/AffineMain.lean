@@ -27,7 +27,7 @@ here were moved on `wave5/neeman-prune` to `Scheme/Neeman32Inputs.lean` and
 renamed (the endpoint became `affine_theorem_1_1_unconditional`, since compact ⇒
 `Perf` is proved in `Scheme/M4Unconditional.lean`); that endpoint was deleted in
 wave 6, its coproduct hypothesis being uninhabited for `A ≠ 0`.  `CompactPerfectInput` was deleted
-(`results/NEEMAN_3_2.md`).
+(`results/archive/NEEMAN_3_2.md`).
 
 Found by a member of the Ultramath run `smwv1bkrk` (direction AF6).
 -/

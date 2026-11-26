@@ -1,7 +1,7 @@
 # GL26 / LP26 notions → AxiomMath/Stacks: API map, fidelity audit, gaps, build cost
 
 Wave 4, task `wave4/axiommath-api-map`.  Parts A, C, D of the brief
-(`results/swarm/wave4/axiommath-api-map.md`); part B (per-tag table) is
+(`results/swarm/archive/wave4/axiommath-api-map.md`); part B (per-tag table) is
 `results/AXIOMMATH_TAGS.md`, another worker's.
 
 * **AxiomMath commit read:** `f56a316ddf7a930906d88b78d6f9a2668cffd0cf` (the pinned one; it was

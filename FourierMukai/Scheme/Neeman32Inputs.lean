@@ -16,7 +16,7 @@ import FourierMukai.Scheme.M4Unconditional
 Neeman, *Bounded `t`-structures on the category of perfect complexes*, Acta
 Math. 233 (2024), **Theorem 3.2(i)** says that the compact objects of
 `D_qc,Z(X)` are the perfect complexes supported on `Z`.  Since 26 November 2026
-the project no longer assumes it (`results/NEEMAN_3_2.md` is the inventory of
+the project no longer assumes it (`results/archive/NEEMAN_3_2.md` is the inventory of
 where the tree used it).  This file proves the affine case `X = Spec A`, `Z = X`
 that the tree's former interfaces `CompactPerfectInput A` (large-Hom model
 `AffineD A`) and `SmallNeemanCompactToPerfectInput A H` (small-Hom model

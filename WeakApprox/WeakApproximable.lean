@@ -17,7 +17,7 @@ Definition 2.1.  Standard weak approximability additionally prescribes the
 
 The geometric definition of W.A. for an algebraic space also quantifies over
 closed support subsets with quasi-compact complement (and is therefore stated
-only once the Stacks library's `D_qc,S` is available; see `results/WEAK_APPROX.md`).  Algebraic spaces and
+only once the Stacks library's `D_qc,S` is available; see `results/archive/WEAK_APPROX.md`).  Algebraic spaces and
 their support categories are not introduced here, so `SatisfiesWA` records only
 the underlying categorical condition.  Likewise, `SatisfiesStandardWA` takes a
 chosen `t`-structure as a parameter; it does not construct the standard
