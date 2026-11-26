@@ -73,6 +73,12 @@ to you.
    rule 2 now allows AxiomMath/Stacks only; every remaining Neeman input is an open
    item.
 
+11. **Only AxiomMath/Stacks is assumed** (26 November 2026): "The goal: to only
+   assume Axiom's Stacks Project, every other result in GL26 and LP26 needed is from
+   mathlib and proved on as needed basis."  Every named non-Stacks input in the tree
+   is an open item; plan waves to prove or delete them, and report results that
+   still take one as conditional.
+
 ## Infrastructure
 
 * Repository: `lankp/Fourier--Mukai-theory` (lower-case alias

@@ -173,46 +173,28 @@ RelativeFM.affine_theorem_1_1_small : ∀ (A : Type u_1) [inst : CommRing A] (H 
 RelativeFM.PrincipalNeemanM1.satisfiesPaperWA : ∀ (A : Type u_1) [inst : CommRing A] (f : A),
   RelativeWeakApprox.IsCompactAb (RelativeFM.ringObject A) →
     RelativeWeakApprox.PaperM2.SatisfiesPaperWA (RelativeFM.AffineDZ A f)
-RelativeFM.IdealNeemanM1.satisfiesPaperWA_idealSupported : ∀ (A : Type u_1) [inst : CommRing A]
-  (hS : RelativeFM.StacksInterface.KoszulScalarSupportInput A) (fs : List A),
-  RelativeFM.StacksInterface.IdealSupportedCoproductInput A (RelativeFM.FiniteKoszulM1.functionIdeal A fs) →
-    RelativeFM.FiniteKoszulM1.KoszulPowerCoprodInput A hS fs →
-      RelativeFM.StacksInterface.IdealSupportedCompactnessInput A (RelativeFM.FiniteKoszulM1.functionIdeal A fs) →
-        RelativeFM.StacksInterface.KoszulDetectionInput A hS fs →
-          RelativeWeakApprox.IsCompactAb (RelativeFM.ringObject A) →
-            RelativeWeakApprox.PaperM2.SatisfiesPaperWA
-              (RelativeFM.NeemanFiniteSupportM4.AffineDZIdeal A (RelativeFM.FiniteKoszulM1.functionIdeal A fs))
-RelativeFM.AffineSupportedSchemeBaseM1.neemanSupported_of_qc_closedComplement : ∀ (A : Type u_1) [inst : CommRing A]
-  (hS : RelativeFM.StacksInterface.KoszulScalarSupportInput A),
+RelativeFM.IdealNeemanM1.satisfiesPaperWA_idealSupported : ∀ (A : Type u_1) [inst : CommRing A] (fs : List A),
+  RelativeWeakApprox.IsCompactAb (RelativeFM.ringObject A) →
+    RelativeWeakApprox.PaperM2.SatisfiesPaperWA
+      (RelativeFM.NeemanFiniteSupportM4.AffineDZIdeal A (RelativeFM.FiniteKoszulM1.functionIdeal A fs))
+RelativeFM.AffineSupportedSchemeBaseM1.neemanSupported_of_qc_closedComplement : ∀ (A : Type u_1) [inst : CommRing A],
   (∀ (fs : List A),
-      RelativeFM.StacksInterface.IdealSupportedCoproductInput A (RelativeFM.FiniteKoszulM1.functionIdeal A fs)) →
-    (∀ (fs : List A), RelativeFM.FiniteKoszulM1.KoszulPowerCoprodInput A hS fs) →
-      (∀ (fs : List A),
-          RelativeFM.StacksInterface.IdealSupportedCompactnessInput A (RelativeFM.FiniteKoszulM1.functionIdeal A fs)) →
-        (∀ (fs : List A), RelativeFM.StacksInterface.KoszulDetectionInput A hS fs) →
-          (∀ (fs : List A),
-              RelativeFM.AffineSupportedSchemeBaseM1.AffineSupportedSchemeComparisonInput A
-                (RelativeFM.FiniteKoszulM1.functionIdeal A fs)) →
-            RelativeWeakApprox.IsCompactAb (RelativeFM.ringObject A) →
-              ∀ (Z : TopologicalSpace.Closeds ↥(AlgebraicGeometry.Spec ↧A)),
-                RelativeFM.SchemeNeemanFiniteCoverAssemblyM5.IsCompactClosedComplement Z →
-                  RelativeFM.SchemeWeakApproxStatementM1.NeemanSupportedWeakApproximability (AlgebraicGeometry.Spec ↧A)
-                    Z
-RelativeFM.AffineSupportedSchemeBaseM1.neemanSupportedWeakApproximability_of_isAffine : ∀
-  (hS : ∀ (A : Type u_1) [inst : CommRing A], RelativeFM.StacksInterface.KoszulScalarSupportInput A),
-  (∀ (A : Type u_1) [inst : CommRing A] (fs : List A),
-      RelativeFM.StacksInterface.IdealSupportedCoproductInput A (RelativeFM.FiniteKoszulM1.functionIdeal A fs)) →
-    (∀ (A : Type u_1) [inst : CommRing A] (fs : List A), RelativeFM.FiniteKoszulM1.KoszulPowerCoprodInput A ⋯ fs) →
-      (∀ (A : Type u_1) [inst : CommRing A] (fs : List A),
-          RelativeFM.StacksInterface.IdealSupportedCompactnessInput A (RelativeFM.FiniteKoszulM1.functionIdeal A fs)) →
-        (∀ (A : Type u_1) [inst : CommRing A] (fs : List A), RelativeFM.StacksInterface.KoszulDetectionInput A ⋯ fs) →
-          (∀ (A : Type u_1) [inst : CommRing A] (fs : List A),
-              RelativeFM.AffineSupportedSchemeBaseM1.AffineSupportedSchemeComparisonInput A
-                (RelativeFM.FiniteKoszulM1.functionIdeal A fs)) →
-            (∀ (A : Type u_1) [inst : CommRing A], RelativeWeakApprox.IsCompactAb (RelativeFM.ringObject A)) →
-              ∀ (X : AlgebraicGeometry.Scheme) [AlgebraicGeometry.IsAffine X] (Z : TopologicalSpace.Closeds ↥X),
-                RelativeFM.SchemeNeemanFiniteCoverAssemblyM5.IsCompactClosedComplement Z →
-                  RelativeFM.SchemeWeakApproxStatementM1.NeemanSupportedWeakApproximability X Z
+      RelativeFM.AffineSupportedSchemeBaseM1.AffineSupportedSchemeComparisonInput A
+        (RelativeFM.FiniteKoszulM1.functionIdeal A fs)) →
+    RelativeWeakApprox.IsCompactAb (RelativeFM.ringObject A) →
+      ∀ (Z : TopologicalSpace.Closeds ↥(AlgebraicGeometry.Spec ↧A)),
+        RelativeFM.SchemeNeemanFiniteCoverAssemblyM5.IsCompactClosedComplement Z →
+          RelativeFM.SchemeWeakApproxStatementM1.NeemanSupportedWeakApproximability (AlgebraicGeometry.Spec ↧A) Z
+RelativeFM.AffineSupportedSchemeBaseM1.neemanSupportedWeakApproximability_of_isAffine : (∀ (A : Type u_1)
+    [inst : CommRing A] (fs : List A),
+    RelativeFM.AffineSupportedSchemeBaseM1.AffineSupportedSchemeComparisonInput A
+      (RelativeFM.FiniteKoszulM1.functionIdeal A fs)) →
+  (∀ (A : Type u_1) [inst : CommRing A], RelativeWeakApprox.IsCompactAb (RelativeFM.ringObject A)) →
+    ∀ (X : AlgebraicGeometry.Scheme) [AlgebraicGeometry.IsAffine X] (Z : TopologicalSpace.Closeds ↥X),
+      RelativeFM.SchemeNeemanFiniteCoverAssemblyM5.IsCompactClosedComplement Z →
+        RelativeFM.SchemeWeakApproxStatementM1.NeemanSupportedWeakApproximability X Z
+RelativeFM.NeemanAffineSupport.satisfiesPaperWA_of_fg : ∀ (A : Type u_1) [inst : CommRing A] (I : Ideal A),
+  I.FG → RelativeWeakApprox.PaperM2.SatisfiesPaperWA (RelativeFM.NeemanFiniteSupportM4.AffineDZIdeal A I)
 'RelativeFM.PrincipalNeemanM1.satisfiesPaperWA' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RelativeFM.IdealNeemanM1.satisfiesPaperWA_idealSupported' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RelativeFM.AffineSupportedSchemeBaseM1.neemanSupported_of_qc_closedComplement' depends on axioms: [propext,
@@ -221,3 +203,4 @@ RelativeFM.AffineSupportedSchemeBaseM1.neemanSupportedWeakApproximability_of_isA
 'RelativeFM.AffineSupportedSchemeBaseM1.neemanSupportedWeakApproximability_of_isAffine' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
+'RelativeFM.NeemanAffineSupport.satisfiesPaperWA_of_fg' depends on axioms: [propext, Classical.choice, Quot.sound]

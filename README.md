@@ -145,6 +145,11 @@ imply these lemmas, which is why the Lean statements carry those inputs explicit
 
 ### What may be assumed
 
+**The goal: AxiomMath's Stacks Project is the only assumption; every other result
+GL26 and LP26 need comes from Mathlib or is proved here, as needed** (maintainer,
+26 November 2026).  Named non-Stacks hypotheses that remain in the tree are open
+items, not permitted inputs; a result that takes one is conditional.
+
 One source, and nothing else: **AxiomMath/Stacks**, the formalization of the
 Stacks Project at <https://github.com/AxiomMath/Stacks>.  Its results may be used
 freely.  A Stacks result that Axiom has formalized counts as available; we do not

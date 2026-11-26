@@ -71,7 +71,9 @@ Regenerate after an intentional change:
 #check @RelativeFM.IdealNeemanM1.satisfiesPaperWA_idealSupported
 #check @RelativeFM.AffineSupportedSchemeBaseM1.neemanSupported_of_qc_closedComplement
 #check @RelativeFM.AffineSupportedSchemeBaseM1.neemanSupportedWeakApproximability_of_isAffine
+#check @RelativeFM.NeemanAffineSupport.satisfiesPaperWA_of_fg
 #print axioms RelativeFM.PrincipalNeemanM1.satisfiesPaperWA
 #print axioms RelativeFM.IdealNeemanM1.satisfiesPaperWA_idealSupported
 #print axioms RelativeFM.AffineSupportedSchemeBaseM1.neemanSupported_of_qc_closedComplement
 #print axioms RelativeFM.AffineSupportedSchemeBaseM1.neemanSupportedWeakApproximability_of_isAffine
+#print axioms RelativeFM.NeemanAffineSupport.satisfiesPaperWA_of_fg

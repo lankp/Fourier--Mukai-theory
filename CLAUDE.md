@@ -80,8 +80,13 @@ The project compiles with `autoImplicit = false`, `relaxedAutoImplicit = false`,
    carry it (`CompactPerfectInput`, `SmallNeemanCompactToPerfectInput`,
    `Neeman_3_2_*` in `Scheme/Inputs.lean`, the 3.2(iii) field of
    `SupportedCategoryInput`) are open items to discharge, not permitted inputs.
-   Anything else is proved, or carried as an explicitly named hypothesis whose
-   name says what it is.
+   **Goal (maintainer, 26 November 2026): AxiomMath's Stacks Project is the only
+   assumption; every other result GL26 and LP26 need comes from Mathlib or is
+   proved here, as needed.**  An explicitly named hypothesis whose name says what it
+   is (`DerivedPseudofunctorInput`, `AffineSupportedSchemeComparisonInput`, the other
+   non-Stacks inputs of `results/ASSUMPTIONS.md` §1b) is allowed only as an
+   intermediate step: it is an open item to prove or delete, and a result that
+   depends on one is recorded as conditional, not proved.
 3. **Statements are faithful.**  No hypothesis is `True`.  No result is reworded to
    fit what is available.  If a Lean statement is weaker than the paper's, its
    docstring names the gap.  If a rendering is false, prove it false in the tree
