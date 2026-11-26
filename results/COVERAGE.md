@@ -29,11 +29,11 @@ the end.
 
 | | P | C | H | T | D | — | total |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| theorems, propositions, corollaries, lemmas | 15 | 5 | 15 | 14 | – | 67 | 116 |
+| theorems, propositions, corollaries, lemmas | 16 | 7 | 15 | 14 | – | 64 | 116 |
 | definitions, setups, lemma-definitions | 1 | – | – | – | 13 | 5 | 19 |
 
-Fifteen results are proved outright (Lemmas 2.3, 2.5, 7.2, 7.4, 7.6, 7.9, 7.11, 7.12,
-7.17, B.2, B.4, B.5, B.7, B.10, C.1; 7.12 and 7.17 over abstract pseudofunctor data; 7.4, 7.6, 7.9 and C.1 (2) in `Cat`), as is Lemma-Definition 7.10 (in `Cat`), five conditionally (Lemmas 2.4, 2.25, 2.26, 5.4, and A.4 in the
+Sixteen results are proved outright (Lemmas 2.3, 2.5, 7.2, 7.4, 7.6, 7.9, 7.11, 7.12,
+7.17, 10.2, B.2, B.4, B.5, B.7, B.10, C.1; 10.2 over abstract data; 7.12 and 7.17 over abstract pseudofunctor data; 7.4, 7.6, 7.9 and C.1 (2) in `Cat`), as is Lemma-Definition 7.10 (in `Cat`), five conditionally (Lemmas 2.4, 2.25, 2.26, 5.4, and A.4 in the
 affine case).  Lemma 2.5 was briefly vacuous on 25 November 2026 and has been re-proved (see its row).  The 14 target rows are 10 distinct targets (1.2 = 12.9, 1.3 = 6.2 + 6.8,
 1.6 = 10.13, 1.7 = 11.4), none proved.  Sections 3, 4, 6, 8, 9, 10, 11 and 12
 have no proved result: everything there is a target, an interface field, or
@@ -135,7 +135,7 @@ absent.
 | Lem 6.7 | `lem:perfect_locus_open` | — | |
 | Prop 6.8 | `prop:preservation_of_dbcoh` | T | half of `theorem_1_3Statement` |
 | Lem 6.10 | `lem:fm_cube_locally_finite_tor_dimension` | — | |
-| Lem 6.11 | `lem:fm_cube_flat_base_change_natural_isomorphism` | — | |
+| Lem 6.11 | `lem:fm_cube_flat_base_change_natural_isomorphism` | C (Stacks only) | `FMCube.lemma_6_11` (`Scheme/FMCube.lean`), six-functor form over the cube of Setup 2.20, from flat base change (Stacks 08IR) |
 | Lem 6.12 | `lem:pushforward_coherent_support_is_image` | — | |
 | Lem 6.13 | `lem:reflecting_bounded_pseudocoherence_perfectness_trivial_case` | — | |
 | Lem 6.14 | `lem:induced_dbcoh_perf_preservation_upon_pullback_with_t_affine` | — | |
@@ -184,8 +184,8 @@ absent.
 
 | # | label | status | note |
 |---|---|---|---|
-| Lem 10.1 | `lem:fm_cube_pullback_natural_isomorphism` | — | |
-| Lem 10.2 | `lem:integral_transform_is_morphism_of_adjoints` | — | |
+| Lem 10.1 | `lem:fm_cube_pullback_natural_isomorphism` | C (Stacks only) | `FMCube.lemma_10_1`, from flat base change (08IR) and the projection formula (08EU/08IN) |
+| Lem 10.2 | `lem:integral_transform_is_morphism_of_adjoints` | P (abstract) | `FMCube.lemma_10_2`: `mateEquiv (adj t₁) (adj t₂) α^K = β^K`, with no input, over abstract pull/push/tensor data |
 | Prop 10.5 | `prop:pullbacks_is_a_morphism_of_adjoint_integral_transforms` | — | cited in a docstring only |
 | Lem 10.9 | `lem:equivalences_induced` | H | `Scheme/Inputs.lean` |
 | Prop 10.11 | `prop:descent` | — | |
