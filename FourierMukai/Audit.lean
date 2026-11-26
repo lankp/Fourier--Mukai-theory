@@ -154,3 +154,8 @@ open RelativeFM
 #print axioms RelativeFM.OpenClosedCompletionW3.OpenClosedFrame.exists_paperData
 #print axioms RelativeFM.OpenClosedCompletionW3.compact_open_closed_glue_of_frameInput
 #print axioms RelativeFM.OpenClosedCompletionW3.neemanSupported_of_qcqs_of_frameInput
+#print axioms RelativeFM.KoszulInputs.not_koszulScalarSupportInput
+#print axioms RelativeFM.KoszulInputs.scalarConeData_isSupported
+#print axioms RelativeFM.KoszulInputs.scalarConeData_le_zero
+#print axioms RelativeFM.KoszulInputs.idealSupportedCoproductInput
+#print axioms RelativeFM.KoszulInputs.idealSupportedCompactnessInput
