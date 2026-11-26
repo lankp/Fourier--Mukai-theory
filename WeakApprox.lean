@@ -45,6 +45,10 @@ import WeakApprox.PaperLemma46M2
 import WeakApprox.PaperTwoStageM2
 import WeakApprox.PaperMainMinimalM2
 import WeakApprox.PaperLemma43M2
+import WeakApprox.CompactlyGeneratedTStructure
+import WeakApprox.WeakApproxBounds
+import WeakApprox.Theorem11Paper
+import WeakApprox.Theorem11PaperNonVacuity
 
 /-!
 # Weak approximability along recollements
