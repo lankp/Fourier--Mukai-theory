@@ -8,7 +8,7 @@ The geometric foundation is **AxiomMath/Stacks** (https://github.com/AxiomMath/S
 
 ## Before anything
 1. `cd` into the repository checkout and follow the git instructions of your task. Read `CLAUDE.md` (in particular the SEVEN verification steps, including step 5, non-vacuity), `results/SWARM.md`, `README.md`, `results/STACKS_POLICY.md`, `results/ASSUMPTIONS.md`, and the rows of `results/COVERAGE.md` relevant to your task.
-2. The GL26 and LP26 LaTeX is in `manuscripts/GL26/main.tex` and `manuscripts/LP26/main.tex`; read it there. It is UNPUBLISHED and the repository is PRIVATE: never copy it outside the repository or paste long passages into commit messages. Cite results by number and TeX label.
+2. The GL26 and LP26 manuscripts are **not in the repository**, which is **public**. If your task needs their text beyond the result numbers and TeX labels cited here and in `results/COVERAGE.md`, **stop and report**: the orchestrator asks the maintainer explicitly. Never commit or quote manuscript TeX; cite results by number and TeX label.
 3. AxiomMath/Stacks sources: `git clone -q --depth 1 --filter=blob:none https://github.com/AxiomMath/Stacks /tmp/axs && git -C /tmp/axs checkout -q f56a316ddf7a930906d88b78d6f9a2668cffd0cf 2>/dev/null || git -C /tmp/axs checkout -q HEAD` (about 1.4 GB, 64k `.lean` files; if the pinned commit is not reachable at depth 1, use HEAD and record its hash). `gh search code --repo AxiomMath/Stacks <query>` also works. Do not call `gh api repos/AxiomMath/...` (refused here).
 4. Toolchains. Do NOT call cloud-environment tools (get_environment, update_environment, create_environment, request_credential, ...), and do not call `elan toolchain install` (refused by the proxy). Install a Lean release by hand:
 ```bash

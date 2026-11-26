@@ -126,7 +126,7 @@ GitHub's own documentation says, of self-hosted runners:
 > code on your self-hosted runner machine by creating a pull request that executes
 > the code in a workflow.
 
-**This repository was public when this was written** (it has been private since 26 November 2026, while the manuscripts in `manuscripts/` are unpublished; the self-hosted-runner caution still applies if it is made public again).  A self-hosted runner attached to it would be
+**This repository is public** (it was private for part of 26 November 2026 and was made public again the same day, after the unpublished manuscripts were removed from its history), so the caution applies.  A self-hosted runner attached to it would be
 reachable by anyone who opens a pull request that runs a workflow on
 `pull_request`.  Mitigations, in increasing order of safety:
 

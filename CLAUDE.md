@@ -29,18 +29,18 @@ imported as a Lake dependency (see `results/SWARM.md`, "Direction").
 
 ## Manuscripts
 
-The current LaTeX sources of GL26 and LP26 are in `manuscripts/GL26/` and
-`manuscripts/LP26/` (`main.tex`, `mainbib.bib`); see `manuscripts/README.md`.  They
-are **unpublished**, so the repository is **private** and must stay private: never
-make it public, never copy the manuscripts elsewhere, and never paste long passages
-of them into commit messages or outside the repository.  Read the TeX directly from
-`manuscripts/` when a task needs it.  Refer to results by number **and** TeX label
-(`Lemma 7.4, lem:morph_adj`); labels are stable across versions.
-
-**When a new GL26 or LP26 `main.tex` / `mainbib.bib` is uploaded to an orchestrator
-session, the orchestrator replaces the files in `manuscripts/`, updates
-`manuscripts/README.md`, and re-checks `results/COVERAGE.md` against the new
-numbering** (maintainer's standing instruction).
+The repository is **public**.  The current GL26 and LP26 manuscripts are newer than
+the arXiv postings and are **not stored in the repository** (they were removed from
+the whole git history on 26 November 2026, when the maintainer made the repository
+public).  **Whenever a task needs the manuscripts' text, ask the maintainer
+explicitly** (maintainer's standing instruction): a worker stops and reports, and the
+orchestrator asks the maintainer, who uploads the TeX to the session that needs it.
+Never commit manuscript TeX or PDF, and never quote more than a statement's number,
+TeX label or a short paraphrase in the repository, commit messages or anywhere public.
+Refer to results by number **and** TeX label (`Lemma 7.4, lem:morph_adj`); labels are
+stable across versions.  `results/COVERAGE.md` records the numbering of the current
+manuscripts; when the maintainer provides a new version, the orchestrator re-checks
+it against the new numbering.
 
 ## Building
 

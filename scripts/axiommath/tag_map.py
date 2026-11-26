@@ -2,8 +2,8 @@
 #   python3 -I scripts/axiommath/tag_map.py <AxiomMath checkout> [out_dir]
 #
 # Builds the raw data behind results/AXIOMMATH_TAGS.md:
-#   * every Stacks Project tag cited in manuscripts/GL26/main.tex and
-#     manuscripts/LP26/main.tex (links stacks.math.columbia.edu/tag/XXXX), with
+#   * every Stacks Project tag cited in the GL26 and LP26 main.tex files
+#     (not stored in the repository; pass their location) (links stacks.math.columbia.edu/tag/XXXX), with
 #     the enclosing numbered result (as LaTeX would number it: shared counter
 #     within sections, appendices lettered) and its \label, or the enclosing
 #     section when the citation is in running text;
@@ -28,7 +28,9 @@ TAGRE = re.compile(r'tag/([0-9A-Za-z]{4})')
 
 
 def tex_citations(paper):
-    path = os.path.join(ROOT, 'manuscripts', paper, 'main.tex')
+    # The manuscripts are not in the repository; MANUSCRIPTS_DIR points to a local copy
+    # (GL26/main.tex, LP26/main.tex) provided by the maintainer.
+    path = os.path.join(os.environ.get('MANUSCRIPTS_DIR', os.path.join(ROOT, 'manuscripts')), paper, 'main.tex')
     lines = open(path, encoding='utf8').read().split('\n')
     sec = 0; sub = 0; appendix = False; thm = 0
     secname = ''; seclabel = ''

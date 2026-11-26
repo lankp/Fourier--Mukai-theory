@@ -3,8 +3,8 @@
 Each worker's message is `00-preamble.md` followed by its task file.  For
 `trans-2cat` and `base-change-mates` the orchestrator appends, at launch, the
 statements and proofs of the cited results from the current (unpublished)
-manuscript; those excerpts were not stored in the repository while it was public; since 26 November 2026 the
-repository is private and the full LaTeX is in `manuscripts/`.
+manuscript; those excerpts were never stored in the repository, which is public;
+the manuscripts are not stored in it (ask the maintainer).
 
 | task file | branch |
 |---|---|

@@ -100,7 +100,7 @@ Launched 25 November 2026 after wave 2 was merged.  Briefs in `results/swarm/wav
 ## Direction: full generality (maintainer, 26 November 2026)
 
 The maintainer directed that the whole repository now aims at GL26 and LP26 **in
-their full generality as stated in the current manuscripts** (`manuscripts/`):
+their full generality as stated in the current manuscripts** (not in the repository; ask the maintainer):
 algebraic spaces, `D_qc`, `Perf`, `D^b_coh`, `Lf^*`, `Rf_*`, `⊗^L` in the sense of
 GL26 §2.2.  The abstract interfaces (`Paper/DerivedSetup.lean`, `FMSetup`,
 `StacksInterface`, the affine `D(A-Mod)` model) are the categorical engine, not the

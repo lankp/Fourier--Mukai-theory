@@ -1,6 +1,6 @@
 ## Your task: `wave4/axiommath-tag-map`
 
-Goal: for **every** Stacks Project tag cited in the current GL26 and LP26 manuscripts (`manuscripts/*/main.tex`, links `stacks.math.columbia.edu/tag/XXXX`; 141 tags in GL26, 18 in LP26, 150 distinct), record what AxiomMath/Stacks provides. **No Lean build is needed.** Output: one new file `results/AXIOMMATH_TAGS.md`, plus the script you use under `scripts/axiommath/` (you may add files there). Branch `wave4/axiommath-tag-map`: start with `git fetch --depth=50 origin formalization && git checkout -B wave4/axiommath-tag-map origin/formalization`.
+Goal: for **every** Stacks Project tag cited in the current GL26 and LP26 manuscripts (the manuscripts as they then were in the repository; they have since been removed from it; links `stacks.math.columbia.edu/tag/XXXX`; 141 tags in GL26, 18 in LP26, 150 distinct), record what AxiomMath/Stacks provides. **No Lean build is needed.** Output: one new file `results/AXIOMMATH_TAGS.md`, plus the script you use under `scripts/axiommath/` (you may add files there). Branch `wave4/axiommath-tag-map`: start with `git fetch --depth=50 origin formalization && git checkout -B wave4/axiommath-tag-map origin/formalization`.
 
 Per tag, one row:
 
