@@ -1,6 +1,7 @@
 /- Copyright (c) 2026 Formalization of Lank--Pauwels. Released under Apache 2.0 license as described in the file LICENSE. -/
 import Spaces.AxiomMathInputs
 import Spaces.NonVacuity
+import Spaces.Statements
 
 /-!
 # Axiom audit of the algebraic-space layer
@@ -58,3 +59,52 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.isRelativelyPerfect_of_isZero
 #print axioms RelativeFM.Spaces.isQuasiPerfect_of_isZero
 #print axioms RelativeFM.Spaces.isCoherentOnSite_of_isZero
+-- GL26 headline statements over spaces (wave7/spaces-statements): notions
+#print axioms RelativeFM.Spaces.Statements.FullyFaithfulOn
+#print axioms RelativeFM.Spaces.Statements.IsEquivalenceOn
+#print axioms RelativeFM.Spaces.Statements.FFOrEquivOn
+#print axioms RelativeFM.Spaces.Statements.IsNoetherianSpace
+#print axioms RelativeFM.Spaces.Statements.IsProperHom
+#print axioms RelativeFM.Spaces.Statements.IsFlatHom
+#print axioms RelativeFM.Spaces.Statements.IsFiniteTypeHom
+#print axioms RelativeFM.Spaces.Statements.IsQuasiAffineHom
+#print axioms RelativeFM.Spaces.Statements.Pts
+#print axioms RelativeFM.Spaces.Statements.ptsTopology
+#print axioms RelativeFM.Spaces.Statements.ptsMap
+#print axioms RelativeFM.Spaces.Statements.Representative
+#print axioms RelativeFM.Spaces.Statements.Representative.hom
+#print axioms RelativeFM.Spaces.Statements.IsClosedPt
+#print axioms RelativeFM.Spaces.Statements.cubeMap
+#print axioms RelativeFM.Spaces.Statements.baseChangeKernel
+#print axioms RelativeFM.Spaces.Statements.fibreTransform
+#print axioms RelativeFM.Spaces.Statements.fmLocus
+#print axioms RelativeFM.Spaces.Statements.FMLocus
+-- the statements (Props; targets, not proved)
+#print axioms RelativeFM.Spaces.Statements.theorem_1_2Statement
+#print axioms RelativeFM.Spaces.Statements.theorem_12_9Statement
+#print axioms RelativeFM.Spaces.Statements.corollary_12_4Statement
+#print axioms RelativeFM.Spaces.Statements.theorem_1_3Statement
+#print axioms RelativeFM.Spaces.Statements.theorem_1_6Statement
+#print axioms RelativeFM.Spaces.Statements.theorem_10_13Statement
+#print axioms RelativeFM.Spaces.Statements.corollary_6_18Statement
+#print axioms RelativeFM.Spaces.Statements.lemma_12_2Statement
+#print axioms RelativeFM.Spaces.Statements.theorem_12_3Statement
+-- tagged inputs used only for non-vacuity
+#print axioms RelativeFM.Spaces.Statements.Tag06LTInput
+#print axioms RelativeFM.Spaces.Statements.IsQuasiCompactOfIsIsoInput
+#print axioms RelativeFM.Spaces.Statements.UniversallyClosedOfIsIsoInput
+#print axioms RelativeFM.Spaces.Statements.IsFlatIdInput
+#print axioms RelativeFM.Spaces.Statements.AffineQuasiSeparatedInput
+-- non-vacuity
+#print axioms RelativeFM.Spaces.Statements.IsEquivalenceOn.fullyFaithfulOn
+#print axioms RelativeFM.Spaces.Statements.isEquivalenceOn_id
+#print axioms RelativeFM.Spaces.Statements.fullyFaithfulOn_id
+#print axioms RelativeFM.Spaces.Statements.fFOrEquivOn_id
+#print axioms RelativeFM.Spaces.Statements.Representative.exists_represents
+#print axioms RelativeFM.Spaces.Statements.isQuasiAffineHom_id
+#print axioms RelativeFM.Spaces.Statements.zero_kernel_hypotheses
+#print axioms RelativeFM.Spaces.Statements.FMLocus_subset_fmLocus
+#print axioms RelativeFM.Spaces.Statements.isProperHom_id
+#print axioms RelativeFM.Spaces.Statements.isFlatHom_id
+#print axioms RelativeFM.Spaces.Statements.isNoetherianSpace_baseSpace
+#print axioms RelativeFM.Spaces.Statements.setup_hypotheses_satisfiable
