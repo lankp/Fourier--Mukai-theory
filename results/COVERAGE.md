@@ -239,7 +239,7 @@ The geometric §5 is not; the tree records it in `results/WEAK_APPROX.md`.
 
 | # | label | status | where / note |
 |---|---|---|---|
-| Thm 1.1 | `thm:glueing_weak_approx` | P | **with exactly the paper's hypotheses**: `WeakApprox/Theorem11Paper.lean` `PaperHypothesesW6.theorem_1_1_paper` (pinned; only Stacks 09SR assumed; wave 6), from `PaperSetupMainMinimal.theorem_1_1`; compactly generated `t`-structures and BNP Cor 3.10(1) proved; non-vacuous (`Theorem11PaperNonVacuity`). The large-model affine endpoints are proved vacuous (`RefuteLargeCoproducts`) |
+| Thm 1.1 | `thm:glueing_weak_approx` | P | **with exactly the paper's hypotheses and no Stacks hypothesis**: `Spaces/Stacks/Corollaries.lean` `RelativeFM.Spaces.Stacks.theorem_1_1` (09SR proved from AxiomMath, wave 6); before that, `WeakApprox/Theorem11Paper.lean` `PaperHypothesesW6.theorem_1_1_paper` (pinned; only Stacks 09SR assumed; wave 6), from `PaperSetupMainMinimal.theorem_1_1`; compactly generated `t`-structures and BNP Cor 3.10(1) proved; non-vacuous (`Theorem11PaperNonVacuity`). The large-model affine endpoints are proved vacuous (`RefuteLargeCoproducts`) |
 | Cor 1.2 | `cor:weak_approx_spaces` | H (affine base: P in the module model) | the affine base case = Neeman 2024 Thm 3.2(iv) for `Spec A`, `Z = V(I)`, `I` f.g., is proved with **no input** in `D(A-Mod)`: `NeemanAffineSupport.satisfiesPaperWA_of_fg` (wave 5, pinned); transport to AxiomMath's `D_qc,Z(Spec A)` and the induction over qcqs schemes/spaces are open |
 | Def 2.1 | `def:weak_approx` | D | `WeakApproximationData`, `PaperWeakApproximationData` |
 | Lem 3.1 | `lem:closures` | P | `Basic`, `Closure`, `Shift`, `Functoriality` |
