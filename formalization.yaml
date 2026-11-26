@@ -6,16 +6,18 @@ project:
   name: "FourierMukai"
   authors: [Pat Lank, Elías Guisado Villalgordo, Bregje Pauwels]
   description: >-
-    A Lean 4 formalization, on Mathlib alone, of two papers on derived categories
-    of algebraic spaces: *Relative Fourier–Mukai theory for algebraic spaces*
-    (Guisado Villalgordo–Lank, arXiv:2609.01298) and *Gluing weak approximability
-    along recollements* (Lank–Pauwels).  The `WeakApprox` library formalizes the
-    second paper in full (§2–§4 and Theorem 1.1); the `FourierMukai` library
-    formalizes the scheme and affine layers of the first paper, and the affine case
-    of its Theorem 1.1 with Neeman's theorem as the only published input.
-    Classical inputs that Mathlib lacks (quasicoherent cohomology, K-projective
-    resolutions, perfect complexes, the affine recollement) are proved here rather
-    than imported.
+    A Lean 4 formalization, on Mathlib and AxiomMath/Stacks (the Axiom Math
+    formalization of the Stacks Project, a pinned Lake dependency), of two papers on
+    derived categories of algebraic spaces: *Relative Fourier–Mukai theory for
+    algebraic spaces* (Guisado Villalgordo–Lank, arXiv:2609.01298) and *Gluing weak
+    approximability along recollements* (Lank–Pauwels).  The goal is both papers in
+    full generality, over algebraic spaces, with AxiomMath/Stacks as the only
+    external mathematical input; everything else comes from Mathlib or is proved
+    here.  The `WeakApprox` library formalizes the categorical part of the second
+    paper (§2–§4 and Theorem 1.1, with exactly the paper's hypotheses); the
+    `FourierMukai` library holds the categorical engine and the affine layer; the
+    `Spaces` / `SpacesVerified` libraries build the algebraic-space layer on
+    AxiomMath's definitions and theorems.
   responsible_maintainers: [Pat Lank]
   license: "Apache-2.0"
 
@@ -26,23 +28,24 @@ sources:
     type: "article"
     relationship: "formalizes"
     note: >-
-      Affine base case.  Proved: Theorem 1.1 (affine, with Neeman's compact/perfect
-      theorem as the only external input), Lemma 2.25 (from `DiagonalIdentityData`,
-      i.e. 08IN, the tensor unit and the derived diagonal identities), the
-      categorical affine-derived-module computation for Lemma 2.26 from
-      `CorrectedConvolutionData`, and Lemma 5.4 (in abstract six-functor form).
-      Stated over Noetherian schemes, not proved: Theorems 1.2, 1.3, 1.6, 1.7,
-      12.3, Corollary 6.18, Lemmas 12.2, and the bare scheme-level Lemma 2.26
-      rendering, which needs the corrected derived cube (see
-      `FourierMukai/Scheme/Statements.lean`).  Statements are checked
-      against the 25 November 2026 manuscript (`main-4.tex`), which is not the
-      arXiv posting; line references in `results/` name that file.
+      Target: the current manuscript, which is newer than the arXiv posting and is
+      not stored in this repository.  Proved so far: the categorical results of
+      §2.1, §7 and Appendices B, C (in categorical form), Lemmas 2.25, 2.26 and 5.4
+      in abstract six-functor form, Lemmas 6.11, 10.1, 10.2 over a six-functor cube,
+      Lemma A.4 in the affine case.  The headline results (Theorems 1.2, 1.3, 1.6,
+      1.7, 12.3, Corollary 6.18, Lemma 12.2) are not yet stated over algebraic
+      spaces; the algebraic-space layer (`Spaces`) is in progress.  Per-result
+      status: results/COVERAGE.md.
   - title: "Gluing weak approximability along recollements"
     authors: [Pat Lank, Bregje Pauwels]
     id: "preprint, November 2026"
     type: "article"
     relationship: "formalizes"
-    note: "§2–§4 and Theorem 1.1, in full, scheme-agnostically."
+    note: >-
+      §2–§4 and Theorem 1.1 with the paper's hypotheses
+      (`PaperHypothesesW6.theorem_1_1_paper`).  Corollary 1.2: the affine base case
+      (Neeman's weak approximability of D_{V(I)}(A-Mod), I finitely generated) is
+      proved with no input; the case of qcqs algebraic spaces is in progress.
 
 classification:
   arxiv: [math.AG, math.CT]
@@ -50,37 +53,33 @@ classification:
 
 status:
   scope: >-
-    The affine base case of the first paper and the whole categorical layer of the
-    second.  The one published input on the affine path is Neeman, Acta Math. 233
-    (2024), Theorem 3.2, used only in the direction `compact ⇒ perfect`.
+    The categorical layer of both papers, the affine layer, and LP26 Theorem 1.1
+    with the paper's hypotheses.  Neeman, Acta Math. 233 (2024), Theorem 3.2 is
+    not assumed: what the project needs from it is proved here.  The only external
+    input is AxiomMath/Stacks.
   sorry_count: 9
   sorry_in_definitions: 0
   sorry_location: >-
     All nine are in `FourierMukai/Paper/Statements.lean`: the paper's targets stated
     over a superseded abstract interface, kept as specifications and printed by
-    `FourierMukai/Audit.lean`.  Nothing on the affine path depends on them.  The
-    tenth, Lemma 2.25, was proved there from the three inputs its own paper proof
-    uses (projection formula 08IN, tensor unit, diagonal retractions).
+    `FourierMukai/Audit.lean`; they are to be replaced by statements over
+    algebraic spaces.  No proved result depends on them.
   axioms: [propext, Classical.choice, Quot.sound]
-  build: "./scripts/build.sh (there is no Lake build in the verification environment)"
+  build: >-
+    `lake exe cache get && lake build` (Lean and Mathlib v4.35.0); the
+    algebraic-space layer: `lake build Spaces`; full verification against the
+    AxiomMath theorems: `lake build SpacesVerified` (about 14 GB of memory).
 
 assumptions:
-  - name: "Neeman, Acta Math. 233 (2024), Theorem 3.2(i)"
-    used_for: "compact objects of D(A-Mod) are perfect, i.e. `compact ⇒ Perf`"
-    in_tree: "SmallNeemanCompactToPerfectInput, NeemanAffineCompactModelInput"
   - name: "AxiomMath/Stacks"
     used_for: >-
-      any result the Axiom Math formalization of the Stacks Project provides, used
-      freely and marked where used.  Currently relied on for the derived tensor with
-      its tensor–Hom adjunction, the Čech formula for local cohomology, and the
-      scheme-level comparison 06Z0 and large-Hom 09M8.
+      the only external mathematical input: definitions of algebraic spaces, D(O_X)
+      on the small étale site, D_qc, Perf, Lf^*, Rf_*, the derived tensor, and the
+      Stacks Project theorems the papers cite, each marked with its tag.
     in_tree: >-
-      results/ASSUMPTIONS.md (ledger, status S), FourierMukai/Scheme/StacksInput.lean
-      (machine-readable register), results/STACKS_POLICY.md (policy)
-    note: >-
-      The library cannot be imported here - it pins Lean 4.35.0 and Mathlib 4.35.0
-      with no build artifacts, while this environment has 4.33.1, a read-only Mathlib
-      and no Lake.  Assumptions are therefore `Prop`-valued interface fields carrying
-      their tags.  If Axiom's repository is added to Mathlib or Lean, this repository
-      can be updated accordingly: fields become imports, and theorems taking them lose
-      the hypothesis.
+      lakefile.toml (pinned Lake dependency, commit f56a316); results/AXIOMMATH_TAGS.md
+      (every Stacks tag used, with its AxiomMath declaration); results/AXIOMMATH_MAP.md
+      (fidelity audit of the definitions); results/STACKS_POLICY.md (policy);
+      Spaces/AxiomMathInputs.lean and SpacesVerified/ (tagged inputs and their
+      discharge); results/ASSUMPTIONS.md and FourierMukai/Scheme/StacksInput.lean
+      (the older tagged interface of the affine layer).

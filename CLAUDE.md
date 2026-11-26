@@ -53,7 +53,11 @@ lake exe cache get                      # Mathlib oleans; fast if present
 lake build                              # FourierMukai, WeakApprox, StatementCheck
 lake env lean FourierMukai/Prelim/Mates.lean   # one file
 scripts/check_statements.sh             # statement surface vs. baseline
+lake build Spaces                       # algebraic-space layer: also builds ~2 000 AxiomMath modules (~40 min) the first time
 ```
+
+`lake build SpacesVerified` (full verification) compiles ~8 500 AxiomMath modules and
+needs ~14 GB of memory (add swap on a 16 GB machine); workers do not run it.
 
 In a cloud session, the environment `fourier--mukai-theory` installs all of this
 at start-up.  If `lean` is missing, see `results/SWARM.md` ("Environment").
@@ -69,11 +73,15 @@ The project compiles with `autoImplicit = false`, `relaxedAutoImplicit = false`,
 1. **No `sorry` and no `axiom`** in anything you add.  The only `sorry`s in the
    tree are the nine targets in `FourierMukai/Paper/Statements.lean`.  A proof
    that is not finished is not committed.  Do not commit a "partial" file.
-2. **What may be assumed** is exactly one thing (see `results/STACKS_POLICY.md`):
-   a result of AxiomMath/Stacks, taken as a `Prop`-valued field of
-   `RelativeFM.StacksInterface` (`FourierMukai/Scheme/StacksInput.lean`) with its
-   tag, plus a row in `results/ASSUMPTIONS.md` (once AxiomMath is imported, its
-   proved theorem instead).  **Neeman, Acta Math. 233 (2024), Theorem 3.2 is no
+2. **What may be relied on** is exactly one thing (see `results/STACKS_POLICY.md`):
+   AxiomMath/Stacks, a pinned Lake dependency.  In the algebraic-space library
+   `Spaces`, import only the definition modules of
+   `scripts/axiommath/spaces-imports.txt`; an AxiomMath theorem outside them is a
+   tagged input in `Spaces/AxiomMathInputs.lean` (tag, AxiomMath declaration name,
+   AxiomMath's statement verbatim), discharged by the orchestrator in
+   `SpacesVerified`, where the final results are unconditional.  In the older layers
+   a Stacks result is a `Prop` field of `RelativeFM.StacksInterface` with its tag and
+   a row in `results/ASSUMPTIONS.md`.  **Neeman, Acta Math. 233 (2024), Theorem 3.2 is no
    longer an allowed assumption** (maintainer, 26 November 2026, including the
    direction "compact ⇒ perfect" that used to be allowed): what this project needs
    from it is formalized and verified here, and only that.  The inputs that still

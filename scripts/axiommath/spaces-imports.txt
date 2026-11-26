@@ -1,0 +1,26 @@
+# AxiomMath modules the `Spaces` library may import (definitions only).
+# Their import closure is ~2 000 AxiomMath modules and excludes the memory-heavy
+# StacksFrontier.RingTheory.MilnorPatching.Relative.  To import another AxiomMath
+# module in Spaces, check its closure first:
+#   python3 -I scripts/axiommath/closure.py <AxiomMath checkout> <Module>
+# and keep Spaces' total closure small and free of MilnorPatching.Relative;
+# otherwise state the result as a tagged input and discharge it in SpacesVerified.
+StacksFrontier.AlgebraicGeometry.Spaces.Category
+StacksFrontier.AlgebraicGeometry.Spaces.Limits
+StacksFrontier.AlgebraicGeometry.Spaces.Morphisms
+StacksFrontier.AlgebraicGeometry.Spaces.Separated
+StacksFrontier.AlgebraicGeometry.Spaces.UniversallyClosed
+StacksFrontier.AlgebraicGeometry.Spaces.Flat
+StacksFrontier.AlgebraicGeometry.Spaces.FinitePresentation
+StacksFrontier.AlgebraicGeometry.Spaces.FiniteType
+StacksFrontier.AlgebraicGeometry.Spaces.Points
+StacksFrontier.AlgebraicGeometry.Spaces.PointsTopology
+StacksFrontier.AlgebraicGeometry.Spaces.Morphisms.Affine
+StacksFrontier.AlgebraicGeometry.Spaces.Morphisms.PseudoCoherent.Perfect
+StacksFrontier.AlgebraicGeometry.Spaces.NoetherianSpaces
+StacksFrontier.AlgebraicGeometry.Spaces.QuasicoherentDerivedCategory
+StacksFrontier.AlgebraicGeometry.Spaces.SmallEtaleDerivedModulePullback
+StacksFrontier.AlgebraicGeometry.Spaces.DerivedPushforwardHigherDirectImages
+StacksFrontier.AlgebraicGeometry.Spaces.SmallEtaleDerivedTensor
+StacksFrontier.AlgebraicGeometry.Spaces.Perfect.LimitPerfectObjects
+StacksFrontier.AlgebraicGeometry.Spaces.DerivedSupport

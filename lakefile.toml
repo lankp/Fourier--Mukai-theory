@@ -12,6 +12,21 @@ name = "mathlib"
 scope = "leanprover-community"
 rev = "v4.35.0"
 
+# AxiomMath/Stacks (https://github.com/AxiomMath/Stacks), pinned.  The only external
+# mathematical dependency of the project (CLAUDE.md rule 2).  It is imported only by
+# the two libraries below that are NOT default targets:
+# * `Spaces` imports only AxiomMath's *definitions* (algebraic spaces, D_qc, Lf^*,
+#   Rf_*, ⊗^L, Perf, support: ~2 000 AxiomMath modules, ~40 min to build) and takes
+#   the AxiomMath *theorems* it needs as tagged inputs with their exact statements;
+# * `SpacesVerified` imports the AxiomMath theorems themselves (~8 500 modules, ~6 h,
+#   ~14 GB memory: see README "Full verification") and discharges every tagged input,
+#   giving the unconditional, fully kernel-checked statements.
+# The default build (`lake build`) never compiles AxiomMath.
+[[require]]
+name = "Stacks"
+git = "https://github.com/AxiomMath/Stacks"
+rev = "f56a316ddf7a930906d88b78d6f9a2668cffd0cf"
+
 # Compiler options used by the Lake build.  `scripts/build.sh` passes the same
 # three strictness options with `-D`, so the Lake path and the offline path
 # elaborate identically — that is the point of having both.
@@ -44,3 +59,14 @@ roots = ["WeakApprox"]
 [[lean_lib]]
 name = "StatementCheck"
 roots = ["StatementCheck"]
+
+# The algebraic-space layer on AxiomMath's definitions (not a default target).
+[[lean_lib]]
+name = "Spaces"
+roots = ["Spaces"]
+
+# Discharge of the tagged AxiomMath inputs by the AxiomMath theorems themselves
+# (not a default target; needs the full AxiomMath build).
+[[lean_lib]]
+name = "SpacesVerified"
+roots = ["SpacesVerified"]

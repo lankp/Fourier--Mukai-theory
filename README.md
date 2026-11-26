@@ -186,16 +186,15 @@ with status `P` proved here, `N` derived from a stated Neeman input, `S` supplie
 by AxiomMath/Stacks, `R` bibliographic and not used.  The policy is in
 [`results/STACKS_POLICY.md`](results/STACKS_POLICY.md).
 
-AxiomMath/Stacks pins Lean and Mathlib 4.35.0 and ships no build artifacts.  The
-repository moved to 4.35.0 in wave 4 so that AxiomMath can be imported as a Lake
-dependency; its build products are produced once by the orchestrator and shared
-with the workers (`results/SWARM.md`).  Once imported, each interface field is
-discharged by the AxiomMath declaration that
-[`results/AXIOMMATH_TAGS.md`](results/AXIOMMATH_TAGS.md) names for it (most after
-instantiating the field's free signature with AxiomMath's functors), its `S` row
-becomes a theorem, and the theorems that took the field lose that hypothesis.
-Neeman's "compact implies perfect" is AxiomMath's 09M8, proved for spaces, so that
-assumption can then be dropped too.
+**How AxiomMath is used.**  AxiomMath/Stacks is a Lake dependency, pinned at
+`f56a316` (nothing is copied from it).  The algebraic-space library `Spaces` imports
+only AxiomMath's definitions (`scripts/axiommath/spaces-imports.txt`); an AxiomMath
+theorem it needs is a tagged input with AxiomMath's exact statement, and the library
+`SpacesVerified` discharges every such input by the AxiomMath theorem itself, so the
+results over algebraic spaces are unconditional and fully kernel-checked.  The Stacks
+tags the two papers use, with the AxiomMath declaration for each, are listed in
+[`results/AXIOMMATH_TAGS.md`](results/AXIOMMATH_TAGS.md).  Details:
+[`results/STACKS_POLICY.md`](results/STACKS_POLICY.md).
 
 ### Generation is zero detection
 
@@ -378,6 +377,18 @@ LEAN_PATH="$LEAN_PATH:." lean -o FourierMukai/Scheme/AffineMain.olean \
 Allow 300 seconds per module: the first `import Mathlib` in a process reads about
 6 GB of oleans.
 
+### Full verification (AxiomMath)
+
+```bash
+lake build Spaces           # GL26's notions on AxiomMath's definitions (~2 000 AxiomMath modules, ~40 min)
+lake build SpacesVerified   # discharges the tagged AxiomMath inputs (~8 500 AxiomMath modules, ~6 h)
+```
+
+`SpacesVerified` needs about 14 GB of memory: one AxiomMath module
+(`StacksFrontier.RingTheory.MilnorPatching.Relative`) peaks at ~13.6 GB, so add swap
+on a 16 GB machine.  Neither library is a default target; `lake build` does not
+compile AxiomMath.
+
 ## Layout
 
 | path | contents |
@@ -387,6 +398,8 @@ Allow 300 seconds per module: the first `import Mathlib` in a process reads abou
 | `FourierMukai/Prelim/` | triangulated-category and 2-categorical foundations, and the categorical results of GL26 §2.1, §7 and Appendices B, C, 15 modules |
 | `FourierMukai/Paper/` | the early algebraic-space interface, its targets, and the interface audit |
 | `FourierMukai/Examples/` | a non-vacuous instantiation on Mathlib's derived category |
+| `Spaces/` | the algebraic-space layer on AxiomMath's definitions (GL26 §2.2 notions, integral transforms); tagged AxiomMath inputs in `Spaces/AxiomMathInputs.lean` |
+| `SpacesVerified/` | discharge of the tagged AxiomMath inputs; the unconditional statements over algebraic spaces |
 | `StatementCheck.lean` | the pinned statement surface, 17 declarations |
 | `results/` | `AXIOMMATH_MAP.md` (GL26's notions and functors against AxiomMath/Stacks, with fidelity verdicts, gaps and build cost), `AXIOMMATH_TAGS.md` (every cited Stacks tag against AxiomMath), `AFFINE.md` (the verification chain, one row per cited input), `ASSUMPTIONS.md` (what is assumed and what would discharge it), `VERIFICATION.md` (the build and statement check, measured), `CI_PERFORMANCE.md` (where CI's time goes, and the three ways to cut it), `SCHEMES.md`, `GL26_SCHEME_DEPENDENCE.md`, `WEAK_APPROX.md`, `MATHLIB_INVENTORY.md`, `STACKS_POLICY.md`, `STACKS_PORTABILITY.md`, `REPORT.md`, `INTEGRATION.md` |
 | `scripts/` | `build.sh`, `check_statements.sh`, `swarm/` (the orchestrator's branch verification), `axiommath/` (import-closure and tag-map scripts) |

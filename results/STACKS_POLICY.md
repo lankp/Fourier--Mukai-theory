@@ -31,13 +31,32 @@ Three levels, coarse to fine:
 A use is not marked by naming a tag in prose alone; it is marked by a field the
 theorem depends on, or by a `S` row in the ledger.
 
-## The library cannot be imported in this environment
+## AxiomMath is a Lake dependency (since 26 November 2026)
 
-`AxiomMath/Stacks` pins `leanprover/lean4:v4.35.0` and Mathlib `v4.35.0` and ships no
-build artifacts; this VM runs Lean 4.33.1 with a read-only prebuilt Mathlib and no
-Lake.  So "assume" is realised as above — a tagged interface — rather than as an
-import.  Reading the clone at `.scratch/stacks` for exact statements and names is
-permitted and is how the interface was written.
+AxiomMath/Stacks is required in `lakefile.toml`, pinned at
+`f56a316ddf7a930906d88b78d6f9a2668cffd0cf` (Lean/Mathlib v4.35.0, the same dependency
+revisions as this repository).  Nothing is copied from it.  It is used in two layers,
+neither of which is a default build target:
+
+* **`Spaces`** (directory `Spaces/`) imports only AxiomMath's **definitions**: the
+  modules listed in `scripts/axiommath/spaces-imports.txt` (~2 000 AxiomMath modules,
+  ~40 min to build on 4 cores).  An AxiomMath **theorem** that these imports do not
+  provide is taken as a **tagged input**: a `Prop` in `Spaces/AxiomMathInputs.lean`
+  whose docstring gives the Stacks tag and the AxiomMath declaration, and whose
+  statement is AxiomMath's statement verbatim (same objects, same hypotheses).
+* **`SpacesVerified`** (directory `SpacesVerified/`) imports the AxiomMath theorems
+  themselves and proves every tagged input from the declaration it names.  The
+  paper's results over algebraic spaces are stated there **unconditionally**; their
+  `#print axioms` is within `propext`, `Classical.choice`, `Quot.sound`.  Building it
+  compiles ~8 500 AxiomMath modules (~6 h on 4 cores, ~14 GB of memory: one module,
+  `StacksFrontier.RingTheory.MilnorPatching.Relative`, peaks at ~13.6 GB); the
+  orchestrator runs it.
+
+The list of Stacks tags the papers use, with the AxiomMath declaration for each, is
+[`results/AXIOMMATH_TAGS.md`](AXIOMMATH_TAGS.md); the fidelity audit of the definitions
+is [`results/AXIOMMATH_MAP.md`](AXIOMMATH_MAP.md).  The older interface
+`RelativeFM.StacksInterface` (`FourierMukai/Scheme/StacksInput.lean`) serves the
+abstract and affine layers and is retired as their results are restated over spaces.
 
 ## If Axiom's repository enters Mathlib or Lean
 

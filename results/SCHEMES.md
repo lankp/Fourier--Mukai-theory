@@ -235,9 +235,10 @@ this section is about.
   7,679 / 2.31M for `f^!`; the estimate is 200--450 person-days for a literal
   port and 250--550 for the smallest package supplying compact generation,
   perfectness and Ext vanishing. See
-  [`results/STACKS_PORTABILITY.md`](STACKS_PORTABILITY.md). The scheme layer is
-  therefore built on Mathlib alone, and a definition spike of 10--20 person-days
-  is the sensible first step.
+  [`results/STACKS_PORTABILITY.md`](STACKS_PORTABILITY.md). The scheme layer was
+  therefore built on Mathlib alone at the time.  **Superseded (26 November 2026):**
+  AxiomMath/Stacks is now a pinned Lake dependency and nothing is ported; the
+  algebraic-space layer is built on it (`results/STACKS_POLICY.md`).
 * **The dominant cost is the geometric layer**, not the categorical part: `f^!`
   for schemes, and the compact-generation/perfectness comparison, are
   research-level formalizations even with the literature in hand.

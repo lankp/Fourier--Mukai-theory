@@ -277,7 +277,7 @@ more than the type said, and a statement whose premise was invisible.
 kernel.  BridgelandStability closes that gap with a generated `Challenge`
 library (Mathlib-only import closure) replayed through `lean4export` and
 `comparator`; the analogous step here needs a standalone challenge library whose
-import closure is Mathlib alone, which the current statement layer does not yet
+import closure is Mathlib and AxiomMath/Stacks only, which the current statement layer does not yet
 have — it imports the whole development by design.
 
 ## 4. The protocol used for every claim
