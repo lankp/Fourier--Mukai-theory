@@ -24,3 +24,10 @@ StacksFrontier.AlgebraicGeometry.Spaces.DerivedPushforwardHigherDirectImages
 StacksFrontier.AlgebraicGeometry.Spaces.SmallEtaleDerivedTensor
 StacksFrontier.AlgebraicGeometry.Spaces.Perfect.LimitPerfectObjects
 StacksFrontier.AlgebraicGeometry.Spaces.DerivedSupport
+# Categorical Stacks results for Spaces/Stacks (wave6/stacks-categorical): 07LS (compact
+# objects), 09SJ (weak generators), 09SN, 09SR.  These four add 10 modules to the closure
+# (68 modules on their own) and are free of MilnorPatching.Relative.
+StacksFrontier.CategoryTheory.Triangulated.Generators
+StacksFrontier.CategoryTheory.Triangulated.CompactObjects.ThickSubcategory
+StacksFrontier.CategoryTheory.Triangulated.CompactObjects.CellStructure
+StacksFrontier.CategoryTheory.Triangulated.CompactObjects.CompactGenerators
