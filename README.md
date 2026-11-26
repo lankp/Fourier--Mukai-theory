@@ -337,6 +337,7 @@ Allow 300 seconds per module: the first `import Mathlib` in a process reads abou
 | `FourierMukai/Paper/` | the early algebraic-space interface, its targets, and the interface audit |
 | `FourierMukai/Examples/` | a non-vacuous instantiation on Mathlib's derived category |
 | `StatementCheck.lean` | the pinned statement surface, 17 declarations |
+| `manuscripts/` | the current LaTeX of GL26 and LP26 (unpublished; the repository is private); replaced whenever the maintainer uploads a new version, see `manuscripts/README.md` |
 | `results/` | `AFFINE.md` (the verification chain, one row per cited input), `ASSUMPTIONS.md` (what is assumed and what would discharge it), `VERIFICATION.md` (the build and statement check, measured), `CI_PERFORMANCE.md` (where CI's time goes, and the three ways to cut it), `SCHEMES.md`, `GL26_SCHEME_DEPENDENCE.md`, `WEAK_APPROX.md`, `MATHLIB_INVENTORY.md`, `STACKS_POLICY.md`, `STACKS_PORTABILITY.md`, `REPORT.md`, `INTEGRATION.md` |
 | `scripts/` | `build.sh`, `check_statements.sh` |
 

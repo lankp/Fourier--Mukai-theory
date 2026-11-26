@@ -33,6 +33,7 @@ on:
       - '**.md'
       - 'ci/**'
       - 'attachments/**'
+      - 'manuscripts/**'
       - 'LICENSE'
       - 'formalization.yaml'
   pull_request:
@@ -40,6 +41,7 @@ on:
       - '**.md'
       - 'ci/**'
       - 'attachments/**'
+      - 'manuscripts/**'
       - 'LICENSE'
       - 'formalization.yaml'
   workflow_dispatch:

@@ -18,13 +18,20 @@ A Lean 4 formalization, on Mathlib, of
 The goal is all of GL26.  `results/COVERAGE.md` lists every numbered result of
 both papers with its status in the tree.  Start there.
 
-## Unpublished manuscripts: never commit them
+## Manuscripts
 
-The repository is **public**.  The current manuscripts of GL26 and LP26 are not.
-Never commit their `.tex`, `.pdf` or `.bib`, or paste long passages of them into
-files, commit messages or reports.  Refer to results by number **and**
-TeX label (`Lemma 7.4, lem:morph_adj`); labels are stable across versions.  A
-worker receives the TeX excerpt it needs in its task message.
+The current LaTeX sources of GL26 and LP26 are in `manuscripts/GL26/` and
+`manuscripts/LP26/` (`main.tex`, `mainbib.bib`); see `manuscripts/README.md`.  They
+are **unpublished**, so the repository is **private** and must stay private: never
+make it public, never copy the manuscripts elsewhere, and never paste long passages
+of them into commit messages or outside the repository.  Read the TeX directly from
+`manuscripts/` when a task needs it.  Refer to results by number **and** TeX label
+(`Lemma 7.4, lem:morph_adj`); labels are stable across versions.
+
+**When a new GL26 or LP26 `main.tex` / `mainbib.bib` is uploaded to an orchestrator
+session, the orchestrator replaces the files in `manuscripts/`, updates
+`manuscripts/README.md`, and re-checks `results/COVERAGE.md` against the new
+numbering** (maintainer's standing instruction).
 
 ## Building
 

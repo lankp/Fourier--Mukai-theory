@@ -43,12 +43,13 @@ to you.
    this file with its own (get_session with no argument), commits, and continues.
    The running orchestrator survives usage-limit stops and worker restarts on its
    own: scheduled messages (`send_later`) into it resume it after the reset.
-6. The GL26 and LP26 manuscripts are **unpublished** and the repository is
-   **public**: never commit their TeX/PDF or long passages.  Workers get the TeX
-   excerpts they need inside their task message.  The maintainer uploaded the
-   current manuscripts to the first orchestrator session only; if a task needs
-   manuscript text and you do not have it, ask the maintainer to upload
-   `main.tex` of GL26 (and LP26) to your session.
+6. The GL26 and LP26 manuscripts are **unpublished**.  Their current LaTeX is in
+   `manuscripts/` (committed 26 November 2026, after the maintainer made the
+   repository **private**; keep it private).  **Whenever the maintainer uploads a
+   new GL26 or LP26 `main.tex` / `mainbib.bib` to your session, replace the files in
+   `manuscripts/`, update `manuscripts/README.md` (date, sha256), and re-check
+   `results/COVERAGE.md` against the new numbering.**  Workers read the TeX from
+   `manuscripts/`; you no longer need to paste excerpts into task messages.
 7. GL26 is correct as stated in the current manuscript (the maintainer confirmed,
    for example, that Lemma B.10's displayed "(G,ζ) ⊣ (F,ξ)" is a typo for
    "(F,ξ) ⊣ (G,ζ)").  A Lean rendering that turns out false or vacuous is refuted
