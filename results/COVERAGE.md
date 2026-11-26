@@ -240,7 +240,7 @@ The geometric §5 is not; the tree records it in `results/WEAK_APPROX.md`.
 | # | label | status | where / note |
 |---|---|---|---|
 | Thm 1.1 | `thm:glueing_weak_approx` | P | `WeakApprox/Main.lean`, `MainMinimal.lean`; affine instances: `affine_satisfiesPaperWA` and `principalSupported_satisfiesPaperWA` (`Scheme/RegularCompactEndpoints.lean`) are unconditional (weak approximability of `D(A-Mod)` and `D_{V(f)}(A-Mod)`), after `ringObject_isCompactAb` (`Scheme/RegularCompact.lean`) removed the Neeman-derived compactness input |
-| Cor 1.2 | `cor:weak_approx_spaces` | H | `Scheme/Inputs.lean`; needs `D_qc,S` of algebraic spaces |
+| Cor 1.2 | `cor:weak_approx_spaces` | H (affine base: P in the module model) | the affine base case = Neeman 2024 Thm 3.2(iv) for `Spec A`, `Z = V(I)`, `I` f.g., is proved with **no input** in `D(A-Mod)`: `NeemanAffineSupport.satisfiesPaperWA_of_fg` (wave 5, pinned); transport to AxiomMath's `D_qc,Z(Spec A)` and the induction over qcqs schemes/spaces are open |
 | Def 2.1 | `def:weak_approx` | D | `WeakApproximationData`, `PaperWeakApproximationData` |
 | Lem 3.1 | `lem:closures` | P | `Basic`, `Closure`, `Shift`, `Functoriality` |
 | Lem 3.3 | `lem:aisle` | P | `Aisle` |

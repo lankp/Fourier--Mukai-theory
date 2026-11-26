@@ -12,7 +12,7 @@ does not have: perfect complexes for rings, quasicoherent cohomology through the
 tilde functor, K-projective replacements, Le–Chen's splitting criterion, and the
 exceptional functors of the affine recollement.
 
-221 modules, about 56 000 lines.  There is no `sorry` except in nine declarations
+222 modules, about 56 000 lines.  There is no `sorry` except in nine declarations
 that are deliberately left as targets; see [What is stated but not
 proved](#what-is-stated-but-not-proved).
 
@@ -45,7 +45,7 @@ schemes, in the supported form `D_qc,Z(X)`.
 | | |
 |---|---|
 | LP26, the whole categorical layer (Sections 2–4 and Theorem 1.1) | proved, unconditionally |
-| LP26 Theorem 1.1, affine case, with Neeman 3.2 as the only published input | proved |
+| LP26 Theorem 1.1, affine case | proved with no Neeman input (`affine_theorem_1_1_unconditional`); the wave-5 triage found its coproduct hypothesis `HasCoproducts.{u+1} (AffineD A)` false for `A ≠ 0` (F1, `results/OPEN_INPUTS.md`), so this endpoint is to be refuted and replaced in wave 6 |
 | GL26 Lemma 2.25 | proved from the inputs its own proof uses |
 | GL26 Lemma 2.26 | proved in categorical form; affine wrapper proved |
 | GL26 Lemma 5.4 | proved in six-functor form, modulo the cover square |
@@ -55,7 +55,9 @@ schemes, in the supported form `D_qc,Z(X)`.
 | GL26 Lemmas 6.11, 10.1, 10.2 | 6.11 and 10.1 proved in six-functor form from Stacks 08IR, 08EU/08IN; 10.2 proved with no input |
 | compactness of the regular module; weak approximability of `D(A-Mod)` and of `D_{V(f)}(A-Mod)` | proved, unconditionally |
 | GL26 Lemma A.4, affine case (the recollement `D(A[1/f]) → D(A) → D_Z(A)`) | every field constructed, from Stacks 0E55 |
-| weak approximability for qcqs schemes with support | reduced to named inputs (open/closed glue now package-free; satisfiability of its inputs not yet shown); the finite-support affine base is vacuous until a refuted input is replaced |
+| LP26 Cor 1.2 affine base = Neeman 2024 Thm 3.2(iv) for `Spec A`, `V(I)`, `I` f.g. | **proved with no input** in `D(A-Mod)` (`NeemanAffineSupport.satisfiesPaperWA_of_fg`, wave 5) |
+| Neeman 2024 Thm 3.2 | no longer assumed: (i) proved for `D(A)`; the Neeman inputs deleted from the tree (wave 5); (iii) for schemes/spaces open |
+| weak approximability for qcqs schemes/spaces with support | open: transport of the affine base to AxiomMath's model, then the induction (wave 6+) |
 | the remaining numbered results of GL26 | stated over Noetherian schemes, or over the abstract interface of `Paper/`, not proved; not yet stated over algebraic spaces |
 | foundation for full generality | AxiomMath/Stacks mapped and audited against GL26 §2.2–2.4 (wave 4); toolchain migrated to Lean/Mathlib v4.35.0 to match it; the dependency and the algebraic-space layer `FourierMukai/Spaces/` are wave 5 |
 

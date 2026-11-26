@@ -140,6 +140,11 @@ AxiomMath build trial: the 67-module base slice builds in 90 s; the 8.9k-module
 statement slice (T1) is building in the orchestrator session (about 4–5 h on 4 cores);
 build products are about 0.6 MB per module without the `ir/*.setup.json` intermediates.
 
+Wave 5 closed 26 Nov 2026, 12:45 UTC: neeman-3-2-inputs, neeman-affine-support,
+neeman-prune and open-inputs merged and archived; `spaces-foundations` moves to wave 6
+(the AxiomMath build is still running: `MilnorPatching.Relative` needs ~13.6 GB and
+builds only with swap; workers cannot build AxiomMath themselves).
+
 ## Wave 5 (briefs in `results/swarm/wave5/`)
 
 **Maintainer's goal for wave 5 (26 November 2026):** besides the geometric layer,
