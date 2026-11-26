@@ -97,13 +97,23 @@ Launched 25 November 2026 after wave 2 was merged.  Briefs in `results/swarm/wav
 | `wave3/koszul-inputs` | prove the non-Stacks named inputs of the finite-support affine supported base | new files |
 | `wave3/open-closed-glue` | discharge the completion hypothesis of `Scheme/OpenClosedGlue.lean`, towards weak approximability for qcqs schemes with support | new files |
 
-## Wave 4 candidates
+## Wave 4
 
-* **repair the finite-support affine base** (highest priority): `KoszulScalarSupportInput` is refuted (`KoszulInputs.not_koszulScalarSupportInput`); drop it from `koszulListData` in `Scheme/FiniteKoszulM1.lean`, use `scalarConeData_isSupported` / `scalarConeData_le_zero` instead, and re-derive the finite-list and `IsAffine` endpoints with `IdealSupportedCoproductInput` / `IdealSupportedCompactnessInput` discharged (`Scheme/KoszulInputs.lean`); then `KoszulPowerCoprodInput` (needs a 3×3-type cone lemma) and 0A9A's AxiomMath name;
-* **non-vacuity of the open/closed inputs** of `Scheme/OpenClosedCompletion.lean`: build a concrete `OpenClosedFrameInput` (at least in the affine principal case), and settle the Hom universe of the coproduct field of `SupportedCategoryInput` (restate at the small-Hom model if the large one fails);
-* the non-Stacks inputs of `koszul-inputs` left open by wave 3, if any;
-* a right adjoint of `Rj_*` without Stacks 0E55 (makes the affine recollement unconditional);
-* GL26 Proposition 10.5 and Lemma 10.9 on top of `wave3/fm-cube` (10.5 needs Proposition 9.3 and Lemma 9.1, the latter a `Duality.lean` field);
+Prepared 26 November 2026 after wave 3 was closed; launched after the 06:00 UTC usage
+reset.  Briefs in `results/swarm/wave4/`.
+
+| task | goal | files |
+|---|---|---|
+| `wave4/koszul-repair` | drop the refuted `KoszulScalarSupportInput`, discharge the two proved inputs, restate the finite-list and `IsAffine` supported endpoints non-vacuously | `Scheme/FiniteKoszulM1.lean` and the Koszul endpoint files |
+| `wave4/openclosed-nonvacuity` | settle the coproduct Hom universe and construct the open/closed inputs in the affine principal case | new files (+ `Scheme/OpenClosedCompletion.lean` if a universe must change) |
+| `wave4/rj-right-adjoint` | `derivedRestrictionScalars A f ⊣ iShriek` without Stacks 0E55, hence the affine recollement unconditionally | new files |
+| `wave4/stacks-registration` | put 09SR, 08IR, 08EU/08IN, 0A9A, 09SN, 0E55 uses into `StacksInterface` with their AxiomMath names | namespacing/docstrings in three files, new files, two `results/` files |
+
+## Wave 5 candidates
+
+* GL26 Proposition 10.5 and Lemma 10.9 on top of `Scheme/FMCube.lean` (10.5 needs Proposition 9.3 and Lemma 9.1);
+* `KoszulPowerCoprodInput` (a 3×3-type cone lemma), if wave 4 does not close it;
+* `DerivedPseudofunctorInput` (Lipman 3.6.2) on the scheme model;
 * Lemma 7.8 (double categories) only if something downstream needs it.
 
 ## Log
