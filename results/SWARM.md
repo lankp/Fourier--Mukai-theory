@@ -175,6 +175,19 @@ for qcqs algebraic spaces by LP26 Theorem 1.1 and the induction principle (Stack
 Other candidates (from the earlier plan, if they feed the geometric statements):
 GL26 Proposition 10.5 and Lemma 10.9 on `Scheme/FMCube.lean`; `DerivedPseudofunctorInput`.
 
+## Wave 6 (briefs in `results/swarm/wave6/`; effort per ORCHESTRATOR.md item 12)
+
+Planned from `results/OPEN_INPUTS.md`.  Affine-only versions of what AxiomMath proves
+for spaces (0E55 coextension, `⊗^L` on `D(A-Mod)`) are **not** scheduled: the
+geometric layer supersedes them.
+
+| task | effort | goal |
+|---|---|---|
+| `wave6/vacuity-refutations` | high | prove F1 (`¬ HasCoproducts.{u+1} (AffineD A)`, `A` nontrivial), F2 (no compact `IsGenerator` in `D(ℤ)`), F3 (`QuasicoherentSerreInput (Spec ℤ)` false); then the orchestrator unpins/replaces the vacuous pinned endpoints |
+| `wave6/lp26-paper-hypotheses` | high | LP26 Thm 1.1 with exactly the paper's hypotheses: compactly generated `t`-structures (AJS), BNP Cor 3.10(1), generator change |
+| `wave6/spaces-foundations` | high | the algebraic-space layer on AxiomMath (launch when the AxiomMath build bundle is published) |
+| `wave6/prune-dead-inputs` | medium | after vacuity-refutations: delete the triage's "delete" rows (keep `M4Unconditional`/`M6Unconditional`) |
+
 ## Log
 
 | wave | task | session | merged as | outcome |
