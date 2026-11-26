@@ -127,3 +127,9 @@ open RelativeFM
 #print axioms RelativeFM.Recollement.JUpperConstruction.affineRecollementInputOfIShriek
 #print axioms RelativeFM.Recollement.JUpperConstruction.affineRecollementInputOfStacks0E55
 #print axioms RelativeFM.Recollement.JUpperConstruction.affineRecollementInputOfExactCoextension
+
+#print axioms RelativeFM.KoszulInputs.not_koszulScalarSupportInput
+#print axioms RelativeFM.KoszulInputs.scalarConeData_isSupported
+#print axioms RelativeFM.KoszulInputs.scalarConeData_le_zero
+#print axioms RelativeFM.KoszulInputs.idealSupportedCoproductInput
+#print axioms RelativeFM.KoszulInputs.idealSupportedCompactnessInput
