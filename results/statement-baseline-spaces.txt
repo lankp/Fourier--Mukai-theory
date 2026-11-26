@@ -1,0 +1,72 @@
+@RelativeFM.Spaces.Stacks.theorem_1_1 : ∀ {DZ : Type u_2} {D : Type u_3} {DU : Type u_4}
+  [inst : CategoryTheory.Category.{u_1, u_2} DZ] [inst_1 : CategoryTheory.Category.{u_1, u_3} D]
+  [inst_2 : CategoryTheory.Category.{u_1, u_4} DU] [inst_3 : CategoryTheory.Preadditive DZ]
+  [inst_4 : CategoryTheory.Preadditive D] [inst_5 : CategoryTheory.Preadditive DU]
+  [inst_6 : CategoryTheory.Limits.HasZeroObject DZ] [inst_7 : CategoryTheory.Limits.HasZeroObject D]
+  [inst_8 : CategoryTheory.Limits.HasZeroObject DU] [inst_9 : CategoryTheory.HasShift DZ ℤ]
+  [inst_10 : CategoryTheory.HasShift D ℤ] [inst_11 : CategoryTheory.HasShift DU ℤ]
+  [inst_12 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DZ n).Additive]
+  [inst_13 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor D n).Additive]
+  [inst_14 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DU n).Additive] [inst_15 : CategoryTheory.Pretriangulated DZ]
+  [inst_16 : CategoryTheory.Pretriangulated D] [inst_17 : CategoryTheory.Pretriangulated DU]
+  [inst_18 : CategoryTheory.IsTriangulated DZ] [inst_19 : CategoryTheory.IsTriangulated D]
+  [inst_20 : CategoryTheory.IsTriangulated DU] [CategoryTheory.Limits.HasCoproducts DZ]
+  [CategoryTheory.Limits.HasCoproducts D] [CategoryTheory.Limits.HasCoproducts DU]
+  (R : RelativeWeakApprox.Recollement DZ D DU),
+  RelativeWeakApprox.PaperM2.SatisfiesPaperWA DZ →
+    RelativeWeakApprox.PaperM2.SatisfiesPaperWA DU →
+      ∀ (G' : D),
+        RelativeWeakApprox.IsCompactAb G' →
+          RelativeWeakApprox.IsPaperGenerator G' →
+            (RelativeWeakApprox.PaperM2.SatisfiesPaperWA D ↔
+              ∃ N, ∀ (n : ℤ), N ≤ n → ∀ (f : G' ⟶ (CategoryTheory.shiftFunctor D n).obj G'), f = 0)
+@RelativeFM.Spaces.Stacks.lemma_2_4 : ∀ {C : Type u_1} [inst : CategoryTheory.Category.{u_2, u_1} C]
+  [inst_1 : CategoryTheory.Limits.HasZeroObject C] [inst_2 : CategoryTheory.HasShift C ℤ]
+  [inst_3 : CategoryTheory.Preadditive C] [inst_4 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor C n).Additive]
+  [inst_5 : CategoryTheory.Pretriangulated C] [CategoryTheory.Limits.HasCoproducts C] {G : C},
+  RelativeWeakApprox.IsCompactAb G →
+    (RelativeWeakApprox.IsPaperGenerator G ↔
+      RelativeFM.ObjectProperty.localizingClosure (CategoryTheory.ObjectProperty.singleton G) = ⊤)
+@RelativeFM.Spaces.Stacks.lemma_2_5 : ∀ {C : Type u_1} [inst : CategoryTheory.Category.{u_2, u_1} C]
+  [inst_1 : CategoryTheory.Limits.HasZeroObject C] [inst_2 : CategoryTheory.HasShift C ℤ]
+  [inst_3 : CategoryTheory.Preadditive C] [inst_4 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor C n).Additive]
+  [inst_5 : CategoryTheory.Pretriangulated C] [CategoryTheory.Limits.HasCoproducts C] {D : Type u_1}
+  [inst_7 : CategoryTheory.Category.{u_2, u_1} D] [inst_8 : CategoryTheory.Limits.HasZeroObject D]
+  [inst_9 : CategoryTheory.HasShift D ℤ] [inst_10 : CategoryTheory.Preadditive D]
+  [inst_11 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor D n).Additive] [inst_12 : CategoryTheory.Pretriangulated D]
+  [CategoryTheory.Limits.HasCoproducts D] {F : CategoryTheory.Functor C D} {G : CategoryTheory.Functor D C}
+  (adj : F ⊣ G) (GT : C),
+  RelativeWeakApprox.IsCompactAb GT →
+    RelativeWeakApprox.IsPaperGenerator GT →
+      ∀ (GS : D),
+        RelativeWeakApprox.IsCompactAb GS →
+          RelativeWeakApprox.IsPaperGenerator GS →
+            ∀ [inst_14 : ∀ (J : Type u_2), CategoryTheory.Limits.PreservesColimitsOfShape (CategoryTheory.Discrete J) G]
+              [inst_15 : F.CommShift ℤ] [inst_16 : F.IsTriangulated],
+              F.IsEquivalence ↔ (RelativeFM.Adjunction.compactRestriction adj).IsEquivalence
+RelativeFM.Spaces.Stacks.tag09SRPaper : ∀ (C : Type u_2) [inst : CategoryTheory.Category.{u_1, u_2} C]
+  [inst_1 : CategoryTheory.Preadditive C] [inst_2 : CategoryTheory.Limits.HasZeroObject C]
+  [inst_3 : CategoryTheory.HasShift C ℤ] [inst_4 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor C n).Additive]
+  [inst_5 : CategoryTheory.Pretriangulated C] [CategoryTheory.IsTriangulated C],
+  RelativeFM.OpenClosedCompletionW3.Tag09SRPaper C
+RelativeFM.Spaces.Stacks.tag09SN : ∀ (D : Type u_2) [inst : CategoryTheory.Category.{u_1, u_2} D]
+  [inst_1 : CategoryTheory.Preadditive D] [inst_2 : CategoryTheory.Limits.HasZeroObject D]
+  [inst_3 : CategoryTheory.HasShift D ℤ] [inst_4 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor D n).Additive]
+  [inst_5 : CategoryTheory.Pretriangulated D] [inst_6 : CategoryTheory.Limits.HasCoproducts D],
+  RelativeFM.StacksInterface.Tag09SN D
+@RelativeFM.Spaces.Stacks.isCompactObject_iff_isCompactAb : ∀ {C : Type u_2}
+  [inst : CategoryTheory.Category.{u_1, u_2} C] [inst_1 : CategoryTheory.Preadditive C] (K : C),
+  CategoryTheory.IsCompactObject K ↔ RelativeWeakApprox.IsCompactAb K
+@RelativeFM.Spaces.Stacks.isWeakTriangulatedGenerator_singleton_iff : ∀ {C : Type u_2}
+  [inst : CategoryTheory.Category.{u_1, u_2} C] [inst_1 : CategoryTheory.HasShift C ℤ]
+  [inst_2 : CategoryTheory.Preadditive C] (G : C),
+  (CategoryTheory.ObjectProperty.singleton G).IsWeakTriangulatedGenerator ↔ RelativeWeakApprox.IsPaperGenerator G
+'RelativeFM.Spaces.Stacks.theorem_1_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.Spaces.Stacks.lemma_2_4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.Spaces.Stacks.lemma_2_5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.Spaces.Stacks.tag09SRPaper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.Spaces.Stacks.tag09SN' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.Spaces.Stacks.isCompactObject_iff_isCompactAb' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.Spaces.Stacks.isWeakTriangulatedGenerator_singleton_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

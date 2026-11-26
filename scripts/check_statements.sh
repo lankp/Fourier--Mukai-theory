@@ -16,20 +16,25 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
+# `--spaces`: check the AxiomMath-based libraries instead (needs `lake build Spaces`).
+file=StatementCheck.lean
 baseline=results/statement-baseline.txt
-out="${TMPDIR:-.scratch}/statement-check.out"
+if [ "${1:-}" = "--spaces" ]; then
+  shift; file=StatementCheckSpaces.lean; baseline=results/statement-baseline-spaces.txt
+fi
+out="${TMPDIR:-.scratch}/statement-check-$(basename "$file" .lean).out"
 mkdir -p "$(dirname "$out")"
 
 run_lean() {
   if [ -f lake-manifest.json ] && [ -d .lake/packages ]; then
-    lake env lean StatementCheck.lean
+    lake env lean "$file"
   else
-    LEAN_PATH="${LEAN_PATH}:." lean StatementCheck.lean
+    LEAN_PATH="${LEAN_PATH}:." lean "$file"
   fi
 }
 
 if ! run_lean > "$out" 2>&1; then
-  echo "statement check: StatementCheck.lean failed to elaborate" >&2
+  echo "statement check: $file failed to elaborate" >&2
   cat "$out" >&2
   exit 1
 fi

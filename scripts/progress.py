@@ -41,6 +41,8 @@ def coverage():
 
 def pinned():
     s = rd('results/statement-baseline.txt')
+    if os.path.exists(os.path.join(ROOT, 'results/statement-baseline-spaces.txt')):
+        s += '\n' + rd('results/statement-baseline-spaces.txt')
     decls = re.findall(r"^'([^']+)' depends on axioms: \[([^\]]*)\]", s, re.M)
     return [(d, ', '.join(a.strip() for a in ax.split(',') if a.strip())) for d, ax in decls]
 
@@ -82,8 +84,9 @@ def render():
         c = cov[p]; L.append(f'| {p} | ' + ' | '.join(str(c[k]) for k in CODES) + f' | {sum(c.values())} |')
     L += ['', '| code | meaning |', '|---|---|'] + [f'| {k} | {NAMES[k]} |' for k in CODES]
     L += ['', '## Pinned headline declarations', '',
-          f'{len(dec)} declarations are pinned in [`statement-baseline.txt`](statement-baseline.txt) and re-checked '
-          f'by `scripts/check_statements.sh`; {clean} of them depend only on `propext`, `Classical.choice`, '
+          f'{len(dec)} declarations are pinned in [`statement-baseline.txt`](statement-baseline.txt) and '
+          f'[`statement-baseline-spaces.txt`](statement-baseline-spaces.txt) (the AxiomMath-based `Spaces` library) and re-checked '
+          f'by `scripts/check_statements.sh` (`--spaces` for the second); {clean} of them depend only on `propext`, `Classical.choice`, '
           '`Quot.sound` (no `sorryAx`, no other axiom).', '',
           '| declaration | axioms |', '|---|---|']
     L += [f'| `{d}` | {ax.strip() or "none"} |' for d, ax in dec]

@@ -384,6 +384,7 @@ Allow 300 seconds per module: the first `import Mathlib` in a process reads abou
 ```bash
 lake build Spaces           # GL26's notions on AxiomMath's definitions (~2 000 AxiomMath modules, ~40 min)
 lake build SpacesVerified   # discharges the tagged AxiomMath inputs (~8 500 AxiomMath modules, ~6 h)
+scripts/check_statements.sh --spaces   # pinned statements of the AxiomMath-based libraries
 ```
 
 `SpacesVerified` needs about 14 GB of memory: one AxiomMath module
