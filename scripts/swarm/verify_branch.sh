@@ -26,10 +26,10 @@ if ! git -c user.name="Claude" -c user.email="noreply@anthropic.com" merge -q --
     echo "MERGE CONFLICT"; cat "$LOG.merge"; git merge --abort; exit 2
   fi
 fi
-NEW=$(git diff --name-only origin/formalization HEAD | grep -E "^FourierMukai/(Prelim|Scheme)/.*\.lean$")
+NEW=$(git diff --name-only origin/formalization HEAD | grep -E "^(FourierMukai/(Prelim|Scheme|Spaces)|WeakApprox)/.*\.lean$")
 echo "== new modules: $NEW"
 echo "== sorry/axiom/True-hypothesis/autoImplicit scan:"
-grep -nE '\bsorry\b|^\s*axiom\b|: True\)|autoImplicit' $NEW || echo "(none)"
+[ -n "$NEW" ] && { grep -nE '\bsorry\b|^\s*axiom\b|: True\)|autoImplicit' $NEW || echo "(none)"; } || echo "(no new modules)"
 
 echo "== step 5: lake build"
 ( time lake build ) > "$LOG.build" 2>&1; echo "exit=$?"; grep -E '^real' "$LOG.build"

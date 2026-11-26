@@ -58,8 +58,10 @@ Regenerate after an intentional change:
 
 #check @RelativeWeakApprox.PaperM2.PaperSetupMainMinimal.theorem_1_1
 #check @RelativeWeakApprox.SetupMainMinimal.theorem_1_1
+#check @RelativeWeakApprox.PaperHypothesesW6.theorem_1_1_paper
 #print axioms RelativeWeakApprox.PaperM2.PaperSetupMainMinimal.theorem_1_1
 #print axioms RelativeWeakApprox.SetupMainMinimal.theorem_1_1
+#print axioms RelativeWeakApprox.PaperHypothesesW6.theorem_1_1_paper
 
 /-! ## Neeman's weak approximability: the affine supported base -/
 
