@@ -6,7 +6,7 @@ import FourierMukai.Scheme.PerfectModel
 # Affine compact/perfect input in Stacks form
 
 The affine endpoint uses only the implication `compact ⇒ Perf`, not the full
-biconditional in `CompactPerfectInput`.  This file makes that precise.
+compact ⇔ perfect biconditional.  This file makes that precise.
 
 * `Stacks07LTCompactModelInput` is the compact-to-bounded-finite-projective
   direction of Stacks Tag **07LT** (Proposition 15.80.3).
@@ -63,7 +63,17 @@ structure Stacks07LTCompactModelInput (A : Type u) [CommRing A] where
   model_of_compact : ∀ X : AffineD A,
     IsCompactAb X → Nonempty (BoundedFiniteProjectiveModel A X)
 
-/-- Only the implication actually consumed by the affine gluing theorem. -/
+/-- Only the implication actually consumed by the affine gluing theorem
+(compact ⇒ `Perf A`, the forward half of Neeman 2024, Theorem 3.2(i) for
+`D(A-Mod)`).
+
+**This is a proved interface, not an assumption.**  It is inhabited for every
+commutative ring with no input by `Stacks07LT.M4.compactToPerfectInput_unconditional`
+(`Scheme/M4Unconditional.lean`; also `CapstoneM6.compactToPerfectInput_unconditional`),
+and from Stacks 09SR by `Neeman32Inputs.compactToPerfectInput`.  Declarations
+taking it as an argument are reductions; it is kept as a structure because the
+proof of compact ⇒ `Perf` (`CompactToPerfect*.lean`, `M4Unconditional.lean`)
+lies downstream of those reductions in the import graph. -/
 structure CompactToPerfectInput (A : Type u) [CommRing A] where
   /-- Compact objects belong to the thick triangulated envelope of `A[0]`. -/
   perfect_of_compact : ∀ X : DerivedCategory (ModuleCat A),
@@ -83,18 +93,6 @@ theorem compactToPerfectInput_of_stacks07LT (A : Type u) [CommRing A]
     (I : Stacks07LTCompactModelInput A) : CompactToPerfectInput A where
   perfect_of_compact X hX :=
     AffinePerfect.model_mem_perf A X (I.model_of_compact X hX)
-
-/-- The old interface still supplies its forward half. -/
-theorem compactToPerfectInput_of_compactPerfectInput (A : Type u) [CommRing A]
-    (I : CompactPerfectInput A) : CompactToPerfectInput A where
-  perfect_of_compact X hX := (I.compact_iff_perfect X).mp hX
-
-/-- Reassemble the old biconditional only when both genuinely separate
-implications have been supplied. -/
-theorem compactPerfectInput_of_separateInputs (A : Type u) [CommRing A]
-    (I : CompactToPerfectInput A) (J : PerfectToCompactInput A) :
-    CompactPerfectInput A where
-  compact_iff_perfect X := ⟨I.perfect_of_compact X, J.compact_of_perfect X⟩
 
 /-- The affine form of Stacks **09MB(2)** (and of the vanishing step that GL26
 cites to **0GFH**): all but finitely many `Ext^n` from a perfect object to a
@@ -186,8 +184,6 @@ end StacksGluing
 end RelativeFM
 
 #print axioms RelativeFM.compactToPerfectInput_of_stacks07LT
-#print axioms RelativeFM.compactToPerfectInput_of_compactPerfectInput
-#print axioms RelativeFM.compactPerfectInput_of_separateInputs
 #print axioms RelativeFM.affine_perfectHomZero
 #print axioms RelativeFM.affineCompactHomZeroAtTop_of_compactToPerfectInput
 #print axioms RelativeFM.ringObject_isClassicalGeneratorOnCompacts_of_compactToPerfectInput

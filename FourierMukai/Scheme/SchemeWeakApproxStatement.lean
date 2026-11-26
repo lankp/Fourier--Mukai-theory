@@ -27,7 +27,8 @@ The generator condition is Neeman's zero-detection condition
 `IsPaperGenerator`, through `PaperWeakApproximationData`.  It is deliberately
 **not** `IsGenerator`: `GeneratorCounterexampleM5.lean` proves that the latter
 fails for the regular module over the integers.  The legacy template
-`Neeman_3_2_iv C = SatisfiesWA C` therefore is not the definition used here.
+`Neeman_3_2_iv C = SatisfiesWA C` (deleted on `wave5/neeman-prune`) was
+therefore not the definition used here.
 
 For a closed `Z`, cohomological support means that every cohomology sheaf
 restricts to zero on the open complement `Z.compl`.  Open restriction preserves
@@ -514,17 +515,6 @@ theorem neemanSupportedWeakApproximability_top (X : Scheme.{u}) :
   exact standardPaperWeakApproximationData_congr DerivedCategory.TStructure.t
     (isDQCohSupported_top X)
 
-/-! ## Comparison with the legacy proposition template -/
-
-/-- The legacy `Inputs.Neeman_3_2_iv` uses the strictly stronger
-`WeakApproximationData`; hence it implies the corrected paper formulation.
-There is no converse: zero detection does not imply `IsGenerator`. -/
-theorem satisfiesPaperWA_of_legacy_neeman_3_2_iv
-    {C : Type u} [Category.{v} C] [Preadditive C] [HasZeroObject C]
-    [HasShift C ℤ] [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C]
-    (h : RelativeFM.Neeman_3_2_iv C) : SatisfiesPaperWA C :=
-  satisfiesPaperWA_of_satisfiesWA h
-
 end
 end RelativeFM.SchemeWeakApproxStatementM1
 
@@ -541,4 +531,3 @@ end RelativeFM.SchemeWeakApproxStatementM1
 #print axioms RelativeFM.SchemeWeakApproxStatementM1.isDQCohSupported_top
 #print axioms RelativeFM.SchemeWeakApproxStatementM1.neemanSupportedWeakApproximability_top
 #print axioms RelativeFM.SchemeWeakApproxStatementM1.isDQCohSupported_hasInducedStandardTStructure
-#print axioms RelativeFM.SchemeWeakApproxStatementM1.satisfiesPaperWA_of_legacy_neeman_3_2_iv

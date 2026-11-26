@@ -101,3 +101,100 @@ are not inhabited in the tree.
   on a paper path still carried as a non-Stacks input; it is to be proved from
   AxiomMath (0AEC compact generator, 0AED, 09SR) for `D_qc,Z(X)`, following the
   affine proof `NeemanPreferredM6.inPreferredClass_of_compactlyGenerated`.
+
+## 5. Pruned on `wave5/neeman-prune` (maintainer, 26 November 2026)
+
+Task brief: `results/swarm/wave5/neeman-prune.md`.  After this branch the tree
+carries **no** Neeman 3.2 input in the affine models.
+
+**Relocated, same name, hypothesis replaced by Stacks 09SR.**  Every declaration
+that took `CompactPerfectInput A` or `SmallNeemanCompactToPerfectInput A H` now
+lives in `Scheme/Neeman32Inputs.lean` (the 09SR proof sits downstream of the old
+files in the import graph) and takes `h09 : Tag09SRPaper (CanonicalSmallAffineD A)`
+(large model) or `h09 : Tag09SRPaper (SmallAffineD A H)` (small model):
+
+| declaration | was in | statement change |
+|---|---|---|
+| `RelativeFM.affine_theorem_1_1_neeman_only` (**pinned**) | `AffineMain` | `CompactPerfectInput A` → `h09` (authorized) |
+| `RelativeFM.satisfiesWA_of_neemanCompactPerfectInput` | `AffineMain` | same |
+| `RelativeFM.affineCompactHomZeroAtTop_of_compactPerfectInput` | `AffineMain` | same |
+| `RelativeFM.ringObject_isClassicalGeneratorOnCompacts_of_compactPerfectInput` | `AffineMain` | same |
+| `RelativeFM.compact_iff_dbcoh_of_input` | `PerfectField` | same |
+| `RelativeFM.smallCompactHomZeroAtTop_of_neeman` | `SmallAffineAssembly` | `SmallNeemanCompactToPerfectInput A H` → `h09` |
+| `RelativeFM.affine_theorem_1_1_small_neeman_only` | `SmallAffineAssembly` | same |
+| `RelativeFM.affine_theorem_1_1_small_standard_neeman_only` | `SmallAffineAssembly` | same |
+| `RelativeFM.NeemanM1.isCompactAb_iff_smallPerf_of_neeman` | `AffineCompactness` | same |
+| `RelativeFM.AffineNeemanEndpointM3.small_compact_iff_smallPerf` | `AffineNeemanEndpointM3` | same |
+| `RelativeFM.AffineNeemanEndpointM3.small_affine_regularGenerator_package` | `AffineNeemanEndpointM3` | same |
+
+The names still say "neeman"/"input"; renaming is the orchestrator's call
+(proposal for the pinned one: `affine_theorem_1_1_of_tag09SR`).
+
+**Deleted structures and templates.** `RelativeFM.CompactPerfectInput`
+(`PerfectRing`), `RelativeFM.SmallNeemanCompactToPerfectInput`
+(`SmallAffineAssembly`), `RelativeFM.AffinePerfect.NeemanAffineCompactModelInput`
+(`Affine066S`), `RelativeFM.Neeman_3_2_i`, `Neeman_3_2_ii` (false rendering),
+`Neeman_3_2_iv` (`Inputs`; `Neeman_coherent_example_5_4` now states `SatisfiesWA C`
+directly), `RelativeWeakApprox.NeemanPublishedWeakApproximation` and
+`RelativeWeakApprox.weakApprox_of_neeman` (`Scheme/WeakApprox`).
+
+**Deleted module.** `FourierMukai/Scheme/Affine066S.lean` (066S from the Neeman
+model input; nothing on a GL26/LP26 path): `NeemanAffineCompactModelInput`,
+`hasModel_isStableUnderRetracts_of_neeman`, `perf_le_hasModel_of_neeman`,
+`perf_iff_hasModel_of_neeman`, `boundedProjectiveModelConverseInput_of_neeman`,
+`boundedProjectiveModelInput_of_neeman`, `stacks07LTCompactModelInput_of_neeman`,
+`compactPerfectInput_of_neemanModel`, `compactToPerfectInput_of_neemanModel`.
+It was imported only by `M6Transport`, `M6LargeInputs` and the root file.
+
+**Deleted producers/consumers.**
+* `AffineMain`: `ringObject_compact_of_compactPerfectInput` (compactness of `A[0]`
+  is unconditional: `RegularCompact.ringObject_isCompactAb`).
+* `PerfectField`: `compactPerfectInput_of_compactDbcoh`.
+* `PerfectRingStacks`: `compactToPerfectInput_of_compactPerfectInput`,
+  `compactPerfectInput_of_separateInputs`.
+* `AffineNeemanEndpointM3`: `compactPerfectInput_of_regularModule_compact`
+  (`affine_regularGenerator_package` reproved without it).
+* `SmallCompactToPerfectM5`: `SmallHomM5.smallNeemanCompactToPerfectInput_of_boundedFactorization`
+  (`isCompactAb_iff_smallPerf_of_boundedFactorization` reproved directly).
+* `M6Transport`: `CapstoneM6.smallNeemanCompactToPerfectInput_of_large`,
+  `neemanAffineCompactModelInput_of_directions`,
+  `neemanAffineCompactModelInput_of_freeInduction`,
+  `neemanAffineCompactModelInput_of_freeInduction_of_small`,
+  `smallAffine_neeman_3_2_i`, `affine_theorem_1_1_small_standard_of_compactProof`.
+* `M6LargeInputs`: `CapstoneM6.neemanAffineCompactModelInput_of_finiteFreeImprovement`.
+* `M6Unconditional`: `CapstoneM6.neemanAffineCompactModelInput_of_retracts_unconditional`.
+* `SchemeNeemanConsumerAudit`: `satisfiesPaperWA_of_legacyNeeman_3_2_iv`;
+  `SchemeWeakApproxStatement`: `satisfiesPaperWA_of_legacy_neeman_3_2_iv`.
+* `Neeman32Inputs` (stop-gap duplicates of the relocated originals, or producers of
+  deleted structures): `smallNeemanCompactToPerfectInput`, `compactPerfectInput`,
+  `ringObject_isClassicalGeneratorOnCompacts`, `affineCompactHomZeroAtTop`,
+  `affine_theorem_1_1_of_tag09SR`, `satisfiesWA_of_tag09SR`, `compact_iff_dbcoh`,
+  `smallCompactHomZeroAtTop`, `small_affine_regularGenerator_package`,
+  `affine_theorem_1_1_small_of_tag09SR`, `affine_theorem_1_1_small_standard_of_tag09SR`.
+  `smallAffine_neeman_3_2_i` and `affine_neeman_3_2_i` keep their content, stated
+  as `∀ X, IsCompactAb X ↔ …` now that the template is gone.
+
+**Kept as a proved interface.** `RelativeFM.CompactToPerfectInput A`
+(`PerfectRingStacks`): it is inhabited with **no input** by
+`Stacks07LT.M4.compactToPerfectInput_unconditional` (`M4Unconditional`;
+also `CapstoneM6.compactToPerfectInput_unconditional`) and from 09SR by
+`Neeman32Inputs.compactToPerfectInput`.  Its consumers
+(`affineCompactHomZeroAtTop_of_compactToPerfectInput`,
+`ringObject_isClassicalGeneratorOnCompacts_of_compactToPerfectInput`,
+`StacksGluing.satisfiesWA_of_compactToPerfectInput`,
+`StacksGluing.affine_theorem_1_1_of_compactToPerfectInput` (used by the pinned
+`affine_theorem_1_1_stacks07LT`), `AffineNeemanEndpointM3.affine_regularGenerator_package`,
+`RegularCompact.affine_regularGenerator_package`) are reductions whose hypothesis
+is a theorem; the proof of compact ⇒ `Perf` lies downstream of them in the import
+graph, so they keep the argument.
+
+**Observation.** In the large model `D(A-Mod)` compact ⇒ `Perf` needs no input at
+all (`M4Unconditional`), so the large-model endpoints above could drop `h09`
+entirely, including the pinned `affine_theorem_1_1_neeman_only`.  This branch
+uses `h09` as authorized; dropping it is a follow-up for the orchestrator.
+
+**Still carrying Thm 3.2 content (scheme level, not touched here).**
+`OpenClosedCompletionW3.SupportedCategoryInput.neeman_3_2_iii` (see §2) and the
+`CompactsArePerfect` fields (Thm 3.2(i)) of `SchemeOpenClosedDerived`
+(`Scheme/WeakApprox.lean`) and the two-open gluing interfaces
+(`Scheme/PaperTwoOpenGluing.lean`, `SchemeGluingReduction.lean`).

@@ -29,21 +29,16 @@ variable (C : Type u) [Category.{v} C] [Preadditive C]
   [HasZeroObject C] [HasShift C ℤ]
   [∀ (n : ℤ), (shiftFunctor C n).Additive] [Pretriangulated C]
 
-/-- The repository's old `Neeman_3_2_iv` is stronger than the paper's statement.
-It can be forgotten to zero-detection weak approximability.  There is no theorem
-in the reverse direction: `IsPaperGenerator` does not imply `IsGenerator`. -/
-theorem satisfiesPaperWA_of_legacyNeeman_3_2_iv
-    (h : RelativeFM.Neeman_3_2_iv C) : SatisfiesPaperWA C :=
-  satisfiesPaperWA_of_satisfiesWA h
-
-/-- Likewise, the old coherence-plus-weak-approximation interface has a valid
-zero-detection projection.  Coherence is a separate input and is not proved by
+/-- The old coherence-plus-weak-approximation interface (whose first component
+is the stronger `SatisfiesWA`) has a valid zero-detection projection.  There is
+no theorem in the reverse direction: `IsPaperGenerator` does not imply
+`IsGenerator`.  Coherence is a separate input and is not proved by
 this implication. -/
 theorem paperWA_and_coherent_of_legacyNeeman_coherent_example_5_4
     (CoherentTriangulated : Prop)
     (h : RelativeFM.Neeman_coherent_example_5_4 C CoherentTriangulated) :
     SatisfiesPaperWA C ∧ CoherentTriangulated :=
-  ⟨satisfiesPaperWA_of_legacyNeeman_3_2_iv C h.1, h.2⟩
+  ⟨satisfiesPaperWA_of_satisfiesWA h.1, h.2⟩
 
 /-- Zero-detection weak approximability supplies the compact Hom-vanishing used
 by the LP/gluing arguments, provided 09SR is stated for the same zero-detection
@@ -81,7 +76,6 @@ theorem small_int_paperWA_exists_but_legacy_regular_generator_impossible
 
 end RelativeFM.SchemeNeemanConsumerAuditSmww16bpbM6
 
-#print axioms RelativeFM.SchemeNeemanConsumerAuditSmww16bpbM6.satisfiesPaperWA_of_legacyNeeman_3_2_iv
 #print axioms RelativeFM.SchemeNeemanConsumerAuditSmww16bpbM6.paperWA_and_coherent_of_legacyNeeman_coherent_example_5_4
 #print axioms RelativeFM.SchemeNeemanConsumerAuditSmww16bpbM6.compactHomZeroAtTop_of_paperWA_of_paper09SR
 #print axioms RelativeFM.SchemeNeemanConsumerAuditSmww16bpbM6.schemeCompactHomZeroAtTop_of_paperWA_of_paper09SR

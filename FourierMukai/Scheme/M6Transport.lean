@@ -5,10 +5,17 @@ The comparison is the localized functor of the identity localizer morphism.
 This supplies the shift compatibility and exactness proofs needed for
 thick-envelope transport.  Compactness itself quantifies over different index
 universes on the two sides, so lifting compactness remains an explicit input
-in the two final dependency lemmas.
+in `perfectToCompactInput_of_small`.
+
+The declarations that produced or consumed the Neeman 2024, Theorem 3.2(i)
+interfaces (`smallNeemanCompactToPerfectInput_of_large`, `smallAffine_neeman_3_2_i`,
+`affine_theorem_1_1_small_standard_of_compactProof`, the
+`neemanAffineCompactModelInput_*` family) were deleted on `wave5/neeman-prune`;
+see `Scheme/Neeman32Inputs.lean` and `results/NEEMAN_3_2.md`.
 -/
 import FourierMukai.Scheme.AffineCompactness
-import FourierMukai.Scheme.Affine066S
+import FourierMukai.Scheme.CompactToPerfect
+import FourierMukai.Scheme.PerfectCompactThick
 
 @[expose] public section
 
@@ -164,20 +171,6 @@ theorem smallPerf_iff_perf_affineQhComparison_inverse (A : Type u) [CommRing A]
     exact (SmallPerf A H).prop_of_iso
       ((affineQhComparison A H).counitIso.app X) h
 
-/-- If small-universe compactness lifts across the comparison, then the large
-compact-to-perfect theorem proves the small-Hom directed Neeman input.  The
-parameter is intentional: categorical equivalence alone does not change the
-coproduct-index universe in `IsCompactAb`. -/
-theorem smallNeemanCompactToPerfectInput_of_large
-    (A : Type u) [CommRing A] (H : AffineSpaltensteinInput A)
-    (I : CompactToPerfectInput A)
-    (liftCompact : ∀ X : SmallAffineD A H, IsCompactAb X →
-      IsCompactAb ((affineQhComparison A H).inverse.obj X)) :
-    SmallNeemanCompactToPerfectInput A H where
-  perfect_of_compact X hX :=
-    (smallPerf_iff_perf_affineQhComparison_inverse A H X).mpr
-      (I.perfect_of_compact _ (liftCompact X hX))
-
 /-- The same lifting parameter gives large-Hom perfect-to-compact from the
 proved small-Hom implication. -/
 theorem perfectToCompactInput_of_small
@@ -194,19 +187,6 @@ theorem perfectToCompactInput_of_small
     have hc := liftCompact _ (NeemanM1.isCompactAb_of_smallPerf A H hsmall)
     exact isCompactAb_of_iso ((affineQhComparison A H).unitIso.app X).symm hc
 
-/-- The large-Hom compact/model biconditional from its two separate directions.
-The bounded-free induction does not supply `J`. -/
-theorem neemanAffineCompactModelInput_of_directions
-    (A : Type u) [CommRing A]
-    (I : Stacks07LTCompactModelInput A)
-    (J : PerfectToCompactInput A) :
-    AffinePerfect.NeemanAffineCompactModelInput A := by
-  intro X
-  constructor
-  · exact I.model_of_compact X
-  · intro hX
-    exact J.compact_of_perfect X (AffinePerfect.model_mem_perf A X hX)
-
 /-- The Stacks 07LT compact-to-model interface after bounded-free induction
 and bounded-model retract closure.  No compactness of perfect objects is used. -/
 theorem stacks07LTCompactModelInput_capstone
@@ -216,29 +196,6 @@ theorem stacks07LTCompactModelInput_capstone
     Stacks07LTCompactModelInput A :=
   Stacks07LT.stacks07LTCompactModelInput_of_freeInduction A I hR
 
-/-- Large-Hom capstone of bounded-free induction and retract closure, with the
-independent reverse compactness input kept explicit. -/
-theorem neemanAffineCompactModelInput_of_freeInduction
-    (A : Type u) [CommRing A]
-    (I : Stacks07LT.BoundedFreeInductionInput A)
-    (hR : (AffinePerfect.HasBoundedFiniteProjectiveModel A).IsStableUnderRetracts)
-    (J : PerfectToCompactInput A) :
-    AffinePerfect.NeemanAffineCompactModelInput A :=
-  neemanAffineCompactModelInput_of_directions A
-    (stacks07LTCompactModelInput_capstone A I hR) J
-
-/-- The full large-Hom capstone with the sole extra size-transport obligation
-made explicit. -/
-theorem neemanAffineCompactModelInput_of_freeInduction_of_small
-    (A : Type u) [CommRing A] (H : AffineSpaltensteinInput A)
-    (I : Stacks07LT.BoundedFreeInductionInput A)
-    (hR : (AffinePerfect.HasBoundedFiniteProjectiveModel A).IsStableUnderRetracts)
-    (liftCompact : ∀ X : SmallAffineD A H, IsCompactAb X →
-      IsCompactAb ((affineQhComparison A H).inverse.obj X)) :
-    AffinePerfect.NeemanAffineCompactModelInput A :=
-  neemanAffineCompactModelInput_of_freeInduction A I hR
-    (perfectToCompactInput_of_small A H liftCompact)
-
 /-- The forward implication from the bounded-free induction needs neither
 reverse compactness nor retract closure. -/
 theorem compactToPerfectInput_of_freeInduction
@@ -246,36 +203,6 @@ theorem compactToPerfectInput_of_freeInduction
     (I : Stacks07LT.BoundedFreeInductionInput A) :
     CompactToPerfectInput A :=
   Stacks07LT.compactToPerfectInput_of_freeInduction A I
-
-/-- The small-Hom affine form of Neeman 3.2(i): the reverse implication is
-already proved, so only the directed input `I` remains. -/
-theorem smallAffine_neeman_3_2_i
-    (A : Type u) [CommRing A] (H : AffineSpaltensteinInput A)
-    (I : SmallNeemanCompactToPerfectInput A H) :
-    Neeman_3_2_i (SmallAffineD A H) (SmallPerf A H) := by
-  intro X
-  exact NeemanM1.isCompactAb_iff_smallPerf_of_neeman A H I X
-
-/-- Standard-middle small affine gluing after supplying a compact-to-perfect
-proof; there is no additional Neeman, Stacks or coproduct input. -/
-theorem affine_theorem_1_1_small_standard_of_compactProof
-    (A : Type u) [CommRing A] (H : AffineSpaltensteinInput A)
-    (DZ : Type uZ) (DU : Type uU)
-    [Category.{u} DZ] [Category.{u} DU]
-    [Preadditive DZ] [Preadditive DU]
-    [HasZeroObject DZ] [HasZeroObject DU]
-    [HasShift DZ ℤ] [HasShift DU ℤ]
-    [∀ n : ℤ, (shiftFunctor DZ n).Additive]
-    [∀ n : ℤ, (shiftFunctor DU n).Additive]
-    [Pretriangulated DZ] [Pretriangulated DU]
-    [CategoryTheory.IsTriangulated DZ] [CategoryTheory.IsTriangulated DU]
-    (S : SetupMainMinimal DZ (SmallAffineD A H) DU)
-    (hgen : (@DerivedCategory.TStructure.t (ModuleCat.{u} A) _ _
-      (UniverseDecision.hasDerivedCategoryOfKProjectiveReplacementData H)).le 0 =
-        Coprod (shiftTail (S.G'⟦S.m⟧ ⊞ S.R.jShriek.obj S.GU) 0))
-    (I : SmallNeemanCompactToPerfectInput A H) :
-    SatisfiesWA (SmallAffineD A H) ↔ EventuallyHomZero S.G' S.G' :=
-  affine_theorem_1_1_small_standard_neeman_only A H DZ DU S hgen I
 
 end
 
@@ -286,12 +213,6 @@ end RelativeFM.CapstoneM6
 #print axioms RelativeFM.CapstoneM6.affineQhComparison_ringObjectIso
 #print axioms RelativeFM.CapstoneM6.smallPerf_affineQhComparison_iff
 #print axioms RelativeFM.CapstoneM6.smallPerf_iff_perf_affineQhComparison_inverse
-#print axioms RelativeFM.CapstoneM6.smallNeemanCompactToPerfectInput_of_large
 #print axioms RelativeFM.CapstoneM6.perfectToCompactInput_of_small
-#print axioms RelativeFM.CapstoneM6.neemanAffineCompactModelInput_of_directions
-#print axioms RelativeFM.CapstoneM6.neemanAffineCompactModelInput_of_freeInduction
 #print axioms RelativeFM.CapstoneM6.compactToPerfectInput_of_freeInduction
-#print axioms RelativeFM.CapstoneM6.smallAffine_neeman_3_2_i
-#print axioms RelativeFM.CapstoneM6.affine_theorem_1_1_small_standard_of_compactProof
-#print axioms RelativeFM.CapstoneM6.neemanAffineCompactModelInput_of_freeInduction_of_small
 #print axioms RelativeFM.CapstoneM6.stacks07LTCompactModelInput_capstone

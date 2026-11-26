@@ -545,13 +545,6 @@ theorem isCompactAb_of_smallPerf (A : Type u) [CommRing A]
     IsCompactAb X :=
   smallPerf_le_isCompactAb A H X hX
 
-/-- Compact objects are exactly `SmallPerf` once only the remaining
-compact-to-perfect direction is supplied. -/
-theorem isCompactAb_iff_smallPerf_of_neeman (A : Type u) [CommRing A]
-    (H : AffineSpaltensteinInput A) (I : SmallNeemanCompactToPerfectInput A H)
-    (X : SmallAffineD A H) : IsCompactAb X ↔ SmallPerf A H X :=
-  ⟨I.perfect_of_compact X, isCompactAb_of_smallPerf A H⟩
-
 end SmallAffineCompactness
 
 end DerivedCoproductHom
@@ -583,4 +576,3 @@ end RelativeFM.NeemanM1
 #print axioms RelativeFM.NeemanM1.smallRingObject_isCompactAb
 #print axioms RelativeFM.NeemanM1.smallPerf_le_isCompactAb
 #print axioms RelativeFM.NeemanM1.isCompactAb_of_smallPerf
-#print axioms RelativeFM.NeemanM1.isCompactAb_iff_smallPerf_of_neeman

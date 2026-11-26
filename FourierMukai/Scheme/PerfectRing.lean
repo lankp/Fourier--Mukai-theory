@@ -24,13 +24,13 @@ retracts and direct summands; `Perf A ≤ Db A`; and `Perf A ≤ Dbcoh A` for
 Noetherian `A` (via the generic fact that the bounded complexes with cohomology
 in a Serre class form a thick triangulated subcategory, `DerivedCohomology.Bounded`).
 
-Two external inputs are named rather than assumed: `BoundedProjectiveModelInput`
-identifies `Perf A` with bounded complexes of finitely generated projectives, and
-`CompactPerfectInput` states that the compact objects of `D(A-Mod)` are exactly
-`Perf A` (Stacks Tag 0AED for schemes, Tag 09M8 for the easy direction; the same
-statement is Neeman, Acta Math. 233 (2024), Theorem 3.2(i)).  Neither is
-used by the proved inclusions, and no compactness claim is made for a field or a
-PID, so the file does not overstate what is known.
+One external input is named rather than assumed: `BoundedProjectiveModelInput`
+identifies `Perf A` with bounded complexes of finitely generated projectives.  It
+is not used by the proved inclusions.  (The former `CompactPerfectInput`, compact
+⇔ `Perf A`, i.e. Neeman 2024, Theorem 3.2(i) for `D(A-Mod)`, was deleted on
+`wave5/neeman-prune`: compact ⇒ `Perf` is proved in
+`Scheme/M4Unconditional.lean` and from Stacks 09SR in `Scheme/Neeman32Inputs.lean`,
+perfect ⇒ compact in `Scheme/PerfectCompactThick.lean`.)
 
 Found by a member of the Ultramath run `smwuz1thx` (direction B2).
 -/
@@ -320,23 +320,6 @@ structure BoundedProjectiveModelInput (A : Type u) [CommRing A] where
   finite-projective model. -/
   perf_iff_model : ∀ X : DerivedCategory (ModuleCat A),
     Perf A X ↔ Nonempty (BoundedFiniteProjectiveModel A X)
-
-/-- **External compactness input.**  For an affine scheme, the compact objects
-of the unbounded derived category are exactly the perfect complexes.
-
-This is the affine case (take `T = |X|`) of Stacks Project Tag **0AED**
-(Lemma 75.16.3): an object of `D_QCoh,T(O_X)` is compact if and only if it is
-perfect as an object of `D(O_X)`; the two directions inside that proof are
-Tag **09M8** (perfect objects are compact) and Tag **09SR** (the perfect
-generator of Tag **0AEC** generates the compacts).  The same statement is
-Neeman, *Bounded `t`-structures on the category of perfect complexes*,
-Acta Math. 233 (2024), Theorem 3.2(i).  It is packaged as a structure field so
-every use must carry the hypothesis explicitly; it is not an axiom. -/
-structure CompactPerfectInput (A : Type u) [CommRing A] where
-  /-- `IsCompactAb` is the coproduct-compactness notion used by the completed
-  `WeakApprox` layer. -/
-  compact_iff_perfect : ∀ X : DerivedCategory (ModuleCat A),
-    IsCompactAb X ↔ Perf A X
 
 end RingPerfect
 

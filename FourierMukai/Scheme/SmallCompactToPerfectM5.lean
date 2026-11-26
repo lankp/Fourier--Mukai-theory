@@ -249,30 +249,23 @@ theorem smallStacks07LTBoundedFactorizationInput_of_filteredFreeModels
   smallStacks07LTBoundedFactorizationInput_of_freeInduction A H
     (smallBoundedFreeInductionInput_of_filteredFreeModels A H F I)
 
-/-- Neeman's compact-to-perfect interface follows from the constructive 07LT
-factorization: a bounded finite-projective object is perfect, and the original
-compact object is a retract of it. -/
-theorem smallNeemanCompactToPerfectInput_of_boundedFactorization
-    (A : Type u) [CommRing A] (H : AffineSpaltensteinInput A)
-    (I : SmallStacks07LTBoundedFactorizationInput A H) :
-    SmallNeemanCompactToPerfectInput A H where
-  perfect_of_compact X hX := by
-    obtain ⟨Y, hY, φ, ψ, hφψ⟩ := I.factorization X hX
-    let r : Retract X Y := { i := φ, r := ψ, retract := hφψ }
-    letI : (SmallPerf A H).IsStableUnderRetracts := by
-      unfold SmallPerf
-      infer_instance
-    exact (SmallPerf A H).prop_of_retract r
-      (smallPerf_of_nonempty_smallBoundedFiniteProjectiveModel A H hY)
-
-/-- The small compact/perfect characterization from the same constructive
-input, using the already proved perfect-to-compact direction. -/
+/-- The small compact/perfect characterization from the constructive 07LT
+factorization input: a bounded finite-projective object is perfect and the
+compact object is a retract of it; the converse is the proved
+perfect-to-compact direction.  (Before `wave5/neeman-prune` this went through
+the deleted interface `SmallNeemanCompactToPerfectInput`.) -/
 theorem isCompactAb_iff_smallPerf_of_boundedFactorization
     (A : Type u) [CommRing A] (H : AffineSpaltensteinInput A)
     (I : SmallStacks07LTBoundedFactorizationInput A H)
-    (X : SmallAffineD A H) : IsCompactAb X ↔ SmallPerf A H X :=
-  NeemanM1.isCompactAb_iff_smallPerf_of_neeman A H
-    (smallNeemanCompactToPerfectInput_of_boundedFactorization A H I) X
+    (X : SmallAffineD A H) : IsCompactAb X ↔ SmallPerf A H X := by
+  refine ⟨fun hX => ?_, NeemanM1.isCompactAb_of_smallPerf A H⟩
+  obtain ⟨Y, hY, φ, ψ, hφψ⟩ := I.factorization X hX
+  let r : Retract X Y := { i := φ, r := ψ, retract := hφψ }
+  letI : (SmallPerf A H).IsStableUnderRetracts := by
+    unfold SmallPerf
+    infer_instance
+  exact (SmallPerf A H).prop_of_retract r
+    (smallPerf_of_nonempty_smallBoundedFiniteProjectiveModel A H hY)
 
 end
 
@@ -281,5 +274,4 @@ end RelativeFM.SmallHomM5
 #print axioms RelativeFM.SmallHomM5.nonempty_smallBoundedFreeFactorization_of_filtration
 #print axioms RelativeFM.SmallHomM5.exists_smallImprovedFactorization_of_triangleDatum
 #print axioms RelativeFM.SmallHomM5.exists_smallFiniteProjectiveFactorization
-#print axioms RelativeFM.SmallHomM5.smallNeemanCompactToPerfectInput_of_boundedFactorization
 #print axioms RelativeFM.SmallHomM5.isCompactAb_iff_smallPerf_of_boundedFactorization
