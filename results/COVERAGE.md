@@ -47,12 +47,12 @@ absent.
 | # | label | status | where | note |
 |---|---|---|---|---|
 | Question 1.1 | `question:main` | – | | not a result; the repo's "GL26 Theorem 1.1" is LP26 Theorem 1.1, see below |
-| Thm 1.2 | `thm:fm_locus` | T | `Scheme/Statements.lean` `theorem_1_2_openStatement`, `theorem_1_2_baseChangeStatement`; `Paper/Statements.lean` | `Scheme/GL26Theorem12Reduction.lean` proves the two assembly steps from named residues (Remark 2.7 preservation, canonical representative, openness of the relatively perfect locus, Thm 12.3) |
-| Thm 1.3 | `thm:stacky_all_coincide` | T | `theorem_1_3Statement` | = Prop 6.2 + Prop 6.8 |
+| Thm 1.2 | `thm:fm_locus` | T | **stated over algebraic spaces**: `Spaces/Statements/Main.lean` `Spaces.Statements.theorem_1_2Statement` (wave 7); earlier: `Scheme/Statements.lean` `theorem_1_2_openStatement`, `theorem_1_2_baseChangeStatement`; `Paper/Statements.lean` | `Scheme/GL26Theorem12Reduction.lean` proves the two assembly steps from named residues (Remark 2.7 preservation, canonical representative, openness of the relatively perfect locus, Thm 12.3) |
+| Thm 1.3 | `thm:stacky_all_coincide` | T | **stated over algebraic spaces**: `Spaces/Statements/Main.lean` `Spaces.Statements.theorem_1_3Statement` (wave 7); earlier: `theorem_1_3Statement` | = Prop 6.2 + Prop 6.8 |
 | Cor 1.4 | `cor:preservation` | — | | |
 | Thm 1.5 | `introthm:base_change` | T (one direction) | via `corollary_6_18Statement` | the converse needs Thm 6.16, which is not stated |
-| Thm 1.6 | `introthm:descent_ascent` | T | `theorem_1_6Statement` | = Thm 10.13 |
-| Thm 1.7 | `thm:elliptic_fibration_autoequivalence` | T | `theorem_1_7Statement` | = Prop 11.4 |
+| Thm 1.6 | `introthm:descent_ascent` | T | **stated over algebraic spaces**: `Spaces/Statements/Main.lean` `Spaces.Statements.theorem_1_6Statement` (wave 7); earlier: `theorem_1_6Statement` | = Thm 10.13 |
+| Thm 1.7 | `thm:elliptic_fibration_autoequivalence` | T | not yet stated over algebraic spaces (needs Gorenstein morphisms and the genus of fibres, outside the AxiomMath import list); earlier: `theorem_1_7Statement` | = Prop 11.4 |
 
 ### §2 Preliminaries
 
@@ -144,7 +144,7 @@ absent.
 | Lem 6.14 | `lem:induced_dbcoh_perf_preservation_upon_pullback_with_t_affine` | — | |
 | Prop 6.15 | `prop:reflecting_bounded_pseudocoherence_perfectness` | — | |
 | Thm 6.16 | `thm:bounded_pseudocoherence_perfectness_faithfully_flat_affine` | — | |
-| Cor 6.18 | `cor:noetherian_base_change_for_relative_perfectness` | T | `corollary_6_18Statement` |
+| Cor 6.18 | `cor:noetherian_base_change_for_relative_perfectness` | T | **stated over algebraic spaces**: `Spaces/Statements/Main.lean` `Spaces.Statements.corollary_6_18Statement` (wave 7); earlier: `corollary_6_18Statement` |
 
 ### §7 Mates in geometry
 
@@ -193,7 +193,7 @@ absent.
 | Lem 10.9 | `lem:equivalences_induced` | H | `Scheme/Inputs.lean` |
 | Prop 10.11 | `prop:descent` | — | |
 | Prop 10.12 | `prop:ascending` | — | |
-| Thm 10.13 | `thm:descent_ascent` | T | `theorem_1_6Statement`; for a separated base this is GLMP25 Thm 6.11 |
+| Thm 10.13 | `thm:descent_ascent` | T | **stated over algebraic spaces**: `Spaces/Statements/Main.lean` `Spaces.Statements.theorem_10_13Statement` (wave 7); earlier: `theorem_1_6Statement`; for a separated base this is GLMP25 Thm 6.11 |
 | Lem 11.1 | `lem:ideal_sheaf_relatively_perfect` | — | used as a hypothesis shape in `theorem_1_7Statement` |
 | Prop 11.4 | `prop:derived_pullback_ideal_sheaf` | T | `theorem_1_7Statement` |
 
@@ -202,13 +202,13 @@ absent.
 | # | label | status | note |
 |---|---|---|---|
 | Def 12.1 | `def:fm_locus` | D | `FM`, `fm` |
-| Lem 12.2 | `lem:independence_for_rep_with_ff_or_eq` | T | `lemma_12_2Statement` |
-| Thm 12.3 | `thm:openness_for_equivalence_fullfaithful_dbcoh` | T | `theorem_12_3Statement` |
-| Cor 12.4 | `cor:deform` | T | `corollary_12_4Statement` |
+| Lem 12.2 | `lem:independence_for_rep_with_ff_or_eq` | T | **stated over algebraic spaces**: `Spaces/Statements/Main.lean` `Spaces.Statements.lemma_12_2Statement` (wave 7); earlier: `lemma_12_2Statement` |
+| Thm 12.3 | `thm:openness_for_equivalence_fullfaithful_dbcoh` | T | **stated over algebraic spaces**: `Spaces/Statements/Main.lean` `Spaces.Statements.theorem_12_3Statement` (wave 7); earlier: `theorem_12_3Statement` |
+| Cor 12.4 | `cor:deform` | T | **stated over algebraic spaces**: `Spaces/Statements/Main.lean` `Spaces.Statements.corollary_12_4Statement` (wave 7); earlier: `corollary_12_4Statement` |
 | Cor 12.5 | `cor:FM_partners_detects_surjectivity` | — | |
 | Lem 12.7 | | — | |
 | Prop 12.8 | `prop:relatively_perfect_locus` | H | residue of `GL26Theorem12Reduction.lean` (openness of `CanonicalRelativePerfectLocus`) |
-| Thm 12.9 | `thm:fm_locus_weak_approx` | T | = Thm 1.2 |
+| Thm 12.9 | `thm:fm_locus_weak_approx` | T | **stated over algebraic spaces**: `Spaces/Statements/Main.lean` `Spaces.Statements.theorem_12_9Statement` (wave 7); earlier: = Thm 1.2 |
 
 ### Appendices
 

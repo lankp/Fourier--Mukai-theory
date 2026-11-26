@@ -8,8 +8,64 @@ RelativeFM.SpacesVerified.tag08FA : ∀ (B : AlgebraicGeometry.BigFppfSite) (S :
   (hS : B.Contains S), RelativeFM.Spaces.Tag08FAInput B S hS
 @RelativeFM.SpacesVerified.Dqc_isTriangulated : ∀ {B : AlgebraicGeometry.BigFppfSite} {S : AlgebraicGeometry.Scheme}
   {hS : B.Contains S} (X : AlgebraicGeometry.AlgebraicSpaces B S hS), (RelativeFM.Spaces.Dqc X).IsTriangulated
+RelativeFM.SpacesVerified.tag06LT : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Statements.Tag06LTInput B S hS
+RelativeFM.SpacesVerified.isQuasiCompactOfIsIso : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Statements.IsQuasiCompactOfIsIsoInput B S hS
+RelativeFM.SpacesVerified.universallyClosedOfIsIso : ∀ (B : AlgebraicGeometry.BigFppfSite)
+  (S : AlgebraicGeometry.Scheme) (hS : B.Contains S), RelativeFM.Spaces.Statements.UniversallyClosedOfIsIsoInput B S hS
+RelativeFM.SpacesVerified.isFlatId : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Statements.IsFlatIdInput B S hS
+RelativeFM.SpacesVerified.affineQuasiSeparated : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Statements.AffineQuasiSeparatedInput B S hS
+RelativeFM.SpacesVerified.setup_hypotheses_satisfiable_unconditional : ∀ (B : AlgebraicGeometry.BigFppfSite)
+  (S : AlgebraicGeometry.Scheme) (hS : B.Contains S) (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme))
+  [AlgebraicGeometry.IsAffine S] [AlgebraicGeometry.IsLocallyNoetherian S],
+  RelativeFM.Spaces.Statements.IsNoetherianSpace hZ (RelativeFM.Spaces.baseSpace B S hS) ∧
+    RelativeFM.Spaces.Statements.IsProperHom (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.baseSpace B S hS)) ∧
+      RelativeFM.Spaces.Statements.IsFlatHom (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.baseSpace B S hS)) ∧
+        RelativeFM.Spaces.Statements.IsFiniteTypeHom
+            (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.baseSpace B S hS)) ∧
+          RelativeFM.Spaces.Statements.IsQuasiAffineHom
+              (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.baseSpace B S hS)) ∧
+            ∀
+              (K :
+                RelativeFM.Spaces.D B S hS
+                  (CategoryTheory.Limits.pullback
+                    (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.baseSpace B S hS))
+                    (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.baseSpace B S hS)))),
+              CategoryTheory.Limits.IsZero K →
+                RelativeFM.Spaces.Dqc
+                    (CategoryTheory.Limits.pullback
+                      (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.baseSpace B S hS))
+                      (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.baseSpace B S hS)))
+                    K ∧
+                  RelativeFM.Spaces.IsPseudoCoherent
+                      (CategoryTheory.Limits.pullback
+                        (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.baseSpace B S hS))
+                        (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.baseSpace B S hS)))
+                      K ∧
+                    RelativeFM.Spaces.DbCoh
+                        (CategoryTheory.Limits.pullback
+                          (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.baseSpace B S hS))
+                          (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.baseSpace B S hS)))
+                        K ∧
+                      RelativeFM.Spaces.Statements.IsRelPerfOverFst
+                          (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.baseSpace B S hS))
+                          (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.baseSpace B S hS)) K ∧
+                        RelativeFM.Spaces.Statements.IsRelPerfOverSnd
+                          (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.baseSpace B S hS))
+                          (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.baseSpace B S hS)) K
 'RelativeFM.SpacesVerified.tag06UQ' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RelativeFM.SpacesVerified.tag08F4' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RelativeFM.SpacesVerified.tag08F5' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RelativeFM.SpacesVerified.tag08FA' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RelativeFM.SpacesVerified.Dqc_isTriangulated' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag06LT' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.isQuasiCompactOfIsIso' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.universallyClosedOfIsIso' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.isFlatId' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.affineQuasiSeparated' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.setup_hypotheses_satisfiable_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

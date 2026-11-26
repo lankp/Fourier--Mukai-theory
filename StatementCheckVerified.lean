@@ -19,8 +19,20 @@ AxiomMath build), so it is separate from the `--spaces` check.
 #check @RelativeFM.SpacesVerified.tag08F5
 #check @RelativeFM.SpacesVerified.tag08FA
 #check @RelativeFM.SpacesVerified.Dqc_isTriangulated
+#check @RelativeFM.SpacesVerified.tag06LT
+#check @RelativeFM.SpacesVerified.isQuasiCompactOfIsIso
+#check @RelativeFM.SpacesVerified.universallyClosedOfIsIso
+#check @RelativeFM.SpacesVerified.isFlatId
+#check @RelativeFM.SpacesVerified.affineQuasiSeparated
+#check @RelativeFM.SpacesVerified.setup_hypotheses_satisfiable_unconditional
 #print axioms RelativeFM.SpacesVerified.tag06UQ
 #print axioms RelativeFM.SpacesVerified.tag08F4
 #print axioms RelativeFM.SpacesVerified.tag08F5
 #print axioms RelativeFM.SpacesVerified.tag08FA
 #print axioms RelativeFM.SpacesVerified.Dqc_isTriangulated
+#print axioms RelativeFM.SpacesVerified.tag06LT
+#print axioms RelativeFM.SpacesVerified.isQuasiCompactOfIsIso
+#print axioms RelativeFM.SpacesVerified.universallyClosedOfIsIso
+#print axioms RelativeFM.SpacesVerified.isFlatId
+#print axioms RelativeFM.SpacesVerified.affineQuasiSeparated
+#print axioms RelativeFM.SpacesVerified.setup_hypotheses_satisfiable_unconditional
