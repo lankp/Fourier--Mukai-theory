@@ -215,4 +215,4 @@ geometric layer supersedes them.
 | 5 | `wave5/open-inputs` | `session_0111iGd99W3B92SKghvVqXPu` | | launched 26 Nov 11:40 UTC |
 | 6 | `wave6/vacuity-refutations` | `session_0111iGd9N18AtNr9JMXz2qgJ` | `b2c7530` (merge of `0009871` = `220fab5` cherry-picked onto the rewritten history) + baseline | F1 `¬ HasCoproducts.{u+1} (AffineD A)` for nontrivial `A` (two pinned endpoints vacuous → unpinned), F2 no compact `IsGenerator` in `D(ℤ)` (large and small; `SetupMainMinimal` empty at ℤ), F3 `QuasicoherentSerreInput (Spec ℤ)` false; verified: build, 4 modules singly, audit 160 clean + 9 targets, statement check (16 pins after unpinning). | launched 26 Nov 12:38 UTC, effort high (account now Max; 5-hour window `allowed`) |
 | 6 | `wave6/lp26-paper-hypotheses` | `session_0111iGd8km4EQRgUkVzQZyHo` | | launched 26 Nov 12:38 UTC, effort high |
-| 6 | `wave6/prune-dead-inputs` | | | brief committed; launched after vacuity-refutations merged |
+| 6 | `wave6/prune-dead-inputs` | `session_0111iGd5ihxMTqsyaHh8y9DA` | | launched 26 Nov 13:11 UTC, effort medium |
