@@ -172,7 +172,6 @@ import FourierMukai.Scheme.GL26Theorem12Reduction
 import FourierMukai.Scheme.OpenClosedGlue
 import FourierMukai.Scheme.OpenClosedCompletion
 import FourierMukai.Scheme.FinalStatementCrosscheck
-import FourierMukai.Scheme.Affine066S
 import FourierMukai.Scheme.RegularCompact
 import FourierMukai.Scheme.RegularCompactEndpoints
 import FourierMukai.Scheme.KoszulInputs

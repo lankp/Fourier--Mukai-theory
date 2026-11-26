@@ -6,19 +6,10 @@ import Mathlib.Algebra.Homology.DerivedCategory.Ext.EnoughProjectives
 import Mathlib.Algebra.Category.ModuleCat.Ext.HasExt
 
 /-!
-# The affine Theorem 1.1 with Neeman as the only citation
+# Affine ingredients of LP26 Theorem 1.1 for `D(A-Mod)`
 
-`affine_theorem_1_1_neeman_only`: for a setup `S : SetupMainMinimal DZ (AffineD A) DU`,
-a coproduct package and `CompactPerfectInput A`,
-
-  `SatisfiesWA (AffineD A) ↔ AffineEventualSelfVanishing S.G'`.
-
-What this removes is the point of the file.  The earlier affine theorem carried
-Stacks 09SR and a cited eventual-vanishing hypothesis; here both are gone.  The
-cited input is `CompactPerfectInput` — in Stacks form Tag 0AED (compacts of
-`D_QCoh,T` are perfect), equivalently Neeman, Acta Math. 233 (2024),
-Theorem 3.2(i) — used **only** to turn compactness into `Perf A`.  The vanishing
-itself is proved:
+The vanishing half of the affine instance of LP26 Theorem 1.1
+(`thm:glueing_weak_approx`) with middle term `D(A-Mod)`, proved with no input:
 
 * `ringObject_eventuallyHomZero_self`: `Hom(A, A⟦n⟧) = 0` for `n ≥ 1`;
 * `perf_eventuallyHomZero`: every pair of perfect complexes has eventually
@@ -27,13 +18,16 @@ itself is proved:
   (`eventuallyHomZero_of_mem_triangEnvelope`).
 
 Also proved: the standard-`t`-structure bounds for the ring object
-(`ringObject_mem_standard_le_zero`, `..._ge_zero`, `..._le_one`),
-`ringObject_hom_zero_of_standard_le_neg_one`, and classical generation and
-compactness of `A[0]` from `CompactPerfectInput`.
+(`ringObject_mem_standard_le_zero`, `..._ge_zero`, `..._le_one`) and
+`ringObject_hom_zero_of_standard_le_neg_one`.
 
-What remains explicit in `S` and `C`: the recollement, the coproducts, the
-preferred aisle identities, the normalization, and weak approximation data on the
-two ends.  No argument-free unconditional theorem is claimed.
+The endpoint `affine_theorem_1_1_neeman_only` and the other declarations that
+used to take the Neeman 2024, Theorem 3.2(i) interface `CompactPerfectInput A`
+here were moved on `wave5/neeman-prune` to `Scheme/Neeman32Inputs.lean` and
+renamed; they now take no hypothesis beyond the setup (the endpoint is
+`affine_theorem_1_1_unconditional`), since compact ⇒ `Perf` is proved in
+`Scheme/M4Unconditional.lean`.  `CompactPerfectInput` was deleted
+(`results/NEEMAN_3_2.md`).
 
 Found by a member of the Ultramath run `smwv1bkrk` (direction AF6).
 -/
@@ -88,16 +82,6 @@ noncomputable section
 
 attribute [local instance] HasDerivedCategory.standard
 
-/-- Neeman 2024, Theorem 3.2(i), in the existing `CompactPerfectInput`
-interface, makes the regular module a classical generator on compacts.  The
-proof is only unfolding `Perf A`, which is already the thick envelope of the
-regular module; no separate Stacks 09SR hypothesis is needed. -/
-theorem ringObject_isClassicalGeneratorOnCompacts_of_compactPerfectInput
-    (A : Type u) [CommRing A] (I : CompactPerfectInput A) :
-    IsClassicalGeneratorOnCompacts (ringObject A) := by
-  intro X hX
-  exact (I.compact_iff_perfect X).mp hX
-
 /-- Every pair of perfect complexes of `A`-modules has eventually vanishing
 positive Homs.  This is entirely proved: it transports the regular module's
 projective self-Ext vanishing along the defining thick triangulated envelope of
@@ -108,83 +92,6 @@ theorem perf_eventuallyHomZero (A : Type u) [CommRing A]
     EventuallyHomZero X Y := by
   exact eventuallyHomZero_of_mem_triangEnvelope
     (ringObject_eventuallyHomZero_self A) hX hY
-
-/-- **Published input used:** Neeman, Acta Math. 233 (2024), Theorem 3.2(i),
-through `CompactPerfectInput`.  Every pair of compact objects of `D(A-Mod)` has
-eventually vanishing positive Homs.  The geometric input is used only to turn
-compactness into `Perf A`; the vanishing itself is `perf_eventuallyHomZero`.
-It uses neither Stacks 09SR nor a vanishing hypothesis: the vanishing is
-`perf_eventuallyHomZero`. -/
-theorem affineCompactHomZeroAtTop_of_compactPerfectInput
-    (A : Type u) [CommRing A] (I : CompactPerfectInput A) :
-    AffineCompactHomZeroAtTop A := by
-  intro X Y hX hY
-  exact perf_eventuallyHomZero A
-    ((I.compact_iff_perfect X).mp hX) ((I.compact_iff_perfect Y).mp hY)
-
-end
-
-end RelativeFM
-
-namespace RelativeFM
-
-open RelativeWeakApprox
-open CategoryTheory CategoryTheory.Limits
-open CategoryTheory.Pretriangulated CategoryTheory.Triangulated
-
-universe u uZ uU
-
-noncomputable section
-
-attribute [local instance] HasDerivedCategory.standard
-
-section NeemanOnlyGluing
-
-variable (A : Type u) [CommRing A]
-  (DZ : Type uZ) (DU : Type uU)
-  [Category.{u + 1} DZ] [Category.{u + 1} DU]
-  [Preadditive DZ] [Preadditive DU]
-  [HasZeroObject DZ] [HasZeroObject DU]
-  [HasShift DZ ℤ] [HasShift DU ℤ]
-  [∀ n : ℤ, (shiftFunctor DZ n).Additive]
-  [∀ n : ℤ, (shiftFunctor DU n).Additive]
-  [Pretriangulated DZ] [Pretriangulated DU]
-  [CategoryTheory.IsTriangulated DZ] [CategoryTheory.IsTriangulated DU]
-
-/-- **LP Theorem 1.1, reverse affine gluing direction, with Neeman as the only
-published residue.**  `CompactPerfectInput` is Neeman 2024, Theorem 3.2(i).
-The recollement, coproduct, normalization and preferred-aisle fields remain
-exactly those in `SetupMainMinimal`; this theorem supplies no invented geometry.
-Neither Stacks 09SR nor a separate eventual-vanishing hypothesis (Stacks 09MB) is
-used. -/
-theorem satisfiesWA_of_neemanCompactPerfectInput
-    (S : SetupMainMinimal DZ (AffineD A) DU)
-    (C : AffineDerivedCoproducts A DZ DU)
-    (I : CompactPerfectInput A) : SatisfiesWA (AffineD A) := by
-  let _ : HasCoproducts.{u + 1} DZ := C.hasCoproductsZ
-  let _ : HasCoproducts.{u + 1} (AffineD A) := C.hasCoproductsA
-  let _ : HasCoproducts.{u + 1} DU := C.hasCoproductsU
-  exact S.satisfiesWA_of_compactHomZeroAtTop
-    (affineCompactHomZeroAtTop_of_compactPerfectInput A I)
-
-/-- **Affine LP Theorem 1.1 with Neeman's published compact/perfect theorem as
-its only external homological input.**  Both directions use the proved compact
-Hom-vanishing consequence of Neeman 2024, Theorem 3.2(i); the reverse direction
-then invokes the repository's 09SR-free gluing theorem.  In particular, the
-middle category's weak approximability is not assumed. -/
-theorem affine_theorem_1_1_neeman_only
-    (S : SetupMainMinimal DZ (AffineD A) DU)
-    (C : AffineDerivedCoproducts A DZ DU)
-    (I : CompactPerfectInput A) :
-    SatisfiesWA (AffineD A) ↔ AffineEventualSelfVanishing S.G' := by
-  have hvan := affineCompactHomZeroAtTop_of_compactPerfectInput A I
-  constructor
-  · intro _
-    exact hvan S.G' S.G' S.G'_compact S.G'_compact
-  · intro _
-    exact satisfiesWA_of_neemanCompactPerfectInput A DZ DU S C I
-
-end NeemanOnlyGluing
 
 end
 
@@ -243,13 +150,6 @@ theorem ringObject_mem_standard_le_one (A : Type u) [CommRing A] :
     (AffineD.standardTStructure A).le 1 (ringObject A) :=
   (AffineD.standardTStructure A).le_monotone (by omega) _
     (ringObject_mem_standard_le_zero A)
-
-/-- Neeman 2024, Theorem 3.2(i), through `CompactPerfectInput`, implies
-compactness of the regular module.  No bounded-projective model is needed. -/
-theorem ringObject_compact_of_compactPerfectInput
-    (A : Type u) [CommRing A] (I : CompactPerfectInput A) :
-    IsCompactAb (ringObject A) :=
-  (I.compact_iff_perfect (ringObject A)).mpr (ringObject_mem_perf A)
 
 end
 

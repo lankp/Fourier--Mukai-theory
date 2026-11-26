@@ -9,7 +9,8 @@ import FourierMukai.Scheme.AffineSpaltenstein
 `AffineD A = D(A-Mod)` (standard localization), with no hypothesis.  This is the
 input `hAc` that the affine and supported-affine endpoints carried (README,
 "What is open" item 1); it was previously obtained only from Neeman's input
-(`ringObject_compact_of_compactPerfectInput`).  The fact is classical (the
+(`ringObject_compact_of_compactPerfectInput`, deleted with `CompactPerfectInput`
+on `wave5/neeman-prune`).  The fact is classical (the
 regular module is a compact generator of `D(A)`; e.g. Neeman, Acta Math. 233
 (2024), Thm 3.2 for `X = Spec A`), but the proof here uses neither Stacks nor
 Neeman.

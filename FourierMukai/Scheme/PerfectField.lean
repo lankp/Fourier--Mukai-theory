@@ -22,10 +22,11 @@ exactly the complexes with bounded, degreewise finite-dimensional cohomology.
   finitely many finite pieces.
 * `dbcoh_le_perf` and `perf_eq_dbcoh`: hence `Dbcoh k ≤ Perf k`, and equality with
   the forward inclusion `perf_le_dbcoh` from `PerfectRing.lean`.
-* `compact_iff_dbcoh_of_input`, `compactPerfectInput_of_compactDbcoh`: the compact
-  objects are classified by bounded finite-dimensional cohomology, given the
-  cited Stacks Proposition 15.80.3 (Tag 07LT) that supplies the compactness
-  direction; no unconditional compactness proof is claimed.
+* The compact-object classification `compact_iff_dbcoh` (compact ⇔ bounded
+  finite-dimensional cohomology, formerly `compact_iff_dbcoh_of_input`) is in
+  `Scheme/Neeman32Inputs.lean`, with no input (moved there on
+  `wave5/neeman-prune`, when the interface `CompactPerfectInput` it used to take
+  was deleted).
 
 Found by a member of the Ultramath run `smwv1bkrk` (direction AF3).
 -/
@@ -219,28 +220,6 @@ theorem perf_iff_dbcoh (k : Type u) [Field k]
 /-- Equality of the two object properties over a field; see `perf_iff_dbcoh`. -/
 theorem perf_eq_dbcoh (k : Type u) [Field k] : Perf k = Dbcoh k :=
   le_antisymm (perf_le_dbcoh k) (dbcoh_le_perf k)
-
-
-/-- **Field case of the compact/cohomology classification, using the cited
-ring input.**  Stacks Proposition 15.80.3 (Tag 07LT) supplies the argument
-`I : CompactPerfectInput k`; the finite-cohomology translation is proved here.
-No unconditional compactness assertion is made by this declaration. -/
-theorem compact_iff_dbcoh_of_input (k : Type u) [Field k]
-    (I : CompactPerfectInput k)
-    (X : DerivedCategory.{u + 1, u, u + 1} (ModuleCat.{u} k)) :
-    IsCompactAb.{u + 1} X ↔ Dbcoh k X :=
-  (I.compact_iff_perfect X).trans (perf_iff_dbcoh k X)
-
-/-- The exact reduction left by the field argument: a direct proof that
-compact objects have bounded, degreewise finite-dimensional cohomology would
-construct `CompactPerfectInput k`.  This is a conversion theorem, not a proof
-of its hypothesis `h`; the standard source of `h` is Tag 07LT together with
-`perf_iff_dbcoh`. -/
-theorem compactPerfectInput_of_compactDbcoh (k : Type u) [Field k]
-    (h : ∀ X : DerivedCategory.{u + 1, u, u + 1} (ModuleCat.{u} k),
-      IsCompactAb.{u + 1} X ↔ Dbcoh k X) :
-    CompactPerfectInput k where
-  compact_iff_perfect X := (h X).trans (perf_iff_dbcoh k X).symm
 
 
 end RelativeFM

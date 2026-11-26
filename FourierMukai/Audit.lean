@@ -159,12 +159,18 @@ open RelativeFM
 #print axioms RelativeFM.KoszulInputs.scalarConeData_le_zero
 #print axioms RelativeFM.KoszulInputs.idealSupportedCoproductInput
 #print axioms RelativeFM.KoszulInputs.idealSupportedCompactnessInput
-#print axioms RelativeFM.Neeman32Inputs.smallNeemanCompactToPerfectInput
-#print axioms RelativeFM.Neeman32Inputs.compactPerfectInput
+#print axioms RelativeFM.Neeman32Inputs.smallAffine_neeman_3_2_i
 #print axioms RelativeFM.Neeman32Inputs.affine_neeman_3_2_i
 #print axioms RelativeFM.Neeman32Inputs.affine_neeman_3_2_ii
-#print axioms RelativeFM.Neeman32Inputs.affine_theorem_1_1_of_tag09SR
-#print axioms RelativeFM.Neeman32Inputs.affine_theorem_1_1_small_standard_of_tag09SR
+-- Wave 5 (neeman-prune): endpoints that took Neeman 3.2(i) inputs (large model: no input; small: Stacks 09SR)
+#print axioms RelativeFM.affine_theorem_1_1_unconditional
+#print axioms RelativeFM.affine_satisfiesWA_of_setup
+#print axioms RelativeFM.affineCompactHomZeroAtTop
+#print axioms RelativeFM.compact_iff_dbcoh
+#print axioms RelativeFM.affine_theorem_1_1_small_of_tag09SR
+#print axioms RelativeFM.affine_theorem_1_1_small_standard_of_tag09SR
+#print axioms RelativeFM.AffineNeemanEndpointM3.small_affine_regularGenerator_package
+#print axioms RelativeFM.Stacks07LT.M4.compactToPerfectInput_unconditional
 #print axioms RelativeFM.KoszulInputs.isLeftAdjoint_affineDZIdealι
 #print axioms RelativeFM.KoszulConeSwap.coneSwapIso
 #print axioms RelativeFM.KoszulFiniteInputs.IsScalarCone.swap

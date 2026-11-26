@@ -9,7 +9,6 @@ uses the separately provided retract-closure theorem.
 -/
 import FourierMukai.Scheme.CompactToPerfectBoundedFree
 import FourierMukai.Scheme.CompactBoundedAbove
-import FourierMukai.Scheme.Affine066S
 
 @[expose] public section
 
@@ -59,19 +58,6 @@ theorem stacks07LTCompactModelInput_of_finiteFreeImprovement
   Stacks07LT.stacks07LTCompactModelInput_of_freeInduction A
     (boundedFreeInductionInput_of_finiteFreeImprovement A I) hR
 
-/-- The large Neeman model biconditional still has a genuinely separate
-perfect-to-compact input. -/
-theorem neemanAffineCompactModelInput_of_finiteFreeImprovement
-    (A : Type u) [CommRing A] (I : Stacks07LT.FiniteFreeImprovementInput A)
-    (hR : (AffinePerfect.HasBoundedFiniteProjectiveModel A).IsStableUnderRetracts)
-    (J : PerfectToCompactInput A) :
-    AffinePerfect.NeemanAffineCompactModelInput A := by
-  intro X
-  constructor
-  · exact (stacks07LTCompactModelInput_of_finiteFreeImprovement A I hR).model_of_compact X
-  · intro hX
-    exact J.compact_of_perfect X (AffinePerfect.model_mem_perf A X hX)
-
 end
 
 end RelativeFM.CapstoneM6
@@ -80,4 +66,3 @@ end RelativeFM.CapstoneM6
 #print axioms RelativeFM.CapstoneM6.compactToPerfectInput_of_finiteFreeImprovement
 #print axioms RelativeFM.CapstoneM6.stacks07LTBoundedFactorizationInput_of_finiteFreeImprovement
 #print axioms RelativeFM.CapstoneM6.stacks07LTCompactModelInput_of_finiteFreeImprovement
-#print axioms RelativeFM.CapstoneM6.neemanAffineCompactModelInput_of_finiteFreeImprovement

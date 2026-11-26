@@ -57,16 +57,6 @@ theorem stacks07LTCompactModelInput_of_retracts_unconditional
   stacks07LTCompactModelInput_of_finiteFreeImprovement A
     (Stacks07LT.M4.finiteFreeImprovementInputM4 A) hR
 
-/-- The large Neeman compact/model biconditional retains only the independent
-large perfect-to-compact implication in addition to 066S. -/
-theorem neemanAffineCompactModelInput_of_retracts_unconditional
-    (A : Type u) [CommRing A]
-    (hR : (AffinePerfect.HasBoundedFiniteProjectiveModel A).IsStableUnderRetracts)
-    (J : PerfectToCompactInput A) :
-    AffinePerfect.NeemanAffineCompactModelInput A :=
-  neemanAffineCompactModelInput_of_finiteFreeImprovement A
-    (Stacks07LT.M4.finiteFreeImprovementInputM4 A) hR J
-
 end
 
 end RelativeFM.CapstoneM6
@@ -75,4 +65,3 @@ end RelativeFM.CapstoneM6
 #print axioms RelativeFM.CapstoneM6.isCompactAb_perf_unconditional
 #print axioms RelativeFM.CapstoneM6.stacks07LTBoundedFactorizationInput_unconditional
 #print axioms RelativeFM.CapstoneM6.stacks07LTCompactModelInput_of_retracts_unconditional
-#print axioms RelativeFM.CapstoneM6.neemanAffineCompactModelInput_of_retracts_unconditional

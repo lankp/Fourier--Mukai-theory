@@ -112,10 +112,13 @@ inputs and its relative Fourier--Mukai geometry.
 
 ## Lean status of the declarations below
 
-`Neeman_3_2_iv`, `Neeman_3_2_ii`, `Neeman_3_2_i`, and
-`CompactHomZeroAtTop` are proposition templates to be supplied when a future
-`D_qc,Z` construction is instantiated.  They do not pretend that Lean already
-has that geometric construction.  The only theorem proved here is the formal
+`CompactHomZeroAtTop` is a proposition template to be supplied when a future
+`D_qc,Z` construction is instantiated.  The former templates `Neeman_3_2_i`,
+`Neeman_3_2_ii` and `Neeman_3_2_iv` were deleted on `wave5/neeman-prune`
+(26 November 2026): Neeman 2024, Theorem 3.2 is no longer an allowed input,
+`Neeman_3_2_ii` was a false rendering (`IsGenerator` fails for `ℤ[0]`), and the
+affine cases of (i), (ii) are proved in `Scheme/Neeman32Inputs.lean` (see
+`results/NEEMAN_3_2.md`).  The only theorem proved here is the formal
 specialization of pairwise compact vanishing to the self-vanishing appearing in
 `SetupMainMinimal.theorem_1_1`.  The `#check`s verify the names used from the
 current project; no claim about a Mathlib `IsPerfect` implementation is made.
@@ -136,34 +139,6 @@ section SchemeInputs
 variable (C : Type u) [Category.{v} C] [Preadditive C]
   [HasZeroObject C] [HasShift C ℤ]
   [∀ (n : ℤ), (shiftFunctor C n).Additive] [Pretriangulated C]
-
-/-- **External literature hypothesis, Neeman 2024, Theorem 3.2(iv).**
-When `C` is `D_qc,Z(X)` for a qcqs scheme and a closed subset with
-quasi-compact complement, this is its weak approximability.  The geometric
-construction is missing here; this `Prop` is to be assumed from the cited
-paper, not proved by this file.  Source:
-https://arxiv.org/html/2202.08861v4#S3.Thmtheorem2 . -/
-def Neeman_3_2_iv : Prop := SatisfiesWA C
-
-/-- **External literature hypothesis, Neeman 2024, Theorem 3.2(ii)**, whose
-textbook proof for a qcqs scheme is Stacks Tags 0AEC (a perfect generator
-exists), 09M8 (it is compact) and 09SR (it generates).  For a qcqs scheme,
-`D_qc,Z(X)` has a single compact generator.
-Sources: https://stacks.math.columbia.edu/tag/0AEC and
-https://arxiv.org/html/2202.08861v4#S3.Thmtheorem2 . -/
-def Neeman_3_2_ii : Prop :=
-  ∃ G : C, IsCompactAb G ∧ IsGenerator G
-
-/-- **External literature hypothesis, Neeman 2024, Theorem 3.2(i)**, whose
-textbook form is Stacks Tag 0AED: an object of `D_QCoh,T(O_X)` is compact if and
-only if it is perfect as an object of `D(O_X)` (the two directions are Tags 09M8
-and 0AED, the latter via 0AEC and 09SR).  Instantiate `PerfectSupported` by the
-perfect complexes on `X` whose cohomology is supported on `Z`; perfection is
-deliberately a parameter rather than a fictitious Mathlib declaration.
-Sources: https://stacks.math.columbia.edu/tag/0AED and
-https://arxiv.org/html/2202.08861v4#S3.Thmtheorem2 . -/
-def Neeman_3_2_i (PerfectSupported : C → Prop) : Prop :=
-  ∀ P : C, IsCompactAb P ↔ PerfectSupported P
 
 /-- **External literature hypothesis, Stacks Tag 09MB** (Lemma 75.17.2): for
 every pair of compacts of `D_qc(X)` on a qcqs scheme, positive-shift Hom
@@ -196,7 +171,7 @@ this project has not formalized that separate notion.  This is a preprint input,
 distinct from the published Acta theorem.  Source:
 https://arxiv.org/html/1806.06471v2#S5.Thmtheorem4 . -/
 def Neeman_coherent_example_5_4 (CoherentTriangulated : Prop) : Prop :=
-  Neeman_3_2_iv C ∧ CoherentTriangulated
+  SatisfiesWA C ∧ CoherentTriangulated
 
 end SchemeInputs
 

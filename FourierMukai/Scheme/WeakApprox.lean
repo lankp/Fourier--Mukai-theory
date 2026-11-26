@@ -119,24 +119,6 @@ def Stacks09SR (C : Type u) [Category.{v} C] [Preadditive C]
     [∀ (n : ℤ), (shiftFunctor C n).Additive] [Pretriangulated C] : Prop :=
   ∀ (G : C), IsGenerator G → IsCompactAb G → IsClassicalGeneratorOnCompacts G
 
-/-- The published Neeman input, at the categorical boundary of this project.
-
-For an actual scheme instantiation, a proof of this field is to be obtained
-from Neeman 2024, Theorem 3.2(iv) (§7), including `Z = X` for ordinary
-`D_qc(X)`.  It is a named hypothesis because the required derived category of
-quasi-coherent sheaves is missing in Mathlib. -/
-def NeemanPublishedWeakApproximation (C : Type u) [Category.{v} C]
-    [Preadditive C] [HasZeroObject C] [HasShift C ℤ]
-    [∀ (n : ℤ), (shiftFunctor C n).Additive] [Pretriangulated C] : Prop :=
-  SatisfiesWA C
-
-/-- Restricted to schemes, the target statement is directly Neeman's theorem;
-no recollement is logically needed once this published input is adopted. -/
-theorem weakApprox_of_neeman {C : Type u} [Category.{v} C] [Preadditive C]
-    [HasZeroObject C] [HasShift C ℤ]
-    [∀ (n : ℤ), (shiftFunctor C n).Additive] [Pretriangulated C]
-    (h : NeemanPublishedWeakApproximation C) : SatisfiesWA C := h
-
 /-- Weak approximability plus 09SR gives the positive compact Hom-vanishing
 for every pair of compacts.  This is the forward, categorical consequence of
 Neeman's input, not a second geometric boundedness postulate. -/

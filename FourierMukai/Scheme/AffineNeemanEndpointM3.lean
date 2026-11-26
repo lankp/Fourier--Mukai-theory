@@ -20,7 +20,10 @@ regular generator and bound one.  In the large-Hom model compactness remains
 an explicit argument.  In the small-Hom model it is discharged by
 `AffineCompactness`; the canonical Spaltenstein replacement yields both weak
 approximability and preferred-class membership from a commutative ring alone.
-Compact-to-perfect inputs are used only in separate comparison theorems.
+Compact-to-perfect enters only the separate comparison `affine_regularGenerator_package`
+(as `CompactToPerfectInput`, a proved interface).  The small-Hom comparisons
+`small_compact_iff_smallPerf` and `small_affine_regularGenerator_package` moved to
+`Scheme/Neeman32Inputs.lean` (`wave5/neeman-prune`), where they take Stacks 09SR.
 -/
 
 @[expose] public section
@@ -151,37 +154,12 @@ theorem small_affine_neeman_3_2_iii_iv_base (A : Type u) [CommRing A] :
         (Spaltenstein.affineSpaltensteinInput A)) :=
   ⟨small_affine_satisfiesPaperWA A, small_affine_inPreferredClass A⟩
 
-/-- Compact objects are exactly `SmallPerf` once the directed compact-to-perfect
-input is supplied; the converse uses the proved compactness of `A[0]`. -/
-theorem small_compact_iff_smallPerf (A : Type u) [CommRing A]
-    (H : AffineSpaltensteinInput A) (I : SmallNeemanCompactToPerfectInput A H)
-    (X : SmallAffineD A H) : IsCompactAb X ↔ SmallPerf A H X :=
-  NeemanM1.isCompactAb_iff_smallPerf_of_neeman A H I X
-
-/-- Weak approximability and preferred-class membership are unconditional.
-Only the separate compact/perfect comparison needs compact-to-perfect. -/
-theorem small_affine_regularGenerator_package (A : Type u) [CommRing A]
-    (H : AffineSpaltensteinInput A) (I : SmallNeemanCompactToPerfectInput A H) :
-    PaperM2.SatisfiesPaperWA (SmallAffineD A H) ∧
-      NeemanPreferredM6.InPreferredClass (NeemanGeneratorM5.smallStandardTStructure A H) ∧
-      ∀ X : SmallAffineD A H, IsCompactAb X ↔ SmallPerf A H X :=
-  ⟨smallRegularModule_satisfiesPaperWA A H, smallRegularModule_preferred A H,
-    small_compact_iff_smallPerf A H I⟩
-
 /-- The standard preferred-class assertion in the large-Hom model has the same
 sole compactness hypothesis. -/
 theorem regularModule_preferred (A : Type u) [CommRing A]
     (hAc : IsCompactAb (ringObject A)) :
     NeemanPreferredM6.InPreferredClass (AffineD.standardTStructure A) :=
   NeemanPreferredM6.standard_inPreferredClass A hAc
-
-/-- Compactness of `A[0]` supplies the perfect-to-compact half; together with
-Neeman's directed compact-to-perfect input it gives the full comparison. -/
-theorem compactPerfectInput_of_regularModule_compact (A : Type u) [CommRing A]
-    (hAc : IsCompactAb (ringObject A)) (I : CompactToPerfectInput A) :
-    CompactPerfectInput A :=
-  compactPerfectInput_of_separateInputs A I
-    (perfectToCompactInput_of_ringObject A hAc)
 
 /-- The three affine assertions assembled separately, so that the external
 compact-to-perfect input is visible and is not hidden in weak approximability. -/
@@ -191,8 +169,8 @@ theorem affine_regularGenerator_package (A : Type u) [CommRing A]
       NeemanPreferredM6.InPreferredClass (AffineD.standardTStructure A) ∧
       ∀ X : AffineD A, IsCompactAb X ↔ Perf A X := by
   refine ⟨regularModule_satisfiesPaperWA A hAc,
-    regularModule_preferred A hAc, ?_⟩
-  exact (compactPerfectInput_of_regularModule_compact A hAc I).compact_iff_perfect
+    regularModule_preferred A hAc, fun X => ⟨I.perfect_of_compact X, ?_⟩⟩
+  exact (perfectToCompactInput_of_ringObject A hAc).compact_of_perfect X
 
 end
 
@@ -206,8 +184,5 @@ end RelativeFM.AffineNeemanEndpointM3
 #print axioms RelativeFM.AffineNeemanEndpointM3.smallRegularModule_preferred
 #print axioms RelativeFM.AffineNeemanEndpointM3.small_affine_inPreferredClass
 #print axioms RelativeFM.AffineNeemanEndpointM3.small_affine_neeman_3_2_iii_iv_base
-#print axioms RelativeFM.AffineNeemanEndpointM3.small_compact_iff_smallPerf
-#print axioms RelativeFM.AffineNeemanEndpointM3.small_affine_regularGenerator_package
 #print axioms RelativeFM.AffineNeemanEndpointM3.regularModule_preferred
-#print axioms RelativeFM.AffineNeemanEndpointM3.compactPerfectInput_of_regularModule_compact
 #print axioms RelativeFM.AffineNeemanEndpointM3.affine_regularGenerator_package

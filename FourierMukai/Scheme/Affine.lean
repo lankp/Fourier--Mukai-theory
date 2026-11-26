@@ -138,10 +138,11 @@ theorem satisfiesWA_of_affine_eventual
 
 /-- Reverse direction using the published pairwise compact boundedness input
 instead of assuming self-vanishing separately.  For a ring,
-`AffineCompactHomZeroAtTop A` is supplied unconditionally by
-`AffineMain.affineCompactHomZeroAtTop_of_compactPerfectInput`, whose only input
-is `compact ⇒ Perf` (Stacks Tag 0AED); the Stacks form of the general statement
-is Tag 09MB. -/
+`AffineCompactHomZeroAtTop A` is supplied by
+`affineCompactHomZeroAtTop` (`Scheme/Neeman32Inputs.lean`) with no input:
+compact ⇒ `Perf` is `Stacks07LT.M4.perf_of_compact_unconditional` and the
+vanishing is `perf_eventuallyHomZero`.  The Stacks form of the general statement is
+Tag 09MB. -/
 theorem satisfiesWA_of_compactHomZeroAtTop
     (S : SetupMainMinimal DZ (AffineD A) DU)
     (C : AffineDerivedCoproducts A DZ DU)
