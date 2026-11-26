@@ -119,4 +119,4 @@ Launched 25 November 2026 after wave 2 was merged.  Briefs in `results/swarm/wav
 | 3 | `wave3/duality-wiring` | `session_0111iGd7thGvestxwvBAa75L` | | started 25 Nov 2026, 20:48 UTC; stopped at 20:55 on the 5-hour usage limit; resumed 26 Nov 01:07 UTC |
 | 3 | `wave3/koszul-inputs` | `session_0111iGd9g3poYVdXRe3zUiNo` | | started 25 Nov 2026, 20:48 UTC; stopped at 20:55 on the 5-hour usage limit; resumed 26 Nov 01:07 UTC |
 | 3 | `wave3/open-closed-glue` | `session_0111iGd6pPXkVdZh7E3aUHJS` | | started 25 Nov 2026, 20:48 UTC; stopped at 20:55 on the 5-hour usage limit; resumed 26 Nov 01:07 UTC |
-| 3 | `wave3/fm-cube` | `session_0111iGd7XkC9wt1eqC3VpBdh` | | started 25 Nov 2026, 20:48 UTC; stopped at 20:55 on the 5-hour usage limit; resumed 26 Nov 01:07 UTC |
+| 3 | `wave3/fm-cube` | `session_0111iGd7XkC9wt1eqC3VpBdh` | `3805c58` (merge of `fcc3e57`) | 6.11, 10.1 C (Stacks only), 10.2 P (abstract); verified: build, audit 101 clean, statement check OK, non-vacuity (`constFMCube`). started 25 Nov 2026, 20:48 UTC; stopped at 20:55 on the 5-hour usage limit; resumed 26 Nov 01:07 UTC |
