@@ -192,6 +192,15 @@ The maintainer has delegated merging to the orchestrator session: work reaches
   merge each branch, update `COVERAGE.md`, `SWARM.md` and `README.md`, archive the
   wave's workers, and only then launch the next wave.  Also a standing instruction
   of the maintainer.
+* **To-do list** (maintainer, 26 November 2026): every result found to be not proved,
+  conditional, or proved only in a restricted form (abstract, `Cat`, affine, interface)
+  is a to-do in `results/TODO.md`, generated from `COVERAGE.md` by
+  `python3 scripts/todo.py`.  Record a finding in `COVERAGE.md` (never edit `TODO.md` by
+  hand) and regenerate.  To-dos are filled in order: LP26 first, then GL26.
+* **Next wave** (maintainer, 26 November 2026): as soon as a wave is closed, the
+  orchestrator prepares the next one from the top of `results/TODO.md` (briefs in
+  `results/swarm/wave<N>/`, a section in `SWARM.md`) and launches it, subject to the
+  usage rule in `results/swarm/ORCHESTRATOR.md`.  It stops only when `TODO.md` is empty.
 
 ## Swarm protocol
 

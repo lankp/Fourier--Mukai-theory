@@ -38,7 +38,9 @@ unproven parts except the Stacks Project as formalized by AxiomMath.
 | Lemmas 2.25, 2.26, 5.4, 6.11, 10.1, A.4 (affine case) | conditional on named inputs: not counted as proved; being redone over algebraic spaces |
 | Theorems 1.2, 1.3, 1.6, 1.7 and the rest | open; being stated over algebraic spaces |
 
-Result by result: [`results/COVERAGE.md`](results/COVERAGE.md).  A generated summary:
+Result by result: [`results/COVERAGE.md`](results/COVERAGE.md).  Everything not yet
+proved in full generality is a to-do in [`results/TODO.md`](results/TODO.md) (generated),
+filled wave by wave, LP26 first.  A generated summary:
 [`results/PROGRESS.md`](results/PROGRESS.md).
 
 ## What is assumed
