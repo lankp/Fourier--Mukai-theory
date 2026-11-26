@@ -214,11 +214,9 @@ noncomputable def Adjunction.mapComplex
     left_triangle := by
       ext K i
       simp
-      exact adj.left_triangle_components (K.X i)
     right_triangle := by
       ext K i
-      simp
-      exact adj.right_triangle_components (K.X i) }
+      simp }
 
 /-- The derived adjunction `Lj^* ⊣ Rj_*`.  Both exact functors descend to the
 derived categories, so Mathlib's localization-of-adjunctions theorem applies;
