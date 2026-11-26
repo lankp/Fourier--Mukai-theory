@@ -75,7 +75,7 @@ to you.
   `push`), then clone as it instructs.
 * Cloud environment: `fourier--mukai-theory`, id `env_018GWtxMGwCU3sde5wadUMxL`.
   Its network allows GitHub release downloads, `releases.lean-lang.org`,
-  `lakecache.blob.core.windows.net` and `arxiv.org`; its setup script installs
+  `lakecache.blob.core.windows.net`, `cache.mathlib.org` (Mathlib v4.35.0 serves its olean cache there; added 26 Nov 2026) and `arxiv.org`; its setup script installs
   elan, Lean 4.33.1 and Mathlib's cache for a checkout named
   `Fourier--Mukai-theory` or `fourier--mukai-theory`.  If `lean` is missing, use
   the install commands in `results/swarm/wave4/00-preamble.md`.  Do not call
