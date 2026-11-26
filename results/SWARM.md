@@ -134,12 +134,31 @@ stopped minutes later when the direction changed.  Briefs in `results/swarm/wave
 | `wave4/axiommath-tag-map` | every Stacks tag cited in GL26/LP26 against AxiomMath: declaration, scope, spaces vs schemes, verdict; `S` rows of `ASSUMPTIONS.md` against AxiomMath | `results/AXIOMMATH_TAGS.md`, `scripts/axiommath/` |
 | `wave4/toolchain-435` | migrate the tree to Lean/Mathlib v4.35.0 (no new dependency yet) | toolchain files, any `.lean` file the build needs |
 
-## Wave 5 candidates
+## Wave 5 (planned; starts once wave 4 is merged and archived)
 
-* GL26 Proposition 10.5 and Lemma 10.9 on top of `Scheme/FMCube.lean` (10.5 needs Proposition 9.3 and Lemma 9.1);
-* `KoszulPowerCoprodInput` (a 3×3-type cone lemma), if wave 4 does not close it;
-* `DerivedPseudofunctorInput` (Lipman 3.6.2) on the scheme model;
-* Lemma 7.8 (double categories) only if something downstream needs it.
+**Maintainer's goal for wave 5 (26 November 2026):** besides the geometric layer,
+LP26 is addressed with **Neeman's weak approximability for affine schemes with
+support formalized and verified, not assumed**.  LP26's Corollary 1.2
+(`cor:weak_approx_spaces`) combines Neeman 2024, Theorem 3.2(iv) (`D_qc,Z(X)` weakly
+approximable for `X` qcqs and `Z` closed with quasi-compact complement) with the
+induction principle for algebraic spaces; the affine case is the base.  State of the
+tree: `D(A-Mod)` and `D_{V(f)}(A-Mod)` (principal support) are proved weakly
+approximable unconditionally (`Scheme/RegularCompactEndpoints.lean`); the
+finite-list case `V(f₁,…,fₙ)` goes through the refuted `KoszulScalarSupportInput`
+(vacuous) and the open `KoszulPowerCoprodInput` and `KoszulDetectionInput` (Stacks
+0A9A).  Wave-5 tasks for this goal:
+
+| task | goal |
+|---|---|
+| `wave5/neeman-affine-support` | weak approximability of `D_{V(I)}(A-Mod)` for every finitely generated `I` (every finite list), with **no** named input: drop the refuted input (the deferred `koszul-repair` brief), prove `KoszulPowerCoprodInput`, and prove or import (AxiomMath 0A9A) `KoszulDetectionInput`; non-vacuity by an instance |
+| `wave5/neeman-affine-transport` (after AxiomMath is imported) | transport it along AxiomMath's `D_qc(Spec A) ≃ D(A)` with supports matched: `D_qc,Z(Spec A)` weakly approximable for `Z` closed with quasi-compact complement, in AxiomMath's model — the base case of LP26 Cor 1.2 |
+
+Then (wave 6 or later): Neeman's Theorem 3.2(iv) for qcqs schemes and LP26 Cor 1.2
+for qcqs algebraic spaces by LP26 Theorem 1.1 and the induction principle (Stacks
+08GL), all without assuming Neeman's result.
+
+Other candidates (from the earlier plan, if they feed the geometric statements):
+GL26 Proposition 10.5 and Lemma 10.9 on `Scheme/FMCube.lean`; `DerivedPseudofunctorInput`.
 
 ## Log
 

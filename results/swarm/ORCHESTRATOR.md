@@ -61,6 +61,11 @@ to you.
    algebraic spaces, built on AxiomMath/Stacks as a Lake dependency; see
    `results/SWARM.md`, "Direction".  Affine-model and interface-only work is done
    only where it feeds that.
+9. **Neeman's affine weak approximability is to be proved, not assumed**
+   (26 November 2026, for the next wave): LP26 is addressed with Neeman's weak
+   approximability for affine schemes with support (Neeman 2024, Thm 3.2(iv), affine
+   case `D_qc,V(I)(Spec A)`, `I` finitely generated) formalized and verified.  See
+   `results/SWARM.md`, "Wave 5".
 
 ## Infrastructure
 
