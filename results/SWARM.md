@@ -97,17 +97,42 @@ Launched 25 November 2026 after wave 2 was merged.  Briefs in `results/swarm/wav
 | `wave3/koszul-inputs` | prove the non-Stacks named inputs of the finite-support affine supported base | new files |
 | `wave3/open-closed-glue` | discharge the completion hypothesis of `Scheme/OpenClosedGlue.lean`, towards weak approximability for qcqs schemes with support | new files |
 
-## Wave 4
+## Direction: full generality (maintainer, 26 November 2026)
 
-Prepared 26 November 2026 after wave 3 was closed; launched after the 06:00 UTC usage
-reset.  Briefs in `results/swarm/wave4/`.
+The maintainer directed that the whole repository now aims at GL26 and LP26 **in
+their full generality as stated in the current manuscripts** (`manuscripts/`):
+algebraic spaces, `D_qc`, `Perf`, `D^b_coh`, `Lf^*`, `Rf_*`, `⊗^L` in the sense of
+GL26 §2.2.  The abstract interfaces (`Paper/DerivedSetup.lean`, `FMSetup`,
+`StacksInterface`, the affine `D(A-Mod)` model) are the categorical engine, not the
+target.  The geometric foundation is **AxiomMath/Stacks** (kernel-checked,
+`sorry`-free, Lean/Mathlib v4.35.0), imported as a Lake dependency, pinned at
+`f56a316ddf7a930906d88b78d6f9a2668cffd0cf`.  It has algebraic spaces, `D(𝒪_X)` on
+the small étale site, `D_QCoh`, perfect and pseudo-coherent objects, Stacks 0DKN
+relative perfectness, compact generation of `D_qc` for qcqs spaces, duality for
+spaces and Nagata compactification; 132 of the 150 Stacks tags the two papers cite
+carry an AxiomMath `@[stacks]` attribute.  Its import closure for `D_qc` with
+pushforward is about 7.4k modules (2.2M lines), and no olean cache is published, so
+the orchestrator builds that slice once and distributes the oleans to workers.
+
+Plan: (1) migrate to v4.35.0; (2) map the paper's notions to AxiomMath and audit
+their fidelity; (3) build and distribute the AxiomMath slice; (4) a geometric layer
+`FourierMukai/Spaces/` with GL26 §2.2's notions and the paper's headline results
+stated over algebraic spaces (new pinned statements, checked against the
+manuscript by the orchestrator); (5) prove them, section by section, using the
+existing categorical engine.
+
+## Wave 4 (re-planned for the direction above)
+
+The wave-4 briefs prepared earlier (affine Koszul repair, open/closed non-vacuity
+in the affine model, `R j` right adjoint, Stacks registration) are deferred to
+`results/swarm/deferred/`; `wave4/koszul-repair` was launched at 07:27 UTC and
+stopped minutes later when the direction changed.  Briefs in `results/swarm/wave4/`.
 
 | task | goal | files |
 |---|---|---|
-| `wave4/koszul-repair` | drop the refuted `KoszulScalarSupportInput`, discharge the two proved inputs, restate the finite-list and `IsAffine` supported endpoints non-vacuously | `Scheme/FiniteKoszulM1.lean` and the Koszul endpoint files |
-| `wave4/openclosed-nonvacuity` | settle the coproduct Hom universe and construct the open/closed inputs in the affine principal case | new files (+ `Scheme/OpenClosedCompletion.lean` if a universe must change) |
-| `wave4/rj-right-adjoint` | `derivedRestrictionScalars A f ⊣ iShriek` without Stacks 0E55, hence the affine recollement unconditionally | new files |
-| `wave4/stacks-registration` | put 09SR, 08IR, 08EU/08IN, 0A9A, 09SN, 0E55 uses into `StacksInterface` with their AxiomMath names | namespacing/docstrings in three files, new files, two `results/` files |
+| `wave4/axiommath-api-map` | map GL26 §2.2–2.4's notions and functors to AxiomMath declarations, with a fidelity verdict per definition; gaps; import-closure cost | `results/AXIOMMATH_MAP.md` |
+| `wave4/axiommath-tag-map` | every Stacks tag cited in GL26/LP26 against AxiomMath: declaration, scope, spaces vs schemes, verdict; `S` rows of `ASSUMPTIONS.md` against AxiomMath | `results/AXIOMMATH_TAGS.md`, `scripts/axiommath/` |
+| `wave4/toolchain-435` | migrate the tree to Lean/Mathlib v4.35.0 (no new dependency yet) | toolchain files, any `.lean` file the build needs |
 
 ## Wave 5 candidates
 

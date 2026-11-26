@@ -18,6 +18,15 @@ A Lean 4 formalization, on Mathlib, of
 The goal is all of GL26.  `results/COVERAGE.md` lists every numbered result of
 both papers with its status in the tree.  Start there.
 
+**Full generality** (maintainer's standing instruction, 26 November 2026): the
+whole repository aims at the results as stated in the current manuscripts, for
+algebraic spaces, with `D_qc`, `Perf`, `D^b_coh`, `Lf^*`, `Rf_*`, `⊗^L` as in
+GL26 §2.2.  The abstract interfaces (`Paper/DerivedSetup.lean`, `FMSetup`,
+`StacksInterface`, the affine `D(A-Mod)` model) are the categorical engine, not the
+target; a result proved only for an interface or an affine model is recorded as
+such and is not the paper's result.  The geometric foundation is AxiomMath/Stacks,
+imported as a Lake dependency (see `results/SWARM.md`, "Direction").
+
 ## Manuscripts
 
 The current LaTeX sources of GL26 and LP26 are in `manuscripts/GL26/` and

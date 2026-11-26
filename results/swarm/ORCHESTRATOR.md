@@ -55,6 +55,13 @@ to you.
    "(F,ξ) ⊣ (G,ζ)").  A Lean rendering that turns out false or vacuous is refuted
    in the tree; it does not mean the paper is wrong.
 
+8. **Full generality** (26 November 2026): "focus the entire repo on proving
+   results in their full generality as stated in GL26 and LP26 (LaTeX files, not on
+   arXiv; algebraic spaces)."  Plan waves towards the geometric statements over
+   algebraic spaces, built on AxiomMath/Stacks as a Lake dependency; see
+   `results/SWARM.md`, "Direction".  Affine-model and interface-only work is done
+   only where it feeds that.
+
 ## Infrastructure
 
 * Repository: `lankp/Fourier--Mukai-theory` (lower-case alias
@@ -104,6 +111,6 @@ to you.
 See the end of `results/SWARM.md` (the log) and its current wave section.  At the
 time of writing (26 November 2026, 03:30 UTC): waves 1, 2, 3 are merged, their
 workers archived, the README updated; wave 4 (briefs in `results/swarm/wave4/`)
-is scheduled to be launched at 06:05 UTC by the previous orchestrator.  If you
+was re-planned at 07:40 UTC for the full-generality direction (item 8 above; `results/SWARM.md`, "Direction").  If you
 take over and no `wave4/*` worker sessions exist (`list_sessions`, tag
 `fm-wave4`), launch wave 4 yourself, respecting the usage rule above.

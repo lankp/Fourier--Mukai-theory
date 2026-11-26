@@ -1,0 +1,23 @@
+## Your task: `wave4/axiommath-api-map`
+
+Goal: the map from GL26/LP26's geometric notions to AxiomMath/Stacks declarations, precise enough that the next wave can write GL26's and LP26's statements over algebraic spaces by importing AxiomMath, and can judge whether each AxiomMath definition means what the paper means. **No Lean build is needed**; this is a careful reading task. Output: one new file, `results/AXIOMMATH_MAP.md` (part A, C, D below; part B is another worker's, `results/AXIOMMATH_TAGS.md`). Branch `wave4/axiommath-api-map`: start with `git fetch --depth=50 origin formalization && git checkout -B wave4/axiommath-api-map origin/formalization`.
+
+### A. Notions and functors (the core)
+For each item, give the AxiomMath declaration(s) (full name, file, StacksCore or StacksFrontier, `@[stacks]` tag), its exact Lean signature (universe parameters included), and a **fidelity verdict**: does it mean what GL26 §2.2 (`sec:preliminaries_stacks`, `sec:prelim_stacks_categories`, `sec:preliminaries_stacks_support`) and §2.3–2.4 (`Integral transforms and base change notation`, `Duality for spaces`) mean? Read the definitions, not the docstrings. Where AxiomMath has several competing models (e.g. `DerivedModules` vs `ModelDerivedModules` vs `StdDerived`/`SchemeStdDerived`, `HasDerivedCategory.standard`, `Modules.{u,u}` vs other universe choices), say which model each main theorem below is stated over and whether comparison isomorphisms between the models exist.
+
+1. Base: `BigFppfSite`, `B.Contains S`, `BigFppfOver B S hS`, `IsAlgebraicSpace`, `AlgebraicSpaces B S hS`, morphisms; fibre products of algebraic spaces over `S` (`hasBinaryProducts_over_algebraicSpace`, pullbacks); the scheme ↪ space embedding; `Spec k → X` points and `|X|`.
+2. Properties of spaces and morphisms GL26 uses: quasi-compact, quasi-separated, Noetherian, locally Noetherian, separated, proper, flat, finite type / finite presentation, étale presentation, affine morphism, open/closed immersion.
+3. `Mod(X)` on the small étale site, `Qcoh(X)`, `D(X)`, `D_qc(X)` (`QcohDerived`, `IsInQuasicoherentDerived`) as a **triangulated** (pretriangulated, `IsTriangulated`) subcategory, `Perf(X)` (`IsPerfect`, `PerfectDerivedCategory`), pseudo-coherent, `D^b_coh(X)`, `D^b_qc`, `D^-_coh`, support of `E ∈ D_qc(X)` and `D_{qc,Z}(X)`.
+4. Functors on `D(X)` and `D_qc(X)`: `Lf^*`, `Rf_*`, `⊗^L`, `RHom`/internal Hom, the adjunction `Lf^* ⊣ Rf_*`, the right adjoint `f^×` of `Rf_*` on `D_qc` (Stacks Duality for Spaces), projection formula, (Tor-independent / flat) base change for spaces, `Rf_*` preserving `D_qc` (qcqs `f`), preserving `Perf` / `D^b_coh` (proper), compatibility isomorphisms (pseudofunctoriality `L(gf)^* ≅ Lf^* Lg^*`, `R(gf)_* ≅ Rg_* Rf_*`): which exist as functors with natural isomorphisms, which only objectwise.
+5. Compactness and generation: compact objects of `D_qc(X)` = perfect (qcqs), compact generation by a single perfect object (Stacks 08HP for spaces, 09M1 analogues), `D_{qc,Z}` compactly generated; whether AxiomMath's "compact" is Mathlib's or its own, and its relation to this repo's `RelativeWeakApprox.IsCompactAb`.
+6. Relative perfectness: Stacks 0DKN (`IsPerfectRelativeTo` in `Spaces/Perfect/Relative.lean`; its hypotheses flat + lfp) vs GL26's `f`-perfect (`def:relative_perf_stacks`) and `f`-quasi-perfect (`def:quasi_perf`): same notion, special case, or different?
+7. Nagata compactification for spaces; derived duality for spaces (`Spaces/DerivedDuality/*`, dualizing complexes, 0E4Z, `SpaceDuality`); Grothendieck existence if GL26 uses it.
+8. Anything GL26 §3 (`Characterization of perfectness`), §6, §8–§12 cite (Tor amplitude, derived fibres, `Lt^*` for points `t : Spec k → X`, perfect locus openness 07TZ/0BDJ-type results, semicontinuity).
+
+### C. Gaps
+List what GL26/LP26 need that AxiomMath does **not** provide (e.g. Fourier–Mukai transforms `Φ_K = Rp_{2*}(Lp_1^*(-) ⊗^L K)` as functors, weak approximability (Neeman) — not in Stacks, `f^×` base change, any functor known only objectwise), each with a size estimate and the GL26 results that need it.
+
+### D. Build cost
+For each key module you name in A, the size of its import closure inside AxiomMath (modules, lines); a script for this is at `scripts/axiommath/closure.py` if the orchestrator has committed it, otherwise write one under `scripts/axiommath/` (you may add that file). Recommend the smallest set of AxiomMath modules whose import gives everything in A.
+
+Be exact and conservative: when you are not sure an AxiomMath definition is faithful, say so and say what would settle it. This map will decide what the paper's Lean statements are built on.
