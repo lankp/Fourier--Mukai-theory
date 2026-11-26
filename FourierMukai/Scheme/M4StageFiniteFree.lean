@@ -23,7 +23,7 @@ def stageModule (s : Finset ι) (i : ι) : ModuleCat.{uA} A := by
 
 lemma stageModule_subsingleton_of_mem (s : Finset ι) (i : ι) (hi : i ∈ s) :
     Subsingleton (stageModule A s i) := by
-  rw [stageModule, if_pos hi]
+  rw [stageModule, ite_eq_left hi]
   change Subsingleton (Fin 0 → A)
   infer_instance
 
@@ -37,7 +37,7 @@ instance stageComplex_isKProjective (s : Finset ι) (c : ℤ) (i : ι) :
     by_cases hi : i ∈ s
     · letI := stageModule_subsingleton_of_mem A s i hi
       exact (ModuleCat.isZero_of_subsingleton _).projective
-    · rw [stageModule, if_neg hi]
+    · rw [stageModule, ite_eq_right hi]
       infer_instance
   letI : (stageComplex A s c i).IsStrictlyLE c := by
     dsimp [stageComplex]
@@ -57,7 +57,7 @@ def stageRegularIso (s : Finset ι) (j : Tail s) :
     stageModule A s j.1 ≅ ModuleCat.of A A := by
   classical
   dsimp [stageModule]
-  rw [if_neg j.property]
+  rw [ite_eq_right j.property]
 
 /-- The degree-`c` summand is identified with the regular module. -/
 def stageCoordIso (s : Finset ι) (c : ℤ) (j : Tail s) :

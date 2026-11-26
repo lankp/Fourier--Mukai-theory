@@ -38,7 +38,7 @@ def telescopeShift (A : ℕ ⥤ C) : (∐ A.obj) ⟶ (∐ A.obj) :=
 @[simp, reassoc]
 lemma inj_telescopeShift (A : ℕ ⥤ C) (n : ℕ) :
     inj A n ≫ telescopeShift A = step A n ≫ inj A (n + 1) :=
-  Sigma.ι_desc _ n
+  Sigma.ι_comp_desc _ n
 
 /-- The telescope differential `1 - shift`. -/
 def telescopeDifference (A : ℕ ⥤ C) : (∐ A.obj) ⟶ (∐ A.obj) :=
@@ -56,7 +56,7 @@ def telescopeToCocone (A : ℕ ⥤ C) (c : Cocone A) : (∐ A.obj) ⟶ c.pt :=
 @[simp, reassoc]
 lemma inj_telescopeToCocone (A : ℕ ⥤ C) (c : Cocone A) (n : ℕ) :
     inj A n ≫ telescopeToCocone A c = c.ι.app n :=
-  Sigma.ι_desc _ n
+  Sigma.ι_comp_desc _ n
 
 @[simp, reassoc]
 lemma telescopeDifference_toCocone (A : ℕ ⥤ C) (c : Cocone A) :
@@ -154,7 +154,7 @@ def telescopeRetraction (A : ℕ ⥤ D) (q : ∀ n, A.obj (n + 1) ⟶ A.obj n) :
 lemma inj_telescopeRetraction (A : ℕ ⥤ D) (q : ∀ n, A.obj (n + 1) ⟶ A.obj n)
     (n : ℕ) :
     inj A n ≫ telescopeRetraction A q = -correction A q n :=
-  Sigma.ι_desc _ n
+  Sigma.ι_comp_desc _ n
 
 @[simp, reassoc]
 lemma telescopeDifference_retraction (A : ℕ ⥤ D)
@@ -237,12 +237,12 @@ abbrev complexCoproduct (P : ℕ ⥤ CochainComplex E ℤ) : CochainComplex E �
   shape i j h := by
     apply Sigma.hom_ext
     intro n
-    rw [Sigma.ι_desc, (P.obj n).shape _ _ h]
+    rw [Sigma.ι_comp_desc, (P.obj n).shape _ _ h]
     simp
   d_comp_d' i j k _ _ := by
     apply Sigma.hom_ext
     intro n
-    rw [← Category.assoc, Sigma.ι_desc, Category.assoc, Sigma.ι_desc,
+    rw [← Category.assoc, Sigma.ι_comp_desc, Category.assoc, Sigma.ι_comp_desc,
       ← Category.assoc, (P.obj n).d_comp_d, zero_comp, comp_zero]
 
 @[simp, reassoc]
@@ -250,7 +250,7 @@ lemma complexCoproduct_ι_d (P : ℕ ⥤ CochainComplex E ℤ)
     (k : ℕ) (i j : ℤ) :
     inj (stages P i) k ≫ (complexCoproduct P).d i j =
       (P.obj k).d i j ≫ inj (stages P j) k := by
-  exact Sigma.ι_desc _ k
+  exact Sigma.ι_comp_desc _ k
 
 /-- The chain-map injection of one stage into `complexCoproduct`. -/
 def complexCoproductInj (P : ℕ ⥤ CochainComplex E ℤ) (k : ℕ) :
@@ -271,18 +271,18 @@ def complexCoproductCofanIsColimit (P : ℕ ⥤ CochainComplex E ℤ) :
       comm' := fun i j _ ↦ by
         apply Sigma.hom_ext
         intro n
-        rw [← Category.assoc, Sigma.ι_desc, complexCoproduct_ι_d_assoc, Sigma.ι_desc]
+        rw [← Category.assoc, Sigma.ι_comp_desc, complexCoproduct_ι_d_assoc, Sigma.ι_comp_desc]
         exact (t.inj n).comm i j }
   refine Cofan.IsColimit.mk _ desc ?_ ?_
   · intro t n
     ext i
-    exact Sigma.ι_desc _ n
+    exact Sigma.ι_comp_desc _ n
   · intro t m hm
     ext i
     apply Sigma.hom_ext
     intro n
     have h := congrArg (fun f ↦ f.f i) (hm n)
-    exact h.trans (Sigma.ι_desc (fun n ↦ (t.inj n).f i) n).symm
+    exact h.trans (Sigma.ι_comp_desc (fun n ↦ (t.inj n).f i) n).symm
 
 /-- The shift endomorphism of the coproduct complex, defined degreewise by
 `telescopeShift`. -/

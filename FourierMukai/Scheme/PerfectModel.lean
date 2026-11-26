@@ -398,14 +398,14 @@ lemma stupidTruncιGEF_of_mem (K : HomologicalComplex C c')
     stupidTruncιGEF K e i' = (K.stupidTruncXIso e hi).hom := by
   let h : ∃ j, e.f j = i' := ⟨i, hi⟩
   have hh : h.choose = i := e.injective_f (h.choose_spec.trans hi.symm)
-  simp only [stupidTruncιGEF, dif_pos h]
+  simp only [stupidTruncιGEF, dite_eq_left h]
   simp [hh]
 
 /-- Off the support, the inclusion vanishes; proved directly from the definition. -/
 lemma stupidTruncιGEF_of_not_mem (K : HomologicalComplex C c')
     (e : c.Embedding c') [e.IsRelIff] (i' : ι') (hi : ∀ i, e.f i ≠ i') :
     stupidTruncιGEF K e i' = 0 := by
-  simp only [stupidTruncιGEF, dif_neg (not_exists.mpr hi)]
+  simp only [stupidTruncιGEF, dite_eq_right (not_exists.mpr hi)]
 
 /-- The inclusion of a stupid truncation bounded below. -/
 noncomputable def stupidTruncιGE (K : HomologicalComplex C c')
@@ -438,14 +438,14 @@ lemma stupidTruncπLEF_of_mem (K : HomologicalComplex C c')
     stupidTruncπLEF K e i' = (K.stupidTruncXIso e hi).inv := by
   let h : ∃ j, e.f j = i' := ⟨i, hi⟩
   have hh : h.choose = i := e.injective_f (h.choose_spec.trans hi.symm)
-  simp only [stupidTruncπLEF, dif_pos h]
+  simp only [stupidTruncπLEF, dite_eq_left h]
   simp [hh]
 
 /-- Off the support, the projection vanishes; proved directly from the definition. -/
 lemma stupidTruncπLEF_of_not_mem (K : HomologicalComplex C c')
     (e : c.Embedding c') [e.IsRelIff] (i' : ι') (hi : ∀ i, e.f i ≠ i') :
     stupidTruncπLEF K e i' = 0 := by
-  simp only [stupidTruncπLEF, dif_neg (not_exists.mpr hi)]
+  simp only [stupidTruncπLEF, dite_eq_right (not_exists.mpr hi)]
 
 /-- The projection onto a stupid truncation bounded above. -/
 noncomputable def stupidTruncπLE (K : HomologicalComplex C c')
