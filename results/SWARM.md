@@ -185,7 +185,7 @@ geometric layer supersedes them.
 |---|---|---|
 | `wave6/vacuity-refutations` | high | prove F1 (`¬ HasCoproducts.{u+1} (AffineD A)`, `A` nontrivial), F2 (no compact `IsGenerator` in `D(ℤ)`), F3 (`QuasicoherentSerreInput (Spec ℤ)` false); then the orchestrator unpins/replaces the vacuous pinned endpoints |
 | `wave6/lp26-paper-hypotheses` | high | LP26 Thm 1.1 with exactly the paper's hypotheses: compactly generated `t`-structures (AJS), BNP Cor 3.10(1), generator change |
-| `wave6/spaces-foundations` | high | the algebraic-space layer on AxiomMath (launch when the AxiomMath build bundle is published) |
+| `wave6/spaces-foundations` | high | the algebraic-space layer on AxiomMath; **runs in the orchestrator container** (local subagent), because releases cannot be created from these sessions and worker containers cannot build AxiomMath (8.9k modules, ~6 h; `MilnorPatching.Relative` needs ~13.6 GB, i.e. swap). AxiomMath enters `lakefile.toml` only through a separate `Spaces` library outside `defaultTargets`, so workers' default `lake build` never compiles it. |
 | `wave6/prune-dead-inputs` | medium | after vacuity-refutations: delete the triage's "delete" rows (keep `M4Unconditional`/`M6Unconditional`) |
 
 ## Log
