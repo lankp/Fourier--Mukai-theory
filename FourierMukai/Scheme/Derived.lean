@@ -20,9 +20,11 @@ Mathlib's `SheafOfModules.IsQuasicoherent` and the affine description `tildeEqui
 
 Proved: iso-, zero- and shift-closure, and closure under cones and retracts given
 `QuasicoherentSerreInput` (Stacks 01LA: quasicoherent sheaves are closed under
-extensions), and closure under coproducts given `DQCohCoproductInput`; the affine
-case `Qcoh(Spec R)` is proved closed under coproducts outright.  The two inputs
-are `Prop`-valued structures with docstrings, not axioms.
+extensions); the affine case `Qcoh(Spec R)` is proved closed under coproducts
+outright.  `QuasicoherentSerreInput` is false for `Spec ℤ`
+(`Scheme/RefuteQCohSerre.lean`); its consumer `isDQCohTriangulatedOfInput` and the
+coproduct input `DQCohCoproductInput` were deleted in wave 6 (`results/OPEN_INPUTS.md`
+rows 1.20, 7.10).
 
 Found by a member of the Ultramath run `smwuyku7t` (direction R1).
 -/
@@ -193,18 +195,6 @@ under subobjects, quotients, and extensions.  This is the content of Stacks Tag
 structure QuasicoherentSerreInput (X : Scheme.{u}) : Prop where
   serreClass : (quasiCoherent X).IsSerreClass
 
-/-- The geometric input for `ι`-indexed coproducts in `D_qc(X)`.  The three
-fields respectively assert existence of coproducts in `D(X)`, coproduct closure
-of quasi-coherent sheaves (Stacks Tag 01LA(3)), and compatibility of cohomology
-with those coproducts. -/
-structure DQCohCoproductInput (X : Scheme.{u}) (ι : Type w) : Prop where
-  hasCoproducts : HasCoproductsOfShape ι (Derived X)
-  quasiCoherentClosed :
-    (quasiCoherent X).IsClosedUnderColimitsOfShape (Discrete ι)
-  cohomologyPreserves : ∀ n : ℤ,
-    PreservesColimitsOfShape (Discrete ι) (cohomologySheafFunctor X n)
-
-
 /-- Quasi-coherence is invariant under isomorphism (already proved in Mathlib). -/
 instance quasiCoherent_isClosedUnderIsomorphisms (X : Scheme.{u}) :
     (quasiCoherent X).IsClosedUnderIsomorphisms := by
@@ -246,12 +236,6 @@ instance isDQCoh_isTriangulated (X : Scheme.{u}) [(quasiCoherent X).IsSerreClass
   cohomologyWithin_isTriangulated (C := X.Modules)
     (P := quasiCoherent X)
 
-/-- Structure-valued packaging of the triangulated closure theorem. -/
-theorem isDQCohTriangulatedOfInput (X : Scheme.{u}) (h : QuasicoherentSerreInput X) :
-    (IsDQCoh X).IsTriangulated := by
-  let _ := h.serreClass
-  infer_instance
-
 /-- Under the same Serre-class input, `D_qc(X)` is thick: direct summands are
 seen on cohomology, where they are subobjects. -/
 instance isDQCoh_isStableUnderRetracts (X : Scheme.{u})
@@ -271,17 +255,6 @@ instance isDQCoh_isClosedUnderColimitsOfShape
   cohomologyWithin_isClosedUnderColimitsOfShape (C := X.Modules)
     (P := quasiCoherent X) J
 
-/-- Structure-valued packaging of coproduct closure.  Combined with
-`isDQCohTriangulatedOfInput` and `isDQCoh_isStableUnderRetracts`, this gives
-the localizing-and-thick object property used by GL26. -/
-theorem isDQCohClosedUnderCoproductsOfInput
-    (X : Scheme.{u}) (ι : Type w) (h : DQCohCoproductInput X ι) :
-    (IsDQCoh X).IsClosedUnderColimitsOfShape (Discrete ι) := by
-  let _ := h.hasCoproducts
-  let _ := h.quasiCoherentClosed
-  let _ := h.cohomologyPreserves
-  infer_instance
-
 /-!
 ## What had to be added to Mathlib
 
@@ -294,7 +267,7 @@ theorem isDQCohClosedUnderCoproductsOfInput
 | iso, zero, shift closure | proved; zero uses a presentation with no generators |
 | cone/extension closure | proved from `QuasicoherentSerreInput`; the missing geometric fact is Stacks Tag 01LA(5),(6) |
 | thickness | proved from subobject closure in `Qcoh(X)` |
-| coproduct/localizing closure | proved from `DQCohCoproductInput`; the geometric content is Stacks Tag 01LA(3) and coproduct exactness of cohomology |
+| coproduct/localizing closure | not proved here (the input `DQCohCoproductInput` was deleted in wave 6); the geometric content is Stacks Tag 01LA(3) and coproduct exactness of cohomology |
 
 The `.{v}` universe appearing in `cohomologyWithin` is the morphism universe of
 the abelian category.  Coproduct shapes have independent object and morphism
@@ -302,6 +275,5 @@ universes `w₁` and `v₁`; no smallness restriction is imposed on a scheme.
 -/
 
 /-! ### Axiom audit -/
-
 
 end RelativeFM

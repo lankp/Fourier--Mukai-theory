@@ -110,21 +110,6 @@ theorem neemanSupportedWeakApproximability_of_openClosed
   obtain ⟨W, ht, _⟩ := I.exists_paperData_of_compactHomZeroAtTop hvan
   exact ⟨⟨W, ht.trans htD⟩⟩
 
-/-- Perfect Ext boundedness can replace compact Hom vanishing in the supported
-form; the conversion uses the compact/perfect field (Neeman 3.2(i)). -/
-theorem neemanSupportedWeakApproximability_of_perfectHomZeroAtTop
-    {g : SchemeOpenClosed.{u}} {SX SZ : TopologicalSpace.Closeds g.X}
-    {SU : TopologicalSpace.Closeds g.U}
-    (I : DqcSupportedNeemanOpenClosedInput g SX SZ SU)
-    [HasCoproducts.{u + 1} (DqcSupported g.X SZ)]
-    [HasCoproducts.{u + 1} (DqcSupported g.X SX)]
-    [HasCoproducts.{u + 1} (DqcSupported g.U SU)]
-    (htD : I.setup.tD = dqcSupportedStandardTStructure g.X SX)
-    (hvan : SchemeGluingM2.PerfectHomZeroAtTop I.perfectX) :
-    NeemanSupportedWeakApproximability g.X SX := by
-  obtain ⟨W, ht, _⟩ := I.exists_paperData_of_perfectHomZeroAtTop hvan
-  exact ⟨⟨W, ht.trans htD⟩⟩
-
 /-- **The two-open step, ordinary form.**  In the intended application `V` is
 the second open of a cover of `g.X`, `SV` is the restriction of the closed
 complement of `g.U` to `V`, and `F` is supported excision.  `WV` is standard
@@ -194,6 +179,5 @@ end RelativeFM.SchemeSupportedTwoOpenM3
 
 #print axioms RelativeFM.SchemeSupportedTwoOpenM3.neemanWeakApproximability_of_openClosed
 #print axioms RelativeFM.SchemeSupportedTwoOpenM3.neemanSupportedWeakApproximability_of_openClosed
-#print axioms RelativeFM.SchemeSupportedTwoOpenM3.neemanSupportedWeakApproximability_of_perfectHomZeroAtTop
 #print axioms RelativeFM.SchemeSupportedTwoOpenM3.neemanWeakApproximability_of_excision
 #print axioms RelativeFM.SchemeSupportedTwoOpenM3.neemanSupportedWeakApproximability_of_excision

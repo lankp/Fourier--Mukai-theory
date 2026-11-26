@@ -48,11 +48,10 @@ containing `G` is all of `T`.
 * `singlyCompactlyGenerated_iff` and `lemma_2_5_of_tag09SN`: under 09SN, the rendering
   `SinglyCompactlyGenerated` of Lemma 2.5 is the paper's "compact and detects zero", and
   Lemma 2.5 holds with the paper's hypothesis.
-* Secondary route, not used by the headline: `isLocalizingGenerator_of_isPaperGenerator`
-  from the named input `HasBousfieldTriangles G` (every `E` sits in a distinguished
-  triangle `S → E → R → S⟦1⟧` with `S ∈ ⟨G⟩‾` and `Hom(G⟦n⟧, R) = 0` for all `n`), which
-  is what the paper takes from Neeman (*Triangulated categories*, Remark 1.16,
-  Theorem 1.17 and Proposition 9.1.19).  It is a hypothesis, never an axiom.
+* The secondary route from the named input `HasBousfieldTriangles G` (Bousfield
+  triangles, what the paper takes from Neeman, *Triangulated categories*, Remark 1.16,
+  Theorem 1.17 and Proposition 9.1.19) was deleted in wave 6 (`results/OPEN_INPUTS.md`
+  row 6.16): the headline uses 09SN.
 
 ## Deviations from the paper's statement
 
@@ -137,22 +136,6 @@ lemma isLocalizingGenerator_iff_localizingClosure_eq_top :
 end ObjectProperty
 
 open ObjectProperty in
-/-- The input of the converse of **Lemma 2.4** (`lem:localizing_iff_cpt_gen`):
-every object `E` sits in a distinguished triangle `S → E → R → S⟦1⟧` with `S` in
-the localizing closure `⟨G⟩‾` of `G` and `R` right orthogonal to every shift of
-`G`.
-
-This is what the paper takes from Neeman, *Triangulated categories* (Ann. of
-Math. Stud. 148, 2001), Remark 1.16, Theorem 1.17 and Proposition 9.1.19: for
-compact `G` the Verdier quotient `π : T → T/⟨G⟩‾` has a right adjoint `Q`, and the
-triangle is `S_E → E → QπE → S_E⟦1⟧` with `QπE ∈ ⟨G⟩‾^⊥`.  It is not in Mathlib
-and is carried as a hypothesis, not as an axiom. -/
-structure HasBousfieldTriangles (G : C) : Prop where
-  exists_triangle (E : C) : ∃ (S R : C) (f : S ⟶ E) (g : E ⟶ R) (h : R ⟶ S⟦(1 : ℤ)⟧),
-    Triangle.mk f g h ∈ distTriang C ∧
-      localizingClosure.{w} (ObjectProperty.singleton G) S ∧
-      ∀ (n : ℤ) (a : G⟦n⟧ ⟶ R), a = 0
-
 /-- **Lemma 2.4** (`lem:localizing_iff_cpt_gen`), direction `⟨G⟩‾ = T ⇒ G compactly
 generates`: if `G` generates by shifts, cones and `w`-small coproducts, then `G`
 detects zero objects through its shifts.  No compactness, coproducts or compact
@@ -166,28 +149,6 @@ theorem isPaperGenerator_of_isLocalizingGenerator {G : C}
       ((ObjectProperty.singleton G).shiftClosure ℤ) :=
     hL.mono ((ObjectProperty.singleton G).le_shiftClosure (A := ℤ))
   exact hL'.isZero_of_rightOrthogonal ((rightOrthogonal_shiftClosure_singleton_iff G E).2 hE)
-
-/-- **Lemma 2.4** (`lem:localizing_iff_cpt_gen`), direction `G compactly generates ⇒
-⟨G⟩‾ = T`, from the Bousfield triangles of `HasBousfieldTriangles G` (Neeman's
-input, carried as a hypothesis).  In the triangle `S → E → R → S⟦1⟧` the object `R`
-receives no nonzero maps from the shifts of `G`, so it is zero, so `S → E` is an
-isomorphism and `E ∈ ⟨G⟩‾`. -/
-theorem isLocalizingGenerator_of_isPaperGenerator {G : C}
-    (hB : HasBousfieldTriangles.{w} G) (hG : IsPaperGenerator G) :
-    ObjectProperty.IsLocalizingGenerator.{w} (ObjectProperty.singleton G) := by
-  intro Q hQ hQiso hQcolim hGQ X
-  obtain ⟨S, R, f, g, h, hT, hS, hR⟩ := hB.exists_triangle X
-  have hRz : IsZero R := hG hR
-  have : IsIso f := (Triangle.isZero₃_iff_isIso₁ _ hT).1 hRz
-  exact Q.prop_of_iso (asIso f) (hS Q hQ hQiso hQcolim hGQ)
-
-/-- **Lemma 2.4** (`lem:localizing_iff_cpt_gen`), given the Bousfield triangles for
-`G`: `G` detects zero through its shifts iff `⟨G⟩‾ = T`. -/
-theorem isPaperGenerator_iff_isLocalizingGenerator {G : C}
-    (hB : HasBousfieldTriangles.{w} G) :
-    IsPaperGenerator G ↔
-      ObjectProperty.IsLocalizingGenerator.{w} (ObjectProperty.singleton G) :=
-  ⟨isLocalizingGenerator_of_isPaperGenerator hB, isPaperGenerator_of_isLocalizingGenerator⟩
 
 section Tag09SN
 

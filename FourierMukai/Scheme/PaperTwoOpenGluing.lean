@@ -22,9 +22,11 @@ reverse gluing direction.
 The geometric interface `PaperSchemeOpenClosedDerived` does not assert that its
 conclusion holds on the middle category: its approximation data occur only on
 the two ends of the recollement.  Constructing its fields for a scheme requires
-an open--closed recollement, the three compactly-generated-aisle identities and
-supported compact/perfect comparison.  Those are geometric inputs, not facts
-proved in this module.
+an open--closed recollement and the three compactly-generated-aisle identities.
+Those are geometric inputs, not facts proved in this module.  The contentless
+compact/perfect fields (`CompactsArePerfect`), the `D_qc`-specialized
+`DqcOpenClosedGluingInput` and the perfect-Ext variants were deleted in wave 6
+(`results/OPEN_INPUTS.md` rows 2.11, 5.5).
 -/
 
 @[expose] public section
@@ -149,12 +151,6 @@ structure PaperSchemeOpenClosedDerived where
   geometry : SchemeOpenClosed.{u}
   /-- The minimal LP package, with zero detection on both ends. -/
   setup : PaperSetupMainMinimal DZ DX DU
-  /-- Neeman 3.2(i), for the middle category. -/
-  perfectX : CompactsArePerfect DX
-  /-- Neeman 3.2(i), for the open category. -/
-  perfectU : CompactsArePerfect DU
-  /-- Neeman 3.2(i), for the closed-support category. -/
-  perfectZ : CompactsArePerfect DZ
   /-- Cohomological support on the closed complement. -/
   supportedOnZ : ObjectProperty DX
   /-- Support is exactly the kernel of restriction to the open. -/
@@ -216,9 +212,6 @@ to be supplied after supported excision. -/
 structure PaperSchemeOpenClosedSeed where
   geometry : SchemeOpenClosed.{u}
   setup : PaperOpenEndpointSetup DZ DX DU
-  perfectX : CompactsArePerfect DX
-  perfectU : CompactsArePerfect DU
-  perfectZ : CompactsArePerfect DZ
   supportedOnZ : ObjectProperty DX
   supported_iff : ∀ E : DX, supportedOnZ E ↔ Nonempty (setup.R.jStar.obj E ≅ 0)
 
@@ -232,9 +225,6 @@ def PaperSchemeOpenClosedSeed.toPaperSchemeOpenClosedDerived
   geometry := I.geometry
   setup := PaperOpenEndpointSetup.toPaperSetupMainMinimal
     (DZ := DZ) (DX := DX) (DU := DU) (S := I.setup) (WZ := WZ) ht hG
-  perfectX := I.perfectX
-  perfectU := I.perfectU
-  perfectZ := I.perfectZ
   supportedOnZ := I.supportedOnZ
   supported_iff := I.supported_iff
 
@@ -426,157 +416,31 @@ def replaceApproxZ (WZ : PaperWeakApproximationData DZ)
     PaperSchemeOpenClosedDerived DZ DX DU where
   geometry := I.geometry
   setup := PaperSetupMainMinimal.replaceApproxZ I.setup WZ ht hG
-  perfectX := I.perfectX
-  perfectU := I.perfectU
-  perfectZ := I.perfectZ
   supportedOnZ := I.supportedOnZ
   supported_iff := I.supported_iff
 
-/-- Full gluing output, with the normalized generator known to be perfect by
-Neeman 3.2(i). -/
+/-- Full gluing output: data at the middle `t`-structure with the normalized
+generator.  (Before wave 6 the conclusion also had a conjunct
+`I.perfectX.Perf W.G`, read off the deleted contentless field
+`CompactsArePerfect`; `results/OPEN_INPUTS.md` row 2.11.) -/
 theorem exists_paperData_of_compactHomZeroAtTop
     [HasCoproducts.{v} DZ] [HasCoproducts.{v} DX] [HasCoproducts.{v} DU]
     (hvan : CompactHomZeroAtTop DX) :
     ∃ W : PaperWeakApproximationData DX,
       W.t = I.setup.tD ∧
-      W.G = (I.setup.G'⟦I.setup.m⟧ ⊞ I.setup.R.jShriek.obj I.setup.GU) ∧
-      I.perfectX.Perf W.G := by
-  obtain ⟨W, ht, hG⟩ :=
-    PaperSetupMainMinimal.exists_paperData_of_compactHomZeroAtTop I.setup hvan
-  exact ⟨W, ht, hG, (I.perfectX.compact_iff_perfect W.G).mp W.G_compact⟩
-
-/-- Perfect Ext boundedness suffices for the gluing output; the conversion to
-compact Hom vanishing uses only Neeman 3.2(i). -/
-theorem exists_paperData_of_perfectHomZeroAtTop
-    [HasCoproducts.{v} DZ] [HasCoproducts.{v} DX] [HasCoproducts.{v} DU]
-    (hvan : SchemeGluingM2.PerfectHomZeroAtTop I.perfectX) :
-    ∃ W : PaperWeakApproximationData DX,
-      W.t = I.setup.tD ∧
-      W.G = (I.setup.G'⟦I.setup.m⟧ ⊞ I.setup.R.jShriek.obj I.setup.GU) ∧
-      I.perfectX.Perf W.G :=
-  I.exists_paperData_of_compactHomZeroAtTop
-    (SchemeGluingM2.compactHomZeroAtTop_of_perfectHomZeroAtTop I.perfectX hvan)
-
-/-- Zero-detection weak approximability at the middle `t`-structure. -/
-theorem satisfiesPaperWAAt_of_perfectHomZeroAtTop
-    [HasCoproducts.{v} DZ] [HasCoproducts.{v} DX] [HasCoproducts.{v} DU]
-    (hvan : SchemeGluingM2.PerfectHomZeroAtTop I.perfectX) :
-    SatisfiesPaperWAAt DX I.setup.tD := by
-  obtain ⟨W, ht, _⟩ := I.exists_paperData_of_perfectHomZeroAtTop hvan
-  exact ⟨W, ht⟩
-
-/-- Bare zero-detection weak approximability of the middle category. -/
-theorem satisfiesPaperWA_of_perfectHomZeroAtTop
-    [HasCoproducts.{v} DZ] [HasCoproducts.{v} DX] [HasCoproducts.{v} DU]
-    (hvan : SchemeGluingM2.PerfectHomZeroAtTop I.perfectX) :
-    SatisfiesPaperWA DX :=
-  satisfiesPaperWA_of_satisfiesPaperWAAt
-    (I.satisfiesPaperWAAt_of_perfectHomZeroAtTop hvan)
+      W.G = (I.setup.G'⟦I.setup.m⟧ ⊞ I.setup.R.jShriek.obj I.setup.GU) :=
+  PaperSetupMainMinimal.exists_paperData_of_compactHomZeroAtTop I.setup hvan
 
 end PaperSchemeOpenClosedDerived
 end SchemeInterface
-
-section DqcModel
-
-open RelativeFM AlgebraicGeometry
-
-variable {DZ : Type uZ} [Category.{u + 1} DZ] [Preadditive DZ]
-  [HasZeroObject DZ] [HasShift DZ ℤ]
-  [∀ (n : ℤ), (shiftFunctor DZ n).Additive] [Pretriangulated DZ]
-  [CategoryTheory.IsTriangulated DZ]
-
-/-- The open--closed gluing input specialized to the repository's actual
-`D_qc` model.  `DZ` is the category supported on the complement of `g.j`; it is
-kept as a parameter so this lower-level module need not depend on a particular
-scheme supported-category statement layer.
-
-The two triangulated assumptions on `Dqc` are propositions proved for every
-scheme by `AffineExtension.isDQCohTriangulated_01IE`; they are parameters here,
-not additional geometric axioms. -/
-structure DqcOpenClosedGluingInput (g : SchemeOpenClosed.{u})
-    [(IsDQCoh g.X).IsTriangulated] [(IsDQCoh g.U).IsTriangulated] where
-  /-- Minimal zero-detection LP data for restriction to the open. -/
-  setup : PaperSetupMainMinimal DZ (Dqc g.X) (Dqc g.U)
-  /-- Neeman 3.2(i) on the ambient `D_qc` category. -/
-  perfectX : CompactsArePerfect (Dqc g.X)
-  /-- Neeman 3.2(i) on the open `D_qc` category. -/
-  perfectU : CompactsArePerfect (Dqc g.U)
-  /-- Neeman 3.2(i) on the supported category. -/
-  perfectZ : CompactsArePerfect DZ
-  /-- Cohomological support on the closed complement. -/
-  supportedOnZ : ObjectProperty (Dqc g.X)
-  /-- The support category is exactly the kernel of derived restriction. -/
-  supported_iff : ∀ E : Dqc g.X,
-    supportedOnZ E ↔ Nonempty (setup.R.jStar.obj E ≅ 0)
-
-namespace DqcOpenClosedGluingInput
-
-variable {g : SchemeOpenClosed.{u}}
-  [(IsDQCoh g.X).IsTriangulated] [(IsDQCoh g.U).IsTriangulated]
-
-/-- Forget the specialization of the two open categories to `Dqc`. -/
-noncomputable def toPaperSchemeOpenClosedDerived
-    (I : DqcOpenClosedGluingInput (DZ := DZ) g) :
-    PaperSchemeOpenClosedDerived DZ (Dqc g.X) (Dqc g.U) where
-  geometry := g
-  setup := I.setup
-  perfectX := I.perfectX
-  perfectU := I.perfectU
-  perfectZ := I.perfectZ
-  supportedOnZ := I.supportedOnZ
-  supported_iff := I.supported_iff
-
-variable (I : DqcOpenClosedGluingInput (DZ := DZ) g)
-
-include I
-
-/-- The categorical gluing step in the repository's all-sheaves
-quasicoherent-cohomology model.  It returns data at the prescribed restricted
-standard `t`-structure whenever that is the `tD` chosen in `I.setup`. -/
-theorem exists_paperData_dqc
-    [HasCoproducts.{u + 1} DZ]
-    [HasCoproducts.{u + 1} (Dqc g.X)] [HasCoproducts.{u + 1} (Dqc g.U)]
-    (hvan : CompactHomZeroAtTop (Dqc g.X)) :
-    ∃ W : PaperWeakApproximationData (Dqc g.X),
-      W.t = I.setup.tD ∧
-      W.G = (I.setup.G'⟦I.setup.m⟧ ⊞ I.setup.R.jShriek.obj I.setup.GU) ∧
-      I.perfectX.Perf W.G :=
-  PaperSchemeOpenClosedDerived.exists_paperData_of_compactHomZeroAtTop
-    I.toPaperSchemeOpenClosedDerived hvan
-
-/-- Bare zero-detection weak approximability in the `Dqc` model. -/
-theorem satisfiesPaperWA_dqc
-    [HasCoproducts.{u + 1} DZ]
-    [HasCoproducts.{u + 1} (Dqc g.X)] [HasCoproducts.{u + 1} (Dqc g.U)]
-    (hvan : CompactHomZeroAtTop (Dqc g.X)) :
-    SatisfiesPaperWA (Dqc g.X) := by
-  obtain ⟨W, _⟩ := I.exists_paperData_dqc hvan
-  exact ⟨W⟩
-
-/-- The same gluing step from perfect Ext boundedness, using Neeman 3.2(i)
-for the compact/perfect conversion. -/
-theorem satisfiesPaperWA_dqc_of_perfectHomZeroAtTop
-    [HasCoproducts.{u + 1} DZ]
-    [HasCoproducts.{u + 1} (Dqc g.X)] [HasCoproducts.{u + 1} (Dqc g.U)]
-    (hvan : SchemeGluingM2.PerfectHomZeroAtTop I.perfectX) :
-    SatisfiesPaperWA (Dqc g.X) :=
-  PaperSchemeOpenClosedDerived.satisfiesPaperWA_of_perfectHomZeroAtTop
-    I.toPaperSchemeOpenClosedDerived hvan
-
-end DqcOpenClosedGluingInput
-end DqcModel
 
 end RelativeWeakApprox.SchemeTwoOpenM3
 
 #print axioms RelativeWeakApprox.SchemeTwoOpenM3.PaperSetupMainMinimal.toPaperSetup44OfCompactHomZeroAtTop
 #print axioms RelativeWeakApprox.SchemeTwoOpenM3.PaperSetupMainMinimal.exists_paperData_of_compactHomZeroAtTop
 #print axioms RelativeWeakApprox.SchemeTwoOpenM3.PaperSetupMainMinimal.satisfiesPaperWAAt_of_compactHomZeroAtTop
-#print axioms RelativeWeakApprox.SchemeTwoOpenM3.PaperSchemeOpenClosedDerived.exists_paperData_of_perfectHomZeroAtTop
-#print axioms RelativeWeakApprox.SchemeTwoOpenM3.PaperSchemeOpenClosedDerived.satisfiesPaperWA_of_perfectHomZeroAtTop
 #print axioms RelativeWeakApprox.SchemeTwoOpenM3.transportPaperWeakApproximationData
 #print axioms RelativeWeakApprox.SchemeTwoOpenM3.satisfiesPaperWA_of_equivalence
-#print axioms RelativeWeakApprox.SchemeTwoOpenM3.DqcOpenClosedGluingInput.exists_paperData_dqc
-#print axioms RelativeWeakApprox.SchemeTwoOpenM3.DqcOpenClosedGluingInput.satisfiesPaperWA_dqc_of_perfectHomZeroAtTop
 #print axioms RelativeWeakApprox.SchemeTwoOpenM3.PaperSetupMainMinimal.replaceApproxZ
 #print axioms RelativeWeakApprox.SchemeTwoOpenM3.PaperOpenEndpointSetup.toPaperSetupMainMinimal
 #print axioms RelativeWeakApprox.SchemeTwoOpenM3.PaperSchemeOpenClosedSeed.toPaperSchemeOpenClosedDerived

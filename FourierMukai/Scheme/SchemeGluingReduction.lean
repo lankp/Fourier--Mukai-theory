@@ -5,19 +5,20 @@ Released under Apache 2.0 license as described in the file LICENSE.
 import FourierMukai.Scheme.WeakApprox
 
 /-!
-# A standard-t, perfect-generator form of open/closed gluing
+# A standard-t form of open/closed gluing
 
-This module refines `FourierMukai.Scheme.WeakApprox` in three ways.
+This module refines `FourierMukai.Scheme.WeakApprox` in two ways.
 
 * `satisfiesStandardWA_of_setup44` remembers the middle t-structure produced by
   LP's reverse gluing theorem, rather than discarding it in `SatisfiesWA`.
-* `PerfectHomZeroAtTop` states positive Ext vanishing only between perfect
-  complexes. Neeman 3.2(i), packaged as `CompactsArePerfect`, turns it into the
-  `CompactHomZeroAtTop` input used by the repository's 09SR-free gluing.
-* `exists_standardData_of_perfectHomZeroAtTop` produces weak approximation data
+* `exists_standardData_of_compactHomZeroAtTop` produces weak approximation data
   on the middle category with the prescribed t-structure and normalized
-  generator, and proves that its generator is perfect. This is the form needed
-  when the result of one gluing step is used as an endpoint of the next.
+  generator. This is the form needed when the result of one gluing step is used
+  as an endpoint of the next.
+
+The perfect-Ext variant (`PerfectHomZeroAtTop` and its three consumers) was
+deleted in wave 6 together with the contentless `CompactsArePerfect`
+(`results/OPEN_INPUTS.md` row 2.11, F4).
 
 No `D_qc` construction is asserted here. In a qcqs scheme instantiation, the
 remaining geometric inputs are the supported derived categories and their
@@ -68,28 +69,6 @@ theorem satisfiesStandardWA_of_setup44 (S : Setup44 DZ D DU)
 
 end Setup44
 
-section PerfectVanishing
-
-variable {C : Type u} [Category.{v} C] [Preadditive C]
-  [HasZeroObject C] [HasShift C ℤ]
-  [∀ (n : ℤ), (shiftFunctor C n).Additive] [Pretriangulated C]
-
-/-- Positive Hom vanishing between perfect complexes. For `D_qc,Z(X)` this is
-the bounded-perfect Ext input: Stacks 09MB and bounded cohomology of perfect
-complexes (0BCJ). -/
-def PerfectHomZeroAtTop (P : CompactsArePerfect C) : Prop :=
-  ∀ X Y : C, P.Perf X → P.Perf Y → EventuallyHomZero X Y
-
-/-- Neeman 3.2(i), in the form `CompactsArePerfect`, reduces positive compact
-Hom vanishing to positive perfect Hom vanishing. -/
-theorem compactHomZeroAtTop_of_perfectHomZeroAtTop
-    (P : CompactsArePerfect C) (h : PerfectHomZeroAtTop P) :
-    CompactHomZeroAtTop C := by
-  intro X Y hX hY
-  exact h X Y ((P.compact_iff_perfect X).mp hX) ((P.compact_iff_perfect Y).mp hY)
-
-end PerfectVanishing
-
 section SchemeStep
 
 variable {DZ : Type uZ} {DX : Type uD} {DU : Type uU}
@@ -128,58 +107,23 @@ theorem satisfiesStandardWA_setupMainMinimal (S : SetupMainMinimal DZ DX DU)
   exact ⟨W, ht⟩
 
 /-- The full output of one 09SR-free gluing step. In particular, the data use
-`I.setup.tD`, their generator is the normalized LP generator, and that compact
-generator is perfect. -/
+`I.setup.tD` and their generator is the normalized LP generator.  (Before wave 6
+the conclusion also had a conjunct `I.perfectX.Perf W.G`, read off the deleted
+contentless field `CompactsArePerfect`; `results/OPEN_INPUTS.md` row 2.11.) -/
 theorem exists_standardData_of_compactHomZeroAtTop
     (I : SchemeOpenClosedDerived DZ DX DU)
     [HasCoproducts.{v} DZ] [HasCoproducts.{v} DX] [HasCoproducts.{v} DU]
     (hvan : CompactHomZeroAtTop DX) :
     ∃ W : WeakApproximationData DX,
       W.t = I.setup.tD ∧
-      W.G = (I.setup.G'⟦I.setup.m⟧ ⊞ I.setup.R.jShriek.obj I.setup.GU) ∧
-      I.perfectX.Perf W.G := by
-  obtain ⟨W, ht, hG⟩ := exists_standardData_setupMainMinimal I.setup hvan
-  exact ⟨W, ht, hG, (I.perfectX.compact_iff_perfect W.G).mp W.G_compact⟩
-
-/-- Perfect Ext vanishing suffices for the full standard-t, perfect-generator
-output. No Stacks 09SR hypothesis is used. -/
-theorem exists_standardData_of_perfectHomZeroAtTop
-    (I : SchemeOpenClosedDerived DZ DX DU)
-    [HasCoproducts.{v} DZ] [HasCoproducts.{v} DX] [HasCoproducts.{v} DU]
-    (hvan : PerfectHomZeroAtTop I.perfectX) :
-    ∃ W : WeakApproximationData DX,
-      W.t = I.setup.tD ∧
-      W.G = (I.setup.G'⟦I.setup.m⟧ ⊞ I.setup.R.jShriek.obj I.setup.GU) ∧
-      I.perfectX.Perf W.G :=
-  exists_standardData_of_compactHomZeroAtTop I
-    (compactHomZeroAtTop_of_perfectHomZeroAtTop I.perfectX hvan)
-
-/-- Standard weak approximability for the middle t-structure, using only
-perfect Ext vanishing and Neeman's compact/perfect identification. -/
-theorem satisfiesStandardWA_of_perfectHomZeroAtTop
-    (I : SchemeOpenClosedDerived DZ DX DU)
-    [HasCoproducts.{v} DZ] [HasCoproducts.{v} DX] [HasCoproducts.{v} DU]
-    (hvan : PerfectHomZeroAtTop I.perfectX) :
-    SatisfiesStandardWA DX I.setup.tD := by
-  obtain ⟨W, ht, _, _⟩ := exists_standardData_of_perfectHomZeroAtTop I hvan
-  exact ⟨W, ht⟩
-
-/-- Bare weak approximability is the corresponding projection. -/
-theorem satisfiesWA_of_perfectHomZeroAtTop
-    (I : SchemeOpenClosedDerived DZ DX DU)
-    [HasCoproducts.{v} DZ] [HasCoproducts.{v} DX] [HasCoproducts.{v} DU]
-    (hvan : PerfectHomZeroAtTop I.perfectX) : SatisfiesWA DX :=
-  satisfiesWA_of_satisfiesStandardWA (satisfiesStandardWA_of_perfectHomZeroAtTop I hvan)
+      W.G = (I.setup.G'⟦I.setup.m⟧ ⊞ I.setup.R.jShriek.obj I.setup.GU) :=
+  exists_standardData_setupMainMinimal I.setup hvan
 
 end SchemeStep
 
 end RelativeWeakApprox.SchemeGluingM2
 
 #print axioms RelativeWeakApprox.SchemeGluingM2.satisfiesStandardWA_of_setup44
-#print axioms RelativeWeakApprox.SchemeGluingM2.compactHomZeroAtTop_of_perfectHomZeroAtTop
 #print axioms RelativeWeakApprox.SchemeGluingM2.exists_standardData_setupMainMinimal
 #print axioms RelativeWeakApprox.SchemeGluingM2.satisfiesStandardWA_setupMainMinimal
 #print axioms RelativeWeakApprox.SchemeGluingM2.exists_standardData_of_compactHomZeroAtTop
-#print axioms RelativeWeakApprox.SchemeGluingM2.exists_standardData_of_perfectHomZeroAtTop
-#print axioms RelativeWeakApprox.SchemeGluingM2.satisfiesStandardWA_of_perfectHomZeroAtTop
-#print axioms RelativeWeakApprox.SchemeGluingM2.satisfiesWA_of_perfectHomZeroAtTop

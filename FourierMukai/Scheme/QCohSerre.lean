@@ -22,9 +22,9 @@ affine global sections are exact when the outer two terms are quasicoherent; and
 a five-term weak-Serre lemma.  Consequently `QuasicoherentExtensionInput` **alone**
 makes `IsDQCoh X` triangulated (`isDQCohTriangulatedOfExtensionInput`) with direct
 mapping-cone closure — the strong subobject and quotient hypotheses used earlier
-are not needed for that consequence.  `quasicoherentSerreInputOfStrongClosure`
-assembles the strong interface from three explicitly named 01LA fields, so a
-future proof of extension closure plugs in without touching `Derived.lean`.
+are not needed for that consequence.  The strong interface
+`QuasicoherentStrongClosureInput` is false for `Spec ℤ` (`Scheme/RefuteQCohSerre.lean`);
+its assembly `quasicoherentSerreInputOfStrongClosure` was deleted in wave 6.
 
 Not proved: extension closure itself, and arbitrary subobject or quotient
 closure.  No claim of full 01LA is made.  `QCohSerreExtension.lean` carries the
@@ -427,17 +427,7 @@ structure QuasicoherentStrongClosureInput (X : Scheme.{u}) : Prop where
   quotients : (quasiCoherent X).IsClosedUnderQuotients
   extensions : (quasiCoherent X).IsClosedUnderExtensions
 
-/-- Assemble the original strong Serre input from its three non-zero fields. -/
-theorem quasicoherentSerreInputOfStrongClosure (X : Scheme.{u})
-    (h : QuasicoherentStrongClosureInput X) : QuasicoherentSerreInput X where
-  serreClass :=
-    { exists_zero := (quasiCoherent_containsZero X).exists_zero
-      prop_of_mono := h.subobjects.prop_of_mono
-      prop_of_epi := h.quotients.prop_of_epi
-      prop_X₂_of_shortExact := h.extensions.prop_X₂_of_shortExact }
-
 /-! ### Axiom audit -/
-
 
 end
 

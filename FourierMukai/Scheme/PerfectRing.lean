@@ -24,9 +24,9 @@ retracts and direct summands; `Perf A ≤ Db A`; and `Perf A ≤ Dbcoh A` for
 Noetherian `A` (via the generic fact that the bounded complexes with cohomology
 in a Serre class form a thick triangulated subcategory, `DerivedCohomology.Bounded`).
 
-One external input is named rather than assumed: `BoundedProjectiveModelInput`
-identifies `Perf A` with bounded complexes of finitely generated projectives.  It
-is not used by the proved inclusions.  (The former `CompactPerfectInput`, compact
+The off-path input `BoundedProjectiveModelInput` (`Perf A` = bounded complexes of
+finitely generated projectives, Stacks 066S/0656) was deleted in wave 6.
+(The former `CompactPerfectInput`, compact
 ⇔ `Perf A`, i.e. Neeman 2024, Theorem 3.2(i) for `D(A-Mod)`, was deleted on
 `wave5/neeman-prune`: compact ⇒ `Perf` is proved in
 `Scheme/M4Unconditional.lean` and from Stacks 09SR in `Scheme/Neeman32Inputs.lean`,
@@ -307,21 +307,6 @@ structure BoundedFiniteProjectiveModel (A : Type u) [CommRing A]
   /-- The complex represents `X` in the derived category. -/
   iso : X ≅ DerivedCategory.Q.obj complex
 
-/-- **External input, not asserted by this file.**  The equivalence between
-`Perf A` and bounded complexes of finitely generated projective modules.
-
-The mathematical proof is supplied by Stacks Definition 0657 together with
-Lemmas 066R, 066S and 066T: finite projective modules are retracts of finite
-free modules, and stupid truncation expresses a bounded complex as finitely
-many extensions of its terms.  A future development should prove this field,
-not introduce it as an axiom. -/
-structure BoundedProjectiveModelInput (A : Type u) [CommRing A] where
-  /-- `X` is in the thick envelope of `A[0]` exactly when it has a bounded
-  finite-projective model. -/
-  perf_iff_model : ∀ X : DerivedCategory (ModuleCat A),
-    Perf A X ↔ Nonempty (BoundedFiniteProjectiveModel A X)
-
 end RingPerfect
-
 
 end RelativeFM

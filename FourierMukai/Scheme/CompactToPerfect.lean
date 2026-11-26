@@ -27,8 +27,9 @@ compact object of `D(R)` is perfect.
   model, hence perfect.  Consequently `compact ⇒ Perf` does not need Stacks
   066S, although the full compact-to-model statement does.
 
-`FilteredFreeModelInput` and `FiniteFreeImprovementInput` are the two residual
-inputs to the affine gluing endpoint.  They are not asserted for a ring.  The
+`FiniteFreeImprovementInput` is a residual input; it is not asserted for a ring.
+(`FilteredFreeModelInput` and the affine gluing endpoint built on it were deleted
+in wave 6, `results/OPEN_INPUTS.md` row 3.5.)  The
 more explicit `DegreeImprovementTriangleDatum` refines the latter, while
 `TruncationCoproductDatum` belongs only to the optional bounded-above argument.
 No global coproduct existence, free resolution, filtration, or compactness
@@ -462,23 +463,6 @@ structure BoundedFreeInductionInput (A : Type uA) [CommRing A] where
     Nonempty (BoundedFreeFactorization A X)
   improve : FiniteFreeImprovementInput A
 
-/-- Ring data needed for the initial part of 07LR/07LT: every compact object
-has a free complex model and a bounded-free filtration whose induced Hom maps
-are jointly surjective. -/
-structure FilteredFreeModelInput (A : Type uA) [CommRing A] where
-  models : ∀ X : AffineD A, IsCompactAb X →
-    ∃ M : FreeComplexModel A X, Nonempty (BoundedFreeFiltration A M)
-
-/-- Assemble the initial stage (07LR) and the one-degree improvement into the
-complete bounded-free induction package. -/
-theorem boundedFreeInductionInput_of_filteredFreeModels
-    (A : Type uA) [CommRing A] (F : FilteredFreeModelInput A)
-    (I : FiniteFreeImprovementInput A) : BoundedFreeInductionInput A where
-  initial X hX := by
-    obtain ⟨M, hM⟩ := F.models X hX
-    exact nonempty_boundedFreeFactorization_of_filtration A M hM.some hX
-  improve := I
-
 /-- The induction turns arbitrary bounded-free identity factorizations into
 bounded finite-projective ones, preserving the identity factorization. -/
 theorem stacks07LTBoundedFactorizationInput_of_freeInduction
@@ -506,14 +490,6 @@ theorem compactToPerfectInput_of_freeInduction
   compactToPerfectInput_of_boundedFactorization A
     (stacks07LTBoundedFactorizationInput_of_freeInduction A I)
 
-/-- `compact ⇒ Perf` from filtered free models (07LR) and explicit one-degree
-improvement triangles (the module-level step of 07LT). -/
-theorem compactToPerfectInput_of_filteredFreeModels
-    (A : Type uA) [CommRing A] (F : FilteredFreeModelInput A)
-    (I : FiniteFreeImprovementInput A) : CompactToPerfectInput A :=
-  compactToPerfectInput_of_freeInduction A
-    (boundedFreeInductionInput_of_filteredFreeModels A F I)
-
 /-- With the direct-summand theorem for bounded finite-projective models
 (Stacks 066S), the same factorization input also gives the full compact-to-model
 statement.  Before applying 066S, compactness is used only to obtain `Perf A`. -/
@@ -540,39 +516,6 @@ end RingConclusion
 end
 end RelativeFM.Stacks07LT
 
-namespace RelativeFM.StacksGluing
-
-open RelativeWeakApprox
-open CategoryTheory CategoryTheory.Limits
-open CategoryTheory.Pretriangulated CategoryTheory.Triangulated
-
-universe uA uZ uU
-
-variable (A : Type uA) [CommRing A]
-  (DZ : Type uZ) (DU : Type uU)
-  [Category.{uA + 1} DZ] [Category.{uA + 1} DU]
-  [Preadditive DZ] [Preadditive DU]
-  [HasZeroObject DZ] [HasZeroObject DU]
-  [HasShift DZ ℤ] [HasShift DU ℤ]
-  [∀ n : ℤ, (shiftFunctor DZ n).Additive]
-  [∀ n : ℤ, (shiftFunctor DU n).Additive]
-  [Pretriangulated DZ] [Pretriangulated DU]
-  [CategoryTheory.IsTriangulated DZ] [CategoryTheory.IsTriangulated DU]
-
-/-- The affine gluing endpoint with `Stacks07LTCompactModelInput` replaced by
-its two constructive inputs: filtered free models (07LR) and explicit
-one-degree improvement triangles.  No Stacks 066S hypothesis is needed. -/
-theorem affine_theorem_1_1_of_filteredFreeModels
-    (S : SetupMainMinimal DZ (AffineD A) DU)
-    (C : AffineDerivedCoproducts A DZ DU)
-    (F : Stacks07LT.FilteredFreeModelInput A)
-    (I : Stacks07LT.FiniteFreeImprovementInput A) :
-    SatisfiesWA (AffineD A) ↔ AffineEventualSelfVanishing S.G' :=
-  affine_theorem_1_1_of_compactToPerfectInput A DZ DU S C
-    (Stacks07LT.compactToPerfectInput_of_filteredFreeModels A F I)
-
-end RelativeFM.StacksGluing
-
 #print axioms RelativeFM.Stacks07LT.exists_dfinsupp_coproduct_decomposition
 #print axioms RelativeFM.Stacks07LT.exists_comp_coproductProjection_eq_zero
 #print axioms RelativeFM.Stacks07LT.sequence_eq_zero_of_sub_transitionTail
@@ -584,10 +527,7 @@ end RelativeFM.StacksGluing
 #print axioms RelativeFM.Stacks07LT.finiteFreeImprovementInput_of_triangleData
 #print axioms RelativeFM.Stacks07LT.exists_finite_projective_factorization
 #print axioms RelativeFM.Stacks07LT.stacks07LTBoundedFactorizationInput_of_freeInduction
-#print axioms RelativeFM.Stacks07LT.boundedFreeInductionInput_of_filteredFreeModels
 #print axioms RelativeFM.Stacks07LT.compactToPerfectInput_of_boundedFactorization
 #print axioms RelativeFM.Stacks07LT.compactToPerfectInput_of_freeInduction
-#print axioms RelativeFM.Stacks07LT.compactToPerfectInput_of_filteredFreeModels
 #print axioms RelativeFM.Stacks07LT.stacks07LTCompactModelInput_of_boundedFactorization
 #print axioms RelativeFM.Stacks07LT.stacks07LTCompactModelInput_of_freeInduction
-#print axioms RelativeFM.StacksGluing.affine_theorem_1_1_of_filteredFreeModels

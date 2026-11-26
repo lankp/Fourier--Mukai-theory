@@ -13,10 +13,11 @@ compact ⇔ perfect biconditional.  This file makes that precise.
 * `compactToPerfectInput_of_stacks07LT` proves the corresponding implication
   into the thick envelope `Perf A`, using the already proved stupid-filtration
   theorem `AffinePerfect.model_mem_perf`.
-* `affineCompactHomZeroAtTop_of_compactToPerfectInput` and
-  `affine_theorem_1_1_stacks07LT` replace the old Bondal--Van den Bergh/Neeman
-  interface by this one directed Stacks input.  No Stacks 09SR or separate
-  Hom-vanishing input is used.
+* `affineCompactHomZeroAtTop_of_compactToPerfectInput` replaces the old Bondal--Van
+  den Bergh/Neeman interface by this one directed Stacks input.  No Stacks 09SR or
+  separate Hom-vanishing input is used.  (The affine Theorem 1.1 endpoints
+  `affine_theorem_1_1_stacks07LT` and `..._of_compactToPerfectInput` were deleted in
+  wave 6: they took `AffineDerivedCoproducts`, uninhabited for `A ≠ 0`.)
 * `affine_perfectHomZero` is the affine form of Stacks Tag **09MB**
   (Lemma 75.17.2(2): `Ext^n(K,L) = 0` for all but finitely many `n` when `K` is
   perfect and `L` bounded); GL26 cites the same vanishing step to Tag **0GFH**.
@@ -129,64 +130,9 @@ theorem ringObject_isClassicalGeneratorOnCompacts_of_compactToPerfectInput
 
 end
 
-namespace StacksGluing
-
-variable (A : Type u) [CommRing A]
-  (DZ : Type uZ) (DU : Type uU)
-  [Category.{u + 1} DZ] [Category.{u + 1} DU]
-  [Preadditive DZ] [Preadditive DU]
-  [HasZeroObject DZ] [HasZeroObject DU]
-  [HasShift DZ ℤ] [HasShift DU ℤ]
-  [∀ n : ℤ, (shiftFunctor DZ n).Additive]
-  [∀ n : ℤ, (shiftFunctor DU n).Additive]
-  [Pretriangulated DZ] [Pretriangulated DU]
-  [CategoryTheory.IsTriangulated DZ] [CategoryTheory.IsTriangulated DU]
-
-/-- Reverse affine LP gluing from the single compact-to-perfect implication.
-The coproduct and minimal recollement fields remain explicit in `C` and `S`. -/
-theorem satisfiesWA_of_compactToPerfectInput
-    (S : SetupMainMinimal DZ (AffineD A) DU)
-    (C : AffineDerivedCoproducts A DZ DU)
-    (I : CompactToPerfectInput A) : SatisfiesWA (AffineD A) := by
-  let _ : HasCoproducts.{u + 1} DZ := C.hasCoproductsZ
-  let _ : HasCoproducts.{u + 1} (AffineD A) := C.hasCoproductsA
-  let _ : HasCoproducts.{u + 1} DU := C.hasCoproductsU
-  exact S.satisfiesWA_of_compactHomZeroAtTop
-    (affineCompactHomZeroAtTop_of_compactToPerfectInput A I)
-
-/-- Affine LP Theorem 1.1 using only compact ⇒ perfect.  Neither the reverse
-compactness implication nor Bondal--Van den Bergh nor Neeman is a hypothesis. -/
-theorem affine_theorem_1_1_of_compactToPerfectInput
-    (S : SetupMainMinimal DZ (AffineD A) DU)
-    (C : AffineDerivedCoproducts A DZ DU)
-    (I : CompactToPerfectInput A) :
-    SatisfiesWA (AffineD A) ↔ AffineEventualSelfVanishing S.G' := by
-  have hvan := affineCompactHomZeroAtTop_of_compactToPerfectInput A I
-  constructor
-  · intro _
-    exact hvan S.G' S.G' S.G'_compact S.G'_compact
-  · intro _
-    exact satisfiesWA_of_compactToPerfectInput A DZ DU S C I
-
-/-- The affine endpoint with the literal Stacks **07LT** compact-to-model
-input.  On a qcqs scheme this is the affine reduction of **09M1** via 06Z0.
-The remaining hypotheses are exactly the coproduct package and Setup 4.4. -/
-theorem affine_theorem_1_1_stacks07LT
-    (S : SetupMainMinimal DZ (AffineD A) DU)
-    (C : AffineDerivedCoproducts A DZ DU)
-    (I : Stacks07LTCompactModelInput A) :
-    SatisfiesWA (AffineD A) ↔ AffineEventualSelfVanishing S.G' :=
-  affine_theorem_1_1_of_compactToPerfectInput A DZ DU S C
-    (compactToPerfectInput_of_stacks07LT A I)
-
-end StacksGluing
-
 end RelativeFM
 
 #print axioms RelativeFM.compactToPerfectInput_of_stacks07LT
 #print axioms RelativeFM.affine_perfectHomZero
 #print axioms RelativeFM.affineCompactHomZeroAtTop_of_compactToPerfectInput
 #print axioms RelativeFM.ringObject_isClassicalGeneratorOnCompacts_of_compactToPerfectInput
-#print axioms RelativeFM.StacksGluing.satisfiesWA_of_compactToPerfectInput
-#print axioms RelativeFM.StacksGluing.affine_theorem_1_1_of_compactToPerfectInput
-#print axioms RelativeFM.StacksGluing.affine_theorem_1_1_stacks07LT

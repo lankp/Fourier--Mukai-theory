@@ -22,8 +22,10 @@ import Mathlib.CategoryTheory.Triangulated.Subcategory
   shifts are proved.
 * Interfaces with the facts that are not in Mathlib: `VectorBundleCalculus`
   (restriction, tensor, dual, extensions and retracts, with 08CR/08CS thickness),
-  `PerfectToDQCohInterface` (`Perf ⊆ D_qc`, the 09M1 direction), and
-  `PerfectCompactInterface` (compacts = perfect, Stacks 09M1 + 0AED).
+  and `PerfectToDQCohInterface` (`Perf ⊆ D_qc`, the 09M1 direction).  The
+  compacts-versus-perfect interface (`PerfectCompactStatement`,
+  `PerfectCompactInterface`) was deleted in wave 6: its `compact` predicate was a
+  free field, so it was contentless (`results/OPEN_INPUTS.md` F4, row 5.9).
 * The affine comparison: `affineThickGenerated` for `Perf(Spec A)` as the thick
   envelope of the structure sheaf, `AffinePerfectCharacterization` stating the
   two agree, and `affineThickGenerated_le_perfect` proving one inclusion under
@@ -462,43 +464,6 @@ theorem perfect_le_dqcoh {X : Scheme.{u}} [HasDerivedCategory.{w} X.Modules]
   intro E hE
   obtain ⟨K, hK, ⟨e⟩⟩ := hE
   exact H.DQCoh.prop_of_iso e (H.complex_mem K hK)
-
-/-! ### Perfect objects versus compact objects -/
-
-/-- The precise compact-versus-perfect statement on a quasi-compact
-quasi-separated scheme, used in GL26 **Remark 2.6** when passing between
-`D_qc` and `Perf`.  `compact` is intended to be instantiated by
-`RelativeWeakApprox.IsCompactAb`; it is not specialized to compactness in the
-larger derived category of all module sheaves. -/
-def PerfectCompactStatement {X : Scheme.{u}} [HasDerivedCategory.{w} X.Modules]
-    (H : PerfectToDQCohInterface X) (compact : ObjectProperty (SchemeD X)) : Prop :=
-  ∀ E, H.DQCoh E → (compact E ↔ IsPerfect E)
-
-/-- PROVISIONAL interface for **Stacks Tags 09M1 and 0AED**: on a qcqs scheme
-(or a qcqs algebraic space over a scheme), an object of `D_qc(X)` is compact
-exactly when it is perfect.
-
-Both tags are biconditional.  Tag 09M1 (Proposition 36.17.1) is the scheme
-statement; its affine case reduces, through the equivalence of Tag 06Z0, to
-Tag 07LT (Proposition 15.80.3: for a ring `R`, an object of `D(R)` is perfect —
-i.e. has a bounded complex of finite projective modules as a model, Tag 0657 —
-if and only if it is compact), and its scheme case is assembled from the affine
-one by Zariski locality.  Tag 0AED (Lemma 75.16.3) is the algebraic-space
-statement *with support*, and gives the supported form directly: an object of
-`D_QCoh,T(O_X)` is compact if and only if it is perfect on `X`.  The easy
-direction of each is Tag 09M8 (perfect objects are compact), which is what
-`PerfectToDQCohInterface` above supplies the shadow of.
-
-This theorem is *not* proved here.  The qcqs hypotheses follow from the
-Noetherian-scheme target. -/
-structure PerfectCompactInterface (X : Scheme.{u}) [HasDerivedCategory.{w} X.Modules]
-    [CompactSpace X] [QuasiSeparatedSpace X] (H : PerfectToDQCohInterface X) where
-  /-- Compact objects of `D_qc(X)`, supplied by the categorical layer. -/
-  compact : ObjectProperty (SchemeD X)
-  /-- Stacks Tags **09M1** (schemes) and **0AED** (algebraic spaces, with
-  support); both are biconditional, with Tag 09M8 for the direction perfect
-  implies compact. -/
-  compact_iff_perfect : PerfectCompactStatement H compact
 
 /-! ### The affine thick-generation characterization -/
 

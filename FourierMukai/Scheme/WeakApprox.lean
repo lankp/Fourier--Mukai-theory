@@ -15,9 +15,8 @@ docstring saying where it comes from.
 ## What is proved
 
 `SchemeOpenClosedDerived` bundles Mathlib's open immersion and closed complement
-together with the `SetupMainMinimal` package of LP and the three
-`CompactsArePerfect` identifications, and the support predicate with its kernel
-characterization.  From that data:
+together with the `SetupMainMinimal` package of LP and the support predicate
+with its kernel characterization.  From that data:
 
 * `weakApprox_dqcX_of_gluing` concludes `SatisfiesWA DX` — weak approximability
   of the middle category — by applying LP Theorem 1.1
@@ -27,9 +26,8 @@ characterization.  From that data:
   vanishing statement, which is the form LP Theorem 1.1 has;
 * `weakApprox_dqcX_of_compactHomZeroAtTop` removes 09SR entirely, using the
   repository's `CompactVanishing` module;
-* `jShriek_compact`, `G'_perfect`, `GU_perfect`, `GZ_perfect` and
-  `iLower_supported` are the geometric side conditions, proved from the
-  interface fields rather than assumed.
+* `jShriek_compact` and `iLower_supported` are the geometric side conditions,
+  proved from the interface fields rather than assumed.
 
 ## What this measures
 
@@ -99,17 +97,6 @@ structure SchemeOpenClosed where
 
 attribute [instance] SchemeOpenClosed.j_open
 
-/-- The compact objects of a supported derived category are the indicated
-perfect complexes.  For scheme instantiations this is Neeman 2024, Theorem
-3.2(i), not a theorem proved in this file. -/
-structure CompactsArePerfect (C : Type u) [Category.{v} C] [Preadditive C]
-    [HasZeroObject C] [HasShift C ℤ]
-    [∀ (n : ℤ), (shiftFunctor C n).Additive] [Pretriangulated C] where
-  /-- Perfect complexes (on `X`, with the appropriate support). -/
-  Perf : ObjectProperty C
-  /-- Neeman 3.2(i): compact iff perfect with the prescribed support. -/
-  compact_iff_perfect : ∀ G : C, IsCompactAb G ↔ Perf G
-
 /-- Stacks Tag 09SR, in the exact form required by `theorem_1_1`.
 For a scheme instantiation the geometric input identifying compacts with
 perfect complexes is Neeman 2024, Theorem 3.2(i); the finite thick-envelope
@@ -154,8 +141,10 @@ necessarily the derived category of a chosen closed subscheme structure on
 `i^* ⊣ i_* ⊣ i^!`, their exactness, and both distinguished gluing triangles.
 
 The field `supported_iff` is the missing geometric identification of support
-with the kernel of restriction.  The compact/perfect fields come from Neeman
-3.2(i) for schemes.  Nothing in this structure asserts existence of the
+with the kernel of restriction.  (The three compact/perfect fields
+`CompactsArePerfect` were deleted in wave 6: their `Perf` was a free field, so
+they carried no content; `results/OPEN_INPUTS.md` row 2.11, F4.)  Nothing in
+this structure asserts existence of the
 abstract categories; an instantiation must provide them. -/
 structure SchemeOpenClosedDerived where
   /-- Actual open immersion and its closed complement in Mathlib. -/
@@ -163,13 +152,6 @@ structure SchemeOpenClosedDerived where
   /-- The 20-field minimal LP setup, including both six-functor adjunction
   chains and weak approximation data on the two ends. -/
   setup : SetupMainMinimal DZ DX DU
-  /-- Supported compacts are perfect in the middle category (Neeman 3.2(i)
-  in a scheme instantiation). -/
-  perfectX : CompactsArePerfect DX
-  /-- Compact/perfect identification on the open category. -/
-  perfectU : CompactsArePerfect DU
-  /-- Compact/perfect identification on the closed-support category. -/
-  perfectZ : CompactsArePerfect DZ
   /-- Cohomological support on the closed complement, as a predicate on the
   middle category. -/
   supportedOnZ : ObjectProperty DX
@@ -220,20 +202,6 @@ theorem GU_compact : IsCompactAb I.setup.GU := by
 geometric hypothesis categorically, using LP Lemma 4.3(2)'s implementation. -/
 theorem jShriek_compact : IsCompactAb (I.setup.R.jShriek.obj I.setup.GU) :=
   recollement_jShriek_compact I.setup.R I.GU_compact
-
-/-- The chosen middle compact generator is perfect after a scheme
-instantiation, by Neeman 3.2(i). -/
-theorem G'_perfect : I.perfectX.Perf I.setup.G' :=
-  (I.perfectX.compact_iff_perfect _).mp I.setup.G'_compact
-
-/-- The chosen open generator is perfect after a scheme instantiation. -/
-theorem GU_perfect : I.perfectU.Perf I.setup.GU :=
-  (I.perfectU.compact_iff_perfect _).mp I.GU_compact
-
-/-- The chosen closed-support generator is perfect after a scheme
-instantiation. -/
-theorem GZ_perfect : I.perfectZ.Perf I.setup.approxZ.G :=
-  (I.perfectZ.compact_iff_perfect _).mp I.setup.approxZ.G_compact
 
 /-- Every object in the essential image of the closed-support inclusion is
 supported on the closed complement, using `supported_iff` and the kernel part
@@ -404,7 +372,6 @@ theorem weakApprox_dqcX_of_compactHomZeroAtTop [HasCoproducts.{v} DZ]
 
 end CompactVanishingAlternative
 end SchemeOpenClosedDerived
-
 
 end RelativeWeakApprox
 

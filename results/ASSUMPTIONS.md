@@ -12,8 +12,9 @@ open items whose content is to be formalized here, not permitted inputs.  Since
 and `NeemanPublishedWeakApproximation` are deleted, and their consumers take no input in
 `D(A-Mod)` (compact ⇒ `Perf` is proved, `Scheme/M4Unconditional.lean`) and Stacks
 09SR (`Tag09SRPaper`) in the small-Hom model (`results/NEEMAN_3_2.md` §5).  The remaining Thm 3.2
-carriers are scheme-level: `SupportedCategoryInput.neeman_3_2_iii` and the
-`CompactsArePerfect` fields of the scheme gluing interfaces. The interface is
+carrier is scheme-level: `SupportedCategoryInput.neeman_3_2_iii` (the
+`CompactsArePerfect` fields of the scheme gluing interfaces were deleted in wave 6,
+`wave6/prune-dead-inputs`: their `Perf` was a free field). The interface is
 `FourierMukai/Scheme/StacksInput.lean`, in `RelativeFM.StacksInterface`; its
 fields record exact statements and tag numbers from AxiomMath/Stacks. See also
 `results/STACKS_INTERFACE.md`.
@@ -50,7 +51,10 @@ permitted assumptions: a theorem that takes one is recorded as conditional (C in
 | input | Lean name | used by | source | to discharge |
 |---|---|---|---|---|
 | Pseudofunctoriality of `L(-)^*` and `R(-)_*` as a family indexed by morphisms, with conjugate composition and unit isomorphisms | `DerivedPseudofunctorInput S` (`Scheme/DualityMates.lean`) | GL26 Lemmas 7.12–7.17 for `Duality.lean`'s base-change maps (`DerivedPseudofunctorInput.lemma_7_12`, `coherence`, `lemma_7_15`, `lemma_7_17_*`) | Lipman 2009, (3.6.2); GL26 Lemma 2.13 (`lem:spacey_Lipman_Hashimoto`) | construct `L(-)^*`, `R(-)_*` on the scheme model as pseudofunctors and prove (3.6.2) |
-| Bousfield localization at a compact object: every `E` sits in a triangle `S → E → R → S⟦1⟧` with `S ∈ ⟨G⟩‾` and `R` right orthogonal to the shifts of `G` | `HasBousfieldTriangles G` (`Prelim/Lemma24.lean`) | only the secondary route `isLocalizingGenerator_of_isPaperGenerator`, `isPaperGenerator_iff_isLocalizingGenerator`; **no longer used by the headline GL26 Lemma 2.4** (`lemma_2_4` now uses Stacks 09SN, see §4).  `CompactBousfieldLocalization C` was deleted (it was stated with the refuted `Type`-valued `IsCompact`, hence trivially true; `Prelim/CompactnessAudit.lean`) | Neeman, *Triangulated categories* (2001), Rmk 1.16, Thm 1.17, Prop 9.1.19 | not needed for GL26 Lemma 2.4; Brown representability if the route is wanted |
+
+`HasBousfieldTriangles G` (Bousfield triangles, the secondary route to GL26 Lemma 2.4)
+was deleted in wave 6 (`wave6/prune-dead-inputs`, `results/OPEN_INPUTS.md` row 6.16)
+together with its two consumers; the headline `lemma_2_4` uses Stacks 09SN (§4).
 
 ## 2. The affine endpoint and what is actually proved
 
@@ -68,7 +72,9 @@ RelativeFM.affine_theorem_1_1_small_standard_of_tag09SR
 (in `Scheme/Neeman32Inputs.lean` since `wave5/neeman-prune`, formerly
 `affine_theorem_1_1_small_standard_neeman_only`).  The large-Hom endpoint
 `RelativeFM.affine_theorem_1_1_unconditional` (formerly the pinned
-`affine_theorem_1_1_neeman_only`) takes only `S` and the coproduct package.
+`affine_theorem_1_1_neeman_only`) took only `S` and the coproduct package; that package
+is uninhabited for `A ≠ 0` (`Scheme/RefuteLargeCoproducts.lean`), and the endpoint was
+deleted in wave 6.
 
 `H` can be `RelativeFM.Spaltenstein.affineSpaltensteinInput A`; it is not an
 open assumption. Until `wave5/neeman-prune` the last argument was
@@ -138,8 +144,8 @@ input: `AffineNeemanEndpointM3.small_affine_neeman_3_2_iii_iv_base` was already
 unconditional, and `Scheme/SmallAffineBridgeM5.lean`, `SmallHomTransportM5.lean` and
 `SmallCompactToPerfectM5.lean` carry compactness and perfection between the large- and
 small-Hom models (`Perf ↔ SmallPerf`, the equivalence triangulated), with the small
-compact ⇔ `SmallPerf` derived from a named factorization input
-(`SmallHomM5.isCompactAb_iff_smallPerf_of_boundedFactorization`) or from 09SR.
+compact ⇔ `SmallPerf` derived from 09SR (the never-inhabited factorization-input route,
+`SmallHomM5.isCompactAb_iff_smallPerf_of_boundedFactorization`, was deleted in wave 6).
 `Scheme/SchemeNeemanTransport.lean` transports the package to the all-sheaves
 `D_qc(Spec A)` model.
 
@@ -169,16 +175,15 @@ endpoint does not use it.
 
 **Active recollement assumptions.**
 
-* **0A6R: assume.** Its normalized natural Čech comparison has the orientation
-  required by `AffineJUpperTensorHom.e : jStar ⋙ affineDZι ≅ T`.
-* **Derived tensor/RHom data: construct it, or assume it explicitly.** It is a
-  separate input to `AffineCechTensorData.tensorHom`, whereas 0A6R is
-  `AffineStacksInput.tag_0A6R`. The tensor data also includes the natural
-  augmentation `cechToId`, which must be constructed before stating 0A6R's
-  normalization. Together these give `jUpper` and `jStar ⊣ jUpper`; shift,
-  exactness and full-faithfulness consequences are already proved in
-  `AffineJUpperAdjoint.lean`. In particular, **0A6R is not the tensor--Hom
-  adjunction**. The wrong candidate `Rj_* Lj^*` is proved zero in
+* **0A6R: no longer used.** The 0A6R route to `jUpper` (`AffineCechTensorData`,
+  `Tag0A6R`, `AffineStacksInput` in `StacksInput.lean`, and
+  `AffineCech.ComparisonInput` with its `RecollementAssembly` in
+  `AffineDerivedTensorHom.lean`) was deleted in wave 6 (`wave6/prune-dead-inputs`,
+  `results/OPEN_INPUTS.md` rows 1.9, 1.10): it is superseded by
+  `Recollement.JUpperConstruction.affineRecollementInputOfIShriek`.  If 0A6R is ever
+  wanted, the AxiomMath source is `LocalCohomology.CechFormula.localCohomologyCechIso`.
+  Shift, exactness and full-faithfulness consequences of `jStar ⊣ jUpper` are proved
+  in `AffineJUpperAdjoint.lean`; the wrong candidate `Rj_* Lj^*` is proved zero in
   `AffineJUpperCandidateRefuted.lean`.
 
 For the ordinary all-sheaves comparison, direct **06Z0** is the shortest allowed
@@ -190,9 +195,9 @@ assumptions.
 
 **Open or incomplete.**
 
-1. Construct/instantiate `DerivedTensorHomData`, the Čech augmentation
-   `cechToId`, and the 0A6R comparison to finish the sole remaining concrete
-   recollement adjunction.
+1. Instantiate the inputs of `affineRecollementInputOfIShriek` (the right adjoint
+   `iShriek`, Stacks 0E55) to finish the sole remaining concrete recollement
+   adjunction.
 2. Construct the remaining approximation, normalization, glued-generator and
    large/small transport data from ring data and Neeman. An abstract
    `SetupMainMinimal` argument is not such a construction.
@@ -213,7 +218,7 @@ general Stacks tag. New interface/companion-module tags follow this table.
 |---|---|
 | 0096, 00A6, 00AB, 00NX, 01BD | P: the cited sheaf-level pullback/extension-by-zero, associated-sheaf, and affine-local quasicoherence facts. Derived functors are separate. |
 | 01HV, 01IE | P: exact affine `tilde`; affine extension patching and its extension-closure/triangulated consequences. |
-| 01LA, 01LB | P for active coproduct/kernel/cokernel/extension closure; S only for stronger uninstantiated legacy interfaces. Arbitrary subobject/quotient instances are not claimed. |
+| 01LA, 01LB | P for active coproduct/kernel/cokernel/extension closure. Arbitrary subobject/quotient closure is **false** (`Scheme/RefuteQCohSerre.lean`); the consumers of the false `QuasicoherentSerreInput`/`QuasicoherentStrongClosureInput` and the coproduct input `DQCohCoproductInput` were deleted in wave 6. |
 | 01C6 | P for elementary finite-locally-free facts; S for the remaining vector-bundle calculus fields. |
 | 0657, 066R, 066T | P in the module-model development: definitions/elementary retract facts and model implies `Perf A`. |
 | 066S | **Open, off the paper path** (`wave5/neeman-prune`): the N route (`Affine066S.lean`, from `NeemanAffineCompactModelInput`) is deleted. Partial results in `Affine066SRetracts.lean`; lemmas needing it take the retract closure `hR` as an explicit hypothesis. No full-tag proof is claimed. |
@@ -233,12 +238,12 @@ general Stacks tag. New interface/companion-module tags follow this table.
 | 094A, 09SP | R now; S only if the Brown-representability/09SR route is instantiated. |
 | 09SN | **S, active** (25 Nov 2026): see the 09SN/090Z rows below; used by GL26 Lemmas 2.4 and 2.5. |
 | 08IN, 08IR | P for abstract computations/mates once data is supplied; S for the geometric projection formula and Tor-independent base change. |
-| 08CR, 08CS, 0FPU, 0FPV | S for general perfect-thickness and vector-bundle dual/tensor interfaces. Ring analogues do not inhabit these scheme structures. |
+| 08CR, 08CS, 0FPU, 0FPV | S for general perfect-thickness and vector-bundle dual/tensor interfaces. Ring analogues do not inhabit these scheme structures. (The 08CR/08CS/09M1 package `SchemePerfectStacksInput`, whose 09M1 field had a free `compact` predicate, was deleted in wave 6.) |
 | 08J9, 08JJ, 0E55, 0E5D | S for the perfect-duality and exceptional-functor interface fields; categorical consequences after those inputs are P. |
 | 08H4 | S: derived pullback preserves pseudocoherence via `PullbackStacksInput`; its occurrence in `Scheme/Statements.lean` alone proves no target. |
 | 09IY, 07TZ, 09TF | S for future GL26 proofs; currently specification-only in `Scheme/Statements.lean`. |
 | 0BY7, 0BY9, 0FD2, 0FW1, 0A26 | S for the elliptic-fibration target; currently specification-only. |
-| 0A6R | **S, active:** normalized local-cohomology/Čech-tensor comparison, not the derived tensor--Hom adjunction. |
+| 0A6R | **Not used** (wave 6, `wave6/prune-dead-inputs`): the 0A6R route (`AffineCechTensorData`, `AffineStacksInput`, `AffineCech.ComparisonInput`) was deleted as superseded by `affineRecollementInputOfIShriek`. |
 | 07A4, 0D6D, 0D6E | New in `AffineConvolution.lean`: P for the categorical convolution; S for geometric pullback--tensor and pseudofunctoriality data used to build its cube. |
 | 08IR (`FMCube.lean`) | **S, as named `Prop`s** `RelativeFM.FMCube.FlatBaseChangeLeft`, `FlatBaseChangeRight`: invertibility of the base change map `θ_□` (GL26 Lemma-Definition 7.13) for the two faces `Y₁₂T = Y₁₂ ×_{Y₁} Y₁T`, `Y₁₂T = Y₁₂ ×_{Y₂} Y₂T` of the cube of GL26 Setup 2.20 (Tor-independent since `f'₂`, `f'₁` are flat). Hypotheses of GL26 Lemmas 6.11 (`Right`) and 10.1 (`Left`); Lemma 10.2 uses neither. |
 | 08EU, 08IN (`FMCube.lean`) | **S, as a named `Prop`** `RelativeFM.FMCube.ProjectionFormula`: the projection map `R t'_*E ⊗ K ⟶ R t'_*(E ⊗ L t'^*K)`, defined as the mate of monoidality (`TensorPullPushData.projMap`), is invertible. Hypothesis of GL26 Lemma 10.1 only. |

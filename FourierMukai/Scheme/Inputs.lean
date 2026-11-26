@@ -164,15 +164,6 @@ theorem eventuallyHomZero_self_of_compactHomZeroAtTop
     EventuallyHomZero G G :=
   h G G hG hG
 
-/-- **External preprint hypothesis, Neeman arXiv:1806.06471v2, Example 5.4.**
-For a qcqs coherent scheme (in particular a Noetherian scheme), `D_qc,Z(X)` is
-weakly approximable and coherent.  `CoherentTriangulated` is a parameter because
-this project has not formalized that separate notion.  This is a preprint input,
-distinct from the published Acta theorem.  Source:
-https://arxiv.org/html/1806.06471v2#S5.Thmtheorem4 . -/
-def Neeman_coherent_example_5_4 (CoherentTriangulated : Prop) : Prop :=
-  SatisfiesWA C ∧ CoherentTriangulated
-
 end SchemeInputs
 
 #check WeakApproximationData
@@ -182,6 +173,5 @@ end SchemeInputs
 #check EventuallyHomZero
 #check RelativeWeakApprox.SetupMainMinimal.theorem_1_1
 #check RelativeWeakApprox.CompactHomZeroAtTop
-
 
 end RelativeFM
