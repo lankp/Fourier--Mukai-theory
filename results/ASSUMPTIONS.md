@@ -220,6 +220,8 @@ general Stacks tag. New interface/companion-module tags follow this table.
 | 0BY7, 0BY9, 0FD2, 0FW1, 0A26 | S for the elliptic-fibration target; currently specification-only. |
 | 0A6R | **S, active:** normalized local-cohomology/Čech-tensor comparison, not the derived tensor--Hom adjunction. |
 | 07A4, 0D6D, 0D6E | New in `AffineConvolution.lean`: P for the categorical convolution; S for geometric pullback--tensor and pseudofunctoriality data used to build its cube. |
+| 08IR (`FMCube.lean`) | **S, as named `Prop`s** `RelativeFM.FMCube.FlatBaseChangeLeft`, `FlatBaseChangeRight`: invertibility of the base change map `θ_□` (GL26 Lemma-Definition 7.13) for the two faces `Y₁₂T = Y₁₂ ×_{Y₁} Y₁T`, `Y₁₂T = Y₁₂ ×_{Y₂} Y₂T` of the cube of GL26 Setup 2.20 (Tor-independent since `f'₂`, `f'₁` are flat). Hypotheses of GL26 Lemmas 6.11 (`Right`) and 10.1 (`Left`); Lemma 10.2 uses neither. |
+| 08EU, 08IN (`FMCube.lean`) | **S, as a named `Prop`** `RelativeFM.FMCube.ProjectionFormula`: the projection map `R t'_*E ⊗ K ⟶ R t'_*(E ⊗ L t'^*K)`, defined as the mate of monoidality (`TensorPullPushData.projMap`), is invertible. Hypothesis of GL26 Lemma 10.1 only. |
 
 ### Additional tagged-interface fields and alternative inputs
 
