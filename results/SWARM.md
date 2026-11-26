@@ -13,7 +13,8 @@ rules every session follows are in `CLAUDE.md`; this file is the plan.
   manuscript, and pushes the merge to `formalization`.  It updates
   `results/COVERAGE.md` and the log below when it merges, and **updates `README.md`
   when a wave completes** (standing instruction of the maintainer; see `CLAUDE.md`,
-  "Git").
+  "Git").  It **archives every worker of a wave once that wave is merged, before the
+  next wave is launched** (likewise a standing instruction).
 * **Workers**: one cloud session per task, each in its own container, on its own
   branch `wave<N>/<slug>`, ending in a pushed branch and a final report.  No PRs.
 * **Maintainer** (a human): has delegated merging to the orchestrator (25 November

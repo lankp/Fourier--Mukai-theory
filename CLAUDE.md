@@ -147,6 +147,11 @@ The maintainer has delegated merging to the orchestrator session: work reaches
   Layout table) as well as `results/COVERAGE.md` and `results/SWARM.md`, so that the
   README always describes the tree as merged.  This is the maintainer's standing
   instruction.
+* **Before a new wave starts**, every worker session of the previous wave has been
+  merged (or its outcome recorded) and **archived**.  A wave is closed in this order:
+  merge each branch, update `COVERAGE.md`, `SWARM.md` and `README.md`, archive the
+  wave's workers, and only then launch the next wave.  Also a standing instruction
+  of the maintainer.
 
 ## Swarm protocol
 
