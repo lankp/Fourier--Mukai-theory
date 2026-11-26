@@ -61,6 +61,8 @@ schemes, in the supported form `D_qc,Z(X)`.
 | the remaining numbered results of GL26 | stated over Noetherian schemes, or over the abstract interface of `Paper/`, not proved; not yet stated over algebraic spaces |
 | foundation for full generality | AxiomMath/Stacks mapped and audited against GL26 §2.2–2.4 (wave 4); toolchain migrated to Lean/Mathlib v4.35.0 to match it; the dependency and the algebraic-space layer `FourierMukai/Spaces/` are wave 5 |
 
+A generated summary of progress (results by status, pinned theorems and their axioms, tasks merged) is in [`results/PROGRESS.md`](results/PROGRESS.md), produced by `scripts/progress.py`.
+
 The result-by-result status of both papers, in the numbering of the current
 manuscripts, is in [`results/COVERAGE.md`](results/COVERAGE.md); the orchestration
 of the work is in [`results/SWARM.md`](results/SWARM.md).
