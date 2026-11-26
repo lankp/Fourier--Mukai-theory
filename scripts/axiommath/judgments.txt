@@ -1,0 +1,155 @@
+# Human reading of the per-tag dump of tag_map.py (AxiomMath/Stacks f56a316).
+# One line per tag:  TAG | paper's use | scope | spaces? | verdict | extra declarations
+# verdict: usable / usable† / partial / schemes only / absent
+#   usable†: the @[stacks]-tagged declaration does not apply to algebraic spaces as stated
+#   (site-level result at universes a space's small étale site does not have, see the
+#   notes in AXIOMMATH_TAGS.md), but an UNTAGGED AxiomMath declaration, named in the last
+#   field and whose signature was read, states the paper's use for spaces.
+# "Mathlib" in the last field: the declaration is Mathlib's (tagged there or via add_to_stacks).
+001P | Yoneda: a map inducing bijections on all `Hom(-,A)` is an iso | Mathlib carries `@[stacks 001P]`; the consequence used is untagged | categorical | usable | Mathlib: `CategoryTheory.yonedaLemma`, `yoneda_full`, `yoneda_faithful`, `coyonedaLemma` (tagged 001P); `isIso_of_yoneda_map_bijective`, `isIso_of_coyoneda_map_bijective` (untagged)
+003S | `Sp/S` is a (2,1)-category: 2-morphisms invertible | section tag (categories fibred in groupoids); covered by its items 003T, 02XS, 003V, 003Z, ... (`CategoryTheory.CatFiberedInGroupoids`, `Functor.IsFiberedInGroupoids.*`); for spaces 02Y2 (2-morphisms are identities) is the sharper item | categorical | usable | section items, see note on section tags
+005E | a nonempty quasi-compact Kolmogorov space has a closed point | the whole-space case (attribute comment) | topological | usable |
+0118 | canonical truncations of complexes | section tag (definitions only, no tagged items in Stacks) | abelian categories | usable | Mathlib (untagged): `HomologicalComplex.truncLE'`, `truncGE'`, and the t-structure `DerivedCategory.TStructure.t`
+015F | an exact functor equals its right derived functor | whole tag, parts (1)–(5) | abelian categories | usable |
+01SL | a quasi-affine morphism is separated (and quasi-compact) | whole tag | schemes (`Scheme.{u}` morphisms) | schemes only | for spaces: no tagged or untagged `IsQuasiAffineHom → IsSeparated` found; GL26 gets it from 03HA (representability); see 03HA
+021R | fix a base scheme in the big fppf site | definition | sites | usable |
+021S | the big fppf site `(Sch/S)_fppf` | parts (1) and (2) | sites | usable |
+02Y2 | categories fibred in sets: 2-morphisms are identities; ≃ presheaves | whole tag | categorical | usable |
+03BT | points of a space are classes of field-valued points; a map from a field represents its image point | section tag; covered by items 03BU (`Space.points`, `FieldValuedPoint.class_eq_class_iff`), 03BY (`Space.pointTopology`), 03BW, 03BX, 03BZ, 03H4, 03E1, 0H2X | spaces | usable | section items, see note on section tags
+03DH | localization of ringed sites: restriction and extension by zero | section tag; items 04IX, 03DI, 03DJ, 0E8G, 04IY, 08P4, 03EJ all tagged | ringed sites; space-level étale versions among the 03DJ items (`Space.etaleModuleLowerShriek_exact`) | usable | section items; GL26 needs it only inside Lemma 7.19, which is Stacks 08GE for spaces (see Lemma 7.19 cluster)
+03H4 | points of `X ×_Z Y` surject onto pairs of points with the same image | whole tag | spaces (four variants: presheaves, `AlgebraicSpaces`, ULift) | usable |
+03HA | properties of representable morphisms of spaces are those of their base changes to schemes; used to get "quasi-affine ⇒ separated" for spaces | section tag with no numbered items; AxiomMath encodes such properties as `MorphismProperty.presheaf (inverseImage P toScheme)` | spaces | partial | the composite fact GL26 uses (quasi-affine morphism of spaces is separated) has no AxiomMath declaration found; it is 01SL transported along this convention
+03HK | the diagonal of a morphism of spaces is representable, a monomorphism, locally of finite type, separated, locally quasi-finite | whole tag, parts (1)–(5), two formulations | spaces | usable |
+03I7 | a quasi-separated space is decent | section tag; items 03I8 (`IsDecentSpace`, `IsReasonableSpace`, ...), 03ID, 03K0 (clause (1) refuted as stated, corrected), 0ABT, 0ABU tagged | spaces | usable† | untagged: `AlgebraicGeometry.Space.isDecentSpace_of_isAbsolutelyQuasiSeparated` (docstring: the 03JX chain (η)⇒…⇒(γ))
+03JX | the implications between the decency conditions (α)–(θ) | every implication of the lemma, one declaration each | spaces | usable |
+03K2 | on a decent space, specializations lift along an étale chart | whole tag; the decency hypothesis is spelled out as finiteness of fibres over affine étale charts (`hfinite`) | spaces | usable |
+03K3 | a decent space has Kolmogorov `|X|` | whole tag (two hypotheses forms) | spaces | usable |
+03KL | (proof of 03KL) the diagonal of a base change is the base change of the diagonal | the tag's statement (separation properties stable under base change) is tagged; the cartesian square GL26 quotes from its proof is not | spaces | partial | the square itself is categorical (Mathlib `pullback.diagonal` API, untagged)
+03KR | if `g ∘ f` is (quasi-)separated then so is `f` | whole tag (separated, locally separated, quasi-separated) | spaces | usable |
+03LT | `Mod(X)` = `O_X`-modules on `X_étale` | section tag; items 03LU, 03LV, 03LW, 03LX, 03LY tagged; the category is `AlgebraicGeometry.Space.Modules` (untagged) | spaces | usable | section items
+03LV | for étale `h`, `h⁻¹O = O` and module pullback is exact restriction | whole tag | spaces | usable |
+03WN | composition of quasi-affine morphisms is quasi-affine | whole tag | spaces | usable |
+03WO | base change of a quasi-affine morphism is quasi-affine | whole tag | spaces | usable |
+03YP | `Sp/S` is a 2-subcategory of algebraic stacks (expository) | the definition of morphisms of algebraic stacks (the (2,1)-category `AlgebraicStacks`) | stacks | partial | the embedding of spaces into stacks was not located; GL26 does not use it in a proof
+0478 | a scheme locally of finite type over a field is Jacobson | whole tag | schemes; GL26 applies it to a curve over a field (Example-Claim C.4) | usable |
+04JA | flat morphisms of ringed topoi; flat pullback is exact | section tag; items 04JB (`RingedToposHom.IsFlat`, `RingedSite.Hom.IsFlat`), 04JC, 08M5, 0GN2 tagged | ringed topoi | usable | section items; for spaces the exactness used is 03LV `Space.modulePullback_exact`
+04K7 | support of an abelian sheaf on `X_étale` | section tag; items 04K8, 04K9, 04KA (`Space.supportOfSheaf`, `supportOfSection`), 04KB, 04KC tagged | spaces | usable | section items
+04LX | `X_étale/U ≃ U_étale` for étale `U → X`; perfectness and `RHom` are étale local | section tag; items 04LY–04M5, 0GF6 tagged (`Space.spacesEtaleLocalization`, `smallEtaleEquivalenceOverChart`, `smallEtaleRingedEquivalenceOverChart`, ...) | spaces | usable | section items; the étale locality of `RHom` is 08JB
+04S8 | definition of a category fibred in sets | definition | categorical | usable |
+04TM | a presheaf gives a category fibred in sets | whole example | categorical | usable |
+056J | support of a finite type quasi-coherent module on a scheme: closed, detected on fibres, pulls back | named parts (`closed_support`, `support_by_stalk`, `support_by_fibre`, `pullback_support`, `pullback_finite_type`) | schemes; GL26 applies it on an étale chart `U` (a scheme) | usable | `SheafOfModules.pullback_isFiniteType` is named by `add_to_stacks` (not found in AxiomMath: Mathlib)
+05W3 | a morphism between spaces étale over `Z` is étale | whole tag | spaces | usable |
+05W7 | structure of quasi-finite morphisms (Zariski main theorem for spaces) | section tag; items 082I, 082J, 082K, 0874 tagged | spaces | usable | section items; the item used is 082J
+068W | a pseudo-coherent complex is perfect iff perfect at all primes / maximal ideals | the algebra statement, with primes, maximal ideals and fibrewise criteria in one `let` conjunction | rings; GL26 uses it on local rings of a scheme chart | usable | the globalization to `O_U` on a scheme goes through 08HG
+06NH | a Zariski-locally quasi-separated space has a dense open subspace that is a scheme | whole tag (two forms) | spaces | usable | LP26's TeX prints "Tag 06N" for the link 06NH
+06QX | reduced, locally Noetherian space with one point: characterization by a finite-presentation cover | whole tag | spaces | usable |
+06QZ | existence (and uniqueness) of the residual space at a point | whole tag | spaces | usable |
+06R0 | definition of the residual space | definition | spaces | usable |
+06YY | `Lf^*` exists for a morphism of ringed topoi, is exact, computed on K-flat complexes | whole tag; free-universe `RingedToposHom` versions as well as `{u,u,u}` site versions | ringed topoi, universes free in the `OfToposHom` declarations, so it applies to a space's small étale topos | usable | space-level functor (untagged): `AlgebraicGeometry.Space.smallEtaleDerivedModulePullback`
+071Q | on a scheme, `D_QCoh` of the small étale site equals that of the Zariski site | whole tag | schemes (GL26 applies it to schemes) | usable |
+0735 | the base change map (section) | section tag; only item 0736 (flat case, `ToposBaseChange.baseChangeMap`) tagged | ringed topoi | partial | the derived base change map is 07A7; for Lemma 7.19 see 08GE
+073B | a morphism from a qc space to a qs space is qc; permanence | parts (1)–(3) | spaces | usable |
+073H | affine morphisms: `R^i f_* F = 0` for quasi-coherent `F`, `i > 0` | whole tag | spaces | usable | t-exactness on `D_qc` is a consequence; conservativity is 0E4R
+07A4 | `Lf^*(K ⊗^L L) ≅ Lf^*K ⊗^L Lf^*L` | whole tag, at `RingedTopos.{u,u,u}` | site/topos level at universes a space's topos `RingedTopos.{u,u+1,u}` does not have | usable† | untagged: `AlgebraicGeometry.Space.smallEtaleDerivedPullbackTensorIso`
+07A5 | unbounded complexes on ringed sites (K-injective resolutions) | whole tag at `RingedSite.{u,u,u}` | site level, universe mismatch | partial | space-level derived categories exist (`HasDerivedCategory` for `Space.Modules`); no tagged space instance
+07A6 | `Lf^* ⊣ Rf_*` | whole tag; `DerivedPullbackOfToposHom.derivedAdjunction` has free universes | ringed topoi, applies to spaces | usable |
+07A7 | the base change map `Lg^*Rf_* → Rf'_*Lg'^*` | whole tag, free universes, with its adjoint characterization | ringed topoi, applies to spaces | usable |
+07RB | a left (right) adjoint is fully faithful iff the unit (counit) is an iso | whole tag, both parts | categorical | usable | Mathlib (via `add_to_stacks`): `CategoryTheory.Adjunction.*`
+07TY | support of a quasi-coherent module on a space via an étale chart | whole tag | spaces | usable |
+07TZ | finite type quasi-coherent: closed support; geometric-point criterion; supports pull back | parts (1)–(3) | spaces | usable |
+07U8 | affine base change `g^*f_*F ≅ f'_*g'^*F` | whole tag (one quasi-coherence variant takes a named hypothesis, an unconditional one exists) | spaces | usable |
+07UB | on a locally Noetherian space, coherent = quasi-coherent of finite type | conditions (1)–(5) pairwise; locally Noetherian as `Fact (HasEtaleLocalProperty … IsLocallyNoetherian)` | spaces | usable |
+081X | canonical factorization `Y → Spec_X(f_*O_Y) → X` for qcqs `f` | whole remark | spaces | usable |
+082J | quasi-finite separated ⇒ quasi-affine | whole tag | spaces | usable |
+086S | `f` quasi-affine iff `Y → Spec_X(f_*O_Y)` is an open immersion | corrected bounded form (the unbounded relative Spec 081V is refuted in AxiomMath); one listed variant is vacuous by its own comment | spaces | usable | use `isQuasiAffineHom_iff_isOpenImmersion_toDirectImageSpec`, not the `_unconditional` variant
+08F4 | `Lf^*` preserves `D_qc` | whole tag | spaces | usable |
+08F5 | `⊗^L` preserves `D_qc` | whole tag | spaces | usable |
+08FA | `Rf_*` preserves `D_qc` for qcqs `f`; finite cohomological dimension; base change | parts (1)–(3) | spaces | usable |
+08FB | `Rf_*` on `D_qc` commutes with direct sums | whole tag | spaces | usable |
+08FH | properties of K-injective complexes (restriction to opens, `Rf_*` and restriction) | section tag; items 08FI, 0D6F, 0BKV, 0D6G, 0D6H, 0D6I, 0D6J, 08FJ, 0GL1, 093Y, 093Z tagged | ringed sites | usable | section items; GL26 needs it only inside Lemma 7.19 (see 08GE)
+08FU | pseudo-coherence (and perfectness) is local; may be checked on a covering | parts (1)–(3); stated with modules in universe 0 (`SheafOfModules.{0}`), except the `_general` restriction | site level, does not apply to spaces as stated | partial | untagged, pseudo-coherence for spaces: `Space.isPseudoCoherentFrom_iff_forall_fpqcCovering`, `isPseudoCoherentFrom_iff_forall_isAffineChart`, `isPseudoCoherentFrom_of_charts`; the perfect case not located
+08FV | 2-out-of-3 for `m`-pseudo-coherence in distinguished triangles | parts (1)–(3), `_general` versions at `RingedSite.{u,v,w}` | applies to spaces | usable |
+08G4 | perfect complexes on any ringed site | section tag; items 08G5–08GA, 08H6, 09JB tagged | ringed sites | usable | section items; the definition 08G5 has free universes
+08G5 | definition of perfect objects | definition at `RingedSite.{u,v,w}` | applies to spaces | usable |
+08G8 | perfect ⇒ pseudo-coherent (and locally finite tor dimension) | whole tag at `RingedSite.{0,0,0}`; ringed-space version for tor dimension | site level, universe mismatch | usable† | untagged: `AlgebraicGeometry.RingedSite.isPseudoCoherent_of_isPerfect_general` (`RingedSite.{u,v,w}`, docstring cites 08G8)
+08GG | elementary distinguished square: units/counits iso on objects supported off `U` | all five clauses | spaces | usable |
+08GH | for a scheme, total direct images on étale and Zariski sites match | the represented (scheme) case | schemes (GL26 applies it to schemes) | usable |
+08GK | `Rf_*` of `D^b_coh` with proper support is `D^b_coh` | whole tag; Noetherian target, `f` locally of finite type, proper support | spaces | usable |
+08GM | elementary distinguished squares (definition) | definition and characterization | spaces | usable |
+08H4 | `Lf^*` preserves pseudo-coherence | whole tag at `RingedSite.{u,u,u}` | site level, universe mismatch | usable† | untagged: `AlgebraicGeometry.Space.isPseudoCoherent_smallEtaleDerivedModulePullback` (docstring "Stacks 08H4 for algebraic spaces")
+08H6 | `Lf^*` preserves perfectness | whole tag at `RingedSite.{0,0,0}` | site level, universe mismatch | usable† | untagged: `AlgebraicGeometry.Space.isPerfect_smallEtaleDerivedModulePullback`
+08HG | perfectness can be checked on the small Zariski or étale site of a scheme | both directions (`isPerfectZariski_iff_isPerfectSmallEtale`) | schemes (GL26 applies it to schemes) | usable |
+08HP | approximation of `D_qc` objects by perfect complexes (with support) | whole theorem, qcqs space | spaces | usable |
+08IK | on a Noetherian space, pseudo-coherent = `D^-_coh` in `D_qc` | both directions | spaces | usable |
+08IN | projection formula for qcqs morphisms | whole tag | spaces | usable |
+08IQ | tor-independence is étale local / comparable to schemes | the four equivalent conditions | spaces | usable |
+08IR | tor-independent base change | whole tag, qcqs `f` | spaces | usable |
+08J7 | derived tensor–Hom adjunction (section) | section tag; items 08J8, 08JA, 08J9, 08JB, 08JC, 0A97–0A99, 0BYU, 08JD, 0B6D, 08JF, 08JG tagged, site level at `RingedSite.{u,u,u}` | site level, universe mismatch | usable† | untagged: `AlgebraicGeometry.Space.smallEtaleDerivedTensorSheafHomAdjunction`
+08J9 | `RHom(K⊗L, M) ≅ RHom(K, RHom(L, M))` and global sections | whole tag at `RingedSite.{u,u,u}` | site level, universe mismatch | partial | space-level internal Hom `Space.smallEtaleDerivedSheafHom` is compared with the essentially-small site bifunctor by `smallEtaleDerivedSheafHomIsoSmall`; the curried isomorphism for spaces was not located
+08JB | restriction of `RHom` to an étale `U` | whole tag at `RingedSite.{u,u,u}` | site level, universe mismatch | usable† | untagged: `AlgebraicGeometry.Space.smallEtaleDerivedSheafHomEtaleRestrictionIso`
+08JF | the canonical map `Lf^*RHom(K,L) → RHom(Lf^*K, Lf^*L)` | definition, at `RingedSite`/`RingedTopos.{u,u,u}` | site level, universe mismatch | usable† | untagged: `AlgebraicGeometry.Space.smallEtaleDerivedPullbackSheafHomNatTrans`
+08JG | base change map for internal Hom | definition with adjoint characterization; the top-row topoi are `RingedTopos.{u,u,u}` | site level, universe mismatch | partial | `Space.smallEtaleDerivedSheafHomBaseChangeMap` exists untagged (signature not read)
+08JJ | duals of perfect complexes: biduality, `RHom(K,M) ≅ K^∨ ⊗ M`, dual perfect | two of the four assertions proved at `RingedSite.{u,u,u}`, plus locality steps | site level, universe mismatch | partial | untagged for spaces: `Space.smallEtaleDerivedBidualIso`, `Space.smallEtaleDerivedSheafHomIsoTensorDual`
+08JP | for a scheme, `RHom` commutes with étale/Zariski comparison (perfect or pseudo-coherent source) | cases (1), (2) | schemes (GL26 applies it to schemes) | usable |
+09IT | induction principle for qcqs spaces (enlargement) | whole tag | spaces | usable |
+09IY | `D_qc` of a qcqs space is compactly generated by one perfect object | whole tag | spaces | usable |
+09J9 | derived tensor of pseudo-coherent objects is pseudo-coherent | parts (1), (2) at `RingedSite.{0,0,0}` | site level, universe mismatch | partial | untagged, special case: `Space.isPseudoCoherent_smallEtaleDerivedTensor_of_isPerfect` (one factor perfect)
+09M8 | on a qcqs space, compact = perfect in `D_qc` | whole tag | spaces | usable |
+09SN | every object of a compactly generated triangulated category is a homotopy colimit of compact cells | whole tag | triangulated categories | usable | compactness is `IsCompactObject.{v}`; see ASSUMPTIONS comparison (09SN row)
+09SR | compact generators of `T` = classical generators of `T^c` | (2) ⇔ (1) for one compact generator | triangulated categories | usable | weak generation is `IsWeakTriangulatedGenerator`
+09TF | a morphism from an Artinian (e.g. field) spectrum to a qs space is affine | whole tag, for Artinian rings | spaces | usable |
+0A26 | a proper scheme of dimension ≤ 1 over a field is projective | whole tag | schemes; GL26 applies it in Example 11.3 to schemes, in Prop 11.4 to the fibre of a morphism of spaces | partial | for spaces one needs first that the fibre is a scheme (Stacks 0ADD, AxiomMath `Space.exists_isOpenSubspace_isRepresentable_of_localRingDimension_le_one`, not cited by GL26)
+0A6H | `RHom(K,L)` has quasi-coherent cohomology (pseudo-coherent/`D^+`, or perfect) | parts (1)–(4) for schemes and affine schemes | schemes | schemes only | GL26 applies it on a space (`RHom(E, f^×O_X)` on `Y`); the space version is 0A8A
+0A8A | `RHom(E,G) ∈ D_qc` for `E` pseudo-coherent, `G ∈ D^+_qc` (or `E` perfect) | whole tag | spaces | usable |
+0A97 | the evaluation morphism `RHom(L,M) ⊗ K → RHom(RHom(K,L),M)` | definition at `RingedSite.{u,u,u}` | site level, universe mismatch | partial | no space-level evaluation located (only chart-level `chartDerivedEvaluation`)
+0AEC | `D_{qc,T}` of a qcqs space is generated by one perfect object | whole tag | spaces | usable |
+0AED | compact = perfect in `D_{qc,T}` | whole tag | spaces | usable |
+0AU1 | `f^!` preserves `D^+_coh` (finite type, Noetherian base) | whole tag via a compactification | schemes; GL26 applies it to `f' ∘ t : V → U`, a morphism of schemes (Lemma 5.15) | usable |
+0B6C | relative cup product `Rf_*K ⊗ Rf_*L → Rf_*(K⊗L)` | definition with naturality, at `RingedTopos.{u,u,u}` | site level, universe mismatch | partial | no space-level cup product located
+0BY7 | definition of the genus of a proper curve over a field | definition | schemes (fibres are schemes by the definition in Reminder 11.2) | usable |
+0BY9 | genus is invariant under field extension | dimension, global sections, genus, properness parts | schemes | usable |
+0D0R | `Rf_*` of `D^+_coh` with proper support is `D^+_coh` | the proper-support form (the "proper over S" form is refuted in AxiomMath) | spaces | usable |
+0D0S | `RHom` of coherent objects: bounded below and coherent | bounded-below clause in general; coherence clause on models | spaces | partial | coherence clause is stated on a model and a K-injective model (`derivedCategoryBPlus_isCoherentOnSite_sheafHomComplex`), not on derived objects
+0D6D | `L(g∘f)^* ≅ Lf^* Lg^*` | whole tag, free universes (`OfToposHom`) | applies to spaces | usable |
+0D6E | `R(g∘f)_* ≅ Rg_* Rf_*` | whole tag, free universes (`OfToposHom`, unconditional) | applies to spaces | usable |
+0D6G | `Rf_*` commutes with restriction to an open | whole tag at `RingedSite.{u,u,u}` | site level, universe mismatch | partial | GL26 needs it inside Lemma 7.19, whose space version is Stacks 08GE (`Space.derivedModulePushforwardEtaleRestrictIsoOfIsEtale`)
+0DKN | definition of `X`-perfect (relatively perfect) objects | definition, `f` flat and locally of finite presentation | spaces | usable | GL26's own notion is defined without flatness; Remark 6.19 compares
+0DKQ | relative perfectness is étale local | TFAE over chart diagrams | spaces | usable |
+0DKT | relative perfectness is stable under base change | whole tag | spaces | usable |
+0DKX | derived pushforward of a relatively perfect object along a proper flat fp morphism is perfect, with base change | whole tag | spaces | usable |
+0E46 | base change maps compose vertically | whole tag, free universes | applies to spaces | usable |
+0E47 | base change maps compose horizontally | whole tag, free universes | applies to spaces | usable |
+0E4R | `Rf_*` on `D_qc` is conservative for `f` affine (and open immersions, compositions) | conditions (1)–(3) | spaces | usable |
+0E4V | Duality for Spaces (whole chapter; expository pointer) | chapter tag (`phantom` section); its results are tagged individually (0E55, 0E56, 0E57, 0E58, 0E5D–0E5F, 0E5I, 0E5L, ...) | spaces | usable | chapter tag, see the rows of its lemmas
+0E55 | `Rf_*` on `D_qc` has a right adjoint `f^×` (qcqs) | whole tag | spaces | usable |
+0E56 | `f^×` maps `D^+_qc` to `D^+_qc` | whole tag | spaces | usable |
+0E57 | the trace map `Rf_*RHom(L, f^×K) → RHom(Rf_*L, K)` | definition with its defining composition | spaces | usable |
+0E58 | that map is an iso (after the coherator) | whole tag via the coherator | spaces | usable |
+0E5D | base change map for `f^×` | definition | spaces | usable |
+0E5E | base change maps for `f^×` compose vertically | whole tag | spaces | usable |
+0E5F | base change maps for `f^×` compose horizontally | whole tag | spaces | usable |
+0E5I | `f^×` base change iso: flat case, perfect case, finite tor dimension case | parts (1)–(3) | spaces | usable |
+0E5K | trace for spaces (section; construction of `ξ_f`) | section tag; items 0E5L, 0E5M tagged | spaces | usable | section items
+0E5L | trace map and base change | whole tag | spaces | usable |
+0EMV | residue fields and henselian local rings of a decent space | section tag; items 03K4, 0EMW (`Space.residueField`), 0EMX, 0BBP, 0BGU–0BGW, 0EMY–0EN0, 0EPL tagged | spaces | usable | section items
+0FD2 | proper geometrically reduced `X/k`: `H^0(O) = k` iff geometrically connected | whole tag | schemes; GL26 applies it in Example 11.3 (schemes) and in Prop 11.4 to a fibre of a morphism of spaces | partial | as 0A26: the fibre is a scheme only via 0ADD
+0FDC | on a regular scheme, bounded coherent = perfect | both directions | schemes (Example-Claim C.4 applies it to `X ×_k X`, a scheme) | usable |
+0FPK | cup product compatible with the naive one | whole tag at `RingedTopos.{u,u,u}` | site level, universe mismatch | partial |
+0FPL | cup product is associative | whole tag at `RingedTopos.{u,u,u}` | site level, universe mismatch | partial |
+0FPM | cup product is commutative | whole tag at `RingedTopos.{u,u,u}` | site level, universe mismatch | partial |
+0FPN | cup product compatible with composition | whole tag at `RingedTopos.{u,u,u}` | site level, universe mismatch | partial |
+0FPQ | complexes of modules form a symmetric monoidal category | whole tag (any ring sheaf) | applies to spaces | usable |
+0FW1 | dualizing complex of a proper scheme over a field under field change | parts (1), (2) | schemes (Example 11.3 schemes; Prop 11.4 fibres, as 0A26) | partial | as 0A26
+0FWI | `f^! = Lf^*` for étale `f` | whole tag | schemes; GL26 applies it to `t_i : V' → V`, étale morphisms of schemes (Lemma 5.15) | usable |
+0G7E | `Lf^*` preserves K-flat complexes with flat terms | whole tag, free universes | applies to spaces | usable |
+0GEU | example: the uncoherated trace map is not an iso | the example, corrected form | schemes (affine line) | usable | a counterexample; the scheme case suffices
+0GFH | boundedness above detected by `Hom` from a perfect generator | whole tag (TFAE), qcqs space | spaces | usable |
+0GFI | boundedness below detected by `Hom` from a perfect generator | whole tag (TFAE), qcqs space | spaces | usable |
+0GFK | relative perfectness via fibrewise bounded below (flat, lfp) | whole tag | spaces | usable |
+0GFL | characterization of relatively perfect objects (flat proper) | one direction (perfect derived sections ⇒ relatively perfect), base affine | spaces | partial | Remark 6.19 only
+0GG4 | the coherator identifies the two versions of the duality map | the coherator identifications | spaces | usable |
+0GG5 | (Noetherian, proper) the trace map is an iso on `D^+_coh` | whole tag | spaces | usable |
+0H1R | on a decent space the residual space is `Spec` of a field | whole tag | spaces | usable |
+0H1T | factorization through the residual space | whole tag (decent target) | spaces | usable |
+0H1U | `x` closed iff the residual space is a closed immersion (locally Noetherian) | whole tag | spaces | usable |
+0H9A | relative cup product commutes with base change | whole tag at `RingedTopos.{u,u,u}` | site level, universe mismatch | partial |
