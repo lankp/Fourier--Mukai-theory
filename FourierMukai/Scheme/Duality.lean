@@ -519,7 +519,12 @@ end BaseChangeSquare
 conjugacy with `theta` (GL26
 `lem:pseudofunctoriality_isos_are_conjugate`).  Keeping this separate avoids
 silently accepting an arbitrary, unrelated isomorphism of pushforward
-composites. -/
+composites.
+
+For squares coming from a `DualityMates.DerivedPseudofunctorInput` (pseudofunctoriality of
+`L(-)^*`, `R(-)_*` with Lipman (3.6.2)), an element is constructed in
+`Scheme/DualityMates.lean` (`DerivedPseudofunctorInput.coherence`, from GL26 Lemma 7.13); for any
+square the structure has at most one element (`DualityMates.BaseChangeCoherenceData.subsingleton`). -/
 structure BaseChangeCoherenceData {DX DX' DZ DZ' : Type u}
     [Category.{v} DX] [Category.{v} DX'] [Category.{v} DZ] [Category.{v} DZ']
     {TX : DerivedTensorHomData DX} {TX' : DerivedTensorHomData DX'}
