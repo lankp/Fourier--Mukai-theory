@@ -95,11 +95,7 @@ lemma exists_list_closedZeroLocus_eq (A : Type u) [CommRing A]
 /-- Scheme form of the finite ideal-supported base.  The algebraic theorem is
 proved; only the displayed supported comparison remains geometric input. -/
 theorem neemanSupported_of_finiteIdeal
-    (A : Type u) [CommRing A] (hS : KoszulScalarSupportInput A)
-    (fs : List A) (hD : IdealSupportedCoproductInput A (functionIdeal A fs))
-    (hP : FiniteKoszulM1.KoszulPowerCoprodInput A hS fs)
-    (hC : IdealSupportedCompactnessInput A (functionIdeal A fs))
-    (hDet : KoszulDetectionInput A hS fs)
+    (A : Type u) [CommRing A] (fs : List A)
     (hAc : IsCompactAb (ringObject A))
     (hQ : AffineSupportedSchemeComparisonInput A (functionIdeal A fs)) :
     NeemanSupportedWeakApproximability (Spec (CommRingCat.of A))
@@ -109,56 +105,48 @@ theorem neemanSupported_of_finiteIdeal
   letI : E.functor.CommShift ℤ := hQ.commShift.some
   letI : E.functor.IsTriangulated := hQ.triangulated
   let G : NeemanFiniteSupportM4.AffineDZIdeal A (functionIdeal A fs) :=
-    ⟨(koszulListData A hS (unitExponents A fs)).obj, by
+    ⟨(koszulListData A (unitExponents A fs)).obj, by
       rw [← FiniteKoszulM1.listIdeal_unitExponents]
-      exact (koszulListData A hS (unitExponents A fs)).supported⟩
+      exact (koszulListData A (unitExponents A fs)).supported⟩
   have hGc : IsCompactAb G :=
-    IdealNeemanM1.isCompactAb_koszulListData_unitExponents A hS fs hC hAc
+    IdealNeemanM1.isCompactAb_koszulListData_unitExponents A fs hAc
   have hGg : IsPaperGenerator G := by
     intro F hF
-    exact IdealNeemanM1.isZero_idealSupported_of_ambient_detection A hS fs hDet hF
+    exact IdealNeemanM1.isZero_idealSupported_of_ambient_detection A fs hF
   obtain ⟨N, hN, hGle, hvan⟩ :=
     ClosedSupportNeemanM4.exists_idealSupported_perfect_standard_bounds
-      A (functionIdeal A fs) G (koszulListData A hS (unitExponents A fs)).perfect
+      A (functionIdeal A fs) G (koszulListData A (unitExponents A fs)).perfect
   let W := ClosedSupportNeemanM4.idealSupportedPaperDataOfH0Cover
     A (functionIdeal A fs) G N hN hGc hGg hGle hvan
-      (IdealNeemanM1.idealSupportedH0Cover A hS fs hD hP N hN)
+      (IdealNeemanM1.idealSupportedH0Cover A fs N hN)
   refine ⟨⟨transportPaperWeakApproximationData E.functor W, ?_⟩⟩
   rw [transportPaperWeakApproximationData_t]
   rw [show W.t = affineDZIdealStandardTStructure A (functionIdeal A fs) from rfl]
   exact hQ.standard_t
 
 /-- The affine supported base for every closed set with quasi-compact
-complement.  All finite-support algebraic and comparison inputs are explicit
-families over the support-generating list. -/
+complement.  The finite-support algebraic inputs are theorems (wave 5: the refuted
+`hS` and the inputs `hD`, `hP`, `hC`, `hDet` were deleted); the remaining argument
+besides `hAc` is the named module/scheme comparison `hQ`
+(`AffineSupportedSchemeComparisonInput`), a geometric comparison, not a Stacks
+result, which is still open. -/
 theorem neemanSupported_of_qc_closedComplement
-    (A : Type u) [CommRing A] (hS : KoszulScalarSupportInput A)
-    (hD : ∀ fs : List A, IdealSupportedCoproductInput A (functionIdeal A fs))
-    (hP : ∀ fs : List A, FiniteKoszulM1.KoszulPowerCoprodInput A hS fs)
-    (hC : ∀ fs : List A, IdealSupportedCompactnessInput A (functionIdeal A fs))
-    (hDet : ∀ fs : List A, KoszulDetectionInput A hS fs)
+    (A : Type u) [CommRing A]
     (hQ : ∀ fs : List A, AffineSupportedSchemeComparisonInput A (functionIdeal A fs))
     (hAc : IsCompactAb (ringObject A))
     (Z : TopologicalSpace.Closeds (Spec (CommRingCat.of A)))
     (hcZ : IsCompactClosedComplement Z) :
     NeemanSupportedWeakApproximability (Spec (CommRingCat.of A)) Z := by
   obtain ⟨fs, rfl⟩ := exists_list_closedZeroLocus_eq A Z hcZ
-  exact neemanSupported_of_finiteIdeal A hS fs (hD fs) (hP fs) (hC fs) (hDet fs) hAc (hQ fs)
+  exact neemanSupported_of_finiteIdeal A fs hAc (hQ fs)
 
 
 
 /-- The affine base input in its actual `IsAffine` form, obtained from the
-closed-set theorem by the proved scheme-isomorphism transport. -/
+closed-set theorem by the proved scheme-isomorphism transport.  Remaining
+arguments: the named comparison family `hQ` (open) and `hAc` (proved, see
+`RegularCompact.neemanSupportedWeakApproximability_of_isAffine`). -/
 theorem neemanSupportedWeakApproximability_of_isAffine
-    (hS : ∀ (A : Type u) [CommRing A], KoszulScalarSupportInput A)
-    (hD : ∀ (A : Type u) [CommRing A] (fs : List A),
-      IdealSupportedCoproductInput A (functionIdeal A fs))
-    (hP : ∀ (A : Type u) [CommRing A] (fs : List A),
-      FiniteKoszulM1.KoszulPowerCoprodInput A (hS A) fs)
-    (hC : ∀ (A : Type u) [CommRing A] (fs : List A),
-      IdealSupportedCompactnessInput A (functionIdeal A fs))
-    (hDet : ∀ (A : Type u) [CommRing A] (fs : List A),
-      KoszulDetectionInput A (hS A) fs)
     (hQ : ∀ (A : Type u) [CommRing A] (fs : List A),
       AffineSupportedSchemeComparisonInput A (functionIdeal A fs))
     (hAc : ∀ (A : Type u) [CommRing A], IsCompactAb (ringObject A))
@@ -167,7 +155,7 @@ theorem neemanSupportedWeakApproximability_of_isAffine
     NeemanSupportedWeakApproximability X Z := by
   apply SchemeNeemanIsoTransportM4.neemanSupportedWeakApproximability_of_isAffine X Z hcZ
   intro Z' hcZ'
-  exact neemanSupported_of_qc_closedComplement _ (hS _) (hD _) (hP _) (hC _) (hDet _) (hQ _) (hAc _) Z' hcZ'
+  exact neemanSupported_of_qc_closedComplement _ (hQ _) (hAc _) Z' hcZ'
 
 end
 

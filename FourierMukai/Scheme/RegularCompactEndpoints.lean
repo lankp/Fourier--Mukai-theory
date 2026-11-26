@@ -12,7 +12,7 @@ import FourierMukai.Scheme.PerfectCompactThick
 Corollaries of `RegularCompact.ringObject_isCompactAb`: every affine endpoint
 that carried `hAc : IsCompactAb (ringObject A)` is restated here with that
 argument discharged.  Nothing else changes; every remaining argument of the
-original theorem (Stacks-tagged inputs, the named geometric comparisons
+original theorem (the named geometric comparisons
 `AffineDerivedGammaInput` / `AffineSupportedSchemeComparisonInput`, Neeman's
 compact-to-perfect direction `CompactToPerfectInput`) is kept verbatim.
 
@@ -103,61 +103,42 @@ theorem dqcSpec_neemanPackage (A : CommRingCat.{u}) (I : AffineDerivedGammaInput
         (SchemeNeemanAffineM5.transportedStandardTStructure A I) :=
   SchemeNeemanAffineM5.regularModule_dqcSpec_neemanPackage A I (ringObject_isCompactAb A)
 
-/-- The finite-ideal supported scheme base with `hAc` discharged; all other
-inputs are those of `neemanSupported_of_finiteIdeal`. -/
+/-- The finite-ideal supported scheme base with `hAc` discharged; the only
+remaining argument is the named module/scheme comparison
+`AffineSupportedSchemeComparisonInput`. -/
 theorem neemanSupported_of_finiteIdeal
-    (A : Type u) [CommRing A] (hS : KoszulScalarSupportInput A)
-    (fs : List A)
-    (hD : IdealSupportedCoproductInput A (functionIdeal A fs))
-    (hP : FiniteKoszulM1.KoszulPowerCoprodInput A hS fs)
-    (hC : IdealSupportedCompactnessInput A (functionIdeal A fs))
-    (hDet : KoszulDetectionInput A hS fs)
+    (A : Type u) [CommRing A] (fs : List A)
     (hQ : AffineSupportedSchemeBaseM1.AffineSupportedSchemeComparisonInput A
       (functionIdeal A fs)) :
     SchemeWeakApproxStatementM1.NeemanSupportedWeakApproximability (Spec (CommRingCat.of A))
       (AffineSupportedSchemeBaseM1.closedZeroLocus A
         (functionIdeal A fs)) :=
-  AffineSupportedSchemeBaseM1.neemanSupported_of_finiteIdeal A hS fs hD hP hC hDet
+  AffineSupportedSchemeBaseM1.neemanSupported_of_finiteIdeal A fs
     (ringObject_isCompactAb A) hQ
 
 /-- The supported scheme base for closed sets with quasi-compact complement,
-with `hAc` discharged; all other inputs as in
-`AffineSupportedSchemeBaseM1.neemanSupported_of_qc_closedComplement`. -/
+with `hAc` discharged; the only remaining argument is the comparison family `hQ`. -/
 theorem neemanSupported_of_qc_closedComplement
-    (A : Type u) [CommRing A] (hS : KoszulScalarSupportInput A)
-    (hD : ∀ fs : List A, IdealSupportedCoproductInput A (functionIdeal A fs))
-    (hP : ∀ fs : List A, FiniteKoszulM1.KoszulPowerCoprodInput A hS fs)
-    (hC : ∀ fs : List A, IdealSupportedCompactnessInput A (functionIdeal A fs))
-    (hDet : ∀ fs : List A, KoszulDetectionInput A hS fs)
+    (A : Type u) [CommRing A]
     (hQ : ∀ fs : List A, AffineSupportedSchemeBaseM1.AffineSupportedSchemeComparisonInput A
       (functionIdeal A fs))
     (Z : TopologicalSpace.Closeds (Spec (CommRingCat.of A)))
     (hcZ : SchemeNeemanFiniteCoverAssemblyM5.IsCompactClosedComplement Z) :
     SchemeWeakApproxStatementM1.NeemanSupportedWeakApproximability
       (Spec (CommRingCat.of A)) Z :=
-  AffineSupportedSchemeBaseM1.neemanSupported_of_qc_closedComplement A hS hD hP hC hDet hQ
+  AffineSupportedSchemeBaseM1.neemanSupported_of_qc_closedComplement A hQ
     (ringObject_isCompactAb A) Z hcZ
 
 /-- The affine supported base in `IsAffine` form, with the family `hAc`
-discharged; all other inputs as in
-`AffineSupportedSchemeBaseM1.neemanSupportedWeakApproximability_of_isAffine`. -/
+discharged; the only remaining argument is the comparison family `hQ`. -/
 theorem neemanSupportedWeakApproximability_of_isAffine
-    (hS : ∀ (A : Type u) [CommRing A], KoszulScalarSupportInput A)
-    (hD : ∀ (A : Type u) [CommRing A] (fs : List A),
-      IdealSupportedCoproductInput A (functionIdeal A fs))
-    (hP : ∀ (A : Type u) [CommRing A] (fs : List A),
-      FiniteKoszulM1.KoszulPowerCoprodInput A (hS A) fs)
-    (hC : ∀ (A : Type u) [CommRing A] (fs : List A),
-      IdealSupportedCompactnessInput A (functionIdeal A fs))
-    (hDet : ∀ (A : Type u) [CommRing A] (fs : List A),
-      KoszulDetectionInput A (hS A) fs)
     (hQ : ∀ (A : Type u) [CommRing A] (fs : List A),
       AffineSupportedSchemeBaseM1.AffineSupportedSchemeComparisonInput A (functionIdeal A fs))
     (X : Scheme.{u}) [IsAffine X] (Z : TopologicalSpace.Closeds X)
     (hcZ : SchemeNeemanFiniteCoverAssemblyM5.IsCompactClosedComplement Z) :
     SchemeWeakApproxStatementM1.NeemanSupportedWeakApproximability X Z :=
   AffineSupportedSchemeBaseM1.neemanSupportedWeakApproximability_of_isAffine
-    hS hD hP hC hDet hQ (fun A _ => ringObject_isCompactAb A) X Z hcZ
+    hQ (fun A _ => ringObject_isCompactAb A) X Z hcZ
 
 end
 

@@ -162,6 +162,9 @@ import FourierMukai.Scheme.SupportedCoproductM1
 import FourierMukai.Scheme.PrincipalH0CoverM1
 import FourierMukai.Scheme.PrincipalNeemanM1
 import FourierMukai.Scheme.FiniteKoszulM1
+import FourierMukai.Scheme.KoszulConeSwap
+import FourierMukai.Scheme.KoszulSupportAdjoint
+import FourierMukai.Scheme.KoszulFiniteInputs
 import FourierMukai.Scheme.IdealNeemanM1
 import FourierMukai.Scheme.AffineSupportedSchemeBaseM1
 import FourierMukai.Scheme.GL26OtherTargets
@@ -173,6 +176,7 @@ import FourierMukai.Scheme.Affine066S
 import FourierMukai.Scheme.RegularCompact
 import FourierMukai.Scheme.RegularCompactEndpoints
 import FourierMukai.Scheme.KoszulInputs
+import FourierMukai.Scheme.NeemanAffineSupport
 
 /-!
 # Relative Fourier--Mukai theory for algebraic spaces: Lean formalization

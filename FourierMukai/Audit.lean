@@ -159,3 +159,13 @@ open RelativeFM
 #print axioms RelativeFM.KoszulInputs.scalarConeData_le_zero
 #print axioms RelativeFM.KoszulInputs.idealSupportedCoproductInput
 #print axioms RelativeFM.KoszulInputs.idealSupportedCompactnessInput
+#print axioms RelativeFM.KoszulInputs.isLeftAdjoint_affineDZIdealι
+#print axioms RelativeFM.KoszulConeSwap.coneSwapIso
+#print axioms RelativeFM.KoszulFiniteInputs.IsScalarCone.swap
+#print axioms RelativeFM.KoszulFiniteInputs.koszulList_power_coprod
+#print axioms RelativeFM.KoszulFiniteInputs.koszulList_detects_zero
+#print axioms RelativeFM.FiniteKoszulM1.koszulPowerCoprodInput
+#print axioms RelativeFM.StacksInterface.koszulDetectionInput
+#print axioms RelativeFM.IdealNeemanM1.satisfiesPaperWA_idealSupported
+#print axioms RelativeFM.NeemanAffineSupport.satisfiesPaperWA_idealSupported
+#print axioms RelativeFM.NeemanAffineSupport.satisfiesPaperWA_of_fg
