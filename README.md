@@ -12,7 +12,7 @@ does not have: perfect complexes for rings, quasicoherent cohomology through the
 tilde functor, K-projective replacements, Le–Chen's splitting criterion, and the
 exceptional functors of the affine recollement.
 
-222 modules, about 56 000 lines.  There is no `sorry` except in nine declarations
+228 modules, about 57 000 lines.  There is no `sorry` except in nine declarations
 that are deliberately left as targets; see [What is stated but not
 proved](#what-is-stated-but-not-proved).
 
@@ -44,7 +44,7 @@ schemes, in the supported form `D_qc,Z(X)`.
 
 | | |
 |---|---|
-| LP26, the whole categorical layer (Sections 2–4 and Theorem 1.1) | proved, unconditionally |
+| LP26, the whole categorical layer (Sections 2–4 and Theorem 1.1) | proved; **Theorem 1.1 with exactly the paper's hypotheses** (`PaperHypothesesW6.theorem_1_1_paper`, pinned, wave 6): only Stacks 09SR assumed; compactly generated `t`-structures and BNP Cor 3.10(1) proved |
 | LP26 Theorem 1.1, affine case | the large-model endpoints `affine_theorem_1_1_unconditional`, `affine_theorem_1_1_stacks07LT` are **proved vacuous** for every nontrivial ring (`RefuteLargeCoproducts`: `¬ HasCoproducts.{u+1} (AffineD A)`, wave 6) and unpinned; the `IsGenerator` endpoints `SetupMainMinimal.theorem_1_1`, `affine_theorem_1_1_small` are proved vacuous at `ℤ` (`RefuteIntGenerator*`); LP26 Thm 1.1 stands as `PaperSetupMainMinimal.theorem_1_1` (zero-detecting generator), with the paper-hypotheses form in progress (wave 6) |
 | GL26 Lemma 2.25 | proved from the inputs its own proof uses |
 | GL26 Lemma 2.26 | proved in categorical form; affine wrapper proved |
