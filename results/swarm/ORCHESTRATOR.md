@@ -150,12 +150,10 @@ clean the scratchpad (CLAUDE.md, "Scratchpad").
 
 ## Current state
 
-See the end of `results/SWARM.md` (the log) and its current wave section.  At the
-time of writing (26 November 2026, 19:20 UTC): waves 1–6 are merged and their workers
-archived; `SpacesVerified` discharges every tagged input of `Spaces`
-(`scripts/check_statements.sh --verified`); the README describes the merged tree.  Wave 7's
-three Lean tasks were launched at 19:12 UTC (tag `fm-wave7`, sessions in `results/SWARM.md`);
-`wave7/spaces-statements` ran as a local subagent with the GL26 TeX and is merged.  The AxiomMath checkout with its build lives in the
-orchestrator's scratchpad (`.lake/packages/Stacks` is a symlink to it); after a container
-restart, re-enable swap (`swapon /home/user/.swapfile`) and `sysctl -w
-vm.max_map_count=262144` before `lake build SpacesVerified`.
+See [`HANDOFF.md`](HANDOFF.md) and the current wave section of `results/SWARM.md`.  At the
+time of writing (27 November 2026, 04:30 UTC): waves 1–7 are merged and archived; wave 8
+(LP26 in full generality) is running: cloud workers `universe-bridge`,
+`neeman-approximability`, `prune-pinned-vacuous` and `axiommath-verified` (the full
+`SpacesVerified` build and the discharge of every tagged input of waves 7–8); its local
+tasks `lp26-section5` and `lp26-lemma-5-9` are merged; `lp26-recollement` and
+`lp26-corollary-1-2` follow.  The container restarts often: CLAUDE.md, "Robust long work".
