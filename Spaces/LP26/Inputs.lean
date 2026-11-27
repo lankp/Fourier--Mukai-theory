@@ -661,4 +661,41 @@ def EDSOfComplSubsetInput : Prop :=
 
 end Corollary12Inputs
 
+/-! ### Inputs of the coherence clause of LP26 Corollary 1.2
+
+Used by `Spaces/LP26/Coherence.lean` (LP26 Corollary 1.2, `cor:weak_approx_spaces`, last clause):
+the cohomology sheaves of a truncation are those of the object or zero, so coherence passes to
+them once it is invariant under isomorphism and zero sheaves are coherent.
+
+| input | Stacks | AxiomMath declaration | AxiomMath file |
+|---|---|---|---|
+| `CoherentOfIsoInput` | (03DL, invariance) | `Stacks.SheafOfModules.isCoherentOnSite_of_iso` | `Topologies/CoherentKernelOnSite.lean` |
+| `CoherentOfIsZeroInput` | (03DL, the zero sheaf) | `Stacks.SheafOfModules.isCoherentOnSite_zero` | `Algebra/Category/ModuleCat/Sheaf/SiteCoherenceFiniteFamilies.lean` ‡ |
+
+(paths relative to `StacksFrontier/AlgebraicGeometry/`, or to `StacksFrontier/` when marked ‡,
+AxiomMath commit `f56a316`; the two modules and their import closure, 33 modules, are free of
+`MilnorPatching.Relative`.)  Both are stated for sheaves of modules on any ringed site; they are
+instantiated here at the small étale site of `X`, `Modules.{u, u} B S hS X.1 X.2`.
+-/
+
+section CoherenceInputs
+
+/-- **Coherence is invariant under isomorphism** (Stacks 03DL, coherent modules on a site).
+AxiomMath: `Stacks.SheafOfModules.isCoherentOnSite_of_iso e hM`
+(`StacksFrontier/AlgebraicGeometry/Topologies/CoherentKernelOnSite.lean`), verbatim,
+instantiated at `M N : Modules.{u, u} B S hS X.1 X.2`. -/
+def CoherentOfIsoInput : Prop :=
+  ∀ (X : AlgebraicSpaces B S hS) {M N : Modules.{u, u} B S hS X.1 X.2} (_e : M ≅ N)
+    (_hM : SheafOfModules.IsCoherentOnSite M), SheafOfModules.IsCoherentOnSite N
+
+/-- **A zero sheaf of modules is coherent** (Stacks 03DL).  AxiomMath:
+`Stacks.SheafOfModules.isCoherentOnSite_zero hZ`
+(`StacksFrontier/Algebra/Category/ModuleCat/Sheaf/SiteCoherenceFiniteFamilies.lean`), verbatim,
+instantiated at `Z : Modules.{u, u} B S hS X.1 X.2`. -/
+def CoherentOfIsZeroInput : Prop :=
+  ∀ (X : AlgebraicSpaces B S hS) {Z : Modules.{u, u} B S hS X.1 X.2} (_hZ : IsZero Z),
+    SheafOfModules.IsCoherentOnSite Z
+
+end CoherenceInputs
+
 end RelativeFM.Spaces.LP26

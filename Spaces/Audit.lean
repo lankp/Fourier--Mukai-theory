@@ -6,6 +6,7 @@ import Spaces.Statements
 import Spaces.Supported.CompactGeneration
 import Spaces.Supported.Preferred
 import Spaces.BaseChange.Cube
+import Spaces.LP26.Coherence
 import Spaces.LP26.Corollary12
 import Spaces.LP26.Lemma59
 import Spaces.LP26.NonVacuity
@@ -370,3 +371,16 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.LP26.satisfiesStandardWA_of_iso
 #print axioms RelativeFM.Spaces.LP26.corollary_1_2_standard
 #print axioms RelativeFM.Spaces.LP26.corollary_1_2_standard_nonVacuity
+
+-- LP26 Corollary 1.2, coherence for Noetherian `X` (wave 9, `Spaces/LP26/Coherence.lean`)
+#print axioms RelativeFM.Spaces.LP26.minusC_eq_of_tStructureEquivalent
+#print axioms RelativeFM.Spaces.LP26.boundedC_eq_of_tStructureEquivalent
+#print axioms RelativeFM.Spaces.LP26.tStructureEquivalent_of_inPreferredClass
+#print axioms RelativeFM.Spaces.LP26.inPreferredClass_of_paperData_univ
+#print axioms RelativeFM.Spaces.LP26.isCoherent_of_restricts
+#print axioms RelativeFM.Spaces.LP26.coherent_homology_truncLE_truncGE
+#print axioms RelativeFM.Spaces.LP26.standardMinusC_trunc
+#print axioms RelativeFM.Spaces.LP26.inPreferredClass_standardTStructure
+#print axioms RelativeFM.Spaces.LP26.minusC_boundedC_eq_standard
+#print axioms RelativeFM.Spaces.LP26.corollary_1_2_coherent
+#print axioms RelativeFM.Spaces.LP26.corollary_1_2_coherent_nonVacuity
