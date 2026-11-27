@@ -13,7 +13,7 @@ Project](https://github.com/AxiomMath/Stacks) (a pinned Lake dependency); everyt
 else comes from Mathlib or is proved here.  **Order:** LP26 first, with the parts of
 the literature it needs, then GL26.
 
-277 Lean modules, about 67 000 lines, no `sorry`.  Every result depends only on the
+281 Lean modules, about 70 000 lines, no `sorry`.  Every result depends only on the
 axioms `propext`, `Classical.choice`, `Quot.sound`.  **Rule:** no assumptions and no
 unproven parts except the Stacks Project as formalized by AxiomMath.
 
@@ -25,8 +25,8 @@ unproven parts except the Stacks Project as formalized by AxiomMath.
 |---|---|
 | §§2–4 (Lemmas 3.1, 3.3, 3.4, 3.5, 4.2, 4.3, 4.6, Proposition 4.8) | proved |
 | Theorem 1.1 (`thm:glueing_weak_approx`) | proved, with the paper's hypotheses and nothing assumed (`Spaces.Stacks.theorem_1_1`) |
-| Corollary 1.2 (`cor:weak_approx_spaces`) | proved over qcqs algebraic spaces, nothing assumed (weak approximability of `D_qc,S(X)` and `D_qc(X)`); the standard form and the Noetherian coherence claim are open |
-| §5 (Definition 5.3, Lemmas 5.5–5.9, Proposition 5.8) | proved over algebraic spaces, nothing assumed, except the standard part of Proposition 5.8 |
+| Corollary 1.2 (`cor:weak_approx_spaces`) | proved over qcqs algebraic spaces: weak approximability of `D_qc,S(X)` and `D_qc(X)` with nothing assumed; the standard form and coherence for Noetherian `X` from AxiomMath inputs, whose proofs in `SpacesVerified` are in progress |
+| §5 (Definition 5.3, Lemmas 5.5–5.9, Proposition 5.8) | proved over algebraic spaces; nothing assumed except for the standard part of Proposition 5.8 and the preferred-class form of Lemma 5.9 (AxiomMath inputs, `SpacesVerified` in progress) |
 
 **GL26**
 
@@ -36,7 +36,7 @@ unproven parts except the Stacks Project as formalized by AxiomMath.
 | Lemmas 2.3, 2.4, 2.5 | proved |
 | Lemmas 7.12, 7.13, 7.17 | proved for algebraic spaces, nothing assumed |
 | Lemmas 7.2, 7.4, 7.6, 7.9, 7.11, Lemma-Definition 7.10, Lemmas 10.2, B.2, B.4, B.5, B.7, B.10, C.1 | proved, over abstract data or in `Cat` |
-| Lemmas A.4, A.6, A.9 (generation; preferred class for the whole space), 6.11 | proved over algebraic spaces, nothing assumed |
+| Lemmas A.4, A.6, A.9 (generation; preferred class for the whole space), 6.11 | proved over algebraic spaces, nothing assumed; Lemma A.9's preferred class for every support from AxiomMath inputs (`SpacesVerified` in progress) |
 | Lemma 10.1 | proved over algebraic spaces from one flat-base-change hypothesis (open) |
 | Lemmas 2.25, 2.26, 5.4, A.4 (affine case) | conditional on named inputs: not counted as proved; being redone over algebraic spaces |
 | Theorems 1.2, 1.3, 1.6, 1.7 and the rest | open; being stated over algebraic spaces |
@@ -64,11 +64,10 @@ result is removed.  Ledger:
 
 ## Next
 
-1. **Finish LP26**: the standard form of Proposition 5.8 and Corollary 1.2, the Noetherian
-   coherence claim, the supported case of GL26 Lemma A.9's preferred class; and every
-   AxiomMath input proved in `SpacesVerified` (in progress).
-2. **GL26 over algebraic spaces**: prove the stated headline results, starting from §7 and
-   the base-change cube.
+1. **Finish LP26**: every result is proved over algebraic spaces; what remains is proving
+   the wave 9 AxiomMath inputs in `SpacesVerified` (running).
+2. **GL26 over algebraic spaces**, in dependency order: §2–3 (conservativity, internal Hom,
+   duality: wave 10, prepared), then §§4–6, §§9–10, §12, §11.
 
 ## Checking
 
@@ -104,7 +103,7 @@ lake build SpacesVerified   # full verification (~14 600 AxiomMath modules, ~12 
 | `FourierMukai/Prelim/` | categorical results of GL26 §2.1, §7, Appendices B, C |
 | `FourierMukai/Scheme/` | the affine layer (`D(A-Mod)`, perfect complexes, Neeman's affine results) |
 | `FourierMukai/Paper/` | the earlier abstract interface and its targets |
-| `Spaces/` | algebraic spaces on AxiomMath's definitions: LP26 Theorem 1.1, the affine base of Corollary 1.2; GL26's statements, Lemmas 2.4, 2.5, 7.12–7.17, A.9 (generation), base change |
+| `Spaces/` | algebraic spaces on AxiomMath's definitions: LP26 Theorem 1.1, §5 and Corollary 1.2; GL26's statements, Lemmas 2.4, 2.5, 7.12–7.17, A.9, base change |
 | `SpacesVerified/` | the AxiomMath theorems the `Spaces` layer uses |
 | `manuscripts/` | the current GL26 and LP26 manuscripts (TeX and PDF) |
 | `results/` | coverage, assumptions, open items, the AxiomMath maps; `archive/` holds earlier reports |
