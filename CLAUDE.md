@@ -243,7 +243,8 @@ The maintainer has delegated merging to the orchestrator session: work reaches
   (lost at each restart; without them large imports fail and big modules are killed), then
   relaunch what died; (f) a local subagent works in its own clone `/home/user/wt-<slug>`
   (`.lake/packages` symlinked to the main checkout's, `.lake/build` copied), pushes only its
-  branch, and the clone is deleted after the merge; (g) one heavy build at a time per
+  branch, keeps its scratch files in the clone (never in the orchestrator's scratchpad), and
+  the clone is deleted after the merge; (g) one heavy build at a time per
   container: before a build that may compile AxiomMath modules, check
   `python3 -I scripts/axiommath/built.py`; a module killed for memory (exit 137) is rebuilt
   alone.

@@ -6,3 +6,5 @@ W.A. and the coherence criterion of CHNS (Example 10.1.2 there): prove what that
 (the literature is not an allowed assumption), on LP26 Lemma 5.9
 (`Spaces/LP26/Lemma59.lean`).  Files: `Spaces/LP26/Coherence.lean`.  Commit verified pieces as
 you go.  Seven verification steps; `lake build Spaces`.
+
+Scratch files (probes, logs) stay in your clone, never in the orchestrator's scratchpad.

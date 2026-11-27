@@ -8,3 +8,5 @@ the preferred class at coproduct universe `u` (`SumUniversePreferred.lean`); BNP
 universe `u`; for the affine base, the identification of the affine `t`-structure with the
 standard one.  Files: `Spaces/LP26/StandardWA.lean` (and `Inputs.lean`, append).  Commit
 verified pieces as you go.  Seven verification steps; `lake build Spaces`.
+
+Scratch files (probes, logs) stay in your clone, never in the orchestrator's scratchpad.
