@@ -214,6 +214,10 @@ Order after wave 7: the qcqs induction for supported weak approximability over s
 
 ## Wave 8 (prepared; briefs in `results/swarm/wave8/`): LP26 in full generality
 
+**Status (27 November 2026, 01:15 UTC):** wave 7 is merged and its docs closed; archiving its
+four worker sessions and launching wave 8 need session-tool approvals from the maintainer,
+which were pending.  Launch as soon as they are given.
+
 Launches when wave 7 is closed and the repository cleaned up.  Order of need: the universe
 bridge and the preferred class first, then §5, then Corollary 1.2.
 
