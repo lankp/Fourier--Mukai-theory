@@ -16,6 +16,7 @@ import Spaces.LP26.OpenPushforward
 import Spaces.LP26.Proposition58
 import Spaces.LP26.Recollement
 import Spaces.LP26.StandardTStructure
+import Spaces.LP26.StandardWA
 import Spaces.NonVacuity
 import Spaces.RelativePerfect
 import Spaces.Stacks.Bridges
