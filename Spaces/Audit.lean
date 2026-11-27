@@ -199,6 +199,41 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.Supported.lemma_A_9_detectsBelowUniformly_univ
 #print axioms RelativeFM.Spaces.Supported.nonVacuity_detectsBelowUniformly_affine
 #print axioms RelativeFM.Spaces.Supported.nonVacuity_instances
+-- The supported Stacks 0GFI and GL26 Lemma A.9's preferred-class clause for general supports
+-- (wave 9, `Spaces/Supported/DetectingInputs.lean`, `Detecting.lean`, `Preferred.lean`)
+#print axioms RelativeFM.Spaces.Supported.koszulSp
+#print axioms RelativeFM.Spaces.Supported.VanishesWhereUnitSp
+#print axioms RelativeFM.Spaces.Supported.unitLocusSieveSp
+#print axioms RelativeFM.Spaces.Supported.KoszulTorsionInput
+#print axioms RelativeFM.Spaces.Supported.KoszulDetectionInput
+#print axioms RelativeFM.Spaces.Supported.KoszulQcohInput
+#print axioms RelativeFM.Spaces.Supported.KoszulCompactInput
+#print axioms RelativeFM.Spaces.Supported.UnitLocusInput
+#print axioms RelativeFM.Spaces.Supported.KoszulRestrictInput
+#print axioms RelativeFM.Spaces.Supported.VanishesWhereUnitInput
+#print axioms RelativeFM.Spaces.Supported.EdsOpenQcInput
+#print axioms RelativeFM.Spaces.Supported.EdsOpenQsInput
+#print axioms RelativeFM.Spaces.Supported.OpenCounitInput
+#print axioms RelativeFM.Spaces.Supported.PushforwardQcohInput
+#print axioms RelativeFM.Spaces.Supported.PerfectQcohInput
+#print axioms RelativeFM.Spaces.Supported.RangeOpenInput
+#print axioms RelativeFM.Spaces.Supported.PreimageQcInput
+#print axioms RelativeFM.Spaces.Supported.ShriekSupportInput
+#print axioms RelativeFM.Spaces.Supported.ShriekPerfectInput
+#print axioms RelativeFM.Spaces.Supported.ShriekRestrictOpenInput
+#print axioms RelativeFM.Spaces.Supported.Tag09IVInput
+#print axioms RelativeFM.Spaces.Supported.SupportPullbackInput
+#print axioms RelativeFM.Spaces.Supported.modules_eq_ringedToposModules
+#print axioms RelativeFM.Spaces.Supported.exists_distTriang_koszulSp_cons
+#print axioms RelativeFM.Spaces.Supported.suppDetectsBelow_of_isAffineSpace
+#print axioms RelativeFM.Spaces.Supported.koszulSp_peel
+#print axioms RelativeFM.Spaces.Supported.suppDetectsBelow_of_eds
+#print axioms RelativeFM.Spaces.Supported.suppDetectsBelow
+#print axioms RelativeFM.Spaces.Supported.supportedDetectsBelowStatement
+#print axioms RelativeFM.Spaces.Supported.lemma_A_9_preferred
+#print axioms RelativeFM.Spaces.Supported.lemma_A_9_detectsBelowUniformly
+#print axioms RelativeFM.Spaces.Supported.nonVacuity_detectsBelowUniformly
+#print axioms RelativeFM.Spaces.Supported.nonVacuity_detectsBelowUniformly_affine_general
 -- Base change over algebraic spaces (wave 7, `Spaces/BaseChange/`)
 #print axioms RelativeFM.Spaces.BaseChange.PullPseudofunctor.toPullPushData
 #print axioms RelativeFM.Spaces.BaseChange.canonical_iso_comp_id

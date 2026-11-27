@@ -25,6 +25,8 @@ import Spaces.Stacks.Tags
 import Spaces.Stacks.UniverseNonVacuity
 import Spaces.Statements
 import Spaces.Supported.CompactGeneration
+import Spaces.Supported.Detecting
+import Spaces.Supported.DetectingInputs
 import Spaces.Supported.Inputs
 import Spaces.Supported.NeemanAbstract
 import Spaces.Supported.Preferred

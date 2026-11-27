@@ -44,3 +44,28 @@ StacksFrontier.Algebra.Homology.DerivedCategory.MapDerivedCategoryHomology
 # distinguished squares.  Together 157 modules, free of MilnorPatching.Relative.
 StacksFrontier.AlgebraicGeometry.Spaces.SmallEtaleDerivedModulePullbackEtale
 StacksFrontier.AlgebraicGeometry.Spaces.Perfect.ElementaryDistinguishedSquare
+
+# The supported Stacks 0GFI (wave9/supported-0gfi): elementary distinguished squares and their
+# spaces, extension by zero, support under étale restriction, the induction principle 08GP,
+# quasi-compactness facts, global-section linearity.  Together 2 130 modules beyond the list above (total closure 4 379),
+# free of MilnorPatching.Relative.  The Koszul objects and unit-locus sieves (KoszulDetection,
+# UnitLocus: closure contains MilnorPatching.Relative) are written out in
+# Spaces/Supported/DetectingInputs.lean instead.
+StacksFrontier.AlgebraicGeometry.Spaces.Perfect.MayerVietoris
+StacksFrontier.AlgebraicGeometry.Spaces.EtaleModuleExtensionByZero
+StacksFrontier.AlgebraicGeometry.Spaces.QuasicoherentDerivedEtalePullback
+StacksFrontier.AlgebraicGeometry.Spaces.DerivedSupportEtaleRestriction
+StacksFrontier.AlgebraicGeometry.Spaces.CompactGeneration.SquareLocality
+StacksFrontier.AlgebraicGeometry.Spaces.Perfect.PushforwardOfSupportedPerfect
+StacksFrontier.AlgebraicGeometry.Spaces.Perfect.SupportedOnComplement
+StacksFrontier.AlgebraicGeometry.Spaces.Perfect.InductionPrinciple.QcqsInduction
+StacksFrontier.AlgebraicGeometry.Spaces.QuasiCompactSupport
+StacksFrontier.AlgebraicGeometry.Spaces.SpectralPoints
+StacksFrontier.AlgebraicGeometry.Spaces.QuasiCompactQuasiSeparatedOverAffine
+StacksFrontier.AlgebraicGeometry.Spaces.Morphisms.QuasiCompact
+StacksFrontier.AlgebraicGeometry.Spaces.Affine
+StacksFrontier.AlgebraicGeometry.Spaces.ElementaryDistinguishedSquareSubmodules
+StacksFrontier.AlgebraicGeometry.Duality.KoszulTruncatedOrthogonality
+StacksFrontier.AlgebraicGeometry.Duality.KoszulOrthogonality.Abstract
+StacksFrontier.CategoryTheory.Sites.Cohomology.Modules.GlobalSectionLinear
+StacksFrontier.RingTheory.Dualizing.MapDerivedCategory
