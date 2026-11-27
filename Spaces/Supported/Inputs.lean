@@ -5,7 +5,8 @@ import StacksFrontier.CategoryTheory.Triangulated.CompactObjects.ThickSubcategor
 /-!
 # Tagged AxiomMath inputs for `D_{qc,Z}(X)` (GL26 Lemma A.9, `lem:preferred_eq_class`)
 
-The AxiomMath/Stacks theorems that `Spaces/Supported/CompactGeneration.lean` uses, for a
+The AxiomMath/Stacks theorems that `Spaces/Supported/CompactGeneration.lean` and
+`Spaces/Supported/Preferred.lean` use, for a
 quasi-compact quasi-separated algebraic space `X` and a closed `T ⊆ |X|` with quasi-compact
 complement.  Each is a `Prop` whose statement is AxiomMath's verbatim, with the conventions of
 `Spaces/AxiomMathInputs.lean` (CLAUDE.md rule 2, `results/STACKS_POLICY.md`): the AxiomMath
@@ -22,6 +23,8 @@ modules below are theorem modules outside `scripts/axiommath/spaces-imports.txt`
 | `Tag0GFDInput` | 0GFD | `AlgebraicGeometry.Space.triangEnvelope_singleton_eq_isPerfect_of_supported` | `Spaces/Perfect/SupportedPerfectClassicalGenerator.lean` |
 | `AffineQuasiSeparatedInput` | 03JX (ι), 03BS (3) | `AlgebraicGeometry.Space.isAbsolutelyQuasiSeparated_yoneda_of_isAffine` | `Spaces/AbsolutelyQuasiSeparatedAffine.lean` |
 | `ContainsTerminalInput` | (none; 021R's site contains `Spec ℤ`) | `AlgebraicGeometry.BigFppfSite.contains_terminal` | `Spaces/FiniteEtaleAtlasQuasiSeparated.lean` |
+| `Tag0GFIInput` | 0GFI ((7) ⇒ (1)) | `AlgebraicGeometry.Space.exists_isGE_of_lowHomVanishingOnCompact` | `Spaces/Perfect/DetectingBoundedBelow.lean` |
+| `PerfectBoundedAboveInput` | (none; 08G5 with 08GP, a step of 0GFI) | `AlgebraicGeometry.Space.exists_isLE_of_isPerfect` | `Spaces/Perfect/DetectingBoundedBelow.lean` |
 
 (paths relative to `StacksFrontier/AlgebraicGeometry/`, AxiomMath commit `f56a316`.)
 
@@ -52,6 +55,13 @@ modules below are theorem modules outside `scripts/axiommath/spaces-imports.txt`
   (`SupportTriangulatedInput`).  The input therefore binds those two instances as
   instance-implicit hypotheses; they are `Prop`s, so this is AxiomMath's statement (any two
   proofs are equal), and the discharge is `fun _ X _ … T _ … => AxiomMath's theorem X …`.
+* `Tag0GFIInput` writes out AxiomMath's two abbreviations of
+  `Spaces/Perfect/DetectingBoundedBelow.lean` (outside the import list) by their bodies:
+  `LowHomVanishingOnCompact X hX E` is
+  `∀ P : QuasicoherentDerivedCategory B S hS X hX, IsCompactObject.{u} P → lowHomVanishing E P.obj`
+  and `lowHomVanishing M P` is `∃ N : ℤ, ∀ i : ℤ, i ≤ N → Subsingleton (P⟦-i⟧ ⟶ M)`.  That file's
+  instance context (`SheafOfModules.instAbelian` at priority 5000, `HasDerivedCategory.standard`)
+  selects the same instances as the context below.
 -/
 
 noncomputable section
@@ -219,5 +229,31 @@ verbatim (universally quantified over `B`).  It shows that the hypothesis
 non-vacuity. -/
 def ContainsTerminalInput : Prop :=
   ∀ B : BigFppfSite.{u}, B.Contains (⊤_ Scheme.{u})
+
+/-- **Stacks 0GFI**, implication (7) ⇒ (1) (detecting boundedness below): for `X`
+quasi-compact and quasi-separated, an object `E` of `D_QCoh(𝒪_X)` such that, for every compact
+(equivalently perfect) object `P` of `D_QCoh(𝒪_X)`, `Hom(P[-i], E) = 0` for all `i ≪ 0`, is
+bounded below.  AxiomMath:
+`AlgebraicGeometry.Space.exists_isGE_of_lowHomVanishingOnCompact X hqc hqs E hE`
+(`Spaces/Perfect/DetectingBoundedBelow.lean`), verbatim, with `LowHomVanishingOnCompact` and
+`lowHomVanishing` written out (module docstring). -/
+def Tag0GFIInput : Prop :=
+  ∀ (hZ : B.Contains (⊤_ Scheme.{u})) (X : AlgebraicSpaces B S hS)
+    (_hqc : IsQuasiCompactSpace B S hS X.1)
+    (_hqs : IsAbsolutelyQuasiSeparated B S hS hZ X.1)
+    (E : QuasicoherentDerivedCategory.{u, u} B S hS X.1 X.2)
+    (_hE : ∀ P : QuasicoherentDerivedCategory.{u, u} B S hS X.1 X.2, IsCompactObject.{u} P →
+      ∃ N : ℤ, ∀ i : ℤ, i ≤ N → Subsingleton (P.obj⟦-i⟧ ⟶ E.obj)),
+    ∃ a : ℤ, E.obj.IsGE a
+
+/-- **A perfect object of `D(𝒪_X)` is bounded above** when `X` is quasi-compact (perfectness,
+Stacks 08G5, checked on an affine étale cover; a step of the proof of Stacks 0GFI).  AxiomMath:
+`AlgebraicGeometry.Space.exists_isLE_of_isPerfect hX E hE`
+(`Spaces/Perfect/DetectingBoundedBelow.lean`), verbatim. -/
+def PerfectBoundedAboveInput : Prop :=
+  ∀ {X : AlgebraicSpaces B S hS} (_hX : IsQuasiCompactSpace B S hS X.1)
+    (E : DerivedCategory (Modules.{u, u} B S hS X.1 X.2))
+    (_hE : RingedSite.IsPerfect (smallEtaleRingedSite B S hS X.1 X.2) E),
+    ∃ m : ℤ, E.IsLE m
 
 end RelativeFM.Spaces.Supported
