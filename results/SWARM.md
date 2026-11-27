@@ -193,7 +193,7 @@ orchestrator then fixed `Tag09SRPaper` (09SR for triangulated categories) and la
 `SpacesVerified`, which discharges every tagged AxiomMath input of `Spaces`, so nothing in
 the algebraic-space layer is assumed.  Workers archived.
 
-## Wave 7 (closed 27 November 2026; briefs in `results/swarm/archive/wave7/`)
+## Wave 7 (closed 27 November 2026, workers archived; briefs in `results/swarm/archive/wave7/`)
 
 The algebraic-space layer now assumes nothing, so wave 7 builds on it.  Three Lean tasks
 run in parallel, each with its own directory and its own `Inputs.lean` for tagged AxiomMath
@@ -214,9 +214,7 @@ Order after wave 7: the qcqs induction for supported weak approximability over s
 
 ## Wave 8 (prepared; briefs in `results/swarm/wave8/`): LP26 in full generality
 
-**Status (27 November 2026, 01:15 UTC):** wave 7 is merged and its docs closed; archiving its
-four worker sessions and launching wave 8 need session-tool approvals from the maintainer,
-which were pending.  Launch as soon as they are given.
+**Status (27 November 2026, 02:20 UTC):** wave 7's four worker sessions archived; wave 8 launched.
 
 Launches when wave 7 is closed and the repository cleaned up.  Order of need: the universe
 bridge and the preferred class first, then §5, then Corollary 1.2.

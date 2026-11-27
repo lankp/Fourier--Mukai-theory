@@ -225,6 +225,10 @@ The maintainer has delegated merging to the orchestrator session: work reaches
   `scripts/`, and what stays is listed in `HANDOFF.md`.  *Read before a wave:* before starting
   a wave the orchestrator reads `HANDOFF.md` and the scratchpad (what is running, what is
   kept, what is private) and brings both up to date.
+* **Archive before the next wave** (maintainer, 27 November 2026): the orchestrator archives
+  every worker session of the completed wave (`archive_session`), and records it in
+  `SWARM.md`, before it launches any session of the next wave.  A wave whose workers are not
+  all archived is not closed.
 * **Next wave** (maintainer, 26 November 2026): as soon as a wave is closed (and cleaned up,
   above), the
   orchestrator prepares the next one from the top of `results/TODO.md` (briefs in
