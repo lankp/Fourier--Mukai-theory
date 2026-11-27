@@ -225,6 +225,16 @@ The maintainer has delegated merging to the orchestrator session: work reaches
   `scripts/`, and what stays is listed in `HANDOFF.md`.  *Read before a wave:* before starting
   a wave the orchestrator reads `HANDOFF.md` and the scratchpad (what is running, what is
   kept, what is private) and brings both up to date.
+* **Robust long work** (maintainer, 27 November 2026).  The orchestrator's container is
+  reclaimed when its session is idle, which kills its background builds and local subagents.
+  So: (a) long builds (the AxiomMath / `SpacesVerified` build) run in a cloud worker, whose
+  container stays up while it works; (b) while a local subagent or build of the orchestrator's
+  is running, the orchestrator keeps its session active (foreground waits in slices of at most
+  ten minutes) instead of ending its turn; (c) a task that needs the manuscripts may run as a
+  cloud worker when the maintainer uploads the TeX to that worker's session (the orchestrator
+  names the session; it never passes the TeX itself); otherwise it runs locally; (d) every
+  worker, local or cloud, commits verified progress on its branch as it goes, so an
+  interruption loses minutes, and a relaunched worker continues from its branch.
 * **Archive before the next wave** (maintainer, 27 November 2026): the orchestrator archives
   every worker session of the completed wave (`archive_session`), and records it in
   `SWARM.md`, before it launches any session of the next wave.  A wave whose workers are not

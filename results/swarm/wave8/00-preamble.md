@@ -18,8 +18,9 @@ AxiomMath/Stacks is a pinned Lake dependency (`lakefile.toml`, commit `f56a316`)
   discharged by the orchestrator in `SpacesVerified`.  What AxiomMath lacks, you prove.
 * No `sorry` anywhere in the tree.  Open results are to-dos in `results/TODO.md`.
 * GL26's headline results are stated over spaces in `Spaces/Statements/Main.lean`.
-* Tasks that need the manuscripts' text run in the orchestrator's container, where the
-  maintainer's current TeX is; never copy it into the repository.
+* Tasks that need the manuscripts' text run in the orchestrator's container, or in a cloud
+  session to which the maintainer has uploaded the TeX; never copy it into the repository.
+* Commit and push verified progress as you go (CLAUDE.md, "Robust long work").
 
 ## Before anything
 1. `cd` into the repository checkout and follow the git instructions of your task. Read `CLAUDE.md` (in particular the SEVEN verification steps, including step 5, non-vacuity), `results/SWARM.md`, `README.md`, `results/STACKS_POLICY.md`, `results/ASSUMPTIONS.md`, and the rows of `results/COVERAGE.md` relevant to your task.

@@ -33,6 +33,12 @@ probes, old repository copies and manuscript excerpts were deleted; reusable too
 `scripts/axiommath/`.  The local checkout's stale refs to the pre-rewrite history were pruned
 and its reflog expired, so it no longer holds the removed manuscripts.
 
+## Long work
+
+The orchestrator's container is reclaimed when its session is idle (CLAUDE.md, "Robust long
+work"): the AxiomMath / `SpacesVerified` build runs in the cloud worker `wave8/axiommath-verified`;
+the scratchpad's own AxiomMath build is a fallback only.
+
 ## Container set-up after a restart
 
 The container restarts often (twice on 26–27 November): files and uploads survive, but swap,
