@@ -12,11 +12,11 @@ list (LP26 first, then GL26).  Status codes as in `COVERAGE.md`.
 | # | label | status | where / note |
 |---|---|---|---|
 | Cor 1.2 | `cor:weak_approx_spaces` | C (affine base over spaces; qcqs induction open) | **affine base over algebraic spaces**: `Spaces/Affine/WeakApprox.lean` (wave 7), from tagged AxiomMath inputs (06Z0, 07TY, 021R). **Open**: the induction over q |
-| Lem 5.5 | `lem:compact_ext_vanishing` | H | its categorical role is `WeakApprox/CompactVanishing.lean`; the `D_qc` statement is not proved |
-| Lem 5.6 | `lem:perf_vanishing` | H | `Scheme/Inputs.lean` |
-| Def 5.3 | `def:wa_spaces` | — |  |
+| Lem 5.5 | `lem:compact_ext_vanishing` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/HomVanishing.lean` `lemma_5_5`, `lemma_5_5_dqc` (wave 8), from tagged inputs 09M8, 09MB(1). Earlier: its categorical rol |
+| Lem 5.6 | `lem:perf_vanishing` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/HomVanishing.lean` `lemma_5_6` (wave 8), from 0AED, 09M8; the paper's generator hypothesis is not needed. Earlier: `Sche |
+| Def 5.3 | `def:wa_spaces` | — | not yet: needs the coproduct universe of `wave8/universe-bridge`; the standard `t`-structure on `D_qc,S(X)` it uses is in `Spaces/LP26/StandardTStructure.lean`  |
 | Lem 5.7 | `lem:qcqs_open_pushforward` | — |  |
-| Prop 5.8 | `prop:A8` | — | the affine recollement (`AffineRecollement.lean`) is the input it uses |
+| Prop 5.8 | `prop:A8` | — | not yet: needs the universe bridge, the preferred class, and the open–closed recollement of `D_qc,S` over spaces (GL26 Lemma A.4) and GL26 Lemma A.6, which Axio |
 | Lem 5.9 | `lem:characterize_T-_c` | — |  |
 
 ## GL26: not proved (104)
@@ -26,6 +26,7 @@ list (LP26 first, then GL26).  Status codes as in `COVERAGE.md`.
 | Lem 2.25 | `lem:funct_on_kernel` | C | `Scheme/DiagonalIdentity.lean`, `lemma_2_25Statement_proved` |
 | Lem 2.26 | `lem:convolution` | C | `Scheme/AffineConvolution.lean`, `lemma_2_26Statement_of_correction` |
 | Lem 5.4 | `lem:neeman2023cor5_10` | C | `Scheme/Lemma54.lean`: the cover argument in six-functor form; residue is the cover square (flat base change, conservativity, perfect/compact calculus) |
+| Lem 5.7 | `lem:f_perf_implies_perf_preserved` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/OpenPushforward.lean` `lemma_5_7` (wave 8), from 08FB, 08FA(2), 0AFJ, with weaker hypotheses than the paper's; coproduct |
 | Lem 6.11 | `lem:fm_cube_flat_base_change_natural_isomorphism` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/BaseChange/Cube.lean` (wave 7), from tagged AxiomMath inputs (08IR) in `Spaces/BaseChange/Inputs.lean`. Earlier: `FMCube.lemm |
 | Lem 10.1 | `lem:fm_cube_pullback_natural_isomorphism` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/BaseChange/Cube.lean` (wave 7), from tagged AxiomMath inputs (08IR, 08IN). Earlier: `FMCube.lemma_10_1`, from flat base chang |
 | Lem A.4 | `lem:spacey_recollement` | C (affine; Stacks only) | `Scheme/AffineJUpperConstruction.lean` (`affineRecollementInputOfStacks0E55`): all fields of the affine recollement, from Stacks 0E55; unconditional when coexte |
@@ -85,8 +86,7 @@ list (LP26 first, then GL26).  Status codes as in `COVERAGE.md`.
 | Cor 4.7 | `cor:smooth_locally_f_perfect_implies_f_perfect` | — |  |
 | Thm 4.8 | `thm:relative_perf_iff_smooth_locally` | — |  |
 | Prop 5.6 | `prop:preservation_of_perfect` | — | a lemma in the arXiv version |
-| Lem 5.7 | `lem:f_perf_implies_perf_preserved` | — |  |
-| Lem 5.9 | `lem:neeman23lem5_3` | — |  |
+| Lem 5.9 | `lem:neeman23lem5_3` | — | not yet: provable from about seven more AxiomMath inputs (wave 8 follow-up). Earlier: |
 | Lem 5.10 | `lem:Ballard_relative_perf_implies_dual_is_such` | — |  |
 | Lem 5.11 | `lem:f-quasi-perfect_via_small_coproducts` | — |  |
 | Prop 5.12 | `prop:stacky_f_perf_gives_iso_between_uppershriek_and_pullback_up_to_tensor` | — |  |

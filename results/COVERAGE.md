@@ -117,8 +117,8 @@ absent.
 | Lem 5.3 | `lem:quasi-perfect_bounded` | H | `Scheme/StacksInput.lean` |
 | Lem 5.4 | `lem:neeman2023cor5_10` | C | `Scheme/Lemma54.lean`: the cover argument in six-functor form; residue is the cover square (flat base change, conservativity, perfect/compact calculus) |
 | Prop 5.6 | `prop:preservation_of_perfect` | — | a lemma in the arXiv version |
-| Lem 5.7 | `lem:f_perf_implies_perf_preserved` | — | |
-| Lem 5.9 | `lem:neeman23lem5_3` | — | |
+| Lem 5.7 | `lem:f_perf_implies_perf_preserved` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/OpenPushforward.lean` `lemma_5_7` (wave 8), from 08FB, 08FA(2), 0AFJ, with weaker hypotheses than the paper's; coproducts stated in `D(𝒪_X)`. Earlier: |
+| Lem 5.9 | `lem:neeman23lem5_3` | — | not yet: provable from about seven more AxiomMath inputs (wave 8 follow-up). Earlier: |
 | Lem 5.10 | `lem:Ballard_relative_perf_implies_dual_is_such` | — | |
 | Lem 5.11 | `lem:f-quasi-perfect_via_small_coproducts` | — | |
 | Prop 5.12 | `prop:stacky_f_perf_gives_iso_between_uppershriek_and_pullback_up_to_tensor` | — | |
@@ -256,11 +256,11 @@ The geometric §5 is not; the tree records it in `results/archive/WEAK_APPROX.md
 | Def 4.5 | `def:lift` | D | `PLift` |
 | Lem 4.6 | `lem:onecell` | P | `Lemma46`, `PaperLemma46M2` |
 | Prop 4.8 | `prop:closure` | P | `Proposition48`, `Proposition48Paper` |
-| Def 5.3 | `def:wa_spaces` | — | |
-| Lem 5.5 | `lem:compact_ext_vanishing` | H | its categorical role is `WeakApprox/CompactVanishing.lean`; the `D_qc` statement is not proved |
-| Lem 5.6 | `lem:perf_vanishing` | H | `Scheme/Inputs.lean` |
+| Def 5.3 | `def:wa_spaces` | — | not yet: needs the coproduct universe of `wave8/universe-bridge`; the standard `t`-structure on `D_qc,S(X)` it uses is in `Spaces/LP26/StandardTStructure.lean` (wave 8). Earlier: |
+| Lem 5.5 | `lem:compact_ext_vanishing` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/HomVanishing.lean` `lemma_5_5`, `lemma_5_5_dqc` (wave 8), from tagged inputs 09M8, 09MB(1). Earlier: its categorical role is `WeakApprox/CompactVanishing.lean`; the `D_qc` statement is not proved |
+| Lem 5.6 | `lem:perf_vanishing` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/HomVanishing.lean` `lemma_5_6` (wave 8), from 0AED, 09M8; the paper's generator hypothesis is not needed. Earlier: `Scheme/Inputs.lean` |
 | Lem 5.7 | `lem:qcqs_open_pushforward` | — | |
-| Prop 5.8 | `prop:A8` | — | the affine recollement (`AffineRecollement.lean`) is the input it uses |
+| Prop 5.8 | `prop:A8` | — | not yet: needs the universe bridge, the preferred class, and the open–closed recollement of `D_qc,S` over spaces (GL26 Lemma A.4) and GL26 Lemma A.6, which AxiomMath lacks. Earlier: the affine recollement (`AffineRecollement.lean`) is the input it uses |
 | Lem 5.9 | `lem:characterize_T-_c` | — | |
 
 ## Numbering that disagreed with the current GL26 manuscript
