@@ -32,6 +32,23 @@ AxiomMath build), so it is separate from the `--spaces` check.
 #check @RelativeFM.SpacesVerified.tag021R
 #check @RelativeFM.SpacesVerified.lp26_cor_1_2_affine_unconditional
 #check @RelativeFM.SpacesVerified.lp26_cor_1_2_affine_int_unconditional
+#check @RelativeFM.SpacesVerified.tag08F3
+#check @RelativeFM.SpacesVerified.supportTriangulated
+#check @RelativeFM.SpacesVerified.supportedDirectSums
+#check @RelativeFM.SpacesVerified.tag0AEC
+#check @RelativeFM.SpacesVerified.tag0AED
+#check @RelativeFM.SpacesVerified.tag0GFD
+#check @RelativeFM.SpacesVerified.affineQuasiSeparatedYoneda
+#check @RelativeFM.SpacesVerified.containsTerminal
+#check @RelativeFM.SpacesVerified.lemma_A_9_unconditional
+#check @RelativeFM.SpacesVerified.lemma_A_9_affine_univ_unconditional
+#check @RelativeFM.SpacesVerified.compIsoAgree
+#check @RelativeFM.SpacesVerified.flatBaseChange
+#check @RelativeFM.SpacesVerified.tag08IN
+#check @RelativeFM.SpacesVerified.lemma_6_11_unconditional
+#check @RelativeFM.SpacesVerified.lemma_10_1_of_flatBaseChange
+#check @RelativeFM.SpacesVerified.lemma_6_11_id_unconditional
+#check @RelativeFM.SpacesVerified.lemma_10_1_id_unconditional
 #print axioms RelativeFM.SpacesVerified.tag06UQ
 #print axioms RelativeFM.SpacesVerified.tag08F4
 #print axioms RelativeFM.SpacesVerified.tag08F5
@@ -50,3 +67,20 @@ AxiomMath build), so it is separate from the `--spaces` check.
 #print axioms RelativeFM.SpacesVerified.tag021R
 #print axioms RelativeFM.SpacesVerified.lp26_cor_1_2_affine_unconditional
 #print axioms RelativeFM.SpacesVerified.lp26_cor_1_2_affine_int_unconditional
+#print axioms RelativeFM.SpacesVerified.tag08F3
+#print axioms RelativeFM.SpacesVerified.supportTriangulated
+#print axioms RelativeFM.SpacesVerified.supportedDirectSums
+#print axioms RelativeFM.SpacesVerified.tag0AEC
+#print axioms RelativeFM.SpacesVerified.tag0AED
+#print axioms RelativeFM.SpacesVerified.tag0GFD
+#print axioms RelativeFM.SpacesVerified.affineQuasiSeparatedYoneda
+#print axioms RelativeFM.SpacesVerified.containsTerminal
+#print axioms RelativeFM.SpacesVerified.lemma_A_9_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_A_9_affine_univ_unconditional
+#print axioms RelativeFM.SpacesVerified.compIsoAgree
+#print axioms RelativeFM.SpacesVerified.flatBaseChange
+#print axioms RelativeFM.SpacesVerified.tag08IN
+#print axioms RelativeFM.SpacesVerified.lemma_6_11_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_10_1_of_flatBaseChange
+#print axioms RelativeFM.SpacesVerified.lemma_6_11_id_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_10_1_id_unconditional
