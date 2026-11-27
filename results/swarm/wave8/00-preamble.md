@@ -20,7 +20,9 @@ AxiomMath/Stacks is a pinned Lake dependency (`lakefile.toml`, commit `f56a316`)
 * GL26's headline results are stated over spaces in `Spaces/Statements/Main.lean`.
 * Tasks that need the manuscripts' text run in the orchestrator's container, or in a cloud
   session to which the maintainer has uploaded the TeX; never copy it into the repository.
-* Commit and push verified progress as you go (CLAUDE.md, "Robust long work").
+* Commit and push verified progress as you go, and while a build runs wait for it in the
+  foreground (slices of at most ten minutes) instead of ending your turn: an idle session's
+  container is reclaimed and its background builds die (CLAUDE.md, "Robust long work").
 
 ## Before anything
 1. `cd` into the repository checkout and follow the git instructions of your task. Read `CLAUDE.md` (in particular the SEVEN verification steps, including step 5, non-vacuity), `results/SWARM.md`, `README.md`, `results/STACKS_POLICY.md`, `results/ASSUMPTIONS.md`, and the rows of `results/COVERAGE.md` relevant to your task.
