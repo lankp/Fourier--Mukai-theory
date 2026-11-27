@@ -40,7 +40,8 @@ Consequently every compact object of `SmallAffineD A H` is in `SmallPerf A H`
 is an `IsGenerator`, by `VacuityF2.not_isGenerator_of_mem_triangEnvelope_int` in the
 small model.  Corollaries: `WeakApproximationData (SmallAffineD ℤ H)` is empty,
 `SatisfiesWA (SmallAffineD ℤ H)` is false, and `SetupMainMinimal DZ (SmallAffineD ℤ H) DU`
-is empty, so the pinned `RelativeFM.affine_theorem_1_1_small` is vacuous at `ℤ`
+is empty, so the formerly pinned `RelativeFM.affine_theorem_1_1_small` (deleted in wave 8,
+`results/OPEN_INPUTS.md` row 7.3) was vacuous at `ℤ`
 (`affine_theorem_1_1_small_hypotheses_false_int`).
 
 Nothing is assumed.
@@ -269,8 +270,8 @@ theorem isEmpty_setupMainMinimal_smallInt :
     IsEmpty (SetupMainMinimal DZ (SmallAffineD ℤ H) DU) :=
   ⟨fun S => not_isGenerator_of_isCompactAb_smallInt H S.G' S.G'_compact S.G'_generates⟩
 
-/-- **F2, corollary.**  The hypotheses of the pinned `RelativeFM.affine_theorem_1_1_small`
-are unsatisfiable at `A = ℤ`: its `SetupMainMinimal DZ (SmallAffineD ℤ H) DU`
+/-- **F2, corollary.**  The hypotheses of the formerly pinned
+`RelativeFM.affine_theorem_1_1_small` (deleted in wave 8) are unsatisfiable at `A = ℤ`: its `SetupMainMinimal DZ (SmallAffineD ℤ H) DU`
 argument has no inhabitant. -/
 theorem affine_theorem_1_1_small_hypotheses_false_int
     (S : SetupMainMinimal DZ (SmallAffineD ℤ H) DU)

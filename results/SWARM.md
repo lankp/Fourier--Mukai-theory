@@ -221,15 +221,51 @@ bridge and the preferred class first, then §5, then Corollary 1.2.
 
 | task | effort | goal |
 |---|---|---|
-| `wave8/universe-bridge` (`session_0111iGd7bQhnAomRu66CG3oJ`) | high | LP26 Thm 1.1 and compactness with a coproduct universe independent of the Hom universe, so they apply to AxiomMath's `D(𝒪_X)` (Hom in `Type (u+1)`, sums over `Type u`) |
-| `wave8/neeman-approximability` (`session_0111iGd8kuVAzNdReRDjVzr4`) | high | the part of Neeman's approximability needed for GL26 Lemma A.9's preferred-class clause over qcqs spaces, proved here |
-| `wave8/lp26-section5` (local subagent, launched 03:07 UTC, LP26 TeX) | high | LP26 Def 5.3, Lemmas 5.5–5.7, 5.9, Prop 5.8 over algebraic spaces |
-| `wave8/lp26-corollary-1-2` (local, after the others) | high | LP26 Corollary 1.2 over qcqs algebraic spaces with support |
-| `wave8/axiommath-verified` (cloud worker) | high | build the full `SpacesVerified` closure in its own container (the orchestrator's is reclaimed when idle), then prove the 17 tagged AxiomMath inputs of wave 7 and the unconditional wave 7 headlines |
-| `wave8/prune-pinned-vacuous` (`session_0111iGd6caNpP2YiJVNQW24x`) | medium | delete the two vacuous pinned endpoints (`IsGenerator` form) and what only they use |
+| `wave8/universe-bridge` (`session_0111iGd7bQhnAomRu66CG3oJ`) | high | merged: LP26 Thm 1.1 and compactness at independent Hom / coproduct universes; non-vacuity on `D(𝒪_X)` |
+| `wave8/neeman-approximability` (`session_0111iGd8kuVAzNdReRDjVzr4`) | high | merged (partial): Neeman equivalence abstractly; A.9 preferred class for `Z = \|X\|`; supported case open (supported 0GFI) |
+| `wave8/lp26-section5` (local subagent, LP26 TeX; merged, partial) | high | done: LP26 Lemmas 5.5, 5.6, 5.7 and the standard `t`-structure over spaces.  Left: Def 5.3 (after universe-bridge), Lemma 5.9 (`wave8/lp26-lemma-5-9`), Prop 5.8 (`wave8/lp26-recollement`) |
+| `wave8/lp26-lemma-5-9` (local, LP26 TeX; merged) | high | done: LP26 Lemma 5.9 (`lem:characterize_T-_c`) over algebraic spaces, both claims, for the standard `t`-structure; nine tagged inputs |
+| `wave8/lp26-recollement` (local, manuscripts; merged) | high | done: GL26 Lemmas A.4 (recollement of `D_qc,W(X)`, built here) and A.6 over spaces; LP26 Def 5.3 and the W.A. part of Prop 5.8.  Open: the standard W.A. part of Prop 5.8 |
+| `wave8/lp26-corollary-1-2` (local, LP26 TeX; merged) | high | done: LP26 Corollary 1.2 over qcqs algebraic spaces, W.A. and D_qc parts (pinned), without the quasi-finite-diagonal hypothesis.  Open: standard W.A., Noetherian coherence |
+| `wave8/axiommath-verified` (`session_0111iGd8ChkAMsYSB2t9QoLz`) | high | build the full `SpacesVerified` closure in its own container (the orchestrator's is reclaimed when idle), then prove the 17 tagged AxiomMath inputs of wave 7 and the unconditional wave 7 headlines |
+| `wave8/prune-pinned-vacuous` (`session_0111iGd6caNpP2YiJVNQW24x`) | medium | merged: the two vacuous `IsGenerator` endpoints and ~1 500 lines only they used deleted; baseline re-recorded (15 pins) |
 
 The LP26 TeX is the copy in the orchestrator's session uploads (current unless the maintainer
 says otherwise); tasks that need it run as local subagents.
+
+## Wave 9 (prepared; briefs in `results/swarm/wave9/`): finish LP26
+
+Launches when wave 8 is closed (its last worker, `axiommath-verified`, archived) and the
+repository cleaned up.
+
+| task | model, effort | goal |
+|---|---|---|
+| `wave9/lp26-standard-wa` (local, LP26 TeX) | session model (Opus), high | the standard W.A. forms of LP26 Prop 5.8 and Cor 1.2 |
+| `wave9/supported-0gfi` (cloud) | Opus, high | supported Stacks 0GFI, so GL26 Lemma A.9's preferred class holds for every support |
+| `wave9/lp26-noetherian-coherence` (local, after the first) | session model (Opus), high | Cor 1.2's coherence clause for Noetherian `X` (CHNS Ex. 10.1.2, proved here) |
+
+Also on the list for `SpacesVerified`: `LocallySmall.{u}` of AxiomMath's `D(𝒪_X)` (an AxiomMath
+theorem, needed to apply `theorem_1_1_univ` to a given space), to be taken as a tagged input and
+discharged.  The first Sonnet trial (model rule) is the next mechanical task, not a proof task.
+
+After wave 9, LP26 is complete up to the discharge of its AxiomMath inputs; GL26 follows.
+
+## Wave 10 (outline): GL26 over algebraic spaces, in dependency order
+
+To be turned into briefs once wave 9 closes (manuscript tasks local, with the GL26 TeX; all
+Opus, high).  From the top of `results/TODO.md`:
+
+1. **§2 preliminaries over spaces**: Lemmas 2.10 (`lem:rhom_tensor_morphism`), 2.14
+   (`lem:faithfully_flat_is_conservative`), 2.16 (`lem:gortz_wedhorn_internal_hom`), 2.21–2.24
+   (`lem:neeman186`–`189`, duality and `f^×` from AxiomMath's `SpaceDuality`), and Lemmas 2.25,
+   2.26 redone over spaces (they are conditional on named inputs in the scheme layer).
+2. **§3 and Lemma 3.2** (`lem:quasi-affine_is_conservative`): characterization of perfectness.
+3. **§4–5 relative (quasi-)perfectness**: Lemmas 5.3, 5.4 (over spaces), 5.7
+   (`lem:f_perf_implies_perf_preserved`), 5.9 (`lem:neeman23lem5_3`).
+4. **§6**: Propositions 6.2, 6.8, hence Theorem 1.3 (stated in `Spaces/Statements/`).
+
+Later waves: §9–10 (base change for adjoints, Theorems 10.13 / 1.6), §12 (the loci, Theorems
+12.3, 12.9 / 1.2), §11 (Theorem 1.7, once Gorenstein morphisms and fibre genus are available).
 
 ## Log
 

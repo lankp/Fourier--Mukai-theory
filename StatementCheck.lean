@@ -49,18 +49,11 @@ Regenerate after an intentional change:
 #print axioms RelativeFM.Convolution.NoetherianBridge.lemma_2_26_of_correction
 #print axioms RelativeFM.Lemma54.externalTensor_compactlyGenerates
 
-/-! ## LP26 Theorem 1.1, affine case -/
-
-#check @RelativeFM.affine_theorem_1_1_small
-#print axioms RelativeFM.affine_theorem_1_1_small
-
 /-! ## LP (gluing weak approximability) Theorem 1.1 -/
 
 #check @RelativeWeakApprox.PaperM2.PaperSetupMainMinimal.theorem_1_1
-#check @RelativeWeakApprox.SetupMainMinimal.theorem_1_1
 #check @RelativeWeakApprox.PaperHypothesesW6.theorem_1_1_paper
 #print axioms RelativeWeakApprox.PaperM2.PaperSetupMainMinimal.theorem_1_1
-#print axioms RelativeWeakApprox.SetupMainMinimal.theorem_1_1
 #print axioms RelativeWeakApprox.PaperHypothesesW6.theorem_1_1_paper
 
 /-! ## Neeman's weak approximability: the affine supported base -/

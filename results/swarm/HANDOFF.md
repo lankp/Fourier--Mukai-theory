@@ -6,13 +6,13 @@ processes, and that a successor needs, is listed here (CLAUDE.md, "Handoff").  P
 are never committed: the manuscripts are named here, and anything else private is passed to the
 successor by session message.
 
-Last updated: 27 November 2026, 00:45 UTC (wave 7 closed).
+Last updated: 27 November 2026, 09:45 UTC.
 
 ## Running in the background
 
 | what | where | how to redo it |
 |---|---|---|
-| AxiomMath build of the theorem modules `SpacesVerified` needs (wave 7 discharges) | orchestrator container; driver as `scripts/axiommath/build.sh` | `scripts/axiommath/build.sh .lake/packages/Stacks <log> <modules>`; check with `scripts/axiommath/built.py` |
+| full `SpacesVerified` build and the discharge of the tagged inputs of waves 7–8 | cloud worker `wave8/axiommath-verified` (`session_0111iGd8ChkAMsYSB2t9QoLz`), in its own container | it pushes its branch; the orchestrator's own build is stopped (a partial build stays in the scratchpad as a fallback) |
 | hourly scheduled task "FM swarm: hourly wave check" | `trig_018gGiqMfFuTFks4J8LCQvp2`, fires into the orchestrator session | its prompt is the orchestration loop of `ORCHESTRATOR.md`; a successor creates its own (`create_trigger`) and deletes this one |
 | wave 8 workers | sessions in `results/SWARM.md`, tag `fm-wave8`; local subagents in `/home/user/wt-<slug>` | cloud workers push their branches; a local subagent dies with this session: relaunch it from its brief |
 
@@ -37,7 +37,13 @@ and its reflog expired, so it no longer holds the removed manuscripts.
 
 The orchestrator's container is reclaimed when its session is idle (CLAUDE.md, "Robust long
 work"): the AxiomMath / `SpacesVerified` build runs in the cloud worker `wave8/axiommath-verified`;
-the scratchpad's own AxiomMath build is a fallback only.
+the scratchpad's own AxiomMath build was stopped (27 November, 03:15 UTC); its partial build in
+the scratchpad checkout is kept as a fallback.
+
+## Tools
+
+Append-only merge conflicts (`Spaces.lean`, `Audit.lean`): `scripts/swarm/keep_both.py`.
+AxiomMath closure check: `scripts/axiommath/built.py`; AxiomMath build: `scripts/axiommath/build.sh`.
 
 ## Container set-up after a restart
 

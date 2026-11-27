@@ -13,11 +13,9 @@ import WeakApprox.PLift
 import WeakApprox.Setup44
 import WeakApprox.Lemma43
 import WeakApprox.Lemma4323
-import WeakApprox.Lemma46
 import WeakApprox.Proposition48
 import WeakApprox.Lemma42
 import WeakApprox.Recollement
-import WeakApprox.Lemma34
 import WeakApprox.Lemma35
 import WeakApprox.Octahedron
 import WeakApprox.WeakApproximable
@@ -27,13 +25,10 @@ import WeakApprox.ShiftAudit
 import WeakApprox.TStructureConvention
 import WeakApprox.StatementAudit
 import WeakApprox.CompactVanishing
-import WeakApprox.TwoStage
 import WeakApprox.NineSR
 import WeakApprox.GeneratorBridge
 import WeakApprox.Lemma433TStructure
 import WeakApprox.Setup44Vanishing
-import WeakApprox.Setup44Reduced
-import WeakApprox.Setup44Minimal
 import WeakApprox.MainMinimal
 import WeakApprox.CompactThick
 import WeakApprox.PaperGeneratorM2
@@ -47,6 +42,10 @@ import WeakApprox.CompactlyGeneratedTStructure
 import WeakApprox.WeakApproxBounds
 import WeakApprox.Theorem11Paper
 import WeakApprox.Theorem11PaperNonVacuity
+import WeakApprox.SumUniverse
+import WeakApprox.SmallModel
+import WeakApprox.SumUniverseTransport
+import WeakApprox.SumUniversePreferred
 
 /-!
 # Weak approximability along recollements

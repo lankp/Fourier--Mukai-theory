@@ -4,7 +4,15 @@ import Spaces.AxiomMathInputs
 import Spaces.NonVacuity
 import Spaces.Statements
 import Spaces.Supported.CompactGeneration
+import Spaces.Supported.Preferred
 import Spaces.BaseChange.Cube
+import Spaces.LP26.Corollary12
+import Spaces.LP26.Lemma59
+import Spaces.LP26.NonVacuity
+import Spaces.LP26.Proposition58
+import Spaces.LP26.Recollement
+import Spaces.LP26.StandardTStructure
+import Spaces.Stacks.UniverseNonVacuity
 
 /-!
 # Axiom audit of the algebraic-space layer
@@ -154,6 +162,42 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.Supported.nonVacuity_base
 #print axioms RelativeFM.Spaces.Supported.isAffine_terminal
 #print axioms RelativeFM.Spaces.Supported.lemma_A_9_affine_univ
+-- GL26 Lemma A.9, preferred-class clause (wave 8, `Spaces/Supported/NeemanAbstract.lean`,
+-- `StandardTStructure.lean`, `Preferred.lean`)
+#print axioms RelativeFM.Spaces.Supported.Tag0GFIInput
+#print axioms RelativeFM.Spaces.Supported.PerfectBoundedAboveInput
+#print axioms RelativeFM.Spaces.Supported.genCoaisle
+#print axioms RelativeFM.Spaces.Supported.DetectsBelowUniformly
+#print axioms RelativeFM.Spaces.Supported.eq_zero_of_shift
+#print axioms RelativeFM.Spaces.Supported.isGE_of_retract
+#print axioms RelativeFM.Spaces.Supported.tStructureEquivalent_of_detectsBelowUniformly
+#print axioms RelativeFM.Spaces.Supported.bndFrom
+#print axioms RelativeFM.Spaces.Supported.triangEnvelope_le_bndFrom
+#print axioms RelativeFM.Spaces.Supported.detectsBelowUniformly_of_mem_triangEnvelope
+#print axioms RelativeFM.Spaces.Supported.detectsBelowUniformly_of_detectsBelow
+#print axioms RelativeFM.Spaces.Supported.compactTStructure_hypotheses
+#print axioms RelativeFM.Spaces.Supported.isIso_homologyMap_mor₁
+#print axioms RelativeFM.Spaces.Supported.isIso_homologyMap_mor₂
+#print axioms RelativeFM.Spaces.Supported.homologyProp_obj₁_of_triangle
+#print axioms RelativeFM.Spaces.Supported.homologyProp_obj₃_of_triangle
+#print axioms RelativeFM.Spaces.Supported.supportIn
+#print axioms RelativeFM.Spaces.Supported.supportIn_of_isZero
+#print axioms RelativeFM.Spaces.Supported.qcoh_of_isZero
+#print axioms RelativeFM.Spaces.Supported.hasInducedTStructure_qcohDerived
+#print axioms RelativeFM.Spaces.Supported.stdQc
+#print axioms RelativeFM.Spaces.Supported.hasInducedTStructure_qcSupportedOn
+#print axioms RelativeFM.Spaces.Supported.stdT
+#print axioms RelativeFM.Spaces.Supported.stdT_isLE_iff
+#print axioms RelativeFM.Spaces.Supported.stdT_isGE_iff
+#print axioms RelativeFM.Spaces.Supported.SupportedDetectsBelowStatement
+#print axioms RelativeFM.Spaces.Supported.detectsBelowUniformly_of_statement
+#print axioms RelativeFM.Spaces.Supported.tStructureEquivalent_of_statement
+#print axioms RelativeFM.Spaces.Supported.isEquivalence_ι_univ
+#print axioms RelativeFM.Spaces.Supported.supportedDetectsBelowStatement_univ
+#print axioms RelativeFM.Spaces.Supported.lemma_A_9_preferred_univ
+#print axioms RelativeFM.Spaces.Supported.lemma_A_9_detectsBelowUniformly_univ
+#print axioms RelativeFM.Spaces.Supported.nonVacuity_detectsBelowUniformly_affine
+#print axioms RelativeFM.Spaces.Supported.nonVacuity_instances
 -- Base change over algebraic spaces (wave 7, `Spaces/BaseChange/`)
 #print axioms RelativeFM.Spaces.BaseChange.PullPseudofunctor.toPullPushData
 #print axioms RelativeFM.Spaces.BaseChange.canonical_iso_comp_id
@@ -178,3 +222,100 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.BaseChange.lemma_10_2
 #print axioms RelativeFM.Spaces.BaseChange.lemma_6_11_id
 #print axioms RelativeFM.Spaces.BaseChange.lemma_10_1_id
+-- LP26 §5 over algebraic spaces (wave 8, `Spaces/LP26/`)
+#print axioms RelativeFM.Spaces.LP26.qcohDerived_shift
+#print axioms RelativeFM.Spaces.LP26.lemma_5_5
+#print axioms RelativeFM.Spaces.LP26.eq_zero_of_ambient
+#print axioms RelativeFM.Spaces.LP26.lemma_5_5_dqc
+#print axioms RelativeFM.Spaces.LP26.lemma_5_6_of_isCompactObject
+#print axioms RelativeFM.Spaces.LP26.lemma_5_6
+#print axioms RelativeFM.Spaces.LP26.lemma_5_6_dqcZ
+#print axioms RelativeFM.Spaces.LP26.isQuasiCompact_of_isIso'
+#print axioms RelativeFM.Spaces.LP26.isQuasiSeparated_of_mono'
+#print axioms RelativeFM.Spaces.LP26.isQuasiSeparated_of_isOpenImmersion
+#print axioms RelativeFM.Spaces.LP26.isClosed_compl_image_and_preimage
+#print axioms RelativeFM.Spaces.LP26.push_dqcSupported
+#print axioms RelativeFM.Spaces.LP26.lemma_5_7
+#print axioms RelativeFM.Spaces.LP26.lemma_5_7_supported
+#print axioms RelativeFM.Spaces.LP26.nonVacuity_lemma_5_5
+#print axioms RelativeFM.Spaces.LP26.nonVacuity_lemma_5_6
+#print axioms RelativeFM.Spaces.LP26.nonVacuity_lemma_5_6_instances
+#print axioms RelativeFM.Spaces.LP26.isOpenImmersion_id
+#print axioms RelativeFM.Spaces.LP26.nonVacuity_lemma_5_7
+#print axioms RelativeFM.Spaces.LP26.hasInducedTStructure_inverseImage
+#print axioms RelativeFM.Spaces.LP26.forall_homology_truncLE_truncGE
+#print axioms RelativeFM.Spaces.LP26.isQuasicoherentOnSite_of_isZero
+#print axioms RelativeFM.Spaces.LP26.supportOfSheaf_subset_of_isZero
+#print axioms RelativeFM.Spaces.LP26.supportOfSheaf_subset_of_iso
+#print axioms RelativeFM.Spaces.LP26.hasInducedTStructure_qcohDerived
+#print axioms RelativeFM.Spaces.LP26.standardTStructureQc
+#print axioms RelativeFM.Spaces.LP26.hasInducedTStructure_qcSupportedOn
+#print axioms RelativeFM.Spaces.LP26.standardTStructure
+#print axioms RelativeFM.Spaces.LP26.standardTStructure_isLE_iff
+#print axioms RelativeFM.Spaces.LP26.standardTStructure_isGE_iff
+#print axioms RelativeFM.Spaces.LP26.standardTStructure_le_iff
+#print axioms RelativeFM.Spaces.LP26.standardTStructure_ge_iff
+-- LP26 Lemma 5.9 over algebraic spaces (wave 8, `Spaces/LP26/Lemma59.lean`)
+#print axioms RelativeFM.Spaces.LP26.minusC
+#print axioms RelativeFM.Spaces.LP26.boundedC
+#print axioms RelativeFM.Spaces.LP26.isZero_homology_obj₃_of_epi_of_mono
+#print axioms RelativeFM.Spaces.LP26.isPseudoCoherentComplexFrom_of_le
+#print axioms RelativeFM.Spaces.LP26.isPseudoCoherentFrom_of_le
+#print axioms RelativeFM.Spaces.LP26.isQuasiCompact_ι_compl
+#print axioms RelativeFM.Spaces.LP26.standardMinusC_of_isCompactObject
+#print axioms RelativeFM.Spaces.LP26.lemma_5_9
+#print axioms RelativeFM.Spaces.LP26.standardTStructure_plus_iff
+#print axioms RelativeFM.Spaces.LP26.standardTStructure_minus_iff
+#print axioms RelativeFM.Spaces.LP26.lemma_5_9_minus_noetherian
+#print axioms RelativeFM.Spaces.LP26.lemma_5_9_bounded_noetherian
+#print axioms RelativeFM.Spaces.LP26.lemma_5_9_minus_eq
+#print axioms RelativeFM.Spaces.LP26.lemma_5_9_bounded_eq
+#print axioms RelativeFM.Spaces.LP26.nonVacuity_lemma_5_9
+#print axioms RelativeFM.Spaces.LP26.nonVacuity_lemma_5_9_noetherian
+-- LP26 Theorem 1.1 and compactness for a coproduct universe `w` independent of the Hom
+-- universe (wave 8, `Spaces/Stacks/{Bridges,Corollaries,UniverseNonVacuity}.lean`)
+#print axioms RelativeFM.Spaces.Stacks.isCompactObject_iff_sumUniverse_isCompactAb
+#print axioms RelativeFM.Spaces.Stacks.isClassicalGeneratorOnCompacts_iff_triangEnvelope_eq_univ
+#print axioms RelativeFM.Spaces.Stacks.theorem_1_1_univ
+#print axioms RelativeFM.Spaces.Stacks.theorem_1_1
+#print axioms RelativeFM.Spaces.Stacks.theorem_1_1_univ_zero
+#print axioms RelativeFM.Spaces.Stacks.theorem_1_1_univ_zero_D
+#print axioms RelativeFM.Spaces.Stacks.isCompactAb_zero_D
+#print axioms RelativeFM.Spaces.Stacks.lemma_A_9_sumUniverse
+#print axioms RelativeFM.Spaces.Stacks.lemma_A_9_sumUniverse_affine
+-- GL26 Lemmas A.4 and A.6 over algebraic spaces (wave 8, `Spaces/LP26/Recollement.lean`)
+#print axioms RelativeFM.Spaces.LP26.RecollementOfAdjoints.exists_distinguished
+#print axioms RelativeFM.Spaces.LP26.RecollementOfAdjoints.exists_natural_connecting
+#print axioms RelativeFM.Spaces.LP26.RecollementOfAdjoints.Data.toRecollement
+#print axioms RelativeFM.Spaces.LP26.pushFullyFaithful
+#print axioms RelativeFM.Spaces.LP26.exists_inclZ_of_isZero_pullZ
+#print axioms RelativeFM.Spaces.LP26.lemma_A_4
+#print axioms RelativeFM.Spaces.LP26.lemma_A_4_nonVacuity
+#print axioms RelativeFM.Spaces.LP26.isLE_isGE_rightAdjoint_of_equivalence
+#print axioms RelativeFM.Spaces.LP26.lemma_A_6_aux
+#print axioms RelativeFM.Spaces.LP26.lemma_A_6
+#print axioms RelativeFM.Spaces.LP26.lemma_A_6_bounded
+#print axioms RelativeFM.Spaces.LP26.lemma_A_6_nonVacuity
+-- LP26 Definition 5.3 and Proposition 5.8 (W.A.) over algebraic spaces (wave 8)
+#print axioms RelativeFM.Spaces.LP26.SatisfiesWA
+#print axioms RelativeFM.Spaces.LP26.SatisfiesStandardWA
+#print axioms RelativeFM.Spaces.LP26.satisfiesWA_of_satisfiesStandardWA
+#print axioms RelativeFM.Spaces.LP26.proposition_5_8
+#print axioms RelativeFM.Spaces.LP26.satisfiesPaperWA_of_forall_isZero
+#print axioms RelativeFM.Spaces.LP26.satisfiesWA_of_isEmpty
+#print axioms RelativeFM.Spaces.LP26.proposition_5_8_nonVacuity
+-- LP26 Corollary 1.2 over algebraic spaces (wave 8, `Spaces/LP26/Corollary12.lean`)
+#print axioms RelativeFM.Spaces.LP26.UniverseDescent.small_nonzero
+#print axioms RelativeFM.Spaces.LP26.UniverseDescent.isCompactAb_of_max
+#print axioms RelativeFM.Spaces.LP26.UniverseDescent.coprod_le
+#print axioms RelativeFM.Spaces.LP26.UniverseDescent.satisfiesPaperWA_of_max
+#print axioms RelativeFM.Spaces.LP26.satisfiesPaperWA_dqcZ_of_dqcSupported
+#print axioms RelativeFM.Spaces.LP26.satisfiesPaperWA_dqcZ_of_paperM2
+#print axioms RelativeFM.Spaces.LP26.exists_fg_eq_zeroLocusPoints
+#print axioms RelativeFM.Spaces.LP26.satisfiesWA_space
+#print axioms RelativeFM.Spaces.LP26.isOpenImmersion_of_isIso'
+#print axioms RelativeFM.Spaces.LP26.satisfiesWA_of_iso
+#print axioms RelativeFM.Spaces.LP26.corollary_1_2
+#print axioms RelativeFM.Spaces.LP26.corollary_1_2_dqc
+#print axioms RelativeFM.Spaces.LP26.corollary_1_2_nonVacuity
+#print axioms RelativeFM.Spaces.LP26.corollary_1_2_int_witness

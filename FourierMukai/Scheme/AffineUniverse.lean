@@ -220,20 +220,6 @@ noncomputable def smallAffineDerivedCoproductsOfSpaltenstein
   hasCoproductsA := smallAffineHasCoproducts A H
   hasCoproductsU := inferInstance
 
-/-- LP Theorem 1.1, with its original proof and original `SetupMainMinimal`,
-instantiated at `v=u`. No reindexing of `Coprod`, `IsCompactAb`, or
-`WeakApproximationData` is needed in this design. -/
-theorem affine_theorem_1_1_small
-    (S : SetupMainMinimal DZ (SmallAffineD A H) DU)
-    (C : SmallAffineDerivedCoproducts A H DZ DU)
-    (h09SR : Stacks09SR (SmallAffineD A H)) :
-    SatisfiesWA (SmallAffineD A H) ↔
-      ∃ N : ℤ, ∀ n : ℤ, N ≤ n → ∀ f : S.G' ⟶ S.G'⟦n⟧, f = 0 := by
-  let _ : HasCoproducts.{u} DZ := C.hasCoproductsZ
-  let _ : HasCoproducts.{u} (SmallAffineD A H) := C.hasCoproductsA
-  let _ : HasCoproducts.{u} DU := C.hasCoproductsU
-  exact S.theorem_1_1 h09SR
-
 end Categories
 
 end
@@ -245,7 +231,6 @@ end RelativeFM
 #print axioms RelativeFM.UniverseDecision.kProjectiveReplacementDataOfHasDerivedCategory
 #print axioms RelativeFM.UniverseDecision.hasCoproductsOfKProjectiveReplacementDataSmall
 #print axioms RelativeFM.smallAffineHasCoproducts
-#print axioms RelativeFM.affine_theorem_1_1_small
 
 namespace RelativeFM
 

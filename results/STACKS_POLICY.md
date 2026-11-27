@@ -41,7 +41,8 @@ neither of which is a default build target:
 * **`Spaces`** (directory `Spaces/`) imports only AxiomMath's **definitions**: the
   modules listed in `scripts/axiommath/spaces-imports.txt` (~2 000 AxiomMath modules,
   ~40 min to build on 4 cores).  An AxiomMath **theorem** that these imports do not
-  provide is taken as a **tagged input**: a `Prop` in `Spaces/AxiomMathInputs.lean`
+  provide is taken as a **tagged input**: a `Prop` in `Spaces/AxiomMathInputs.lean` or in a
+  task's `Spaces/<Area>/Inputs.lean`
   whose docstring gives the Stacks tag and the AxiomMath declaration, and whose
   statement is AxiomMath's statement verbatim (same objects, same hypotheses).
 * **`SpacesVerified`** (directory `SpacesVerified/`) imports the AxiomMath theorems

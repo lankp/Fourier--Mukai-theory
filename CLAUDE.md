@@ -63,8 +63,9 @@ scripts/check_statements.sh --spaces    # pinned statements of Spaces
 ```
 
 `lake build SpacesVerified` (full verification) compiles ~8 500 AxiomMath modules and
-needs ~14 GB of memory (add swap on a 16 GB machine); workers do not run it, nor
-`scripts/check_statements.sh --verified`, which needs it.
+needs ~14 GB of memory (add swap on a 16 GB machine).  Only the worker whose task says so
+(the `axiommath-verified` task) runs it and `scripts/check_statements.sh --verified`; other
+workers do not.
 
 In a cloud session, the environment `fourier--mukai-theory` installs all of this
 at start-up.  If `lean` is missing, see `results/SWARM.md` ("Environment").
@@ -85,9 +86,10 @@ The project compiles with `autoImplicit = false`, `relaxedAutoImplicit = false`,
    AxiomMath/Stacks, a pinned Lake dependency.  In the algebraic-space library
    `Spaces`, import only the definition modules of
    `scripts/axiommath/spaces-imports.txt`; an AxiomMath theorem outside them is a
-   tagged input in `Spaces/AxiomMathInputs.lean` (tag, AxiomMath declaration name,
-   AxiomMath's statement verbatim), discharged by the orchestrator in
-   `SpacesVerified`, where the final results are unconditional.  In the older layers
+   tagged input (tag, AxiomMath declaration name, AxiomMath's statement verbatim) in
+   `Spaces/AxiomMathInputs.lean` or in the `Inputs.lean` of the task's directory
+   (`Spaces/<Area>/Inputs.lean`), discharged in `SpacesVerified` (by the orchestrator or the
+   worker it assigns), where the final results are unconditional.  In the older layers
    a Stacks result is a `Prop` field of `RelativeFM.StacksInterface` with its tag and
    a row in `results/ASSUMPTIONS.md`.  **Neeman, Acta Math. 233 (2024), Theorem 3.2 is no
    longer an allowed assumption** (maintainer, 26 November 2026, including the
@@ -199,7 +201,8 @@ The maintainer has delegated merging to the orchestrator session: work reaches
   conditional, or proved only in a restricted form (abstract, `Cat`, affine, interface)
   is a to-do in `results/TODO.md`, generated from `COVERAGE.md` by
   `python3 scripts/todo.py`.  Record a finding in `COVERAGE.md` (never edit `TODO.md` by
-  hand) and regenerate.  To-dos are filled in order: LP26 first, then GL26.
+  hand) and regenerate; edit a COVERAGE row by its TeX label (`scripts/coverage_row.py`),
+  never by its number, which GL26 and LP26 share.  To-dos are filled in order: LP26 first, then GL26.
 * **Cleanliness first** (maintainer, 26 November 2026: cleanliness is a priority).  Before
   a new wave is launched, the repository is cleaned up and **every Markdown file is
   brought up to date** with the merged tree: README, `CLAUDE.md`, `results/*.md` (COVERAGE,
@@ -228,13 +231,33 @@ The maintainer has delegated merging to the orchestrator session: work reaches
 * **Robust long work** (maintainer, 27 November 2026).  The orchestrator's container is
   reclaimed when its session is idle, which kills its background builds and local subagents.
   So: (a) long builds (the AxiomMath / `SpacesVerified` build) run in a cloud worker, whose
-  container stays up while it works; (b) while a local subagent or build of the orchestrator's
-  is running, the orchestrator keeps its session active (foreground waits in slices of at most
-  ten minutes) instead of ending its turn; (c) a task that needs the manuscripts may run as a
+  container stays up while it works; (b) while a build or a local subagent is running, the session
+  that started it (orchestrator or worker) keeps itself active with foreground waits in slices
+  of at most ten minutes instead of ending its turn (an idle session's container is reclaimed
+  and its background builds die); (c) a task that needs the manuscripts may run as a
   cloud worker when the maintainer uploads the TeX to that worker's session (the orchestrator
   names the session; it never passes the TeX itself); otherwise it runs locally; (d) every
   worker, local or cloud, commits verified progress on its branch as it goes, so an
-  interruption loses minutes, and a relaunched worker continues from its branch.
+  interruption loses minutes, and a relaunched worker continues from its branch; (e) after a
+  container restart (check `uptime` at the start of every turn and every scheduled check),
+  first restore `swapon /home/user/.swapfile` and `sysctl -w vm.max_map_count=262144`
+  (lost at each restart; without them large imports fail and big modules are killed), then
+  relaunch what died; (f) a local subagent works in its own clone `/home/user/wt-<slug>`
+  (`.lake/packages` symlinked to the main checkout's, `.lake/build` copied), pushes only its
+  branch, keeps its scratch files in the clone (never in the orchestrator's scratchpad), and
+  the clone is deleted after the merge; (g) one heavy build at a time per
+  container: before a build that may compile AxiomMath modules, check
+  `python3 -I scripts/axiommath/built.py`; a module killed for memory (exit 137) is rebuilt
+  alone.
+* **Model and effort per task** (maintainer, 27 November 2026: effectiveness first, quality
+  over quantity).  Each task in a wave's plan names its model and effort.  Proofs, statements
+  of paper results, anything read against the manuscripts, and anything whose failure costs
+  hours: the strongest model (Opus), effort high.  Mechanical tasks that the objective checks
+  fully guard (prunes, discharging tagged inputs by the declarations they name, docs and
+  bookkeeping): Sonnet, effort medium, adopted only where a trial passes cleanly, and moved
+  back to Opus on any rework.  The orchestrator and its local subagents run on the session's
+  model.  Fewer tasks done well beat more tasks: a wave launches only what it can verify, and
+  a task that fails verification is redone, not merged partially without record.
 * **Archive before the next wave** (maintainer, 27 November 2026): the orchestrator archives
   every worker session of the completed wave (`archive_session`), and records it in
   `SWARM.md`, before it launches any session of the next wave.  A wave whose workers are not

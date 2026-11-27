@@ -5,7 +5,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 import WeakApprox.PaperLemma34M2
 import WeakApprox.Recollement
 import WeakApprox.PLift
-import WeakApprox.Lemma34
+import WeakApprox.Aisle
 import WeakApprox.Lemma42
 import WeakApprox.Closure
 import WeakApprox.Shift

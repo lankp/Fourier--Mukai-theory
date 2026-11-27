@@ -15,12 +15,18 @@ AxiomMath/Stacks is a pinned Lake dependency (`lakefile.toml`, commit `f56a316`)
 * **Rule** (maintainer): no assumptions and no unproven parts except AxiomMath/Stacks.  Do not
   add any named hypothesis that is not an AxiomMath theorem; an AxiomMath theorem you need is a
   tagged input in your task's own `Inputs.lean` (conventions of `Spaces/AxiomMathInputs.lean`),
-  discharged by the orchestrator in `SpacesVerified`.  What AxiomMath lacks, you prove.
+  discharged in `SpacesVerified` (by the orchestrator or the `axiommath-verified` worker).  What
+  AxiomMath lacks, you prove.
+* After a restart of your container (check `uptime`), add swap again if you had added it, and
+  try `sysctl -w vm.max_map_count=262144`; one heavy build at a time (CLAUDE.md, "Robust long
+  work").
 * No `sorry` anywhere in the tree.  Open results are to-dos in `results/TODO.md`.
 * GL26's headline results are stated over spaces in `Spaces/Statements/Main.lean`.
 * Tasks that need the manuscripts' text run in the orchestrator's container, or in a cloud
   session to which the maintainer has uploaded the TeX; never copy it into the repository.
-* Commit and push verified progress as you go (CLAUDE.md, "Robust long work").
+* Commit and push verified progress as you go, and while a build runs wait for it in the
+  foreground (slices of at most ten minutes) instead of ending your turn: an idle session's
+  container is reclaimed and its background builds die (CLAUDE.md, "Robust long work").
 
 ## Before anything
 1. `cd` into the repository checkout and follow the git instructions of your task. Read `CLAUDE.md` (in particular the SEVEN verification steps, including step 5, non-vacuity), `results/SWARM.md`, `README.md`, `results/STACKS_POLICY.md`, `results/ASSUMPTIONS.md`, and the rows of `results/COVERAGE.md` relevant to your task.

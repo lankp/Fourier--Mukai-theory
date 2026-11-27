@@ -25,8 +25,8 @@ unproven parts except the Stacks Project as formalized by AxiomMath.
 |---|---|
 | §§2–4 (Lemmas 3.1, 3.3, 3.4, 3.5, 4.2, 4.3, 4.6, Proposition 4.8) | proved |
 | Theorem 1.1 (`thm:glueing_weak_approx`) | proved, with the paper's hypotheses and nothing assumed (`Spaces.Stacks.theorem_1_1`) |
-| Corollary 1.2 (`cor:weak_approx_spaces`) | affine base case proved over algebraic spaces (AxiomMath inputs to discharge); the qcqs induction in progress |
-| §5 (Definition 5.3, Lemmas 5.5–5.9, Proposition 5.8) | open |
+| Corollary 1.2 (`cor:weak_approx_spaces`) | proved over qcqs algebraic spaces (weak approximability of `D_qc,S(X)` and `D_qc(X)`), from AxiomMath theorems being discharged; the standard form and the Noetherian coherence claim are open |
+| §5 (Definition 5.3, Lemmas 5.5–5.9, Proposition 5.8) | proved over algebraic spaces (AxiomMath theorems being discharged), except the standard part of Proposition 5.8 |
 
 **GL26**
 
@@ -63,9 +63,9 @@ result is removed.  Ledger:
 
 ## Next
 
-1. **LP26 in full generality** (wave 8): LP26 Theorem 1.1 at AxiomMath's universes, the
-   preferred-class clause of GL26 Lemma A.9 (Neeman's approximability, proved here), LP26 §5,
-   then Corollary 1.2 over qcqs algebraic spaces; AxiomMath inputs of wave 7 discharged.
+1. **Finish LP26**: the standard form of Proposition 5.8 and Corollary 1.2, the Noetherian
+   coherence claim, the supported case of GL26 Lemma A.9's preferred class; and every
+   AxiomMath input proved in `SpacesVerified` (in progress).
 2. **GL26 over algebraic spaces**: prove the stated headline results, starting from §7 and
    the base-change cube.
 
