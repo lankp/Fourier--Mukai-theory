@@ -19,9 +19,9 @@ algebraic spaces is still to do.
 
 | # | label | status | where / note |
 |---|---|---|---|
-| Cor 1.2 | `cor:weak_approx_spaces` | P (W.A. and D_qc parts; standard W.A. SpacesVerified form and coherence open) | **Over qcqs algebraic spaces**: `Spaces/LP26/Corollary12.lean` `corollary_1_2`, `corollary_1_2_dqc` (pinned), unconditional; standard W.A. `Spaces/LP26/Standard |
+| Cor 1.2 | `cor:weak_approx_spaces` | P (all parts; SpacesVerified form of standard W.A. and coherence open) | **Over qcqs algebraic spaces**: `Spaces/LP26/Corollary12.lean` `corollary_1_2`, `corollary_1_2_dqc` (pinned), unconditional; standard W.A. `Spaces/LP26/Standard |
 | Prop 5.8 | `prop:A8` | P (standard part: SpacesVerified form open) | **Over algebraic spaces**: W.A. part `Spaces/LP26/Proposition58.lean` `proposition_5_8`, unconditional (wave 8); standard W.A. part `Spaces/LP26/StandardWA.lean |
-| Lem 5.9 | `lem:characterize_T-_c` | P (for the standard t-structure; preferred-class form open) | **over algebraic spaces, unconditional**: `Spaces/LP26/Lemma59.lean` `lemma_5_9` and the Noetherian forms; the identification with the paper's preferred-class ` |
+| Lem 5.9 | `lem:characterize_T-_c` | P (preferred-class form: SpacesVerified form open) | **Over algebraic spaces**: `Spaces/LP26/Lemma59.lean` `lemma_5_9` and the Noetherian forms, for the standard `t`-structure, unconditional; the preferred-class f |
 
 ## GL26: not proved (100)
 

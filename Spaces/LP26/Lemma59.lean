@@ -50,10 +50,11 @@ Noetherian, Stacks 08IK identifies the pseudo-coherent objects of `D_qc(X)` with
   only to know that the standard `t`-structure lies in that class (Neeman, Facts 1.26(i)), so
   that `𝒯^-_c` may be computed for it (CHNS, Remark 4.1.5).  Here `𝒯^-_c` is computed for the
   standard `t`-structure `standardTStructure X T` (`Spaces/LP26/StandardTStructure.lean`), and
-  the statement holds **without** the W.A. hypothesis.  What is not formalized: Definition 5.3
-  (it needs the coproduct universe of `wave8/universe-bridge`) and the independence of `𝒯^-_c`
-  from the representative of the preferred class, so the identification of this `𝒯^-_c` with the
-  paper's under standard W.A. is a gap (it is the paper's first proof step, a citation).
+  the statement holds **without** the W.A. hypothesis.  The identification with the paper's
+  `𝒯^-_c` under standard W.A. (the paper's first proof step) is proved in
+  `Spaces/LP26/Coherence.lean` (wave 9): `inPreferredClass_standardTStructure` (the standard
+  `t`-structure is in the preferred class) and `minusC_boundedC_eq_standard` (`𝒯^-_c` and
+  `𝒯^b_c` are the same for every `t`-structure in it).
 * **Compact** is `IsCompactObject.{u}` in `𝒯 = D_{qc,T}(X)` (direct sums indexed by `Type u`,
   Stacks 07LS), as in `Spaces/LP26/HomVanishing.lean`; `𝒯^{≤ -n}` is
   `(standardTStructure X T).le (-n)`.  `𝒯^- = ⋃_{n ≥ 0} 𝒯^{≤ n}` is Mathlib's `t.minus`
