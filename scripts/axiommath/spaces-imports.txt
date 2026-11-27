@@ -31,3 +31,11 @@ StacksFrontier.CategoryTheory.Triangulated.Generators
 StacksFrontier.CategoryTheory.Triangulated.CompactObjects.ThickSubcategory
 StacksFrontier.CategoryTheory.Triangulated.CompactObjects.CellStructure
 StacksFrontier.CategoryTheory.Triangulated.CompactObjects.CompactGenerators
+# The affine base case of LP26 Corollary 1.2 (wave7/spaces-affine-base): the associated-module
+# functor on a represented affine space (03DU (4), the site equivalence, its transport of
+# modules), the points of a represented space (03BX), and the cohomology of `F.mapDerivedCategory`.
+# Together 54 modules beyond the list above, free of MilnorPatching.Relative.
+StacksFrontier.AlgebraicGeometry.Spaces.RepresentedModuleComparison
+StacksFrontier.AlgebraicGeometry.Spaces.PointsRepresented
+StacksFrontier.Algebra.Category.ModuleCat.Sheaf.SiteEquivalenceTransport
+StacksFrontier.Algebra.Homology.DerivedCategory.MapDerivedCategoryHomology

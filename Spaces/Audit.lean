@@ -1,4 +1,5 @@
 /- Copyright (c) 2026 Formalization of Lank--Pauwels. Released under Apache 2.0 license as described in the file LICENSE. -/
+import Spaces.Affine.WeakApprox
 import Spaces.AxiomMathInputs
 import Spaces.NonVacuity
 import Spaces.Statements
@@ -108,3 +109,20 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.Statements.isFlatHom_id
 #print axioms RelativeFM.Spaces.Statements.isNoetherianSpace_baseSpace
 #print axioms RelativeFM.Spaces.Statements.setup_hypotheses_satisfiable
+-- LP26 Corollary 1.2, affine base case (Spaces/Affine/, wave 7)
+#print axioms RelativeFM.Spaces.Affine.associated
+#print axioms RelativeFM.Spaces.Affine.zeroLocusPoints
+#print axioms RelativeFM.Spaces.Affine.Tag06Z0ExactInput
+#print axioms RelativeFM.Spaces.Affine.Tag06Z0QcohInput
+#print axioms RelativeFM.Spaces.Affine.Tag06Z0Input
+#print axioms RelativeFM.Spaces.Affine.Tag07TYInput
+#print axioms RelativeFM.Spaces.Affine.Tag021RInput
+#print axioms RelativeFM.Spaces.Affine.mem_supportOfSheaf_associated_iff
+#print axioms RelativeFM.Spaces.Affine.cohomologySupportedOn_iff
+#print axioms RelativeFM.Spaces.Affine.dqcSupported_eq_map
+#print axioms RelativeFM.Spaces.Affine.isTriangulated_dqcSupported
+#print axioms RelativeFM.Spaces.Affine.supportedComparison
+#print axioms RelativeFM.Spaces.Affine.isEquivalence_supportedComparison
+#print axioms RelativeFM.Spaces.Affine.satisfiesPaperWA_dqcSupported
+#print axioms RelativeFM.Spaces.Affine.lp26_cor_1_2_affine
+#print axioms RelativeFM.Spaces.Affine.lp26_cor_1_2_affine_int
