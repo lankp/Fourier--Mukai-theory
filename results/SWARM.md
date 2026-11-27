@@ -214,19 +214,19 @@ Order after wave 7: the qcqs induction for supported weak approximability over s
 
 ## Wave 8 (prepared; briefs in `results/swarm/wave8/`): LP26 in full generality
 
-**Status (27 November 2026, 02:20 UTC):** wave 7's four worker sessions archived; wave 8 launched.
+**Status (27 November 2026, 03:07 UTC):** wave 7's four worker sessions archived; wave 8 launched: three cloud workers and the local `lp26-section5`; `discharge-wave7-inputs` starts when the AxiomMath build finishes; `lp26-corollary-1-2` after the others.
 
 Launches when wave 7 is closed and the repository cleaned up.  Order of need: the universe
 bridge and the preferred class first, then §5, then Corollary 1.2.
 
 | task | effort | goal |
 |---|---|---|
-| `wave8/universe-bridge` | high | LP26 Thm 1.1 and compactness with a coproduct universe independent of the Hom universe, so they apply to AxiomMath's `D(𝒪_X)` (Hom in `Type (u+1)`, sums over `Type u`) |
-| `wave8/neeman-approximability` | high | the part of Neeman's approximability needed for GL26 Lemma A.9's preferred-class clause over qcqs spaces, proved here |
-| `wave8/lp26-section5` (local, LP26 TeX) | high | LP26 Def 5.3, Lemmas 5.5–5.7, 5.9, Prop 5.8 over algebraic spaces |
+| `wave8/universe-bridge` (`session_0111iGd7bQhnAomRu66CG3oJ`) | high | LP26 Thm 1.1 and compactness with a coproduct universe independent of the Hom universe, so they apply to AxiomMath's `D(𝒪_X)` (Hom in `Type (u+1)`, sums over `Type u`) |
+| `wave8/neeman-approximability` (`session_0111iGd8kuVAzNdReRDjVzr4`) | high | the part of Neeman's approximability needed for GL26 Lemma A.9's preferred-class clause over qcqs spaces, proved here |
+| `wave8/lp26-section5` (local subagent, launched 03:07 UTC, LP26 TeX) | high | LP26 Def 5.3, Lemmas 5.5–5.7, 5.9, Prop 5.8 over algebraic spaces |
 | `wave8/lp26-corollary-1-2` (local, after the others) | high | LP26 Corollary 1.2 over qcqs algebraic spaces with support |
 | `wave8/discharge-wave7-inputs` (local) | high | prove the 17 tagged AxiomMath inputs of wave 7 in `SpacesVerified`; unconditional forms of the wave 7 headlines |
-| `wave8/prune-pinned-vacuous` | medium | delete the two vacuous pinned endpoints (`IsGenerator` form) and what only they use |
+| `wave8/prune-pinned-vacuous` (`session_0111iGd6caNpP2YiJVNQW24x`) | medium | delete the two vacuous pinned endpoints (`IsGenerator` form) and what only they use |
 
 The LP26 TeX is the copy in the orchestrator's session uploads (current unless the maintainer
 says otherwise); tasks that need it run as local subagents.
