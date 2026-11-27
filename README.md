@@ -25,8 +25,8 @@ unproven parts except the Stacks Project as formalized by AxiomMath.
 |---|---|
 | §§2–4 (Lemmas 3.1, 3.3, 3.4, 3.5, 4.2, 4.3, 4.6, Proposition 4.8) | proved |
 | Theorem 1.1 (`thm:glueing_weak_approx`) | proved, with the paper's hypotheses and nothing assumed (`Spaces.Stacks.theorem_1_1`) |
-| Corollary 1.2 (`cor:weak_approx_spaces`) | proved over qcqs algebraic spaces (weak approximability of `D_qc,S(X)` and `D_qc(X)`), from AxiomMath theorems being discharged; the standard form and the Noetherian coherence claim are open |
-| §5 (Definition 5.3, Lemmas 5.5–5.9, Proposition 5.8) | proved over algebraic spaces (AxiomMath theorems being discharged), except the standard part of Proposition 5.8 |
+| Corollary 1.2 (`cor:weak_approx_spaces`) | proved over qcqs algebraic spaces, nothing assumed (weak approximability of `D_qc,S(X)` and `D_qc(X)`); the standard form and the Noetherian coherence claim are open |
+| §5 (Definition 5.3, Lemmas 5.5–5.9, Proposition 5.8) | proved over algebraic spaces, nothing assumed, except the standard part of Proposition 5.8 |
 
 **GL26**
 
@@ -36,7 +36,8 @@ unproven parts except the Stacks Project as formalized by AxiomMath.
 | Lemmas 2.3, 2.4, 2.5 | proved |
 | Lemmas 7.12, 7.13, 7.17 | proved for algebraic spaces, nothing assumed |
 | Lemmas 7.2, 7.4, 7.6, 7.9, 7.11, Lemma-Definition 7.10, Lemmas 10.2, B.2, B.4, B.5, B.7, B.10, C.1 | proved, over abstract data or in `Cat` |
-| Lemma A.9 (generation part), Lemmas 6.11, 10.1 | proved over algebraic spaces from AxiomMath theorems (being discharged); the preferred-class clause of A.9 is open |
+| Lemmas A.4, A.6, A.9 (generation; preferred class for the whole space), 6.11 | proved over algebraic spaces, nothing assumed |
+| Lemma 10.1 | proved over algebraic spaces from one flat-base-change hypothesis (open) |
 | Lemmas 2.25, 2.26, 5.4, A.4 (affine case) | conditional on named inputs: not counted as proved; being redone over algebraic spaces |
 | Theorems 1.2, 1.3, 1.6, 1.7 and the rest | open; being stated over algebraic spaces |
 
@@ -92,7 +93,7 @@ Lean and Mathlib `v4.35.0`; AxiomMath/Stacks at `f56a316`.
 lake exe cache get          # Mathlib
 lake build                  # FourierMukai, WeakApprox (no AxiomMath)
 lake build Spaces           # algebraic spaces (~2 000 AxiomMath modules, ~40 min the first time)
-lake build SpacesVerified   # full verification (~8 500 AxiomMath modules, ~6 h, ~14 GB of memory)
+lake build SpacesVerified   # full verification (~14 600 AxiomMath modules, ~12 h, 16 GB of memory plus 16 GB swap)
 ```
 
 ## Layout

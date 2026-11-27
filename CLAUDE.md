@@ -55,8 +55,9 @@ lake build Spaces                       # algebraic-space layer: also builds ~2 
 scripts/check_statements.sh --spaces    # pinned statements of Spaces
 ```
 
-`lake build SpacesVerified` (full verification) compiles ~8 500 AxiomMath modules and
-needs ~14 GB of memory (add swap on a 16 GB machine).  Only the worker whose task says so
+`lake build SpacesVerified` (full verification) compiles ~14 600 AxiomMath modules (~12 h)
+and peaks above 16 GB (add 16 GB of swap on a 16 GB machine; build memory-heavy modules
+alone).  Only the worker whose task says so
 (the `axiommath-verified` task) runs it and `scripts/check_statements.sh --verified`; other
 workers do not.
 

@@ -212,9 +212,9 @@ orchestrator can discharge their inputs in `SpacesVerified` at merge.
 Order after wave 7: the qcqs induction for supported weak approximability over spaces
 (LP26 Cor 1.2) once the affine base and Lemma A.9 are in; then GL26 §§3–6 over spaces.
 
-## Wave 8 (prepared; briefs in `results/swarm/wave8/`): LP26 in full generality
+## Wave 8 (closed 27 November 2026; briefs in `results/swarm/archive/wave8/`): LP26 in full generality
 
-**Status (27 November 2026, 03:07 UTC):** wave 7's four worker sessions archived; wave 8 launched: three cloud workers and the local `lp26-section5`; `discharge-wave7-inputs` starts when the AxiomMath build finishes; `lp26-corollary-1-2` after the others.
+**Closed (27 November 2026, ~18:45 UTC):** every task merged; all 66 tagged AxiomMath inputs proved in `SpacesVerified`; workers archived.
 
 Launches when wave 7 is closed and the repository cleaned up.  Order of need: the universe
 bridge and the preferred class first, then §5, then Corollary 1.2.
@@ -227,15 +227,14 @@ bridge and the preferred class first, then §5, then Corollary 1.2.
 | `wave8/lp26-lemma-5-9` (local, LP26 TeX; merged) | high | done: LP26 Lemma 5.9 (`lem:characterize_T-_c`) over algebraic spaces, both claims, for the standard `t`-structure; nine tagged inputs |
 | `wave8/lp26-recollement` (local, manuscripts; merged) | high | done: GL26 Lemmas A.4 (recollement of `D_qc,W(X)`, built here) and A.6 over spaces; LP26 Def 5.3 and the W.A. part of Prop 5.8.  Open: the standard W.A. part of Prop 5.8 |
 | `wave8/lp26-corollary-1-2` (local, LP26 TeX; merged) | high | done: LP26 Corollary 1.2 over qcqs algebraic spaces, W.A. and D_qc parts (pinned), without the quasi-finite-diagonal hypothesis.  Open: standard W.A., Noetherian coherence |
-| `wave8/axiommath-verified` (`session_0111iGd8ChkAMsYSB2t9QoLz`) | high | build the full `SpacesVerified` closure in its own container (the orchestrator's is reclaimed when idle), then prove the 17 tagged AxiomMath inputs of wave 7 and the unconditional wave 7 headlines |
+| `wave8/axiommath-verified` (`session_0111iGd8ChkAMsYSB2t9QoLz`; merged `85172a0`) | high | done: all 66 tagged inputs proved; LP26 §5, Cor 1.2, GL26 A.4, A.6, A.9, 6.11 unconditional; 12 h 20 min build, peak 25 GB with 16 GB swap. Was: build the full `SpacesVerified` closure in its own container (the orchestrator's is reclaimed when idle), then prove the 17 tagged AxiomMath inputs of wave 7 and the unconditional wave 7 headlines |
 | `wave8/prune-pinned-vacuous` (`session_0111iGd6caNpP2YiJVNQW24x`) | medium | merged: the two vacuous `IsGenerator` endpoints and ~1 500 lines only they used deleted; baseline re-recorded (15 pins) |
 
 The manuscripts are in `manuscripts/` (27 November 2026), so manuscript tasks need not run locally.
 
-## Wave 9 (prepared; briefs in `results/swarm/wave9/`): finish LP26
+## Wave 9 (briefs in `results/swarm/wave9/`): finish LP26
 
-Launches when wave 8 is closed (its last worker, `axiommath-verified`, archived) and the
-repository cleaned up.
+Launched after wave 8 closed.
 
 | task | model, effort | goal |
 |---|---|---|

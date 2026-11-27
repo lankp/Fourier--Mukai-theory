@@ -15,7 +15,8 @@ import os, re
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROW = re.compile(r'^\| ([A-Z][A-Za-z-]*(?: [A-Z]?[\d.]+[a-z]?)?) \| `([^`]+)` \| ([^|]*)\|(.*)$')
 RANK = {'C': 0, 'H': 1, 'T': 2, '—': 3, '–': 3, '': 3}
-RESTRICTED = ('abstract', '`Cat`', 'in Cat', 'affine', 'interface', 'one direction', 'module model')
+RESTRICTED = ('abstract', '`Cat`', 'in Cat', 'affine', 'interface', 'one direction', 'module model',
+              'open')  # a P row with an open part stays a to-do
 
 
 def rows():
