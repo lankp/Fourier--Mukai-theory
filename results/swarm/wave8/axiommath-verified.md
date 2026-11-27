@@ -32,3 +32,5 @@ verification steps with `lake build SpacesVerified`; report build times and peak
 `Spaces/Supported/Inputs.lean` (`Tag0GFIInput`, `PerfectBoundedAboveInput`, merged at
 `46c3025`), with the unconditional forms of LP26 Lemmas 5.5–5.7, 5.9 and of
 `lemma_A_9_preferred_univ`.  Merge `origin/formalization` into your branch first.
+Also the inputs appended to `Spaces/LP26/Inputs.lean` at `033bb2c` (recollement: 079Q, 0A8G,
+08GF, 08H6, 08GG, …) and the unconditional GL26 Lemmas A.4, A.6 and LP26 Proposition 5.8.
