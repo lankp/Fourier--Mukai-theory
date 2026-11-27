@@ -1,5 +1,5 @@
 /- Copyright (c) 2026 Formalization of Lank--Pauwels. Released under Apache 2.0 license as described in the file LICENSE. -/
-import WeakApprox.Setup44Minimal
+import WeakApprox.MainMinimal
 import WeakApprox.Lemma433TStructure
 import Mathlib.CategoryTheory.Triangulated.TStructure.TruncLTGE
 import Mathlib.Tactic

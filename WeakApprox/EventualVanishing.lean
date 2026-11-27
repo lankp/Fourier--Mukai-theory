@@ -6,13 +6,16 @@ import WeakApprox.Lemma43
 import WeakApprox.WeakApproximable
 
 /-!
-# Eventual self-Hom vanishing of a weak approximation generator
+# Closure properties of eventual Hom vanishing
 
-Weak approximation data (Definition 2.1) already force the generator's
-positive self-shifts to vanish: if `G ∈ T^{≤A}` then `G⟦n⟧ ∈ T^{≤A-n}`, which
-lies in `T^{≤-A}` as soon as `n ≥ 2A`, so `hom_vanishing` applies.  This is the
-input used by the forward direction of Theorem 1.1 (`WeakApprox/Main.lean`),
-together with transport along the finite thick envelope.
+`EventuallyHomZero` is stable under retracts and shifts.
+
+The lemmas `WeakApproximationData.eventuallyHomZero_self` and
+`eventuallyHomZero_self_of_mem_triangEnvelope` (the `IsGenerator` form of
+Definition 2.1, `def:weak_approx`), used only by the forward direction of the
+deleted `SetupMainMinimal.theorem_1_1`, were deleted in wave 8
+(`results/OPEN_INPUTS.md` row 7.3).  The paper's form is in
+`WeakApprox/PaperGeneratorM2.lean`.
 
 Found by a member of the Ultramath run `smwuoh1xz` (direction D5, second run).
 -/
@@ -25,32 +28,6 @@ open CategoryTheory CategoryTheory.Limits
 open CategoryTheory.Pretriangulated CategoryTheory.Triangulated
 
 universe v u
-section WeakApproximationData
-
-variable {C : Type u} [Category.{v} C] [HasZeroObject C] [HasShift C ℤ]
-  [Preadditive C] [∀ (n : ℤ), (shiftFunctor C n).Additive] [Pretriangulated C]
-
-/-- The self-Hom vanishing implicit in weak approximation data.
-
-If `G ∈ t.le A`, then `G⟦n⟧ ∈ t.le (A - n)`.  For `n ≥ 2*A` this is
-contained in `t.le (-A)`, so Definition 2.1's `hom_vanishing` field applies.
-This is the formal input to Lemma 4.3's finite-thick-envelope argument. -/
-theorem WeakApproximationData.eventuallyHomZero_self (W : WeakApproximationData C) :
-    EventuallyHomZero W.G W.G := by
-  refine ⟨2 * W.A, fun n hn f => W.hom_vanishing ?_ f⟩
-  apply W.t.le_monotone (show W.A - n ≤ -W.A by omega)
-  exact W.t.le_shift W.A n (W.A - n) (by omega) W.G W.G_mem_le
-
-/-- Transport of self-Hom vanishing from a weak-approximation generator to any
-object in its finite thick envelope.  This is the precise envelope input used
-in the forward direction of Theorem 1.1. -/
-theorem eventuallyHomZero_self_of_mem_triangEnvelope
-    (W : WeakApproximationData C) {G' : C}
-    (hG' : (ObjectProperty.singleton W.G).triangEnvelope G') :
-    EventuallyHomZero G' G' :=
-  eventuallyHomZero_of_mem_triangEnvelope W.eventuallyHomZero_self hG' hG'
-
-end WeakApproximationData
 
 section Closure
 

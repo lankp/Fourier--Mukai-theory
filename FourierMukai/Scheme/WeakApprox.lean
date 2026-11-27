@@ -24,7 +24,8 @@ docstring saying where it comes from.
 `compactHomZeroAtTop_of_satisfiesWA`, were deleted in wave 7
 (`results/OPEN_INPUTS.md` row 7.3): they are built on `SetupMainMinimal` and
 `SatisfiesWA`, the `IsGenerator` form, which is false for `D(ℤ)` (F2).  The paper
-form over algebraic spaces is `Spaces/`.
+form over algebraic spaces is `Spaces/`.  `SetupMainMinimal.theorem_1_1` itself was
+deleted in wave 8.
 
 ## Primary source
 
@@ -52,15 +53,10 @@ universe v u uZ uD uU
 #check AlgebraicGeometry.IsNoetherian
 #check AlgebraicGeometry.IsOpenImmersion
 #check AlgebraicGeometry.Scheme.Hom.opensRange
-#check RelativeWeakApprox.SetupMainMinimal.theorem_1_1
 #check RelativeWeakApprox.exists_setup_4_4_3_of_compactHomZeroAtTop
 #check RelativeWeakApprox.recollement_jShriek_compact
-#check RelativeWeakApprox.satisfiesWA_of_setup
 #check RelativeWeakApprox.CompactHomZeroAtTop
 #check RelativeWeakApprox.compactHomZeroAtTop_of_isClassicalGeneratorOnCompacts
-#check RelativeWeakApprox.WeakApproximationData.eventuallyHomZero_self
-#check RelativeWeakApprox.WeakApproximationData.monoBound
-#check RelativeWeakApprox.Setup44Reduced.toSetup44
 #check RelativeWeakApprox.Recollement.kernel
 
 /-- An open immersion of schemes and its closed set-theoretic complement.
@@ -84,7 +80,9 @@ structure SchemeOpenClosed where
 
 attribute [instance] SchemeOpenClosed.j_open
 
-/-- Stacks Tag 09SR, in the exact form required by `theorem_1_1`.
+/-- Stacks Tag 09SR, `IsGenerator` form (the hypothesis shape of the deleted
+`SetupMainMinimal.theorem_1_1`; kept for the refutation
+`RelativeFM.VacuityF2.affine_theorem_1_1_small_hypotheses_false_int`).
 For a scheme instantiation the geometric input identifying compacts with
 perfect complexes is Neeman 2024, Theorem 3.2(i); the finite thick-envelope
 statement itself remains the cited Stacks input. -/

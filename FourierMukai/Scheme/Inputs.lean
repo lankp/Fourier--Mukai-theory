@@ -120,7 +120,8 @@ inputs and its relative Fourier--Mukai geometry.
 affine cases of (i), (ii) are proved in `Scheme/Neeman32Inputs.lean` (see
 `results/archive/NEEMAN_3_2.md`).  The only theorem proved here is the formal
 specialization of pairwise compact vanishing to the self-vanishing appearing in
-`SetupMainMinimal.theorem_1_1`.  The `#check`s verify the names used from the
+the `G'_eventual` field of Setup 4.4 (the `IsGenerator`-form
+`SetupMainMinimal.theorem_1_1` was deleted in wave 8).  The `#check`s verify the names used from the
 current project; no claim about a Mathlib `IsPerfect` implementation is made.
 -/
 
@@ -156,7 +157,7 @@ def CompactHomZeroAtTop : Prop :=
   ∀ G G' : C, IsCompactAb G → IsCompactAb G' → EventuallyHomZero G G'
 
 omit [HasZeroObject C] [∀ (n : ℤ), (shiftFunctor C n).Additive] [Pretriangulated C] in
-/-- The self-vanishing required by `SetupMainMinimal.theorem_1_1` follows from
+/-- The self-vanishing of a compact object (Setup 4.4's `G'_eventual`) follows from
 the published pairwise vanishing statement.  This is only the logical
 specialization, not a formal proof of the geometric boundedness theorem. -/
 theorem eventuallyHomZero_self_of_compactHomZeroAtTop
@@ -171,7 +172,6 @@ end SchemeInputs
 #check IsCompactAb
 #check IsGenerator
 #check EventuallyHomZero
-#check RelativeWeakApprox.SetupMainMinimal.theorem_1_1
 #check RelativeWeakApprox.CompactHomZeroAtTop
 
 end RelativeFM

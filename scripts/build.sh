@@ -173,11 +173,9 @@ for f in \
   WeakApprox/Setup44.lean \
   WeakApprox/Lemma43.lean \
   WeakApprox/Lemma4323.lean \
-  WeakApprox/Lemma46.lean \
   WeakApprox/Proposition48.lean \
   WeakApprox/Lemma42.lean \
   WeakApprox/Recollement.lean \
-  WeakApprox/Lemma34.lean \
   WeakApprox/Lemma35.lean \
   WeakApprox/Octahedron.lean \
   WeakApprox/WeakApproximable.lean \
@@ -187,16 +185,13 @@ for f in \
   WeakApprox/TStructureConvention.lean \
   WeakApprox/StatementAudit.lean \
   WeakApprox/CompactVanishing.lean \
-  WeakApprox/TwoStage.lean \
   WeakApprox/NineSR.lean \
   WeakApprox/GeneratorBridge.lean \
   WeakApprox/Lemma433TStructure.lean \
   WeakApprox/Setup44Vanishing.lean \
   WeakApprox/Proposition48Paper.lean \
   WeakApprox/Main.lean \
-  WeakApprox/Setup44Reduced.lean \
   WeakApprox/MainMinimal.lean \
-  WeakApprox/Setup44Minimal.lean \
   WeakApprox/PaperGeneratorM2.lean \
   WeakApprox/PaperLemma34M2.lean \
   WeakApprox/PaperSetup44M2.lean \

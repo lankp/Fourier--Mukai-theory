@@ -7,8 +7,6 @@ after WeakApprox.Proposition48 and WeakApprox.CompactVanishing.
 import WeakApprox.Proposition48
 import WeakApprox.Setup44
 import WeakApprox.CompactVanishing
-import WeakApprox.Lemma46
-import WeakApprox.TwoStage
 import WeakApprox.MainMinimal
 import Mathlib.CategoryTheory.Monad.Limits
 import FourierMukai.Scheme.AffineBoundedAboveCoproducts
