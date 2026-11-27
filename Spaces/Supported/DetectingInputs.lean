@@ -39,7 +39,9 @@ which `scripts/axiommath/spaces-imports.txt` keeps out of `Spaces`.  They are wr
 by their bodies, copied from AxiomMath (`koszulSp`, `VanishesWhereUnitSp`, `unitLocusSieveSp`,
 `isMulCommutative_ringSheaf_smallEtaleSp`), and the inputs state AxiomMath's theorems with these
 spellings; the discharge in `SpacesVerified` identifies each with AxiomMath's definition
-(`koszulSp hX l = koszul hX l` by induction on `l`, each step `rfl`; the two others by `rfl`).
+(`koszulSp hX l = koszul hX l` by induction on `l`: `rfl` for `[]`, and for `a :: l` the
+induction hypothesis under `(distinguished_cocone_triangle (a • 𝟙 _)).choose`; the two others
+by `rfl`).
 AxiomMath's `structureModule Z` (an `abbrev` for `SheafOfModules.unit _`) and
 `QcohDerived B S hS Y` (an `abbrev`, written `qcohDerived Y` here) are written out by their
 bodies, as in `Spaces/Supported/Inputs.lean`.  `koszulQuasicoherent hX l` is
