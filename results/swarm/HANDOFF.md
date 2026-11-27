@@ -6,7 +6,7 @@ processes, and that a successor needs, is listed here (CLAUDE.md, "Handoff").  P
 are never committed: the manuscripts are named here, and anything else private is passed to the
 successor by session message.
 
-Last updated: 27 November 2026, 04:30 UTC.
+Last updated: 27 November 2026, 09:45 UTC.
 
 ## Running in the background
 
@@ -39,6 +39,11 @@ The orchestrator's container is reclaimed when its session is idle (CLAUDE.md, "
 work"): the AxiomMath / `SpacesVerified` build runs in the cloud worker `wave8/axiommath-verified`;
 the scratchpad's own AxiomMath build was stopped (27 November, 03:15 UTC); its partial build in
 the scratchpad checkout is kept as a fallback.
+
+## Tools
+
+Append-only merge conflicts (`Spaces.lean`, `Audit.lean`): `scripts/swarm/keep_both.py`.
+AxiomMath closure check: `scripts/axiommath/built.py`; AxiomMath build: `scripts/axiommath/build.sh`.
 
 ## Container set-up after a restart
 
