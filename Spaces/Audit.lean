@@ -5,6 +5,7 @@ import Spaces.NonVacuity
 import Spaces.Statements
 import Spaces.Supported.CompactGeneration
 import Spaces.BaseChange.Cube
+import Spaces.Stacks.UniverseNonVacuity
 
 /-!
 # Axiom audit of the algebraic-space layer
@@ -178,3 +179,14 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.BaseChange.lemma_10_2
 #print axioms RelativeFM.Spaces.BaseChange.lemma_6_11_id
 #print axioms RelativeFM.Spaces.BaseChange.lemma_10_1_id
+-- LP26 Theorem 1.1 and compactness for a coproduct universe `w` independent of the Hom
+-- universe (wave 8, `Spaces/Stacks/{Bridges,Corollaries,UniverseNonVacuity}.lean`)
+#print axioms RelativeFM.Spaces.Stacks.isCompactObject_iff_sumUniverse_isCompactAb
+#print axioms RelativeFM.Spaces.Stacks.isClassicalGeneratorOnCompacts_iff_triangEnvelope_eq_univ
+#print axioms RelativeFM.Spaces.Stacks.theorem_1_1_univ
+#print axioms RelativeFM.Spaces.Stacks.theorem_1_1
+#print axioms RelativeFM.Spaces.Stacks.theorem_1_1_univ_zero
+#print axioms RelativeFM.Spaces.Stacks.theorem_1_1_univ_zero_D
+#print axioms RelativeFM.Spaces.Stacks.isCompactAb_zero_D
+#print axioms RelativeFM.Spaces.Stacks.lemma_A_9_sumUniverse
+#print axioms RelativeFM.Spaces.Stacks.lemma_A_9_sumUniverse_affine

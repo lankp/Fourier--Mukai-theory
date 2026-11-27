@@ -2,6 +2,8 @@
 import Spaces.Stacks.Tags
 import WeakApprox.Theorem11Paper
 import WeakApprox.Theorem11PaperNonVacuity
+import WeakApprox.SmallModel
+import WeakApprox.SumUniverseTransport
 import FourierMukai.Prelim.Lemma24
 import FourierMukai.Prelim.CompactnessAudit
 import FourierMukai.Scheme.Neeman32Inputs
@@ -15,9 +17,15 @@ AxiomMath/Stacks, discharged in `Spaces/Stacks/Tags.lean` (`tag09SRPaper`,
 `tag09SR_paperForm`, `tag09SN`).  This file restates the results with the paper's
 hypotheses only.
 
-* **LP26 Theorem 1.1** (`thm:glueing_weak_approx`): `theorem_1_1`, from
-  `RelativeWeakApprox.PaperHypothesesW6.theorem_1_1_paper` with both 09SR hypotheses
-  discharged.  Non-vacuity: `theorem_1_1_zero` (any triangulated `C`, the trivial
+* **LP26 Theorem 1.1** (`thm:glueing_weak_approx`) for a coproduct universe `w` independent
+  of the Hom universes: `theorem_1_1_univ` (categories locally `w`-small with `Type w`-indexed
+  direct sums; the form that fits AxiomMath's `D(𝒪_X)`, `w = u`, morphisms in `Type (u + 1)`),
+  proved by passing to triangulated models with morphisms in `Type w`
+  (`WeakApprox/SmallModel.lean`, `WeakApprox/SumUniverseTransport.lean`) and applying
+  `RelativeWeakApprox.PaperHypothesesW6.theorem_1_1_paper` there with both 09SR hypotheses
+  discharged.  The pinned `theorem_1_1` is its case `w = v`.  Non-vacuity:
+  `theorem_1_1_univ_zero` (any `v`, any `w`) and, on `D(𝒪_X)`,
+  `Spaces/Stacks/UniverseNonVacuity.lean`.  Non-vacuity: `theorem_1_1_zero` (any triangulated `C`, the trivial
   recollement of the zero subcategory) and `theorem_1_1_affine` (the trivial recollement
   `0 → D(A) → D(A)` of the small-Hom derived category of any commutative ring `A`, with
   `G'` the regular module), both now with every hypothesis discharged.
@@ -38,7 +46,9 @@ Unchanged from the conditional statements: see the docstrings of
 `PaperHypothesesW6.theorem_1_1_paper` (`WeakApprox/Theorem11Paper.lean`) and
 `RelativeFM.lemma_2_4` (`FourierMukai/Prelim/Lemma24.lean`).  Hom universe `v`, small
 coproducts `HasCoproducts.{v}`, compactness `IsCompactAb`, generation
-`IsPaperGenerator`.  LP26 Theorem 1.1 assumes the three categories of the recollement
+`IsPaperGenerator`; for `theorem_1_1_univ`, `HasCoproducts.{w}`, `LocallySmall.{w}`,
+`SumUniverse.IsCompactAb.{w}`, `SumUniverse.SatisfiesPaperWA.{w}`.  Lemmas 2.4 and 2.5 are
+still stated with coproducts indexed by the Hom universe.  LP26 Theorem 1.1 assumes the three categories of the recollement
 triangulated (`IsTriangulated`), which is also what AxiomMath's 09SR needs.
 
 ## Assumptions
@@ -53,9 +63,76 @@ open CategoryTheory CategoryTheory.Limits CategoryTheory.Pretriangulated Relativ
 open RelativeWeakApprox.PaperM2
 open scoped ZeroObject
 
-universe v u u₁ v₁ uZ uD uU
+universe w v u u₁ v₁ uZ uD uU vZ vD vU
 
 /-! ### LP26 Theorem 1.1 -/
+
+section Theorem11Univ
+
+variable {DZ : Type uZ} {D : Type uD} {DU : Type uU}
+  [Category.{vZ} DZ] [Category.{vD} D] [Category.{vU} DU]
+  [Preadditive DZ] [Preadditive D] [Preadditive DU]
+  [HasZeroObject DZ] [HasZeroObject D] [HasZeroObject DU]
+  [HasShift DZ ℤ] [HasShift D ℤ] [HasShift DU ℤ]
+  [∀ (n : ℤ), (shiftFunctor DZ n).Additive]
+  [∀ (n : ℤ), (shiftFunctor D n).Additive]
+  [∀ (n : ℤ), (shiftFunctor DU n).Additive]
+  [Pretriangulated DZ] [Pretriangulated D] [Pretriangulated DU]
+  [IsTriangulated DZ] [IsTriangulated D] [IsTriangulated DU]
+  [LocallySmall.{w} DZ] [LocallySmall.{w} D] [LocallySmall.{w} DU]
+  [HasCoproducts.{w} DZ] [HasCoproducts.{w} D] [HasCoproducts.{w} DU]
+
+/-- **LP26 Theorem 1.1** (`thm:glueing_weak_approx`), **for a coproduct universe `w`
+independent of the Hom universes**.  Let `D_Z → D → D_U` be a recollement of triangulated
+categories whose morphism types are `w`-small and which have `Type w`-indexed direct sums, with
+`D_Z` and `D_U` weakly approximable, and let `G'` be a compact generator of `D`.  Then `D` is
+weakly approximable if and only if `Hom(G', G'[n]) = 0` for all `n ≫ 0`.
+
+Lean rendering: as in `theorem_1_1`, with direct sums indexed by `Type w`:
+`HasCoproducts.{w}`, compactness `SumUniverse.IsCompactAb.{w}` (Stacks 07LS against
+`Type w`-indexed sums; AxiomMath's `IsCompactObject.{w}`), weak approximability
+`SumUniverse.SatisfiesPaperWA.{w}` (Definition 2.1 with `SumUniverse.envelope.{w}`).  The
+three categories may have different Hom universes `vZ`, `vD`, `vU`.  "Hom sets are sets" is
+`LocallySmall.{w}`, automatic at `w = v` (`theorem_1_1` is that case).  This is the form that
+applies to AxiomMath's `D(𝒪_X)`: morphisms in `Type (u + 1)`, direct sums over `Type u`,
+`w = u` (`theorem_1_1_univ_zero_D`).
+
+Proof: each category is replaced by a triangulated model with morphisms in `Type w`
+(`SumUniverse.exists_triangulatedEquivalence_of_locallySmall`, the localization of the category
+at its isomorphisms); the recollement, weak approximability, compactness, zero detection and
+the Hom vanishing transport along the equivalences (`WeakApprox/SumUniverseTransport.lean`), and
+`PaperHypothesesW6.theorem_1_1_paper` applies to the models, with Stacks 09SR from
+AxiomMath/Stacks (`tag09SR_paperForm`). -/
+theorem theorem_1_1_univ (R : Recollement DZ D DU)
+    (hZ : SumUniverse.SatisfiesPaperWA.{w} DZ) (hU : SumUniverse.SatisfiesPaperWA.{w} DU)
+    (G' : D) (hG'c : SumUniverse.IsCompactAb.{w} G') (hG'g : IsPaperGenerator G') :
+    SumUniverse.SatisfiesPaperWA.{w} D ↔
+      ∃ N : ℤ, ∀ n : ℤ, N ≤ n → ∀ f : G' ⟶ G'⟦n⟧, f = 0 := by
+  obtain ⟨DZ', _, _, _, _, _, _, eZ, _, _, _, _, _, _, hZ'⟩ :=
+    SumUniverse.exists_triangulatedEquivalence_of_locallySmall.{w} DZ
+  obtain ⟨D', _, _, _, _, _, _, eD, _, _, _, _, _, _, hD'⟩ :=
+    SumUniverse.exists_triangulatedEquivalence_of_locallySmall.{w} D
+  obtain ⟨DU', _, _, _, _, _, _, eU, _, _, _, _, _, _, hU'⟩ :=
+    SumUniverse.exists_triangulatedEquivalence_of_locallySmall.{w} DU
+  have := hZ' inferInstance
+  have := hD' inferInstance
+  have := hU' inferInstance
+  have : HasCoproducts.{w} DZ' := SumUniverse.hasCoproducts_of_equivalence eZ
+  have : HasCoproducts.{w} D' := SumUniverse.hasCoproducts_of_equivalence eD
+  have : HasCoproducts.{w} DU' := SumUniverse.hasCoproducts_of_equivalence eU
+  have key := PaperHypothesesW6.theorem_1_1_paper (SumUniverse.Recollement.transport eZ eD eU R)
+    ((SumUniverse.satisfiesPaperWA_iff DZ').1
+      ((SumUniverse.satisfiesPaperWA_iff_of_equivalence eZ).1 hZ))
+    ((SumUniverse.satisfiesPaperWA_iff DU').1
+      ((SumUniverse.satisfiesPaperWA_iff_of_equivalence eU).1 hU))
+    (eD.functor.obj G')
+    ((SumUniverse.isCompactAb_iff _).1 ((SumUniverse.isCompactAb_functor_obj_iff eD G').2 hG'c))
+    ((SumUniverse.isPaperGenerator_functor_obj_iff eD G').2 hG'g)
+    (tag09SR_paperForm D') (tag09SR_paperForm DZ')
+  rw [SumUniverse.satisfiesPaperWA_iff_of_equivalence eD, SumUniverse.satisfiesPaperWA_iff, key]
+  simp only [SumUniverse.homShift_vanishing_iff]
+
+end Theorem11Univ
 
 section Theorem11
 
@@ -78,15 +155,19 @@ if and only if `Hom(G', G'[n]) = 0` for all `n ≫ 0`.
 
 Lean rendering as in `PaperHypothesesW6.theorem_1_1_paper`: compact generation of `D` by
 `G'` is `IsCompactAb G'` and `IsPaperGenerator G'` (LP26 §2.1.2); weak approximability is
-`SatisfiesPaperWA` (Definition 2.1).  Stacks Tag 09SR, which LP26 §2.1.2 cites and which
-was a hypothesis of `theorem_1_1_paper` (for `D` and `D_Z`), is now a theorem of
-AxiomMath/Stacks (`tag09SR_paperForm`); the statement has the paper's hypotheses only. -/
+`SatisfiesPaperWA` (Definition 2.1).  Direct sums are indexed by the Hom universe `v`.  This
+is the case `w = v` of `theorem_1_1_univ` (from which it is proved, through
+`SumUniverse.satisfiesPaperWA_iff` and `SumUniverse.isCompactAb_iff`); Stacks Tag 09SR, which
+LP26 §2.1.2 cites, is a theorem of AxiomMath/Stacks (`tag09SR_paperForm`); the statement has
+the paper's hypotheses only. -/
 theorem theorem_1_1 (R : Recollement DZ D DU)
     (hZ : SatisfiesPaperWA DZ) (hU : SatisfiesPaperWA DU)
     (G' : D) (hG'c : IsCompactAb G') (hG'g : IsPaperGenerator G') :
-    SatisfiesPaperWA D ↔ ∃ N : ℤ, ∀ n : ℤ, N ≤ n → ∀ f : G' ⟶ G'⟦n⟧, f = 0 :=
-  PaperHypothesesW6.theorem_1_1_paper R hZ hU G' hG'c hG'g
-    (tag09SR_paperForm D) (tag09SR_paperForm DZ)
+    SatisfiesPaperWA D ↔ ∃ N : ℤ, ∀ n : ℤ, N ≤ n → ∀ f : G' ⟶ G'⟦n⟧, f = 0 := by
+  have h := theorem_1_1_univ.{v} R ((SumUniverse.satisfiesPaperWA_iff DZ).2 hZ)
+    ((SumUniverse.satisfiesPaperWA_iff DU).2 hU) G' ((SumUniverse.isCompactAb_iff G').2 hG'c)
+    hG'g
+  rwa [SumUniverse.satisfiesPaperWA_iff] at h
 
 end Theorem11
 
@@ -100,6 +181,26 @@ theorem theorem_1_1_zero (C : Type u) [Category.{v} C] [Preadditive C]
       ∀ f : (⟨0, isZero_zero C⟩ : PaperHypothesesW6.NonVacuity.ZeroSub C) ⟶
         (⟨0, isZero_zero C⟩ : PaperHypothesesW6.NonVacuity.ZeroSub C)⟦n⟧, f = 0 :=
   PaperHypothesesW6.NonVacuity.theorem_1_1_paper_zero C
+
+/-- **LP26 Theorem 1.1** for a coproduct universe `w` (`theorem_1_1_univ`), non-vacuity: for
+every triangulated `C`, with **any** Hom universe `v` and any coproduct universe `w`, the trivial
+recollement `0 → ZeroSub C → ZeroSub C` meets every hypothesis of `theorem_1_1_univ` at `w`
+(`ZeroSub C` has `w`-small morphism types, `Type w`-indexed coproducts, and is weakly
+approximable for `w`).  At `C = D(𝒪_X)`, `v = u + 1`, `w = u`: `theorem_1_1_univ_zero_D`
+(`Spaces/Stacks/UniverseNonVacuity.lean`). -/
+theorem theorem_1_1_univ_zero (C : Type u) [Category.{v} C] [Preadditive C]
+    [HasZeroObject C] [HasShift C ℤ] [∀ n : ℤ, (shiftFunctor C n).Additive]
+    [Pretriangulated C] [IsTriangulated C] :
+    SumUniverse.SatisfiesPaperWA.{w} (PaperHypothesesW6.NonVacuity.ZeroSub C) ↔
+      ∃ N : ℤ, ∀ n : ℤ, N ≤ n →
+        ∀ f : (⟨0, isZero_zero C⟩ : PaperHypothesesW6.NonVacuity.ZeroSub C) ⟶
+          (⟨0, isZero_zero C⟩ : PaperHypothesesW6.NonVacuity.ZeroSub C)⟦n⟧, f = 0 :=
+  theorem_1_1_univ.{w}
+    (PaperHypothesesW6.NonVacuity.trivialRecollement (PaperHypothesesW6.NonVacuity.ZeroSub C))
+    (PaperHypothesesW6.NonVacuity.zeroSub_satisfiesPaperWA_univ _)
+    (PaperHypothesesW6.NonVacuity.zeroSub_satisfiesPaperWA_univ C) _
+    (SumUniverse.isCompactAb_of_isZero (PaperHypothesesW6.NonVacuity.zeroSub_isZero _))
+    (fun {E} _ => PaperHypothesesW6.NonVacuity.zeroSub_isZero E)
 
 /-- **LP26 Theorem 1.1** (`thm:glueing_weak_approx`), non-vacuity with a nonzero middle
 term: for every commutative ring `A`, the trivial recollement `0 → D(A) → D(A)` of the
@@ -238,8 +339,10 @@ example : SatisfiesPaperWA
 
 end RelativeFM.Spaces.Stacks
 
+#print axioms RelativeFM.Spaces.Stacks.theorem_1_1_univ
 #print axioms RelativeFM.Spaces.Stacks.theorem_1_1
 #print axioms RelativeFM.Spaces.Stacks.theorem_1_1_zero
+#print axioms RelativeFM.Spaces.Stacks.theorem_1_1_univ_zero
 #print axioms RelativeFM.Spaces.Stacks.theorem_1_1_affine
 #print axioms RelativeFM.Spaces.Stacks.lemma_2_4
 #print axioms RelativeFM.Spaces.Stacks.singlyCompactlyGenerated_iff

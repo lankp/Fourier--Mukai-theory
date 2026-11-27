@@ -5,6 +5,7 @@ import WeakApprox.CompactAb
 import WeakApprox.GeneratorBridge
 import WeakApprox.Lemma43
 import WeakApprox.CompactThick
+import WeakApprox.SumUniverse
 
 /-!
 # Bridges between AxiomMath/Stacks' categorical notions and the repository's
@@ -19,20 +20,27 @@ theorems (gap C.10 of `results/AXIOMMATH_MAP.md`).
 
 ## What is proved
 
-* `isCompactObject_iff_isCompactAb`: for an object `K` of a preadditive category `C`
-  with Hom universe `v`, AxiomMath's `CategoryTheory.IsCompactObject.{v} K` (Stacks 07LS:
-  for every `Type v`-indexed family with a coproduct, `⨁ i, (K ⟶ E i) → (K ⟶ ∐ E)` is
-  bijective) is equivalent to `RelativeWeakApprox.IsCompactAb K` (the
-  `AddCommGrpCat`-valued `Hom(K, -)` preserves `Type v`-indexed coproducts).  No
-  coproducts are assumed in `C`.  The comparison of a colimit cofan of abelian groups with
-  the finite-support direct sum is the repository's
-  (`bijective_abCofanSum_of_isColimit`, `isColimitCofan_of_bijective_abCofanSum`,
-  `WeakApprox/CompactAb.lean`).
+* `isCompactObject_iff_sumUniverse_isCompactAb`: for **any coproduct universe `w`**,
+  independent of the Hom universe `v`, AxiomMath's `CategoryTheory.IsCompactObject.{w} K`
+  (Stacks 07LS: for every `Type w`-indexed family with a coproduct,
+  `⨁ i, (K ⟶ E i) → (K ⟶ ∐ E)` is bijective) is the repository's
+  `RelativeWeakApprox.SumUniverse.IsCompactAb.{w} K` (`WeakApprox/SumUniverse.lean`).  At
+  `w = u`, `v = u + 1` this is compactness in AxiomMath's `D(𝒪_X)`.
+* `isCompactObject_iff_isCompactAb`: the case `w = v`, where `SumUniverse.IsCompactAb.{v}` is
+  `RelativeWeakApprox.IsCompactAb K` (the `AddCommGrpCat`-valued `Hom(K, -)` preserves
+  `Type v`-indexed coproducts; `SumUniverse.isCompactAb_iff`).  No coproducts are assumed in
+  `C`.
 * `isWeakTriangulatedGenerator_singleton_iff`: AxiomMath's
   `(ObjectProperty.singleton G).IsWeakTriangulatedGenerator` (Stacks 09SJ(3)) is
   `RelativeWeakApprox.IsPaperGenerator G` (zero detection by the shifts of `G`).
 * `rightOrthogonal_ofObj_isZero_iff_isWeakTriangulatedGenerator`: the hypothesis of
   AxiomMath's 09SN, for a family `E`, is `(ObjectProperty.ofObj E).IsWeakTriangulatedGenerator`.
+* `isClassicalGeneratorOnCompacts_iff_triangEnvelope_eq_univ`: for a pretriangulated `C` with
+  `Type w`-indexed coproducts and a compact `G` (`SumUniverse.IsCompactAb.{w}`),
+  `SumUniverse.IsClassicalGeneratorOnCompacts.{w} G` is
+  `(singleton G).triangEnvelope = IsCompactObject.{w}`; the compact objects form a thick
+  subcategory by AxiomMath's `isTriangulated_isCompactObject` and `isCompactObject_of_retract`
+  (`ThickSubcategory`, on the import list).
 * `isClassicalGeneratorOnCompacts_iff_triangEnvelope_eq`: for a pretriangulated `C` and
   a compact `G`, the repository's `IsClassicalGeneratorOnCompacts G` (every compact object
   lies in the thick envelope of `G`) is AxiomMath's `(singleton G).triangEnvelope =
@@ -52,96 +60,39 @@ namespace RelativeFM.Spaces.Stacks
 
 open CategoryTheory CategoryTheory.Limits RelativeWeakApprox
 
-universe v u
+universe w v u
 
 section Compact
 
 variable {C : Type u} [Category.{v} C] [Preadditive C]
 
-/-- For a cofan `c` of `f : J → C` and an object `K`, the image of `c` under the additive
-`Hom(K, -)`. -/
-noncomputable abbrev homCofan (K : C) {J : Type v} {f : J → C} (c : Cofan f) :
-    Cofan fun j => (preadditiveCoyoneda.obj (Opposite.op K)).obj (f j) :=
-  Cofan.mk ((preadditiveCoyoneda.obj (Opposite.op K)).obj c.pt)
-    fun j => (preadditiveCoyoneda.obj (Opposite.op K)).map (c.inj j)
-
-/-- The finite-support comparison map of `homCofan K c` is the map
-`⨁ j, (K ⟶ f j) → (K ⟶ c.pt)`, `(x_j) ↦ ∑ x_j ≫ c.inj j`, of AxiomMath's 07LS. -/
-lemma abCofanSum_homCofan_hom (K : C) {J : Type v} [DecidableEq J] {f : J → C}
-    (c : Cofan f) :
-    (abCofanSum (homCofan K c)).hom =
-      DirectSum.toAddMonoid (fun j => Preadditive.rightComp K (c.inj j)) := by
-  apply DirectSum.addHom_ext
-  intro j y
-  exact (abCofanSum_single (homCofan K c) j y).trans
-    (DirectSum.toAddMonoid_of (fun j => Preadditive.rightComp K (c.inj j)) j y).symm
-
-/-- **Stacks 07LS** (bridge, one direction): AxiomMath's compactness
-`IsCompactObject.{v} K` implies the repository's `IsCompactAb K`.  No coproducts are
-assumed: for every colimit cofan `c` of a `Type v`-indexed family, the AxiomMath
-bijection for the chosen coproduct `∐ f` (which exists, `c` being a colimit) is
-transported along `∐ f ≅ c.pt`. -/
-theorem isCompactAb_of_isCompactObject {K : C} (hK : IsCompactObject.{v} K) :
-    IsCompactAb K := by
-  constructor
-  intro J
-  classical
-  have : ∀ f : J → C,
-      PreservesColimit (Discrete.functor f) (preadditiveCoyoneda.obj (Opposite.op K)) := by
-    intro f
-    refine ⟨fun {c} hc => ⟨?_⟩⟩
-    let c' : Cofan f := c
-    have hc' : IsColimit c' := hc
-    haveI : HasCoproduct f := ⟨⟨⟨c', hc'⟩⟩⟩
-    refine (Cofan.isColimitMapCoconeEquiv _ f c').symm ?_
-    refine isColimitCofan_of_bijective_abCofanSum (homCofan K c') ?_
-    let e : ∐ f ≅ c'.pt := colimit.isoColimitCocone ⟨c', hc'⟩
-    have he : ∀ j, Sigma.ι f j ≫ e.hom = c'.inj j := fun j =>
-      colimit.isoColimitCocone_ι_hom ⟨c', hc'⟩ (Discrete.mk j)
-    have hφ := hK.bijective_toAddMonoid_rightComp_sigmaι f
-    have hpost : Function.Bijective (Preadditive.rightComp K e.hom) :=
-      ⟨fun a b hab => by
-          change a ≫ e.hom = b ≫ e.hom at hab
-          simpa using congrArg (· ≫ e.inv) hab,
-        fun g => ⟨g ≫ e.inv, by change (g ≫ e.inv) ≫ e.hom = g; simp⟩⟩
-    have hcomp : (Preadditive.rightComp K e.hom).comp
-        (DirectSum.toAddMonoid fun j => Preadditive.rightComp K (Sigma.ι f j)) =
-          DirectSum.toAddMonoid fun j => Preadditive.rightComp K (c'.inj j) := by
-      apply DirectSum.addHom_ext
-      intro j y
-      rw [AddMonoidHom.comp_apply, DirectSum.toAddMonoid_of, DirectSum.toAddMonoid_of, ← he]
-      exact Category.assoc _ _ _
-    have hbij : Function.Bijective
-        (DirectSum.toAddMonoid fun j => Preadditive.rightComp K (c'.inj j)) := by
-      rw [← hcomp, AddMonoidHom.coe_comp]
-      exact hpost.comp hφ
-    change Function.Bijective (abCofanSum (homCofan K c')).hom
-    rw [abCofanSum_homCofan_hom]
-    exact hbij
-  exact preservesColimitsOfShape_of_discrete _
-
-/-- **Stacks 07LS** (bridge, other direction): the repository's `IsCompactAb K` implies
-AxiomMath's compactness `IsCompactObject.{v} K`.  The image under `Hom(K, -)` of the
-coproduct cofan is a colimit cofan of abelian groups, whose finite-support comparison map
-is bijective (`bijective_abCofanSum_of_isColimit`). -/
-theorem isCompactObject_of_isCompactAb {K : C} (hK : IsCompactAb K) :
-    IsCompactObject.{v} K where
-  bijective_toAddMonoid_rightComp_sigmaι {I} _ E _ := by
-    let c : Cofan E := Cofan.mk (∐ E) (Sigma.ι E)
-    have hc : IsColimit c := colimit.isColimit (Discrete.functor E)
-    have h := (Cofan.isColimitMapCoconeEquiv (preadditiveCoyoneda.obj (Opposite.op K)) E c)
-      (isColimitOfPreserves (preadditiveCoyoneda.obj (Opposite.op K)) hc)
-    have hb : Function.Bijective (abCofanSum (homCofan K c)).hom :=
-      bijective_abCofanSum_of_isColimit h
-    rw [abCofanSum_homCofan_hom] at hb
-    exact hb
+/-- **Stacks 07LS** (bridge, any coproduct universe `w`): AxiomMath's compactness
+`IsCompactObject.{w} K` is the repository's `SumUniverse.IsCompactAb.{w} K`; the two are the
+same condition (bijectivity of `⨁ i, (K ⟶ E i) → (K ⟶ ∐ E)` for `Type w`-indexed families).
+The coproduct universe `w` is independent of the Hom universe `v`. -/
+theorem isCompactObject_iff_sumUniverse_isCompactAb (K : C) :
+    IsCompactObject.{w} K ↔ SumUniverse.IsCompactAb.{w} K :=
+  ⟨fun h => ⟨h.bijective_toAddMonoid_rightComp_sigmaι⟩, fun h => ⟨h.bijective⟩⟩
 
 /-- **Stacks 07LS** (bridge): for an object `K` of a preadditive category with Hom
 universe `v`, AxiomMath's `IsCompactObject.{v} K` is the repository's `IsCompactAb K`.
-No coproducts in `C` are assumed. -/
+No coproducts in `C` are assumed.  The case `w = v` of
+`isCompactObject_iff_sumUniverse_isCompactAb`, with `SumUniverse.isCompactAb_iff`. -/
 theorem isCompactObject_iff_isCompactAb (K : C) :
     IsCompactObject.{v} K ↔ IsCompactAb K :=
-  ⟨isCompactAb_of_isCompactObject, isCompactObject_of_isCompactAb⟩
+  (isCompactObject_iff_sumUniverse_isCompactAb K).trans (SumUniverse.isCompactAb_iff K)
+
+/-- **Stacks 07LS** (bridge, one direction): AxiomMath's compactness
+`IsCompactObject.{v} K` implies the repository's `IsCompactAb K`. -/
+theorem isCompactAb_of_isCompactObject {K : C} (hK : IsCompactObject.{v} K) :
+    IsCompactAb K :=
+  (isCompactObject_iff_isCompactAb K).1 hK
+
+/-- **Stacks 07LS** (bridge, other direction): the repository's `IsCompactAb K` implies
+AxiomMath's compactness `IsCompactObject.{v} K`. -/
+theorem isCompactObject_of_isCompactAb {K : C} (hK : IsCompactAb K) :
+    IsCompactObject.{v} K :=
+  (isCompactObject_iff_isCompactAb K).2 hK
 
 /-- The two compactness properties of objects coincide. -/
 theorem isCompactObject_eq_isCompactAb :
@@ -203,8 +154,47 @@ theorem isClassicalGeneratorOnCompacts_iff_triangEnvelope_eq (G : C) (hG : IsCom
 
 end Generator
 
+section GeneratorUniv
+
+variable {C : Type u} [Category.{v} C] [HasZeroObject C] [HasShift C ℤ]
+  [Preadditive C] [∀ (n : ℤ), (shiftFunctor C n).Additive] [Pretriangulated C]
+  [HasCoproducts.{w} C]
+
+/-- The triangulated envelope of a compact object consists of compact objects, for any
+coproduct universe `w`: AxiomMath's `IsCompactObject.{w}` is a triangulated subcategory
+(`isTriangulated_isCompactObject`) stable under retracts (`isCompactObject_of_retract`). -/
+theorem triangEnvelope_singleton_le_isCompactObject_univ (G : C)
+    (hG : SumUniverse.IsCompactAb.{w} G) :
+    (ObjectProperty.singleton G).triangEnvelope ≤ IsCompactObject.{w, v, u} (C := C) := by
+  have := isTriangulated_isCompactObject.{w} (D := C)
+  have : ObjectProperty.IsStableUnderRetracts (IsCompactObject.{w, v, u} (C := C)) :=
+    ⟨fun r h => isCompactObject_of_retract h r.i r.r r.retract⟩
+  refine (ObjectProperty.triangEnvelope_le_iff _).2 fun X hX => ?_
+  obtain rfl : G = X := (ObjectProperty.singleton_iff _ _).1 hX
+  exact (isCompactObject_iff_sumUniverse_isCompactAb G).2 hG
+
+/-- **Classical generation of the compact objects** (bridge, any coproduct universe `w`): for
+a compact `G`, `SumUniverse.IsClassicalGeneratorOnCompacts.{w} G` (every compact object lies
+in the triangulated envelope of `G`) is AxiomMath's
+`(singleton G).triangEnvelope = IsCompactObject.{w}`. -/
+theorem isClassicalGeneratorOnCompacts_iff_triangEnvelope_eq_univ (G : C)
+    (hG : SumUniverse.IsCompactAb.{w} G) :
+    SumUniverse.IsClassicalGeneratorOnCompacts.{w} G ↔
+      (ObjectProperty.singleton G).triangEnvelope = IsCompactObject.{w, v, u} (C := C) := by
+  constructor
+  · intro h
+    refine le_antisymm (triangEnvelope_singleton_le_isCompactObject_univ G hG) fun X hX => ?_
+    exact h X ((isCompactObject_iff_sumUniverse_isCompactAb X).1 hX)
+  · intro h X hX
+    rw [h]
+    exact (isCompactObject_iff_sumUniverse_isCompactAb X).2 hX
+
+end GeneratorUniv
+
 end RelativeFM.Spaces.Stacks
 
+#print axioms RelativeFM.Spaces.Stacks.isCompactObject_iff_sumUniverse_isCompactAb
 #print axioms RelativeFM.Spaces.Stacks.isCompactObject_iff_isCompactAb
 #print axioms RelativeFM.Spaces.Stacks.isWeakTriangulatedGenerator_singleton_iff
 #print axioms RelativeFM.Spaces.Stacks.isClassicalGeneratorOnCompacts_iff_triangEnvelope_eq
+#print axioms RelativeFM.Spaces.Stacks.isClassicalGeneratorOnCompacts_iff_triangEnvelope_eq_univ
