@@ -1,4 +1,4 @@
-## Your task: `wave9/lp26-standard-wa` (effort: high; runs in the orchestrator's container)
+## Your task: `wave9/lp26-standard-wa` (effort: high)
 
 Goal: the **standard** W.A. forms of LP26 Proposition 5.8 (`prop:A8`) and Corollary 1.2
 (`cor:weak_approx_spaces`) over algebraic spaces (`SatisfiesStandardWA`,
@@ -9,4 +9,3 @@ universe `u`; for the affine base, the identification of the affine `t`-structur
 standard one.  Files: `Spaces/LP26/StandardWA.lean` (and `Inputs.lean`, append).  Commit
 verified pieces as you go.  Seven verification steps; `lake build Spaces`.
 
-Scratch files (probes, logs) stay in your clone, never in the orchestrator's scratchpad.

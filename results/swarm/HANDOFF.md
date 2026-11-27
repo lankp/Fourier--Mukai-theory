@@ -3,8 +3,8 @@
 A new orchestrator session starts in a fresh container and sees only the repository.
 Everything the current orchestrator keeps in its scratchpad, its uploads or in background
 processes, and that a successor needs, is listed here (CLAUDE.md, "Handoff").  Private items
-are never committed: the manuscripts are named here, and anything else private is passed to the
-successor by session message.
+are never committed; they are passed to the successor by session message.  The manuscripts are
+in the repository (`manuscripts/`).
 
 Last updated: 27 November 2026, 09:45 UTC.
 
@@ -21,7 +21,6 @@ Last updated: 27 November 2026, 09:45 UTC.
 | what | where | for a new session |
 |---|---|---|
 | AxiomMath checkout with its build (~17 GB) | scratchpad; `.lake/packages/Stacks` is a symlink to it | `lake build Spaces` / `SpacesVerified` rebuilds it (hours; `SpacesVerified` needs ~14 GB of memory: swap, `vm.max_map_count=262144`) |
-| current GL26 and LP26 TeX (private) | the orchestrator session's uploads | ask the maintainer to upload them again; never commit them |
 | other private material of the maintainer's (one directory, readable only by the orchestrator) | scratchpad | handed over by session message (`send_message`) to the new orchestrator, never through the repository |
 | local subagent clones | `/home/user/wt-<slug>` | each pushes its branch; delete after merge |
 

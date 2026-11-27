@@ -3,7 +3,7 @@
 One row per numbered result (theorem, proposition, corollary, lemma, definition,
 setup) of each paper, with the two remarks that the tree uses.  Numbers are those
 of the **current manuscripts** (GL26 `main.tex` of 25 November 2026, LP26
-`main.tex`, neither yet on arXiv; not stored in this public repository: ask the maintainer), which LaTeX would print; TeX labels are given
+`main.tex`, neither yet on arXiv; both in `manuscripts/`), which LaTeX would print; TeX labels are given
 because they are stable across versions.
 
 This map was produced by reading module headers, docstrings and the `results/`

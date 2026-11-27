@@ -31,21 +31,14 @@ imported as a Lake dependency (see `results/SWARM.md`, "Direction").
 
 ## Manuscripts
 
-The repository is **public**.  The current GL26 and LP26 manuscripts are newer than
-the arXiv postings and are **not stored in the repository** (they were removed from
-the whole git history on 26 November 2026, when the maintainer made the repository
-public).  The maintainer has given the current TeX of both papers to the orchestrator's
-session; **unless the maintainer says otherwise, those files are unchanged** and current
-(maintainer, 26 November 2026; the maintainer announces any new version).  Tasks that need
-the text run where it is, in the orchestrator's container; a worker elsewhere that needs it
-stops and reports.  If the orchestrator no longer has the files (a new orchestrator
-session), it asks the maintainer to upload them again.
-Never commit manuscript TeX or PDF, and never quote more than a statement's number,
-TeX label or a short paraphrase in the repository, commit messages or anywhere public.
-Refer to results by number **and** TeX label (`Lemma 7.4, lem:morph_adj`); labels are
-stable across versions.  `results/COVERAGE.md` records the numbering of the current
-manuscripts; when the maintainer provides a new version, the orchestrator re-checks
-it against the new numbering.
+The current manuscripts of both papers are in the repository, in `manuscripts/GL26/` and
+`manuscripts/LP26/` (`main.tex`, `mainbib.bib`, `main.pdf`), freely readable by every session
+(maintainer, 27 November 2026; they are newer than the arXiv postings).  When the maintainer
+updates them, the maintainer informs the orchestrator, which commits the new files and re-checks
+`results/COVERAGE.md` against the new numbering.  Read the statements there; refer to results by
+number **and** TeX label (`Lemma 7.4, lem:morph_adj`), since labels are stable across versions.
+Do not edit the files in `manuscripts/` (only the orchestrator replaces them with a version
+from the maintainer).
 
 ## Building
 
@@ -215,16 +208,15 @@ The maintainer has delegated merging to the orchestrator session: work reaches
   repository (scratchpad files, uploads, background processes, scheduled tasks, local
   subagents) that a new orchestrator session would need is shared with it.  Reusable tools go
   into `scripts/`; the rest is listed in `results/swarm/HANDOFF.md`, kept current whenever such
-  an item starts, ends or changes; private items (the manuscripts, other private material) are
+  an item starts, ends or changes; private items (the maintainer's private material) are
   never committed and are passed to the new session by session message.  A new orchestrator
   reads `HANDOFF.md` first.
 * **Scratchpad** (maintainer, 26 November 2026).  *Privacy:* the scratchpad keeps private
-  material private (manuscripts and anything derived from them, the maintainer's private
-  files): never copied into the repository, a commit, a branch, a brief, a worker's message
+  material private (the maintainer's private files; the manuscripts are public, in
+  `manuscripts/`): never copied into the repository, a commit, a branch, a brief, a worker's message
   or any public place; readable only by the orchestrator; a local git copy that still
   reaches removed history is pruned (`git fetch --prune`, reflog expired).  *Clean-up:*
-  before every handoff the scratchpad is cleaned: logs, probes, one-off scripts and copies of
-  the manuscripts that the uploads supersede are deleted, reusable tools are moved into
+  before every handoff the scratchpad is cleaned: logs, probes and one-off scripts are deleted, reusable tools are moved into
   `scripts/`, and what stays is listed in `HANDOFF.md`.  *Read before a wave:* before starting
   a wave the orchestrator reads `HANDOFF.md` and the scratchpad (what is running, what is
   kept, what is private) and brings both up to date.
@@ -234,9 +226,8 @@ The maintainer has delegated merging to the orchestrator session: work reaches
   container stays up while it works; (b) while a build or a local subagent is running, the session
   that started it (orchestrator or worker) keeps itself active with foreground waits in slices
   of at most ten minutes instead of ending its turn (an idle session's container is reclaimed
-  and its background builds die); (c) a task that needs the manuscripts may run as a
-  cloud worker when the maintainer uploads the TeX to that worker's session (the orchestrator
-  names the session; it never passes the TeX itself); otherwise it runs locally; (d) every
+  and its background builds die); (c) a task that needs the manuscripts reads them from `manuscripts/`, so
+  it can run as a cloud worker like any other; (d) every
   worker, local or cloud, commits verified progress on its branch as it goes, so an
   interruption loses minutes, and a relaunched worker continues from its branch; (e) after a
   container restart (check `uptime` at the start of every turn and every scheduled check),

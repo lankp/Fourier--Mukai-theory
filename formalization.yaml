@@ -22,8 +22,8 @@ sources:
     type: "article"
     relationship: "formalizes"
     note: >-
-      Target: the current manuscript, which is newer than the arXiv posting and is
-      not stored in this repository.  Proved so far: the categorical results of
+      Target: the current manuscript (manuscripts/GL26/), newer than the arXiv
+      posting.  Proved so far: the categorical results of
       §2.1, §7 and Appendices B, C (in categorical form), Lemmas 2.25, 2.26 and 5.4
       in abstract six-functor form, Lemmas 6.11, 10.1, 10.2 over a six-functor cube,
       Lemma A.4 in the affine case.  The headline results (Theorems 1.2, 1.3, 1.6,

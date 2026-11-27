@@ -50,15 +50,10 @@ to you.
    this file with its own (get_session with no argument), commits, and continues.
    The running orchestrator survives usage-limit stops and worker restarts on its
    own: scheduled messages (`send_later`) into it resume it after the reset.
-6. **The repository is public; the manuscripts are not in it** (26 November 2026:
-   the maintainer made it public; `manuscripts/` was removed from the entire history
-   and every branch was force-pushed).  The maintainer uploaded the current TeX of both
-   papers to this orchestrator session (LP26 `44b730a8-main.tex`, GL26 `46ab67e2-main.tex`
-   in the session's uploads); **unless the maintainer says otherwise they are unchanged**,
-   so do not ask again.  Run tasks that need the text here (local subagents), never commit
-   or quote manuscript TeX.  If this session's uploads are gone (new orchestrator), ask the
-   maintainer to upload them again.  When the maintainer announces a new version,
-   re-check `results/COVERAGE.md` against its numbering.
+6. **The manuscripts are in the repository** (`manuscripts/GL26/`, `manuscripts/LP26/`;
+   maintainer, 27 November 2026), freely readable by every worker.  When the maintainer sends a
+   new version, commit it there (only the orchestrator replaces these files) and re-check
+   `results/COVERAGE.md` against its numbering.
 7. GL26 is correct as stated in the current manuscript (the maintainer confirmed,
    for example, that Lemma B.10's displayed "(G,ζ) ⊣ (F,ξ)" is a typo for
    "(F,ξ) ⊣ (G,ζ)").  A Lean rendering that turns out false or vacuous is refuted

@@ -105,6 +105,7 @@ lake build SpacesVerified   # full verification (~8 500 AxiomMath modules, ~6 h,
 | `FourierMukai/Paper/` | the earlier abstract interface and its targets |
 | `Spaces/` | algebraic spaces on AxiomMath's definitions: LP26 Theorem 1.1, the affine base of Corollary 1.2; GL26's statements, Lemmas 2.4, 2.5, 7.12–7.17, A.9 (generation), base change |
 | `SpacesVerified/` | the AxiomMath theorems the `Spaces` layer uses |
+| `manuscripts/` | the current GL26 and LP26 manuscripts (TeX and PDF) |
 | `results/` | coverage, assumptions, open items, the AxiomMath maps; `archive/` holds earlier reports |
 
 ## How the work is produced

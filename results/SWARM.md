@@ -100,7 +100,7 @@ Launched 25 November 2026 after wave 2 was merged.  Briefs in `results/swarm/arc
 ## Direction: full generality (maintainer, 26 November 2026)
 
 The maintainer directed that the whole repository now aims at GL26 and LP26 **in
-their full generality as stated in the current manuscripts** (not in the repository; ask the maintainer):
+their full generality as stated in the current manuscripts** (in `manuscripts/`):
 algebraic spaces, `D_qc`, `Perf`, `D^b_coh`, `Lf^*`, `Rf_*`, `⊗^L` in the sense of
 GL26 §2.2.  The abstract interfaces (`Paper/DerivedSetup.lean`, `FMSetup`,
 `StacksInterface`, the affine `D(A-Mod)` model) are the categorical engine, not the
@@ -230,8 +230,7 @@ bridge and the preferred class first, then §5, then Corollary 1.2.
 | `wave8/axiommath-verified` (`session_0111iGd8ChkAMsYSB2t9QoLz`) | high | build the full `SpacesVerified` closure in its own container (the orchestrator's is reclaimed when idle), then prove the 17 tagged AxiomMath inputs of wave 7 and the unconditional wave 7 headlines |
 | `wave8/prune-pinned-vacuous` (`session_0111iGd6caNpP2YiJVNQW24x`) | medium | merged: the two vacuous `IsGenerator` endpoints and ~1 500 lines only they used deleted; baseline re-recorded (15 pins) |
 
-The LP26 TeX is the copy in the orchestrator's session uploads (current unless the maintainer
-says otherwise); tasks that need it run as local subagents.
+The manuscripts are in `manuscripts/` (27 November 2026), so manuscript tasks need not run locally.
 
 ## Wave 9 (prepared; briefs in `results/swarm/wave9/`): finish LP26
 
@@ -240,9 +239,9 @@ repository cleaned up.
 
 | task | model, effort | goal |
 |---|---|---|
-| `wave9/lp26-standard-wa` (local, LP26 TeX) | session model (Opus), high | the standard W.A. forms of LP26 Prop 5.8 and Cor 1.2 |
+| `wave9/lp26-standard-wa` (cloud) | Opus, high | the standard W.A. forms of LP26 Prop 5.8 and Cor 1.2 |
 | `wave9/supported-0gfi` (cloud) | Opus, high | supported Stacks 0GFI, so GL26 Lemma A.9's preferred class holds for every support |
-| `wave9/lp26-noetherian-coherence` (local, after the first) | session model (Opus), high | Cor 1.2's coherence clause for Noetherian `X` (CHNS Ex. 10.1.2, proved here) |
+| `wave9/lp26-noetherian-coherence` (cloud, after the first) | Opus, high | Cor 1.2's coherence clause for Noetherian `X` (CHNS Ex. 10.1.2, proved here) |
 
 Also on the list for `SpacesVerified`: `LocallySmall.{u}` of AxiomMath's `D(𝒪_X)` (an AxiomMath
 theorem, needed to apply `theorem_1_1_univ` to a given space), to be taken as a tagged input and
@@ -252,8 +251,8 @@ After wave 9, LP26 is complete up to the discharge of its AxiomMath inputs; GL26
 
 ## Wave 10 (outline): GL26 over algebraic spaces, in dependency order
 
-To be turned into briefs once wave 9 closes (manuscript tasks local, with the GL26 TeX; all
-Opus, high).  From the top of `results/TODO.md`:
+To be turned into briefs once wave 9 closes (all cloud workers, manuscripts in `manuscripts/`;
+all Opus, high).  From the top of `results/TODO.md`:
 
 1. **§2 preliminaries over spaces**: Lemmas 2.10 (`lem:rhom_tensor_morphism`), 2.14
    (`lem:faithfully_flat_is_conservative`), 2.16 (`lem:gortz_wedhorn_internal_hom`), 2.21–2.24
