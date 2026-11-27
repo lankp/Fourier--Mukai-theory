@@ -224,7 +224,7 @@ bridge and the preferred class first, then §5, then Corollary 1.2.
 | `wave8/universe-bridge` (`session_0111iGd7bQhnAomRu66CG3oJ`) | high | LP26 Thm 1.1 and compactness with a coproduct universe independent of the Hom universe, so they apply to AxiomMath's `D(𝒪_X)` (Hom in `Type (u+1)`, sums over `Type u`) |
 | `wave8/neeman-approximability` (`session_0111iGd8kuVAzNdReRDjVzr4`) | high | the part of Neeman's approximability needed for GL26 Lemma A.9's preferred-class clause over qcqs spaces, proved here |
 | `wave8/lp26-section5` (local subagent, LP26 TeX; merged, partial) | high | done: LP26 Lemmas 5.5, 5.6, 5.7 and the standard `t`-structure over spaces.  Left: Def 5.3 (after universe-bridge), Lemma 5.9 (`wave8/lp26-lemma-5-9`), Prop 5.8 (`wave8/lp26-recollement`) |
-| `wave8/lp26-lemma-5-9` (local, LP26 TeX) | high | LP26 Lemma 5.9 (`lem:characterize_T-_c`) over algebraic spaces |
+| `wave8/lp26-lemma-5-9` (local, LP26 TeX; merged) | high | done: LP26 Lemma 5.9 (`lem:characterize_T-_c`) over algebraic spaces, both claims, for the standard `t`-structure; nine tagged inputs |
 | `wave8/lp26-recollement` (after universe-bridge, neeman-approximability) | high | GL26 Lemmas A.4, A.6 over algebraic spaces (the open–closed recollement of `D_qc,S`), then LP26 Def 5.3 and Prop 5.8 |
 | `wave8/lp26-corollary-1-2` (local, after the others) | high | LP26 Corollary 1.2 over qcqs algebraic spaces with support |
 | `wave8/axiommath-verified` (`session_0111iGd8ChkAMsYSB2t9QoLz`) | high | build the full `SpacesVerified` closure in its own container (the orchestrator's is reclaimed when idle), then prove the 17 tagged AxiomMath inputs of wave 7 and the unconditional wave 7 headlines |

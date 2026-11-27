@@ -118,7 +118,7 @@ absent.
 | Lem 5.4 | `lem:neeman2023cor5_10` | C | `Scheme/Lemma54.lean`: the cover argument in six-functor form; residue is the cover square (flat base change, conservativity, perfect/compact calculus) |
 | Prop 5.6 | `prop:preservation_of_perfect` | — | a lemma in the arXiv version |
 | Lem 5.7 | `lem:f_perf_implies_perf_preserved` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/OpenPushforward.lean` `lemma_5_7` (wave 8), from 08FB, 08FA(2), 0AFJ, with weaker hypotheses than the paper's; coproducts stated in `D(𝒪_X)`. Earlier: |
-| Lem 5.9 | `lem:neeman23lem5_3` | — | not yet: provable from about seven more AxiomMath inputs (wave 8 follow-up). Earlier: |
+| Lem 5.9 | `lem:neeman23lem5_3` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/Lemma59.lean` `lemma_5_9`, Noetherian clauses `lemma_5_9_minus_eq`, `lemma_5_9_bounded_eq` (wave 8), from tagged inputs 08G8, 08FV(2), 08FU(2), 08HP, 073B, 08IK and others.  Gap: computed for the standard `t`-structure; the identification with the preferred-class `𝒯^-_c` waits for Def 5.3. Earlier: not yet: provable from about seven more AxiomMath inputs (wave 8 follow-up). Earlier: |
 | Lem 5.10 | `lem:Ballard_relative_perf_implies_dual_is_such` | — | |
 | Lem 5.11 | `lem:f-quasi-perfect_via_small_coproducts` | — | |
 | Prop 5.12 | `prop:stacky_f_perf_gives_iso_between_uppershriek_and_pullback_up_to_tensor` | — | |
