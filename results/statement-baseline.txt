@@ -83,23 +83,6 @@
  Classical.choice,
  Quot.sound]
 'RelativeFM.Lemma54.externalTensor_compactlyGenerates' depends on axioms: [propext, Classical.choice, Quot.sound]
-RelativeFM.affine_theorem_1_1_small : ∀ (A : Type u_1) [inst : CommRing A] (H : RelativeFM.AffineSpaltensteinInput A)
-  (DZ : Type u_2) (DU : Type u_3) [inst_1 : CategoryTheory.Category.{u_1, u_2} DZ]
-  [inst_2 : CategoryTheory.Category.{u_1, u_3} DU] [inst_3 : CategoryTheory.Preadditive DZ]
-  [inst_4 : CategoryTheory.Preadditive DU] [inst_5 : CategoryTheory.Limits.HasZeroObject DZ]
-  [inst_6 : CategoryTheory.Limits.HasZeroObject DU] [inst_7 : CategoryTheory.HasShift DZ ℤ]
-  [inst_8 : CategoryTheory.HasShift DU ℤ] [inst_9 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DZ n).Additive]
-  [inst_10 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DU n).Additive] [inst_11 : CategoryTheory.Pretriangulated DZ]
-  [inst_12 : CategoryTheory.Pretriangulated DU] [inst_13 : CategoryTheory.IsTriangulated DZ]
-  [inst_14 : CategoryTheory.IsTriangulated DU]
-  (S : RelativeWeakApprox.SetupMainMinimal DZ (RelativeFM.SmallAffineD A H) DU),
-  RelativeFM.SmallAffineDerivedCoproducts A H DZ DU →
-    RelativeWeakApprox.Stacks09SR (RelativeFM.SmallAffineD A H) →
-      (RelativeWeakApprox.SatisfiesWA (RelativeFM.SmallAffineD A H) ↔
-        ∃ N,
-          ∀ (n : ℤ),
-            N ≤ n → ∀ (f : S.G' ⟶ (CategoryTheory.shiftFunctor (RelativeFM.SmallAffineD A H) n).obj S.G'), f = 0)
-'RelativeFM.affine_theorem_1_1_small' depends on axioms: [propext, Classical.choice, Quot.sound]
 @RelativeWeakApprox.PaperM2.PaperSetupMainMinimal.theorem_1_1 : ∀ {DZ : Type u_3} {D : Type u_2} {DU : Type u_4}
   [inst : CategoryTheory.Category.{u_1, u_3} DZ] [inst_1 : CategoryTheory.Category.{u_1, u_2} D]
   [inst_2 : CategoryTheory.Category.{u_1, u_4} DU] [inst_3 : CategoryTheory.Preadditive DZ]
@@ -119,26 +102,6 @@ RelativeFM.affine_theorem_1_1_small : ∀ (A : Type u_1) [inst : CommRing A] (H 
       RelativeWeakApprox.IsPaperGenerator G →
         RelativeWeakApprox.IsCompactAb G → RelativeWeakApprox.IsClassicalGeneratorOnCompacts G) →
     (RelativeWeakApprox.PaperM2.SatisfiesPaperWA D ↔
-      ∃ N, ∀ (n : ℤ), N ≤ n → ∀ (f : S.G' ⟶ (CategoryTheory.shiftFunctor D n).obj S.G'), f = 0)
-@RelativeWeakApprox.SetupMainMinimal.theorem_1_1 : ∀ {DZ : Type u_3} {D : Type u_2} {DU : Type u_4}
-  [inst : CategoryTheory.Category.{u_1, u_3} DZ] [inst_1 : CategoryTheory.Category.{u_1, u_2} D]
-  [inst_2 : CategoryTheory.Category.{u_1, u_4} DU] [inst_3 : CategoryTheory.Preadditive DZ]
-  [inst_4 : CategoryTheory.Preadditive D] [inst_5 : CategoryTheory.Preadditive DU]
-  [inst_6 : CategoryTheory.Limits.HasZeroObject DZ] [inst_7 : CategoryTheory.Limits.HasZeroObject D]
-  [inst_8 : CategoryTheory.Limits.HasZeroObject DU] [inst_9 : CategoryTheory.HasShift DZ ℤ]
-  [inst_10 : CategoryTheory.HasShift D ℤ] [inst_11 : CategoryTheory.HasShift DU ℤ]
-  [inst_12 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DZ n).Additive]
-  [inst_13 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor D n).Additive]
-  [inst_14 : ∀ (n : ℤ), (CategoryTheory.shiftFunctor DU n).Additive] [inst_15 : CategoryTheory.Pretriangulated DZ]
-  [inst_16 : CategoryTheory.Pretriangulated D] [inst_17 : CategoryTheory.Pretriangulated DU]
-  [inst_18 : CategoryTheory.IsTriangulated DZ] [inst_19 : CategoryTheory.IsTriangulated D]
-  [inst_20 : CategoryTheory.IsTriangulated DU] (S : RelativeWeakApprox.SetupMainMinimal DZ D DU)
-  [CategoryTheory.Limits.HasCoproducts DZ] [CategoryTheory.Limits.HasCoproducts D]
-  [CategoryTheory.Limits.HasCoproducts DU],
-  (∀ (G : D),
-      RelativeWeakApprox.IsGenerator G →
-        RelativeWeakApprox.IsCompactAb G → RelativeWeakApprox.IsClassicalGeneratorOnCompacts G) →
-    (RelativeWeakApprox.SatisfiesWA D ↔
       ∃ N, ∀ (n : ℤ), N ≤ n → ∀ (f : S.G' ⟶ (CategoryTheory.shiftFunctor D n).obj S.G'), f = 0)
 @RelativeWeakApprox.PaperHypothesesW6.theorem_1_1_paper : ∀ {DZ : Type u_2} {D : Type u_3} {DU : Type u_4}
   [inst : CategoryTheory.Category.{u_1, u_2} DZ] [inst_1 : CategoryTheory.Category.{u_1, u_3} D]
@@ -171,7 +134,6 @@ RelativeFM.affine_theorem_1_1_small : ∀ (A : Type u_1) [inst : CommRing A] (H 
 'RelativeWeakApprox.PaperM2.PaperSetupMainMinimal.theorem_1_1' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-'RelativeWeakApprox.SetupMainMinimal.theorem_1_1' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RelativeWeakApprox.PaperHypothesesW6.theorem_1_1_paper' depends on axioms: [propext, Classical.choice, Quot.sound]
 RelativeFM.PrincipalNeemanM1.satisfiesPaperWA : ∀ (A : Type u_1) [inst : CommRing A] (f : A),
   RelativeWeakApprox.IsCompactAb (RelativeFM.ringObject A) →

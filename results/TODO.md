@@ -31,7 +31,7 @@ list (LP26 first, then GL26).  Status codes as in `COVERAGE.md`.
 | Lem 6.11 | `lem:fm_cube_flat_base_change_natural_isomorphism` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/BaseChange/Cube.lean` (wave 7), from tagged AxiomMath inputs (08IR) in `Spaces/BaseChange/Inputs.lean`. Earlier: `FMCube.lemm |
 | Lem 10.1 | `lem:fm_cube_pullback_natural_isomorphism` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/BaseChange/Cube.lean` (wave 7), from tagged AxiomMath inputs (08IR, 08IN). Earlier: `FMCube.lemma_10_1`, from flat base chang |
 | Lem A.4 | `lem:spacey_recollement` | C (affine; Stacks only) | `Scheme/AffineJUpperConstruction.lean` (`affineRecollementInputOfStacks0E55`): all fields of the affine recollement, from Stacks 0E55; unconditional when coexte |
-| Lem A.9 | `lem:preferred_eq_class` | C (generation part; preferred class open) | **over qcqs algebraic spaces**: `Spaces/Supported/CompactGeneration.lean` (wave 7): single compact perfect generator, compacts = perfect complexes supported on  |
+| Lem A.9 | `lem:preferred_eq_class` | C (AxiomMath inputs; preferred class open for supported Z) | **preferred-class clause** (wave 8, `Spaces/Supported/Preferred.lean`): proved for `Z = \ |
 | Rmk 2.6 | `rmk:equivalences_induced` | H | `Scheme/Inputs.lean`, `GL26Theorem12Reduction.lean` |
 | Rmk 2.7 | `rem:rel_perfect_is_free` | H | `TransformPreservationForcesRelativePerfect` |
 | Lem 2.10 | `lem:rhom_tensor_morphism` | H | `Scheme/Duality.lean`, `Scheme/StacksInput.lean` |

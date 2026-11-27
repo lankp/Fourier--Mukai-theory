@@ -221,7 +221,7 @@ absent.
 | Lem A.6 | `lem:etale_nbhd_preferred_class_equivalences` | — | |
 | Lem A.7 | `lem:pullback_compact_generator` | — | |
 | Lem A.8 | `lem:etale_nbhd_preferred_class` | H | `Scheme/Inputs.lean` |
-| Lem A.9 | `lem:preferred_eq_class` | C (generation part; preferred class open) | **over qcqs algebraic spaces**: `Spaces/Supported/CompactGeneration.lean` (wave 7): single compact perfect generator, compacts = perfect complexes supported on `Z`, classical generation, from tagged AxiomMath inputs (0AEC, 0AED, 0GFD, 08F3).  **Open**: the clause that the standard `t`-structure is in the preferred class (Neeman approximability; coproduct universe of AxiomMath's `D(𝒪_X)`): wave 8. Earlier: `Scheme/Inputs.lean` |
+| Lem A.9 | `lem:preferred_eq_class` | C (AxiomMath inputs; preferred class open for supported Z) | **preferred-class clause** (wave 8, `Spaces/Supported/Preferred.lean`): proved for `Z = \|X\|` from AxiomMath's 0GFI, with Neeman's equivalence proved abstractly (`NeemanAbstract.lean`, no input); for general `Z` reduced to `SupportedDetectsBelowStatement` (supported 0GFI, open, assumed nowhere).  **over qcqs algebraic spaces**: `Spaces/Supported/CompactGeneration.lean` (wave 7): single compact perfect generator, compacts = perfect complexes supported on `Z`, classical generation, from tagged AxiomMath inputs (0AEC, 0AED, 0GFD, 08F3).  **Open**: the clause that the standard `t`-structure is in the preferred class (Neeman approximability; coproduct universe of AxiomMath's `D(𝒪_X)`): wave 8. Earlier: `Scheme/Inputs.lean` |
 | Def B.1 | `def:cat_with_trans` | D | Mathlib's `HasShift C ℤ` and `Functor.CommShift` stand in |
 | Lem B.2 | `lem:trans_is_2-cat` | P | `Prelim/TransTwoCategory.lean`: `Trans.instBicategory` (strict, `Trans.instStrict`), `Trans.forget : StrictPseudofunctor TransCat Cat`, `lemma_B2_faithful`, `lemma_B2_unique` (the 2-cell data is determined by lying over `Cat`); translations are endofunctors (the paper's autoequivalences form a full sub-bicategory with the same structure) |
 | Def B.3 | | — | |
@@ -242,19 +242,19 @@ The geometric §5 is not; the tree records it in `results/archive/WEAK_APPROX.md
 
 | # | label | status | where / note |
 |---|---|---|---|
-| Thm 1.1 | `thm:glueing_weak_approx` | P | **with exactly the paper's hypotheses and no Stacks hypothesis**: `Spaces/Stacks/Corollaries.lean` `RelativeFM.Spaces.Stacks.theorem_1_1` (09SR proved from AxiomMath, wave 6); before that, `WeakApprox/Theorem11Paper.lean` `PaperHypothesesW6.theorem_1_1_paper` (pinned; only Stacks 09SR assumed; wave 6), from `PaperSetupMainMinimal.theorem_1_1`; compactly generated `t`-structures and BNP Cor 3.10(1) proved; non-vacuous (`Theorem11PaperNonVacuity`). The large-model affine endpoints are proved vacuous (`RefuteLargeCoproducts`) |
+| Thm 1.1 | `thm:glueing_weak_approx` | P | **at any Hom and coproduct universes** (AxiomMath's `D(𝒪_X)`: Hom in `Type (u+1)`, sums over `Type u`): `Spaces.Stacks.theorem_1_1_univ` (wave 8, `WeakApprox/SumUniverse*.lean`); **with exactly the paper's hypotheses and no Stacks hypothesis**: `Spaces/Stacks/Corollaries.lean` `RelativeFM.Spaces.Stacks.theorem_1_1` (09SR proved from AxiomMath, wave 6); before that, `WeakApprox/Theorem11Paper.lean` `PaperHypothesesW6.theorem_1_1_paper` (pinned; only Stacks 09SR assumed; wave 6), from `PaperSetupMainMinimal.theorem_1_1`; compactly generated `t`-structures and BNP Cor 3.10(1) proved; non-vacuous (`Theorem11PaperNonVacuity`). The large-model affine endpoints are proved vacuous (`RefuteLargeCoproducts`) |
 | Cor 1.2 | `cor:weak_approx_spaces` | C (affine base over spaces; qcqs induction open) | **affine base over algebraic spaces**: `Spaces/Affine/WeakApprox.lean` (wave 7), from tagged AxiomMath inputs (06Z0, 07TY, 021R).  **Open**: the induction over qcqs spaces: wave 8. Earlier: the affine base case = Neeman 2024 Thm 3.2(iv) for `Spec A`, `Z = V(I)`, `I` f.g., is proved with **no input** in `D(A-Mod)`: `NeemanAffineSupport.satisfiesPaperWA_of_fg` (wave 5, pinned); transport to AxiomMath's `D_qc,Z(Spec A)` and the induction over qcqs schemes/spaces are open |
 | Def 2.1 | `def:weak_approx` | D | `WeakApproximationData`, `PaperWeakApproximationData` |
 | Lem 3.1 | `lem:closures` | P | `Basic`, `Closure`, `Shift`, `Functoriality` |
 | Lem 3.3 | `lem:aisle` | P | `Aisle` |
-| Lem 3.4 | `lem:iterate` | P | `Lemma34`, `PaperLemma34M2` |
+| Lem 3.4 | `lem:iterate` | P | `PaperLemma34M2` (the `IsGenerator` form `Lemma34` was deleted in wave 8) |
 | Lem 3.5 | `lem:hom_vanishing` | P | `Lemma35`, `HomVanishing` |
 | Setup 4.1 | `setup:recollement` | D | `Recollement` |
 | Lem 4.2 | `lem:glued` | P | `Lemma42` |
 | Lem 4.3 | `lem:normalize` | P | `Lemma43`, `Lemma4323`, `Lemma433TStructure` |
 | Setup 4.4 | `setup:standing` | D | `Setup44`, `Setup44Minimal`, `PaperSetup44M2` |
 | Def 4.5 | `def:lift` | D | `PLift` |
-| Lem 4.6 | `lem:onecell` | P | `Lemma46`, `PaperLemma46M2` |
+| Lem 4.6 | `lem:onecell` | P | `PaperLemma46M2` (the `IsGenerator` form `Lemma46` was deleted in wave 8) |
 | Prop 4.8 | `prop:closure` | P | `Proposition48`, `Proposition48Paper` |
 | Def 5.3 | `def:wa_spaces` | — | not yet: needs the coproduct universe of `wave8/universe-bridge`; the standard `t`-structure on `D_qc,S(X)` it uses is in `Spaces/LP26/StandardTStructure.lean` (wave 8). Earlier: |
 | Lem 5.5 | `lem:compact_ext_vanishing` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/HomVanishing.lean` `lemma_5_5`, `lemma_5_5_dqc` (wave 8), from tagged inputs 09M8, 09MB(1). Earlier: its categorical role is `WeakApprox/CompactVanishing.lean`; the `D_qc` statement is not proved |
