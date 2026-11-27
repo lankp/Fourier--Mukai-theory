@@ -6,7 +6,7 @@ processes, and that a successor needs, is listed here (CLAUDE.md, "Handoff").  P
 are never committed: the manuscripts are named here, and anything else private is passed to the
 successor by session message.
 
-Last updated: 26 November 2026, 20:40 UTC (scratchpad cleaned).
+Last updated: 27 November 2026, 00:45 UTC (wave 7 closed).
 
 ## Running in the background
 
@@ -14,7 +14,7 @@ Last updated: 26 November 2026, 20:40 UTC (scratchpad cleaned).
 |---|---|---|
 | AxiomMath build of the theorem modules `SpacesVerified` needs (wave 7 discharges) | orchestrator container; driver as `scripts/axiommath/build.sh` | `scripts/axiommath/build.sh .lake/packages/Stacks <log> <modules>`; check with `scripts/axiommath/built.py` |
 | hourly scheduled task "FM swarm: hourly wave check" | `trig_018gGiqMfFuTFks4J8LCQvp2`, fires into the orchestrator session | its prompt is the orchestration loop of `ORCHESTRATOR.md`; a successor creates its own (`create_trigger`) and deletes this one |
-| wave 7 cloud workers | sessions listed in `results/SWARM.md`, tag `fm-wave7` | they push their own branches; nothing to recover |
+| wave 7 cloud workers | merged and archived (log in `results/SWARM.md`) | nothing to recover |
 
 ## Outside the repository, in the orchestrator's container
 
@@ -35,5 +35,7 @@ and its reflog expired, so it no longer holds the removed manuscripts.
 
 ## Container set-up after a restart
 
-`swapon /home/user/.swapfile` (8 GB) and `sysctl -w vm.max_map_count=262144` before
+The container restarts often (twice on 26–27 November): files and uploads survive, but swap,
+`vm.max_map_count` and running builds do not.  Restore them, and restart the AxiomMath build
+(`scripts/axiommath/build.sh`; Lake skips what is built).  `swapon /home/user/.swapfile` (8 GB) and `sysctl -w vm.max_map_count=262144` before
 `lake build SpacesVerified`.

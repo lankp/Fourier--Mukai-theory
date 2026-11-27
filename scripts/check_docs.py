@@ -47,6 +47,7 @@ def main():
             if re.match(r'results/swarm/wave\d+/', md): continue
             for target in PATH.findall(line):
                 if '*' in target or '<' in target: continue
+                if '`' + target + '` (deleted)' in line: continue
                 if not os.path.exists(os.path.join(ROOT, target)):
                     problems.append(f'{md}:{n}: missing path {target}')
     problems += regenerated('todo.py', 'results/TODO.md')

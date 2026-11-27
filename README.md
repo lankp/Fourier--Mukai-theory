@@ -13,7 +13,7 @@ Project](https://github.com/AxiomMath/Stacks) (a pinned Lake dependency); everyt
 else comes from Mathlib or is proved here.  **Order:** LP26 first, with the parts of
 the literature it needs, then GL26.
 
-247 Lean modules, about 59 000 lines, no `sorry`.  Every result depends only on the
+260 Lean modules, about 60 000 lines, no `sorry`.  Every result depends only on the
 axioms `propext`, `Classical.choice`, `Quot.sound`.  **Rule:** no assumptions and no
 unproven parts except the Stacks Project as formalized by AxiomMath.
 
@@ -25,7 +25,7 @@ unproven parts except the Stacks Project as formalized by AxiomMath.
 |---|---|
 | §§2–4 (Lemmas 3.1, 3.3, 3.4, 3.5, 4.2, 4.3, 4.6, Proposition 4.8) | proved |
 | Theorem 1.1 (`thm:glueing_weak_approx`) | proved, with the paper's hypotheses and nothing assumed (`Spaces.Stacks.theorem_1_1`) |
-| Corollary 1.2 (`cor:weak_approx_spaces`) | affine base case proved in `D(A-Mod)`; transport to algebraic spaces and the qcqs induction in progress |
+| Corollary 1.2 (`cor:weak_approx_spaces`) | affine base case proved over algebraic spaces (AxiomMath inputs to discharge); the qcqs induction in progress |
 | §5 (Definition 5.3, Lemmas 5.5–5.9, Proposition 5.8) | open |
 
 **GL26**
@@ -34,8 +34,10 @@ unproven parts except the Stacks Project as formalized by AxiomMath.
 |---|---|
 | §2.2 over algebraic spaces: `D_qc`, `D^b_coh`, `Perf`, support, `Lf^* ⊣ Rf_*`, `⊗^L`; Definitions 4.1, 5.1; integral transforms | defined (`Spaces/`), nothing assumed (`SpacesVerified/`) |
 | Lemmas 2.3, 2.4, 2.5 | proved |
-| Lemmas 7.2, 7.4, 7.6, 7.9, 7.11, 7.12, 7.17, Lemma-Definition 7.10, Lemmas 10.2, B.2, B.4, B.5, B.7, B.10, C.1 | proved, over abstract data or in `Cat`; for algebraic spaces in progress |
-| Lemmas 2.25, 2.26, 5.4, 6.11, 10.1, A.4 (affine case) | conditional on named inputs: not counted as proved; being redone over algebraic spaces |
+| Lemmas 7.12, 7.13, 7.17 | proved for algebraic spaces, nothing assumed |
+| Lemmas 7.2, 7.4, 7.6, 7.9, 7.11, Lemma-Definition 7.10, Lemmas 10.2, B.2, B.4, B.5, B.7, B.10, C.1 | proved, over abstract data or in `Cat` |
+| Lemma A.9 (generation part), Lemmas 6.11, 10.1 | proved over algebraic spaces from AxiomMath theorems (being discharged); the preferred-class clause of A.9 is open |
+| Lemmas 2.25, 2.26, 5.4, A.4 (affine case) | conditional on named inputs: not counted as proved; being redone over algebraic spaces |
 | Theorems 1.2, 1.3, 1.6, 1.7 and the rest | open; being stated over algebraic spaces |
 
 Result by result: [`results/COVERAGE.md`](results/COVERAGE.md).  Everything not yet
@@ -61,11 +63,11 @@ result is removed.  Ledger:
 
 ## Next
 
-1. **LP26 Corollary 1.2 over algebraic spaces**: the affine base on AxiomMath's
-   `D_qc,Z(Spec A)`, compact generation of `D_qc,Z(X)` (GL26 Lemma A.9), then the
-   induction over qcqs spaces; LP26 §5.
-2. **GL26 over algebraic spaces**: state Theorems 1.2, 1.3, 1.6, 1.7 and the results
-   they use, then prove them, starting with §7 and the base-change cube.
+1. **LP26 in full generality** (wave 8): LP26 Theorem 1.1 at AxiomMath's universes, the
+   preferred-class clause of GL26 Lemma A.9 (Neeman's approximability, proved here), LP26 §5,
+   then Corollary 1.2 over qcqs algebraic spaces; AxiomMath inputs of wave 7 discharged.
+2. **GL26 over algebraic spaces**: prove the stated headline results, starting from §7 and
+   the base-change cube.
 
 ## Checking
 
@@ -101,7 +103,7 @@ lake build SpacesVerified   # full verification (~8 500 AxiomMath modules, ~6 h,
 | `FourierMukai/Prelim/` | categorical results of GL26 §2.1, §7, Appendices B, C |
 | `FourierMukai/Scheme/` | the affine layer (`D(A-Mod)`, perfect complexes, Neeman's affine results) |
 | `FourierMukai/Paper/` | the earlier abstract interface and its targets |
-| `Spaces/` | algebraic spaces on AxiomMath's definitions; LP26 Theorem 1.1 and GL26 Lemmas 2.4, 2.5 there |
+| `Spaces/` | algebraic spaces on AxiomMath's definitions: LP26 Theorem 1.1, the affine base of Corollary 1.2; GL26's statements, Lemmas 2.4, 2.5, 7.12–7.17, A.9 (generation), base change |
 | `SpacesVerified/` | the AxiomMath theorems the `Spaces` layer uses |
 | `results/` | coverage, assumptions, open items, the AxiomMath maps; `archive/` holds earlier reports |
 

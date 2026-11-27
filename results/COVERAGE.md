@@ -138,7 +138,7 @@ absent.
 | Lem 6.7 | `lem:perfect_locus_open` | — | |
 | Prop 6.8 | `prop:preservation_of_dbcoh` | T | half of `theorem_1_3Statement` |
 | Lem 6.10 | `lem:fm_cube_locally_finite_tor_dimension` | — | |
-| Lem 6.11 | `lem:fm_cube_flat_base_change_natural_isomorphism` | C (Stacks only) | `FMCube.lemma_6_11` (`Scheme/FMCube.lean`), six-functor form over the cube of Setup 2.20, from flat base change (Stacks 08IR) |
+| Lem 6.11 | `lem:fm_cube_flat_base_change_natural_isomorphism` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/BaseChange/Cube.lean` (wave 7), from tagged AxiomMath inputs (08IR) in `Spaces/BaseChange/Inputs.lean`. Earlier: `FMCube.lemma_6_11` (`Scheme/FMCube.lean`), six-functor form over the cube of Setup 2.20, from flat base change (Stacks 08IR) |
 | Lem 6.12 | `lem:pushforward_coherent_support_is_image` | — | |
 | Lem 6.13 | `lem:reflecting_bounded_pseudocoherence_perfectness_trivial_case` | — | |
 | Lem 6.14 | `lem:induced_dbcoh_perf_preservation_upon_pullback_with_t_affine` | — | |
@@ -160,11 +160,11 @@ absent.
 | Lem 7.9 | `lem:conjugates_are_functorial` | P (in `Cat`) | `lemma_7_9_id`, `lemma_7_9_comp`, from Mathlib's `conjugateEquiv_id`/`_comp`; does not use 7.8 |
 | Lem-Def 7.10 | `def:adj_equiv` | P (in `Cat`) | `Prelim/AdjunctionUnits.lean` (`lemmaDef_7_10`); the footnote's "representably fully faithful ⇔ fully faithful" is proved (`representablyFullyFaithful_iff`) |
 | Lem 7.11 | `lem:when_mate_correspondence_preserves_isos` | P | `isIso_mate`, `isIso_of_isIso_mate`, `isIso_mate_iff` |
-| Lem 7.12 | `lem:pseudofunctoriality_isos_are_conjugate` | P (abstract) | `PullPushData.lemma_7_12` (`Prelim/BaseChangeMates.lean`), over abstract pseudofunctor data whose structure isos are conjugate (Lipman 3.6.2 / Lemma 2.13 as fields); wired into `Scheme/Duality.lean` by `Scheme/DualityMates.lean` (`DerivedPseudofunctorInput.lemma_7_12`; the coherence field `pushConjugate` is now proved for squares from that input) |
+| Lem 7.12 | `lem:pseudofunctoriality_isos_are_conjugate` | P | **over algebraic spaces, no input**: `Spaces/BaseChange/PullPush.lean` (wave 7). Earlier: `PullPushData.lemma_7_12` (`Prelim/BaseChangeMates.lean`), over abstract pseudofunctor data whose structure isos are conjugate (Lipman 3.6.2 / Lemma 2.13 as fields); wired into `Scheme/Duality.lean` by `Scheme/DualityMates.lean` (`DerivedPseudofunctorInput.lemma_7_12`; the coherence field `pushConjugate` is now proved for squares from that input) |
 | Lem-Def 7.13 | `def:upper_star_lower_star_bc` | D | `theta`, `thetaLeftMate`, `lemma_7_13` (the two descriptions agree) in `Prelim/BaseChangeMates.lean`; `theta` in `Scheme/Duality.lean` |
 | Def 7.14 | `def:lower_star_upper_cross_bc` | D | `xi`, with `isIso_xi` ⇔ `isIso_theta` (`Prelim/BaseChangeMates.lean`) |
 | Lem-Def 7.15 | `def:upper_star_upper_cross_bc` | D | `beta`, `betaLeftMate`, `lemma_7_15` (the two descriptions agree) (`Prelim/BaseChangeMates.lean`) |
-| Lem 7.17 | `lem:base_change_mates_pasting` | P (abstract) | `lemma_7_17_theta`, `lemma_7_17_xi` (`Prelim/BaseChangeMates.lean`), over the same abstract data; without Lemma 7.8, via Mathlib's `mateEquiv_vcomp`; for `Duality.lean`'s maps: `DerivedPseudofunctorInput.lemma_7_17_theta`, `lemma_7_17_lowerStarUpperCross` |
+| Lem 7.17 | `lem:base_change_mates_pasting` | P | **over algebraic spaces, no input**: `Spaces/BaseChange/PullPush.lean` (wave 7). Earlier: `lemma_7_17_theta`, `lemma_7_17_xi` (`Prelim/BaseChangeMates.lean`), over the same abstract data; without Lemma 7.8, via Mathlib's `mateEquiv_vcomp`; for `Duality.lean`'s maps: `DerivedPseudofunctorInput.lemma_7_17_theta`, `lemma_7_17_lowerStarUpperCross` |
 | Lem 7.19 | `lem:etale_presen_bc` | — | algebraic spaces |
 | Lem 7.20 | `lem:characterize_tor-independence` | — | |
 | Lem 7.21 | `lem:tor-independence_and_beta_pasting` | — | |
@@ -187,7 +187,7 @@ absent.
 
 | # | label | status | note |
 |---|---|---|---|
-| Lem 10.1 | `lem:fm_cube_pullback_natural_isomorphism` | C (Stacks only) | `FMCube.lemma_10_1`, from flat base change (08IR) and the projection formula (08EU/08IN) |
+| Lem 10.1 | `lem:fm_cube_pullback_natural_isomorphism` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/BaseChange/Cube.lean` (wave 7), from tagged AxiomMath inputs (08IR, 08IN). Earlier: `FMCube.lemma_10_1`, from flat base change (08IR) and the projection formula (08EU/08IN) |
 | Lem 10.2 | `lem:integral_transform_is_morphism_of_adjoints` | P (abstract) | `FMCube.lemma_10_2`: `mateEquiv (adj t₁) (adj t₂) α^K = β^K`, with no input, over abstract pull/push/tensor data |
 | Prop 10.5 | `prop:pullbacks_is_a_morphism_of_adjoint_integral_transforms` | — | cited in a docstring only |
 | Lem 10.9 | `lem:equivalences_induced` | H | `Scheme/Inputs.lean` |
@@ -221,7 +221,7 @@ absent.
 | Lem A.6 | `lem:etale_nbhd_preferred_class_equivalences` | — | |
 | Lem A.7 | `lem:pullback_compact_generator` | — | |
 | Lem A.8 | `lem:etale_nbhd_preferred_class` | H | `Scheme/Inputs.lean` |
-| Lem A.9 | `lem:preferred_eq_class` | H | `Scheme/Inputs.lean` |
+| Lem A.9 | `lem:preferred_eq_class` | C (generation part; preferred class open) | **over qcqs algebraic spaces**: `Spaces/Supported/CompactGeneration.lean` (wave 7): single compact perfect generator, compacts = perfect complexes supported on `Z`, classical generation, from tagged AxiomMath inputs (0AEC, 0AED, 0GFD, 08F3).  **Open**: the clause that the standard `t`-structure is in the preferred class (Neeman approximability; coproduct universe of AxiomMath's `D(𝒪_X)`): wave 8. Earlier: `Scheme/Inputs.lean` |
 | Def B.1 | `def:cat_with_trans` | D | Mathlib's `HasShift C ℤ` and `Functor.CommShift` stand in |
 | Lem B.2 | `lem:trans_is_2-cat` | P | `Prelim/TransTwoCategory.lean`: `Trans.instBicategory` (strict, `Trans.instStrict`), `Trans.forget : StrictPseudofunctor TransCat Cat`, `lemma_B2_faithful`, `lemma_B2_unique` (the 2-cell data is determined by lying over `Cat`); translations are endofunctors (the paper's autoequivalences form a full sub-bicategory with the same structure) |
 | Def B.3 | | — | |
@@ -243,7 +243,7 @@ The geometric §5 is not; the tree records it in `results/archive/WEAK_APPROX.md
 | # | label | status | where / note |
 |---|---|---|---|
 | Thm 1.1 | `thm:glueing_weak_approx` | P | **with exactly the paper's hypotheses and no Stacks hypothesis**: `Spaces/Stacks/Corollaries.lean` `RelativeFM.Spaces.Stacks.theorem_1_1` (09SR proved from AxiomMath, wave 6); before that, `WeakApprox/Theorem11Paper.lean` `PaperHypothesesW6.theorem_1_1_paper` (pinned; only Stacks 09SR assumed; wave 6), from `PaperSetupMainMinimal.theorem_1_1`; compactly generated `t`-structures and BNP Cor 3.10(1) proved; non-vacuous (`Theorem11PaperNonVacuity`). The large-model affine endpoints are proved vacuous (`RefuteLargeCoproducts`) |
-| Cor 1.2 | `cor:weak_approx_spaces` | H (affine base: P in the module model) | the affine base case = Neeman 2024 Thm 3.2(iv) for `Spec A`, `Z = V(I)`, `I` f.g., is proved with **no input** in `D(A-Mod)`: `NeemanAffineSupport.satisfiesPaperWA_of_fg` (wave 5, pinned); transport to AxiomMath's `D_qc,Z(Spec A)` and the induction over qcqs schemes/spaces are open |
+| Cor 1.2 | `cor:weak_approx_spaces` | C (affine base over spaces; qcqs induction open) | **affine base over algebraic spaces**: `Spaces/Affine/WeakApprox.lean` (wave 7), from tagged AxiomMath inputs (06Z0, 07TY, 021R).  **Open**: the induction over qcqs spaces: wave 8. Earlier: the affine base case = Neeman 2024 Thm 3.2(iv) for `Spec A`, `Z = V(I)`, `I` f.g., is proved with **no input** in `D(A-Mod)`: `NeemanAffineSupport.satisfiesPaperWA_of_fg` (wave 5, pinned); transport to AxiomMath's `D_qc,Z(Spec A)` and the induction over qcqs schemes/spaces are open |
 | Def 2.1 | `def:weak_approx` | D | `WeakApproximationData`, `PaperWeakApproximationData` |
 | Lem 3.1 | `lem:closures` | P | `Basic`, `Closure`, `Shift`, `Functoriality` |
 | Lem 3.3 | `lem:aisle` | P | `Aisle` |

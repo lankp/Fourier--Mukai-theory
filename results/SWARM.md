@@ -193,7 +193,7 @@ orchestrator then fixed `Tag09SRPaper` (09SR for triangulated categories) and la
 `SpacesVerified`, which discharges every tagged AxiomMath input of `Spaces`, so nothing in
 the algebraic-space layer is assumed.  Workers archived.
 
-## Wave 7 (briefs in `results/swarm/wave7/`; launched 26 November 2026, 19:12 UTC)
+## Wave 7 (closed 27 November 2026; briefs in `results/swarm/archive/wave7/`)
 
 The algebraic-space layer now assumes nothing, so wave 7 builds on it.  Three Lean tasks
 run in parallel, each with its own directory and its own `Inputs.lean` for tagged AxiomMath
@@ -223,6 +223,8 @@ bridge and the preferred class first, then §5, then Corollary 1.2.
 | `wave8/neeman-approximability` | high | the part of Neeman's approximability needed for GL26 Lemma A.9's preferred-class clause over qcqs spaces, proved here |
 | `wave8/lp26-section5` (local, LP26 TeX) | high | LP26 Def 5.3, Lemmas 5.5–5.7, 5.9, Prop 5.8 over algebraic spaces |
 | `wave8/lp26-corollary-1-2` (local, after the others) | high | LP26 Corollary 1.2 over qcqs algebraic spaces with support |
+| `wave8/discharge-wave7-inputs` (local) | high | prove the 17 tagged AxiomMath inputs of wave 7 in `SpacesVerified`; unconditional forms of the wave 7 headlines |
+| `wave8/prune-pinned-vacuous` | medium | delete the two vacuous pinned endpoints (`IsGenerator` form) and what only they use |
 
 The LP26 TeX is the copy in the orchestrator's session uploads (current unless the maintainer
 says otherwise); tasks that need it run as local subagents.
@@ -259,3 +261,8 @@ says otherwise); tasks that need it run as local subagents.
 | 6 | `wave6/stacks-categorical` | `session_0111iGd5uAW7Bn1N8gQ4139v` | merge of `a83a4dd` | Stacks 09SR and 09SN **proved from AxiomMath** (`Spaces/Stacks/Tags.lean`, via bridges `IsCompactObject ↔ IsCompactAb`, weak generator ↔ `IsPaperGenerator`); **LP26 Thm 1.1 with the paper's hypotheses and no Stacks hypothesis** (`Spaces.Stacks.theorem_1_1`), GL26 Lemmas 2.4, 2.5 unconditional; 18 declarations, axioms standard; verified: `lake build Spaces` (no AxiomMath recompiled), 3 modules singly, default build, statement check. Deviation: repo `Tag09SRPaper` is stated for pretriangulated `C`, AxiomMath's 09SR needs `IsTriangulated` (all consumers triangulated). | launched 26 Nov 16:17 UTC, effort high: prove 09SR/09SN from AxiomMath (cheap categorical modules), unconditional LP26 Thm 1.1 and GL26 Lemma 2.4 |
 | 6 | orchestrator: 09SR | (orchestrator) | `f5eaa44` | `Tag09SRPaper C` now takes `[IsTriangulated C]`, as AxiomMath's 09SR does (it was formally stronger than the tag); `tStructureEquivalent_of_inPreferredClass` gains the same instance; `Spaces.Stacks.tag09SRPaper` re-pinned (binder name only). Verified: default build, `lake build Spaces`, both statement checks, axioms standard. | 26 Nov |
 | 6 | orchestrator: `SpacesVerified` | (orchestrator) | this commit | `SpacesVerified/Discharge.lean`: the four tagged inputs of `Spaces/AxiomMathInputs.lean` (06UQ, 08F4, 08F5, 08FA(1)) **proved** by the AxiomMath theorems they name; `D_qc(X)` triangulated and `Lf^*`, `⊗^L`, `Rf_*` on `D_qc` unconditional. Pinned in `StatementCheckVerified.lean` (`scripts/check_statements.sh --verified`, 5 declarations). Verified: `lake build SpacesVerified` (17 725 jobs, closure 8 524 AxiomMath modules all built), axioms standard, no `sorryAx`; default build, `lake build Spaces`, all three statement checks. | 26 Nov |
+| 7 | `wave7/spaces-statements` (local) | (local subagent) | `02cb617`, merged; inputs discharged `60fc989` | GL26 Theorems 1.2, 1.3, 1.6, 10.13, 12.3, 12.9, Corollaries 6.18, 12.4, Lemma 12.2 stated over algebraic spaces; Theorem 1.7 not stated (Gorenstein, genus) | 26 Nov |
+| 7 | `wave7/prune-named-inputs` | `session_0111iGd7AmsjhetGmmCxKaDV` | `5e8a373`, merged `fd253ec` | 86 declarations on the `IsGenerator` forms deleted; the two pinned vacuous endpoints remain (wave 8) | 27 Nov |
+| 7 | `wave7/spaces-affine-base` | `session_0111iGd775NkFveWdRq8i6DW` | `e510ffb`, merged `fd253ec` | LP26 Cor 1.2 affine base over AxiomMath's algebraic spaces (tagged inputs 06Z0, 07TY, 021R) | 27 Nov |
+| 7 | `wave7/spaces-compact-generation` | `session_0111iGd895xp83khYFFveVy2` | `be92093`, merged `fd253ec` | GL26 Lemma A.9 generation part over qcqs spaces (0AEC, 0AED, 0GFD, 08F3); preferred-class clause open (wave 8) | 27 Nov |
+| 7 | `wave7/spaces-base-change` | `session_0111iGd9Cxes2MsiML9Zjf5L` | `438117f`, merged `fd253ec` | GL26 Lemmas 7.12, 7.13, 7.17 over spaces with no input; 6.11, 10.1 over spaces (08IR, 08IN) | 27 Nov |
