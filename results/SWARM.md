@@ -233,6 +233,19 @@ bridge and the preferred class first, then §5, then Corollary 1.2.
 The LP26 TeX is the copy in the orchestrator's session uploads (current unless the maintainer
 says otherwise); tasks that need it run as local subagents.
 
+## Wave 9 (prepared; briefs in `results/swarm/wave9/`): finish LP26
+
+Launches when wave 8 is closed (its last worker, `axiommath-verified`, archived) and the
+repository cleaned up.
+
+| task | effort | goal |
+|---|---|---|
+| `wave9/lp26-standard-wa` (local, LP26 TeX) | high | the standard W.A. forms of LP26 Prop 5.8 and Cor 1.2 |
+| `wave9/supported-0gfi` (cloud) | high | supported Stacks 0GFI, so GL26 Lemma A.9's preferred class holds for every support |
+| `wave9/lp26-noetherian-coherence` (local, after the first) | high | Cor 1.2's coherence clause for Noetherian `X` (CHNS Ex. 10.1.2, proved here) |
+
+After wave 9, LP26 is complete up to the discharge of its AxiomMath inputs; GL26 follows.
+
 ## Log
 
 | wave | task | session | merged as | outcome |
