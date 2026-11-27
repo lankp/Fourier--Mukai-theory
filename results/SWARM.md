@@ -238,11 +238,15 @@ says otherwise); tasks that need it run as local subagents.
 Launches when wave 8 is closed (its last worker, `axiommath-verified`, archived) and the
 repository cleaned up.
 
-| task | effort | goal |
+| task | model, effort | goal |
 |---|---|---|
-| `wave9/lp26-standard-wa` (local, LP26 TeX) | high | the standard W.A. forms of LP26 Prop 5.8 and Cor 1.2 |
-| `wave9/supported-0gfi` (cloud) | high | supported Stacks 0GFI, so GL26 Lemma A.9's preferred class holds for every support |
-| `wave9/lp26-noetherian-coherence` (local, after the first) | high | Cor 1.2's coherence clause for Noetherian `X` (CHNS Ex. 10.1.2, proved here) |
+| `wave9/lp26-standard-wa` (local, LP26 TeX) | session model (Opus), high | the standard W.A. forms of LP26 Prop 5.8 and Cor 1.2 |
+| `wave9/supported-0gfi` (cloud) | Opus, high | supported Stacks 0GFI, so GL26 Lemma A.9's preferred class holds for every support |
+| `wave9/lp26-noetherian-coherence` (local, after the first) | session model (Opus), high | Cor 1.2's coherence clause for Noetherian `X` (CHNS Ex. 10.1.2, proved here) |
+
+Also on the list for `SpacesVerified`: `LocallySmall.{u}` of AxiomMath's `D(𝒪_X)` (an AxiomMath
+theorem, needed to apply `theorem_1_1_univ` to a given space), to be taken as a tagged input and
+discharged.  The first Sonnet trial (model rule) is the next mechanical task, not a proof task.
 
 After wave 9, LP26 is complete up to the discharge of its AxiomMath inputs; GL26 follows.
 

@@ -247,6 +247,15 @@ The maintainer has delegated merging to the orchestrator session: work reaches
   container: before a build that may compile AxiomMath modules, check
   `python3 -I scripts/axiommath/built.py`; a module killed for memory (exit 137) is rebuilt
   alone.
+* **Model and effort per task** (maintainer, 27 November 2026: effectiveness first, quality
+  over quantity).  Each task in a wave's plan names its model and effort.  Proofs, statements
+  of paper results, anything read against the manuscripts, and anything whose failure costs
+  hours: the strongest model (Opus), effort high.  Mechanical tasks that the objective checks
+  fully guard (prunes, discharging tagged inputs by the declarations they name, docs and
+  bookkeeping): Sonnet, effort medium, adopted only where a trial passes cleanly, and moved
+  back to Opus on any rework.  The orchestrator and its local subagents run on the session's
+  model.  Fewer tasks done well beat more tasks: a wave launches only what it can verify, and
+  a task that fails verification is redone, not merged partially without record.
 * **Archive before the next wave** (maintainer, 27 November 2026): the orchestrator archives
   every worker session of the completed wave (`archive_session`), and records it in
   `SWARM.md`, before it launches any session of the next wave.  A wave whose workers are not

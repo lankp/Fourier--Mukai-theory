@@ -32,7 +32,8 @@ to you.
 4. Prepare the next wave when the current one nears completion, and **launch it as soon as
    the current wave is closed** (maintainer, 26 November 2026): its tasks come from the top
    of `results/TODO.md` (`python3 scripts/todo.py` after updating `COVERAGE.md`), LP26
-   before GL26; continue until `TODO.md` is empty.  **Before launching, archive** every worker session of the
+   before GL26; continue until `TODO.md` is empty.  **Each task's model and effort are in the wave plan** (CLAUDE.md, "Model and effort per
+   task"; record measured outcome and cost in the SWARM log to adjust them).  **Before launching, archive** every worker session of the
    completed wave and record it in `SWARM.md` (maintainer, 27 November 2026), **and clean up**: every
    Markdown file updated to the merged tree, superseded files archived, generated files
    regenerated, `python3 scripts/check_docs.py` clean (CLAUDE.md, "Cleanliness first").  **If the 5-hour
