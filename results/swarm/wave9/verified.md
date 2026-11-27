@@ -31,3 +31,7 @@ Notes from the merges:
   context of AxiomMath's `DetectingBoundedBelow.lean`; use the same in the discharge.  If an input
   does not match AxiomMath's statement, report it: do not change the statement.
 * `wave9/lp26-standard-wa` (merged `cd7eb58`): no new input.
+* Launched before `wave9/lp26-noetherian-coherence` finished, so that the full build starts
+  early: start `lake build SpacesVerified` first, discharge what is merged, commit, and fetch
+  `origin/formalization` again for the coherence task's inputs when the orchestrator tells you
+  it is merged (or, if nothing comes, report what you did).
