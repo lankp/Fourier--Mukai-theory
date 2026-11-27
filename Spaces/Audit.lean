@@ -6,6 +6,7 @@ import Spaces.Statements
 import Spaces.Supported.CompactGeneration
 import Spaces.BaseChange.Cube
 import Spaces.LP26.NonVacuity
+import Spaces.LP26.StandardTStructure
 
 /-!
 # Axiom audit of the algebraic-space layer
@@ -199,3 +200,16 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.LP26.nonVacuity_lemma_5_6_instances
 #print axioms RelativeFM.Spaces.LP26.isOpenImmersion_id
 #print axioms RelativeFM.Spaces.LP26.nonVacuity_lemma_5_7
+#print axioms RelativeFM.Spaces.LP26.hasInducedTStructure_inverseImage
+#print axioms RelativeFM.Spaces.LP26.forall_homology_truncLE_truncGE
+#print axioms RelativeFM.Spaces.LP26.isQuasicoherentOnSite_of_isZero
+#print axioms RelativeFM.Spaces.LP26.supportOfSheaf_subset_of_isZero
+#print axioms RelativeFM.Spaces.LP26.supportOfSheaf_subset_of_iso
+#print axioms RelativeFM.Spaces.LP26.hasInducedTStructure_qcohDerived
+#print axioms RelativeFM.Spaces.LP26.standardTStructureQc
+#print axioms RelativeFM.Spaces.LP26.hasInducedTStructure_qcSupportedOn
+#print axioms RelativeFM.Spaces.LP26.standardTStructure
+#print axioms RelativeFM.Spaces.LP26.standardTStructure_isLE_iff
+#print axioms RelativeFM.Spaces.LP26.standardTStructure_isGE_iff
+#print axioms RelativeFM.Spaces.LP26.standardTStructure_le_iff
+#print axioms RelativeFM.Spaces.LP26.standardTStructure_ge_iff

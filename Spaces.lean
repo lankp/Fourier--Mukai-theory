@@ -11,6 +11,7 @@ import Spaces.LP26.HomVanishing
 import Spaces.LP26.Inputs
 import Spaces.LP26.NonVacuity
 import Spaces.LP26.OpenPushforward
+import Spaces.LP26.StandardTStructure
 import Spaces.NonVacuity
 import Spaces.RelativePerfect
 import Spaces.Stacks.Bridges
