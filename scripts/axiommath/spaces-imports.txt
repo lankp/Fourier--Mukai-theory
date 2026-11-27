@@ -39,3 +39,8 @@ StacksFrontier.AlgebraicGeometry.Spaces.RepresentedModuleComparison
 StacksFrontier.AlgebraicGeometry.Spaces.PointsRepresented
 StacksFrontier.Algebra.Category.ModuleCat.Sheaf.SiteEquivalenceTransport
 StacksFrontier.Algebra.Homology.DerivedCategory.MapDerivedCategoryHomology
+
+# LP26 §5 recollement (wave8/lp26-recollement): pullback along étale maps, elementary
+# distinguished squares.  Together 157 modules, free of MilnorPatching.Relative.
+StacksFrontier.AlgebraicGeometry.Spaces.SmallEtaleDerivedModulePullbackEtale
+StacksFrontier.AlgebraicGeometry.Spaces.Perfect.ElementaryDistinguishedSquare
