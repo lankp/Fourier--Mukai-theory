@@ -4,6 +4,7 @@ import Spaces.AxiomMathInputs
 import Spaces.NonVacuity
 import Spaces.Statements
 import Spaces.Supported.CompactGeneration
+import Spaces.Supported.Preferred
 import Spaces.BaseChange.Cube
 
 /-!
@@ -154,6 +155,42 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.Supported.nonVacuity_base
 #print axioms RelativeFM.Spaces.Supported.isAffine_terminal
 #print axioms RelativeFM.Spaces.Supported.lemma_A_9_affine_univ
+-- GL26 Lemma A.9, preferred-class clause (wave 8, `Spaces/Supported/NeemanAbstract.lean`,
+-- `StandardTStructure.lean`, `Preferred.lean`)
+#print axioms RelativeFM.Spaces.Supported.Tag0GFIInput
+#print axioms RelativeFM.Spaces.Supported.PerfectBoundedAboveInput
+#print axioms RelativeFM.Spaces.Supported.genCoaisle
+#print axioms RelativeFM.Spaces.Supported.DetectsBelowUniformly
+#print axioms RelativeFM.Spaces.Supported.eq_zero_of_shift
+#print axioms RelativeFM.Spaces.Supported.isGE_of_retract
+#print axioms RelativeFM.Spaces.Supported.tStructureEquivalent_of_detectsBelowUniformly
+#print axioms RelativeFM.Spaces.Supported.bndFrom
+#print axioms RelativeFM.Spaces.Supported.triangEnvelope_le_bndFrom
+#print axioms RelativeFM.Spaces.Supported.detectsBelowUniformly_of_mem_triangEnvelope
+#print axioms RelativeFM.Spaces.Supported.detectsBelowUniformly_of_detectsBelow
+#print axioms RelativeFM.Spaces.Supported.compactTStructure_hypotheses
+#print axioms RelativeFM.Spaces.Supported.isIso_homologyMap_mor₁
+#print axioms RelativeFM.Spaces.Supported.isIso_homologyMap_mor₂
+#print axioms RelativeFM.Spaces.Supported.homologyProp_obj₁_of_triangle
+#print axioms RelativeFM.Spaces.Supported.homologyProp_obj₃_of_triangle
+#print axioms RelativeFM.Spaces.Supported.supportIn
+#print axioms RelativeFM.Spaces.Supported.supportIn_of_isZero
+#print axioms RelativeFM.Spaces.Supported.qcoh_of_isZero
+#print axioms RelativeFM.Spaces.Supported.hasInducedTStructure_qcohDerived
+#print axioms RelativeFM.Spaces.Supported.stdQc
+#print axioms RelativeFM.Spaces.Supported.hasInducedTStructure_qcSupportedOn
+#print axioms RelativeFM.Spaces.Supported.stdT
+#print axioms RelativeFM.Spaces.Supported.stdT_isLE_iff
+#print axioms RelativeFM.Spaces.Supported.stdT_isGE_iff
+#print axioms RelativeFM.Spaces.Supported.SupportedDetectsBelowStatement
+#print axioms RelativeFM.Spaces.Supported.detectsBelowUniformly_of_statement
+#print axioms RelativeFM.Spaces.Supported.tStructureEquivalent_of_statement
+#print axioms RelativeFM.Spaces.Supported.isEquivalence_ι_univ
+#print axioms RelativeFM.Spaces.Supported.supportedDetectsBelowStatement_univ
+#print axioms RelativeFM.Spaces.Supported.lemma_A_9_preferred_univ
+#print axioms RelativeFM.Spaces.Supported.lemma_A_9_detectsBelowUniformly_univ
+#print axioms RelativeFM.Spaces.Supported.nonVacuity_detectsBelowUniformly_affine
+#print axioms RelativeFM.Spaces.Supported.nonVacuity_instances
 -- Base change over algebraic spaces (wave 7, `Spaces/BaseChange/`)
 #print axioms RelativeFM.Spaces.BaseChange.PullPseudofunctor.toPullPushData
 #print axioms RelativeFM.Spaces.BaseChange.canonical_iso_comp_id

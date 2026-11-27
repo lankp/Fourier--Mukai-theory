@@ -15,3 +15,6 @@ import Spaces.Stacks.Tags
 import Spaces.Statements
 import Spaces.Supported.CompactGeneration
 import Spaces.Supported.Inputs
+import Spaces.Supported.NeemanAbstract
+import Spaces.Supported.Preferred
+import Spaces.Supported.StandardTStructure
