@@ -26,3 +26,9 @@ Commit verified progress as you go (each discharged file once it builds and its 
 clean), so an interruption loses little.  Branch `wave8/axiommath-verified`.  Files:
 `SpacesVerified/*.lean`, `SpacesVerified.lean`, `StatementCheckVerified.lean`.  Seven
 verification steps with `lake build SpacesVerified`; report build times and peak memory.
+
+**Added after launch (orchestrator, 27 November 2026):** also discharge the tagged inputs of
+`Spaces/LP26/Inputs.lean` (merged at `1161984`, `b1acb04`) and the new entries of
+`Spaces/Supported/Inputs.lean` (`Tag0GFIInput`, `PerfectBoundedAboveInput`, merged at
+`46c3025`), with the unconditional forms of LP26 Lemmas 5.5–5.7, 5.9 and of
+`lemma_A_9_preferred_univ`.  Merge `origin/formalization` into your branch first.
