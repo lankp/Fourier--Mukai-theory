@@ -12,6 +12,7 @@ import Spaces.LP26.NonVacuity
 import Spaces.LP26.Proposition58
 import Spaces.LP26.Recollement
 import Spaces.LP26.StandardTStructure
+import Spaces.LP26.StandardWA
 import Spaces.Stacks.UniverseNonVacuity
 
 /-!
@@ -319,3 +320,18 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.LP26.corollary_1_2_dqc
 #print axioms RelativeFM.Spaces.LP26.corollary_1_2_nonVacuity
 #print axioms RelativeFM.Spaces.LP26.corollary_1_2_int_witness
+
+-- LP26 Proposition 5.8 and Corollary 1.2, standard W.A. (wave 9, `Spaces/LP26/StandardWA.lean`)
+#print axioms RelativeFM.Spaces.LP26.GluedPreferred.tStructureEquivalent_of_paperData
+#print axioms RelativeFM.Spaces.LP26.GluedPreferred.exists_paperData_of_gluedBounds
+#print axioms RelativeFM.Spaces.LP26.GluedPreferred.exists_paperData_of_gluedBounds_univ
+#print axioms RelativeFM.Spaces.LP26.GluedPreferred.exists_paperData_eq_of_forall_isZero
+#print axioms RelativeFM.Spaces.LP26.satisfiesStandardWA_of_isEmpty
+#print axioms RelativeFM.Spaces.LP26.proposition_5_8_standard
+#print axioms RelativeFM.Spaces.LP26.proposition_5_8_standard_nonVacuity
+#print axioms RelativeFM.Spaces.LP26.exists_affineData_standard
+#print axioms RelativeFM.Spaces.LP26.isLE_derivedAssociated_iff
+#print axioms RelativeFM.Spaces.LP26.satisfiesStandardWA_space
+#print axioms RelativeFM.Spaces.LP26.satisfiesStandardWA_of_iso
+#print axioms RelativeFM.Spaces.LP26.corollary_1_2_standard
+#print axioms RelativeFM.Spaces.LP26.corollary_1_2_standard_nonVacuity
