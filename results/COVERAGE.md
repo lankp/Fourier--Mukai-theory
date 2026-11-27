@@ -117,8 +117,8 @@ absent.
 | Lem 5.3 | `lem:quasi-perfect_bounded` | H | `Scheme/StacksInput.lean` |
 | Lem 5.4 | `lem:neeman2023cor5_10` | C | `Scheme/Lemma54.lean`: the cover argument in six-functor form; residue is the cover square (flat base change, conservativity, perfect/compact calculus) |
 | Prop 5.6 | `prop:preservation_of_perfect` | — | a lemma in the arXiv version |
-| Lem 5.7 | `lem:f_perf_implies_perf_preserved` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/OpenPushforward.lean` `lemma_5_7` (wave 8), from 08FB, 08FA(2), 0AFJ, with weaker hypotheses than the paper's; coproducts stated in `D(𝒪_X)`. Earlier: |
-| Lem 5.9 | `lem:neeman23lem5_3` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/Lemma59.lean` `lemma_5_9`, Noetherian clauses `lemma_5_9_minus_eq`, `lemma_5_9_bounded_eq` (wave 8), from tagged inputs 08G8, 08FV(2), 08FU(2), 08HP, 073B, 08IK and others.  Gap: computed for the standard `t`-structure; the identification with the preferred-class `𝒯^-_c` waits for Def 5.3. Earlier: not yet: provable from about seven more AxiomMath inputs (wave 8 follow-up). Earlier: |
+| Lem 5.7 | `lem:f_perf_implies_perf_preserved` | — | |
+| Lem 5.9 | `lem:neeman23lem5_3` | — | |
 | Lem 5.10 | `lem:Ballard_relative_perf_implies_dual_is_such` | — | |
 | Lem 5.11 | `lem:f-quasi-perfect_via_small_coproducts` | — | |
 | Prop 5.12 | `prop:stacky_f_perf_gives_iso_between_uppershriek_and_pullback_up_to_tensor` | — | |
@@ -259,9 +259,9 @@ The geometric §5 is not; the tree records it in `results/archive/WEAK_APPROX.md
 | Def 5.3 | `def:wa_spaces` | D (over algebraic spaces) | `Spaces/LP26/Proposition58.lean` `SatisfiesWA`, `SatisfiesStandardWA` (wave 8), coproducts over `Type u`. Earlier: not yet: needs the coproduct universe of `wave8/universe-bridge`; the standard `t`-structure on `D_qc,S(X)` it uses is in `Spaces/LP26/StandardTStructure.lean` (wave 8). Earlier: |
 | Lem 5.5 | `lem:compact_ext_vanishing` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/HomVanishing.lean` `lemma_5_5`, `lemma_5_5_dqc` (wave 8), from tagged inputs 09M8, 09MB(1). Earlier: its categorical role is `WeakApprox/CompactVanishing.lean`; the `D_qc` statement is not proved |
 | Lem 5.6 | `lem:perf_vanishing` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/HomVanishing.lean` `lemma_5_6` (wave 8), from 0AED, 09M8; the paper's generator hypothesis is not needed. Earlier: `Scheme/Inputs.lean` |
-| Lem 5.7 | `lem:qcqs_open_pushforward` | — | |
+| Lem 5.7 | `lem:qcqs_open_pushforward` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/OpenPushforward.lean` `lemma_5_7` (wave 8), from 08FB, 08FA(2), 0AFJ, with weaker hypotheses than the paper's; coproducts stated in `D(𝒪_X)`. |
 | Prop 5.8 | `prop:A8` | C (W.A. part; standard W.A. part open) | **W.A. part over algebraic spaces**: `Spaces/LP26/Proposition58.lean` `proposition_5_8` (wave 8), with fewer hypotheses; non-vacuity only on the empty space so far.  **Open**: the standard W.A. part (glued `t`-structure in the preferred class; BNP Lemma 3.7 at universe `u`). Earlier: not yet: needs the universe bridge, the preferred class, and the open–closed recollement of `D_qc,S` over spaces (GL26 Lemma A.4) and GL26 Lemma A.6, which AxiomMath lacks. Earlier: the affine recollement (`AffineRecollement.lean`) is the input it uses |
-| Lem 5.9 | `lem:characterize_T-_c` | — | |
+| Lem 5.9 | `lem:characterize_T-_c` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/Lemma59.lean` `lemma_5_9`, Noetherian clauses `lemma_5_9_minus_eq`, `lemma_5_9_bounded_eq` (wave 8), from tagged inputs 08G8, 08FV(2), 08FU(2), 08HP, 073B, 08IK and others.  Gap: computed for the standard `t`-structure; the identification with the preferred-class `𝒯^-_c` waits for Def 5.3. |
 
 ## Numbering that disagreed with the current GL26 manuscript
 

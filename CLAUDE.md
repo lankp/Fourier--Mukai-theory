@@ -201,7 +201,8 @@ The maintainer has delegated merging to the orchestrator session: work reaches
   conditional, or proved only in a restricted form (abstract, `Cat`, affine, interface)
   is a to-do in `results/TODO.md`, generated from `COVERAGE.md` by
   `python3 scripts/todo.py`.  Record a finding in `COVERAGE.md` (never edit `TODO.md` by
-  hand) and regenerate.  To-dos are filled in order: LP26 first, then GL26.
+  hand) and regenerate; edit a COVERAGE row by its TeX label (`scripts/coverage_row.py`),
+  never by its number, which GL26 and LP26 share.  To-dos are filled in order: LP26 first, then GL26.
 * **Cleanliness first** (maintainer, 26 November 2026: cleanliness is a priority).  Before
   a new wave is launched, the repository is cleaned up and **every Markdown file is
   brought up to date** with the merged tree: README, `CLAUDE.md`, `results/*.md` (COVERAGE,

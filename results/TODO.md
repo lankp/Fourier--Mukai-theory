@@ -14,9 +14,9 @@ list (LP26 first, then GL26).  Status codes as in `COVERAGE.md`.
 | Cor 1.2 | `cor:weak_approx_spaces` | C (W.A. and D_qc parts; AxiomMath inputs to discharge; standard W.A. and coherence open) | **over qcqs algebraic spaces**: `Spaces/LP26/Corollary12.lean` `corollary_1_2` (`D_qc,S(X)` weakly approximable for every closed `S` with quasi-compact compleme |
 | Lem 5.5 | `lem:compact_ext_vanishing` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/HomVanishing.lean` `lemma_5_5`, `lemma_5_5_dqc` (wave 8), from tagged inputs 09M8, 09MB(1). Earlier: its categorical rol |
 | Lem 5.6 | `lem:perf_vanishing` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/HomVanishing.lean` `lemma_5_6` (wave 8), from 0AED, 09M8; the paper's generator hypothesis is not needed. Earlier: `Sche |
+| Lem 5.7 | `lem:qcqs_open_pushforward` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/OpenPushforward.lean` `lemma_5_7` (wave 8), from 08FB, 08FA(2), 0AFJ, with weaker hypotheses than the paper's; coproduct |
 | Prop 5.8 | `prop:A8` | C (W.A. part; standard W.A. part open) | **W.A. part over algebraic spaces**: `Spaces/LP26/Proposition58.lean` `proposition_5_8` (wave 8), with fewer hypotheses; non-vacuity only on the empty space so  |
-| Lem 5.7 | `lem:qcqs_open_pushforward` | — |  |
-| Lem 5.9 | `lem:characterize_T-_c` | — |  |
+| Lem 5.9 | `lem:characterize_T-_c` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/Lemma59.lean` `lemma_5_9`, Noetherian clauses `lemma_5_9_minus_eq`, `lemma_5_9_bounded_eq` (wave 8), from tagged inputs  |
 
 ## GL26: not proved (104)
 
@@ -25,8 +25,6 @@ list (LP26 first, then GL26).  Status codes as in `COVERAGE.md`.
 | Lem 2.25 | `lem:funct_on_kernel` | C | `Scheme/DiagonalIdentity.lean`, `lemma_2_25Statement_proved` |
 | Lem 2.26 | `lem:convolution` | C | `Scheme/AffineConvolution.lean`, `lemma_2_26Statement_of_correction` |
 | Lem 5.4 | `lem:neeman2023cor5_10` | C | `Scheme/Lemma54.lean`: the cover argument in six-functor form; residue is the cover square (flat base change, conservativity, perfect/compact calculus) |
-| Lem 5.7 | `lem:f_perf_implies_perf_preserved` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/OpenPushforward.lean` `lemma_5_7` (wave 8), from 08FB, 08FA(2), 0AFJ, with weaker hypotheses than the paper's; coproduct |
-| Lem 5.9 | `lem:neeman23lem5_3` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/Lemma59.lean` `lemma_5_9`, Noetherian clauses `lemma_5_9_minus_eq`, `lemma_5_9_bounded_eq` (wave 8), from tagged inputs  |
 | Lem 6.11 | `lem:fm_cube_flat_base_change_natural_isomorphism` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/BaseChange/Cube.lean` (wave 7), from tagged AxiomMath inputs (08IR) in `Spaces/BaseChange/Inputs.lean`. Earlier: `FMCube.lemm |
 | Lem 10.1 | `lem:fm_cube_pullback_natural_isomorphism` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/BaseChange/Cube.lean` (wave 7), from tagged AxiomMath inputs (08IR, 08IN). Earlier: `FMCube.lemma_10_1`, from flat base chang |
 | Lem A.4 | `lem:spacey_recollement` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/Recollement.lean` `lemma_A_4` (wave 8): the open–closed recollement of `D_qc,W(X)`, constructed here (AxiomMath has none |
@@ -87,6 +85,8 @@ list (LP26 first, then GL26).  Status codes as in `COVERAGE.md`.
 | Cor 4.7 | `cor:smooth_locally_f_perfect_implies_f_perfect` | — |  |
 | Thm 4.8 | `thm:relative_perf_iff_smooth_locally` | — |  |
 | Prop 5.6 | `prop:preservation_of_perfect` | — | a lemma in the arXiv version |
+| Lem 5.7 | `lem:f_perf_implies_perf_preserved` | — |  |
+| Lem 5.9 | `lem:neeman23lem5_3` | — |  |
 | Lem 5.10 | `lem:Ballard_relative_perf_implies_dual_is_such` | — |  |
 | Lem 5.11 | `lem:f-quasi-perfect_via_small_coproducts` | — |  |
 | Prop 5.12 | `prop:stacky_f_perf_gives_iso_between_uppershriek_and_pullback_up_to_tensor` | — |  |
