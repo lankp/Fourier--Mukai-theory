@@ -5,6 +5,7 @@ import Spaces.NonVacuity
 import Spaces.Statements
 import Spaces.Supported.CompactGeneration
 import Spaces.BaseChange.Cube
+import Spaces.LP26.NonVacuity
 
 /-!
 # Axiom audit of the algebraic-space layer
@@ -178,3 +179,23 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.BaseChange.lemma_10_2
 #print axioms RelativeFM.Spaces.BaseChange.lemma_6_11_id
 #print axioms RelativeFM.Spaces.BaseChange.lemma_10_1_id
+-- LP26 §5 over algebraic spaces (wave 8, `Spaces/LP26/`)
+#print axioms RelativeFM.Spaces.LP26.qcohDerived_shift
+#print axioms RelativeFM.Spaces.LP26.lemma_5_5
+#print axioms RelativeFM.Spaces.LP26.eq_zero_of_ambient
+#print axioms RelativeFM.Spaces.LP26.lemma_5_5_dqc
+#print axioms RelativeFM.Spaces.LP26.lemma_5_6_of_isCompactObject
+#print axioms RelativeFM.Spaces.LP26.lemma_5_6
+#print axioms RelativeFM.Spaces.LP26.lemma_5_6_dqcZ
+#print axioms RelativeFM.Spaces.LP26.isQuasiCompact_of_isIso'
+#print axioms RelativeFM.Spaces.LP26.isQuasiSeparated_of_mono'
+#print axioms RelativeFM.Spaces.LP26.isQuasiSeparated_of_isOpenImmersion
+#print axioms RelativeFM.Spaces.LP26.isClosed_compl_image_and_preimage
+#print axioms RelativeFM.Spaces.LP26.push_dqcSupported
+#print axioms RelativeFM.Spaces.LP26.lemma_5_7
+#print axioms RelativeFM.Spaces.LP26.lemma_5_7_supported
+#print axioms RelativeFM.Spaces.LP26.nonVacuity_lemma_5_5
+#print axioms RelativeFM.Spaces.LP26.nonVacuity_lemma_5_6
+#print axioms RelativeFM.Spaces.LP26.nonVacuity_lemma_5_6_instances
+#print axioms RelativeFM.Spaces.LP26.isOpenImmersion_id
+#print axioms RelativeFM.Spaces.LP26.nonVacuity_lemma_5_7
