@@ -56,6 +56,641 @@ RelativeFM.SpacesVerified.setup_hypotheses_satisfiable_unconditional : ∀ (B : 
                         RelativeFM.Spaces.Statements.IsRelPerfOverSnd
                           (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.baseSpace B S hS))
                           (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.baseSpace B S hS)) K
+RelativeFM.SpacesVerified.tag06Z0Exact : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Affine.Tag06Z0ExactInput B S hS
+RelativeFM.SpacesVerified.tag06Z0Qcoh : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Affine.Tag06Z0QcohInput B S hS
+RelativeFM.SpacesVerified.tag06Z0 : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Affine.Tag06Z0Input B S hS
+RelativeFM.SpacesVerified.tag07TY : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Affine.Tag07TYInput B S hS
+RelativeFM.SpacesVerified.tag021R : RelativeFM.Spaces.Affine.Tag021RInput
+@RelativeFM.SpacesVerified.lp26_cor_1_2_affine_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (U : AlgebraicGeometry.BigFppfOver B S hS)
+  [inst : AlgebraicGeometry.IsAffine ((AlgebraicGeometry.BigFppfOver.toScheme B S hS).obj U)]
+  (I : Ideal ↑(((AlgebraicGeometry.BigFppfOver.toScheme B S hS).obj U).presheaf.obj (Opposite.op ⊤))),
+  I.FG →
+    ∃ (h :
+      (RelativeFM.Spaces.DqcSupported (RelativeFM.Spaces.Affine.space U)
+          (RelativeFM.Spaces.Affine.zeroLocusPoints U I)).IsTriangulated),
+      RelativeWeakApprox.PaperM2.SatisfiesPaperWA
+        (RelativeFM.Spaces.DqcSupported (RelativeFM.Spaces.Affine.space U)
+            (RelativeFM.Spaces.Affine.zeroLocusPoints U I)).FullSubcategory
+RelativeFM.SpacesVerified.lp26_cor_1_2_affine_int_unconditional : ∀ (p : ℕ),
+  ∃ B,
+    ∃ (hS : B.Contains (AlgebraicGeometry.Spec ↧ℤ)) (h :
+      (RelativeFM.Spaces.DqcSupported (RelativeFM.Spaces.Affine.space (RelativeFM.Spaces.Affine.intObject B hS))
+          (RelativeFM.Spaces.Affine.zeroLocusPoints (RelativeFM.Spaces.Affine.intObject B hS)
+            (Ideal.span {↑p}))).IsTriangulated),
+      RelativeWeakApprox.PaperM2.SatisfiesPaperWA
+        (RelativeFM.Spaces.DqcSupported (RelativeFM.Spaces.Affine.space (RelativeFM.Spaces.Affine.intObject B hS))
+            (RelativeFM.Spaces.Affine.zeroLocusPoints (RelativeFM.Spaces.Affine.intObject B hS)
+              (Ideal.span {↑p}))).FullSubcategory
+RelativeFM.SpacesVerified.tag08F3 : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Supported.Tag08F3Input B S hS
+RelativeFM.SpacesVerified.supportTriangulated : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Supported.SupportTriangulatedInput B S hS
+RelativeFM.SpacesVerified.supportedDirectSums : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Supported.SupportedDirectSumsInput B S hS
+RelativeFM.SpacesVerified.tag0AEC : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Supported.Tag0AECInput B S hS
+RelativeFM.SpacesVerified.tag0AED : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Supported.Tag0AEDInput B S hS
+RelativeFM.SpacesVerified.tag0GFD : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Supported.Tag0GFDInput B S hS
+RelativeFM.SpacesVerified.affineQuasiSeparatedYoneda : ∀ (B : AlgebraicGeometry.BigFppfSite)
+  (S : AlgebraicGeometry.Scheme) (hS : B.Contains S), RelativeFM.Spaces.Supported.AffineQuasiSeparatedInput B S hS
+RelativeFM.SpacesVerified.containsTerminal : RelativeFM.Spaces.Supported.ContainsTerminalInput
+@RelativeFM.SpacesVerified.lemma_A_9_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (X : AlgebraicGeometry.AlgebraicSpaces B S hS),
+  AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS X.obj →
+    ∀ (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme)),
+      AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ X.obj →
+        ∀ (T : Set (AlgebraicGeometry.Space.points B S hS X.obj)),
+          IsClosed T →
+            IsCompact Tᶜ →
+              CategoryTheory.Limits.HasCoproducts (RelativeFM.Spaces.Supported.DqcZ X T) ∧
+                (∃ P,
+                    (AlgebraicGeometry.Space.smallEtaleRingedSite B S hS X.obj ⋯).IsPerfect
+                        ((RelativeFM.Spaces.Supported.ιZ X T).obj P) ∧
+                      CategoryTheory.IsCompactObject P ∧
+                        RelativeWeakApprox.IsPaperGenerator P ∧
+                          (CategoryTheory.ObjectProperty.singleton P).triangEnvelope = CategoryTheory.IsCompactObject) ∧
+                  ∀ (E : RelativeFM.Spaces.Supported.DqcZ X T),
+                    CategoryTheory.IsCompactObject E ↔
+                      (AlgebraicGeometry.Space.smallEtaleRingedSite B S hS X.obj ⋯).IsPerfect
+                        ((RelativeFM.Spaces.Supported.ιZ X T).obj E)
+@RelativeFM.SpacesVerified.lemma_A_9_affine_univ_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (T₀ : AlgebraicGeometry.BigFppfOver B S hS),
+  AlgebraicGeometry.IsAffine ((AlgebraicGeometry.BigFppfOver.toScheme B S hS).obj T₀) →
+    CategoryTheory.Limits.HasCoproducts
+        (RelativeFM.Spaces.Supported.DqcZ (RelativeFM.Spaces.Supported.representedSpace T₀) Set.univ) ∧
+      ∃ P,
+        (AlgebraicGeometry.Space.smallEtaleRingedSite B S hS (RelativeFM.Spaces.Supported.representedSpace T₀).obj
+                ⋯).IsPerfect
+            ((RelativeFM.Spaces.Supported.ιZ (RelativeFM.Spaces.Supported.representedSpace T₀) Set.univ).obj P) ∧
+          CategoryTheory.IsCompactObject P
+RelativeFM.SpacesVerified.compIsoAgree : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.BaseChange.CompIsoAgreeInput B S hS
+RelativeFM.SpacesVerified.flatBaseChange : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.BaseChange.FlatBaseChangeInput B S hS
+RelativeFM.SpacesVerified.tag08IN : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.BaseChange.Tag08INInput B S hS
+@RelativeFM.SpacesVerified.lemma_6_11_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (C : RelativeFM.FMCube (AlgebraicGeometry.AlgebraicSpaces B S hS)),
+  AlgebraicGeometry.Space.IsFlat B S hS C.f'₁.hom →
+    AlgebraicGeometry.Space.IsQuasiCompact B S hS C.f'₁.hom →
+      AlgebraicGeometry.Space.IsQuasiSeparated B S hS C.f'₁.hom →
+        ∀ {K : RelativeFM.Spaces.D B S hS C.Y₁₂},
+          RelativeFM.Spaces.Dqc C.Y₁₂ K →
+            ∀ (E : RelativeFM.Spaces.D B S hS C.Y₁),
+              RelativeFM.Spaces.Dqc C.Y₁ E →
+                CategoryTheory.IsIso
+                  ((RelativeFM.FMCube.alpha (RelativeFM.Spaces.BaseChange.tensorPullPushData B S hS) C K).app E)
+@RelativeFM.SpacesVerified.lemma_10_1_of_flatBaseChange : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (C : RelativeFM.FMCube (AlgebraicGeometry.AlgebraicSpaces B S hS)),
+  (∀ (E : RelativeFM.Spaces.D B S hS C.Y₁T),
+      RelativeFM.Spaces.Dqc C.Y₁T E →
+        CategoryTheory.IsIso (((RelativeFM.Spaces.BaseChange.tensorPullPushData B S hS).theta ⋯).app E)) →
+    AlgebraicGeometry.Space.IsQuasiCompact B S hS C.t'.hom →
+      AlgebraicGeometry.Space.IsQuasiSeparated B S hS C.t'.hom →
+        ∀ {K : RelativeFM.Spaces.D B S hS C.Y₁₂},
+          RelativeFM.Spaces.Dqc C.Y₁₂ K →
+            ∀ (E : RelativeFM.Spaces.D B S hS C.Y₁T),
+              RelativeFM.Spaces.Dqc C.Y₁T E →
+                CategoryTheory.IsIso
+                  ((RelativeFM.FMCube.beta (RelativeFM.Spaces.BaseChange.tensorPullPushData B S hS) C K).app E)
+@RelativeFM.SpacesVerified.lemma_6_11_id_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (X : AlgebraicGeometry.AlgebraicSpaces B S hS)
+  (E : RelativeFM.Spaces.D B S hS X),
+  RelativeFM.Spaces.Dqc X E →
+    CategoryTheory.IsIso
+      ((RelativeFM.FMCube.alpha (RelativeFM.Spaces.BaseChange.tensorPullPushData B S hS)
+            (RelativeFM.FMCube.constFMCube (AlgebraicGeometry.AlgebraicSpaces B S hS) X)
+            (RelativeFM.Spaces.BaseChange.zeroObj X)).app
+        E)
+@RelativeFM.SpacesVerified.lemma_10_1_id_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (X : AlgebraicGeometry.AlgebraicSpaces B S hS)
+  (E : RelativeFM.Spaces.D B S hS X),
+  RelativeFM.Spaces.Dqc X E →
+    CategoryTheory.IsIso
+      ((RelativeFM.FMCube.beta (RelativeFM.Spaces.BaseChange.tensorPullPushData B S hS)
+            (RelativeFM.FMCube.constFMCube (AlgebraicGeometry.AlgebraicSpaces B S hS) X)
+            (RelativeFM.Spaces.BaseChange.zeroObj X)).app
+        E)
+RelativeFM.SpacesVerified.tag0GFI : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.Supported.Tag0GFIInput B S hS
+RelativeFM.SpacesVerified.perfectBoundedAboveSupported : ∀ (B : AlgebraicGeometry.BigFppfSite)
+  (S : AlgebraicGeometry.Scheme) (hS : B.Contains S), RelativeFM.Spaces.Supported.PerfectBoundedAboveInput B S hS
+RelativeFM.SpacesVerified.tag09M8 : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.Tag09M8Input B S hS
+RelativeFM.SpacesVerified.perfectBoundedAbove : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.PerfectBoundedAboveInput B S hS
+RelativeFM.SpacesVerified.tag09MB : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.Tag09MBInput B S hS
+RelativeFM.SpacesVerified.tag08FB : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.Tag08FBInput B S hS
+RelativeFM.SpacesVerified.tag08FABound : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.Tag08FABoundInput B S hS
+RelativeFM.SpacesVerified.tag0AFJ : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.Tag0AFJInput B S hS
+RelativeFM.SpacesVerified.perfectPseudoCoherent : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.PerfectPseudoCoherentInput B S hS
+RelativeFM.SpacesVerified.tag08FVTwo : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.Tag08FVTwoInput B S hS
+RelativeFM.SpacesVerified.pseudoCoherentFromOfIsLE : ∀ (B : AlgebraicGeometry.BigFppfSite)
+  (S : AlgebraicGeometry.Scheme) (hS : B.Contains S), RelativeFM.Spaces.LP26.PseudoCoherentFromOfIsLEInput B S hS
+RelativeFM.SpacesVerified.tag08FU2 : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.Tag08FU2Input B S hS
+RelativeFM.SpacesVerified.perfectQcoh : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.PerfectQcohInput B S hS
+RelativeFM.SpacesVerified.tag08HP : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.Tag08HPInput B S hS
+RelativeFM.SpacesVerified.tag073B : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.Tag073BInput B S hS
+RelativeFM.SpacesVerified.openSubspaceQuasiCompact : ∀ (B : AlgebraicGeometry.BigFppfSite)
+  (S : AlgebraicGeometry.Scheme) (hS : B.Contains S), RelativeFM.Spaces.LP26.OpenSubspaceQuasiCompactInput B S hS
+RelativeFM.SpacesVerified.tag08IK : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.Tag08IKInput B S hS
+RelativeFM.SpacesVerified.tag079Q : RelativeFM.Spaces.LP26.Tag079QInput
+@RelativeFM.SpacesVerified.tag0A8G : RelativeFM.Spaces.LP26.Tag0A8GInput
+@RelativeFM.SpacesVerified.rightAdjointCoproducts : RelativeFM.Spaces.LP26.RightAdjointCoproductsInput
+RelativeFM.SpacesVerified.pullbackSupport : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.PullbackSupportInput B S hS
+RelativeFM.SpacesVerified.pullbackDisjoint : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.PullbackDisjointInput B S hS
+RelativeFM.SpacesVerified.etaleRestrictionSupport : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.EtaleRestrictionSupportInput B S hS
+RelativeFM.SpacesVerified.openImmersionCounit : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.OpenImmersionCounitInput B S hS
+RelativeFM.SpacesVerified.quasiCompactSource : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.QuasiCompactSourceInput B S hS
+RelativeFM.SpacesVerified.tag073BTwo : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.Tag073BTwoInput B S hS
+RelativeFM.SpacesVerified.compactComplPreimage : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.CompactComplPreimageInput B S hS
+RelativeFM.SpacesVerified.perfectPullback : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.PerfectPullbackInput B S hS
+RelativeFM.SpacesVerified.tag08GGUnit : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.Tag08GGUnitInput B S hS
+RelativeFM.SpacesVerified.tag08GGCounit : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.Tag08GGCounitInput B S hS
+RelativeFM.SpacesVerified.edsTop : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.EDSTopInput B S hS
+RelativeFM.SpacesVerified.supportEmpty : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.SupportEmptyInput B S hS
+RelativeFM.SpacesVerified.tag09IT : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.Tag09ITInput B S hS
+RelativeFM.SpacesVerified.edsOfComplSubset : ∀ (B : AlgebraicGeometry.BigFppfSite) (S : AlgebraicGeometry.Scheme)
+  (hS : B.Contains S), RelativeFM.Spaces.LP26.EDSOfComplSubsetInput B S hS
+@RelativeFM.SpacesVerified.lemma_5_5_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme))
+  (X : AlgebraicGeometry.AlgebraicSpaces B S hS),
+  AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS X.obj →
+    AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ X.obj →
+      ∀ (G : AlgebraicGeometry.Space.QuasicoherentDerivedCategory B S hS X.obj ⋯),
+        CategoryTheory.IsCompactObject G →
+          ∃ N,
+            ∀ (n : ℤ),
+              N < n →
+                ∀
+                  (f :
+                    G.obj ⟶
+                      (CategoryTheory.shiftFunctor
+                            (DerivedCategory
+                              (SheafOfModules
+                                (Stacks.SheafOfModules.Tensor.ringSheaf
+                                  (AlgebraicGeometry.Space.smallEtaleRingedSite B S hS X.obj ⋯).O)))
+                            n).obj
+                        G.obj),
+                  f = 0
+@RelativeFM.SpacesVerified.lemma_5_5_dqc_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme))
+  (X : AlgebraicGeometry.AlgebraicSpaces B S hS),
+  AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS X.obj →
+    AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ X.obj →
+      ∀ (G : AlgebraicGeometry.Space.QuasicoherentDerivedCategory B S hS X.obj ⋯),
+        CategoryTheory.IsCompactObject G →
+          ∃ N,
+            ∀ (n : ℤ),
+              N < n →
+                ∀
+                  (f :
+                    G ⟶
+                      (CategoryTheory.shiftFunctor (AlgebraicGeometry.Space.QuasicoherentDerivedCategory B S hS X.obj ⋯)
+                            n).obj
+                        G),
+                  f = 0
+@RelativeFM.SpacesVerified.lemma_5_6_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme))
+  (X : AlgebraicGeometry.AlgebraicSpaces B S hS),
+  AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS X.obj →
+    AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ X.obj →
+      ∀ (T : Set (AlgebraicGeometry.Space.points B S hS X.obj)),
+        IsClosed T →
+          IsCompact Tᶜ →
+            ∀ (G' : RelativeFM.Spaces.Supported.DqcZ X T),
+              CategoryTheory.IsCompactObject G' →
+                RelativeWeakApprox.IsPaperGenerator G' →
+                  ∃ N,
+                    ∀ (n : ℤ),
+                      N < n →
+                        ∀
+                          (f :
+                            G'.obj.obj ⟶
+                              (CategoryTheory.shiftFunctor
+                                    (DerivedCategory
+                                      (SheafOfModules
+                                        (Stacks.SheafOfModules.Tensor.ringSheaf
+                                          (AlgebraicGeometry.Space.smallEtaleRingedSite B S hS X.obj ⋯).O)))
+                                    n).obj
+                                G'.obj.obj),
+                          f = 0
+@RelativeFM.SpacesVerified.lemma_5_6_dqcZ_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme))
+  (X : AlgebraicGeometry.AlgebraicSpaces B S hS),
+  AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS X.obj →
+    AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ X.obj →
+      ∀ (T : Set (AlgebraicGeometry.Space.points B S hS X.obj)),
+        IsClosed T →
+          IsCompact Tᶜ →
+            ∀ (G' : RelativeFM.Spaces.Supported.DqcZ X T),
+              CategoryTheory.IsCompactObject G' →
+                RelativeWeakApprox.IsPaperGenerator G' →
+                  ∃ N,
+                    ∀ (n : ℤ),
+                      N < n →
+                        ∀ (f : G' ⟶ (CategoryTheory.shiftFunctor (RelativeFM.Spaces.Supported.DqcZ X T) n).obj G'),
+                          f = 0
+@RelativeFM.SpacesVerified.lemma_5_7_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} {U X : AlgebraicGeometry.AlgebraicSpaces B S hS} (j : U ⟶ X),
+  AlgebraicGeometry.Space.IsOpenImmersion B S hS j.hom →
+    AlgebraicGeometry.Space.IsQuasiCompact B S hS j.hom →
+      AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS X.obj →
+        (∀ (E : RelativeFM.Spaces.D B S hS U),
+            RelativeFM.Spaces.Dqc U E → RelativeFM.Spaces.Dqc X ((RelativeFM.Spaces.push j).obj E)) ∧
+          (∀ {I : Type u_1} (E : I → RelativeFM.Spaces.D B S hS U),
+              (∀ (i : I), RelativeFM.Spaces.Dqc U (E i)) →
+                CategoryTheory.Limits.PreservesColimit (CategoryTheory.Discrete.functor E) (RelativeFM.Spaces.push j)) ∧
+            (∃ r,
+                0 ≤ r ∧
+                  ∀ (E : RelativeFM.Spaces.D B S hS U),
+                    RelativeFM.Spaces.Dqc U E →
+                      DerivedCategory.IsLE E 0 → DerivedCategory.IsLE ((RelativeFM.Spaces.push j).obj E) r) ∧
+              ∀ (V : Set (AlgebraicGeometry.Space.points B S hS U.obj)),
+                IsOpen V →
+                  ∀ (E : RelativeFM.Spaces.D B S hS U),
+                    RelativeFM.Spaces.DqcSupported U Vᶜ E →
+                      RelativeFM.Spaces.DqcSupported X (AlgebraicGeometry.Space.pointsMap B S hS U.obj j.hom '' V)ᶜ
+                        ((RelativeFM.Spaces.push j).obj E)
+@RelativeFM.SpacesVerified.lemma_5_7_supported_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} {U X : AlgebraicGeometry.AlgebraicSpaces B S hS} (j : U ⟶ X),
+  AlgebraicGeometry.Space.IsOpenImmersion B S hS j.hom →
+    AlgebraicGeometry.Space.IsQuasiCompact B S hS j.hom →
+      AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS X.obj →
+        ∀ (V : Set (AlgebraicGeometry.Space.points B S hS U.obj)),
+          IsOpen V →
+            (∀ (E : RelativeFM.Spaces.D B S hS U),
+                RelativeFM.Spaces.DqcSupported U Vᶜ E →
+                  RelativeFM.Spaces.DqcSupported X (AlgebraicGeometry.Space.pointsMap B S hS U.obj j.hom '' V)ᶜ
+                    ((RelativeFM.Spaces.push j).obj E)) ∧
+              (∀ {I : Type u_1} (E : I → RelativeFM.Spaces.D B S hS U),
+                  (∀ (i : I), RelativeFM.Spaces.DqcSupported U Vᶜ (E i)) →
+                    CategoryTheory.Limits.PreservesColimit (CategoryTheory.Discrete.functor E)
+                      (RelativeFM.Spaces.push j)) ∧
+                ∃ r,
+                  0 ≤ r ∧
+                    ∀ (E : RelativeFM.Spaces.D B S hS U),
+                      RelativeFM.Spaces.DqcSupported U Vᶜ E →
+                        DerivedCategory.IsLE E 0 →
+                          RelativeFM.Spaces.DqcSupported X (AlgebraicGeometry.Space.pointsMap B S hS U.obj j.hom '' V)ᶜ
+                              ((RelativeFM.Spaces.push j).obj E) ∧
+                            DerivedCategory.IsLE ((RelativeFM.Spaces.push j).obj E) r
+@RelativeFM.SpacesVerified.lemma_5_9_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (X : AlgebraicGeometry.AlgebraicSpaces B S hS)
+  (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme)),
+  AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS X.obj →
+    AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ X.obj →
+      ∀ (T : Set (AlgebraicGeometry.Space.points B S hS X.obj)),
+        IsClosed T →
+          IsCompact Tᶜ →
+            ∀ (E : RelativeFM.Spaces.Supported.DqcZ X T),
+              RelativeFM.Spaces.LP26.standardMinusC X T E ↔
+                (AlgebraicGeometry.Space.smallEtaleRingedSite B S hS X.obj ⋯).IsPseudoCoherent E.obj.obj
+@RelativeFM.SpacesVerified.lemma_5_9_minus_noetherian_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (X : AlgebraicGeometry.AlgebraicSpaces B S hS)
+  (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme)),
+  AlgebraicGeometry.Space.IsNoetherian B S hS hZ X.obj →
+    ∀ (T : Set (AlgebraicGeometry.Space.points B S hS X.obj)),
+      IsClosed T →
+        IsCompact Tᶜ →
+          ∀ (E : RelativeFM.Spaces.Supported.DqcZ X T),
+            RelativeFM.Spaces.LP26.standardMinusC X T E ↔
+              DerivedCategoryB.IsBoundedAbove E.obj.obj ∧
+                ∀ (i : ℤ),
+                  SheafOfModules.IsCoherentOnSite
+                    ((DerivedCategory.homologyFunctor (AlgebraicGeometry.Space.Modules B S hS X.obj ⋯) i).obj E.obj.obj)
+@RelativeFM.SpacesVerified.lemma_5_9_bounded_noetherian_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (X : AlgebraicGeometry.AlgebraicSpaces B S hS)
+  (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme)),
+  AlgebraicGeometry.Space.IsNoetherian B S hS hZ X.obj →
+    ∀ (T : Set (AlgebraicGeometry.Space.points B S hS X.obj)),
+      IsClosed T →
+        IsCompact Tᶜ →
+          ∀ (E : RelativeFM.Spaces.Supported.DqcZ X T),
+            RelativeFM.Spaces.LP26.standardBoundedC X T E ↔
+              DerivedCategoryB.IsBounded E.obj.obj ∧
+                ∀ (i : ℤ),
+                  SheafOfModules.IsCoherentOnSite
+                    ((DerivedCategory.homologyFunctor (AlgebraicGeometry.Space.Modules B S hS X.obj ⋯) i).obj E.obj.obj)
+@RelativeFM.SpacesVerified.lemma_5_9_minus_eq_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (X : AlgebraicGeometry.AlgebraicSpaces B S hS)
+  (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme)),
+  AlgebraicGeometry.Space.IsNoetherian B S hS hZ X.obj →
+    ∀ (T : Set (AlgebraicGeometry.Space.points B S hS X.obj)),
+      IsClosed T →
+        IsCompact Tᶜ →
+          ∀ (E : DerivedCategory (AlgebraicGeometry.Space.Modules B S hS X.obj ⋯)),
+            (∃ E', (RelativeFM.Spaces.Supported.ιZ X T).obj E' = E ∧ RelativeFM.Spaces.LP26.standardMinusC X T E') ↔
+              DerivedCategoryB.derivedCategoryBMinus (RelativeFM.Spaces.coh X) E ∧
+                AlgebraicGeometry.Space.CohomologySupportedOn B S hS X.obj ⋯ T E
+@RelativeFM.SpacesVerified.lemma_5_9_bounded_eq_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (X : AlgebraicGeometry.AlgebraicSpaces B S hS)
+  (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme)),
+  AlgebraicGeometry.Space.IsNoetherian B S hS hZ X.obj →
+    ∀ (T : Set (AlgebraicGeometry.Space.points B S hS X.obj)),
+      IsClosed T →
+        IsCompact Tᶜ →
+          ∀ (E : DerivedCategory (AlgebraicGeometry.Space.Modules B S hS X.obj ⋯)),
+            (∃ E', (RelativeFM.Spaces.Supported.ιZ X T).obj E' = E ∧ RelativeFM.Spaces.LP26.standardBoundedC X T E') ↔
+              DerivedCategoryB.derivedCategoryBBounded (RelativeFM.Spaces.coh X) E ∧
+                AlgebraicGeometry.Space.CohomologySupportedOn B S hS X.obj ⋯ T E
+@RelativeFM.SpacesVerified.proposition_5_8_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} {X : AlgebraicGeometry.AlgebraicSpaces B S hS}
+  {V : CategoryTheory.Functor (AlgebraicGeometry.BigFppfOver B S hS)ᵒᵖ (Type u_1)}
+  {Uo : CategoryTheory.Subfunctor X.obj} {fV : V ⟶ X.obj}
+  (hsq : AlgebraicGeometry.Space.IsElementaryDistinguishedSquare B S hS ⋯ Uo fV)
+  (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme)),
+  AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS X.obj →
+    AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ X.obj →
+      AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS Uo.toFunctor →
+        AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS V →
+          AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ V →
+            RelativeFM.Spaces.LP26.SatisfiesWA (RelativeFM.Spaces.LP26.edsOpenSpace hsq) →
+              RelativeFM.Spaces.LP26.SatisfiesWA (RelativeFM.Spaces.LP26.edsEtaleSpace hsq) →
+                RelativeFM.Spaces.LP26.SatisfiesWA X
+@RelativeFM.SpacesVerified.corollary_1_2_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme))
+  (X : AlgebraicGeometry.AlgebraicSpaces B S hS),
+  AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS X.obj →
+    AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ X.obj → RelativeFM.Spaces.LP26.SatisfiesWA X
+@RelativeFM.SpacesVerified.corollary_1_2_dqc_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme))
+  (X : AlgebraicGeometry.AlgebraicSpaces B S hS),
+  AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS X.obj →
+    AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ X.obj →
+      RelativeWeakApprox.SumUniverse.SatisfiesPaperWA
+        (AlgebraicGeometry.Space.QuasicoherentDerivedCategory B S hS X.obj ⋯)
+@RelativeFM.SpacesVerified.lemma_A_4_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} {U X : AlgebraicGeometry.AlgebraicSpaces B S hS}
+  (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme)),
+  AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS X.obj →
+    AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ X.obj →
+      ∀ (j : U ⟶ X),
+        AlgebraicGeometry.Space.IsOpenImmersion B S hS j.hom →
+          AlgebraicGeometry.Space.IsQuasiCompact B S hS j.hom →
+            ∀ (W : Set (AlgebraicGeometry.Space.points B S hS X.obj)),
+              IsClosed W →
+                IsCompact Wᶜ →
+                  ∃ R,
+                    Nonempty
+                        (R.iLower.comp (RelativeFM.Spaces.Supported.ιZ X W) ≅
+                          (RelativeFM.Spaces.Supported.ιZ U
+                                (AlgebraicGeometry.Space.pointsMap B S hS U.obj j.hom ⁻¹' W)).comp
+                            (RelativeFM.Spaces.push j)) ∧
+                      Nonempty
+                          (R.iStar.comp
+                              (RelativeFM.Spaces.Supported.ιZ U
+                                (AlgebraicGeometry.Space.pointsMap B S hS U.obj j.hom ⁻¹' W)) ≅
+                            (RelativeFM.Spaces.Supported.ιZ X W).comp (RelativeFM.Spaces.pull j)) ∧
+                        Nonempty
+                          (R.jShriek.comp (RelativeFM.Spaces.Supported.ιZ X W) ≅
+                            RelativeFM.Spaces.Supported.ιZ X
+                              (W ∩ (Set.range (AlgebraicGeometry.Space.pointsMap B S hS U.obj j.hom))ᶜ))
+@RelativeFM.SpacesVerified.lemma_A_6_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} {X : AlgebraicGeometry.AlgebraicSpaces B S hS}
+  {V : CategoryTheory.Functor (AlgebraicGeometry.BigFppfOver B S hS)ᵒᵖ (Type u_1)}
+  {Uo : CategoryTheory.Subfunctor X.obj} {fV : V ⟶ X.obj}
+  (hsq : AlgebraicGeometry.Space.IsElementaryDistinguishedSquare B S hS ⋯ Uo fV)
+  (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme))
+  (hXqs : AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ X.obj)
+  (hVqc : AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS V)
+  (hVqs : AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ V)
+  (W : Set (AlgebraicGeometry.Space.points B S hS X.obj)) (hW : IsClosed W),
+  W ⊆ (Set.range (AlgebraicGeometry.Space.pointsMap B S hS Uo.toFunctor Uo.ι))ᶜ →
+    CategoryTheory.IsIso (RelativeFM.Spaces.LP26.edsAdj ⋯ ⋯ ⋯ ⋯ ⋯ ⋯ hsq hZ hXqs hVqc hVqs W hW).unit ∧
+      CategoryTheory.IsIso (RelativeFM.Spaces.LP26.edsAdj ⋯ ⋯ ⋯ ⋯ ⋯ ⋯ hsq hZ hXqs hVqc hVqs W hW).counit ∧
+        (RelativeFM.Spaces.LP26.pullZ ⋯ ⋯ (RelativeFM.Spaces.LP26.edsEtaleMap hsq) W).TExact
+            (RelativeFM.Spaces.LP26.standardTStructure X W)
+            (RelativeFM.Spaces.LP26.standardTStructure (RelativeFM.Spaces.LP26.edsEtaleSpace hsq)
+              (RelativeFM.Spaces.LP26.edsW hsq W)) ∧
+          (RelativeFM.Spaces.LP26.pushZ ⋯ ⋯ (RelativeFM.Spaces.LP26.edsEtaleMap hsq) W ⋯ ⋯ hW).TExact
+            (RelativeFM.Spaces.LP26.standardTStructure (RelativeFM.Spaces.LP26.edsEtaleSpace hsq)
+              (RelativeFM.Spaces.LP26.edsW hsq W))
+            (RelativeFM.Spaces.LP26.standardTStructure X W)
+@RelativeFM.SpacesVerified.lemma_A_6_bounded_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} {X : AlgebraicGeometry.AlgebraicSpaces B S hS}
+  {V : CategoryTheory.Functor (AlgebraicGeometry.BigFppfOver B S hS)ᵒᵖ (Type u_1)}
+  {Uo : CategoryTheory.Subfunctor X.obj} {fV : V ⟶ X.obj}
+  (hsq : AlgebraicGeometry.Space.IsElementaryDistinguishedSquare B S hS ⋯ Uo fV)
+  (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme))
+  (hXqs : AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ X.obj)
+  (hVqc : AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS V)
+  (hVqs : AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ V)
+  (W : Set (AlgebraicGeometry.Space.points B S hS X.obj)) (hW : IsClosed W),
+  W ⊆ (Set.range (AlgebraicGeometry.Space.pointsMap B S hS Uo.toFunctor Uo.ι))ᶜ →
+    (∀ (E : RelativeFM.Spaces.Supported.DqcZ X W),
+        (∃ a b,
+            (RelativeFM.Spaces.LP26.standardTStructure X W).IsGE E a ∧
+              (RelativeFM.Spaces.LP26.standardTStructure X W).IsLE E b) ↔
+          ∃ a b,
+            (RelativeFM.Spaces.LP26.standardTStructure (RelativeFM.Spaces.LP26.edsEtaleSpace hsq)
+                    (RelativeFM.Spaces.LP26.edsW hsq W)).IsGE
+                ((RelativeFM.Spaces.LP26.pullZ ⋯ ⋯ (RelativeFM.Spaces.LP26.edsEtaleMap hsq) W).obj E) a ∧
+              (RelativeFM.Spaces.LP26.standardTStructure (RelativeFM.Spaces.LP26.edsEtaleSpace hsq)
+                    (RelativeFM.Spaces.LP26.edsW hsq W)).IsLE
+                ((RelativeFM.Spaces.LP26.pullZ ⋯ ⋯ (RelativeFM.Spaces.LP26.edsEtaleMap hsq) W).obj E) b) ∧
+      ∀
+        (F :
+          RelativeFM.Spaces.Supported.DqcZ (RelativeFM.Spaces.LP26.edsEtaleSpace hsq)
+            (RelativeFM.Spaces.LP26.edsW hsq W)),
+        (∃ a b,
+            (RelativeFM.Spaces.LP26.standardTStructure (RelativeFM.Spaces.LP26.edsEtaleSpace hsq)
+                    (RelativeFM.Spaces.LP26.edsW hsq W)).IsGE
+                F a ∧
+              (RelativeFM.Spaces.LP26.standardTStructure (RelativeFM.Spaces.LP26.edsEtaleSpace hsq)
+                    (RelativeFM.Spaces.LP26.edsW hsq W)).IsLE
+                F b) →
+          ∃ a b,
+            (RelativeFM.Spaces.LP26.standardTStructure X W).IsGE
+                ((RelativeFM.Spaces.LP26.pushZ ⋯ ⋯ (RelativeFM.Spaces.LP26.edsEtaleMap hsq) W ⋯ ⋯ hW).obj F) a ∧
+              (RelativeFM.Spaces.LP26.standardTStructure X W).IsLE
+                ((RelativeFM.Spaces.LP26.pushZ ⋯ ⋯ (RelativeFM.Spaces.LP26.edsEtaleMap hsq) W ⋯ ⋯ hW).obj F) b
+@RelativeFM.SpacesVerified.lemma_A_9_preferred_univ_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (X : AlgebraicGeometry.AlgebraicSpaces B S hS),
+  AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS X.obj →
+    ∀ (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme)),
+      AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ X.obj →
+        ∀ (G : RelativeFM.Spaces.Supported.DqcZ X Set.univ),
+          CategoryTheory.IsCompactObject G →
+            RelativeWeakApprox.IsPaperGenerator G →
+              ∀ (tG : CategoryTheory.Triangulated.TStructure (RelativeFM.Spaces.Supported.DqcZ X Set.univ)),
+                (∀ (Y : RelativeFM.Spaces.Supported.DqcZ X Set.univ),
+                    tG.ge 1 Y ↔ RelativeFM.Spaces.Supported.genCoaisle G Y) →
+                  RelativeFM.NeemanPreferredM6.TStructureEquivalent (RelativeFM.Spaces.Supported.stdT X Set.univ) tG
+@RelativeFM.SpacesVerified.nonVacuity_lemma_5_5_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (T₀ : AlgebraicGeometry.BigFppfOver B S hS),
+  AlgebraicGeometry.IsAffine ((AlgebraicGeometry.BigFppfOver.toScheme B S hS).obj T₀) →
+    AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS (RelativeFM.Spaces.Supported.representedSpace T₀).obj ∧
+      AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS ⋯
+          (RelativeFM.Spaces.Supported.representedSpace T₀).obj ∧
+        ∃ G,
+          CategoryTheory.IsCompactObject G ∧
+            ∃ N,
+              ∀ (n : ℤ),
+                N < n →
+                  ∀
+                    (f :
+                      G.obj ⟶
+                        (CategoryTheory.shiftFunctor
+                              (DerivedCategory
+                                (SheafOfModules
+                                  (Stacks.SheafOfModules.Tensor.ringSheaf
+                                    (AlgebraicGeometry.Space.smallEtaleRingedSite B S hS
+                                        (RelativeFM.Spaces.Supported.representedSpace T₀).obj ⋯).O)))
+                              n).obj
+                          G.obj),
+                    f = 0
+@RelativeFM.SpacesVerified.nonVacuity_lemma_5_6_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme))
+  (X : AlgebraicGeometry.AlgebraicSpaces B S hS),
+  AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS X.obj →
+    AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ X.obj →
+      IsClosed Set.univ ∧
+        IsCompact Set.univᶜ ∧
+          ∃ G',
+            CategoryTheory.IsCompactObject G' ∧
+              RelativeWeakApprox.IsPaperGenerator G' ∧
+                ∃ N,
+                  ∀ (n : ℤ),
+                    N < n →
+                      ∀
+                        (f :
+                          G'.obj.obj ⟶
+                            (CategoryTheory.shiftFunctor
+                                  (DerivedCategory
+                                    (SheafOfModules
+                                      (Stacks.SheafOfModules.Tensor.ringSheaf
+                                        (AlgebraicGeometry.Space.smallEtaleRingedSite B S hS X.obj ⋯).O)))
+                                  n).obj
+                              G'.obj.obj),
+                        f = 0
+@RelativeFM.SpacesVerified.nonVacuity_lemma_5_7_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (T₀ : AlgebraicGeometry.BigFppfOver B S hS),
+  AlgebraicGeometry.IsAffine ((AlgebraicGeometry.BigFppfOver.toScheme B S hS).obj T₀) →
+    ∃ j,
+      AlgebraicGeometry.Space.IsOpenImmersion B S hS j.hom ∧
+        AlgebraicGeometry.Space.IsQuasiCompact B S hS j.hom ∧
+          AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS (RelativeFM.Spaces.Supported.representedSpace T₀).obj ∧
+            ∃ r,
+              0 ≤ r ∧
+                ∀ (E : RelativeFM.Spaces.D B S hS (RelativeFM.Spaces.Supported.representedSpace T₀)),
+                  RelativeFM.Spaces.Dqc (RelativeFM.Spaces.Supported.representedSpace T₀) E →
+                    DerivedCategory.IsLE E 0 → DerivedCategory.IsLE ((RelativeFM.Spaces.push j).obj E) r
+@RelativeFM.SpacesVerified.nonVacuity_lemma_5_9_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (X : AlgebraicGeometry.AlgebraicSpaces B S hS)
+  (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme)),
+  AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS X.obj →
+    AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ X.obj →
+      IsClosed Set.univ ∧
+        IsCompact Set.univᶜ ∧
+          ∃ E,
+            RelativeFM.Spaces.LP26.standardMinusC X Set.univ E ∧
+              (AlgebraicGeometry.Space.smallEtaleRingedSite B S hS X.obj ⋯).IsPseudoCoherent E.obj.obj
+@RelativeFM.SpacesVerified.nonVacuity_lemma_5_9_noetherian_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme))
+  [AlgebraicGeometry.IsAffine S] [AlgebraicGeometry.IsLocallyNoetherian S],
+  AlgebraicGeometry.Space.IsNoetherian B S hS hZ (RelativeFM.Spaces.baseSpace B S hS).obj ∧
+    ∃ E,
+      RelativeFM.Spaces.LP26.standardMinusC (RelativeFM.Spaces.baseSpace B S hS) Set.univ E ∧
+        DerivedCategoryB.IsBoundedAbove E.obj.obj ∧
+          ∀ (i : ℤ),
+            SheafOfModules.IsCoherentOnSite
+              ((DerivedCategory.homologyFunctor
+                    (AlgebraicGeometry.Space.Modules B S hS (RelativeFM.Spaces.baseSpace B S hS).obj ⋯) i).obj
+                E.obj.obj)
+@RelativeFM.SpacesVerified.proposition_5_8_nonVacuity_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme))
+  (X₀ : AlgebraicGeometry.AlgebraicSpaces B S hS),
+  AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ X₀.obj →
+    ∃ X,
+      ∃ (hsq : AlgebraicGeometry.Space.IsElementaryDistinguishedSquare B S hS ⋯ ⊤ ⊤.ι),
+        AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS X.obj ∧
+          AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ X.obj ∧
+            AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS ⊤.toFunctor ∧
+              AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS hZ ⊤.toFunctor ∧
+                RelativeFM.Spaces.LP26.SatisfiesWA (RelativeFM.Spaces.LP26.edsOpenSpace hsq) ∧
+                  RelativeFM.Spaces.LP26.SatisfiesWA (RelativeFM.Spaces.LP26.edsEtaleSpace hsq)
+@RelativeFM.SpacesVerified.corollary_1_2_nonVacuity_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (T₀ : AlgebraicGeometry.BigFppfOver B S hS),
+  AlgebraicGeometry.IsAffine ((AlgebraicGeometry.BigFppfOver.toScheme B S hS).obj T₀) →
+    Nonempty ↥((AlgebraicGeometry.BigFppfOver.toScheme B S hS).obj T₀) →
+      Nonempty (AlgebraicGeometry.Space.points B S hS (RelativeFM.Spaces.Affine.space T₀).obj) ∧
+        AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS (RelativeFM.Spaces.Affine.space T₀).obj ∧
+          AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS ⋯ (RelativeFM.Spaces.Affine.space T₀).obj ∧
+            RelativeFM.Spaces.LP26.SatisfiesWA (RelativeFM.Spaces.Affine.space T₀)
+RelativeFM.SpacesVerified.corollary_1_2_int_witness_unconditional : ∃ B,
+  ∃ (hS : B.Contains (AlgebraicGeometry.Spec ↧ℤ)),
+    AlgebraicGeometry.IsAffine
+        ((AlgebraicGeometry.BigFppfOver.toScheme B (AlgebraicGeometry.Spec ↧ℤ) hS).obj
+          (RelativeFM.Spaces.Affine.intObject B hS)) ∧
+      Nonempty
+        ↥((AlgebraicGeometry.BigFppfOver.toScheme B (AlgebraicGeometry.Spec ↧ℤ) hS).obj
+            (RelativeFM.Spaces.Affine.intObject B hS))
+@RelativeFM.SpacesVerified.lemma_A_4_nonVacuity_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (T₀ : AlgebraicGeometry.BigFppfOver B S hS),
+  AlgebraicGeometry.IsAffine ((AlgebraicGeometry.BigFppfOver.toScheme B S hS).obj T₀) →
+    (RelativeFM.Spaces.Supported.qcohDerived (RelativeFM.Spaces.Supported.representedSpace T₀)).IsTriangulated ∧
+      (∀ (T : Set (AlgebraicGeometry.Space.points B S hS (RelativeFM.Spaces.Supported.representedSpace T₀).obj)),
+          CategoryTheory.ObjectProperty.IsTriangulated
+            (AlgebraicGeometry.Space.CohomologySupportedOn B S hS (RelativeFM.Spaces.Supported.representedSpace T₀).obj
+              ⋯ T)) ∧
+        AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS (RelativeFM.Spaces.Supported.representedSpace T₀).obj ∧
+          AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS ⋯
+              (RelativeFM.Spaces.Supported.representedSpace T₀).obj ∧
+            AlgebraicGeometry.Space.IsOpenImmersion B S hS
+                (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.Supported.representedSpace T₀)).hom ∧
+              AlgebraicGeometry.Space.IsQuasiCompact B S hS
+                  (CategoryTheory.CategoryStruct.id (RelativeFM.Spaces.Supported.representedSpace T₀)).hom ∧
+                IsClosed Set.univ ∧ IsCompact Set.univᶜ
+@RelativeFM.SpacesVerified.lemma_A_6_nonVacuity_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (T₀ : AlgebraicGeometry.BigFppfOver B S hS),
+  AlgebraicGeometry.IsAffine ((AlgebraicGeometry.BigFppfOver.toScheme B S hS).obj T₀) →
+    ∃ (_ : AlgebraicGeometry.Space.IsElementaryDistinguishedSquare B S hS ⋯ ⊤ ⊤.ι),
+      AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS ⋯
+          (RelativeFM.Spaces.Supported.representedSpace T₀).obj ∧
+        AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS ⊤.toFunctor ∧
+          AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated B S hS ⋯ ⊤.toFunctor ∧
+            IsClosed ∅ ∧ ∅ ⊆ (Set.range (AlgebraicGeometry.Space.pointsMap B S hS ⊤.toFunctor ⊤.ι))ᶜ
+@RelativeFM.SpacesVerified.nonVacuity_detectsBelowUniformly_affine_unconditional : ∀ {B : AlgebraicGeometry.BigFppfSite}
+  {S : AlgebraicGeometry.Scheme} {hS : B.Contains S} (T₀ : AlgebraicGeometry.BigFppfOver B S hS),
+  AlgebraicGeometry.IsAffine ((AlgebraicGeometry.BigFppfOver.toScheme B S hS).obj T₀) →
+    ∀ (X : AlgebraicGeometry.AlgebraicSpaces B S hS),
+      X = RelativeFM.Spaces.Supported.representedSpace T₀ →
+        ∃ G,
+          CategoryTheory.IsCompactObject G ∧
+            RelativeWeakApprox.IsPaperGenerator G ∧
+              RelativeFM.Spaces.Supported.DetectsBelowUniformly (RelativeFM.Spaces.Supported.stdT X Set.univ) G
 'RelativeFM.SpacesVerified.tag06UQ' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RelativeFM.SpacesVerified.tag08F4' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RelativeFM.SpacesVerified.tag08F5' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -67,5 +702,126 @@ RelativeFM.SpacesVerified.setup_hypotheses_satisfiable_unconditional : ∀ (B : 
 'RelativeFM.SpacesVerified.isFlatId' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RelativeFM.SpacesVerified.affineQuasiSeparated' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RelativeFM.SpacesVerified.setup_hypotheses_satisfiable_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.SpacesVerified.tag06Z0Exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag06Z0Qcoh' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag06Z0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag07TY' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag021R' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lp26_cor_1_2_affine_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lp26_cor_1_2_affine_int_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.SpacesVerified.tag08F3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.supportTriangulated' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.supportedDirectSums' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag0AEC' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag0AED' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag0GFD' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.affineQuasiSeparatedYoneda' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.containsTerminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_A_9_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_A_9_affine_univ_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.SpacesVerified.compIsoAgree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.flatBaseChange' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag08IN' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_6_11_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_10_1_of_flatBaseChange' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_6_11_id_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_10_1_id_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag0GFI' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.perfectBoundedAboveSupported' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag09M8' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.perfectBoundedAbove' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag09MB' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag08FB' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag08FABound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag0AFJ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.perfectPseudoCoherent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag08FVTwo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.pseudoCoherentFromOfIsLE' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag08FU2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.perfectQcoh' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag08HP' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag073B' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.openSubspaceQuasiCompact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag08IK' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag079Q' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag0A8G' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.rightAdjointCoproducts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.pullbackSupport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.pullbackDisjoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.etaleRestrictionSupport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.openImmersionCounit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.quasiCompactSource' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag073BTwo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.compactComplPreimage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.perfectPullback' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag08GGUnit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag08GGCounit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.edsTop' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.supportEmpty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.tag09IT' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.edsOfComplSubset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_5_5_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_5_5_dqc_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_5_6_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_5_6_dqcZ_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_5_7_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_5_7_supported_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_5_9_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_5_9_minus_noetherian_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.SpacesVerified.lemma_5_9_bounded_noetherian_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.SpacesVerified.lemma_5_9_minus_eq_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_5_9_bounded_eq_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.SpacesVerified.proposition_5_8_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.corollary_1_2_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.corollary_1_2_dqc_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_A_4_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_A_6_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_A_6_bounded_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.SpacesVerified.lemma_A_9_preferred_univ_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.SpacesVerified.nonVacuity_lemma_5_5_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.SpacesVerified.nonVacuity_lemma_5_6_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.SpacesVerified.nonVacuity_lemma_5_7_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.SpacesVerified.nonVacuity_lemma_5_9_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.SpacesVerified.nonVacuity_lemma_5_9_noetherian_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.SpacesVerified.proposition_5_8_nonVacuity_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.SpacesVerified.corollary_1_2_nonVacuity_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.SpacesVerified.corollary_1_2_int_witness_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.SpacesVerified.lemma_A_4_nonVacuity_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.SpacesVerified.lemma_A_6_nonVacuity_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RelativeFM.SpacesVerified.nonVacuity_detectsBelowUniformly_affine_unconditional' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
