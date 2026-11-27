@@ -250,6 +250,23 @@ discharged.  The first Sonnet trial (model rule) is the next mechanical task, no
 
 After wave 9, LP26 is complete up to the discharge of its AxiomMath inputs; GL26 follows.
 
+## Wave 10 (outline): GL26 over algebraic spaces, in dependency order
+
+To be turned into briefs once wave 9 closes (manuscript tasks local, with the GL26 TeX; all
+Opus, high).  From the top of `results/TODO.md`:
+
+1. **§2 preliminaries over spaces**: Lemmas 2.10 (`lem:rhom_tensor_morphism`), 2.14
+   (`lem:faithfully_flat_is_conservative`), 2.16 (`lem:gortz_wedhorn_internal_hom`), 2.21–2.24
+   (`lem:neeman186`–`189`, duality and `f^×` from AxiomMath's `SpaceDuality`), and Lemmas 2.25,
+   2.26 redone over spaces (they are conditional on named inputs in the scheme layer).
+2. **§3 and Lemma 3.2** (`lem:quasi-affine_is_conservative`): characterization of perfectness.
+3. **§4–5 relative (quasi-)perfectness**: Lemmas 5.3, 5.4 (over spaces), 5.7
+   (`lem:f_perf_implies_perf_preserved`), 5.9 (`lem:neeman23lem5_3`).
+4. **§6**: Propositions 6.2, 6.8, hence Theorem 1.3 (stated in `Spaces/Statements/`).
+
+Later waves: §9–10 (base change for adjoints, Theorems 10.13 / 1.6), §12 (the loci, Theorems
+12.3, 12.9 / 1.2), §11 (Theorem 1.7, once Gorenstein morphisms and fibre genus are available).
+
 ## Log
 
 | wave | task | session | merged as | outcome |
