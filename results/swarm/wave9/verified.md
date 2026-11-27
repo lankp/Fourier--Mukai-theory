@@ -19,3 +19,15 @@ run `--update` yourself, the orchestrator does.  This task runs `lake build Spac
 vm.max_map_count=262144`, build memory-heavy modules alone; after a restart restore both and
 restart the build, Lake skips what is built).  Wait in the foreground in slices of at most ten
 minutes.  Commit verified pieces as you go.  Seven verification steps.
+
+Notes from the merges:
+* `wave9/supported-0gfi` (merged `a6c7b3d`): its 19 inputs are in
+  `Spaces/Supported/DetectingInputs.lean`.  Three AxiomMath definitions are written out there by
+  their bodies (`koszulSp`, `VanishesWhereUnitSp`, `unitLocusSieveSp`); discharge needs
+  `koszulSp = koszul` (by induction on the list: note AxiomMath's base case is
+  `structureModule ⟨X, hX⟩`, the copy's is `SheafOfModules.unit _`; show these agree first) and
+  the other two by `rfl`.  `PerfectQcohInput` writes `SheafOfModules (ringedToposStructureRingSheaf
+  X)` as `Modules` (`modules_eq_ringedToposModules`, `rfl`).  The two files use the instance
+  context of AxiomMath's `DetectingBoundedBelow.lean`; use the same in the discharge.  If an input
+  does not match AxiomMath's statement, report it: do not change the statement.
+* `wave9/lp26-standard-wa` (merged `cd7eb58`): no new input.
