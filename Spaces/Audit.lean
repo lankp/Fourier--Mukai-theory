@@ -6,6 +6,7 @@ import Spaces.Statements
 import Spaces.Supported.CompactGeneration
 import Spaces.Supported.Preferred
 import Spaces.BaseChange.Cube
+import Spaces.LP26.Corollary12
 import Spaces.LP26.Lemma59
 import Spaces.LP26.NonVacuity
 import Spaces.LP26.Proposition58
@@ -303,3 +304,18 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.LP26.satisfiesPaperWA_of_forall_isZero
 #print axioms RelativeFM.Spaces.LP26.satisfiesWA_of_isEmpty
 #print axioms RelativeFM.Spaces.LP26.proposition_5_8_nonVacuity
+-- LP26 Corollary 1.2 over algebraic spaces (wave 8, `Spaces/LP26/Corollary12.lean`)
+#print axioms RelativeFM.Spaces.LP26.UniverseDescent.small_nonzero
+#print axioms RelativeFM.Spaces.LP26.UniverseDescent.isCompactAb_of_max
+#print axioms RelativeFM.Spaces.LP26.UniverseDescent.coprod_le
+#print axioms RelativeFM.Spaces.LP26.UniverseDescent.satisfiesPaperWA_of_max
+#print axioms RelativeFM.Spaces.LP26.satisfiesPaperWA_dqcZ_of_dqcSupported
+#print axioms RelativeFM.Spaces.LP26.satisfiesPaperWA_dqcZ_of_paperM2
+#print axioms RelativeFM.Spaces.LP26.exists_fg_eq_zeroLocusPoints
+#print axioms RelativeFM.Spaces.LP26.satisfiesWA_space
+#print axioms RelativeFM.Spaces.LP26.isOpenImmersion_of_isIso'
+#print axioms RelativeFM.Spaces.LP26.satisfiesWA_of_iso
+#print axioms RelativeFM.Spaces.LP26.corollary_1_2
+#print axioms RelativeFM.Spaces.LP26.corollary_1_2_dqc
+#print axioms RelativeFM.Spaces.LP26.corollary_1_2_nonVacuity
+#print axioms RelativeFM.Spaces.LP26.corollary_1_2_int_witness
