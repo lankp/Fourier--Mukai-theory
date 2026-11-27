@@ -226,7 +226,7 @@ bridge and the preferred class first, then §5, then Corollary 1.2.
 | `wave8/lp26-section5` (local subagent, LP26 TeX; merged, partial) | high | done: LP26 Lemmas 5.5, 5.6, 5.7 and the standard `t`-structure over spaces.  Left: Def 5.3 (after universe-bridge), Lemma 5.9 (`wave8/lp26-lemma-5-9`), Prop 5.8 (`wave8/lp26-recollement`) |
 | `wave8/lp26-lemma-5-9` (local, LP26 TeX; merged) | high | done: LP26 Lemma 5.9 (`lem:characterize_T-_c`) over algebraic spaces, both claims, for the standard `t`-structure; nine tagged inputs |
 | `wave8/lp26-recollement` (local, manuscripts; merged) | high | done: GL26 Lemmas A.4 (recollement of `D_qc,W(X)`, built here) and A.6 over spaces; LP26 Def 5.3 and the W.A. part of Prop 5.8.  Open: the standard W.A. part of Prop 5.8 |
-| `wave8/lp26-corollary-1-2` (local, after the others) | high | LP26 Corollary 1.2 over qcqs algebraic spaces with support |
+| `wave8/lp26-corollary-1-2` (local, LP26 TeX; merged) | high | done: LP26 Corollary 1.2 over qcqs algebraic spaces, W.A. and D_qc parts (pinned), without the quasi-finite-diagonal hypothesis.  Open: standard W.A., Noetherian coherence |
 | `wave8/axiommath-verified` (`session_0111iGd8ChkAMsYSB2t9QoLz`) | high | build the full `SpacesVerified` closure in its own container (the orchestrator's is reclaimed when idle), then prove the 17 tagged AxiomMath inputs of wave 7 and the unconditional wave 7 headlines |
 | `wave8/prune-pinned-vacuous` (`session_0111iGd6caNpP2YiJVNQW24x`) | medium | merged: the two vacuous `IsGenerator` endpoints and ~1 500 lines only they used deleted; baseline re-recorded (15 pins) |
 

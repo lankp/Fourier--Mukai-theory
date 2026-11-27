@@ -21,6 +21,8 @@ default check.
 #check @RelativeFM.Spaces.Stacks.tag09SN
 #check @RelativeFM.Spaces.Stacks.isCompactObject_iff_isCompactAb
 #check @RelativeFM.Spaces.Stacks.isWeakTriangulatedGenerator_singleton_iff
+#check @RelativeFM.Spaces.LP26.corollary_1_2
+#check @RelativeFM.Spaces.LP26.corollary_1_2_dqc
 #print axioms RelativeFM.Spaces.Stacks.theorem_1_1
 #print axioms RelativeFM.Spaces.Stacks.lemma_2_4
 #print axioms RelativeFM.Spaces.Stacks.lemma_2_5
@@ -28,3 +30,5 @@ default check.
 #print axioms RelativeFM.Spaces.Stacks.tag09SN
 #print axioms RelativeFM.Spaces.Stacks.isCompactObject_iff_isCompactAb
 #print axioms RelativeFM.Spaces.Stacks.isWeakTriangulatedGenerator_singleton_iff
+#print axioms RelativeFM.Spaces.LP26.corollary_1_2
+#print axioms RelativeFM.Spaces.LP26.corollary_1_2_dqc

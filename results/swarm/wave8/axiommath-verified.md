@@ -34,3 +34,5 @@ verification steps with `lake build SpacesVerified`; report build times and peak
 `lemma_A_9_preferred_univ`.  Merge `origin/formalization` into your branch first.
 Also the inputs appended to `Spaces/LP26/Inputs.lean` at `033bb2c` (recollement: 079Q, 0A8G,
 08GF, 08H6, 08GG, …) and the unconditional GL26 Lemmas A.4, A.6 and LP26 Proposition 5.8.
+And the two inputs of LP26 Corollary 1.2 (`Tag09ITInput`, `EDSOfComplSubsetInput`) with the
+unconditional `corollary_1_2`, `corollary_1_2_dqc`.

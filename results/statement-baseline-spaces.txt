@@ -61,6 +61,99 @@ RelativeFM.Spaces.Stacks.tag09SN : ∀ (D : Type u_2) [inst : CategoryTheory.Cat
   [inst : CategoryTheory.Category.{u_1, u_2} C] [inst_1 : CategoryTheory.HasShift C ℤ]
   [inst_2 : CategoryTheory.Preadditive C] (G : C),
   (CategoryTheory.ObjectProperty.singleton G).IsWeakTriangulatedGenerator ↔ RelativeWeakApprox.IsPaperGenerator G
+@RelativeFM.Spaces.LP26.corollary_1_2 : ∀ {B : AlgebraicGeometry.BigFppfSite} {S : AlgebraicGeometry.Scheme}
+  {hS : B.Contains S}
+  [inst : ∀ (Y : AlgebraicGeometry.AlgebraicSpaces B S hS), (RelativeFM.Spaces.Supported.qcohDerived Y).IsTriangulated]
+  [inst_1 :
+    ∀ (Y : AlgebraicGeometry.AlgebraicSpaces B S hS) (T : Set (AlgebraicGeometry.Space.points B S hS Y.obj)),
+      CategoryTheory.ObjectProperty.IsTriangulated (AlgebraicGeometry.Space.CohomologySupportedOn B S hS Y.obj ⋯ T)],
+  RelativeFM.Spaces.Tag08FAInput B S hS →
+    RelativeFM.Spaces.Tag08F4Input B S hS →
+      RelativeFM.Spaces.LP26.Tag0AFJInput B S hS →
+        RelativeFM.Spaces.LP26.PullbackSupportInput B S hS →
+          RelativeFM.Spaces.LP26.PullbackDisjointInput B S hS →
+            RelativeFM.Spaces.LP26.EtaleRestrictionSupportInput B S hS →
+              RelativeFM.Spaces.LP26.OpenImmersionCounitInput B S hS →
+                RelativeFM.Spaces.LP26.PerfectPullbackInput B S hS →
+                  RelativeFM.Spaces.Supported.Tag08F3Input B S hS →
+                    RelativeFM.Spaces.Supported.SupportedDirectSumsInput B S hS →
+                      RelativeFM.Spaces.Supported.Tag0AECInput B S hS →
+                        RelativeFM.Spaces.Supported.Tag0AEDInput B S hS →
+                          RelativeFM.Spaces.LP26.Tag079QInput →
+                            RelativeFM.Spaces.LP26.Tag0A8GInput →
+                              RelativeFM.Spaces.LP26.RightAdjointCoproductsInput →
+                                RelativeFM.Spaces.LP26.QuasiCompactSourceInput B S hS →
+                                  RelativeFM.Spaces.LP26.CompactComplPreimageInput B S hS →
+                                    RelativeFM.Spaces.LP26.Tag08GGUnitInput B S hS →
+                                      RelativeFM.Spaces.LP26.Tag08GGCounitInput B S hS →
+                                        RelativeFM.Spaces.LP26.Tag073BInput B S hS →
+                                          RelativeFM.Spaces.LP26.Tag073BTwoInput B S hS →
+                                            RelativeFM.Spaces.LP26.Tag09M8Input B S hS →
+                                              RelativeFM.Spaces.LP26.PerfectBoundedAboveInput B S hS →
+                                                RelativeFM.Spaces.LP26.Tag09MBInput B S hS →
+                                                  RelativeFM.Spaces.LP26.EDSOfComplSubsetInput B S hS →
+                                                    RelativeFM.Spaces.LP26.SupportEmptyInput B S hS →
+                                                      RelativeFM.Spaces.LP26.OpenSubspaceQuasiCompactInput B S hS →
+                                                        RelativeFM.Spaces.LP26.Tag09ITInput B S hS →
+                                                          RelativeFM.Spaces.Supported.AffineQuasiSeparatedInput B S hS →
+                                                            RelativeFM.Spaces.Affine.Tag06Z0ExactInput B S hS →
+                                                              RelativeFM.Spaces.Affine.Tag06Z0QcohInput B S hS →
+                                                                RelativeFM.Spaces.Affine.Tag06Z0Input B S hS →
+                                                                  RelativeFM.Spaces.Affine.Tag07TYInput B S hS →
+                                                                    ∀ (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme))
+                                                                      (X : AlgebraicGeometry.AlgebraicSpaces B S hS),
+                                                                      AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS
+                                                                          X.obj →
+                                                                        AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated
+                                                                            B S hS hZ X.obj →
+                                                                          RelativeFM.Spaces.LP26.SatisfiesWA X
+@RelativeFM.Spaces.LP26.corollary_1_2_dqc : ∀ {B : AlgebraicGeometry.BigFppfSite} {S : AlgebraicGeometry.Scheme}
+  {hS : B.Contains S}
+  [inst : ∀ (Y : AlgebraicGeometry.AlgebraicSpaces B S hS), (RelativeFM.Spaces.Supported.qcohDerived Y).IsTriangulated]
+  [∀ (Y : AlgebraicGeometry.AlgebraicSpaces B S hS) (T : Set (AlgebraicGeometry.Space.points B S hS Y.obj)),
+      CategoryTheory.ObjectProperty.IsTriangulated (AlgebraicGeometry.Space.CohomologySupportedOn B S hS Y.obj ⋯ T)],
+  RelativeFM.Spaces.Tag08FAInput B S hS →
+    RelativeFM.Spaces.Tag08F4Input B S hS →
+      RelativeFM.Spaces.LP26.Tag0AFJInput B S hS →
+        RelativeFM.Spaces.LP26.PullbackSupportInput B S hS →
+          RelativeFM.Spaces.LP26.PullbackDisjointInput B S hS →
+            RelativeFM.Spaces.LP26.EtaleRestrictionSupportInput B S hS →
+              RelativeFM.Spaces.LP26.OpenImmersionCounitInput B S hS →
+                RelativeFM.Spaces.LP26.PerfectPullbackInput B S hS →
+                  RelativeFM.Spaces.Supported.Tag08F3Input B S hS →
+                    RelativeFM.Spaces.Supported.SupportedDirectSumsInput B S hS →
+                      RelativeFM.Spaces.Supported.Tag0AECInput B S hS →
+                        RelativeFM.Spaces.Supported.Tag0AEDInput B S hS →
+                          RelativeFM.Spaces.LP26.Tag079QInput →
+                            RelativeFM.Spaces.LP26.Tag0A8GInput →
+                              RelativeFM.Spaces.LP26.RightAdjointCoproductsInput →
+                                RelativeFM.Spaces.LP26.QuasiCompactSourceInput B S hS →
+                                  RelativeFM.Spaces.LP26.CompactComplPreimageInput B S hS →
+                                    RelativeFM.Spaces.LP26.Tag08GGUnitInput B S hS →
+                                      RelativeFM.Spaces.LP26.Tag08GGCounitInput B S hS →
+                                        RelativeFM.Spaces.LP26.Tag073BInput B S hS →
+                                          RelativeFM.Spaces.LP26.Tag073BTwoInput B S hS →
+                                            RelativeFM.Spaces.LP26.Tag09M8Input B S hS →
+                                              RelativeFM.Spaces.LP26.PerfectBoundedAboveInput B S hS →
+                                                RelativeFM.Spaces.LP26.Tag09MBInput B S hS →
+                                                  RelativeFM.Spaces.LP26.EDSOfComplSubsetInput B S hS →
+                                                    RelativeFM.Spaces.LP26.SupportEmptyInput B S hS →
+                                                      RelativeFM.Spaces.LP26.OpenSubspaceQuasiCompactInput B S hS →
+                                                        RelativeFM.Spaces.LP26.Tag09ITInput B S hS →
+                                                          RelativeFM.Spaces.Supported.AffineQuasiSeparatedInput B S hS →
+                                                            RelativeFM.Spaces.Affine.Tag06Z0ExactInput B S hS →
+                                                              RelativeFM.Spaces.Affine.Tag06Z0QcohInput B S hS →
+                                                                RelativeFM.Spaces.Affine.Tag06Z0Input B S hS →
+                                                                  RelativeFM.Spaces.Affine.Tag07TYInput B S hS →
+                                                                    ∀ (hZ : B.Contains (⊤_ AlgebraicGeometry.Scheme))
+                                                                      (X : AlgebraicGeometry.AlgebraicSpaces B S hS),
+                                                                      AlgebraicGeometry.Space.IsQuasiCompactSpace B S hS
+                                                                          X.obj →
+                                                                        AlgebraicGeometry.Space.IsAbsolutelyQuasiSeparated
+                                                                            B S hS hZ X.obj →
+                                                                          RelativeWeakApprox.SumUniverse.SatisfiesPaperWA
+                                                                            (AlgebraicGeometry.Space.QuasicoherentDerivedCategory
+                                                                              B S hS X.obj ⋯)
 'RelativeFM.Spaces.Stacks.theorem_1_1' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RelativeFM.Spaces.Stacks.lemma_2_4' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RelativeFM.Spaces.Stacks.lemma_2_5' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -70,3 +163,5 @@ RelativeFM.Spaces.Stacks.tag09SN : ∀ (D : Type u_2) [inst : CategoryTheory.Cat
 'RelativeFM.Spaces.Stacks.isWeakTriangulatedGenerator_singleton_iff' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
+'RelativeFM.Spaces.LP26.corollary_1_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RelativeFM.Spaces.LP26.corollary_1_2_dqc' depends on axioms: [propext, Classical.choice, Quot.sound]

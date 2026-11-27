@@ -11,7 +11,7 @@ list (LP26 first, then GL26).  Status codes as in `COVERAGE.md`.
 
 | # | label | status | where / note |
 |---|---|---|---|
-| Cor 1.2 | `cor:weak_approx_spaces` | C (affine base over spaces; qcqs induction open) | **affine base over algebraic spaces**: `Spaces/Affine/WeakApprox.lean` (wave 7), from tagged AxiomMath inputs (06Z0, 07TY, 021R). **Open**: the induction over q |
+| Cor 1.2 | `cor:weak_approx_spaces` | C (W.A. and D_qc parts; AxiomMath inputs to discharge; standard W.A. and coherence open) | **over qcqs algebraic spaces**: `Spaces/LP26/Corollary12.lean` `corollary_1_2` (`D_qc,S(X)` weakly approximable for every closed `S` with quasi-compact compleme |
 | Lem 5.5 | `lem:compact_ext_vanishing` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/HomVanishing.lean` `lemma_5_5`, `lemma_5_5_dqc` (wave 8), from tagged inputs 09M8, 09MB(1). Earlier: its categorical rol |
 | Lem 5.6 | `lem:perf_vanishing` | C (AxiomMath inputs, to discharge) | **over algebraic spaces**: `Spaces/LP26/HomVanishing.lean` `lemma_5_6` (wave 8), from 0AED, 09M8; the paper's generator hypothesis is not needed. Earlier: `Sche |
 | Prop 5.8 | `prop:A8` | C (W.A. part; standard W.A. part open) | **W.A. part over algebraic spaces**: `Spaces/LP26/Proposition58.lean` `proposition_5_8` (wave 8), with fewer hypotheses; non-vacuity only on the empty space so  |
