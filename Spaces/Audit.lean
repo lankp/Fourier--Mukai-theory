@@ -5,6 +5,7 @@ import Spaces.NonVacuity
 import Spaces.Statements
 import Spaces.Supported.CompactGeneration
 import Spaces.BaseChange.Cube
+import Spaces.LP26.Lemma59
 import Spaces.LP26.NonVacuity
 import Spaces.LP26.StandardTStructure
 
@@ -213,3 +214,20 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.LP26.standardTStructure_isGE_iff
 #print axioms RelativeFM.Spaces.LP26.standardTStructure_le_iff
 #print axioms RelativeFM.Spaces.LP26.standardTStructure_ge_iff
+-- LP26 Lemma 5.9 over algebraic spaces (wave 8, `Spaces/LP26/Lemma59.lean`)
+#print axioms RelativeFM.Spaces.LP26.minusC
+#print axioms RelativeFM.Spaces.LP26.boundedC
+#print axioms RelativeFM.Spaces.LP26.isZero_homology_obj₃_of_epi_of_mono
+#print axioms RelativeFM.Spaces.LP26.isPseudoCoherentComplexFrom_of_le
+#print axioms RelativeFM.Spaces.LP26.isPseudoCoherentFrom_of_le
+#print axioms RelativeFM.Spaces.LP26.isQuasiCompact_ι_compl
+#print axioms RelativeFM.Spaces.LP26.standardMinusC_of_isCompactObject
+#print axioms RelativeFM.Spaces.LP26.lemma_5_9
+#print axioms RelativeFM.Spaces.LP26.standardTStructure_plus_iff
+#print axioms RelativeFM.Spaces.LP26.standardTStructure_minus_iff
+#print axioms RelativeFM.Spaces.LP26.lemma_5_9_minus_noetherian
+#print axioms RelativeFM.Spaces.LP26.lemma_5_9_bounded_noetherian
+#print axioms RelativeFM.Spaces.LP26.lemma_5_9_minus_eq
+#print axioms RelativeFM.Spaces.LP26.lemma_5_9_bounded_eq
+#print axioms RelativeFM.Spaces.LP26.nonVacuity_lemma_5_9
+#print axioms RelativeFM.Spaces.LP26.nonVacuity_lemma_5_9_noetherian

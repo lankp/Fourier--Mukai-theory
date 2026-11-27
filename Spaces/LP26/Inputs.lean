@@ -21,8 +21,19 @@ AxiomMath declaration named in its docstring.
 | `Tag08FBInput` | 08FB | `AlgebraicGeometry.Space.preservesColimit_derivedModulePushforward` | `Spaces/QuasicoherentDerivedPushforwardDirectSums.lean` |
 | `Tag08FABoundInput` | 08FA (2) | `AlgebraicGeometry.Space.exists_isLE_derivedModulePushforward_obj` | `Spaces/DualityRightAdjointBoundedBelow.lean` |
 | `Tag0AFJInput` | 0AFJ | `AlgebraicGeometry.Space.derivedCategoryB_supportedModules_derivedPushforward` | `Spaces/DerivedPushforwardSupport.lean` |
+| `PerfectPseudoCoherentInput` | 08G8, (1) ⇒ (2), first clause | `AlgebraicGeometry.RingedSite.isPseudoCoherent_of_isPerfect_general` | `CategoryTheory/Sites/Cohomology/Perfect/PseudoCoherenceAndTorAmplitudeGeneral.lean` † |
+| `Tag08FVTwoInput` | 08FV (2) | `AlgebraicGeometry.RingedSite.isPseudoCoherentFrom_of_distinguished_two_general` | `CategoryTheory/Sites/Cohomology/PseudoCoherent/DistinguishedTriangles.lean` † |
+| `PseudoCoherentFromOfIsLEInput` | (none; the zero complex approximates, cf. 08FT) | `AlgebraicGeometry.RingedSite.isPseudoCoherentFrom_of_isLE_sub_one` | `CategoryTheory/Sites/Cohomology/PseudoCoherent/Summands.lean` † |
+| `Tag08FU2Input` | 08FU (2) | `AlgebraicGeometry.RingedSite.isPseudoCoherent_iff_forall_isPseudoCoherentFrom` | `CategoryTheory/Sites/Cohomology/PseudoCoherent/Summands.lean` † |
+| `PerfectQcohInput` | (none; perfect ⇒ pseudo-coherent ⇒ `D_QCoh`, cf. 08G8, 08DM) | `AlgebraicGeometry.Space.qcohDerived_of_isPerfect_derivedCategoryB` | `Spaces/Perfect/PerfectRetract.lean` |
+| `Tag08HPInput` | 08HP | `AlgebraicGeometry.Space.approximationByPerfectComplexes_of_qcqs` | `Spaces/Perfect/ApproximationQcqs.lean` |
+| `Tag073BInput` | 073B (1) | `AlgebraicGeometry.Space.isQuasiCompact_of_isQuasiCompactSpace` | `Spaces/QuasiCompactSupport.lean` |
+| `OpenSubspaceQuasiCompactInput` | 06RV, 03IR, 03E4 | `AlgebraicGeometry.Space.isQuasiCompactSpace_of_isCompact_range` | `Spaces/SpectralPoints.lean` |
+| `Tag08IKInput` | 08IK, final statement | `AlgebraicGeometry.Space.isPseudoCoherent_iff_of_isNoetherian` | `Spaces/PseudoCoherent/CoherentCohomologyEquivalence.lean` |
 
-(paths relative to `StacksFrontier/AlgebraicGeometry/`, AxiomMath commit `f56a316`.)
+(paths relative to `StacksFrontier/AlgebraicGeometry/`, or to `StacksFrontier/` when marked †,
+AxiomMath commit `f56a316`.)  The inputs from `PerfectPseudoCoherentInput` on are used by
+`Spaces/LP26/Lemma59.lean` (LP26 Lemma 5.9, `lem:characterize_T-_c`).
 
 ## Spelling
 
@@ -41,7 +52,25 @@ AxiomMath declaration named in its docstring.
   bind it as `hZ : B.Contains (⊤_ Scheme.{u})`, as in `Spaces/Supported/Inputs.lean` (any two
   proofs of a `Prop` are equal, and `ContainsTerminalInput` says the hypothesis always holds).
 * The instance context is that of `Spaces/Supported/Inputs.lean` (AxiomMath's, the two
-  `Stacks.Cohomology.SiteModules` abelian instances removed).
+  `Stacks.Cohomology.SiteModules` abelian instances removed).  These two instances do not apply
+  to `Modules.{u, u} B S hS X.1 X.2` anyway (their module universe is `max` of the site's
+  universes, here `u + 1`), so AxiomMath files that keep them (`CoherentCohomologyEquivalence`)
+  state the same thing.
+* The inputs marked † above are AxiomMath theorems about an arbitrary ringed site
+  `X : RingedSite.{u, v, w}` (with sheafification instances); each input is that statement
+  **instantiated** at the small étale ringed site `smallEtaleRingedSite B S hS X.1 X.2` of an
+  algebraic space `X` (`RingedSite.{u + 1, u, u}`), the only site LP26 uses, with the
+  instances found in the context above (all `Prop`-valued except `HasDerivedCategory`, which is
+  `HasDerivedCategory.standard` on both sides).  The discharge is
+  `fun X … => AxiomMath's theorem (smallEtaleRingedSite B S hS X.1 X.2) …`.
+* AxiomMath's abbreviations `ApproximationByPerfectComplexes` and `ApproximationHolds`
+  (`Spaces/Perfect/Approximation.lean`, outside the import list) are written out by their bodies
+  in `Tag08HPInput`; the `letI` of the topology of `|X|` in the body is the local instance
+  `pointTopology` here.
+* AxiomMath's `qcohDerived_of_isPerfect_derivedCategoryB` states its object in the spelling
+  `DerivedCategory (SheafOfModules.{u} (ringedToposStructureRingSheaf B S hS X))`, kept verbatim in
+  `PerfectQcohInput`; it is definitionally `DerivedCategory (Modules.{u, u} B S hS X.1 X.2)`
+  (`Spaces.D_eq_derivedModules`).
 -/
 
 noncomputable section
@@ -153,5 +182,127 @@ def Tag0AFJInput : Prop :=
     DerivedCategoryB.derivedCategoryB
       (fun F : Modules.{u, u} B S hS X.1 X.2 => supportOfSheaf B S hS X.1
         ((SheafOfModules.toSheaf _).obj F) ⊆ T) (Rf.obj E)
+
+/-! ### Inputs of LP26 Lemma 5.9 (`lem:characterize_T-_c`) -/
+
+/-- **A perfect object of `D(𝒪_X)` is pseudo-coherent** (Stacks 08G8, the first clause of the
+implication (1) ⇒ (2)).  AxiomMath:
+`AlgebraicGeometry.RingedSite.isPseudoCoherent_of_isPerfect_general X hE` (`StacksFrontier/`
+`CategoryTheory/Sites/Cohomology/Perfect/PseudoCoherenceAndTorAmplitudeGeneral.lean`), verbatim, instantiated at `X := smallEtaleRingedSite B S hS X.1 X.2` (module docstring). -/
+def PerfectPseudoCoherentInput : Prop :=
+  ∀ (X : AlgebraicSpaces B S hS) {E : DerivedCategory (Modules.{u, u} B S hS X.1 X.2)}
+    (_hE : (smallEtaleRingedSite B S hS X.1 X.2).IsPerfect E),
+    (smallEtaleRingedSite B S hS X.1 X.2).IsPseudoCoherent E
+
+/-- **Stacks 08FV, part (2)**: if the first and third vertices of a distinguished triangle of
+`D(𝒪_X)` are `m`-pseudo-coherent, so is the second.  AxiomMath:
+`AlgebraicGeometry.RingedSite.isPseudoCoherentFrom_of_distinguished_two_general X m T hT hK hM`
+(`StacksFrontier/CategoryTheory/Sites/Cohomology/PseudoCoherent/DistinguishedTriangles.lean`),
+verbatim, instantiated at `X := smallEtaleRingedSite B S hS X.1 X.2`. -/
+def Tag08FVTwoInput : Prop :=
+  ∀ (X : AlgebraicSpaces B S hS) (m : ℤ)
+    (T : Pretriangulated.Triangle (DerivedCategory (Modules.{u, u} B S hS X.1 X.2)))
+    (_hT : T ∈ Pretriangulated.distinguishedTriangles)
+    (_hK : (smallEtaleRingedSite B S hS X.1 X.2).IsPseudoCoherentFrom T.obj₁ m)
+    (_hM : (smallEtaleRingedSite B S hS X.1 X.2).IsPseudoCoherentFrom T.obj₃ m),
+    (smallEtaleRingedSite B S hS X.1 X.2).IsPseudoCoherentFrom T.obj₂ m
+
+/-- **An object of `D^{≤ t - 1}(𝒪_X)` is `t`-pseudo-coherent** (the zero complex approximates it;
+no Stacks tag, cf. 08FT).  AxiomMath:
+`AlgebraicGeometry.RingedSite.isPseudoCoherentFrom_of_isLE_sub_one X E t hE`
+(`StacksFrontier/CategoryTheory/Sites/Cohomology/PseudoCoherent/Summands.lean`), verbatim,
+instantiated at `X := smallEtaleRingedSite B S hS X.1 X.2`. -/
+def PseudoCoherentFromOfIsLEInput : Prop :=
+  ∀ (X : AlgebraicSpaces B S hS) (E : DerivedCategory (Modules.{u, u} B S hS X.1 X.2)) (t : ℤ)
+    (_hE : E.IsLE (t - 1)),
+    (smallEtaleRingedSite B S hS X.1 X.2).IsPseudoCoherentFrom E t
+
+/-- **Stacks 08FU (2), the degree-free criterion**: an object of `D(𝒪_X)` is pseudo-coherent iff
+it is `n`-pseudo-coherent for every `n`.  AxiomMath:
+`AlgebraicGeometry.RingedSite.isPseudoCoherent_iff_forall_isPseudoCoherentFrom X E` (an alias,
+`StacksFrontier/CategoryTheory/Sites/Cohomology/PseudoCoherent/Summands.lean`), verbatim,
+instantiated at `X := smallEtaleRingedSite B S hS X.1 X.2`. -/
+def Tag08FU2Input : Prop :=
+  ∀ (X : AlgebraicSpaces B S hS) (E : DerivedCategory (Modules.{u, u} B S hS X.1 X.2)),
+    (smallEtaleRingedSite B S hS X.1 X.2).IsPseudoCoherent E ↔
+      ∀ n, (smallEtaleRingedSite B S hS X.1 X.2).IsPseudoCoherentFrom E n
+
+/-- **A perfect object of `D(𝒪_X)` lies in `D_QCoh(𝒪_X)`** (no Stacks tag; it is pseudo-coherent,
+cf. 08G8).  AxiomMath: `AlgebraicGeometry.Space.qcohDerived_of_isPerfect_derivedCategoryB X E hE`
+(`Spaces/Perfect/PerfectRetract.lean`), verbatim. -/
+def PerfectQcohInput : Prop :=
+  ∀ (X : AlgebraicSpaces B S hS)
+    (E : DerivedCategory (SheafOfModules.{u} (ringedToposStructureRingSheaf B S hS X)))
+    (_hE : RingedSite.IsPerfect (smallEtaleRingedSite B S hS X.1 X.2) E),
+    DerivedCategoryB.derivedCategoryB
+      (SheafOfModules.isQuasicoherentOnSite.{u + 1, u, u, u}
+        ((Stacks.SheafOfModules.Tensor.ringSheaf (smallEtaleRingedSite B S hS X.1 X.2).O))) E
+
+/-- **Stacks 08HP**: on a quasi-compact quasi-separated algebraic space `X`, approximation by
+perfect complexes holds: for every closed `T ⊆ |X|` whose open complement has quasi-compact
+inclusion there is `r` such that every `E ∈ D_QCoh(𝒪_X)` which is `(m - r)`-pseudo-coherent with
+`Hⁱ(E)` supported on `T` for `i ≥ m - r` receives a map `P ⟶ E` from a perfect `P` supported on
+`T`, an isomorphism on `Hⁱ` for `i > m` and surjective on `Hᵐ`.  AxiomMath:
+`AlgebraicGeometry.Space.approximationByPerfectComplexes_of_qcqs B S hS hZ X hX hXqc hXqs`
+(`Spaces/Perfect/ApproximationQcqs.lean`), verbatim, with `ApproximationByPerfectComplexes.{u, u}`
+and `ApproximationHolds` (Stacks 08HJ, 08HI) written out by their bodies. -/
+def Tag08HPInput : Prop :=
+  ∀ (hZ : B.Contains (⊤_ Scheme.{u})) (X : (BigFppfOver B S hS)ᵒᵖ ⥤ Type u)
+    (hX : IsAlgebraicSpace B S hS X) (_hXqc : IsQuasiCompactSpace B S hS X)
+    (_hXqs : IsAbsolutelyQuasiSeparated B S hS hZ X)
+    (T : Set (points B S hS X)) (hT : IsClosed T),
+    IsQuasiCompact B S hS
+      ((openSubspacesOrderIso B S hS X hX).symm ⟨Tᶜ, hT.isOpen_compl⟩).1.ι →
+    ∃ r : ℤ, ∀ (E : QuasicoherentDerivedCategory.{u, u} B S hS X hX) (m : ℤ),
+      (smallEtaleRingedSite B S hS X hX).IsPseudoCoherentFrom E.obj (m - r) →
+      (∀ i : ℤ, m - r ≤ i →
+        supportOfSheaf B S hS X
+          ((SheafOfModules.toSheaf
+              ((Stacks.SheafOfModules.Tensor.ringSheaf (smallEtaleRingedSite B S hS X hX).O))).obj
+            ((DerivedCategory.homologyFunctor
+              (Modules.{u, u} B S hS X hX) i).obj E.obj)) ⊆ T) →
+      ∃ P : DerivedCategory (Modules.{u, u} B S hS X hX),
+        (smallEtaleRingedSite B S hS X hX).IsPerfect P ∧
+          CohomologySupportedOn B S hS X hX T P ∧
+          ∃ α : P ⟶ E.obj,
+            (∀ i : ℤ, m < i →
+              IsIso ((DerivedCategory.homologyFunctor (Modules.{u, u} B S hS X hX) i).map α)) ∧
+            Epi ((DerivedCategory.homologyFunctor (Modules.{u, u} B S hS X hX) m).map α)
+
+/-- **Stacks 073B, part (1)**: a morphism from a quasi-compact algebraic space into a
+quasi-separated algebraic space is quasi-compact.  AxiomMath:
+`AlgebraicGeometry.Space.isQuasiCompact_of_isQuasiCompactSpace B S hS hZ hX hXqs hUqc ι`
+(`Spaces/QuasiCompactSupport.lean`), verbatim. -/
+def Tag073BInput : Prop :=
+  ∀ (hZ : B.Contains (⊤_ Scheme.{u})) {X U : (BigFppfOver B S hS)ᵒᵖ ⥤ Type u}
+    (_hX : IsAlgebraicSpace B S hS X) (_hXqs : IsAbsolutelyQuasiSeparated B S hS hZ X)
+    (_hUqc : IsQuasiCompactSpace B S hS U) (ι : U ⟶ X),
+    IsQuasiCompact B S hS ι
+
+/-- **An open subspace whose set of points is compact is quasi-compact** (Stacks 06RV, 03IR,
+03E4).  AxiomMath: `AlgebraicGeometry.Space.isQuasiCompactSpace_of_isCompact_range B S hS hX hG
+hcompact` (`Spaces/SpectralPoints.lean`), verbatim. -/
+def OpenSubspaceQuasiCompactInput : Prop :=
+  ∀ {X : (BigFppfOver B S hS)ᵒᵖ ⥤ Type u} (_hX : IsAlgebraicSpace B S hS X)
+    {G : Subfunctor X} (_hG : IsOpenSubspace B S hS G)
+    (_hcompact : IsCompact (Set.range (pointsMap B S hS G.toFunctor G.ι))),
+    IsQuasiCompactSpace B S hS G.toFunctor
+
+/-- **Stacks 08IK, the final statement**: on a Noetherian algebraic space `F`, an object `E` of
+`D_QCoh(𝒪_F)` is pseudo-coherent iff it is bounded above with coherent cohomology sheaves
+(`E ∈ D^-_Coh(𝒪_F)`).  AxiomMath:
+`AlgebraicGeometry.Space.isPseudoCoherent_iff_of_isNoetherian B S hS F hF hZ hFN E hE`
+(`Spaces/PseudoCoherent/CoherentCohomologyEquivalence.lean`), verbatim. -/
+def Tag08IKInput : Prop :=
+  ∀ (F : (BigFppfOver B S hS)ᵒᵖ ⥤ Type u) (hF : IsAlgebraicSpace B S hS F)
+    (hZ : B.Contains (⊤_ Scheme.{u})) (_hFN : IsNoetherian B S hS hZ F)
+    (E : DerivedCategory (Modules.{u, u} B S hS F hF))
+    (_hE : DerivedCategoryB.derivedCategoryB
+      (SheafOfModules.isQuasicoherentOnSite.{u + 1, u, u, u}
+        ((Stacks.SheafOfModules.Tensor.ringSheaf (smallEtaleRingedSite B S hS F hF).O))) E),
+    (smallEtaleRingedSite B S hS F hF).IsPseudoCoherent E ↔
+      (DerivedCategoryB.IsBoundedAbove E ∧
+        ∀ i : ℤ, SheafOfModules.IsCoherentOnSite
+          ((DerivedCategory.homologyFunctor (Modules.{u, u} B S hS F hF) i).obj E))
 
 end RelativeFM.Spaces.LP26
