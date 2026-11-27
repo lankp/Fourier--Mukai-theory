@@ -4,9 +4,11 @@ import Spaces.Stacks.Bridges
 import WeakApprox.Recollement
 import Mathlib.CategoryTheory.Triangulated.Adjunction
 import Mathlib.CategoryTheory.Adjunction.Triple
+import Mathlib.CategoryTheory.Triangulated.TStructure.TExact
+import Spaces.LP26.StandardTStructure
 
 /-!
-# The open–closed recollement of `D_{qc,W}(X)` over an algebraic space (GL26 Lemma A.4)
+# The open–closed recollement of `D_{qc,W}(X)` over an algebraic space (GL26 Lemmas A.4, A.6)
 
 Guisado Villalgordo–Lank, *Relative Fourier–Mukai theory for algebraic spaces* (GL26),
 **Lemma A.4** (`lem:spacey_recollement`): for `X` a quasi-compact quasi-separated algebraic
@@ -15,6 +17,10 @@ quasi-compact complement, there is a recollement
 `D_{qc,|U| ∩ W}(U) → D_{qc,W}(X) → D_{qc,W ∩ Z}(X)` in which `Rj_*` and the natural inclusion
 `i_*` are the middle functors and `Lj^*` is the left adjoint of `Rj_*`.  AxiomMath has neither
 this recollement nor the right adjoints `j^!_W`, `i^!`, `i^*`; they are constructed here.
+
+GL26 **Lemma A.6** (`lem:etale_nbhd_preferred_class_equivalences`): for an elementary
+distinguished square `(U ⊆ X, f : V ⟶ X)` and `Z = |X| ∖ |U|`, the restrictions of `Lf^*` and
+`Rf_*` are inverse `t`-exact equivalences `D_{qc,Z}(X) ≃ D_{qc,f⁻¹ Z}(V)`, also on bounded objects.
 
 ## Main results
 
@@ -26,6 +32,14 @@ this recollement nor the right adjoints `j^!_W`, `i^!`, `i^*`; they are construc
 * `lemma_A_4`: **GL26 Lemma A.4**, the recollement with supports (the first claim of the lemma is
   the case `W = |X|`).
 * `pushFullyFaithful`: `Rj_*` is fully faithful on `D(𝒪_U)` for an open immersion `j`.
+* `lemma_A_6`: **GL26 Lemma A.6**, clause (1), for every closed `W ⊆ Z` (GL26: `W = Z`; LP26's
+  proof of Proposition 5.8 uses `W = T ∩ S`): the unit and counit of the restricted adjunction
+  `Lf^* ⊣ Rf_*` (`edsAdj`) are invertible and both functors are `t`-exact (Mathlib's
+  `Functor.TExact`) for the standard `t`-structures (`standardTStructure`).  `lemma_A_6_bounded`
+  is clause (2), `lemma_A_6_aux` the elementary form.
+* `isLE_isGE_rightAdjoint_of_equivalence` (no geometry): the inverse of a `t`-exact equivalence is
+  `t`-exact.
+* `lemma_A_6_nonVacuity`: the hypotheses of `lemma_A_6` hold for `(⊤ ⊆ X, ⊤.ι)`, `X` affine.
 * `lemma_A_4_nonVacuity`: every hypothesis of `lemma_A_4` holds for `X` affine, `j = 𝟙_X`,
   `W = |X|`.
 
@@ -56,6 +70,22 @@ preserve the compactness of a generator (Stacks 08H6, 0AED; the formal step of S
 the inclusion does because both supports are closed under direct sums.  GL26 obtains `i^!` and
 `i^*` from the localization sequence instead (Gao–Psaroudakis, Lemma 2.2); right adjoints are
 unique up to isomorphism.  The triangles are then those of `Data.toRecollement`.
+
+Lemma A.6: the unit and the counit are those of `(f^*)_D ⊣ Rf_*` up to the identification
+`Lf^* ≅ (f^*)_D` (`smallEtaleDerivedModulePullbackIsoEtale`), invertible on objects supported on
+`Z`, resp. `f⁻¹ Z`, by Stacks 08GG (1)(a), (2)(b) (`Tag08GGUnitInput`, `Tag08GGCounitInput`).
+`Lf^*` is `t`-exact since `f` is étale (cohomology commutes with the exact `f^*`), and `Rf_*` is
+then `t`-exact by orthogonality (`isLE_isGE_rightAdjoint_of_equivalence`), as in GL26.
+
+## Differences from the paper
+
+* Lemma A.6 is proved for every closed `W ⊆ Z`, not only `W = Z` (a generalization, used by LP26).
+  GL26's "of quasi-compact quasi-separated algebraic spaces" is used as: `X` quasi-separated and
+  `V` quasi-compact quasi-separated, so that `f` is quasi-compact and quasi-separated (Stacks
+  073B) and `Rf_*` preserves `D_qc` (Stacks 08FA).
+* Lemma A.4 records the identification of `i^*`, `i_*`, `j_!` of the recollement with `Lj^*`,
+  `Rj_*` and the inclusion (isomorphisms after the inclusions into `D(𝒪)`); the right adjoints are
+  existential (unique up to isomorphism).
 
 ## Assumptions
 
@@ -844,6 +874,383 @@ theorem lemma_A_4 (h08FA : Tag08FAInput B S hS) (h08F4 : Tag08F4Input B S hS)
   exact ⟨R.toRecollement, ⟨liftZCompιZ _ _ _⟩, ⟨liftZCompιZ _ _ _⟩, ⟨Iso.refl _⟩⟩
 
 end LemmaA4
+
+/-! ### GL26 Lemma A.6 -/
+
+section TExact
+
+open CategoryTheory.Triangulated
+
+variable {C D : Type*} [Category* C] [Category* D] [Preadditive C] [Preadditive D]
+  [HasZeroObject C] [HasZeroObject D] [HasShift C ℤ] [HasShift D ℤ]
+  [∀ (n : ℤ), (shiftFunctor C n).Additive] [∀ (n : ℤ), (shiftFunctor D n).Additive]
+  [Pretriangulated C] [Pretriangulated D] (t₁ : TStructure C) (t₂ : TStructure D)
+
+/-- **The inverse of a `t`-exact equivalence is `t`-exact.**  Let `F ⊣ G` be an adjoint
+equivalence (unit and counit invertible) of pretriangulated categories with `t`-structures, and
+let `F` preserve `D^{≤ n}` and `D^{≥ n}`.  Then so does `G` (orthogonality,
+`TStructure.isLE_iff_orthogonal`, `TStructure.isGE_iff_orthogonal`). -/
+theorem isLE_isGE_rightAdjoint_of_equivalence {F : C ⥤ D} {G : D ⥤ C} (adj : F ⊣ G)
+    [IsIso adj.unit] [IsIso adj.counit] [F.Additive] [G.Additive]
+    (hle : ∀ (X : C) (n : ℤ), t₁.IsLE X n → t₂.IsLE (F.obj X) n)
+    (hge : ∀ (X : C) (n : ℤ), t₁.IsGE X n → t₂.IsGE (F.obj X) n) (Y : D) (n : ℤ) :
+    (t₂.IsLE Y n → t₁.IsLE (G.obj Y) n) ∧ (t₂.IsGE Y n → t₁.IsGE (G.obj Y) n) := by
+  have hGff : G.FullyFaithful := adj.fullyFaithfulROfIsIsoCounit
+  refine ⟨fun hY => ?_, fun hY => ?_⟩
+  · rw [t₁.isLE_iff_orthogonal n (n + 1) rfl]
+    intro Z f hZ
+    have hFZ := hge Z (n + 1) hZ
+    obtain ⟨h, hh⟩ : ∃ h : Y ⟶ F.obj Z, G.map h = f ≫ adj.unit.app Z :=
+      ⟨hGff.preimage _, hGff.map_preimage _⟩
+    have h0 : h = 0 := t₂.zero h n (n + 1) (by lia)
+    rw [h0, G.map_zero] at hh
+    rw [← cancel_mono (adj.unit.app Z), ← hh, zero_comp]
+  · rw [t₁.isGE_iff_orthogonal (n - 1) n (by lia)]
+    intro Z f hZ
+    have hFZ := hle Z (n - 1) hZ
+    have h0 : (adj.homEquiv _ _).symm f = 0 := t₂.zero _ (n - 1) n (by lia)
+    rw [← (adj.homEquiv _ _).apply_symm_apply f, h0, Adjunction.homEquiv_unit, G.map_zero,
+      comp_zero]
+
+end TExact
+
+section LemmaA6
+
+attribute [local instance] etaleModulePullback_additive preservesFiniteLimits_etaleModulePullback
+  preservesFiniteColimits_etaleModulePullback
+
+/-- `Lf^*` along an étale `f` commutes with cohomology sheaves: if `Hʲ(E) = 0` then
+`Hʲ(Lf^* E) = 0` (`Lf^* ≅ (f^*)_D`, `smallEtaleDerivedModulePullbackIsoEtale`, and an exact
+functor commutes with cohomology, `Functor.mapDerivedCategoryHomologyIso`). -/
+theorem isZero_homology_pull_of_isEtale {Y X : AlgebraicSpaces B S hS} (f : Y ⟶ X)
+    (hf : IsEtale B S hS f.hom) (E : DerivedCategory (Modules.{u, u} B S hS X.1 X.2)) (j : ℤ)
+    (h : IsZero ((DerivedCategory.homologyFunctor (Modules.{u, u} B S hS X.1 X.2) j).obj E)) :
+    IsZero ((DerivedCategory.homologyFunctor (Modules.{u, u} B S hS Y.1 Y.2) j).obj
+      ((pull f).obj E)) := by
+  have e₁ := (smallEtaleDerivedModulePullbackIsoEtale B S hS f hf).app E
+  have e₂ := ((etaleModulePullback.{u, u} B S hS f hf).mapDerivedCategoryHomologyIso j).app E
+  exact (((etaleModulePullback.{u, u} B S hS f hf).map_isZero h).of_iso e₂).of_iso
+    ((DerivedCategory.homologyFunctor (Modules.{u, u} B S hS Y.1 Y.2) j).mapIso e₁)
+
+/-- The unit of `Lf^* ⊣ Rf_*` is the unit of `(f^*)_D ⊣ Rf_*` followed by an isomorphism. -/
+theorem isIso_pullPushAdj_unit_app {Y X : AlgebraicSpaces B S hS} (f : Y ⟶ X)
+    (hf : IsEtale B S hS f.hom) (E : DerivedCategory (Modules.{u, u} B S hS X.1 X.2))
+    (h : IsIso ((etaleDerivedModuleAdjunction B S hS f hf).unit.app E)) :
+    IsIso ((pullPushAdj f).unit.app E) := by
+  have e : (etaleDerivedModuleAdjunction B S hS f hf).unit.app E =
+      (pullPushAdj f).unit.app E ≫
+        (push f).map ((smallEtaleDerivedModulePullbackIsoEtale B S hS f hf).hom.app E) := rfl
+  rw [e] at h
+  have : IsIso ((push f).map ((smallEtaleDerivedModulePullbackIsoEtale B S hS f hf).hom.app E)) :=
+    ((push f).mapIso ((smallEtaleDerivedModulePullbackIsoEtale B S hS f hf).app E)).isIso_hom
+  exact @IsIso.of_isIso_comp_right _ _ _ _ _ _
+    ((push f).map ((smallEtaleDerivedModulePullbackIsoEtale B S hS f hf).hom.app E)) this h
+
+/-- The counit of `Lf^* ⊣ Rf_*` is an isomorphism followed by the counit of `(f^*)_D ⊣ Rf_*`. -/
+theorem isIso_pullPushAdj_counit_app {Y X : AlgebraicSpaces B S hS} (f : Y ⟶ X)
+    (hf : IsEtale B S hS f.hom) (F : DerivedCategory (Modules.{u, u} B S hS Y.1 Y.2))
+    (h : IsIso ((etaleDerivedModuleAdjunction B S hS f hf).counit.app F)) :
+    IsIso ((pullPushAdj f).counit.app F) := by
+  have e : (etaleDerivedModuleAdjunction B S hS f hf).counit.app F =
+      (smallEtaleDerivedModulePullbackIsoEtale B S hS f hf).inv.app ((push f).obj F) ≫
+        (pullPushAdj f).counit.app F := rfl
+  rw [e] at h
+  have : IsIso ((smallEtaleDerivedModulePullbackIsoEtale B S hS f hf).inv.app ((push f).obj F)) :=
+    ((smallEtaleDerivedModulePullbackIsoEtale B S hS f hf).app ((push f).obj F)).isIso_inv
+  exact @IsIso.of_isIso_comp_left _ _ _ _ _
+    ((smallEtaleDerivedModulePullbackIsoEtale B S hS f hf).inv.app ((push f).obj F)) _ this h
+
+end LemmaA6
+
+section LemmaA6Main
+
+attribute [local instance] etaleModulePullback_additive preservesFiniteLimits_etaleModulePullback
+  preservesFiniteColimits_etaleModulePullback
+
+open CategoryTheory.Triangulated
+
+variable (h08FA : Tag08FAInput B S hS) (h08F4 : Tag08F4Input B S hS) (h0AFJ : Tag0AFJInput B S hS)
+  (hpb : PullbackSupportInput B S hS)
+
+/-- The unit of the restricted adjunction `Lj^* ⊣ Rj_*` is the unit of `Lj^* ⊣ Rj_*`. -/
+theorem pullPushZAdj_unit_app {U X : AlgebraicSpaces B S hS} [(qcohDerived U).IsTriangulated]
+    [(qcohDerived X).IsTriangulated]
+    [∀ T, ObjectProperty.IsTriangulated (CohomologySupportedOn B S hS U.1 U.2 T)]
+    [∀ T, ObjectProperty.IsTriangulated (CohomologySupportedOn B S hS X.1 X.2 T)]
+    (j : U ⟶ X) (W : Set (points B S hS X.1)) (hjqc : IsQuasiCompact B S hS j.hom)
+    (hjqs : IsQuasiSeparated B S hS j.hom) (hW : IsClosed W) (E : DqcZ X W) :
+    (ιZ X W).map ((pullPushZAdj h08FA h08F4 h0AFJ hpb j W hjqc hjqs hW).unit.app E) =
+      (pullPushAdj j).unit.app ((ιZ X W).obj E) := by
+  have h := Adjunction.map_restrictFullyFaithful_unit_app (pullPushAdj j) (fullyFaithfulιZ X W)
+    (fullyFaithfulιZ U _)
+    (liftZCompιZ (pull j) (fun E => h08F4 j E.obj.obj E.obj.property)
+      (fun E => hpb j E.obj.obj E.property)).symm
+    (liftZCompιZ (push j) (fun E => h08FA j hjqc hjqs _ E.obj.property)
+      (fun E => push_supported h0AFJ W j hW E.property)).symm E
+  refine h.trans ?_
+  erw [CategoryTheory.Functor.map_id, Category.id_comp]
+  exact Category.comp_id _
+
+/-- The counit of the restricted adjunction `Lj^* ⊣ Rj_*` is the counit of `Lj^* ⊣ Rj_*`. -/
+theorem pullPushZAdj_counit_app {U X : AlgebraicSpaces B S hS} [(qcohDerived U).IsTriangulated]
+    [(qcohDerived X).IsTriangulated]
+    [∀ T, ObjectProperty.IsTriangulated (CohomologySupportedOn B S hS U.1 U.2 T)]
+    [∀ T, ObjectProperty.IsTriangulated (CohomologySupportedOn B S hS X.1 X.2 T)]
+    (j : U ⟶ X) (W : Set (points B S hS X.1)) (hjqc : IsQuasiCompact B S hS j.hom)
+    (hjqs : IsQuasiSeparated B S hS j.hom) (hW : IsClosed W)
+    (F : DqcZ U (pointsMap B S hS U.1 j.hom ⁻¹' W)) :
+    (ιZ U _).map ((pullPushZAdj h08FA h08F4 h0AFJ hpb j W hjqc hjqs hW).counit.app F) =
+      (pullPushAdj j).counit.app ((ιZ U _).obj F) := by
+  have h := Adjunction.map_restrictFullyFaithful_counit_app (pullPushAdj j) (fullyFaithfulιZ X W)
+    (fullyFaithfulιZ U _)
+    (liftZCompιZ (pull j) (fun E => h08F4 j E.obj.obj E.obj.property)
+      (fun E => hpb j E.obj.obj E.property)).symm
+    (liftZCompιZ (push j) (fun E => h08FA j hjqc hjqs _ E.obj.property)
+      (fun E => push_supported h0AFJ W j hW E.property)).symm F
+  refine h.trans ?_
+  erw [CategoryTheory.Functor.map_id, Category.id_comp]
+  exact Category.id_comp _
+
+end LemmaA6Main
+
+section LemmaA6Statement
+
+attribute [local instance] etaleModulePullback_additive preservesFiniteLimits_etaleModulePullback
+  preservesFiniteColimits_etaleModulePullback
+
+open CategoryTheory.Triangulated
+
+variable {X : AlgebraicSpaces B S hS} {V : (BigFppfOver B S hS)ᵒᵖ ⥤ Type u}
+  {Uo : Subfunctor X.1} {fV : V ⟶ X.1}
+
+/-- The étale morphism of an elementary distinguished square of quasi-compact quasi-separated
+spaces is quasi-compact (Stacks 073B (1)). -/
+theorem isQuasiCompact_edsEtaleMap (h073B : Tag073BInput B S hS)
+    (hsq : IsElementaryDistinguishedSquare B S hS X.2 Uo fV) (hZ : B.Contains (⊤_ Scheme.{u}))
+    (hXqs : IsAbsolutelyQuasiSeparated B S hS hZ X.1) (hVqc : IsQuasiCompactSpace B S hS V) :
+    IsQuasiCompact B S hS (edsEtaleMap hsq).hom :=
+  h073B hZ X.2 hXqs hVqc (edsEtaleMap hsq).hom
+
+/-- The étale morphism of an elementary distinguished square with quasi-separated source is
+quasi-separated (Stacks 073B (2)). -/
+theorem isQuasiSeparated_edsEtaleMap (h073B2 : Tag073BTwoInput B S hS)
+    (hsq : IsElementaryDistinguishedSquare B S hS X.2 Uo fV) (hZ : B.Contains (⊤_ Scheme.{u}))
+    (hVqs : IsAbsolutelyQuasiSeparated B S hS hZ V) :
+    IsQuasiSeparated B S hS (edsEtaleMap hsq).hom :=
+  h073B2 hZ hsq.isAlgebraicSpace hVqs (edsEtaleMap hsq).hom
+
+variable (h08FA : Tag08FAInput B S hS) (h08F4 : Tag08F4Input B S hS) (h0AFJ : Tag0AFJInput B S hS)
+  (hpb : PullbackSupportInput B S hS) (h08GGu : Tag08GGUnitInput B S hS)
+  (h08GGc : Tag08GGCounitInput B S hS) (h073B : Tag073BInput B S hS)
+  (h073B2 : Tag073BTwoInput B S hS)
+  (hsq : IsElementaryDistinguishedSquare B S hS X.2 Uo fV)
+  [(qcohDerived X).IsTriangulated] [(qcohDerived (edsEtaleSpace hsq)).IsTriangulated]
+  [∀ T, ObjectProperty.IsTriangulated (CohomologySupportedOn B S hS X.1 X.2 T)]
+  [∀ T, ObjectProperty.IsTriangulated
+    (CohomologySupportedOn B S hS (edsEtaleSpace hsq).1 (edsEtaleSpace hsq).2 T)]
+  (hZ : B.Contains (⊤_ Scheme.{u})) (hXqs : IsAbsolutelyQuasiSeparated B S hS hZ X.1)
+  (hVqc : IsQuasiCompactSpace B S hS V) (hVqs : IsAbsolutelyQuasiSeparated B S hS hZ V)
+  (W : Set (points B S hS X.1)) (hW : IsClosed W)
+
+/-- The preimage `|f|⁻¹ W ⊆ |V|` of `W ⊆ |X|` under the étale morphism of the square. -/
+abbrev edsW (W : Set (points B S hS X.1)) : Set (points B S hS (edsEtaleSpace hsq).1) :=
+  pointsMap B S hS (edsEtaleSpace hsq).1 (edsEtaleMap hsq).hom ⁻¹' W
+
+/-- The restricted adjunction `Lf^* ⊣ Rf_*` between `D_{qc,W}(X)` and `D_{qc,|f|⁻¹ W}(V)`, for the
+étale morphism `f : V ⟶ X` of an elementary distinguished square. -/
+abbrev edsAdj :=
+  pullPushZAdj h08FA h08F4 h0AFJ hpb (edsEtaleMap hsq) W
+    (isQuasiCompact_edsEtaleMap h073B hsq hZ hXqs hVqc)
+    (isQuasiSeparated_edsEtaleMap h073B2 hsq hZ hVqs) hW
+
+include h08GGu h08GGc in
+/-- Lemma A.6 in elementary form: the unit and counit of the restricted adjunction
+`Lf^* ⊣ Rf_*` are invertible, and both functors preserve `D^{≤ n}` and `D^{≥ n}` of the standard
+`t`-structures.  `lemma_A_6` packages it. -/
+theorem lemma_A_6_aux (hWZ : W ⊆ (Set.range (pointsMap B S hS Uo.toFunctor Uo.ι))ᶜ) :
+    IsIso (edsAdj h08FA h08F4 h0AFJ hpb h073B h073B2 hsq hZ hXqs hVqc hVqs W hW).unit ∧
+      IsIso (edsAdj h08FA h08F4 h0AFJ hpb h073B h073B2 hsq hZ hXqs hVqc hVqs W hW).counit ∧
+      (∀ (E : DqcZ X W) (n : ℤ), ((standardTStructure X W).IsLE E n →
+        (standardTStructure (edsEtaleSpace hsq) (edsW hsq W)).IsLE
+          ((pullZ h08F4 hpb (edsEtaleMap hsq) W).obj E) n) ∧
+        ((standardTStructure X W).IsGE E n →
+        (standardTStructure (edsEtaleSpace hsq) (edsW hsq W)).IsGE
+          ((pullZ h08F4 hpb (edsEtaleMap hsq) W).obj E) n)) ∧
+      ∀ (F : DqcZ (edsEtaleSpace hsq) (edsW hsq W)) (n : ℤ),
+        ((standardTStructure (edsEtaleSpace hsq) (edsW hsq W)).IsLE F n →
+          (standardTStructure X W).IsLE ((pushZ h08FA h0AFJ (edsEtaleMap hsq) W
+            (isQuasiCompact_edsEtaleMap h073B hsq hZ hXqs hVqc)
+            (isQuasiSeparated_edsEtaleMap h073B2 hsq hZ hVqs) hW).obj F) n) ∧
+        ((standardTStructure (edsEtaleSpace hsq) (edsW hsq W)).IsGE F n →
+          (standardTStructure X W).IsGE ((pushZ h08FA h0AFJ (edsEtaleMap hsq) W
+            (isQuasiCompact_edsEtaleMap h073B hsq hZ hXqs hVqc)
+            (isQuasiSeparated_edsEtaleMap h073B2 hsq hZ hVqs) hW).obj F) n) := by
+  let f := edsEtaleMap hsq
+  have hfqc := isQuasiCompact_edsEtaleMap h073B hsq hZ hXqs hVqc
+  have hfqs := isQuasiSeparated_edsEtaleMap h073B2 hsq hZ hVqs
+  let adj := edsAdj h08FA h08F4 h0AFJ hpb h073B h073B2 hsq hZ hXqs hVqc hVqs W hW
+  have hét := isEtale_edsEtaleMap hsq
+  -- the unit and the counit are invertible (Stacks 08GG (1)(a), (2)(b))
+  have hunit : ∀ E, IsIso (adj.unit.app E) := fun E => by
+    have h₁ : IsIso ((etaleDerivedModuleAdjunction B S hS f hét).unit.app E.obj.obj) :=
+      h08GGu hsq (etaleDerivedModuleAdjunction B S hS f hét) E.obj.obj
+        (fun i => (E.property i).trans hWZ)
+    have h₂ := isIso_pullPushAdj_unit_app f hét E.obj.obj h₁
+    have h₃ := pullPushZAdj_unit_app h08FA h08F4 h0AFJ hpb f W hfqc hfqs hW E
+    have : IsIso ((ιZ X W).map (adj.unit.app E)) := by
+      rw [h₃]; exact h₂
+    exact isIso_of_fully_faithful (ιZ X W) _
+  have hcounit : ∀ F, IsIso (adj.counit.app F) := fun F => by
+    have h₁ : IsIso ((etaleDerivedModuleAdjunction B S hS f hét).counit.app F.obj.obj) :=
+      h08GGc hsq (etaleDerivedModuleAdjunction B S hS f hét) F.obj.obj
+        (fun i => (F.property i).trans (Set.preimage_mono hWZ))
+    have h₂ := isIso_pullPushAdj_counit_app f hét F.obj.obj h₁
+    have h₃ := pullPushZAdj_counit_app h08FA h08F4 h0AFJ hpb f W hfqc hfqs hW F
+    have : IsIso ((ιZ _ _).map (adj.counit.app F)) := by
+      rw [h₃]; exact h₂
+    exact isIso_of_fully_faithful (ιZ _ _) _
+  have : IsIso adj.unit := NatIso.isIso_of_isIso_app _
+  have : IsIso adj.counit := NatIso.isIso_of_isIso_app _
+  -- `Lf^*` is `t`-exact: `f` is étale
+  have hle : ∀ (E : DqcZ X W) (n : ℤ), (standardTStructure X W).IsLE E n →
+      (standardTStructure (edsEtaleSpace hsq) (edsW hsq W)).IsLE ((pullZ h08F4 hpb f W).obj E) n :=
+    fun E n hE => by
+      rw [standardTStructure_isLE_iff, DerivedCategory.isLE_iff] at hE ⊢
+      exact fun i hi => isZero_homology_pull_of_isEtale f hét _ i (hE i hi)
+  have hge : ∀ (E : DqcZ X W) (n : ℤ), (standardTStructure X W).IsGE E n →
+      (standardTStructure (edsEtaleSpace hsq) (edsW hsq W)).IsGE ((pullZ h08F4 hpb f W).obj E) n :=
+    fun E n hE => by
+      rw [standardTStructure_isGE_iff, DerivedCategory.isGE_iff] at hE ⊢
+      exact fun i hi => isZero_homology_pull_of_isEtale f hét _ i (hE i hi)
+  -- `Rf_*` is `t`-exact: it is an inverse of `Lf^*`
+  have : (pullZ h08F4 hpb f W).Additive := Functor.IsTriangulated.instAdditive _
+  have : (pushZ h08FA h0AFJ f W hfqc hfqs hW).Additive := Functor.IsTriangulated.instAdditive _
+  have hG := isLE_isGE_rightAdjoint_of_equivalence _ _ adj hle hge
+  exact ⟨inferInstance, inferInstance, fun E n => ⟨hle E n, hge E n⟩, hG⟩
+
+-- The elaboration of the `t`-exactness goals is slow (large instance terms).
+set_option maxHeartbeats 400000 in
+include h08GGu h08GGc in
+/-- **Lemma A.6** (`lem:etale_nbhd_preferred_class_equivalences`), clause (1), over algebraic
+spaces.  Let `(U ⊆ X, f : V ⟶ X)` be an elementary distinguished square (Stacks 08GM) with `X`
+quasi-separated and `V` quasi-compact quasi-separated, `Z = |X| ∖ |U|`, and `W ⊆ Z` closed.  Then
+the restrictions of `Lf^*` and `Rf_*` are inverse equivalences between `D_{qc,W}(X)` and
+`D_{qc,|f|⁻¹ W}(V)` (the unit and counit of the restricted adjunction are invertible, Stacks
+08GG (1)(a), (2)(b)), and both are `t`-exact for the standard `t`-structures
+(`Functor.TExact`): `Lf^*` because `f` is étale, `Rf_*` because it is an inverse of a `t`-exact
+equivalence.
+
+GL26 states the lemma for `W = Z`; it is applied (LP26, proof of Proposition 5.8) to
+`W = T ∩ S ⊆ Z`, which is the generality here.  GL26's hypothesis "of quasi-compact
+quasi-separated algebraic spaces" is used in the form: `X` quasi-separated, `V` quasi-compact and
+quasi-separated (so that `f` is quasi-compact and quasi-separated, Stacks 073B, and `Rf_*`
+preserves `D_qc`). -/
+theorem lemma_A_6 (hWZ : W ⊆ (Set.range (pointsMap B S hS Uo.toFunctor Uo.ι))ᶜ) :
+    IsIso (edsAdj h08FA h08F4 h0AFJ hpb h073B h073B2 hsq hZ hXqs hVqc hVqs W hW).unit ∧
+      IsIso (edsAdj h08FA h08F4 h0AFJ hpb h073B h073B2 hsq hZ hXqs hVqc hVqs W hW).counit ∧
+      (pullZ h08F4 hpb (edsEtaleMap hsq) W).TExact (standardTStructure X W)
+        (standardTStructure (edsEtaleSpace hsq) (edsW hsq W)) ∧
+      (pushZ h08FA h0AFJ (edsEtaleMap hsq) W (isQuasiCompact_edsEtaleMap h073B hsq hZ hXqs hVqc)
+        (isQuasiSeparated_edsEtaleMap h073B2 hsq hZ hVqs) hW).TExact
+        (standardTStructure (edsEtaleSpace hsq) (edsW hsq W)) (standardTStructure X W) := by
+  have h := lemma_A_6_aux h08FA h08F4 h0AFJ hpb h08GGu h08GGc h073B h073B2 hsq hZ hXqs hVqc hVqs
+    W hW hWZ
+  have hL := h.2.2.1
+  have hR := h.2.2.2
+  refine ⟨h.1, h.2.1, ⟨?_, ?_⟩, ⟨?_, ?_⟩⟩
+  · exact Functor.RightTExact.mk _ _ _ fun E _ => (hL E 0).1 inferInstance
+  · exact Functor.LeftTExact.mk _ _ _ fun E _ => (hL E 0).2 inferInstance
+  · exact Functor.RightTExact.mk _ _ _ fun F _ => (hR F 0).1 inferInstance
+  · exact Functor.LeftTExact.mk _ _ _ fun F _ => (hR F 0).2 inferInstance
+
+-- The elaboration of the `t`-exactness goals is slow (large instance terms).
+set_option maxHeartbeats 400000 in
+include h08GGu h08GGc in
+/-- **Lemma A.6** (`lem:etale_nbhd_preferred_class_equivalences`), clause (2): the equivalence of
+`lemma_A_6` restricts to the bounded objects `D^b_{qc,W}(X)` and `D^b_{qc,|f|⁻¹ W}(V)` (bounded
+for the standard `t`-structures): an object `E` of `D_{qc,W}(X)` is bounded iff `Lf^* E` is, and
+`Rf_*` sends bounded objects to bounded objects. -/
+theorem lemma_A_6_bounded (hWZ : W ⊆ (Set.range (pointsMap B S hS Uo.toFunctor Uo.ι))ᶜ) :
+    (∀ E : DqcZ X W, (∃ a b : ℤ, (standardTStructure X W).IsGE E a ∧
+        (standardTStructure X W).IsLE E b) ↔
+      ∃ a b : ℤ, (standardTStructure (edsEtaleSpace hsq) (edsW hsq W)).IsGE
+          ((pullZ h08F4 hpb (edsEtaleMap hsq) W).obj E) a ∧
+        (standardTStructure (edsEtaleSpace hsq) (edsW hsq W)).IsLE
+          ((pullZ h08F4 hpb (edsEtaleMap hsq) W).obj E) b) ∧
+      ∀ F : DqcZ (edsEtaleSpace hsq) (edsW hsq W),
+        (∃ a b : ℤ, (standardTStructure (edsEtaleSpace hsq) (edsW hsq W)).IsGE F a ∧
+          (standardTStructure (edsEtaleSpace hsq) (edsW hsq W)).IsLE F b) →
+        ∃ a b : ℤ, (standardTStructure X W).IsGE ((pushZ h08FA h0AFJ (edsEtaleMap hsq) W
+            (isQuasiCompact_edsEtaleMap h073B hsq hZ hXqs hVqc)
+            (isQuasiSeparated_edsEtaleMap h073B2 hsq hZ hVqs) hW).obj F) a ∧
+          (standardTStructure X W).IsLE ((pushZ h08FA h0AFJ (edsEtaleMap hsq) W
+            (isQuasiCompact_edsEtaleMap h073B hsq hZ hXqs hVqc)
+            (isQuasiSeparated_edsEtaleMap h073B2 hsq hZ hVqs) hW).obj F) b := by
+  have h := lemma_A_6_aux h08FA h08F4 h0AFJ hpb h08GGu h08GGc h073B h073B2 hsq hZ hXqs hVqc hVqs
+    W hW hWZ
+  have hu := h.1
+  have hL := h.2.2.1
+  have hR := h.2.2.2
+  have hpushBd : ∀ F : DqcZ (edsEtaleSpace hsq) (edsW hsq W),
+      (∃ a b : ℤ, (standardTStructure (edsEtaleSpace hsq) (edsW hsq W)).IsGE F a ∧
+        (standardTStructure (edsEtaleSpace hsq) (edsW hsq W)).IsLE F b) →
+      ∃ a b : ℤ, (standardTStructure X W).IsGE ((pushZ h08FA h0AFJ (edsEtaleMap hsq) W
+          (isQuasiCompact_edsEtaleMap h073B hsq hZ hXqs hVqc)
+          (isQuasiSeparated_edsEtaleMap h073B2 hsq hZ hVqs) hW).obj F) a ∧
+        (standardTStructure X W).IsLE ((pushZ h08FA h0AFJ (edsEtaleMap hsq) W
+          (isQuasiCompact_edsEtaleMap h073B hsq hZ hXqs hVqc)
+          (isQuasiSeparated_edsEtaleMap h073B2 hsq hZ hVqs) hW).obj F) b :=
+    fun F ⟨a, b, ha, hb⟩ => ⟨a, b, (hR F a).2 ha, (hR F b).1 hb⟩
+  refine ⟨fun E => ⟨fun ⟨a, b, ha, hb⟩ => ⟨a, b, (hL E a).2 ha, (hL E b).1 hb⟩,
+    fun h => ?_⟩, hpushBd⟩
+  obtain ⟨a, b, ha, hb⟩ := hpushBd _ h
+  have e := @asIso _ _ _ _
+    ((edsAdj h08FA h08F4 h0AFJ hpb h073B h073B2 hsq hZ hXqs hVqc hVqs W hW).unit.app E)
+    (@NatIso.isIso_app_of_isIso _ _ _ _ _ _ _ hu E)
+  have ha' : (standardTStructure X W).IsGE (((pullZ h08F4 hpb (edsEtaleMap hsq) W ⋙
+      pushZ h08FA h0AFJ (edsEtaleMap hsq) W (isQuasiCompact_edsEtaleMap h073B hsq hZ hXqs hVqc)
+        (isQuasiSeparated_edsEtaleMap h073B2 hsq hZ hVqs) hW)).obj E) a := ha
+  have hb' : (standardTStructure X W).IsLE (((pullZ h08F4 hpb (edsEtaleMap hsq) W ⋙
+      pushZ h08FA h0AFJ (edsEtaleMap hsq) W (isQuasiCompact_edsEtaleMap h073B hsq hZ hXqs hVqc)
+        (isQuasiSeparated_edsEtaleMap h073B2 hsq hZ hVqs) hW)).obj E) b := hb
+  exact ⟨a, b, (standardTStructure X W).isGE_of_iso e.symm a,
+    (standardTStructure X W).isLE_of_iso e.symm b⟩
+
+/-- **Non-vacuity of `lemma_A_6`**: at an affine `X = h_{T₀}` (for instance the base `S` itself
+when `S` is affine), the open subspace `⊤ ⊆ X` and the identity `⊤.ι` form an elementary
+distinguished square (`EDSTopInput`), and every hypothesis of `lemma_A_6` holds for it with
+`W = ∅` (the two pairs of instance arguments from 06UQ and `SupportTriangulatedInput`; `X`
+quasi-separated, `V = ⊤ ≅ X` quasi-compact and quasi-separated). -/
+theorem lemma_A_6_nonVacuity (h06 : Tag06UQInput B S hS)
+    (hsuppT : SupportTriangulatedInput B S hS) (hqs : AffineQuasiSeparatedInput B S hS)
+    (hterm : ContainsTerminalInput.{u}) (hEDS : EDSTopInput B S hS)
+    (T₀ : BigFppfOver B S hS) (hT₀ : IsAffine ((BigFppfOver.toScheme B S hS).obj T₀)) :
+    ∃ hsq : IsElementaryDistinguishedSquare B S hS (representedSpace T₀).2
+        (⊤ : Subfunctor (representedSpace T₀).1) (⊤ : Subfunctor (representedSpace T₀).1).ι,
+      (qcohDerived (representedSpace T₀)).IsTriangulated ∧
+      (qcohDerived (edsEtaleSpace hsq)).IsTriangulated ∧
+      (∀ T, ObjectProperty.IsTriangulated
+        (CohomologySupportedOn B S hS (representedSpace T₀).1 (representedSpace T₀).2 T)) ∧
+      (∀ T, ObjectProperty.IsTriangulated
+        (CohomologySupportedOn B S hS (edsEtaleSpace hsq).1 (edsEtaleSpace hsq).2 T)) ∧
+      IsAbsolutelyQuasiSeparated B S hS (hterm B) (representedSpace T₀).1 ∧
+      IsQuasiCompactSpace B S hS (⊤ : Subfunctor (representedSpace T₀).1).toFunctor ∧
+      IsAbsolutelyQuasiSeparated B S hS (hterm B)
+        (⊤ : Subfunctor (representedSpace T₀).1).toFunctor ∧
+      IsClosed (∅ : Set (points B S hS (representedSpace T₀).1)) ∧
+      (∅ : Set (points B S hS (representedSpace T₀).1)) ⊆
+        (Set.range (pointsMap B S hS _ (⊤ : Subfunctor (representedSpace T₀).1).ι))ᶜ := by
+  obtain ⟨hqc, hqs', -, -⟩ := nonVacuity_affine_univ hqs (hterm B) T₀ hT₀
+  have hsq := hEDS (representedSpace T₀).2 (isOpenSubspace_top (representedSpace T₀).2)
+  have e : (⊤ : Subfunctor (representedSpace T₀).1).toFunctor ≅ (representedSpace T₀).1 :=
+    asIso (⊤ : Subfunctor (representedSpace T₀).1).ι
+  refine ⟨hsq, isTriangulated_qcohDerived h06 _, isTriangulated_qcohDerived h06 _,
+    isTriangulated_support hsuppT _, isTriangulated_support hsuppT _, hqs',
+    IsQuasiCompactSpace.of_iso B S hS hqc e.symm, ?_, isClosed_empty, Set.empty_subset _⟩
+  exact isAbsolutelyQuasiSeparated_of_isQuasiSeparated B S hS (hterm B) hsq.isAlgebraicSpace hqs'
+    (isQuasiSeparated_of_mono' (⊤ : Subfunctor (representedSpace T₀).1).ι)
+
+end LemmaA6Statement
 
 /-! ### Non-vacuity -/
 

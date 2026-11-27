@@ -329,6 +329,7 @@ built, free of `MilnorPatching.Relative`): `Spaces/SmallEtaleDerivedModulePullba
 | `Tag073BTwoInput` | 073B (2) | `AlgebraicGeometry.Space.isQuasiSeparated_of_isAbsolutelyQuasiSeparated_source` | `Spaces/Morphisms/QuasiCompact.lean` |
 | `CompactComplPreimageInput` | (0EMK, 06RV) | `AlgebraicGeometry.Space.isCompact_compl_preimage_of_isQuasiCompact` | `Spaces/Perfect/SupportedAffinePullbackGenerator.lean` |
 | `PerfectPullbackInput` | 08H6 | `AlgebraicGeometry.Space.isPerfect_smallEtaleDerivedModulePullback` | `Spaces/Perfect/DerivedPullbackPerfect.lean` |
+| `EDSTopInput` | 08GM (an example) | `AlgebraicGeometry.Space.isElementaryDistinguishedSquare_top` | `Spaces/ModuleSectionsWithSupport.lean` |
 | `Tag08GGUnitInput` | 08GG (1)(a) | `AlgebraicGeometry.Space.isIso_unit_derivedRestrict_of_cohomologySupportedOn` | `Spaces/Perfect/SupportedOnComplementClauses.lean` |
 | `Tag08GGCounitInput` | 08GG (2)(b) | `AlgebraicGeometry.Space.isIso_counit_derivedPushforward_of_cohomologySupportedOn` | `Spaces/Perfect/SupportedOnComplementClauses.lean` |
 
@@ -573,6 +574,15 @@ def Tag08GGCounitInput : Prop :=
       (pointsMap B S hS (edsEtaleSpace hsq).1 (edsEtaleMap hsq).hom ⁻¹'
         (Set.range (pointsMap B S hS Uo.toFunctor Uo.ι))ᶜ) F),
     IsIso (adjPush.counit.app F)
+
+/-- **An open subspace and the identity form an elementary distinguished square** (Stacks 08GM):
+for `U` an open subspace of `X`, `(U ⊆ X, ⊤.ι : ⊤ ⟶ X)` is an elementary distinguished square.
+AxiomMath: `AlgebraicGeometry.Space.isElementaryDistinguishedSquare_top B S hS hX hU`
+(`Spaces/ModuleSectionsWithSupport.lean`), verbatim.  Used only for non-vacuity. -/
+def EDSTopInput : Prop :=
+  ∀ {X : (BigFppfOver B S hS)ᵒᵖ ⥤ Type u}
+    (hX : IsAlgebraicSpace B S hS X) {U : Subfunctor X} (_hU : IsOpenSubspace B S hS U),
+    IsElementaryDistinguishedSquare B S hS hX U (⊤ : Subfunctor X).ι
 
 end RecollementInputs
 

@@ -281,7 +281,7 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.Stacks.isCompactAb_zero_D
 #print axioms RelativeFM.Spaces.Stacks.lemma_A_9_sumUniverse
 #print axioms RelativeFM.Spaces.Stacks.lemma_A_9_sumUniverse_affine
--- GL26 Lemma A.4 over algebraic spaces (wave 8, `Spaces/LP26/Recollement.lean`)
+-- GL26 Lemmas A.4 and A.6 over algebraic spaces (wave 8, `Spaces/LP26/Recollement.lean`)
 #print axioms RelativeFM.Spaces.LP26.RecollementOfAdjoints.exists_distinguished
 #print axioms RelativeFM.Spaces.LP26.RecollementOfAdjoints.exists_natural_connecting
 #print axioms RelativeFM.Spaces.LP26.RecollementOfAdjoints.Data.toRecollement
@@ -289,3 +289,8 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.LP26.exists_inclZ_of_isZero_pullZ
 #print axioms RelativeFM.Spaces.LP26.lemma_A_4
 #print axioms RelativeFM.Spaces.LP26.lemma_A_4_nonVacuity
+#print axioms RelativeFM.Spaces.LP26.isLE_isGE_rightAdjoint_of_equivalence
+#print axioms RelativeFM.Spaces.LP26.lemma_A_6_aux
+#print axioms RelativeFM.Spaces.LP26.lemma_A_6
+#print axioms RelativeFM.Spaces.LP26.lemma_A_6_bounded
+#print axioms RelativeFM.Spaces.LP26.lemma_A_6_nonVacuity
