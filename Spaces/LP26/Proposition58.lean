@@ -58,7 +58,8 @@ proof of LP26 Theorem 1.1 and Setup 4.4) and BNP Lemma 3.7 (weak approximation d
 every `t`-structure in the preferred class).  These are not available for the coproduct
 universe `u` of `D(𝒪_X)` in the tree (`WeakApprox/WeakApproxBounds.lean` has them at the Hom
 universe only, and the glued `t`-structure of a `RelativeWeakApprox.Recollement` is not
-constructed as a `TStructure` there), so this part is left open; nothing is assumed about it.
+constructed as a `TStructure` there).  It is proved in `Spaces/LP26/StandardWA.lean`
+(`proposition_5_8_standard`, wave 9), through the aisles of the glued `t`-structure.
 
 ## Assumptions
 

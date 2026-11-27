@@ -238,7 +238,7 @@ Launched 27 November 2026, 18:53 UTC, after wave 8 closed and its workers were a
 
 | task | model, effort | goal |
 |---|---|---|
-| `wave9/lp26-standard-wa` (cloud, `session_0111iGd6PAyq17qjDSXGxPci`) | Opus, high | the standard W.A. forms of LP26 Prop 5.8 and Cor 1.2 |
+| `wave9/lp26-standard-wa` (cloud, `session_0111iGd6PAyq17qjDSXGxPci`; merged) | Opus, high | done: standard W.A. of LP26 Prop 5.8 and Cor 1.2 over spaces (`Spaces/LP26/StandardWA.lean`), no new input; verified: `lake build Spaces`, default build, audit 283 clean, both statement checks, non-vacuity (empty space, `Spec ℤ`).  `SpacesVerified` form at the end of the wave |
 | `wave9/supported-0gfi` (cloud, `session_0111iGd5ogawHqMD6voe1Nm1`) | Opus, high | supported Stacks 0GFI, so GL26 Lemma A.9's preferred class holds for every support |
 | `wave9/lp26-noetherian-coherence` (cloud, after the first) | Opus, high | Cor 1.2's coherence clause for Noetherian `X` (CHNS Ex. 10.1.2, proved here) |
 

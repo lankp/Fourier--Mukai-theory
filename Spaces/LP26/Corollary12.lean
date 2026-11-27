@@ -51,11 +51,9 @@ satisfy W.A. (`P(W₁)`, `satisfiesWA_space`, `satisfiesWA_of_iso`), and Proposi
 
 ## What is not proved
 
-* **Standard W.A.**  LP26's proof gives standard W.A. (Definition 5.3: weak approximation data
-  whose `t`-structure is the standard one), which is stronger than the first claim.  It needs the
-  standard W.A. part of Proposition 5.8, which is open (`Spaces/LP26/Proposition58.lean`), and
-  standard W.A. of affine spaces (the `t`-structure of the affine base case is transported from the
-  module model and is not identified with the standard one).
+* **Standard W.A.** (Definition 5.3: weak approximation data whose `t`-structure is the standard
+  one) is proved in `Spaces/LP26/StandardWA.lean` (`corollary_1_2_standard`, wave 9), from the
+  standard part of Proposition 5.8 and standard W.A. of affine spaces.
 * **Coherence** (third claim: `D_{qc,S}(X)` is coherent when `X` is Noetherian).  LP26 derives it
   from standard W.A., LP26 Lemma 5.9 (`lem:characterize_T-_c`, `Spaces/LP26/Lemma59.lean`) and
   Canonaco–Haesemeyer–Neeman–Stellari, Example 10.1.2; neither standard W.A. nor that example (nor
