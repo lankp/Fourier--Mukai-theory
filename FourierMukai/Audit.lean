@@ -4,6 +4,8 @@ Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import FourierMukai
 import WeakApprox.Theorem11PaperNonVacuity
+import WeakApprox.SmallModel
+import WeakApprox.SumUniversePreferred
 
 /-!
 # Axiom audit
@@ -192,6 +194,21 @@ open RelativeFM
 #print axioms RelativeWeakApprox.PaperHypothesesW6.theorem_1_1_paper
 #print axioms RelativeWeakApprox.PaperHypothesesW6.NonVacuity.theorem_1_1_paper_zero
 #print axioms RelativeWeakApprox.PaperHypothesesW6.NonVacuity.theorem_1_1_paper_affine
+-- Direct sums indexed by a universe `w` independent of the Hom universe (wave 8,
+-- `WeakApprox/SumUniverse*.lean`, `WeakApprox/SmallModel.lean`):
+#print axioms RelativeWeakApprox.SumUniverse.isCompactAb_iff
+#print axioms RelativeWeakApprox.SumUniverse.isCompactAb_functor_obj_iff
+#print axioms RelativeWeakApprox.SumUniverse.coprod_eq
+#print axioms RelativeWeakApprox.SumUniverse.envelope_eq
+#print axioms RelativeWeakApprox.SumUniverse.satisfiesPaperWA_iff
+#print axioms RelativeWeakApprox.SumUniverse.isClassicalGeneratorOnCompacts_iff
+#print axioms RelativeWeakApprox.SumUniverse.exists_triangulatedEquivalence_of_locallySmall
+#print axioms RelativeWeakApprox.SumUniverse.satisfiesPaperWA_iff_of_equivalence
+#print axioms RelativeWeakApprox.SumUniverse.isPaperGenerator_functor_obj_iff
+#print axioms RelativeWeakApprox.SumUniverse.Recollement.transport
+#print axioms RelativeWeakApprox.SumUniverse.inPreferredClass_iff
+#print axioms RelativeWeakApprox.SumUniverse.inPreferredClass_transport
+#print axioms RelativeWeakApprox.PaperHypothesesW6.NonVacuity.zeroSub_satisfiesPaperWA_univ
 -- Stacks 09SR and 09SN are discharged from AxiomMath/Stacks in the `Spaces` library
 -- (not a default target, so not imported here): the `#print axioms` lines for
 -- `RelativeFM.Spaces.Stacks.{tag09SRPaper, tag09SN, theorem_1_1, lemma_2_4, lemma_2_5,

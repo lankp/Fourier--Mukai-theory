@@ -1,6 +1,7 @@
 /- Copyright (c) 2026 Formalization of Lank--Pauwels. Released under Apache 2.0 license as described in the file LICENSE. -/
 import WeakApprox.Theorem11Paper
 import WeakApprox.CompactThick
+import WeakApprox.SumUniverse
 
 /-!
 # Non-vacuity of LP26 Theorem 1.1 with the paper's hypotheses
@@ -14,7 +15,9 @@ its hypotheses can be met.
 * `ZeroSub C`: the full triangulated subcategory of zero objects of a
   triangulated category `C`.  Every triangle in it is distinguished; it has small
   coproducts; it is weakly approximable (`zeroSub_satisfiesPaperWA`), and Stacks
-  09SR holds in it (`zeroSub_tag09SR`).
+  09SR holds in it (`zeroSub_tag09SR`).  For every coproduct universe `w` it has
+  `Type w`-indexed coproducts, `w`-small morphism types, and it is weakly approximable in the
+  sense of `SumUniverse.SatisfiesPaperWA.{w}` (`zeroSub_satisfiesPaperWA_univ`).
 * `trivialRecollement D : Recollement (ZeroSub D) D D`: the recollement with
   `D_Z = 0`, `i_* = ι`, `i^* = i^! = 0` and `j_! = j^* = j_* = 𝟭`, for any
   triangulated `D` (all fields proved).
@@ -39,7 +42,7 @@ open CategoryTheory.Pretriangulated CategoryTheory.Triangulated
 open RelativeWeakApprox RelativeWeakApprox.PaperM2
 open ZeroObject
 
-universe v u
+universe w v u
 
 noncomputable section
 
@@ -89,7 +92,7 @@ lemma zeroSub_distinguished (T : Triangle (ZeroSub C)) : T ∈ distTriang (ZeroS
 
 variable (C)
 
-instance : HasCoproducts.{v} (ZeroSub C) := fun _ =>
+instance : HasCoproducts.{w} (ZeroSub C) := fun _ =>
   { has_colimit := fun F => HasColimit.mk
       { cocone :=
           { pt := ⟨0, isZero_zero C⟩
@@ -127,6 +130,32 @@ def zeroSubPaperData : PaperWeakApproximationData (ZeroSub C) where
         (Coprod.of_mem _ (shiftInterval_self _ (by omega) (by omega))), trivial⟩
 
 theorem zeroSub_satisfiesPaperWA : SatisfiesPaperWA (ZeroSub C) := ⟨zeroSubPaperData C⟩
+
+/-- The morphism types of `ZeroSub C` are subsingletons, hence `w`-small for every `w`. -/
+instance : LocallySmall.{w} (ZeroSub C) where
+  hom_small X Y := by
+    have : Subsingleton (X ⟶ Y) := ⟨fun a b => (zeroSub_isZero X).eq_of_src a b⟩
+    infer_instance
+
+/-- Weak approximation data on `ZeroSub C` for any coproduct universe `w` (generator `0`,
+`A = 1`). -/
+def zeroSubPaperDataUniv : SumUniverse.PaperWeakApproximationData.{w} (ZeroSub C) where
+  G := ⟨0, isZero_zero C⟩
+  t := zeroSubTStructure C
+  A := 1
+  A_pos := one_pos
+  G_compact := SumUniverse.isCompactAb_of_isZero (zeroSub_isZero _)
+  G_paperGenerates := fun {E} _ => zeroSub_isZero E
+  G_mem_le := trivial
+  hom_vanishing := fun _ _ => (zeroSub_isZero _).eq_of_src _ _
+  exists_triangle F _ :=
+    ⟨⟨0, isZero_zero C⟩, F, 0, 𝟙 F, 0, zeroSub_distinguished _,
+      ObjectProperty.le_retractClosure _ _
+        (SumUniverse.Coprod.of_mem _ (shiftInterval_self _ (by omega) (by omega))), trivial⟩
+
+/-- `ZeroSub C` is weakly approximable for every coproduct universe `w`. -/
+theorem zeroSub_satisfiesPaperWA_univ : SumUniverse.SatisfiesPaperWA.{w} (ZeroSub C) :=
+  ⟨zeroSubPaperDataUniv C⟩
 
 /-- Stacks 09SR holds trivially in `ZeroSub C`. -/
 theorem zeroSub_tag09SR :
@@ -267,5 +296,6 @@ end RelativeWeakApprox.PaperHypothesesW6.NonVacuity
 
 #print axioms RelativeWeakApprox.PaperHypothesesW6.NonVacuity.trivialRecollement
 #print axioms RelativeWeakApprox.PaperHypothesesW6.NonVacuity.zeroSub_satisfiesPaperWA
+#print axioms RelativeWeakApprox.PaperHypothesesW6.NonVacuity.zeroSub_satisfiesPaperWA_univ
 #print axioms RelativeWeakApprox.PaperHypothesesW6.NonVacuity.theorem_1_1_paper_zero
 #print axioms RelativeWeakApprox.PaperHypothesesW6.NonVacuity.theorem_1_1_paper_affine

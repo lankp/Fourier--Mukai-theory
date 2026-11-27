@@ -42,6 +42,10 @@ import WeakApprox.CompactlyGeneratedTStructure
 import WeakApprox.WeakApproxBounds
 import WeakApprox.Theorem11Paper
 import WeakApprox.Theorem11PaperNonVacuity
+import WeakApprox.SumUniverse
+import WeakApprox.SmallModel
+import WeakApprox.SumUniverseTransport
+import WeakApprox.SumUniversePreferred
 
 /-!
 # Weak approximability along recollements
