@@ -4,6 +4,7 @@ import Spaces.AxiomMathInputs
 import Spaces.NonVacuity
 import Spaces.Statements
 import Spaces.Supported.CompactGeneration
+import Spaces.BaseChange.Cube
 
 /-!
 # Axiom audit of the algebraic-space layer
@@ -153,3 +154,27 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.Supported.nonVacuity_base
 #print axioms RelativeFM.Spaces.Supported.isAffine_terminal
 #print axioms RelativeFM.Spaces.Supported.lemma_A_9_affine_univ
+-- Base change over algebraic spaces (wave 7, `Spaces/BaseChange/`)
+#print axioms RelativeFM.Spaces.BaseChange.PullPseudofunctor.toPullPushData
+#print axioms RelativeFM.Spaces.BaseChange.canonical_iso_comp_id
+#print axioms RelativeFM.Spaces.BaseChange.pullPushData
+#print axioms RelativeFM.Spaces.BaseChange.lemma_7_12
+#print axioms RelativeFM.Spaces.BaseChange.lemma_7_13
+#print axioms RelativeFM.Spaces.BaseChange.lemma_7_17_theta
+#print axioms RelativeFM.Spaces.BaseChange.lemma_7_17_xi
+#print axioms RelativeFM.Spaces.BaseChange.lemma_7_17_xi_id
+#print axioms RelativeFM.Spaces.BaseChange.CompIsoAgreeInput
+#print axioms RelativeFM.Spaces.BaseChange.FlatBaseChangeInput
+#print axioms RelativeFM.Spaces.BaseChange.Tag08INInput
+#print axioms RelativeFM.Spaces.BaseChange.tensorPullPushData
+#print axioms RelativeFM.Spaces.BaseChange.theta_app_eq_baseChangeMap
+#print axioms RelativeFM.Spaces.BaseChange.flatBaseChangeRightQc_of_isFlat
+#print axioms RelativeFM.Spaces.BaseChange.projMap_app_eq
+#print axioms RelativeFM.Spaces.BaseChange.projectionFormulaQc_of
+#print axioms RelativeFM.Spaces.BaseChange.lemma_6_11
+#print axioms RelativeFM.Spaces.BaseChange.lemma_6_11_of_isFlat
+#print axioms RelativeFM.Spaces.BaseChange.lemma_10_1
+#print axioms RelativeFM.Spaces.BaseChange.lemma_10_1_of
+#print axioms RelativeFM.Spaces.BaseChange.lemma_10_2
+#print axioms RelativeFM.Spaces.BaseChange.lemma_6_11_id
+#print axioms RelativeFM.Spaces.BaseChange.lemma_10_1_id

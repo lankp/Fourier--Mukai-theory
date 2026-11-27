@@ -2,6 +2,7 @@
 import Spaces.Affine.WeakApprox
 import Spaces.Audit
 import Spaces.AxiomMathInputs
+import Spaces.BaseChange.Cube
 import Spaces.Basic
 import Spaces.Categories
 import Spaces.Functors
