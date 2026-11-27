@@ -7,3 +7,7 @@ W.A. and the coherence criterion of CHNS (Example 10.1.2 there): prove what that
 (`Spaces/LP26/Lemma59.lean`).  Files: `Spaces/LP26/Coherence.lean`.  Commit verified pieces as
 you go.  Seven verification steps; `lake build Spaces`.
 
+
+Note from `wave9/lp26-standard-wa` (merged `cd7eb58`): `exists_paperData_of_gluedBounds_univ`
+together with `tStructureEquivalent_of_paperData` (`Spaces/LP26/StandardWA.lean`) should give
+"the standard `t`-structure is in the preferred class", which this task needs.
