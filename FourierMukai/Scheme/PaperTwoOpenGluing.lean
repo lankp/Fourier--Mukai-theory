@@ -2,15 +2,15 @@
 Copyright (c) 2026 Formalization of Lank--Pauwels.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
-import FourierMukai.Scheme.SchemeGluingReduction
+import FourierMukai.Scheme.WeakApprox
 import FourierMukai.Scheme.SchemeNeemanTransport
 import WeakApprox.PaperMainMinimalM2
 
 /-!
 # Zero-detection gluing for an open--closed derived recollement
 
-This is the `PaperWeakApproximationData` version of
-`SchemeGluingReduction.lean`.  The generator hypothesis is zero detection
+This is the `PaperWeakApproximationData` version of the former
+`SchemeGluingReduction.lean` (deleted in wave 7, `results/OPEN_INPUTS.md` row 7.3).  The generator hypothesis is zero detection
 (`IsPaperGenerator`), never the strictly stronger `IsGenerator`.
 
 The main theorem produces approximation data on the middle category with the
@@ -58,14 +58,6 @@ theorem satisfiesPaperWA_of_satisfiesPaperWAAt {t : TStructure C}
     (h : SatisfiesPaperWAAt C t) : SatisfiesPaperWA C := by
   obtain ⟨W, _⟩ := h
   exact ⟨W⟩
-
-/-- The older, stronger formulation still yields the corrected formulation. -/
-theorem satisfiesPaperWAAt_of_satisfiesStandardWA {t : TStructure C}
-    (h : SatisfiesStandardWA C t) : SatisfiesPaperWAAt C t := by
-  obtain ⟨W, hW⟩ := h
-  refine ⟨PaperWeakApproximationData.ofStrong W, ?_⟩
-  change W.t = t
-  exact hW
 
 end PaperAtTStructure
 

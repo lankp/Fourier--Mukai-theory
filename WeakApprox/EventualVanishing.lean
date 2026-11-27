@@ -50,16 +50,6 @@ theorem eventuallyHomZero_self_of_mem_triangEnvelope
     EventuallyHomZero G' G' :=
   eventuallyHomZero_of_mem_triangEnvelope W.eventuallyHomZero_self hG' hG'
 
-/-- Classical generation on compacts for the weak-approximation generator is a
-sufficient input for the reverse envelope membership.  Together with
-`eventuallyHomZero_self_of_mem_triangEnvelope`, this isolates the only extra
-input needed to derive self-Hom vanishing for another compact object without
-assuming that vanishing in advance. -/
-theorem eventuallyHomZero_self_of_isClassicalGeneratorOnCompacts
-    (W : WeakApproximationData C) {G' : C} (hG'compact : IsCompactAb G')
-    (hgen : IsClassicalGeneratorOnCompacts W.G) : EventuallyHomZero G' G' :=
-  eventuallyHomZero_self_of_mem_triangEnvelope W (hgen G' hG'compact)
-
 end WeakApproximationData
 
 section Closure

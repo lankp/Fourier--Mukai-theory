@@ -15,9 +15,10 @@ The literal regular-generator target is false for arbitrary rings.
 Neeman and Lank--Pauwels use zero detection (`IsPaperGenerator`). Any nonzero
 class in `Ext^1(M,N)` gives a nonzero ghost for the regular module. For the
 integers, an explicit two-term projective resolution of `ZMod 2` produces such a
-class. Consequently `not_isGenerator_ringObject_int`,
-`no_weakApproximationData_ringObject_int`, and
-`not_regularGeneratorNeemanTarget_int` hold. This is not a counterexample to
+class. Consequently `not_isGenerator_ringObject_int` holds (the consequences
+`no_weakApproximationData_ringObject_int` and `not_regularGeneratorNeemanTarget_int`
+were deleted in wave 7, superseded by `VacuityF2.isEmpty_weakApproximationData_int`,
+`Scheme/RefuteIntGenerator.lean`). This is not a counterexample to
 Neeman's theorem; it is a counterexample to the stronger repository rendering
 with the regular module as the separating generator.
 -/
@@ -304,47 +305,13 @@ lemma not_isGenerator_ringObject_int : ¬ IsGenerator (ringObject ℤ) := by
   intro h
   exact not_isGenerator_of_isGhostFromShifts zmodTwo_isGhostFromShifts_ringObject h
 
-lemma no_weakApproximationData_ringObject_int
-    (W : WeakApproximationData (AffineD ℤ)) (hG : W.G = ringObject ℤ) : False :=
-  not_isGenerator_ringObject_int (hG ▸ W.G_generates)
-
 end Ghost
-
-section Assembly
-
-universe u
-
-noncomputable section
-
-attribute [local instance] HasDerivedCategory.standard
-
-/-- The exact regular-generator affine Neeman target using this repository's
-`WeakApproximationData`: standard `t`, preferred aisle, compact/perfect, and
-`G = A[0]`. -/
-def RegularGeneratorNeemanTarget (A : Type u) [CommRing A] : Prop :=
-  ∃ W : WeakApproximationData (AffineD A),
-    W.t = AffineD.standardTStructure A ∧ W.G = ringObject A ∧
-    (∀ X : AffineD A, IsCompactAb X ↔ Perf A X) ∧
-    (AffineD.standardTStructure A).le 0 = Coprod (shiftTail (ringObject A) 0)
-
-/-- This full target is false for the integers. The obstruction is exclusively
-the repository's morphism-separating generation field, not the preferred aisle
-identity or the mathematical compact-generation theorem. -/
-lemma not_regularGeneratorNeemanTarget_int : ¬ RegularGeneratorNeemanTarget ℤ := by
-  rintro ⟨W, -, hG, -, -⟩
-  exact no_weakApproximationData_ringObject_int W hG
-
-end
-
-end Assembly
 
 #print axioms zmodTwoProjectiveResolution
 #print axioms zmodTwoExtOne
 #print axioms zmodTwoExtOne_ne_zero
 #print axioms isGhostFromShifts_ringObject_of_ext_ne_zero
 #print axioms not_isGenerator_ringObject_int
-#print axioms no_weakApproximationData_ringObject_int
-#print axioms not_regularGeneratorNeemanTarget_int
 
 end
 

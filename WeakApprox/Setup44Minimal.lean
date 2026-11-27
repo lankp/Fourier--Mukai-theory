@@ -63,13 +63,6 @@ def WeakApproximationData.monoBound (W : WeakApproximationData C) {A' : ℤ}
       lemma31_2_mono W.G (a := -W.A) (b := W.A) (a' := -A') (b' := A')
         (by omega) hA E hE, hD⟩
 
-@[simp] lemma WeakApproximationData.monoBound_G (W : WeakApproximationData C)
-    {A' : ℤ} (hA : W.A ≤ A') : (W.monoBound hA).G = W.G := rfl
-@[simp] lemma WeakApproximationData.monoBound_t (W : WeakApproximationData C)
-    {A' : ℤ} (hA : W.A ≤ A') : (W.monoBound hA).t = W.t := rfl
-@[simp] lemma WeakApproximationData.monoBound_A (W : WeakApproximationData C)
-    {A' : ℤ} (hA : W.A ≤ A') : (W.monoBound hA).A = A' := rfl
-
 end BoundMonotonicity
 
 section Setup

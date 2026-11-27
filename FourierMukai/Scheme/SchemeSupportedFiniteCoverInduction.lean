@@ -68,7 +68,7 @@ structure SupportedOpenCoverInductionData (Q : ∀ {X : Scheme.{u}}, Set X → P
     Q (e.hom.homeomorph ⁻¹' Z) → Q Z
   /-- Supported excision: a closed support contained in an open can be
   computed on that open.  This is the geometric input explicitly singled out
-  in `SchemeGluingReduction.lean`. -/
+  in the former `SchemeGluingReduction.lean`. -/
   excision : ∀ {X : Scheme.{u}} (U : X.Opens) (Z : Set X),
     IsClosed Z → Z ⊆ (U : Set X) → Q (openSupport U Z) → Q Z
   /-- Open/closed recollement, with closed part supported on `Z \ V` and open

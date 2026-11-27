@@ -54,19 +54,6 @@ def SatisfiesPaperWA (C : Type u) [Category.{v} C] [Preadditive C]
     [Pretriangulated C] : Prop :=
   Nonempty (PaperWeakApproximationData C)
 
-/-- The old, stronger data forget to the paper's data. -/
-def PaperWeakApproximationData.ofStrong (W : WeakApproximationData C) :
-    PaperWeakApproximationData C where
-  G := W.G
-  t := W.t
-  A := W.A
-  A_pos := W.A_pos
-  G_compact := W.G_compact
-  G_paperGenerates := isPaperGenerator_of_isGenerator W.G_generates
-  G_mem_le := W.G_mem_le
-  hom_vanishing := W.hom_vanishing
-  exists_triangle := W.exists_triangle
-
 /-- Bounds may be enlarged exactly as for the original structure. -/
 def PaperWeakApproximationData.monoBound (W : PaperWeakApproximationData C)
     {A' : ℤ} (hA : W.A ≤ A') : PaperWeakApproximationData C where
@@ -112,11 +99,6 @@ theorem eventuallyHomZero_self_of_mem_triangEnvelope
     (hG' : (ObjectProperty.singleton W.G).triangEnvelope G') :
     EventuallyHomZero G' G' :=
   eventuallyHomZero_of_mem_triangEnvelope W.eventuallyHomZero_self hG' hG'
-
-/-- Consequently the old weak approximability implies the corrected one. -/
-theorem satisfiesPaperWA_of_satisfiesWA : SatisfiesWA C → SatisfiesPaperWA C := by
-  rintro ⟨W⟩
-  exact ⟨PaperWeakApproximationData.ofStrong W⟩
 
 end Basic
 
@@ -175,7 +157,6 @@ end Transport
 
 end RelativeWeakApprox.PaperM2
 
-#print axioms RelativeWeakApprox.PaperM2.PaperWeakApproximationData.ofStrong
 #print axioms RelativeWeakApprox.PaperM2.PaperWeakApproximationData.monoBound
 #print axioms RelativeWeakApprox.PaperM2.PaperWeakApproximationData.eventuallyHomZero_self
 #print axioms RelativeWeakApprox.PaperM2.isPaperGenerator_of_retract

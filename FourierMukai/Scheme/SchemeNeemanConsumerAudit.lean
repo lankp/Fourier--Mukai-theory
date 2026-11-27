@@ -51,20 +51,7 @@ theorem schemeCompactHomZeroAtTop_of_paperWA_of_paper09SR
 
 end LegacyBoundary
 
-/-- Over the integers, the regular generator satisfies the actual paper notion
-and the corresponding weak-approximation package exists, while no legacy
-`WeakApproximationData` with that same generator can exist.  This is a compiled
-non-vacuity and non-reversibility check, not merely a documentation warning. -/
-theorem small_int_paperWA_exists_but_legacy_regular_generator_impossible
-    (H : AffineSpaltensteinInput ℤ) :
-    SatisfiesPaperWA (SmallAffineD ℤ H) ∧
-      ∀ W : WeakApproximationData (SmallAffineD ℤ H),
-        W.G ≠ smallRingObject ℤ H :=
-  ⟨AffineNeemanEndpointM3.smallRegularModule_satisfiesPaperWA ℤ H,
-    NeemanGeneratorM5.Counterexample.IntExample.smallWeakApproximationData_int_G_ne_ringObject H⟩
-
 end RelativeFM.SchemeNeemanConsumerAuditSmww16bpbM6
 
 #print axioms RelativeFM.SchemeNeemanConsumerAuditSmww16bpbM6.compactHomZeroAtTop_of_paperWA_of_paper09SR
 #print axioms RelativeFM.SchemeNeemanConsumerAuditSmww16bpbM6.schemeCompactHomZeroAtTop_of_paperWA_of_paper09SR
-#print axioms RelativeFM.SchemeNeemanConsumerAuditSmww16bpbM6.small_int_paperWA_exists_but_legacy_regular_generator_impossible

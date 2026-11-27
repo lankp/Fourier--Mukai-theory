@@ -19,11 +19,14 @@ The geometric definition of W.A. for an algebraic space also quantifies over
 closed support subsets with quasi-compact complement (and is therefore stated
 only once the Stacks library's `D_qc,S` is available; see `results/archive/WEAK_APPROX.md`).  Algebraic spaces and
 their support categories are not introduced here, so `SatisfiesWA` records only
-the underlying categorical condition.  Likewise, `SatisfiesStandardWA` takes a
-chosen `t`-structure as a parameter; it does not construct the standard
-`t`-structure on a derived category or formalize its preferred equivalence
-class.  For the preferred-class reading, take the parameter to be a member of
-that class.
+the underlying categorical condition.
+
+`SatisfiesWA` uses the `IsGenerator` (morphism-separation) form of
+`WeakApproximationData`, which is false for `D(ℤ)` (`results/OPEN_INPUTS.md` F2,
+`VacuityF2.not_satisfiesWA_int`).  It is kept only for the pinned
+`SetupMainMinimal.theorem_1_1` and that refutation; the paper form is
+`PaperM2.SatisfiesPaperWA`.  `SatisfiesStandardWA` and its consumers were deleted
+in wave 7 (row 7.3).
 -/
 
 @[expose] public section
@@ -46,24 +49,3 @@ def SatisfiesWA (T : Type u) [Category.{v} T] [Preadditive T]
     [HasZeroObject T] [HasShift T ℤ] [∀ (n : ℤ), (shiftFunctor T n).Additive]
     [Pretriangulated T] : Prop :=
   Nonempty (WeakApproximationData T)
-
-/-- **Standard weak approximability relative to a chosen `t`-structure.**
-There is weak approximation data whose underlying `t`-structure is `t`.
-
-The chosen `t` may be the standard `t`-structure or a representative of the
-preferred equivalence class.  This definition does not itself assert either
-property, and it does not encode the geometric support-set quantification from
-Definition 5.3. -/
-def SatisfiesStandardWA (T : Type u) [Category.{v} T] [Preadditive T]
-    [HasZeroObject T] [HasShift T ℤ] [∀ (n : ℤ), (shiftFunctor T n).Additive]
-    [Pretriangulated T] (t : TStructure T) : Prop :=
-  ∃ data : WeakApproximationData T, data.t = t
-
-/-- **Remark 5.4, categorical implication.** Standard weak approximability
-relative to any chosen `t`-structure implies weak approximability. -/
-theorem satisfiesWA_of_satisfiesStandardWA {T : Type u} [Category.{v} T]
-    [Preadditive T] [HasZeroObject T] [HasShift T ℤ]
-    [∀ (n : ℤ), (shiftFunctor T n).Additive] [Pretriangulated T]
-    {t : TStructure T} (h : SatisfiesStandardWA T t) : SatisfiesWA T := by
-  obtain ⟨data, _⟩ := h
-  exact ⟨data⟩
