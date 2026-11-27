@@ -225,7 +225,7 @@ bridge and the preferred class first, then §5, then Corollary 1.2.
 | `wave8/neeman-approximability` (`session_0111iGd8kuVAzNdReRDjVzr4`) | high | the part of Neeman's approximability needed for GL26 Lemma A.9's preferred-class clause over qcqs spaces, proved here |
 | `wave8/lp26-section5` (local subagent, launched 03:07 UTC, LP26 TeX) | high | LP26 Def 5.3, Lemmas 5.5–5.7, 5.9, Prop 5.8 over algebraic spaces |
 | `wave8/lp26-corollary-1-2` (local, after the others) | high | LP26 Corollary 1.2 over qcqs algebraic spaces with support |
-| `wave8/axiommath-verified` (cloud worker) | high | build the full `SpacesVerified` closure in its own container (the orchestrator's is reclaimed when idle), then prove the 17 tagged AxiomMath inputs of wave 7 and the unconditional wave 7 headlines |
+| `wave8/axiommath-verified` (`session_0111iGd8ChkAMsYSB2t9QoLz`) | high | build the full `SpacesVerified` closure in its own container (the orchestrator's is reclaimed when idle), then prove the 17 tagged AxiomMath inputs of wave 7 and the unconditional wave 7 headlines |
 | `wave8/prune-pinned-vacuous` (`session_0111iGd6caNpP2YiJVNQW24x`) | medium | delete the two vacuous pinned endpoints (`IsGenerator` form) and what only they use |
 
 The LP26 TeX is the copy in the orchestrator's session uploads (current unless the maintainer

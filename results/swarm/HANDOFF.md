@@ -37,7 +37,8 @@ and its reflog expired, so it no longer holds the removed manuscripts.
 
 The orchestrator's container is reclaimed when its session is idle (CLAUDE.md, "Robust long
 work"): the AxiomMath / `SpacesVerified` build runs in the cloud worker `wave8/axiommath-verified`;
-the scratchpad's own AxiomMath build is a fallback only.
+the scratchpad's own AxiomMath build was stopped (27 November, 03:15 UTC); its partial build in
+the scratchpad checkout is kept as a fallback.
 
 ## Container set-up after a restart
 
