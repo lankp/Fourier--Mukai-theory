@@ -6,7 +6,7 @@ processes, and that a successor needs, is listed here (CLAUDE.md, "Handoff").  P
 are never committed; they are passed to the successor by session message.  The manuscripts are
 in the repository (`manuscripts/`).
 
-Last updated: 27 November 2026, 18:45 UTC (wave 8 closed).
+Last updated: 27 November 2026, 18:55 UTC (wave 9 launched).
 
 ## Running in the background
 

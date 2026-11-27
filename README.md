@@ -13,7 +13,7 @@ Project](https://github.com/AxiomMath/Stacks) (a pinned Lake dependency); everyt
 else comes from Mathlib or is proved here.  **Order:** LP26 first, with the parts of
 the literature it needs, then GL26.
 
-260 Lean modules, about 60 000 lines, no `sorry`.  Every result depends only on the
+277 Lean modules, about 67 000 lines, no `sorry`.  Every result depends only on the
 axioms `propext`, `Classical.choice`, `Quot.sound`.  **Rule:** no assumptions and no
 unproven parts except the Stacks Project as formalized by AxiomMath.
 
@@ -78,9 +78,9 @@ are shown satisfiable, and the whole project builds.  The statements of the head
 results are pinned, so a weakened statement fails even if every proof compiles:
 
 ```bash
-scripts/check_statements.sh              # 17 results (Mathlib only)
-scripts/check_statements.sh --spaces     # 7 results (algebraic spaces)
-scripts/check_statements.sh --verified   # 5 results (AxiomMath inputs discharged)
+scripts/check_statements.sh              # 15 results (Mathlib only)
+scripts/check_statements.sh --spaces     # 9 results (algebraic spaces)
+scripts/check_statements.sh --verified   # 98 results (AxiomMath inputs discharged)
 ```
 
 Details: [`results/VERIFICATION.md`](results/VERIFICATION.md).
