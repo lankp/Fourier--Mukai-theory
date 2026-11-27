@@ -596,4 +596,69 @@ def SupportEmptyInput : Prop :=
 
 end RecollementInputs
 
+/-! ### Inputs of LP26 Corollary 1.2
+
+Used by `Spaces/LP26/Corollary12.lean` (LP26 Corollary 1.2, `cor:weak_approx_spaces`).
+
+| input | Stacks | AxiomMath declaration | AxiomMath file |
+|---|---|---|---|
+| `Tag09ITInput` | 09IT | `AlgebraicGeometry.Space.qcqs_induction_on_enlargement` | `Spaces/Perfect/InductionPrinciple/EnlargementInduction.lean` |
+| `EDSOfComplSubsetInput` | 08GM (an example) | `AlgebraicGeometry.Space.isElementaryDistinguishedSquare_of_compl_subset` | `Spaces/VanishingAboveTheDimensionInduction.lean` |
+
+(paths relative to `StacksFrontier/AlgebraicGeometry/`, AxiomMath commit `f56a316`.)
+
+Spelling: AxiomMath's abbreviation `IsAffineSpace B S hS V` (`Spaces/Affine.lean`, outside the
+import list) is written out by its body
+`∃ T : BigFppfOver B S hS, IsAffine ((BigFppfOver.toScheme B S hS).obj T) ∧`
+`Nonempty (V ≅ yoneda.obj T)` in `Tag09ITInput`, as in
+`Spaces.Statements.AffineQuasiSeparatedInput`.
+-/
+
+section Corollary12Inputs
+
+/-- **Stacks 09IT** (induction principle by enlarging a quasi-compact open subspace): let `X` be
+a quasi-compact quasi-separated algebraic space and `W ⊆ X` a quasi-compact open subspace.  A
+property `P` of the subfunctors of `X` which holds for `W`, and which for every elementary
+distinguished square `(W₁ ⊆ W₂, f : V ⟶ W₂)` with `W₁`, `W₂` quasi-compact open subspaces of `X`
+containing `W` and `V` affine passes from `W₁` to `W₂`, holds for `X` (that is, for `⊤`).
+AxiomMath: `AlgebraicGeometry.Space.qcqs_induction_on_enlargement B S hS hZ X hXqc hXqs W hWopen
+hWqc P hPW hstep` (`Spaces/Perfect/InductionPrinciple/EnlargementInduction.lean`), verbatim, with
+`IsAffineSpace B S hS V` written out by its body (module section above). -/
+def Tag09ITInput : Prop :=
+  ∀ (hZ : B.Contains (⊤_ Scheme.{u}))
+    (X : AlgebraicSpaces B S hS)
+    (_hXqc : IsQuasiCompactSpace B S hS X.1)
+    (_hXqs : IsAbsolutelyQuasiSeparated B S hS hZ X.1)
+    (W : Subfunctor X.1) (_hWopen : IsOpenSubspace B S hS W)
+    (_hWqc : IsQuasiCompactSpace B S hS W.toFunctor)
+    (P : Subfunctor X.1 → Prop) (_hPW : P W)
+    (_hstep : ∀ (W₁ W₂ : Subfunctor X.1), IsOpenSubspace B S hS W₁ →
+      ∀ (hW₂ : IsOpenSubspace B S hS W₂),
+      IsQuasiCompactSpace B S hS W₁.toFunctor →
+      IsQuasiCompactSpace B S hS W₂.toFunctor →
+      ∀ hle : W₁ ≤ W₂, W ≤ W₁ →
+      ∀ {V : (BigFppfOver B S hS)ᵒᵖ ⥤ Type u} (f : V ⟶ W₂.toFunctor),
+        (∃ T : BigFppfOver B S hS,
+          IsAffine ((BigFppfOver.toScheme B S hS).obj T) ∧ Nonempty (V ≅ yoneda.obj T)) →
+        IsElementaryDistinguishedSquare B S hS hW₂.1
+          (Subfunctor.range (Subfunctor.homOfLe hle)) f →
+        P W₁ → P W₂),
+    P (⊤ : Subfunctor X.1)
+
+/-- **An open subspace and an open immersion covering its complement form an elementary
+distinguished square** (Stacks 08GM; the factorization through the image is Stacks 03IE): if `U`
+is an open subspace of `W` and `g : V ⟶ W` an open immersion from an algebraic space whose
+points contain `|W| ∖ |U|`, then `(U ⊆ W, g)` is an elementary distinguished square.  AxiomMath:
+`AlgebraicGeometry.Space.isElementaryDistinguishedSquare_of_compl_subset B S hS hW U hU hV g hg h`
+(`Spaces/VanishingAboveTheDimensionInduction.lean`), verbatim. -/
+def EDSOfComplSubsetInput : Prop :=
+  ∀ {W V : (BigFppfOver B S hS)ᵒᵖ ⥤ Type u}
+    (hW : IsAlgebraicSpace B S hS W) (U : Subfunctor W) (_hU : IsOpenSubspace B S hS U)
+    (_hV : IsAlgebraicSpace B S hS V) (g : V ⟶ W) (_hg : IsOpenImmersion B S hS g)
+    (_h : (Set.range (pointsMap B S hS U.toFunctor U.ι))ᶜ ⊆
+      Set.range (pointsMap B S hS V g)),
+    IsElementaryDistinguishedSquare B S hS hW U g
+
+end Corollary12Inputs
+
 end RelativeFM.Spaces.LP26

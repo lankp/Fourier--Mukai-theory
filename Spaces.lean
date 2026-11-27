@@ -7,6 +7,7 @@ import Spaces.Basic
 import Spaces.Categories
 import Spaces.Functors
 import Spaces.IntegralTransform
+import Spaces.LP26.Corollary12
 import Spaces.LP26.HomVanishing
 import Spaces.LP26.Inputs
 import Spaces.LP26.Lemma59
