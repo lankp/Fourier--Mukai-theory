@@ -25,6 +25,13 @@ AxiomMath build), so it is separate from the `--spaces` check.
 #check @RelativeFM.SpacesVerified.isFlatId
 #check @RelativeFM.SpacesVerified.affineQuasiSeparated
 #check @RelativeFM.SpacesVerified.setup_hypotheses_satisfiable_unconditional
+#check @RelativeFM.SpacesVerified.tag06Z0Exact
+#check @RelativeFM.SpacesVerified.tag06Z0Qcoh
+#check @RelativeFM.SpacesVerified.tag06Z0
+#check @RelativeFM.SpacesVerified.tag07TY
+#check @RelativeFM.SpacesVerified.tag021R
+#check @RelativeFM.SpacesVerified.lp26_cor_1_2_affine_unconditional
+#check @RelativeFM.SpacesVerified.lp26_cor_1_2_affine_int_unconditional
 #print axioms RelativeFM.SpacesVerified.tag06UQ
 #print axioms RelativeFM.SpacesVerified.tag08F4
 #print axioms RelativeFM.SpacesVerified.tag08F5
@@ -36,3 +43,10 @@ AxiomMath build), so it is separate from the `--spaces` check.
 #print axioms RelativeFM.SpacesVerified.isFlatId
 #print axioms RelativeFM.SpacesVerified.affineQuasiSeparated
 #print axioms RelativeFM.SpacesVerified.setup_hypotheses_satisfiable_unconditional
+#print axioms RelativeFM.SpacesVerified.tag06Z0Exact
+#print axioms RelativeFM.SpacesVerified.tag06Z0Qcoh
+#print axioms RelativeFM.SpacesVerified.tag06Z0
+#print axioms RelativeFM.SpacesVerified.tag07TY
+#print axioms RelativeFM.SpacesVerified.tag021R
+#print axioms RelativeFM.SpacesVerified.lp26_cor_1_2_affine_unconditional
+#print axioms RelativeFM.SpacesVerified.lp26_cor_1_2_affine_int_unconditional
