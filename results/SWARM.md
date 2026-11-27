@@ -234,12 +234,12 @@ The manuscripts are in `manuscripts/` (27 November 2026), so manuscript tasks ne
 
 ## Wave 9 (briefs in `results/swarm/wave9/`): finish LP26
 
-Launched after wave 8 closed.
+Launched 27 November 2026, 18:53 UTC, after wave 8 closed and its workers were archived.
 
 | task | model, effort | goal |
 |---|---|---|
-| `wave9/lp26-standard-wa` (cloud) | Opus, high | the standard W.A. forms of LP26 Prop 5.8 and Cor 1.2 |
-| `wave9/supported-0gfi` (cloud) | Opus, high | supported Stacks 0GFI, so GL26 Lemma A.9's preferred class holds for every support |
+| `wave9/lp26-standard-wa` (cloud, `session_0111iGd6PAyq17qjDSXGxPci`) | Opus, high | the standard W.A. forms of LP26 Prop 5.8 and Cor 1.2 |
+| `wave9/supported-0gfi` (cloud, `session_0111iGd5ogawHqMD6voe1Nm1`) | Opus, high | supported Stacks 0GFI, so GL26 Lemma A.9's preferred class holds for every support |
 | `wave9/lp26-noetherian-coherence` (cloud, after the first) | Opus, high | Cor 1.2's coherence clause for Noetherian `X` (CHNS Ex. 10.1.2, proved here) |
 
 Also on the list for `SpacesVerified`: `LocallySmall.{u}` of AxiomMath's `D(𝒪_X)` (an AxiomMath
