@@ -12,3 +12,5 @@ import Spaces.Stacks.Bridges
 import Spaces.Stacks.Corollaries
 import Spaces.Stacks.Tags
 import Spaces.Statements
+import Spaces.Supported.CompactGeneration
+import Spaces.Supported.Inputs
