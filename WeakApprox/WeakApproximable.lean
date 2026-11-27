@@ -23,8 +23,8 @@ the underlying categorical condition.
 
 `SatisfiesWA` uses the `IsGenerator` (morphism-separation) form of
 `WeakApproximationData`, which is false for `D(ℤ)` (`results/OPEN_INPUTS.md` F2,
-`VacuityF2.not_satisfiesWA_int`).  It is kept only for the pinned
-`SetupMainMinimal.theorem_1_1` and that refutation; the paper form is
+`VacuityF2.not_satisfiesWA_int`).  It is kept only for that refutation
+(`SetupMainMinimal.theorem_1_1`, which used it, was deleted in wave 8); the paper form is
 `PaperM2.SatisfiesPaperWA`.  `SatisfiesStandardWA` and its consumers were deleted
 in wave 7 (row 7.3).
 -/

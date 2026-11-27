@@ -2,37 +2,32 @@
 Copyright (c) 2026 Formalization of Lank--Pauwels.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
-import WeakApprox.Setup44Minimal
-import WeakApprox.TwoStage
+import WeakApprox.Setup44
+import WeakApprox.Setup44Vanishing
+import WeakApprox.Lemma4323
+import WeakApprox.Proposition48
+import WeakApprox.WeakApproximable
 import WeakApprox.EventualVanishing
+import WeakApprox.PLift
+import WeakApprox.Functoriality
+import WeakApprox.Shift
 
 /-!
-# Theorem 1.1 with Stacks 09SR as the only external input
+# `SetupMainMinimal`: the `IsGenerator` form of Setup 4.4 (refuted)
 
-`WeakApprox/Setup44Minimal.lean` reduces Setup 4.4 to the paper's data, with
-condition (3) derived from Stacks 09SR.  This file restates Theorem 1.1 at that
-minimal level: `SetupMainMinimal` is the minimal setup without any vanishing
-hypothesis, and both directions of the equivalence are proved from it plus the
-single uniform hypothesis
+LP26 Setup 4.4 (`setup:standing`) with "compact generator" rendered as
+`IsGenerator` (morphism separation), without the eventual vanishing of `G'`.
 
-  `h09SR : ∀ G, IsGenerator G → IsCompactAb G → IsClassicalGeneratorOnCompacts G`
-
-(Stacks Tag 09SR: for a compact generator of a compactly generated category,
-every compact object lies in the finite thick triangulated envelope).
-
-The two directions use 09SR differently, and both uses are documented:
-
-* forward: 09SR applied to the generator of the given weak approximation data
-  places `G'` in its thick envelope, and `WeakApproximationData.eventuallyHomZero_self`
-  transports the vanishing (the argument of the forward direction of the former
-  `SetupMain.theorem_1_1`, deleted in wave 7);
-* reverse: the hypothesis of the equivalence supplies `G'_eventual`, and 09SR
-  for `G'` produces condition (3) inside `Setup44Minimal.toSetup44`, after which
-  the two-stage approximation of `WeakApprox/TwoStage.lean` applies.
-
-Note that `SatisfiesWA D` is *not* used in the reverse direction, and that the
-forward direction does not use `G'_eventual`: neither direction assumes its
-conclusion.
+This file used to prove LP26 Theorem 1.1 (`thm:glueing_weak_approx`) from this
+setup and Stacks 09SR (`SetupMainMinimal.theorem_1_1`, pinned).  That rendering is
+vacuous: no compact object of `D(ℤ)` is `IsGenerator`, so `SetupMainMinimal DZ D DU`
+is empty whenever `D ≃ D(ℤ)` (`RelativeFM.VacuityF2.isEmpty_setupMainMinimal_int`,
+`…_smallInt`; F2 of `results/OPEN_INPUTS.md`).  The theorem, the pinned affine
+corollary `RelativeFM.affine_theorem_1_1_small`, and the `Setup44*` / `TwoStage` /
+Lemma 4.6 / Lemma 3.4 machinery they used were deleted in wave 8 (row 7.3).  The
+structure stays only because the refutations `VacuityF1` and `VacuityF2` state its
+emptiness.  LP26 Theorem 1.1 is `PaperM2.PaperSetupMainMinimal.theorem_1_1` and,
+with the paper's hypotheses, `RelativeFM.Spaces.Stacks.theorem_1_1`.
 -/
 
 @[expose] public section
@@ -58,8 +53,11 @@ variable (DZ : Type uZ) (D : Type uD) (DU : Type uU)
   [CategoryTheory.IsTriangulated DZ] [CategoryTheory.IsTriangulated D]
   [CategoryTheory.IsTriangulated DU]
 
-/-- **Setup 4.4, minimal form, without the vanishing.**  `Setup44Minimal`
-without the eventual-vanishing field, which is one side of Theorem 1.1. -/
+/-- **Setup 4.4** (`setup:standing`), `IsGenerator` form, minimal and without the
+eventual vanishing of `G'`.  Kept only as the object of the refutations
+`RelativeFM.VacuityF1` / `RelativeFM.VacuityF2`: `IsGenerator` (morphism separation)
+is stronger than the paper's zero detection, and this structure is empty whenever
+`D ≃ D(ℤ)`.  The paper's form is `PaperM2.PaperSetupMainMinimal`. -/
 structure SetupMainMinimal where
   /-- The recollement. -/
   R : Recollement DZ D DU
@@ -106,83 +104,4 @@ structure SetupMainMinimal where
 
 end Declaration
 
-namespace SetupMainMinimal
-
-variable {DZ D DU}
-  [Category.{v} DZ] [Category.{v} D] [Category.{v} DU]
-  [Preadditive DZ] [Preadditive D] [Preadditive DU]
-  [HasZeroObject DZ] [HasZeroObject D] [HasZeroObject DU]
-  [HasShift DZ ℤ] [HasShift D ℤ] [HasShift DU ℤ]
-  [∀ (n : ℤ), (shiftFunctor DZ n).Additive]
-  [∀ (n : ℤ), (shiftFunctor D n).Additive]
-  [∀ (n : ℤ), (shiftFunctor DU n).Additive]
-  [Pretriangulated DZ] [Pretriangulated D] [Pretriangulated DU]
-  [CategoryTheory.IsTriangulated DZ] [CategoryTheory.IsTriangulated D]
-  [CategoryTheory.IsTriangulated DU]
-
-variable (S : SetupMainMinimal DZ D DU)
-
-/-- Adjoin the eventual vanishing of `G'` to the minimal setup. -/
-def withEventual (hG' : ∃ N : ℤ, ∀ n : ℤ, N ≤ n → ∀ f : S.G' ⟶ S.G'⟦n⟧, f = 0) :
-    Setup44Minimal DZ D DU where
-  R := S.R
-  tD := S.tD
-  tZ := S.tZ
-  tU := S.tU
-  approxZ := S.approxZ
-  approxU := S.approxU
-  GU := S.GU
-  G' := S.G'
-  G'_compact := S.G'_compact
-  G'_generates := S.G'_generates
-  G'_eventual := hG'
-  m := S.m
-  jStar_G'_mem := S.jStar_G'_mem
-  normalized_biproduct := S.normalized_biproduct
-  tD_compactlyGenerated := S.tD_compactlyGenerated
-  tZ_compactlyGenerated := S.tZ_compactlyGenerated
-  tU_compactlyGenerated := S.tU_compactlyGenerated
-  approxZ_t := S.approxZ_t
-  approxU_t := S.approxU_t
-  approxZ_G := S.approxZ_G
-  approxU_G := S.approxU_G
-
-variable [HasCoproducts.{v} DZ] [HasCoproducts.{v} D] [HasCoproducts.{v} DU]
-
-/-- **Theorem 1.1, forward direction, with 09SR.**  Weak approximability of `D`
-implies eventual vanishing of the positive self-shifts of `G'`.
-
-The argument is the one of the former `SetupMain.theorem_1_1_forward` but with
-`SatisfiesWA D` in place of condition (3): 09SR applied to the generator of the
-data places `G'` in its thick envelope, and the data's own self-vanishing
-transports along the envelope. -/
-theorem theorem_1_1_forward
-    (h09SR : ∀ (G : D), IsGenerator G → IsCompactAb G →
-      IsClassicalGeneratorOnCompacts G)
-    (h : SatisfiesWA D) :
-    ∃ N : ℤ, ∀ n : ℤ, N ≤ n → ∀ f : S.G' ⟶ S.G'⟦n⟧, f = 0 := by
-  obtain ⟨W⟩ := h
-  have hgen : IsClassicalGeneratorOnCompacts W.G :=
-    h09SR W.G W.G_generates W.G_compact
-  have hmem : (ObjectProperty.singleton W.G).triangEnvelope S.G' :=
-    hgen S.G' S.G'_compact
-  exact eventuallyHomZero_self_of_mem_triangEnvelope W hmem
-
-/-- **Theorem 1.1 at the minimal level.**  With `D_Z` and `D_U` weakly
-approximable, `D` is weakly approximable if and only if `Hom(G', G'⟦n⟧) = 0`
-for `n ≫ 0`, from the minimal Setup 4.4 data and Stacks 09SR. -/
-theorem theorem_1_1
-    (h09SR : ∀ (G : D), IsGenerator G → IsCompactAb G →
-      IsClassicalGeneratorOnCompacts G) :
-    SatisfiesWA D ↔ ∃ N : ℤ, ∀ n : ℤ, N ≤ n → ∀ f : S.G' ⟶ S.G'⟦n⟧, f = 0 :=
-  ⟨S.theorem_1_1_forward h09SR,
-    fun h => satisfiesWA_of_setup
-      ((S.withEventual h).toSetup44 (h09SR S.G' S.G'_generates S.G'_compact))⟩
-
-end SetupMainMinimal
-
 end RelativeWeakApprox
-
-#print axioms RelativeWeakApprox.SetupMainMinimal.withEventual
-#print axioms RelativeWeakApprox.SetupMainMinimal.theorem_1_1_forward
-#print axioms RelativeWeakApprox.SetupMainMinimal.theorem_1_1

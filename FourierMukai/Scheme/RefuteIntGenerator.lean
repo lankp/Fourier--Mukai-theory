@@ -47,11 +47,12 @@ This avoids the structure theorem for perfect complexes over `ℤ`.
   approximable in the paper's sense (LP26), so the repository rendering of
   Definition 2.1 is false at `ℤ`;
 * `isEmpty_setupMainMinimal_int : IsEmpty (SetupMainMinimal DZ (AffineD ℤ) DU)`, so
-  the pinned `RelativeWeakApprox.SetupMainMinimal.theorem_1_1` is vacuous whenever
-  the middle category is `AffineD ℤ`.
+  the formerly pinned `RelativeWeakApprox.SetupMainMinimal.theorem_1_1` (deleted in
+  wave 8, `results/OPEN_INPUTS.md` row 7.3) was vacuous whenever the middle category
+  is `AffineD ℤ`.
 
 The same refutation in the small-Hom model `SmallAffineD ℤ H` (hence vacuity of the
-pinned `RelativeFM.affine_theorem_1_1_small` at `ℤ`) is in
+formerly pinned `RelativeFM.affine_theorem_1_1_small` at `ℤ`, deleted in wave 8) is in
 `Scheme/RefuteIntGeneratorSmall.lean`.
 
 Nothing is assumed.  The negated propositions are the tree's own definitions
@@ -404,10 +405,10 @@ variable (DZ : Type uZ) (DU : Type uU)
 
 /-- **F2, corollary.**  `SetupMainMinimal DZ (AffineD ℤ) DU` is empty, whatever the
 end categories: its fields `G'_compact` and `G'_generates` contradict
-`not_isGenerator_of_isCompactAb_int`.  Hence the pinned
+`not_isGenerator_of_isCompactAb_int`.  Hence the formerly pinned
 `RelativeWeakApprox.SetupMainMinimal.theorem_1_1` (and every affine endpoint built
-on it, e.g. the pinned `RelativeFM.affine_theorem_1_1_unconditional` and
-`RelativeFM.StacksGluing.affine_theorem_1_1_stacks07LT`) is vacuous when the middle
+on it, e.g. `RelativeFM.affine_theorem_1_1_unconditional` and
+`RelativeFM.StacksGluing.affine_theorem_1_1_stacks07LT`; all deleted) was vacuous when the middle
 category is `AffineD ℤ`. -/
 theorem isEmpty_setupMainMinimal_int : IsEmpty (SetupMainMinimal DZ (AffineD ℤ) DU) :=
   ⟨fun S => not_isGenerator_of_isCompactAb_int S.G' S.G'_compact S.G'_generates⟩
