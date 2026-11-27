@@ -2,6 +2,8 @@
 import SpacesVerified.Affine
 import SpacesVerified.BaseChange
 import SpacesVerified.Discharge
+import SpacesVerified.LP26
+import SpacesVerified.LP26Inputs
 import SpacesVerified.Statements
 import SpacesVerified.Supported
 
@@ -10,7 +12,8 @@ import SpacesVerified.Supported
 
 Discharges every tagged AxiomMath input of the `Spaces` library by the AxiomMath
 theorem it names (`SpacesVerified/Discharge.lean`, `Statements.lean`, `Affine.lean`,
-`Supported.lean`, `BaseChange.lean`), so that the results over algebraic
+`Supported.lean`, `BaseChange.lean`, `LP26Inputs.lean`;
+consequences in `LP26.lean`), so that the results over algebraic
 spaces hold unconditionally with axioms `propext`, `Classical.choice`, `Quot.sound` only.
 Building it compiles AxiomMath theorem modules beyond `Spaces`' definitions; see README, "Building".
 -/

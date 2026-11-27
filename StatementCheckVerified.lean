@@ -49,6 +49,69 @@ AxiomMath build), so it is separate from the `--spaces` check.
 #check @RelativeFM.SpacesVerified.lemma_10_1_of_flatBaseChange
 #check @RelativeFM.SpacesVerified.lemma_6_11_id_unconditional
 #check @RelativeFM.SpacesVerified.lemma_10_1_id_unconditional
+#check @RelativeFM.SpacesVerified.tag0GFI
+#check @RelativeFM.SpacesVerified.perfectBoundedAboveSupported
+#check @RelativeFM.SpacesVerified.tag09M8
+#check @RelativeFM.SpacesVerified.perfectBoundedAbove
+#check @RelativeFM.SpacesVerified.tag09MB
+#check @RelativeFM.SpacesVerified.tag08FB
+#check @RelativeFM.SpacesVerified.tag08FABound
+#check @RelativeFM.SpacesVerified.tag0AFJ
+#check @RelativeFM.SpacesVerified.perfectPseudoCoherent
+#check @RelativeFM.SpacesVerified.tag08FVTwo
+#check @RelativeFM.SpacesVerified.pseudoCoherentFromOfIsLE
+#check @RelativeFM.SpacesVerified.tag08FU2
+#check @RelativeFM.SpacesVerified.perfectQcoh
+#check @RelativeFM.SpacesVerified.tag08HP
+#check @RelativeFM.SpacesVerified.tag073B
+#check @RelativeFM.SpacesVerified.openSubspaceQuasiCompact
+#check @RelativeFM.SpacesVerified.tag08IK
+#check @RelativeFM.SpacesVerified.tag079Q
+#check @RelativeFM.SpacesVerified.tag0A8G
+#check @RelativeFM.SpacesVerified.rightAdjointCoproducts
+#check @RelativeFM.SpacesVerified.pullbackSupport
+#check @RelativeFM.SpacesVerified.pullbackDisjoint
+#check @RelativeFM.SpacesVerified.etaleRestrictionSupport
+#check @RelativeFM.SpacesVerified.openImmersionCounit
+#check @RelativeFM.SpacesVerified.quasiCompactSource
+#check @RelativeFM.SpacesVerified.tag073BTwo
+#check @RelativeFM.SpacesVerified.compactComplPreimage
+#check @RelativeFM.SpacesVerified.perfectPullback
+#check @RelativeFM.SpacesVerified.tag08GGUnit
+#check @RelativeFM.SpacesVerified.tag08GGCounit
+#check @RelativeFM.SpacesVerified.edsTop
+#check @RelativeFM.SpacesVerified.supportEmpty
+#check @RelativeFM.SpacesVerified.tag09IT
+#check @RelativeFM.SpacesVerified.edsOfComplSubset
+#check @RelativeFM.SpacesVerified.lemma_5_5_unconditional
+#check @RelativeFM.SpacesVerified.lemma_5_5_dqc_unconditional
+#check @RelativeFM.SpacesVerified.lemma_5_6_unconditional
+#check @RelativeFM.SpacesVerified.lemma_5_6_dqcZ_unconditional
+#check @RelativeFM.SpacesVerified.lemma_5_7_unconditional
+#check @RelativeFM.SpacesVerified.lemma_5_7_supported_unconditional
+#check @RelativeFM.SpacesVerified.lemma_5_9_unconditional
+#check @RelativeFM.SpacesVerified.lemma_5_9_minus_noetherian_unconditional
+#check @RelativeFM.SpacesVerified.lemma_5_9_bounded_noetherian_unconditional
+#check @RelativeFM.SpacesVerified.lemma_5_9_minus_eq_unconditional
+#check @RelativeFM.SpacesVerified.lemma_5_9_bounded_eq_unconditional
+#check @RelativeFM.SpacesVerified.proposition_5_8_unconditional
+#check @RelativeFM.SpacesVerified.corollary_1_2_unconditional
+#check @RelativeFM.SpacesVerified.corollary_1_2_dqc_unconditional
+#check @RelativeFM.SpacesVerified.lemma_A_4_unconditional
+#check @RelativeFM.SpacesVerified.lemma_A_6_unconditional
+#check @RelativeFM.SpacesVerified.lemma_A_6_bounded_unconditional
+#check @RelativeFM.SpacesVerified.lemma_A_9_preferred_univ_unconditional
+#check @RelativeFM.SpacesVerified.nonVacuity_lemma_5_5_unconditional
+#check @RelativeFM.SpacesVerified.nonVacuity_lemma_5_6_unconditional
+#check @RelativeFM.SpacesVerified.nonVacuity_lemma_5_7_unconditional
+#check @RelativeFM.SpacesVerified.nonVacuity_lemma_5_9_unconditional
+#check @RelativeFM.SpacesVerified.nonVacuity_lemma_5_9_noetherian_unconditional
+#check @RelativeFM.SpacesVerified.proposition_5_8_nonVacuity_unconditional
+#check @RelativeFM.SpacesVerified.corollary_1_2_nonVacuity_unconditional
+#check @RelativeFM.SpacesVerified.corollary_1_2_int_witness_unconditional
+#check @RelativeFM.SpacesVerified.lemma_A_4_nonVacuity_unconditional
+#check @RelativeFM.SpacesVerified.lemma_A_6_nonVacuity_unconditional
+#check @RelativeFM.SpacesVerified.nonVacuity_detectsBelowUniformly_affine_unconditional
 #print axioms RelativeFM.SpacesVerified.tag06UQ
 #print axioms RelativeFM.SpacesVerified.tag08F4
 #print axioms RelativeFM.SpacesVerified.tag08F5
@@ -84,3 +147,66 @@ AxiomMath build), so it is separate from the `--spaces` check.
 #print axioms RelativeFM.SpacesVerified.lemma_10_1_of_flatBaseChange
 #print axioms RelativeFM.SpacesVerified.lemma_6_11_id_unconditional
 #print axioms RelativeFM.SpacesVerified.lemma_10_1_id_unconditional
+#print axioms RelativeFM.SpacesVerified.tag0GFI
+#print axioms RelativeFM.SpacesVerified.perfectBoundedAboveSupported
+#print axioms RelativeFM.SpacesVerified.tag09M8
+#print axioms RelativeFM.SpacesVerified.perfectBoundedAbove
+#print axioms RelativeFM.SpacesVerified.tag09MB
+#print axioms RelativeFM.SpacesVerified.tag08FB
+#print axioms RelativeFM.SpacesVerified.tag08FABound
+#print axioms RelativeFM.SpacesVerified.tag0AFJ
+#print axioms RelativeFM.SpacesVerified.perfectPseudoCoherent
+#print axioms RelativeFM.SpacesVerified.tag08FVTwo
+#print axioms RelativeFM.SpacesVerified.pseudoCoherentFromOfIsLE
+#print axioms RelativeFM.SpacesVerified.tag08FU2
+#print axioms RelativeFM.SpacesVerified.perfectQcoh
+#print axioms RelativeFM.SpacesVerified.tag08HP
+#print axioms RelativeFM.SpacesVerified.tag073B
+#print axioms RelativeFM.SpacesVerified.openSubspaceQuasiCompact
+#print axioms RelativeFM.SpacesVerified.tag08IK
+#print axioms RelativeFM.SpacesVerified.tag079Q
+#print axioms RelativeFM.SpacesVerified.tag0A8G
+#print axioms RelativeFM.SpacesVerified.rightAdjointCoproducts
+#print axioms RelativeFM.SpacesVerified.pullbackSupport
+#print axioms RelativeFM.SpacesVerified.pullbackDisjoint
+#print axioms RelativeFM.SpacesVerified.etaleRestrictionSupport
+#print axioms RelativeFM.SpacesVerified.openImmersionCounit
+#print axioms RelativeFM.SpacesVerified.quasiCompactSource
+#print axioms RelativeFM.SpacesVerified.tag073BTwo
+#print axioms RelativeFM.SpacesVerified.compactComplPreimage
+#print axioms RelativeFM.SpacesVerified.perfectPullback
+#print axioms RelativeFM.SpacesVerified.tag08GGUnit
+#print axioms RelativeFM.SpacesVerified.tag08GGCounit
+#print axioms RelativeFM.SpacesVerified.edsTop
+#print axioms RelativeFM.SpacesVerified.supportEmpty
+#print axioms RelativeFM.SpacesVerified.tag09IT
+#print axioms RelativeFM.SpacesVerified.edsOfComplSubset
+#print axioms RelativeFM.SpacesVerified.lemma_5_5_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_5_5_dqc_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_5_6_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_5_6_dqcZ_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_5_7_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_5_7_supported_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_5_9_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_5_9_minus_noetherian_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_5_9_bounded_noetherian_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_5_9_minus_eq_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_5_9_bounded_eq_unconditional
+#print axioms RelativeFM.SpacesVerified.proposition_5_8_unconditional
+#print axioms RelativeFM.SpacesVerified.corollary_1_2_unconditional
+#print axioms RelativeFM.SpacesVerified.corollary_1_2_dqc_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_A_4_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_A_6_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_A_6_bounded_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_A_9_preferred_univ_unconditional
+#print axioms RelativeFM.SpacesVerified.nonVacuity_lemma_5_5_unconditional
+#print axioms RelativeFM.SpacesVerified.nonVacuity_lemma_5_6_unconditional
+#print axioms RelativeFM.SpacesVerified.nonVacuity_lemma_5_7_unconditional
+#print axioms RelativeFM.SpacesVerified.nonVacuity_lemma_5_9_unconditional
+#print axioms RelativeFM.SpacesVerified.nonVacuity_lemma_5_9_noetherian_unconditional
+#print axioms RelativeFM.SpacesVerified.proposition_5_8_nonVacuity_unconditional
+#print axioms RelativeFM.SpacesVerified.corollary_1_2_nonVacuity_unconditional
+#print axioms RelativeFM.SpacesVerified.corollary_1_2_int_witness_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_A_4_nonVacuity_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_A_6_nonVacuity_unconditional
+#print axioms RelativeFM.SpacesVerified.nonVacuity_detectsBelowUniformly_affine_unconditional
