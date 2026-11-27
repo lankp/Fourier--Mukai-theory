@@ -8,6 +8,7 @@ import Spaces.Supported.Preferred
 import Spaces.BaseChange.Cube
 import Spaces.LP26.Lemma59
 import Spaces.LP26.NonVacuity
+import Spaces.LP26.Proposition58
 import Spaces.LP26.Recollement
 import Spaces.LP26.StandardTStructure
 import Spaces.Stacks.UniverseNonVacuity
@@ -294,3 +295,11 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.LP26.lemma_A_6
 #print axioms RelativeFM.Spaces.LP26.lemma_A_6_bounded
 #print axioms RelativeFM.Spaces.LP26.lemma_A_6_nonVacuity
+-- LP26 Definition 5.3 and Proposition 5.8 (W.A.) over algebraic spaces (wave 8)
+#print axioms RelativeFM.Spaces.LP26.SatisfiesWA
+#print axioms RelativeFM.Spaces.LP26.SatisfiesStandardWA
+#print axioms RelativeFM.Spaces.LP26.satisfiesWA_of_satisfiesStandardWA
+#print axioms RelativeFM.Spaces.LP26.proposition_5_8
+#print axioms RelativeFM.Spaces.LP26.satisfiesPaperWA_of_forall_isZero
+#print axioms RelativeFM.Spaces.LP26.satisfiesWA_of_isEmpty
+#print axioms RelativeFM.Spaces.LP26.proposition_5_8_nonVacuity

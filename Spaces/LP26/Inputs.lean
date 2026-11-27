@@ -329,6 +329,7 @@ built, free of `MilnorPatching.Relative`): `Spaces/SmallEtaleDerivedModulePullba
 | `Tag073BTwoInput` | 073B (2) | `AlgebraicGeometry.Space.isQuasiSeparated_of_isAbsolutelyQuasiSeparated_source` | `Spaces/Morphisms/QuasiCompact.lean` |
 | `CompactComplPreimageInput` | (0EMK, 06RV) | `AlgebraicGeometry.Space.isCompact_compl_preimage_of_isQuasiCompact` | `Spaces/Perfect/SupportedAffinePullbackGenerator.lean` |
 | `PerfectPullbackInput` | 08H6 | `AlgebraicGeometry.Space.isPerfect_smallEtaleDerivedModulePullback` | `Spaces/Perfect/DerivedPullbackPerfect.lean` |
+| `SupportEmptyInput` | 04K5 | `AlgebraicGeometry.Space.supportOfSheaf_eq_empty_iff_isZero` | `Spaces/WeaklyAssociatedVanishingConverse.lean` |
 | `EDSTopInput` | 08GM (an example) | `AlgebraicGeometry.Space.isElementaryDistinguishedSquare_top` | `Spaces/ModuleSectionsWithSupport.lean` |
 | `Tag08GGUnitInput` | 08GG (1)(a) | `AlgebraicGeometry.Space.isIso_unit_derivedRestrict_of_cohomologySupportedOn` | `Spaces/Perfect/SupportedOnComplementClauses.lean` |
 | `Tag08GGCounitInput` | 08GG (2)(b) | `AlgebraicGeometry.Space.isIso_counit_derivedPushforward_of_cohomologySupportedOn` | `Spaces/Perfect/SupportedOnComplementClauses.lean` |
@@ -583,6 +584,15 @@ def EDSTopInput : Prop :=
   ∀ {X : (BigFppfOver B S hS)ᵒᵖ ⥤ Type u}
     (hX : IsAlgebraicSpace B S hS X) {U : Subfunctor X} (_hU : IsOpenSubspace B S hS U),
     IsElementaryDistinguishedSquare B S hS hX U (⊤ : Subfunctor X).ι
+
+/-- **A module with empty support is zero** (Stacks 04K5): the support of the abelian sheaf
+underlying an `𝒪_X`-module is empty iff the module is zero.  AxiomMath:
+`AlgebraicGeometry.Space.supportOfSheaf_eq_empty_iff_isZero B S hS X F`
+(`Spaces/WeaklyAssociatedVanishingConverse.lean`), verbatim at the module universe `m = u`.  Used
+only for non-vacuity. -/
+def SupportEmptyInput : Prop :=
+  ∀ (X : AlgebraicSpaces B S hS) (F : Modules.{u, u} B S hS X.1 X.2),
+    supportOfSheaf B S hS X.1 ((SheafOfModules.toSheaf _).obj F) = ∅ ↔ IsZero F
 
 end RecollementInputs
 
