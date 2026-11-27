@@ -8,6 +8,7 @@ import Spaces.Supported.Preferred
 import Spaces.BaseChange.Cube
 import Spaces.LP26.Lemma59
 import Spaces.LP26.NonVacuity
+import Spaces.LP26.Recollement
 import Spaces.LP26.StandardTStructure
 import Spaces.Stacks.UniverseNonVacuity
 
@@ -280,3 +281,11 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.Stacks.isCompactAb_zero_D
 #print axioms RelativeFM.Spaces.Stacks.lemma_A_9_sumUniverse
 #print axioms RelativeFM.Spaces.Stacks.lemma_A_9_sumUniverse_affine
+-- GL26 Lemma A.4 over algebraic spaces (wave 8, `Spaces/LP26/Recollement.lean`)
+#print axioms RelativeFM.Spaces.LP26.RecollementOfAdjoints.exists_distinguished
+#print axioms RelativeFM.Spaces.LP26.RecollementOfAdjoints.exists_natural_connecting
+#print axioms RelativeFM.Spaces.LP26.RecollementOfAdjoints.Data.toRecollement
+#print axioms RelativeFM.Spaces.LP26.pushFullyFaithful
+#print axioms RelativeFM.Spaces.LP26.exists_inclZ_of_isZero_pullZ
+#print axioms RelativeFM.Spaces.LP26.lemma_A_4
+#print axioms RelativeFM.Spaces.LP26.lemma_A_4_nonVacuity

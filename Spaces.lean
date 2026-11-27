@@ -12,6 +12,7 @@ import Spaces.LP26.Inputs
 import Spaces.LP26.Lemma59
 import Spaces.LP26.NonVacuity
 import Spaces.LP26.OpenPushforward
+import Spaces.LP26.Recollement
 import Spaces.LP26.StandardTStructure
 import Spaces.NonVacuity
 import Spaces.RelativePerfect
