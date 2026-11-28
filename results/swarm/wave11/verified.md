@@ -30,3 +30,8 @@ Notes from the merges:
 Pin the new headline declarations in `StatementCheckVerified.lean`, run
 `scripts/check_statements.sh --verified` and report the drift (do not `--update`).  Seven
 verification steps.  Commit verified pieces as you go.
+
+Timing: launched while `wave10/verified` (general Lemma 3.2, needed for the general Lemma 5.4)
+and `wave11/gl26-shriek-calculus` are still running.  Start the full build first; do the parts
+that need nothing new; when the orchestrator tells you `wave10/verified` is merged, fetch
+`origin/formalization` and do Lemma 5.4.  Rebase onto `origin/formalization` before the final push.
