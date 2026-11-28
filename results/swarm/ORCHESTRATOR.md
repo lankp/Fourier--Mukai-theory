@@ -1,5 +1,10 @@
 # Orchestrator handoff
 
+**Pre-approved session tools** (maintainer, 28 November 2026): `.claude/settings.json` allows
+`send_message`, `archive_session`, `update_trigger` and `create_session` of the
+claude-code-remote server without a prompt, so the hourly checks message, archive and launch
+workers while the maintainer is away.
+
 Current orchestrator session: `session_0111iGd9QDKToChKA2B4cz5n`
 
 (A session that takes over replaces this id with its own, in a commit of its own.)
