@@ -114,11 +114,11 @@ absent.
 | # | label | status | note |
 |---|---|---|---|
 | Def 5.1 | `def:quasi_perf` | D (over algebraic spaces: `Spaces/RelativePerfect.lean` `IsQuasiPerfect`, wave 6) | `IsQuasiPerfect` |
-| Lem 5.3 | `lem:quasi-perfect_bounded` | H | `Scheme/StacksInput.lean` |
+| Lem 5.3 | `lem:quasi-perfect_bounded` | C (claims (1), (2) proved; claim (3) open) | **Over algebraic spaces**: `Spaces/QuasiPerfect/Bounded.lean` `lemma_5_3_tensor` (1), `lemma_5_3_bounded` (2; also `lemma_5_3_bounded_of_bounded` for every bounded `P`) (wave 11).  **Open**: claim (3) (pseudo-coherence in the Noetherian case): AxiomMath's 0D0S is for a model internal Hom complex, not identified with `smallEtaleDerivedSheafHom`; the `SpacesVerified` forms. |
 | Lem 5.4 | `lem:neeman2023cor5_10` | C | `Scheme/Lemma54.lean`: the cover argument in six-functor form; residue is the cover square (flat base change, conservativity, perfect/compact calculus) |
 | Prop 5.6 | `prop:preservation_of_perfect` | — | a lemma in the arXiv version |
-| Lem 5.7 | `lem:f_perf_implies_perf_preserved` | — | |
-| Lem 5.9 | `lem:neeman23lem5_3` | — | |
+| Lem 5.7 | `lem:f_perf_implies_perf_preserved` | — | Not yet: needs GL26 Prop 3.12 (`prop:perfectness`, (3)⇒(1)), Lemma 4.3, Remark 4.2(3) over spaces (wave 11 found none in the tree or AxiomMath); after GL26 §3–4. |
+| Lem 5.9 | `lem:neeman23lem5_3` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/QuasiPerfect/Neeman53.lean` `lemma_5_9`, `lemma_5_9_app` (wave 11), natural in `P`, for `f` qcqs with `X` quasi-separated (slightly more general), from tagged AxiomMath inputs (projection formula 08IN, 0E55).  **Open**: the `SpacesVerified` form (`wave11/verified`). |
 | Lem 5.10 | `lem:Ballard_relative_perf_implies_dual_is_such` | — | |
 | Lem 5.11 | `lem:f-quasi-perfect_via_small_coproducts` | — | |
 | Prop 5.12 | `prop:stacky_f_perf_gives_iso_between_uppershriek_and_pullback_up_to_tensor` | — | |

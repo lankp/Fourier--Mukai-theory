@@ -267,7 +267,7 @@ Uses wave 10's conservativity, `RHom` and `f^×`.  Cloud workers, all Opus, high
 
 | task | results | files |
 |---|---|---|
-| `wave11/gl26-quasi-perfect` (`session_0111iGd8WjT87BZ5jJjBJ6ne`) | Lemmas 5.3 (`lem:quasi-perfect_bounded`), 5.7 (`lem:f_perf_implies_perf_preserved`), 5.9 (`lem:neeman23lem5_3`) | `Spaces/QuasiPerfect/` |
+| `wave11/gl26-quasi-perfect` (`session_0111iGd8WjT87BZ5jJjBJ6ne`; merged `54381a7`: 5.9, 5.3 (1)–(2); 5.3 (3) and 5.7 open (0D0S comparison; GL26 §3–4); 5 new inputs; verified: `lake build Spaces`, default build, audit 404 clean, both statement checks, non-vacuity (identity, zero object)) | Lemmas 5.3 (`lem:quasi-perfect_bounded`), 5.7 (`lem:f_perf_implies_perf_preserved`), 5.9 (`lem:neeman23lem5_3`) | `Spaces/QuasiPerfect/` |
 | `wave11/gl26-box-generation` (queued) | Lemma 5.4 (`lem:neeman2023cor5_10`) | `Spaces/BoxGeneration/` |
 | `wave11/gl26-kernels` (`session_0111iGd9YUfCZro4cSJK24uD`) | Lemmas 2.25 (`lem:funct_on_kernel`), 2.26 (`lem:convolution`) | `Spaces/Kernels/` |
 | `wave11/gl26-pullback-hom` (queued) | Lemma 2.16 (2) (`lem:gortz_wedhorn_internal_hom2`): `ρ_f` invertible for `E` pseudo-coherent, `G ∈ D^+_qc`, `f` of finite Tor dimension, over spaces (from AxiomMath's ringed-space 0GM7 and affine case by étale descent); and Lemma 2.10's naturality in `K`, `M` | `Spaces/InternalHom/` |
