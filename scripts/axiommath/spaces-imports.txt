@@ -89,3 +89,6 @@ StacksFrontier.AlgebraicGeometry.Spaces.SeparatedTfae
 StacksFrontier.AlgebraicGeometry.Spaces.QuasiSeparatedCriteria
 StacksFrontier.AlgebraicGeometry.Spaces.ClosedImmersionQC
 StacksFrontier.AlgebraicGeometry.Descent.EtaleLocal.FlatLocalAtSource
+# GL26 Lemma 5.4 (wave11/gl26-box-generation): `Lf^*𝒪_Y ≅ 𝒪_X` (`derivedPullbackUnitIsoGeneral`).
+# Already in the closure of the list above (adds 0 modules).
+StacksFrontier.CategoryTheory.Sites.Cohomology.DerivedPullback.DerivedPullbackStructureSheaf
