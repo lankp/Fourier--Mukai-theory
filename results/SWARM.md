@@ -256,7 +256,7 @@ Launched 28 November 2026, 00:52 UTC (maintainer's exception: `wave9/verified` s
 
 | task | results | files |
 |---|---|---|
-| `wave10/gl26-conservativity` (`session_0111iGd9EqGEkn9JWtabwe1W`) | Lemmas 2.14 (`lem:faithfully_flat_is_conservative`), 2.15 (`lem:zero_object_via_covers`), 2.18 (`lem:quasi-affine_via_diagonal`), 3.2 (`lem:quasi-affine_is_conservative`) | `Spaces/Conservative/` |
+| `wave10/gl26-conservativity` (`session_0111iGd9EqGEkn9JWtabwe1W`; merged: 2.14, 2.15, 2.18; 3.2 for a given factorization, the rest in `wave10/verified`; 5 new inputs; verified: `lake build Spaces`, default build, audit 340 clean, both statement checks, non-vacuity (identity)) | Lemmas 2.14 (`lem:faithfully_flat_is_conservative`), 2.15 (`lem:zero_object_via_covers`), 2.18 (`lem:quasi-affine_via_diagonal`), 3.2 (`lem:quasi-affine_is_conservative`) | `Spaces/Conservative/` |
 | `wave10/gl26-internal-hom` (`session_0111iGd62y3xTpdZRCZuCS3X`) | `RHom` over spaces; Lemmas 2.10 (`lem:rhom_tensor_morphism`), 2.11 (`lem:internal_hom`), 2.16 (`lem:gortz_wedhorn_internal_hom`) | `Spaces/InternalHom/` |
 | `wave10/gl26-upper-shriek` (`session_0111iGd9NyeYUSKeFg71vUEW`) | Lemmas 2.21–2.24 (`lem:neeman186`–`189`) | `Spaces/Duality/` |
 

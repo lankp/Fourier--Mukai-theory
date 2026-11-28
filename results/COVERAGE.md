@@ -68,10 +68,10 @@ absent.
 | Lem 2.10 | `lem:rhom_tensor_morphism` | H | `Scheme/Duality.lean`, `Scheme/StacksInput.lean` | Stacks 08JJ |
 | Lem 2.11 | `lem:internal_hom` | — | | |
 | Lem 2.13 | `lem:spacey_Lipman_Hashimoto` | — | | |
-| Lem 2.14 | `lem:faithfully_flat_is_conservative` | H | `CoverComparisonInput` (`Scheme/Lemma54.lean`) | part of the cover square |
-| Lem 2.15 | `lem:zero_object_via_covers` | — | | possibly inside the Lemma 5.4 cover input; not named |
+| Lem 2.14 | `lem:faithfully_flat_is_conservative` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Conservative/Flat.lean` `lemma_2_14`, `lemma_2_14_isIso` (wave 10), from tagged AxiomMath inputs (`Spaces/Conservative/Inputs.lean`).  **Open**: the `SpacesVerified` form (`wave10/verified`). |
+| Lem 2.15 | `lem:zero_object_via_covers` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Conservative/Flat.lean` `lemma_2_15` (without the qcqs hypothesis: stronger), `lemma_2_15_homology` (wave 10), from tagged AxiomMath inputs.  **Open**: the `SpacesVerified` form (`wave10/verified`). |
 | Lem 2.16 | `lem:gortz_wedhorn_internal_hom` | H | `Scheme/Duality.lean` | |
-| Lem 2.18 | `lem:quasi-affine_via_diagonal` | — | | |
+| Lem 2.18 | `lem:quasi-affine_via_diagonal` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Conservative/QuasiAffine.lean` `lemma_2_18` (wave 10), from `QuasiAffineCompInput` (03WN).  **Open**: the `SpacesVerified` form (`wave10/verified`). |
 | Lem 2.19 | `lem:quasi_affine_diagonal` | — | | |
 | Setup 2.20 | `setup:fm_cube_pullback` | D | `FMSetup`, `BaseChange` (`Scheme/Statements.lean`, `Paper/DerivedSetup.lean`) | |
 | Lem 2.21 | `lem:neeman186` | H | `Scheme/Duality.lean` | four invertibility cases as fields |
@@ -86,7 +86,7 @@ absent.
 | # | label | status | note |
 |---|---|---|---|
 | Lem 3.1 | `lem:23` | — | |
-| Lem 3.2 | `lem:quasi-affine_is_conservative` | H | residue of Lemma 5.4 (`Rh₂*` conservative) |
+| Lem 3.2 | `lem:quasi-affine_is_conservative` | C (for f given with a factorization; general quasi-affine f open) | **Over algebraic spaces**: `Spaces/Conservative/QuasiAffine.lean` `lemma_3_2_of_factorization` (wave 10): `R(j ≫ p)_*` conservative on `D_qc` for `j` a quasi-compact open immersion and `p` affine.  **Open**: every quasi-affine `f` has such a factorization (AxiomMath 081X/086S, `isQuasiAffineHom_iff_isOpenImmersion_toDirectImageSpec`, outside the import closure of `Spaces`): to be done in `SpacesVerified` (`wave10/verified`). |
 | Lem 3.3 | `lem:34` | — | |
 | Lem 3.4 | `lem:45` | — | |
 | Lem 3.5 | `lem:perf_pullback_characterize` | — | |
