@@ -6,14 +6,14 @@ processes, and that a successor needs, is listed here (CLAUDE.md, "Handoff").  P
 are never committed; they are passed to the successor by session message.  The manuscripts are
 in the repository (`manuscripts/`).
 
-Last updated: 27 November 2026, 23:20 UTC (wave 9: three tasks merged; verified running; pending items in `results/SWARM.md`).
+Last updated: 28 November 2026, 00:55 UTC (wave 10 launched; `wave9/verified` still running).
 
 ## Running in the background
 
 | what | where | how to redo it |
 |---|---|---|
 | hourly scheduled task "FM swarm: hourly wave check" | `trig_018gGiqMfFuTFks4J8LCQvp2`, fires into the orchestrator session | its prompt is the orchestration loop of `ORCHESTRATOR.md`; a successor creates its own (`create_trigger`) and deletes this one |
-| wave 9 workers | sessions in `results/SWARM.md`, tag `fm-wave9` | cloud workers push their branches |
+| wave 9 `verified` and wave 10 workers | sessions in `results/SWARM.md`, tags `fm-wave9`, `fm-wave10` | cloud workers push their branches |
 
 ## Outside the repository, in the orchestrator's container
 
