@@ -6,7 +6,7 @@ processes, and that a successor needs, is listed here (CLAUDE.md, "Handoff").  P
 are never committed; they are passed to the successor by session message.  The manuscripts are
 in the repository (`manuscripts/`).
 
-Last updated: 28 November 2026, 12:35 UTC (wave 9 closed, LP26 complete; pending: archive wave9/verified and wave11/gl26-kernels, `--verified` baseline update for 48 additions; wave 10 verified and wave 11 running).
+Last updated: 28 November 2026, 13:00 UTC (wave 9 closed, LP26 complete; wave 11: box-generation, pullback-hom, shriek-calculus (launched 12:40, do NOT relaunch) running; wave10/verified running; pending (approval): archive wave9/verified and wave11/gl26-kernels, the `--verified` baseline update (48 additions), and updating the hourly prompt, which still lists shriek-calculus as queued).
 
 ## Running in the background
 
