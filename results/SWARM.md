@@ -273,7 +273,18 @@ Uses wave 10's conservativity, `RHom` and `f^×`.  Cloud workers, all Opus, high
 | `wave11/gl26-pullback-hom` (queued) | Lemma 2.16 (2) (`lem:gortz_wedhorn_internal_hom2`): `ρ_f` invertible for `E` pseudo-coherent, `G ∈ D^+_qc`, `f` of finite Tor dimension, over spaces (from AxiomMath's ringed-space 0GM7 and affine case by étale descent); and Lemma 2.10's naturality in `K`, `M` | `Spaces/InternalHom/` |
 | `wave11/gl26-shriek-calculus` (queued) | Lemmas 2.21 (`lem:neeman186`), 2.23 (`lem:neeman188`), 2.24 (`lem:neeman189`), in `SpacesVerified` with the full build (their AxiomMath inputs lie outside the `Spaces` closure) | `SpacesVerified/Duality/` |
 
-Then §6: Propositions 6.2, 6.8, hence Theorem 1.3.
+## Wave 12 (prepared): GL26 §§3–4 over algebraic spaces
+
+Launched after wave 11's tasks are merged (or recorded) and archived, as cloud workers, all Opus,
+high, at most four at a time; briefs in `results/swarm/wave12/` (preamble `00-preamble.md`):
+
+| task | results | files |
+|---|---|---|
+| `wave12/gl26-points-perfectness` | Lemmas 3.1 (`lem:23`), 3.3 (`lem:34`), 3.4 (`lem:45`), 3.6 (`lem:61`), Proposition 3.12 (`prop:perfectness`) | `Spaces/Perfectness/` |
+| `wave12/gl26-perfect-locality` | Lemmas 3.5 (`lem:perf_pullback_characterize`), 3.7, 3.8, 3.9 | `Spaces/PerfectLocality/` |
+| `wave12/gl26-relative-perfect` | Lemmas 4.3, 4.4, Propositions 4.5, 4.6, Corollary 4.7, Theorem 4.8 (`thm:relative_perf_iff_smooth_locally`) | `Spaces/RelPerfect/` |
+
+Then (wave 13): Lemma 5.7 (needs 3.12 and 4.3), §6 (Propositions 6.2, 6.8, Theorem 1.3).
 
 Later waves: §9–10 (base change for adjoints, Theorems 10.13 / 1.6), §12 (the loci, Theorems
 12.3, 12.9 / 1.2), §11 (Theorem 1.7, once Gorenstein morphisms and fibre genus are available).
