@@ -15,6 +15,11 @@ import Spaces.Duality.NonVacuity
 import Spaces.Duality.ProperShriek
 import Spaces.Functors
 import Spaces.IntegralTransform
+import Spaces.InternalHom.Basic
+import Spaces.InternalHom.Inputs
+import Spaces.InternalHom.NonVacuity
+import Spaces.InternalHom.Pullback
+import Spaces.InternalHom.TensorHom
 import Spaces.LP26.Coherence
 import Spaces.LP26.Corollary12
 import Spaces.LP26.HomVanishing

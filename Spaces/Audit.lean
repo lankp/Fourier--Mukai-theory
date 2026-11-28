@@ -8,6 +8,7 @@ import Spaces.Supported.Preferred
 import Spaces.BaseChange.Cube
 import Spaces.Conservative.NonVacuity
 import Spaces.Duality.NonVacuity
+import Spaces.InternalHom.NonVacuity
 import Spaces.LP26.Coherence
 import Spaces.LP26.Corollary12
 import Spaces.LP26.Lemma59
@@ -418,3 +419,30 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.Duality.lemma_2_22
 #print axioms RelativeFM.Spaces.Duality.isNoethSepFpHom_id
 #print axioms RelativeFM.Spaces.Duality.lemma_2_22_hypotheses_satisfiable
+-- GL26 §2.2 internal Hom: Lemmas 2.10, 2.11, 2.16 (wave 10, `Spaces/InternalHom/`)
+#print axioms RelativeFM.Spaces.coherator
+#print axioms RelativeFM.Spaces.coheratorAdj
+#print axioms RelativeFM.Spaces.tensorQcRightQcHomAdj
+#print axioms RelativeFM.Spaces.lemma_2_11
+#print axioms RelativeFM.Spaces.lemma_2_11_of_mem
+#print axioms RelativeFM.Spaces.lemma_2_11_of_mem_hom
+#print axioms RelativeFM.Spaces.lemma_2_11_of_isPseudoCoherent
+#print axioms RelativeFM.Spaces.sheafHomObj_mem_Dqc_of_isPseudoCoherent
+#print axioms RelativeFM.Spaces.sheafHomObj_mem_Dqc_of_perfect
+#print axioms RelativeFM.Spaces.sheafHomIsoTensorDualRight
+#print axioms RelativeFM.Spaces.tensorBraiding
+#print axioms RelativeFM.Spaces.tensorAssoc
+#print axioms RelativeFM.Spaces.lemma_2_10
+#print axioms RelativeFM.Spaces.lemma_2_10_app
+#print axioms RelativeFM.Spaces.lemma_2_10_naturality
+#print axioms RelativeFM.Spaces.qcHomPullbackMap
+#print axioms RelativeFM.Spaces.qcHomPullbackMap_comp_counit
+#print axioms RelativeFM.Spaces.isIso_qcHomPullbackMap_of_isIso
+#print axioms RelativeFM.Spaces.lemma_2_16_perfect
+#print axioms RelativeFM.Spaces.lemma_2_16_perfect_qcqs
+#print axioms RelativeFM.Spaces.lemma_2_16_pseudoCoherent_of_isIso
+#print axioms RelativeFM.Spaces.exists_coherator_affine
+#print axioms RelativeFM.Spaces.lemma_2_11_nonVacuity
+#print axioms RelativeFM.Spaces.lemma_2_10_nonVacuity
+#print axioms RelativeFM.Spaces.lemma_2_16_perfect_nonVacuity
+#print axioms RelativeFM.Spaces.lemma_2_16_pseudoCoherent_nonVacuity
