@@ -247,7 +247,7 @@ The first Sonnet trial (model rule) is the next mechanical task, not a proof tas
 
 After wave 9, LP26 is complete up to the discharge of its AxiomMath inputs; GL26 follows.
 
-**Closed** 28 November 2026, 12:30 UTC: `wave9/verified` merged (`806e155`): all wave 9 inputs discharged, LP26 complete.  Pending: archive its session (approval), and the `--verified` baseline update for its 48 new pins (additions only; `--update` needs the full build, so it is to be run by a worker with the build, at the orchestrator's request).
+**Closed** 28 November 2026, 12:30 UTC: `wave9/verified` merged (`806e155`): all wave 9 inputs discharged, LP26 complete.  Archived.  The `--verified` baseline update for its 48 new pins (additions only) is delegated to `wave10/verified` (message of 13:01 UTC).
 
 ## Wave 10: GL26 §2–3 over algebraic spaces (all tasks merged and archived; `wave10/verified` running)
 
@@ -269,7 +269,7 @@ Uses wave 10's conservativity, `RHom` and `f^×`.  Cloud workers, all Opus, high
 |---|---|---|
 | `wave11/gl26-quasi-perfect` (`session_0111iGd8WjT87BZ5jJjBJ6ne`; archived; merged `54381a7`: 5.9, 5.3 (1)–(2); 5.3 (3) and 5.7 open (0D0S comparison; GL26 §3–4); 5 new inputs; verified: `lake build Spaces`, default build, audit 404 clean, both statement checks, non-vacuity (identity, zero object)) | Lemmas 5.3 (`lem:quasi-perfect_bounded`), 5.7 (`lem:f_perf_implies_perf_preserved`), 5.9 (`lem:neeman23lem5_3`) | `Spaces/QuasiPerfect/` |
 | `wave11/gl26-box-generation` (`session_0111iGd5Y21q4AtiRceLY3ie`, launched 08:46 UTC) | Lemma 5.4 (`lem:neeman2023cor5_10`) | `Spaces/BoxGeneration/` |
-| `wave11/gl26-kernels` (`session_0111iGd9YUfCZro4cSJK24uD`; archive pending (needs the maintainer's approval); merged `b228f65`: 2.25, 2.26; no new inputs, 3 modules added to the import list; verified: `lake build Spaces`, default build, audit 424 clean, both statement checks, non-vacuity (identity, zero kernels)) | Lemmas 2.25 (`lem:funct_on_kernel`), 2.26 (`lem:convolution`) | `Spaces/Kernels/` |
+| `wave11/gl26-kernels` (`session_0111iGd9YUfCZro4cSJK24uD`; archived; merged `b228f65`: 2.25, 2.26; no new inputs, 3 modules added to the import list; verified: `lake build Spaces`, default build, audit 424 clean, both statement checks, non-vacuity (identity, zero kernels)) | Lemmas 2.25 (`lem:funct_on_kernel`), 2.26 (`lem:convolution`) | `Spaces/Kernels/` |
 | `wave11/gl26-pullback-hom` (`session_0111iGd8uUwHJAsLduyiRCZt`, launched 10:30 UTC) | Lemma 2.16 (2) (`lem:gortz_wedhorn_internal_hom2`): `ρ_f` invertible for `E` pseudo-coherent, `G ∈ D^+_qc`, `f` of finite Tor dimension, over spaces (from AxiomMath's ringed-space 0GM7 and affine case by étale descent); and Lemma 2.10's naturality in `K`, `M` | `Spaces/InternalHom/` |
 | `wave11/gl26-shriek-calculus` (`session_0111iGd9ceBjn6Kwy76sLfgW`, launched 12:40 UTC) | Lemmas 2.21 (`lem:neeman186`), 2.23 (`lem:neeman188`), 2.24 (`lem:neeman189`), in `SpacesVerified` with the full build (their AxiomMath inputs lie outside the `Spaces` closure) | `SpacesVerified/Duality/` |
 
