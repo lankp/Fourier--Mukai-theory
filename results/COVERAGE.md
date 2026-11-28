@@ -74,10 +74,10 @@ absent.
 | Lem 2.18 | `lem:quasi-affine_via_diagonal` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Conservative/QuasiAffine.lean` `lemma_2_18` (wave 10), from `QuasiAffineCompInput` (03WN).  **Open**: the `SpacesVerified` form (`wave10/verified`). |
 | Lem 2.19 | `lem:quasi_affine_diagonal` | — | | |
 | Setup 2.20 | `setup:fm_cube_pullback` | D | `FMSetup`, `BaseChange` (`Scheme/Statements.lean`, `Paper/DerivedSetup.lean`) | |
-| Lem 2.21 | `lem:neeman186` | H | `Scheme/Duality.lean` | four invertibility cases as fields |
-| Lem 2.22 | `lem:neeman187` | H | `Scheme/Duality.lean` | |
-| Lem 2.23 | `lem:neeman188` | H | `Scheme/Duality.lean` | bounded-below and finite-tor cases |
-| Lem 2.24 | `lem:neeman189` | H | `Scheme/Duality.lean` | |
+| Lem 2.21 | `lem:neeman186` | — | Not yet over algebraic spaces (wave 10 did 2.22 only).  Needs Neeman's `ρ(f,g)`, `σ`, `χ` and the base change map for `f^!`, independence of the compactification, flat base change for `f^×`; AxiomMath's 0E5P/0E5Q and related results lie in modules whose closure contains `MilnorPatching.Relative`, so the task works in `SpacesVerified` directly (wave 11, `gl26-shriek-calculus`). |
+| Lem 2.22 | `lem:neeman187` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Duality/ProperShriek.lean` `lemma_2_22` (wave 10), for `f^! = Lj^* ∘ p^×` of every Nagata compactification `f = p ∘ j` (`Spaces/Duality/Basic.lean`; independence of the compactification not proved); from tagged AxiomMath inputs (`Tag0E55Input`, `Tag04NXInput`, existing ones).  **Open**: the `SpacesVerified` form (`wave10/verified`). |
+| Lem 2.23 | `lem:neeman188` | — | Not yet over algebraic spaces (wave 10 did 2.22 only).  Needs Neeman's `ρ(f,g)`, `σ`, `χ` and the base change map for `f^!`, independence of the compactification, flat base change for `f^×`; AxiomMath's 0E5P/0E5Q and related results lie in modules whose closure contains `MilnorPatching.Relative`, so the task works in `SpacesVerified` directly (wave 11, `gl26-shriek-calculus`). |
+| Lem 2.24 | `lem:neeman189` | — | Not yet over algebraic spaces (wave 10 did 2.22 only).  Needs Neeman's `ρ(f,g)`, `σ`, `χ` and the base change map for `f^!`, independence of the compactification, flat base change for `f^×`; AxiomMath's 0E5P/0E5Q and related results lie in modules whose closure contains `MilnorPatching.Relative`, so the task works in `SpacesVerified` directly (wave 11, `gl26-shriek-calculus`). |
 | Lem 2.25 | `lem:funct_on_kernel` | C | `Scheme/DiagonalIdentity.lean`, `lemma_2_25Statement_proved` | from 08IN, the tensor unit and `f'ᵢ ∘ Δ = 𝟙` (`DiagonalIdentityData`); the bare interface form is refuted in `GL26OtherTargets.lean` |
 | Lem 2.26 | `lem:convolution` | C | `Scheme/AffineConvolution.lean`, `lemma_2_26Statement_of_correction` | from `CorrectedConvolutionData` (07A4, 08IN, 08IR, 0D6D, 0D6E) |
 

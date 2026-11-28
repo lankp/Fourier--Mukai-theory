@@ -23,7 +23,7 @@ algebraic spaces is still to do.
 | Prop 5.8 | `prop:A8` | P (standard part: SpacesVerified form open) | **Over algebraic spaces**: W.A. part `Spaces/LP26/Proposition58.lean` `proposition_5_8`, unconditional (wave 8); standard W.A. part `Spaces/LP26/StandardWA.lean |
 | Lem 5.9 | `lem:characterize_T-_c` | P (preferred-class form: SpacesVerified form open) | **Over algebraic spaces**: `Spaces/LP26/Lemma59.lean` `lemma_5_9` and the Noetherian forms, for the standard `t`-structure, unconditional; the preferred-class f |
 
-## GL26: not proved (97)
+## GL26: not proved (96)
 
 | # | label | status | where / note |
 |---|---|---|---|
@@ -36,10 +36,6 @@ algebraic spaces is still to do.
 | Rmk 2.7 | `rem:rel_perfect_is_free` | H | `TransformPreservationForcesRelativePerfect` |
 | Lem 2.10 | `lem:rhom_tensor_morphism` | H | `Scheme/Duality.lean`, `Scheme/StacksInput.lean` |
 | Lem 2.16 | `lem:gortz_wedhorn_internal_hom` | H | `Scheme/Duality.lean` |
-| Lem 2.21 | `lem:neeman186` | H | `Scheme/Duality.lean` |
-| Lem 2.22 | `lem:neeman187` | H | `Scheme/Duality.lean` |
-| Lem 2.23 | `lem:neeman188` | H | `Scheme/Duality.lean` |
-| Lem 2.24 | `lem:neeman189` | H | `Scheme/Duality.lean` |
 | Lem 5.3 | `lem:quasi-perfect_bounded` | H | `Scheme/StacksInput.lean` |
 | Lem 9.1 | `lem:base_change_relative_formula` | H | field of `DerivedMorphismData` |
 | Lem 10.9 | `lem:equivalences_induced` | H | `Scheme/Inputs.lean` |
@@ -67,6 +63,9 @@ algebraic spaces is still to do.
 | Lem 2.11 | `lem:internal_hom` | — |  |
 | Lem 2.13 | `lem:spacey_Lipman_Hashimoto` | — |  |
 | Lem 2.19 | `lem:quasi_affine_diagonal` | — |  |
+| Lem 2.21 | `lem:neeman186` | — | Not yet over algebraic spaces (wave 10 did 2.22 only). Needs Neeman's `ρ(f,g)`, `σ`, `χ` and the base change map for `f^!`, independence of the compactification |
+| Lem 2.23 | `lem:neeman188` | — | Not yet over algebraic spaces (wave 10 did 2.22 only). Needs Neeman's `ρ(f,g)`, `σ`, `χ` and the base change map for `f^!`, independence of the compactification |
+| Lem 2.24 | `lem:neeman189` | — | Not yet over algebraic spaces (wave 10 did 2.22 only). Needs Neeman's `ρ(f,g)`, `σ`, `χ` and the base change map for `f^!`, independence of the compactification |
 | Lem 3.1 | `lem:23` | — |  |
 | Lem 3.3 | `lem:34` | — |  |
 | Lem 3.4 | `lem:45` | — |  |
@@ -125,7 +124,7 @@ algebraic spaces is still to do.
 | Lem A.7 | `lem:pullback_compact_generator` | — |  |
 | Def C.3 | `cmp:def:induced` | — |  |
 
-## GL26: proved only in a restricted form (9)
+## GL26: proved only in a restricted form (10)
 
 Proved abstractly, in `Cat`, affinely or over the interface; the version over
 algebraic spaces is still to do.
@@ -135,6 +134,7 @@ algebraic spaces is still to do.
 | Lem 2.14 | `lem:faithfully_flat_is_conservative` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Conservative/Flat.lean` `lemma_2_14`, `lemma_2_14_isIso` (wave 10), from tagged AxiomMath inputs (`Spaces/Conservative/Inputs |
 | Lem 2.15 | `lem:zero_object_via_covers` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Conservative/Flat.lean` `lemma_2_15` (without the qcqs hypothesis: stronger), `lemma_2_15_homology` (wave 10), from tagged Ax |
 | Lem 2.18 | `lem:quasi-affine_via_diagonal` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Conservative/QuasiAffine.lean` `lemma_2_18` (wave 10), from `QuasiAffineCompInput` (03WN). **Open**: the `SpacesVerified` for |
+| Lem 2.22 | `lem:neeman187` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Duality/ProperShriek.lean` `lemma_2_22` (wave 10), for `f^! = Lj^* ∘ p^×` of every Nagata compactification `f = p ∘ j` (`Spac |
 | Lem 7.4 | `lem:morph_adj` | P (in `Cat`) | `lemma_7_4` (`Prelim/MatesCalculus.lean`), all four conditions as a `List.TFAE` |
 | Lem 7.6 | `lem:taking_conjugates_is_taking_mates_twice` | P (in `Cat`) | `lemma_7_6`; it is Mathlib's `iterated_mateEquiv_conjugateEquiv` |
 | Lem 7.9 | `lem:conjugates_are_functorial` | P (in `Cat`) | `lemma_7_9_id`, `lemma_7_9_comp`, from Mathlib's `conjugateEquiv_id`/`_comp`; does not use 7.8 |

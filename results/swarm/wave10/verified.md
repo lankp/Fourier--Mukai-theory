@@ -14,6 +14,11 @@ Notes from the merges:
   qcqs spaces: `j = (toDirectImageSpec f).left`, `p` the structure morphism (affine), `j` an open
   immersion by 086S (`isQuasiAffineHom_iff_isOpenImmersion_toDirectImageSpec`), quasi-compact as
   `f` is quasi-compact and `p` separated; then `lemma_3_2_of_factorization`.
+* `wave10/gl26-upper-shriek` (merged `ebffeca`): discharge `Tag0E55Input` (the worker suggests
+  `fun hZ X Y f hXqc hXqs hYqs hR => isLeftAdjoint_quasicoherentDerivedPushforward hZ f hXqc hXqs
+  hYqs`; it writes out the bodies of three definitions outside the import list: check they agree)
+  and `Tag04NXInput` (`isProper_of_comp_of_isSeparated`); the `SpacesVerified` form of
+  `lemma_2_22`.
 * (the other wave 10 merges add their notes here)
 
 Pin the new headline declarations in `StatementCheckVerified.lean`, run
