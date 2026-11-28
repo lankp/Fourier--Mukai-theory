@@ -5,6 +5,10 @@ import Spaces.AxiomMathInputs
 import Spaces.BaseChange.Cube
 import Spaces.Basic
 import Spaces.Categories
+import Spaces.Conservative.Flat
+import Spaces.Conservative.Inputs
+import Spaces.Conservative.NonVacuity
+import Spaces.Conservative.QuasiAffine
 import Spaces.Functors
 import Spaces.IntegralTransform
 import Spaces.LP26.Coherence
