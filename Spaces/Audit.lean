@@ -9,6 +9,7 @@ import Spaces.BaseChange.Cube
 import Spaces.Conservative.NonVacuity
 import Spaces.Duality.NonVacuity
 import Spaces.InternalHom.NonVacuity
+import Spaces.Kernels.NonVacuity
 import Spaces.LP26.Coherence
 import Spaces.LP26.Corollary12
 import Spaces.LP26.Lemma59
@@ -446,3 +447,24 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.lemma_2_10_nonVacuity
 #print axioms RelativeFM.Spaces.lemma_2_16_perfect_nonVacuity
 #print axioms RelativeFM.Spaces.lemma_2_16_pseudoCoherent_nonVacuity
+-- GL26 §2.3 functoriality on kernels: Lemmas 2.25, 2.26 (wave 11, `Spaces/Kernels/`)
+#print axioms RelativeFM.Spaces.Kernels.tensorLeftUnitor
+#print axioms RelativeFM.Spaces.Kernels.Dqc_structureObj
+#print axioms RelativeFM.Spaces.Kernels.projNatRight
+#print axioms RelativeFM.Spaces.Kernels.isPullback_triple
+#print axioms RelativeFM.Spaces.Kernels.isQuasiCompact_diagonal
+#print axioms RelativeFM.Spaces.Kernels.isQuasiSeparated_diagonal
+#print axioms RelativeFM.Spaces.Kernels.diagTrans
+#print axioms RelativeFM.Spaces.Kernels.isIso_diagTrans_app
+#print axioms RelativeFM.Spaces.Kernels.lemma_2_25Iso
+#print axioms RelativeFM.Spaces.Kernels.lemma_2_25IsoQc
+#print axioms RelativeFM.Spaces.Kernels.lemma_2_25_of_isProper
+#print axioms RelativeFM.Spaces.Kernels.lemma_2_25
+#print axioms RelativeFM.Spaces.Kernels.convolution
+#print axioms RelativeFM.Spaces.Kernels.isIso_theta_app
+#print axioms RelativeFM.Spaces.Kernels.convRight
+#print axioms RelativeFM.Spaces.Kernels.isIso_convRight_app
+#print axioms RelativeFM.Spaces.Kernels.lemma_2_26_of
+#print axioms RelativeFM.Spaces.Kernels.lemma_2_26
+#print axioms RelativeFM.Spaces.Kernels.lemma_2_25_nonVacuity
+#print axioms RelativeFM.Spaces.Kernels.lemma_2_26_nonVacuity
