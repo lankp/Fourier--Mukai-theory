@@ -16,7 +16,7 @@ list (LP26 first, then GL26).  Status codes as in `COVERAGE.md`.
 
 | # | label | status | where / note |
 |---|---|---|---|
-| Lem 2.16 | `lem:gortz_wedhorn_internal_hom` | C (case (1) proved; case (2) open) | **Over algebraic spaces**: `Spaces/InternalHom/Pullback.lean` `lemma_2_16_perfect`, `lemma_2_16_perfect_qcqs` (case (1), `E` perfect, wave 10); case (2) reduced |
+| Lem 2.16 | `lem:gortz_wedhorn_internal_hom` | C (case (1) proved; case (2) open) | **Over algebraic spaces**: `Spaces/InternalHom/Pullback.lean` `lemma_2_16_perfect`, `lemma_2_16_perfect_qcqs` (case (1), wave 10); case (2) reduced to invertibi |
 | Lem 3.2 | `lem:quasi-affine_is_conservative` | C (for f given with a factorization; general quasi-affine f open) | **Over algebraic spaces**: `Spaces/Conservative/QuasiAffine.lean` `lemma_3_2_of_factorization` (wave 10): `R(j ≫ p)_*` conservative on `D_qc` for `j` a quasi-co |
 | Lem 5.3 | `lem:quasi-perfect_bounded` | C (claims (1), (2) proved; claim (3) open) | **Over algebraic spaces**: `Spaces/QuasiPerfect/Bounded.lean` `lemma_5_3_tensor` (1), `lemma_5_3_bounded` (2; also `lemma_5_3_bounded_of_bounded` for every boun |
 | Lem 5.4 | `lem:neeman2023cor5_10` | C (over spaces: conditional on Lemma 3.2 for the projection; unconditional for f₁ affine) | **Over algebraic spaces**: `Spaces/BoxGeneration/Lemma54.lean` (wave 11): GL26's cover argument, `lemma_5_4_of_conservative` (hypothesis: `Rh₂_*` conservative o |
@@ -115,7 +115,7 @@ algebraic spaces is still to do.
 
 | # | label | status | where / note |
 |---|---|---|---|
-| Lem 2.10 | `lem:rhom_tensor_morphism` | P (natural in L only; SpacesVerified form open) | **Over algebraic spaces**: `Spaces/InternalHom/TensorHom.lean` `lemma_2_10` (wave 10), `K ⊗^L R𝓗om(M,L) ≅ R𝓗om(R𝓗om(K,M),L)` for perfect `K`, natural in `L` (th |
+| Lem 2.10 | `lem:rhom_tensor_morphism` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/InternalHom/TensorHom.lean` `lemma_2_10` (wave 10), natural in `L`, and `Spaces/InternalHom/TensorHomNatural.lean` `lemma_2_1 |
 | Lem 2.11 | `lem:internal_hom` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/InternalHom/Basic.lean` `lemma_2_11`, `lemma_2_11_of_mem`, `lemma_2_11_of_isPseudoCoherent` (wave 10), for any space with a c |
 | Lem 2.14 | `lem:faithfully_flat_is_conservative` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Conservative/Flat.lean` `lemma_2_14`, `lemma_2_14_isIso` (wave 10), from tagged AxiomMath inputs (`Spaces/Conservative/Inputs |
 | Lem 2.15 | `lem:zero_object_via_covers` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Conservative/Flat.lean` `lemma_2_15` (without the qcqs hypothesis: stronger), `lemma_2_15_homology` (wave 10), from tagged Ax |
