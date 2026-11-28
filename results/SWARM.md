@@ -282,8 +282,8 @@ high, at most four at a time; briefs in `results/swarm/wave12/` (preamble `00-pr
 | task | results | files |
 |---|---|---|
 | `wave12/gl26-points-perfectness` (`session_0111iGd5r4TgY98XLQeKPopX`) | Lemmas 3.1 (`lem:23`), 3.3 (`lem:34`), 3.4 (`lem:45`), 3.6 (`lem:61`), Proposition 3.12 (`prop:perfectness`) | `Spaces/Perfectness/` |
-| `wave12/gl26-perfect-locality` (queued: next free slot) | Lemmas 3.5 (`lem:perf_pullback_characterize`), 3.7, 3.8, 3.9 | `Spaces/PerfectLocality/` |
-| `wave12/gl26-relative-perfect` (queued) | Lemmas 4.3, 4.4, Propositions 4.5, 4.6, Corollary 4.7, Theorem 4.8 (`thm:relative_perf_iff_smooth_locally`) | `Spaces/RelPerfect/` |
+| `wave12/gl26-perfect-locality` (`session_0111iGd7NNPTQcLVDBaw2FNn`, Opus) | Lemmas 3.5 (`lem:perf_pullback_characterize`), 3.7, 3.8, 3.9 | `Spaces/PerfectLocality/` |
+| `wave12/gl26-relative-perfect` (`session_0111iGd7wH4JdDWVy5VvZLcx`, **Fable trial**) | Lemmas 4.3, 4.4, Propositions 4.5, 4.6, Corollary 4.7, Theorem 4.8 (`thm:relative_perf_iff_smooth_locally`) | `Spaces/RelPerfect/` |
 
 Then (wave 13): Lemma 5.7 (needs 3.12 and 4.3), §6 (Propositions 6.2, 6.8, Theorem 1.3).
 

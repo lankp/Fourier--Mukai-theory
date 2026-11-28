@@ -6,7 +6,7 @@ processes, and that a successor needs, is listed here (CLAUDE.md, "Handoff").  P
 are never committed; they are passed to the successor by session message.  The manuscripts are
 in the repository (`manuscripts/`).
 
-Last updated: 28 November 2026, 15:55 UTC (wave 12 launched: points-perfectness; perfect-locality and relative-perfect queued; running: wave10/verified, wave11/gl26-shriek-calculus, wave11/verified).
+Last updated: 28 November 2026, 16:40 UTC (six workers: wave10/verified, wave11 shriek-calculus and verified, wave 12 points-perfectness, perfect-locality, relative-perfect (Fable); local SpacesVerified build being completed by scripts/axiommath/complete_build.sh, log in the scratchpad `vbuild.log`; wave10/verified to become the persistent verifier).
 
 ## Running in the background
 
@@ -21,6 +21,7 @@ Last updated: 28 November 2026, 15:55 UTC (wave 12 launched: points-perfectness;
 |---|---|---|
 | AxiomMath checkout with its build (~17 GB) | scratchpad; `.lake/packages/Stacks` is a symlink to it | `lake build Spaces` / `SpacesVerified` rebuilds it (hours; `SpacesVerified` needs ~14 GB of memory: swap, `vm.max_map_count=262144`) |
 | other private material of the maintainer's (one directory, readable only by the orchestrator) | scratchpad | handed over by session message (`send_message`) to the new orchestrator, never through the repository |
+| complete AxiomMath build for `SpacesVerified` (shared build, ORCHESTRATOR.md) | the AxiomMath checkout in the scratchpad (`.lake/packages/Stacks`); `scripts/axiommath/complete_build.sh` finishes it, restartable | rerun the script after a restart; a new orchestrator without it uses the persistent verifier worker |
 | local subagent clones | `/home/user/wt-<slug>` | each pushes its branch; delete after merge |
 
 ## Scratchpad contents
