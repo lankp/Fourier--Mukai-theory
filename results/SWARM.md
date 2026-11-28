@@ -260,9 +260,18 @@ Launched 28 November 2026, 00:52 UTC (maintainer's exception: `wave9/verified` s
 | `wave10/gl26-internal-hom` (`session_0111iGd62y3xTpdZRCZuCS3X`) | `RHom` over spaces; Lemmas 2.10 (`lem:rhom_tensor_morphism`), 2.11 (`lem:internal_hom`), 2.16 (`lem:gortz_wedhorn_internal_hom`) | `Spaces/InternalHom/` |
 | `wave10/gl26-upper-shriek` (`session_0111iGd9NyeYUSKeFg71vUEW`) | Lemmas 2.21–2.24 (`lem:neeman186`–`189`) | `Spaces/Duality/` |
 
-Wave 11 (outline): Lemmas 2.25, 2.26 over spaces (need waves 10's internal Hom and duality);
-§§4–5: Lemmas 5.3, 5.4 (needs 2.14, 3.2), 5.7 (`lem:f_perf_implies_perf_preserved`), 5.9
-(`lem:neeman23lem5_3`); then §6: Propositions 6.2, 6.8, hence Theorem 1.3.
+## Wave 11 (prepared): GL26 §2.25–2.26 and §5 over algebraic spaces
+
+Launched once wave 10 closes (it uses wave 10's conservativity, `RHom` and `f^×`), as cloud
+workers, all Opus, high; briefs in `results/swarm/wave11/` (preamble `00-preamble.md`):
+
+| task | results | files |
+|---|---|---|
+| `wave11/gl26-quasi-perfect` | Lemmas 5.3 (`lem:quasi-perfect_bounded`), 5.7 (`lem:f_perf_implies_perf_preserved`), 5.9 (`lem:neeman23lem5_3`) | `Spaces/QuasiPerfect/` |
+| `wave11/gl26-box-generation` | Lemma 5.4 (`lem:neeman2023cor5_10`) | `Spaces/BoxGeneration/` |
+| `wave11/gl26-kernels` | Lemmas 2.25 (`lem:funct_on_kernel`), 2.26 (`lem:convolution`) | `Spaces/Kernels/` |
+
+Then §6: Propositions 6.2, 6.8, hence Theorem 1.3.
 
 Later waves: §9–10 (base change for adjoints, Theorems 10.13 / 1.6), §12 (the loci, Theorems
 12.3, 12.9 / 1.2), §11 (Theorem 1.7, once Gorenstein morphisms and fibre genus are available).
