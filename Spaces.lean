@@ -32,6 +32,10 @@ import Spaces.LP26.Recollement
 import Spaces.LP26.StandardTStructure
 import Spaces.LP26.StandardWA
 import Spaces.NonVacuity
+import Spaces.QuasiPerfect.Bounded
+import Spaces.QuasiPerfect.Inputs
+import Spaces.QuasiPerfect.Neeman53
+import Spaces.QuasiPerfect.NonVacuity
 import Spaces.RelativePerfect
 import Spaces.Stacks.Bridges
 import Spaces.Stacks.Corollaries
