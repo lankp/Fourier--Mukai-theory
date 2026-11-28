@@ -1,5 +1,11 @@
 # Assumption ledger: AxiomMath/Stacks + Neeman
 
+**Current state (28 November 2026).**  The results over algebraic spaces (`Spaces/`) assume only
+AxiomMath theorems, as tagged hypotheses that `SpacesVerified/` discharges; LP26 is complete and
+unconditional.  This ledger covers the older layers (`FourierMukai/Scheme/`, the
+`StacksInterface` fields, Neeman inputs); the inputs of `Spaces` are listed in the `Inputs.lean`
+of each area and in `Spaces/AxiomMathInputs.lean`.
+
 ## 1. Contract and terminology
 
 The only permitted external mathematical input is the **tagged Stacks

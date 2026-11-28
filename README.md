@@ -32,15 +32,17 @@ unproven parts except the Stacks Project as formalized by AxiomMath.
 
 | result | status |
 |---|---|
-| §2.2 over algebraic spaces: `D_qc`, `D^b_coh`, `Perf`, support, `Lf^* ⊣ Rf_*`, `⊗^L`; Definitions 4.1, 5.1; integral transforms | defined (`Spaces/`), nothing assumed (`SpacesVerified/`) |
-| Lemmas 2.3, 2.4, 2.5 | proved |
-| Lemmas 7.12, 7.13, 7.17 | proved for algebraic spaces, nothing assumed |
-| Lemmas 2.10, 2.11, 2.14, 2.15, 2.18, 2.22; 2.16 (1); 3.2 for a given factorization | proved over algebraic spaces from AxiomMath inputs (`SpacesVerified` in progress) |
-| Lemmas 7.2, 7.4, 7.6, 7.9, 7.11, Lemma-Definition 7.10, Lemmas 10.2, B.2, B.4, B.5, B.7, B.10, C.1 | proved, over abstract data or in `Cat` |
-| Lemmas A.4, A.6, A.9 (generation; preferred class for every support), 6.11 | proved over algebraic spaces, nothing assumed |
+| §2.2 over algebraic spaces: `D_qc`, `D^b_coh`, `Perf`, support, `Lf^* ⊣ Rf_*`, `⊗^L`, `R𝓗om`, `f^×`, `f^!`; Definitions 4.1, 5.1; integral transforms | defined (`Spaces/`) |
+| Lemmas 2.3, 2.5 (triangulated categories) | proved |
+| Lemmas 2.4, 6.11, 7.12, 7.17, A.4, A.6, A.9 | proved over algebraic spaces, nothing assumed |
+| Lemma-Definition 7.13 | over abstract data (`Prelim/BaseChangeMates.lean`) |
+| Lemmas 2.10, 2.11, 2.14, 2.15, 2.18, 2.22, 2.25, 2.26, 5.9; Lemma 2.16 (1); Lemma 5.3 (1)–(2) | proved over algebraic spaces from tagged AxiomMath theorems; their `SpacesVerified` forms are next (waves 10–11) |
+| Lemma 3.2 | proved for a morphism given as open immersion then affine; the general case in `SpacesVerified` (wave 10) |
 | Lemma 10.1 | proved over algebraic spaces from one flat-base-change hypothesis (open) |
-| Lemmas 2.25, 2.26, 5.4, A.4 (affine case) | conditional on named inputs: not counted as proved; being redone over algebraic spaces |
-| Theorems 1.2, 1.3, 1.6, 1.7 and the rest | open; being stated over algebraic spaces |
+| Lemmas 7.2, 7.4, 7.6, 7.9, 7.11, Lemma-Definition 7.10, Lemmas 10.2, B.2, B.4, B.5, B.7, B.10, C.1 | proved over abstract data or in `Cat`; the versions over spaces are to do |
+| Lemmas 2.16 (2), 2.21, 2.23, 2.24, 5.4 | in progress (wave 11) |
+| §§3–4 (Proposition 3.12, Theorem 4.8) | prepared (wave 12) |
+| Theorems 1.2, 1.3, 1.6, 1.7 and the rest | open; Theorems 1.2, 1.3, 1.6 are stated over algebraic spaces (`Spaces/Statements/Main.lean`) |
 
 Result by result: [`results/COVERAGE.md`](results/COVERAGE.md).  Everything not yet
 proved in full generality is a to-do in [`results/TODO.md`](results/TODO.md) (generated),
@@ -55,10 +57,10 @@ replaces each such hypothesis by the AxiomMath theorem itself, so the results ov
 algebraic spaces are unconditional.  Neeman's Theorem 3.2 (Acta Math. 2024) is not
 assumed; what the papers need from it is proved here.
 
-Some older results still take a named hypothesis that is not a Stacks theorem (for
-example `DerivedPseudofunctorInput`, Lipman 3.6.2).  These are not counted as proved:
-each hypothesis is being proved, from AxiomMath where it is a Stacks result, or the
-result is removed.  Ledger:
+Some results of the older layers (`FourierMukai/Scheme/`, `FourierMukai/Paper/`) still take a
+named hypothesis that is not a Stacks theorem (for example `DerivedPseudofunctorInput`).
+They are not counted as proved; they are being replaced by the versions over algebraic
+spaces.  Ledger:
 [`results/ASSUMPTIONS.md`](results/ASSUMPTIONS.md); open items:
 [`results/OPEN_INPUTS.md`](results/OPEN_INPUTS.md); policy:
 [`results/STACKS_POLICY.md`](results/STACKS_POLICY.md).
@@ -81,7 +83,7 @@ results are pinned, so a weakened statement fails even if every proof compiles:
 ```bash
 scripts/check_statements.sh              # 15 results (Mathlib only)
 scripts/check_statements.sh --spaces     # 9 results (algebraic spaces)
-scripts/check_statements.sh --verified   # 98 results (AxiomMath inputs discharged)
+scripts/check_statements.sh --verified   # 98 results recorded, 48 more to record (AxiomMath inputs discharged)
 ```
 
 Details: [`results/VERIFICATION.md`](results/VERIFICATION.md).
@@ -93,7 +95,7 @@ Lean and Mathlib `v4.35.0`; AxiomMath/Stacks at `f56a316`.
 ```bash
 lake exe cache get          # Mathlib
 lake build                  # FourierMukai, WeakApprox (no AxiomMath)
-lake build Spaces           # algebraic spaces (~2 000 AxiomMath modules, ~40 min the first time)
+lake build Spaces           # algebraic spaces (~4 700 AxiomMath modules, ~1 h the first time)
 lake build SpacesVerified   # full verification (~14 600 AxiomMath modules, ~12 h, 16 GB of memory plus 16 GB swap)
 ```
 
@@ -105,8 +107,8 @@ lake build SpacesVerified   # full verification (~14 600 AxiomMath modules, ~12 
 | `FourierMukai/Prelim/` | categorical results of GL26 §2.1, §7, Appendices B, C |
 | `FourierMukai/Scheme/` | the affine layer (`D(A-Mod)`, perfect complexes, Neeman's affine results) |
 | `FourierMukai/Paper/` | the earlier abstract interface and its targets |
-| `Spaces/` | algebraic spaces on AxiomMath's definitions: LP26 Theorem 1.1, §5 and Corollary 1.2; GL26's statements, Lemmas 2.4, 2.5, 7.12–7.17, A.9, base change |
-| `SpacesVerified/` | the AxiomMath theorems the `Spaces` layer uses |
+| `Spaces/` | algebraic spaces on AxiomMath's definitions: LP26 Theorem 1.1, §5 and Corollary 1.2 (`Spaces/LP26/`); GL26's statements (`Statements/`), §2 (`Conservative/`, `InternalHom/`, `Duality/`, `Kernels/`), §5 (`QuasiPerfect/`), Appendix A (`Supported/`), base change |
+| `SpacesVerified/` | the `Spaces` results with every AxiomMath input discharged: unconditional |
 | `manuscripts/` | the current GL26 and LP26 manuscripts (TeX and PDF) |
 | `results/` | coverage, assumptions, open items, the AxiomMath maps; `archive/` holds earlier reports |
 

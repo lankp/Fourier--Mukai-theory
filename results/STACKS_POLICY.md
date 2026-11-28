@@ -13,6 +13,15 @@ exists here it is kept — deleting a proved theorem to replace it with an assum
 would make the development depend on more, not less — but nothing new is proved here
 merely because Stacks had not been assumed before.
 
+**Current practice (28 November 2026).**  The geometric results are in the library `Spaces`,
+which imports only AxiomMath's definition modules (`scripts/axiommath/spaces-imports.txt`).  Each
+AxiomMath theorem a proof uses is a tagged hypothesis `…Input : Prop` (AxiomMath's statement
+verbatim, its Stacks tag and declaration name) in the `Inputs.lean` of the area; the library
+`SpacesVerified` discharges each by the theorem itself, so the final results are unconditional.
+A result whose AxiomMath input lives in a module whose closure contains
+`MilnorPatching.Relative` is proved in `SpacesVerified` directly.  The older layers
+(`FourierMukai/Scheme/`, `StacksInterface`) are described below.
+
 ## How a use is marked
 
 Three levels, coarse to fine:
