@@ -150,6 +150,11 @@ AxiomMath build), so it is separate from the `--spaces` check.
 #check @RelativeFM.SpacesVerified.theorem_1_1_dqcZ_unconditional
 #check @RelativeFM.SpacesVerified.theorem_1_1_dqcZ_nonVacuity_unconditional
 #check @RelativeFM.SpacesVerified.theorem_1_1_dqcZ_nonVacuity_affine_unconditional
+#check @RelativeFM.SpacesVerified.coherentOfIso
+#check @RelativeFM.SpacesVerified.coherentOfIsZero
+#check @RelativeFM.SpacesVerified.corollary_1_2_coherent_unconditional
+#check @RelativeFM.SpacesVerified.corollary_1_2_coherent_nonVacuity_unconditional
+#check @RelativeFM.SpacesVerified.corollary_1_2_coherent_int_unconditional
 #print axioms RelativeFM.SpacesVerified.tag06UQ
 #print axioms RelativeFM.SpacesVerified.tag08F4
 #print axioms RelativeFM.SpacesVerified.tag08F5
@@ -286,3 +291,8 @@ AxiomMath build), so it is separate from the `--spaces` check.
 #print axioms RelativeFM.SpacesVerified.theorem_1_1_dqcZ_unconditional
 #print axioms RelativeFM.SpacesVerified.theorem_1_1_dqcZ_nonVacuity_unconditional
 #print axioms RelativeFM.SpacesVerified.theorem_1_1_dqcZ_nonVacuity_affine_unconditional
+#print axioms RelativeFM.SpacesVerified.coherentOfIso
+#print axioms RelativeFM.SpacesVerified.coherentOfIsZero
+#print axioms RelativeFM.SpacesVerified.corollary_1_2_coherent_unconditional
+#print axioms RelativeFM.SpacesVerified.corollary_1_2_coherent_nonVacuity_unconditional
+#print axioms RelativeFM.SpacesVerified.corollary_1_2_coherent_int_unconditional
