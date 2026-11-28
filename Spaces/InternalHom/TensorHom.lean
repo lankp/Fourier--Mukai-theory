@@ -18,8 +18,8 @@ GL26's chain is `K ⊗ R𝓗om(M, L) ≅ R𝓗om(K^∨, R𝓗om(M, L))` (08JJ fo
 at once by uniqueness of adjoints: `L ↦ R𝓗om(K^∨, R𝓗om(M, L))` is right adjoint to
 `A ↦ (A ⊗ K^∨) ⊗ M` (composite of two instances of Stacks 08J8), `L ↦ R𝓗om(R𝓗om(K, M), L)` is
 right adjoint to `A ↦ A ⊗ R𝓗om(K, M)`, and these left adjoints are isomorphic by the associator
-of `⊗^L` and `K^∨ ⊗ M ≅ R𝓗om(K, M)` (08JJ); `CategoryTheory.conjugateIsoEquiv` (Mathlib) turns
-that into the isomorphism of right adjoints.  The first step uses 08JJ *natural in the target*,
+of `⊗^L` and `K^∨ ⊗ M ≅ R𝓗om(K, M)` (08JJ, `sheafHomIsoTensorDualLeft`);
+`CategoryTheory.conjugateIsoEquiv` (Mathlib) turns that into the isomorphism of right adjoints.  The first step uses 08JJ *natural in the target*,
 `sheafHomIsoTensorDualRight`, which is assembled here from AxiomMath's model-level 08JJ and its
 naturality (`RingedSite.derivedDualTensorSheafHomIso_naturality`), and the symmetry of `⊗^L`
 (`tensorBraiding`, the commutativity constraint of Stacks 0FPT transported to `⊗^L`).
@@ -29,8 +29,9 @@ no tagged input.
 
 ## Differences from GL26
 
-* "Functorial" is rendered as naturality in `L` (an isomorphism of functors of `L`, for fixed
-  perfect `K` and fixed `M`).  Naturality in `M` (and in `K`) is not proved here.
+* "Functorial" is rendered as naturality in `L` here (an isomorphism of functors of `L`, for
+  fixed perfect `K` and fixed `M`); naturality in `M` and in `K` (over perfect objects) is proved
+  in `TensorHomNatural.lean` (`lemma_2_10_naturality_M`, `lemma_2_10_naturality_K`).
 -/
 
 noncomputable section
@@ -111,13 +112,21 @@ def tensorAssoc (P M : D B S hS X) :
     (fun A => (smallEtaleDerivedTensorProduct B S hS X).associatorGeneral A P M)
     (fun a => (smallEtaleDerivedTensorProduct B S hS X).associatorGeneral_naturality_left a P M)
 
+/-- **Stacks 08JJ, natural in the target, with the dual on the left**: for `E` perfect,
+`R𝓗om(E, -) ≅ E^∨ ⊗^L -`, i.e. `sheafHomIsoTensorDualRight` followed by the symmetry of `⊗^L`.
+(AxiomMath's `smallEtaleDerivedSheafHomIsoTensorDual` is an isomorphism of the same objects; this
+one is used because its naturality in both variables is proved here, `TensorHomNatural.lean`.) -/
+def sheafHomIsoTensorDualLeft (E : D B S hS X) (hE : Perf X E) :
+    (sheafHom X).obj (op E) ≅ (tensor X).obj (dual E) :=
+  sheafHomIsoTensorDualRight E hE ≪≫ ((tensorBraiding X).app (dual E)).symm
+
 /-- The left adjoints of the two sides of Lemma 2.10, identified: `A ⊗ R𝓗om(K, M) ≅
-(A ⊗ K^∨) ⊗ M`, from `R𝓗om(K, M) ≅ K^∨ ⊗ M` (Stacks 08JJ, AxiomMath's
-`smallEtaleDerivedSheafHomIsoTensorDual`) and the associator. -/
+(A ⊗ K^∨) ⊗ M`, from `R𝓗om(K, M) ≅ K^∨ ⊗ M` (Stacks 08JJ, `sheafHomIsoTensorDualLeft`) and the
+associator. -/
 def lemma_2_10_leftAdjointIso (K M : D B S hS X) (hK : Perf X K) :
     (tensor X).flip.obj (sheafHomObj K M) ≅
       (tensor X).flip.obj (dual K) ⋙ (tensor X).flip.obj M :=
-  (tensor X).flip.mapIso (smallEtaleDerivedSheafHomIsoTensorDual B S hS X K M hK) ≪≫
+  (tensor X).flip.mapIso ((sheafHomIsoTensorDualLeft K hK).app M) ≪≫
     (tensorAssoc (dual K) M).symm
 
 /-- **Lemma 2.10** (`lem:rhom_tensor_morphism`).  Let `X` be an algebraic space, `K ∈ D(X)`
@@ -125,8 +134,8 @@ perfect and `M ∈ D(X)`.  There is an isomorphism, natural in `L ∈ D(X)`,
 
 `K ⊗^L R𝓗om(M, L) ≅ R𝓗om(R𝓗om(K, M), L)`,
 
-as an isomorphism of functors of `L`.  GL26 says "functorial"; naturality in `M` and `K` is not
-part of this statement (module docstring). -/
+as an isomorphism of functors of `L`.  GL26 says "functorial": naturality in `M` and `K` is
+`lemma_2_10_naturality_M`, `lemma_2_10_naturality_K` (`TensorHomNatural.lean`). -/
 def lemma_2_10 (K M : D B S hS X) (hK : Perf X K) :
     (sheafHom X).obj (op M) ⋙ (tensor X).obj K ≅ (sheafHom X).obj (op (sheafHomObj K M)) :=
   Functor.isoWhiskerLeft ((sheafHom X).obj (op M))

@@ -9,6 +9,7 @@ import Spaces.BaseChange.Cube
 import Spaces.Conservative.NonVacuity
 import Spaces.Duality.NonVacuity
 import Spaces.InternalHom.NonVacuity
+import Spaces.InternalHom.TensorHomNatural
 import Spaces.QuasiPerfect.NonVacuity
 import Spaces.Kernels.NonVacuity
 import Spaces.LP26.Coherence
@@ -421,7 +422,8 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.Duality.lemma_2_22
 #print axioms RelativeFM.Spaces.Duality.isNoethSepFpHom_id
 #print axioms RelativeFM.Spaces.Duality.lemma_2_22_hypotheses_satisfiable
--- GL26 §2.2 internal Hom: Lemmas 2.10, 2.11, 2.16 (wave 10, `Spaces/InternalHom/`)
+-- GL26 §2.2 internal Hom: Lemmas 2.10, 2.11, 2.16 (wave 10, `Spaces/InternalHom/`; naturality of 2.10
+-- in `K` and `M`, wave 11)
 #print axioms RelativeFM.Spaces.coherator
 #print axioms RelativeFM.Spaces.coheratorAdj
 #print axioms RelativeFM.Spaces.tensorQcRightQcHomAdj
@@ -437,6 +439,15 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.lemma_2_10
 #print axioms RelativeFM.Spaces.lemma_2_10_app
 #print axioms RelativeFM.Spaces.lemma_2_10_naturality
+#print axioms RelativeFM.Spaces.sheafHomIsoTensorDualLeft
+#print axioms RelativeFM.Spaces.conjugateEquiv_tensorSheafHomAdj
+#print axioms RelativeFM.Spaces.sheafHomIsoTensorDualRight_naturality
+#print axioms RelativeFM.Spaces.bidualIso_naturality
+#print axioms RelativeFM.Spaces.sheafHomIsoTensorDualLeft_naturality
+#print axioms RelativeFM.Spaces.lemma_2_10_hom_naturality_M
+#print axioms RelativeFM.Spaces.lemma_2_10_hom_naturality_K
+#print axioms RelativeFM.Spaces.lemma_2_10_naturality_M
+#print axioms RelativeFM.Spaces.lemma_2_10_naturality_K
 #print axioms RelativeFM.Spaces.qcHomPullbackMap
 #print axioms RelativeFM.Spaces.qcHomPullbackMap_comp_counit
 #print axioms RelativeFM.Spaces.isIso_qcHomPullbackMap_of_isIso
