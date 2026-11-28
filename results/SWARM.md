@@ -271,7 +271,7 @@ Uses wave 10's conservativity, `RHom` and `f^×`.  Cloud workers, all Opus, high
 | `wave11/gl26-box-generation` (`session_0111iGd5Y21q4AtiRceLY3ie`, launched 08:46 UTC) | Lemma 5.4 (`lem:neeman2023cor5_10`) | `Spaces/BoxGeneration/` |
 | `wave11/gl26-kernels` (`session_0111iGd9YUfCZro4cSJK24uD`; archive pending (needs the maintainer's approval); merged `b228f65`: 2.25, 2.26; no new inputs, 3 modules added to the import list; verified: `lake build Spaces`, default build, audit 424 clean, both statement checks, non-vacuity (identity, zero kernels)) | Lemmas 2.25 (`lem:funct_on_kernel`), 2.26 (`lem:convolution`) | `Spaces/Kernels/` |
 | `wave11/gl26-pullback-hom` (`session_0111iGd8uUwHJAsLduyiRCZt`, launched 10:30 UTC) | Lemma 2.16 (2) (`lem:gortz_wedhorn_internal_hom2`): `ρ_f` invertible for `E` pseudo-coherent, `G ∈ D^+_qc`, `f` of finite Tor dimension, over spaces (from AxiomMath's ringed-space 0GM7 and affine case by étale descent); and Lemma 2.10's naturality in `K`, `M` | `Spaces/InternalHom/` |
-| `wave11/gl26-shriek-calculus` (queued) | Lemmas 2.21 (`lem:neeman186`), 2.23 (`lem:neeman188`), 2.24 (`lem:neeman189`), in `SpacesVerified` with the full build (their AxiomMath inputs lie outside the `Spaces` closure) | `SpacesVerified/Duality/` |
+| `wave11/gl26-shriek-calculus` (`session_0111iGd9ceBjn6Kwy76sLfgW`, launched 12:40 UTC) | Lemmas 2.21 (`lem:neeman186`), 2.23 (`lem:neeman188`), 2.24 (`lem:neeman189`), in `SpacesVerified` with the full build (their AxiomMath inputs lie outside the `Spaces` closure) | `SpacesVerified/Duality/` |
 
 ## Wave 12 (prepared): GL26 §§3–4 over algebraic spaces
 
