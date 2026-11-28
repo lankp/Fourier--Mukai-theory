@@ -8,6 +8,7 @@ Notes from the merges:
   `Tag0GFIInput` (of `Spaces/QuasiPerfect/Inputs.lean`; distinct from the one in
   `Spaces/Supported/`), `QcohTruncLEInput`, `StructureSheafQcohInput`; `SpacesVerified` forms of
   `lemma_5_9`, `lemma_5_3_tensor`, `lemma_5_3_bounded`.
+* `wave11/gl26-kernels` (merged `b228f65`): no new input; `SpacesVerified` forms of `lemma_2_25`, `lemma_2_26`.
 * (the other wave 11 merges add their notes here)
 
 Pin the new headline declarations in `StatementCheckVerified.lean`, run

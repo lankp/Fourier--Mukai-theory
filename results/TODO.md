@@ -23,13 +23,11 @@ algebraic spaces is still to do.
 | Prop 5.8 | `prop:A8` | P (standard part: SpacesVerified form open) | **Over algebraic spaces**: W.A. part `Spaces/LP26/Proposition58.lean` `proposition_5_8`, unconditional (wave 8); standard W.A. part `Spaces/LP26/StandardWA.lean |
 | Lem 5.9 | `lem:characterize_T-_c` | P (preferred-class form: SpacesVerified form open) | **Over algebraic spaces**: `Spaces/LP26/Lemma59.lean` `lemma_5_9` and the Noetherian forms, for the standard `t`-structure, unconditional; the preferred-class f |
 
-## GL26: not proved (93)
+## GL26: not proved (91)
 
 | # | label | status | where / note |
 |---|---|---|---|
 | Lem 2.16 | `lem:gortz_wedhorn_internal_hom` | C (case (1) proved; case (2) open) | **Over algebraic spaces**: `Spaces/InternalHom/Pullback.lean` `lemma_2_16_perfect`, `lemma_2_16_perfect_qcqs` (case (1), `E` perfect, wave 10); case (2) reduced |
-| Lem 2.25 | `lem:funct_on_kernel` | C | `Scheme/DiagonalIdentity.lean`, `lemma_2_25Statement_proved` |
-| Lem 2.26 | `lem:convolution` | C | `Scheme/AffineConvolution.lean`, `lemma_2_26Statement_of_correction` |
 | Lem 3.2 | `lem:quasi-affine_is_conservative` | C (for f given with a factorization; general quasi-affine f open) | **Over algebraic spaces**: `Spaces/Conservative/QuasiAffine.lean` `lemma_3_2_of_factorization` (wave 10): `R(j ≫ p)_*` conservative on `D_qc` for `j` a quasi-co |
 | Lem 5.3 | `lem:quasi-perfect_bounded` | C (claims (1), (2) proved; claim (3) open) | **Over algebraic spaces**: `Spaces/QuasiPerfect/Bounded.lean` `lemma_5_3_tensor` (1), `lemma_5_3_bounded` (2; also `lemma_5_3_bounded_of_bounded` for every boun |
 | Lem 5.4 | `lem:neeman2023cor5_10` | C | `Scheme/Lemma54.lean`: the cover argument in six-functor form; residue is the cover square (flat base change, conservativity, perfect/compact calculus) |
@@ -121,7 +119,7 @@ algebraic spaces is still to do.
 | Lem A.7 | `lem:pullback_compact_generator` | — |  |
 | Def C.3 | `cmp:def:induced` | — |  |
 
-## GL26: proved only in a restricted form (13)
+## GL26: proved only in a restricted form (15)
 
 Proved abstractly, in `Cat`, affinely or over the interface; the version over
 algebraic spaces is still to do.
@@ -134,6 +132,8 @@ algebraic spaces is still to do.
 | Lem 2.15 | `lem:zero_object_via_covers` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Conservative/Flat.lean` `lemma_2_15` (without the qcqs hypothesis: stronger), `lemma_2_15_homology` (wave 10), from tagged Ax |
 | Lem 2.18 | `lem:quasi-affine_via_diagonal` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Conservative/QuasiAffine.lean` `lemma_2_18` (wave 10), from `QuasiAffineCompInput` (03WN). **Open**: the `SpacesVerified` for |
 | Lem 2.22 | `lem:neeman187` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Duality/ProperShriek.lean` `lemma_2_22` (wave 10), for `f^! = Lj^* ∘ p^×` of every Nagata compactification `f = p ∘ j` (`Spac |
+| Lem 2.25 | `lem:funct_on_kernel` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Kernels/Diagonal.lean` `lemma_2_25`, `lemma_2_25IsoQc` (wave 11), as an isomorphism of functors out of `D_qc(Y)` (also `lemma |
+| Lem 2.26 | `lem:convolution` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Kernels/Convolution.lean` `lemma_2_26` (wave 11), `Nonempty (Φ_{K₂} ∘ Φ_{K₁} ≅ Φ_{K₂ ⋆ K₁})` on `D_qc`, `K₂ ⋆ K₁ = Rp₁₃_*(Lp₁ |
 | Lem 5.9 | `lem:neeman23lem5_3` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/QuasiPerfect/Neeman53.lean` `lemma_5_9`, `lemma_5_9_app` (wave 11), natural in `P`, for `f` qcqs with `X` quasi-separated (sl |
 | Lem 7.4 | `lem:morph_adj` | P (in `Cat`) | `lemma_7_4` (`Prelim/MatesCalculus.lean`), all four conditions as a `List.TFAE` |
 | Lem 7.6 | `lem:taking_conjugates_is_taking_mates_twice` | P (in `Cat`) | `lemma_7_6`; it is Mathlib's `iterated_mateEquiv_conjugateEquiv` |
