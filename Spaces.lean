@@ -4,6 +4,9 @@ import Spaces.Audit
 import Spaces.AxiomMathInputs
 import Spaces.BaseChange.Cube
 import Spaces.Basic
+import Spaces.BoxGeneration.Inputs
+import Spaces.BoxGeneration.Lemma54
+import Spaces.BoxGeneration.NonVacuity
 import Spaces.Categories
 import Spaces.Conservative.Flat
 import Spaces.Conservative.Inputs

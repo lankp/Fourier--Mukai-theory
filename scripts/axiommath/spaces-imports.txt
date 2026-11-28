@@ -77,3 +77,7 @@ StacksFrontier.RingTheory.Dualizing.MapDerivedCategory
 StacksFrontier.AlgebraicGeometry.Spaces.SmallEtaleDerivedSheafHom
 StacksFrontier.AlgebraicGeometry.Spaces.Perfect.SmallEtaleDerivedPullbackSheafHomMap
 StacksFrontier.CategoryTheory.Sites.Cohomology.DerivedTensor.AssociativityGeneral
+
+# GL26 Lemma 5.4 (wave11/gl26-box-generation): `Lf^*𝒪_Y ≅ 𝒪_X` (`derivedPullbackUnitIsoGeneral`).
+# Already in the closure of the list above (adds 0 modules).
+StacksFrontier.CategoryTheory.Sites.Cohomology.DerivedPullback.DerivedPullbackStructureSheaf

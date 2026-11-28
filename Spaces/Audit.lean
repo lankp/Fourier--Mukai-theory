@@ -6,6 +6,7 @@ import Spaces.Statements
 import Spaces.Supported.CompactGeneration
 import Spaces.Supported.Preferred
 import Spaces.BaseChange.Cube
+import Spaces.BoxGeneration.NonVacuity
 import Spaces.Conservative.NonVacuity
 import Spaces.Duality.NonVacuity
 import Spaces.InternalHom.NonVacuity
@@ -470,3 +471,30 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.QuasiPerfect.isQcqsHom_id
 #print axioms RelativeFM.Spaces.QuasiPerfect.lemma_5_9_nonVacuity
 #print axioms RelativeFM.Spaces.QuasiPerfect.lemma_5_3_nonVacuity
+-- GL26 Lemma 5.4 (`lem:neeman2023cor5_10`), box products of compact generators (wave 11,
+-- `Spaces/BoxGeneration/`)
+#print axioms RelativeFM.Spaces.BoxGeneration.EtaleBaseChangeInput
+#print axioms RelativeFM.Spaces.BoxGeneration.IsCompactGeneratorQc
+#print axioms RelativeFM.Spaces.BoxGeneration.boxObj
+#print axioms RelativeFM.Spaces.BoxGeneration.perf_boxObj
+#print axioms RelativeFM.Spaces.BoxGeneration.isQcqs_fst
+#print axioms RelativeFM.Spaces.BoxGeneration.pullback_isQcqs
+#print axioms RelativeFM.Spaces.BoxGeneration.lemma_5_4_compact
+#print axioms RelativeFM.Spaces.BoxGeneration.pullUnitIso
+#print axioms RelativeFM.Spaces.BoxGeneration.leftUnitIso
+#print axioms RelativeFM.Spaces.BoxGeneration.subsingleton_hom_of_isZero_push_sheafHom
+#print axioms RelativeFM.Spaces.BoxGeneration.homEquivPushSheafHom
+#print axioms RelativeFM.Spaces.BoxGeneration.homEquivPushShift
+#print axioms RelativeFM.Spaces.BoxGeneration.isPullback_coverMap
+#print axioms RelativeFM.Spaces.BoxGeneration.subsingleton_hom_coverMap
+#print axioms RelativeFM.Spaces.BoxGeneration.isZero_of_orthogonal_box
+#print axioms RelativeFM.Spaces.BoxGeneration.Lemma54Statement
+#print axioms RelativeFM.Spaces.BoxGeneration.lemma_5_4_of_conservative
+#print axioms RelativeFM.Spaces.BoxGeneration.lemma_5_4_of_isAffineHom
+#print axioms RelativeFM.Spaces.BoxGeneration.lemma_5_4_of_factorization
+#print axioms RelativeFM.Spaces.BoxGeneration.conservative_of_isZero_of_orthogonal_box
+#print axioms RelativeFM.Spaces.BoxGeneration.isZero_of_orthogonal_box_unit_iff
+#print axioms RelativeFM.Spaces.BoxGeneration.exists_isCompactGeneratorQc
+#print axioms RelativeFM.Spaces.BoxGeneration.lemma_5_4_nonVacuity
+#print axioms RelativeFM.Spaces.BoxGeneration.lemma_5_4_of_factorization_nonVacuity
+#print axioms RelativeFM.Spaces.BoxGeneration.isZero_of_orthogonal_box_unit_iff_nonVacuity
