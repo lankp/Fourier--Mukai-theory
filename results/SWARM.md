@@ -261,17 +261,17 @@ Launched 28 November 2026, 00:52 UTC (maintainer's exception: `wave9/verified` s
 | `wave10/gl26-upper-shriek` (`session_0111iGd9NyeYUSKeFg71vUEW`; archived; merged: 2.22 for every compactification; 2.21, 2.23, 2.24 not attempted (AxiomMath results outside the `Spaces` closure): wave 11 `gl26-shriek-calculus`; 2 new inputs; verified: `lake build Spaces`, default build, audit 356 clean, both statement checks, non-vacuity (identity, trivial compactification)) | Lemmas 2.21–2.24 (`lem:neeman186`–`189`) | `Spaces/Duality/` |
 | `wave10/verified` (`session_0111iGd9FCbVBJSawK1bbwZN`, launched 04:52 UTC 28 Nov; running) | the `SpacesVerified` forms of wave 10 and the general case of Lemma 3.2 (`results/swarm/wave10/verified.md`) | `SpacesVerified/` |
 
-## Wave 11 (prepared): GL26 §2.25–2.26 and §5 over algebraic spaces
+## Wave 11: GL26 §2 (rest) and §5 over algebraic spaces (launched 04:52 UTC 28 Nov)
 
 Uses wave 10's conservativity, `RHom` and `f^×`.  Cloud workers, all Opus, high, at most four at a time (with the two `verified` builds): quasi-perfect and kernels first, then box generation, pullback-hom, shriek-calculus as slots free; briefs in `results/swarm/wave11/` (preamble `00-preamble.md`):
 
 | task | results | files |
 |---|---|---|
-| `wave11/gl26-quasi-perfect` | Lemmas 5.3 (`lem:quasi-perfect_bounded`), 5.7 (`lem:f_perf_implies_perf_preserved`), 5.9 (`lem:neeman23lem5_3`) | `Spaces/QuasiPerfect/` |
-| `wave11/gl26-box-generation` | Lemma 5.4 (`lem:neeman2023cor5_10`) | `Spaces/BoxGeneration/` |
-| `wave11/gl26-kernels` | Lemmas 2.25 (`lem:funct_on_kernel`), 2.26 (`lem:convolution`) | `Spaces/Kernels/` |
-| `wave11/gl26-pullback-hom` | Lemma 2.16 (2) (`lem:gortz_wedhorn_internal_hom2`): `ρ_f` invertible for `E` pseudo-coherent, `G ∈ D^+_qc`, `f` of finite Tor dimension, over spaces (from AxiomMath's ringed-space 0GM7 and affine case by étale descent); and Lemma 2.10's naturality in `K`, `M` | `Spaces/InternalHom/` |
-| `wave11/gl26-shriek-calculus` | Lemmas 2.21 (`lem:neeman186`), 2.23 (`lem:neeman188`), 2.24 (`lem:neeman189`), in `SpacesVerified` with the full build (their AxiomMath inputs lie outside the `Spaces` closure) | `SpacesVerified/Duality/` |
+| `wave11/gl26-quasi-perfect` (`session_0111iGd8WjT87BZ5jJjBJ6ne`) | Lemmas 5.3 (`lem:quasi-perfect_bounded`), 5.7 (`lem:f_perf_implies_perf_preserved`), 5.9 (`lem:neeman23lem5_3`) | `Spaces/QuasiPerfect/` |
+| `wave11/gl26-box-generation` (queued) | Lemma 5.4 (`lem:neeman2023cor5_10`) | `Spaces/BoxGeneration/` |
+| `wave11/gl26-kernels` (`session_0111iGd9YUfCZro4cSJK24uD`) | Lemmas 2.25 (`lem:funct_on_kernel`), 2.26 (`lem:convolution`) | `Spaces/Kernels/` |
+| `wave11/gl26-pullback-hom` (queued) | Lemma 2.16 (2) (`lem:gortz_wedhorn_internal_hom2`): `ρ_f` invertible for `E` pseudo-coherent, `G ∈ D^+_qc`, `f` of finite Tor dimension, over spaces (from AxiomMath's ringed-space 0GM7 and affine case by étale descent); and Lemma 2.10's naturality in `K`, `M` | `Spaces/InternalHom/` |
+| `wave11/gl26-shriek-calculus` (queued) | Lemmas 2.21 (`lem:neeman186`), 2.23 (`lem:neeman188`), 2.24 (`lem:neeman189`), in `SpacesVerified` with the full build (their AxiomMath inputs lie outside the `Spaces` closure) | `SpacesVerified/Duality/` |
 
 Then §6: Propositions 6.2, 6.8, hence Theorem 1.3.
 
