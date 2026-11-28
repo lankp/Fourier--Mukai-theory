@@ -6,6 +6,7 @@ import Spaces.Statements
 import Spaces.Supported.CompactGeneration
 import Spaces.Supported.Preferred
 import Spaces.BaseChange.Cube
+import Spaces.Conservative.NonVacuity
 import Spaces.LP26.Coherence
 import Spaces.LP26.Corollary12
 import Spaces.LP26.Lemma59
@@ -384,3 +385,18 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.LP26.minusC_boundedC_eq_standard
 #print axioms RelativeFM.Spaces.LP26.corollary_1_2_coherent
 #print axioms RelativeFM.Spaces.LP26.corollary_1_2_coherent_nonVacuity
+
+-- GL26 Lemmas 2.14, 2.15, 2.18, 3.2 (wave 10, `Spaces/Conservative/`)
+#print axioms RelativeFM.Spaces.Conservative.homologyPullIsoOfIsFlat
+#print axioms RelativeFM.Spaces.Conservative.isZero_of_isZero_modulePullback
+#print axioms RelativeFM.Spaces.Conservative.lemma_2_14
+#print axioms RelativeFM.Spaces.Conservative.lemma_2_14_isIso
+#print axioms RelativeFM.Spaces.Conservative.lemma_2_15
+#print axioms RelativeFM.Spaces.Conservative.lemma_2_15_homology
+#print axioms RelativeFM.Spaces.Conservative.lemma_2_18
+#print axioms RelativeFM.Spaces.Conservative.lemma_3_2_of_factorization
+#print axioms RelativeFM.Spaces.Conservative.nonVacuity_faithfullyFlat
+#print axioms RelativeFM.Spaces.Conservative.nonVacuity_lemma_2_15
+#print axioms RelativeFM.Spaces.Conservative.isQuasiAffineHom_of_isIso
+#print axioms RelativeFM.Spaces.Conservative.nonVacuity_lemma_2_18
+#print axioms RelativeFM.Spaces.Conservative.nonVacuity_lemma_3_2
