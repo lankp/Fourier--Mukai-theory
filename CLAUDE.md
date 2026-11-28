@@ -256,7 +256,9 @@ The maintainer has delegated merging to the orchestrator session: work reaches
   all archived is not closed.  **Exception** (maintainer, 27 November 2026): a wave's
   `verified` worker (the long `SpacesVerified` build) may keep running while the next wave
   starts, once every other task of its wave is merged (or recorded) and archived; it is merged
-  and archived when it reports, and `SWARM.md` records that it is still running.
+  and archived when it reports, and `SWARM.md` records that it is still running.  The same holds
+  for any task of the wave that runs the full `SpacesVerified` build (for example
+  `wave11/gl26-shriek-calculus`; maintainer, 28 November 2026).
 * **Next wave** (maintainer, 26 November 2026): as soon as a wave is closed (and cleaned up,
   above), the
   orchestrator prepares the next one from the top of `results/TODO.md` (briefs in

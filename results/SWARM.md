@@ -274,16 +274,16 @@ Uses wave 10's conservativity, `RHom` and `f^×`.  Cloud workers, all Opus, high
 | `wave11/gl26-shriek-calculus` (`session_0111iGd9ceBjn6Kwy76sLfgW`, launched 12:40 UTC) | Lemmas 2.21 (`lem:neeman186`), 2.23 (`lem:neeman188`), 2.24 (`lem:neeman189`), in `SpacesVerified` with the full build (their AxiomMath inputs lie outside the `Spaces` closure) | `SpacesVerified/Duality/` |
 | `wave11/verified` (`session_0111iGd95VgvzQ7vFNT54Ex5`, launched 15:32 UTC) | the `SpacesVerified` forms of wave 11; Lemma 2.16 (2); Lemma 5.4 in general (after `wave10/verified`) | `SpacesVerified/` |
 
-## Wave 12 (prepared): GL26 §§3–4 over algebraic spaces
+## Wave 12: GL26 §§3–4 over algebraic spaces (launched 15:51 UTC 28 Nov; exception extended by the maintainer: wave 11's full-build tasks keep running)
 
 Launched after wave 11's tasks are merged (or recorded) and archived, as cloud workers, all Opus,
 high, at most four at a time; briefs in `results/swarm/wave12/` (preamble `00-preamble.md`):
 
 | task | results | files |
 |---|---|---|
-| `wave12/gl26-points-perfectness` | Lemmas 3.1 (`lem:23`), 3.3 (`lem:34`), 3.4 (`lem:45`), 3.6 (`lem:61`), Proposition 3.12 (`prop:perfectness`) | `Spaces/Perfectness/` |
-| `wave12/gl26-perfect-locality` | Lemmas 3.5 (`lem:perf_pullback_characterize`), 3.7, 3.8, 3.9 | `Spaces/PerfectLocality/` |
-| `wave12/gl26-relative-perfect` | Lemmas 4.3, 4.4, Propositions 4.5, 4.6, Corollary 4.7, Theorem 4.8 (`thm:relative_perf_iff_smooth_locally`) | `Spaces/RelPerfect/` |
+| `wave12/gl26-points-perfectness` (`session_0111iGd5r4TgY98XLQeKPopX`) | Lemmas 3.1 (`lem:23`), 3.3 (`lem:34`), 3.4 (`lem:45`), 3.6 (`lem:61`), Proposition 3.12 (`prop:perfectness`) | `Spaces/Perfectness/` |
+| `wave12/gl26-perfect-locality` (queued: next free slot) | Lemmas 3.5 (`lem:perf_pullback_characterize`), 3.7, 3.8, 3.9 | `Spaces/PerfectLocality/` |
+| `wave12/gl26-relative-perfect` (queued) | Lemmas 4.3, 4.4, Propositions 4.5, 4.6, Corollary 4.7, Theorem 4.8 (`thm:relative_perf_iff_smooth_locally`) | `Spaces/RelPerfect/` |
 
 Then (wave 13): Lemma 5.7 (needs 3.12 and 4.3), §6 (Propositions 6.2, 6.8, Theorem 1.3).
 
