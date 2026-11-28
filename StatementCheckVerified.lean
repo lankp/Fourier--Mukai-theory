@@ -155,6 +155,10 @@ AxiomMath build), so it is separate from the `--spaces` check.
 #check @RelativeFM.SpacesVerified.corollary_1_2_coherent_unconditional
 #check @RelativeFM.SpacesVerified.corollary_1_2_coherent_nonVacuity_unconditional
 #check @RelativeFM.SpacesVerified.corollary_1_2_coherent_int_unconditional
+#check @RelativeFM.SpacesVerified.inPreferredClass_standardTStructure_of_standardWA_unconditional
+#check @RelativeFM.SpacesVerified.inPreferredClass_standardTStructure_unconditional
+#check @RelativeFM.SpacesVerified.minusC_boundedC_eq_standard_of_standardWA_unconditional
+#check @RelativeFM.SpacesVerified.minusC_boundedC_eq_standard_unconditional
 #print axioms RelativeFM.SpacesVerified.tag06UQ
 #print axioms RelativeFM.SpacesVerified.tag08F4
 #print axioms RelativeFM.SpacesVerified.tag08F5
@@ -296,3 +300,7 @@ AxiomMath build), so it is separate from the `--spaces` check.
 #print axioms RelativeFM.SpacesVerified.corollary_1_2_coherent_unconditional
 #print axioms RelativeFM.SpacesVerified.corollary_1_2_coherent_nonVacuity_unconditional
 #print axioms RelativeFM.SpacesVerified.corollary_1_2_coherent_int_unconditional
+#print axioms RelativeFM.SpacesVerified.inPreferredClass_standardTStructure_of_standardWA_unconditional
+#print axioms RelativeFM.SpacesVerified.inPreferredClass_standardTStructure_unconditional
+#print axioms RelativeFM.SpacesVerified.minusC_boundedC_eq_standard_of_standardWA_unconditional
+#print axioms RelativeFM.SpacesVerified.minusC_boundedC_eq_standard_unconditional
