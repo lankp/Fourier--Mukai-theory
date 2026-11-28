@@ -1,4 +1,4 @@
-## Your task: `wave10/verified` (Opus, effort: high; at the end of wave 10)
+## Your task: `wave10/verified` (Opus, effort: high; full AxiomMath build)
 
 Goal: the `SpacesVerified` forms of wave 10's results, with every tagged-input hypothesis
 discharged by its AxiomMath theorem (as `SpacesVerified/LP26Inputs.lean` does), and the parts
@@ -26,3 +26,7 @@ Notes from the merges:
 Pin the new headline declarations in `StatementCheckVerified.lean`, run
 `scripts/check_statements.sh --verified` and report the drift (do not `--update`).  Seven
 verification steps.  Commit verified pieces as you go.
+
+Note: `wave9/verified` (another cloud worker) may still be running when you start; you work in
+your own container and branch, from the latest `origin/formalization`.  If its branch is merged
+while you work, rebase onto `origin/formalization` before your final push.
