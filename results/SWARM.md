@@ -249,21 +249,21 @@ After wave 9, LP26 is complete up to the discharge of its AxiomMath inputs; GL26
 
 **Still running**: `wave9/verified` (`session_0111iGd73ttBiGqdq2N5NwFj`), told on 28 November, 00:52 UTC, to discharge the coherence task's inputs too.  Wave 9 closes when it is merged and archived.
 
-## Wave 10: GL26 §2–3 over algebraic spaces
+## Wave 10: GL26 §2–3 over algebraic spaces (all tasks merged and archived; `wave10/verified` running)
 
 Launched 28 November 2026, 00:52 UTC (maintainer's exception: `wave9/verified` still running), as cloud workers, all Opus, high; briefs in `results/swarm/wave10/`
 (preamble `00-preamble.md`).  From the top of `results/TODO.md`, in dependency order:
 
 | task | results | files |
 |---|---|---|
-| `wave10/gl26-conservativity` (`session_0111iGd9EqGEkn9JWtabwe1W`; merged: 2.14, 2.15, 2.18; 3.2 for a given factorization, the rest in `wave10/verified`; 5 new inputs; verified: `lake build Spaces`, default build, audit 340 clean, both statement checks, non-vacuity (identity)) | Lemmas 2.14 (`lem:faithfully_flat_is_conservative`), 2.15 (`lem:zero_object_via_covers`), 2.18 (`lem:quasi-affine_via_diagonal`), 3.2 (`lem:quasi-affine_is_conservative`) | `Spaces/Conservative/` |
-| `wave10/gl26-internal-hom` (`session_0111iGd62y3xTpdZRCZuCS3X`; merged: `R𝓗om`, coherator; 2.10 (natural in `L`), 2.11, 2.16 (1); 2.16 (2) open; 3 new inputs, 3 modules added to the import list; verified: `lake build Spaces`, default build, audit 382 clean, both statement checks, non-vacuity (affine, zero objects)) | `RHom` over spaces; Lemmas 2.10 (`lem:rhom_tensor_morphism`), 2.11 (`lem:internal_hom`), 2.16 (`lem:gortz_wedhorn_internal_hom`) | `Spaces/InternalHom/` |
-| `wave10/gl26-upper-shriek` (`session_0111iGd9NyeYUSKeFg71vUEW`; merged: 2.22 for every compactification; 2.21, 2.23, 2.24 not attempted (AxiomMath results outside the `Spaces` closure): wave 11 `gl26-shriek-calculus`; 2 new inputs; verified: `lake build Spaces`, default build, audit 356 clean, both statement checks, non-vacuity (identity, trivial compactification)) | Lemmas 2.21–2.24 (`lem:neeman186`–`189`) | `Spaces/Duality/` |
+| `wave10/gl26-conservativity` (`session_0111iGd9EqGEkn9JWtabwe1W`; archived; merged: 2.14, 2.15, 2.18; 3.2 for a given factorization, the rest in `wave10/verified`; 5 new inputs; verified: `lake build Spaces`, default build, audit 340 clean, both statement checks, non-vacuity (identity)) | Lemmas 2.14 (`lem:faithfully_flat_is_conservative`), 2.15 (`lem:zero_object_via_covers`), 2.18 (`lem:quasi-affine_via_diagonal`), 3.2 (`lem:quasi-affine_is_conservative`) | `Spaces/Conservative/` |
+| `wave10/gl26-internal-hom` (`session_0111iGd62y3xTpdZRCZuCS3X`; archived; merged: `R𝓗om`, coherator; 2.10 (natural in `L`), 2.11, 2.16 (1); 2.16 (2) open; 3 new inputs, 3 modules added to the import list; verified: `lake build Spaces`, default build, audit 382 clean, both statement checks, non-vacuity (affine, zero objects)) | `RHom` over spaces; Lemmas 2.10 (`lem:rhom_tensor_morphism`), 2.11 (`lem:internal_hom`), 2.16 (`lem:gortz_wedhorn_internal_hom`) | `Spaces/InternalHom/` |
+| `wave10/gl26-upper-shriek` (`session_0111iGd9NyeYUSKeFg71vUEW`; archived; merged: 2.22 for every compactification; 2.21, 2.23, 2.24 not attempted (AxiomMath results outside the `Spaces` closure): wave 11 `gl26-shriek-calculus`; 2 new inputs; verified: `lake build Spaces`, default build, audit 356 clean, both statement checks, non-vacuity (identity, trivial compactification)) | Lemmas 2.21–2.24 (`lem:neeman186`–`189`) | `Spaces/Duality/` |
+| `wave10/verified` (`session_0111iGd9FCbVBJSawK1bbwZN`, launched 04:52 UTC 28 Nov; running) | the `SpacesVerified` forms of wave 10 and the general case of Lemma 3.2 (`results/swarm/wave10/verified.md`) | `SpacesVerified/` |
 
 ## Wave 11 (prepared): GL26 §2.25–2.26 and §5 over algebraic spaces
 
-Launched once wave 10 closes (it uses wave 10's conservativity, `RHom` and `f^×`), as cloud
-workers, all Opus, high; briefs in `results/swarm/wave11/` (preamble `00-preamble.md`):
+Uses wave 10's conservativity, `RHom` and `f^×`.  Cloud workers, all Opus, high, at most four at a time (with the two `verified` builds): quasi-perfect and kernels first, then box generation, pullback-hom, shriek-calculus as slots free; briefs in `results/swarm/wave11/` (preamble `00-preamble.md`):
 
 | task | results | files |
 |---|---|---|

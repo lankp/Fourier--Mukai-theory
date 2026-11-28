@@ -13,7 +13,7 @@ Project](https://github.com/AxiomMath/Stacks) (a pinned Lake dependency); everyt
 else comes from Mathlib or is proved here.  **Order:** LP26 first, with the parts of
 the literature it needs, then GL26.
 
-281 Lean modules, about 70 000 lines, no `sorry`.  Every result depends only on the
+294 Lean modules, about 72 000 lines, no `sorry`.  Every result depends only on the
 axioms `propext`, `Classical.choice`, `Quot.sound`.  **Rule:** no assumptions and no
 unproven parts except the Stacks Project as formalized by AxiomMath.
 
@@ -35,6 +35,7 @@ unproven parts except the Stacks Project as formalized by AxiomMath.
 | §2.2 over algebraic spaces: `D_qc`, `D^b_coh`, `Perf`, support, `Lf^* ⊣ Rf_*`, `⊗^L`; Definitions 4.1, 5.1; integral transforms | defined (`Spaces/`), nothing assumed (`SpacesVerified/`) |
 | Lemmas 2.3, 2.4, 2.5 | proved |
 | Lemmas 7.12, 7.13, 7.17 | proved for algebraic spaces, nothing assumed |
+| Lemmas 2.10, 2.11, 2.14, 2.15, 2.18, 2.22; 2.16 (1); 3.2 for a given factorization | proved over algebraic spaces from AxiomMath inputs (`SpacesVerified` in progress) |
 | Lemmas 7.2, 7.4, 7.6, 7.9, 7.11, Lemma-Definition 7.10, Lemmas 10.2, B.2, B.4, B.5, B.7, B.10, C.1 | proved, over abstract data or in `Cat` |
 | Lemmas A.4, A.6, A.9 (generation; preferred class for the whole space), 6.11 | proved over algebraic spaces, nothing assumed; Lemma A.9's preferred class for every support from AxiomMath inputs (`SpacesVerified` in progress) |
 | Lemma 10.1 | proved over algebraic spaces from one flat-base-change hypothesis (open) |
@@ -66,8 +67,8 @@ result is removed.  Ledger:
 
 1. **Finish LP26**: every result is proved over algebraic spaces; what remains is proving
    the wave 9 AxiomMath inputs in `SpacesVerified` (running).
-2. **GL26 over algebraic spaces**, in dependency order: §2–3 (conservativity, internal Hom,
-   duality: wave 10, prepared), then §§4–6, §§9–10, §12, §11.
+2. **GL26 over algebraic spaces**, in dependency order: the rest of §2 (Lemmas 2.16 (2),
+   2.21, 2.23–2.26) and §5 (wave 11), then §6, §§9–10, §12, §11.
 
 ## Checking
 
