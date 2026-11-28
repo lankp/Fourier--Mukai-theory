@@ -112,6 +112,44 @@ AxiomMath build), so it is separate from the `--spaces` check.
 #check @RelativeFM.SpacesVerified.lemma_A_4_nonVacuity_unconditional
 #check @RelativeFM.SpacesVerified.lemma_A_6_nonVacuity_unconditional
 #check @RelativeFM.SpacesVerified.nonVacuity_detectsBelowUniformly_affine_unconditional
+#check @RelativeFM.SpacesVerified.koszulSp_eq_koszul
+#check @RelativeFM.SpacesVerified.vanishesWhereUnitSp_eq
+#check @RelativeFM.SpacesVerified.unitLocusSieveSp_eq
+#check @RelativeFM.SpacesVerified.koszulTorsion
+#check @RelativeFM.SpacesVerified.koszulDetection
+#check @RelativeFM.SpacesVerified.koszulQcoh
+#check @RelativeFM.SpacesVerified.koszulCompact
+#check @RelativeFM.SpacesVerified.unitLocusList
+#check @RelativeFM.SpacesVerified.koszulRestrict
+#check @RelativeFM.SpacesVerified.vanishesWhereUnit
+#check @RelativeFM.SpacesVerified.edsOpenQc
+#check @RelativeFM.SpacesVerified.edsOpenQs
+#check @RelativeFM.SpacesVerified.openCounit
+#check @RelativeFM.SpacesVerified.pushforwardQcohDerived
+#check @RelativeFM.SpacesVerified.perfectQcohSupported
+#check @RelativeFM.SpacesVerified.rangeOpenSubspace
+#check @RelativeFM.SpacesVerified.preimageQc
+#check @RelativeFM.SpacesVerified.shriekSupport
+#check @RelativeFM.SpacesVerified.shriekPerfect
+#check @RelativeFM.SpacesVerified.shriekRestrictOpen
+#check @RelativeFM.SpacesVerified.tag09IV
+#check @RelativeFM.SpacesVerified.supportPullbackEtale
+#check @RelativeFM.SpacesVerified.stepInputs
+#check @RelativeFM.SpacesVerified.supportedDetectsBelowStatement_unconditional
+#check @RelativeFM.SpacesVerified.lemma_A_9_preferred_unconditional
+#check @RelativeFM.SpacesVerified.lemma_A_9_detectsBelowUniformly_unconditional
+#check @RelativeFM.SpacesVerified.nonVacuity_detectsBelowUniformly_unconditional
+#check @RelativeFM.SpacesVerified.nonVacuity_detectsBelowUniformly_affine_general_unconditional
+#check @RelativeFM.SpacesVerified.proposition_5_8_standard_unconditional
+#check @RelativeFM.SpacesVerified.corollary_1_2_standard_unconditional
+#check @RelativeFM.SpacesVerified.proposition_5_8_standard_nonVacuity_unconditional
+#check @RelativeFM.SpacesVerified.corollary_1_2_standard_nonVacuity_unconditional
+#check @RelativeFM.SpacesVerified.locallySmall_D
+#check @RelativeFM.SpacesVerified.locallySmall_dqcZ_unconditional
+#check @RelativeFM.SpacesVerified.locallySmall_qcohDerived
+#check @RelativeFM.SpacesVerified.theorem_1_1_dqcZ_unconditional
+#check @RelativeFM.SpacesVerified.theorem_1_1_dqcZ_nonVacuity_unconditional
+#check @RelativeFM.SpacesVerified.theorem_1_1_dqcZ_nonVacuity_affine_unconditional
 #print axioms RelativeFM.SpacesVerified.tag06UQ
 #print axioms RelativeFM.SpacesVerified.tag08F4
 #print axioms RelativeFM.SpacesVerified.tag08F5
@@ -210,3 +248,41 @@ AxiomMath build), so it is separate from the `--spaces` check.
 #print axioms RelativeFM.SpacesVerified.lemma_A_4_nonVacuity_unconditional
 #print axioms RelativeFM.SpacesVerified.lemma_A_6_nonVacuity_unconditional
 #print axioms RelativeFM.SpacesVerified.nonVacuity_detectsBelowUniformly_affine_unconditional
+#print axioms RelativeFM.SpacesVerified.koszulSp_eq_koszul
+#print axioms RelativeFM.SpacesVerified.vanishesWhereUnitSp_eq
+#print axioms RelativeFM.SpacesVerified.unitLocusSieveSp_eq
+#print axioms RelativeFM.SpacesVerified.koszulTorsion
+#print axioms RelativeFM.SpacesVerified.koszulDetection
+#print axioms RelativeFM.SpacesVerified.koszulQcoh
+#print axioms RelativeFM.SpacesVerified.koszulCompact
+#print axioms RelativeFM.SpacesVerified.unitLocusList
+#print axioms RelativeFM.SpacesVerified.koszulRestrict
+#print axioms RelativeFM.SpacesVerified.vanishesWhereUnit
+#print axioms RelativeFM.SpacesVerified.edsOpenQc
+#print axioms RelativeFM.SpacesVerified.edsOpenQs
+#print axioms RelativeFM.SpacesVerified.openCounit
+#print axioms RelativeFM.SpacesVerified.pushforwardQcohDerived
+#print axioms RelativeFM.SpacesVerified.perfectQcohSupported
+#print axioms RelativeFM.SpacesVerified.rangeOpenSubspace
+#print axioms RelativeFM.SpacesVerified.preimageQc
+#print axioms RelativeFM.SpacesVerified.shriekSupport
+#print axioms RelativeFM.SpacesVerified.shriekPerfect
+#print axioms RelativeFM.SpacesVerified.shriekRestrictOpen
+#print axioms RelativeFM.SpacesVerified.tag09IV
+#print axioms RelativeFM.SpacesVerified.supportPullbackEtale
+#print axioms RelativeFM.SpacesVerified.stepInputs
+#print axioms RelativeFM.SpacesVerified.supportedDetectsBelowStatement_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_A_9_preferred_unconditional
+#print axioms RelativeFM.SpacesVerified.lemma_A_9_detectsBelowUniformly_unconditional
+#print axioms RelativeFM.SpacesVerified.nonVacuity_detectsBelowUniformly_unconditional
+#print axioms RelativeFM.SpacesVerified.nonVacuity_detectsBelowUniformly_affine_general_unconditional
+#print axioms RelativeFM.SpacesVerified.proposition_5_8_standard_unconditional
+#print axioms RelativeFM.SpacesVerified.corollary_1_2_standard_unconditional
+#print axioms RelativeFM.SpacesVerified.proposition_5_8_standard_nonVacuity_unconditional
+#print axioms RelativeFM.SpacesVerified.corollary_1_2_standard_nonVacuity_unconditional
+#print axioms RelativeFM.SpacesVerified.locallySmall_D
+#print axioms RelativeFM.SpacesVerified.locallySmall_dqcZ_unconditional
+#print axioms RelativeFM.SpacesVerified.locallySmall_qcohDerived
+#print axioms RelativeFM.SpacesVerified.theorem_1_1_dqcZ_unconditional
+#print axioms RelativeFM.SpacesVerified.theorem_1_1_dqcZ_nonVacuity_unconditional
+#print axioms RelativeFM.SpacesVerified.theorem_1_1_dqcZ_nonVacuity_affine_unconditional
