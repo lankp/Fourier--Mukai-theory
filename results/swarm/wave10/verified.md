@@ -19,7 +19,9 @@ Notes from the merges:
   hYqs`; it writes out the bodies of three definitions outside the import list: check they agree)
   and `Tag04NXInput` (`isProper_of_comp_of_isSeparated`); the `SpacesVerified` form of
   `lemma_2_22`.
-* (the other wave 10 merges add their notes here)
+* `wave10/gl26-internal-hom` (merged `c828460`): discharge `Tag0CR4Input`, `Tag0A8AInput`,
+  `Tag08I3PerfectInput` (`Spaces/InternalHom/Inputs.lean`; `QcohDerived` written as `Dqc`); the
+  `SpacesVerified` forms of `lemma_2_10`, `lemma_2_11`, `lemma_2_16_perfect_qcqs`.
 
 Pin the new headline declarations in `StatementCheckVerified.lean`, run
 `scripts/check_statements.sh --verified` and report the drift (do not `--update`).  Seven

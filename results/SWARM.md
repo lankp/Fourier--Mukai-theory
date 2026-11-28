@@ -257,7 +257,7 @@ Launched 28 November 2026, 00:52 UTC (maintainer's exception: `wave9/verified` s
 | task | results | files |
 |---|---|---|
 | `wave10/gl26-conservativity` (`session_0111iGd9EqGEkn9JWtabwe1W`; merged: 2.14, 2.15, 2.18; 3.2 for a given factorization, the rest in `wave10/verified`; 5 new inputs; verified: `lake build Spaces`, default build, audit 340 clean, both statement checks, non-vacuity (identity)) | Lemmas 2.14 (`lem:faithfully_flat_is_conservative`), 2.15 (`lem:zero_object_via_covers`), 2.18 (`lem:quasi-affine_via_diagonal`), 3.2 (`lem:quasi-affine_is_conservative`) | `Spaces/Conservative/` |
-| `wave10/gl26-internal-hom` (`session_0111iGd62y3xTpdZRCZuCS3X`) | `RHom` over spaces; Lemmas 2.10 (`lem:rhom_tensor_morphism`), 2.11 (`lem:internal_hom`), 2.16 (`lem:gortz_wedhorn_internal_hom`) | `Spaces/InternalHom/` |
+| `wave10/gl26-internal-hom` (`session_0111iGd62y3xTpdZRCZuCS3X`; merged: `R𝓗om`, coherator; 2.10 (natural in `L`), 2.11, 2.16 (1); 2.16 (2) open; 3 new inputs, 3 modules added to the import list; verified: `lake build Spaces`, default build, audit 382 clean, both statement checks, non-vacuity (affine, zero objects)) | `RHom` over spaces; Lemmas 2.10 (`lem:rhom_tensor_morphism`), 2.11 (`lem:internal_hom`), 2.16 (`lem:gortz_wedhorn_internal_hom`) | `Spaces/InternalHom/` |
 | `wave10/gl26-upper-shriek` (`session_0111iGd9NyeYUSKeFg71vUEW`; merged: 2.22 for every compactification; 2.21, 2.23, 2.24 not attempted (AxiomMath results outside the `Spaces` closure): wave 11 `gl26-shriek-calculus`; 2 new inputs; verified: `lake build Spaces`, default build, audit 356 clean, both statement checks, non-vacuity (identity, trivial compactification)) | Lemmas 2.21–2.24 (`lem:neeman186`–`189`) | `Spaces/Duality/` |
 
 ## Wave 11 (prepared): GL26 §2.25–2.26 and §5 over algebraic spaces
@@ -270,6 +270,7 @@ workers, all Opus, high; briefs in `results/swarm/wave11/` (preamble `00-preambl
 | `wave11/gl26-quasi-perfect` | Lemmas 5.3 (`lem:quasi-perfect_bounded`), 5.7 (`lem:f_perf_implies_perf_preserved`), 5.9 (`lem:neeman23lem5_3`) | `Spaces/QuasiPerfect/` |
 | `wave11/gl26-box-generation` | Lemma 5.4 (`lem:neeman2023cor5_10`) | `Spaces/BoxGeneration/` |
 | `wave11/gl26-kernels` | Lemmas 2.25 (`lem:funct_on_kernel`), 2.26 (`lem:convolution`) | `Spaces/Kernels/` |
+| `wave11/gl26-pullback-hom` | Lemma 2.16 (2) (`lem:gortz_wedhorn_internal_hom2`): `ρ_f` invertible for `E` pseudo-coherent, `G ∈ D^+_qc`, `f` of finite Tor dimension, over spaces (from AxiomMath's ringed-space 0GM7 and affine case by étale descent); and Lemma 2.10's naturality in `K`, `M` | `Spaces/InternalHom/` |
 | `wave11/gl26-shriek-calculus` | Lemmas 2.21 (`lem:neeman186`), 2.23 (`lem:neeman188`), 2.24 (`lem:neeman189`), in `SpacesVerified` with the full build (their AxiomMath inputs lie outside the `Spaces` closure) | `SpacesVerified/Duality/` |
 
 Then §6: Propositions 6.2, 6.8, hence Theorem 1.3.

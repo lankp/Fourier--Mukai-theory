@@ -65,12 +65,12 @@ absent.
 | Rmk 2.7 | `rem:rel_perfect_is_free` | H | `TransformPreservationForcesRelativePerfect` | |
 | Lem 2.8 | `lem:factor_residual_gerbes` | — | | algebraic spaces |
 | Lem 2.9 | `lem:support_is_cohomological_for_finite_type_cohomology` | — | | |
-| Lem 2.10 | `lem:rhom_tensor_morphism` | H | `Scheme/Duality.lean`, `Scheme/StacksInput.lean` | Stacks 08JJ |
-| Lem 2.11 | `lem:internal_hom` | — | | |
+| Lem 2.10 | `lem:rhom_tensor_morphism` | P (natural in L only; SpacesVerified form open) | **Over algebraic spaces**: `Spaces/InternalHom/TensorHom.lean` `lemma_2_10` (wave 10), `K ⊗^L R𝓗om(M,L) ≅ R𝓗om(R𝓗om(K,M),L)` for perfect `K`, natural in `L` (the paper's "functorial" also in `K`, `M`: not proved); `R𝓗om` is AxiomMath's (Stacks 08J8).  **Open**: naturality in `K`, `M`; the `SpacesVerified` form (`wave10/verified`). |
+| Lem 2.11 | `lem:internal_hom` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/InternalHom/Basic.lean` `lemma_2_11`, `lemma_2_11_of_mem`, `lemma_2_11_of_isPseudoCoherent` (wave 10), for any space with a coherator `Q` (all qcqs spaces, Stacks 0CR4); last clause with `L ∈ D^+_qc` (Stacks 0A8A; the paper's "locally bounded below", equal for quasi-compact `X`).  **Open**: the `SpacesVerified` form (`wave10/verified`). |
 | Lem 2.13 | `lem:spacey_Lipman_Hashimoto` | — | | |
 | Lem 2.14 | `lem:faithfully_flat_is_conservative` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Conservative/Flat.lean` `lemma_2_14`, `lemma_2_14_isIso` (wave 10), from tagged AxiomMath inputs (`Spaces/Conservative/Inputs.lean`).  **Open**: the `SpacesVerified` form (`wave10/verified`). |
 | Lem 2.15 | `lem:zero_object_via_covers` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Conservative/Flat.lean` `lemma_2_15` (without the qcqs hypothesis: stronger), `lemma_2_15_homology` (wave 10), from tagged AxiomMath inputs.  **Open**: the `SpacesVerified` form (`wave10/verified`). |
-| Lem 2.16 | `lem:gortz_wedhorn_internal_hom` | H | `Scheme/Duality.lean` | |
+| Lem 2.16 | `lem:gortz_wedhorn_internal_hom` | C (case (1) proved; case (2) open) | **Over algebraic spaces**: `Spaces/InternalHom/Pullback.lean` `lemma_2_16_perfect`, `lemma_2_16_perfect_qcqs` (case (1), `E` perfect, wave 10); case (2) reduced to invertibility of `ρ_f` (`lemma_2_16_pseudoCoherent_of_isIso`).  **Open**: `ρ_f` invertible for `E` pseudo-coherent, `G ∈ D^+_qc`, `f` of finite Tor dimension (AxiomMath has it for ringed spaces, 0GM7, and affine morphisms only); the `SpacesVerified` form. |
 | Lem 2.18 | `lem:quasi-affine_via_diagonal` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Conservative/QuasiAffine.lean` `lemma_2_18` (wave 10), from `QuasiAffineCompInput` (03WN).  **Open**: the `SpacesVerified` form (`wave10/verified`). |
 | Lem 2.19 | `lem:quasi_affine_diagonal` | — | | |
 | Setup 2.20 | `setup:fm_cube_pullback` | D | `FMSetup`, `BaseChange` (`Scheme/Statements.lean`, `Paper/DerivedSetup.lean`) | |
