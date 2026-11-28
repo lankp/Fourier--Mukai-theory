@@ -92,3 +92,8 @@ StacksFrontier.AlgebraicGeometry.Descent.EtaleLocal.FlatLocalAtSource
 # GL26 Lemma 5.4 (wave11/gl26-box-generation): `Lf^*𝒪_Y ≅ 𝒪_X` (`derivedPullbackUnitIsoGeneral`).
 # Already in the closure of the list above (adds 0 modules).
 StacksFrontier.CategoryTheory.Sites.Cohomology.DerivedPullback.DerivedPullbackStructureSheaf
+# GL26 Lemma 2.10 natural in `K` and `M` (wave11/gl26-pullback-hom): the naturality of the
+# canonical map to the double dual (`RingedSite.derivedBidual_naturality`, used for
+# `K^∨∨ ≅ K`).  1 module beyond the list above (total closure 4 693), free of
+# MilnorPatching.Relative.
+StacksFrontier.CategoryTheory.Sites.Cohomology.InternalHom.DerivedBidualNaturality

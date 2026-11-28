@@ -23,6 +23,7 @@ import Spaces.InternalHom.Inputs
 import Spaces.InternalHom.NonVacuity
 import Spaces.InternalHom.Pullback
 import Spaces.InternalHom.TensorHom
+import Spaces.InternalHom.TensorHomNatural
 import Spaces.Kernels.Basic
 import Spaces.Kernels.Convolution
 import Spaces.Kernels.Diagonal

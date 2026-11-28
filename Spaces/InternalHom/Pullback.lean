@@ -48,6 +48,13 @@ and in the base-change form of Stacks 0DKI (3) (`geometricPointwiseBaseChange_sh
 but not for a general morphism of algebraic spaces.  So case (2) is stated here only conditionally
 on that invertibility, and remains open.
 
+The étale-local proof of GL26 needs, besides those, AxiomMath's composition law for `ρ`
+(`smallEtaleDerivedPullbackSheafHomMap_comp`), its invertibility along étale maps
+(`isIso_smallEtaleDerivedPullbackSheafHomMap_of_isEtale`) and the definition
+`AlgebraicGeometry.Space.HasFiniteTorDimension`; all of them lie in modules whose import closure
+contains `MilnorPatching.Relative`, outside the `Spaces` closure (wave 11 report), so the proof
+belongs in `SpacesVerified`.
+
 ## Differences from GL26
 
 * The coherators are data (`adjX`, `adjY`); the lemma holds for every `f : Y ⟶ X` for which they
