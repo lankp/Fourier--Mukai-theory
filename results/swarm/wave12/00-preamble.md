@@ -66,3 +66,7 @@ Branch + final commit hash (or "nothing pushed"), what was done, every open poin
 * GL26 §2 over spaces is in `Spaces/Conservative/`, `Spaces/InternalHom/`, `Spaces/Duality/`,
   `Spaces/QuasiPerfect/` (and `Spaces/Kernels/`, `Spaces/BoxGeneration/` when merged): reuse
   them, do not redefine.
+* Derivations can be asked of the maintainer: if a step of the manuscript's proof is unclear,
+  put the precise question in your report (or send it to the orchestrator) rather than guessing.
+* Independence of the Nagata compactification follows Neeman's argument (Neeman 2023,
+  Construction 9.4); GL26 Theorem 1.7 has only the manuscript's proof.

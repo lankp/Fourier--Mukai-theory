@@ -1,5 +1,23 @@
 # Orchestrator handoff
 
+
+**Shared AxiomMath build** (maintainer, 28 November 2026).  GitHub releases cannot be written from
+these sessions, but a session's disk survives container restarts.  So the full AxiomMath build
+is kept, not rebuilt: (1) a persistent **verifier** worker (the session that last completed
+`lake build SpacesVerified`) receives each wave's `verified` task by `send_message` and is not
+archived between tasks; (2) the orchestrator's own checkout holds a second complete build
+(`scripts/axiommath/complete_build.sh`, single-threaded, restartable), so it can run
+`lake build SpacesVerified` and `check_statements.sh --verified` on a merge itself.  A new
+full-build task is launched only if neither is available.
+
+**Models** (maintainer, 28 November 2026): Fable (`claude-fable-5-2`) may be used under the
+maintainer's plan; trial it on one proof task and compare against Opus before wider use.
+
+**Maintainer's answers** (28 November 2026): GL26 Theorem 1.7 has only one known proof (the
+manuscript's); independence of the Nagata compactification follows Neeman's argument (Neeman
+2023, Construction 9.4 and its proof); derivations can be asked of the maintainer: a worker that
+needs one reports the question, and the orchestrator passes it on.
+
 **Pre-approved session tools** (maintainer, 28 November 2026): `.claude/settings.json` allows
 `send_message`, `archive_session`, `update_trigger` and `create_session` of the
 claude-code-remote server without a prompt, so the hourly checks message, archive and launch
@@ -44,7 +62,7 @@ to you.
    regenerated, `python3 scripts/check_docs.py` clean (CLAUDE.md, "Cleanliness first").  **If the 5-hour
    usage limit is near (status `allowed_warning`, or the window is already
    heavily used), do not launch; schedule the launch (`send_later`) for just
-   after the next reset.**  Launch at most four workers at a time.
+   after the next reset.**  Launch at most six workers at a time (maintainer, 28 November 2026; was four).
 5. If the orchestrator session ends, a new orchestrator session continues.  An
    automatic successor is **not** possible: sessions started by a scheduled task,
    and worker sessions, do not get the session-management tools (`get_session`,
