@@ -69,3 +69,23 @@ StacksFrontier.AlgebraicGeometry.Duality.KoszulTruncatedOrthogonality
 StacksFrontier.AlgebraicGeometry.Duality.KoszulOrthogonality.Abstract
 StacksFrontier.CategoryTheory.Sites.Cohomology.Modules.GlobalSectionLinear
 StacksFrontier.RingTheory.Dualizing.MapDerivedCategory
+
+# GL26 §2.2 internal Hom (wave10/gl26-internal-hom): the derived internal Hom `R𝓗om` on `D(𝒪_X)`
+# with Stacks 08J8 and the perfect-object facts of 08JJ, the map of Stacks 08I3/08JF
+# `Lf^*R𝓗om(K, L) ⟶ R𝓗om(Lf^*K, Lf^*L)`, and the associator of `⊗^L`.  Together 310 modules
+# beyond the list above (total closure 4 689), free of MilnorPatching.Relative.
+StacksFrontier.AlgebraicGeometry.Spaces.SmallEtaleDerivedSheafHom
+StacksFrontier.AlgebraicGeometry.Spaces.Perfect.SmallEtaleDerivedPullbackSheafHomMap
+StacksFrontier.CategoryTheory.Sites.Cohomology.DerivedTensor.AssociativityGeneral
+
+# GL26 Lemmas 2.25 and 2.26 (wave11/gl26-kernels): quasi-coherence of the structure sheaf
+# (03DL(6)), quasi-separatedness of monomorphisms, and four modules already in the closure
+# (base change of quasi-compact, quasi-separated, flat morphisms; closed immersions are
+# quasi-compact, 04CG).  Together 3 modules beyond the list above (total closure 4 692), free of
+# MilnorPatching.Relative.
+StacksFrontier.AlgebraicGeometry.Spaces.QuasicoherentStructureSheaf
+StacksFrontier.AlgebraicGeometry.Stacks.QuasiSeparatedDiagonal
+StacksFrontier.AlgebraicGeometry.Spaces.SeparatedTfae
+StacksFrontier.AlgebraicGeometry.Spaces.QuasiSeparatedCriteria
+StacksFrontier.AlgebraicGeometry.Spaces.ClosedImmersionQC
+StacksFrontier.AlgebraicGeometry.Descent.EtaleLocal.FlatLocalAtSource

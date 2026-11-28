@@ -253,7 +253,10 @@ The maintainer has delegated merging to the orchestrator session: work reaches
 * **Archive before the next wave** (maintainer, 27 November 2026): the orchestrator archives
   every worker session of the completed wave (`archive_session`), and records it in
   `SWARM.md`, before it launches any session of the next wave.  A wave whose workers are not
-  all archived is not closed.
+  all archived is not closed.  **Exception** (maintainer, 27 November 2026): a wave's
+  `verified` worker (the long `SpacesVerified` build) may keep running while the next wave
+  starts, once every other task of its wave is merged (or recorded) and archived; it is merged
+  and archived when it reports, and `SWARM.md` records that it is still running.
 * **Next wave** (maintainer, 26 November 2026): as soon as a wave is closed (and cleaned up,
   above), the
   orchestrator prepares the next one from the top of `results/TODO.md` (briefs in

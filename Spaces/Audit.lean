@@ -6,6 +6,12 @@ import Spaces.Statements
 import Spaces.Supported.CompactGeneration
 import Spaces.Supported.Preferred
 import Spaces.BaseChange.Cube
+import Spaces.Conservative.NonVacuity
+import Spaces.Duality.NonVacuity
+import Spaces.InternalHom.NonVacuity
+import Spaces.QuasiPerfect.NonVacuity
+import Spaces.Kernels.NonVacuity
+import Spaces.LP26.Coherence
 import Spaces.LP26.Corollary12
 import Spaces.LP26.Lemma59
 import Spaces.LP26.NonVacuity
@@ -370,3 +376,119 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.LP26.satisfiesStandardWA_of_iso
 #print axioms RelativeFM.Spaces.LP26.corollary_1_2_standard
 #print axioms RelativeFM.Spaces.LP26.corollary_1_2_standard_nonVacuity
+
+-- LP26 Corollary 1.2, coherence for Noetherian `X` (wave 9, `Spaces/LP26/Coherence.lean`)
+#print axioms RelativeFM.Spaces.LP26.minusC_eq_of_tStructureEquivalent
+#print axioms RelativeFM.Spaces.LP26.boundedC_eq_of_tStructureEquivalent
+#print axioms RelativeFM.Spaces.LP26.tStructureEquivalent_of_inPreferredClass
+#print axioms RelativeFM.Spaces.LP26.inPreferredClass_of_paperData_univ
+#print axioms RelativeFM.Spaces.LP26.isCoherent_of_restricts
+#print axioms RelativeFM.Spaces.LP26.coherent_homology_truncLE_truncGE
+#print axioms RelativeFM.Spaces.LP26.standardMinusC_trunc
+#print axioms RelativeFM.Spaces.LP26.inPreferredClass_standardTStructure
+#print axioms RelativeFM.Spaces.LP26.minusC_boundedC_eq_standard
+#print axioms RelativeFM.Spaces.LP26.corollary_1_2_coherent
+#print axioms RelativeFM.Spaces.LP26.corollary_1_2_coherent_nonVacuity
+
+-- GL26 Lemmas 2.14, 2.15, 2.18, 3.2 (wave 10, `Spaces/Conservative/`)
+#print axioms RelativeFM.Spaces.Conservative.homologyPullIsoOfIsFlat
+#print axioms RelativeFM.Spaces.Conservative.isZero_of_isZero_modulePullback
+#print axioms RelativeFM.Spaces.Conservative.lemma_2_14
+#print axioms RelativeFM.Spaces.Conservative.lemma_2_14_isIso
+#print axioms RelativeFM.Spaces.Conservative.lemma_2_15
+#print axioms RelativeFM.Spaces.Conservative.lemma_2_15_homology
+#print axioms RelativeFM.Spaces.Conservative.lemma_2_18
+#print axioms RelativeFM.Spaces.Conservative.lemma_3_2_of_factorization
+#print axioms RelativeFM.Spaces.Conservative.nonVacuity_faithfullyFlat
+#print axioms RelativeFM.Spaces.Conservative.nonVacuity_lemma_2_15
+#print axioms RelativeFM.Spaces.Conservative.isQuasiAffineHom_of_isIso
+#print axioms RelativeFM.Spaces.Conservative.nonVacuity_lemma_2_18
+#print axioms RelativeFM.Spaces.Conservative.nonVacuity_lemma_3_2
+-- GL26 §2.4, duality for spaces (wave 10, `Spaces/Duality/`)
+#print axioms RelativeFM.Spaces.Duality.Tag0E55Input
+#print axioms RelativeFM.Spaces.Duality.Tag04NXInput
+#print axioms RelativeFM.Spaces.Duality.IsNoethSepFpHom
+#print axioms RelativeFM.Spaces.Duality.Compactification
+#print axioms RelativeFM.Spaces.Duality.upperTimes
+#print axioms RelativeFM.Spaces.Duality.upperTimesAdj
+#print axioms RelativeFM.Spaces.Duality.upperTimesCompIso
+#print axioms RelativeFM.Spaces.Duality.upperShriek
+#print axioms RelativeFM.Spaces.Duality.hom_push_eq_zero
+#print axioms RelativeFM.Spaces.Duality.bijective_comp_unit
+#print axioms RelativeFM.Spaces.Duality.pushPullAdj
+#print axioms RelativeFM.Spaces.Duality.upperTimesIsoPullQc
+#print axioms RelativeFM.Spaces.Duality.upperTimesIsoUpperShriek
+#print axioms RelativeFM.Spaces.Duality.lemma_2_22
+#print axioms RelativeFM.Spaces.Duality.isNoethSepFpHom_id
+#print axioms RelativeFM.Spaces.Duality.lemma_2_22_hypotheses_satisfiable
+-- GL26 §2.2 internal Hom: Lemmas 2.10, 2.11, 2.16 (wave 10, `Spaces/InternalHom/`)
+#print axioms RelativeFM.Spaces.coherator
+#print axioms RelativeFM.Spaces.coheratorAdj
+#print axioms RelativeFM.Spaces.tensorQcRightQcHomAdj
+#print axioms RelativeFM.Spaces.lemma_2_11
+#print axioms RelativeFM.Spaces.lemma_2_11_of_mem
+#print axioms RelativeFM.Spaces.lemma_2_11_of_mem_hom
+#print axioms RelativeFM.Spaces.lemma_2_11_of_isPseudoCoherent
+#print axioms RelativeFM.Spaces.sheafHomObj_mem_Dqc_of_isPseudoCoherent
+#print axioms RelativeFM.Spaces.sheafHomObj_mem_Dqc_of_perfect
+#print axioms RelativeFM.Spaces.sheafHomIsoTensorDualRight
+#print axioms RelativeFM.Spaces.tensorBraiding
+#print axioms RelativeFM.Spaces.tensorAssoc
+#print axioms RelativeFM.Spaces.lemma_2_10
+#print axioms RelativeFM.Spaces.lemma_2_10_app
+#print axioms RelativeFM.Spaces.lemma_2_10_naturality
+#print axioms RelativeFM.Spaces.qcHomPullbackMap
+#print axioms RelativeFM.Spaces.qcHomPullbackMap_comp_counit
+#print axioms RelativeFM.Spaces.isIso_qcHomPullbackMap_of_isIso
+#print axioms RelativeFM.Spaces.lemma_2_16_perfect
+#print axioms RelativeFM.Spaces.lemma_2_16_perfect_qcqs
+#print axioms RelativeFM.Spaces.lemma_2_16_pseudoCoherent_of_isIso
+#print axioms RelativeFM.Spaces.exists_coherator_affine
+#print axioms RelativeFM.Spaces.lemma_2_11_nonVacuity
+#print axioms RelativeFM.Spaces.lemma_2_10_nonVacuity
+#print axioms RelativeFM.Spaces.lemma_2_16_perfect_nonVacuity
+#print axioms RelativeFM.Spaces.lemma_2_16_pseudoCoherent_nonVacuity
+-- GL26 §5 quasi-perfect objects: Lemmas 5.3 (1), (2), 5.9 (wave 11, `Spaces/QuasiPerfect/`)
+#print axioms RelativeFM.Spaces.QuasiPerfect.Tag09JBInput
+#print axioms RelativeFM.Spaces.QuasiPerfect.Tag0GFHInput
+#print axioms RelativeFM.Spaces.QuasiPerfect.Tag0GFIInput
+#print axioms RelativeFM.Spaces.QuasiPerfect.QcohTruncLEInput
+#print axioms RelativeFM.Spaces.QuasiPerfect.StructureSheafQcohInput
+#print axioms RelativeFM.Spaces.QuasiPerfect.perf_tensorObj
+#print axioms RelativeFM.Spaces.QuasiPerfect.pullQcPushQcAdj
+#print axioms RelativeFM.Spaces.QuasiPerfect.projectionFormulaMap_naturality
+#print axioms RelativeFM.Spaces.QuasiPerfect.projNatTrans
+#print axioms RelativeFM.Spaces.QuasiPerfect.projIsoQc
+#print axioms RelativeFM.Spaces.QuasiPerfect.lemma_5_9_of_adj
+#print axioms RelativeFM.Spaces.QuasiPerfect.lemma_5_9
+#print axioms RelativeFM.Spaces.QuasiPerfect.lemma_5_9_app
+#print axioms RelativeFM.Spaces.QuasiPerfect.lemma_5_3_tensor
+#print axioms RelativeFM.Spaces.QuasiPerfect.upperTimes_isGE
+#print axioms RelativeFM.Spaces.QuasiPerfect.homEquivShift
+#print axioms RelativeFM.Spaces.QuasiPerfect.lemma_5_3_bounded_of_bounded
+#print axioms RelativeFM.Spaces.QuasiPerfect.structureSheafQc
+#print axioms RelativeFM.Spaces.QuasiPerfect.lemma_5_3_bounded
+#print axioms RelativeFM.Spaces.QuasiPerfect.isQcqsHom_id
+#print axioms RelativeFM.Spaces.QuasiPerfect.lemma_5_9_nonVacuity
+#print axioms RelativeFM.Spaces.QuasiPerfect.lemma_5_3_nonVacuity
+-- GL26 §2.3 functoriality on kernels: Lemmas 2.25, 2.26 (wave 11, `Spaces/Kernels/`)
+#print axioms RelativeFM.Spaces.Kernels.tensorLeftUnitor
+#print axioms RelativeFM.Spaces.Kernels.Dqc_structureObj
+#print axioms RelativeFM.Spaces.Kernels.projNatRight
+#print axioms RelativeFM.Spaces.Kernels.isPullback_triple
+#print axioms RelativeFM.Spaces.Kernels.isQuasiCompact_diagonal
+#print axioms RelativeFM.Spaces.Kernels.isQuasiSeparated_diagonal
+#print axioms RelativeFM.Spaces.Kernels.diagTrans
+#print axioms RelativeFM.Spaces.Kernels.isIso_diagTrans_app
+#print axioms RelativeFM.Spaces.Kernels.lemma_2_25Iso
+#print axioms RelativeFM.Spaces.Kernels.lemma_2_25IsoQc
+#print axioms RelativeFM.Spaces.Kernels.lemma_2_25_of_isProper
+#print axioms RelativeFM.Spaces.Kernels.lemma_2_25
+#print axioms RelativeFM.Spaces.Kernels.convolution
+#print axioms RelativeFM.Spaces.Kernels.isIso_theta_app
+#print axioms RelativeFM.Spaces.Kernels.convRight
+#print axioms RelativeFM.Spaces.Kernels.isIso_convRight_app
+#print axioms RelativeFM.Spaces.Kernels.lemma_2_26_of
+#print axioms RelativeFM.Spaces.Kernels.lemma_2_26
+#print axioms RelativeFM.Spaces.Kernels.lemma_2_25_nonVacuity
+#print axioms RelativeFM.Spaces.Kernels.lemma_2_26_nonVacuity

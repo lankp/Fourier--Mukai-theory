@@ -238,29 +238,53 @@ Launched 27 November 2026, 18:53 UTC, after wave 8 closed and its workers were a
 
 | task | model, effort | goal |
 |---|---|---|
-| `wave9/lp26-standard-wa` (cloud, `session_0111iGd6PAyq17qjDSXGxPci`; merged) | Opus, high | done: standard W.A. of LP26 Prop 5.8 and Cor 1.2 over spaces (`Spaces/LP26/StandardWA.lean`), no new input; verified: `lake build Spaces`, default build, audit 283 clean, both statement checks, non-vacuity (empty space, `Spec ℤ`).  `SpacesVerified` form at the end of the wave |
-| `wave9/supported-0gfi` (cloud, `session_0111iGd5ogawHqMD6voe1Nm1`; merged) | Opus, high | done: supported Stacks 0GFI (`Spaces/Supported/Detecting.lean`), GL26 Lemma A.9's preferred class for every support; 19 new tagged inputs, 18 definition modules added to the import list; verified: `lake build Spaces`, default build, audit 316 clean, both statement checks, non-vacuity (affine `h_{T₀}`).  Inputs discharged by `wave9/verified` |
-| `wave9/lp26-noetherian-coherence` (cloud, `session_0111iGd6biYZJqTjkNaeCB5z`, launched 20:49 UTC) | Opus, high | Cor 1.2's coherence clause for Noetherian `X` (CHNS Ex. 10.1.2, proved here) |
+| `wave9/lp26-standard-wa` (cloud, `session_0111iGd6PAyq17qjDSXGxPci`; merged, archived) | Opus, high | done: standard W.A. of LP26 Prop 5.8 and Cor 1.2 over spaces (`Spaces/LP26/StandardWA.lean`), no new input; verified: `lake build Spaces`, default build, audit 283 clean, both statement checks, non-vacuity (empty space, `Spec ℤ`).  `SpacesVerified` form at the end of the wave |
+| `wave9/supported-0gfi` (cloud, `session_0111iGd5ogawHqMD6voe1Nm1`; merged, archived) | Opus, high | done: supported Stacks 0GFI (`Spaces/Supported/Detecting.lean`), GL26 Lemma A.9's preferred class for every support; 19 new tagged inputs, 18 definition modules added to the import list; verified: `lake build Spaces`, default build, audit 316 clean, both statement checks, non-vacuity (affine `h_{T₀}`).  Inputs discharged by `wave9/verified` |
+| `wave9/lp26-noetherian-coherence` (cloud, `session_0111iGd6biYZJqTjkNaeCB5z`; merged `81a5ca9`, archived) | Opus, high | done: Cor 1.2's coherence clause for Noetherian `X` (`Spaces/LP26/Coherence.lean`; CHNS Ex. 10.1.2 proved here), and the preferred-class step of Lemma 5.9; 2 new tagged inputs; verified: `lake build Spaces`, default build, audit 327 clean, both statement checks, non-vacuity (`Spec ℤ`) |
 | `wave9/verified` (cloud, `session_0111iGd73ttBiGqdq2N5NwFj`, launched 21:50 UTC after the first two merged) | Opus, high | the `SpacesVerified` forms of wave 9's results, new inputs discharged, `LocallySmall.{u}`; full AxiomMath build |
 
 The first Sonnet trial (model rule) is the next mechanical task, not a proof task.
 
 After wave 9, LP26 is complete up to the discharge of its AxiomMath inputs; GL26 follows.
 
-## Wave 10 (prepared): GL26 §2–3 over algebraic spaces
+**Still running**: `wave9/verified` (`session_0111iGd73ttBiGqdq2N5NwFj`), told on 28 November, 00:52 UTC, to discharge the coherence task's inputs too.  Wave 9 closes when it is merged and archived.
 
-Launched once wave 9 closes, as cloud workers, all Opus, high; briefs in `results/swarm/wave10/`
+## Wave 10: GL26 §2–3 over algebraic spaces (all tasks merged and archived; `wave10/verified` running)
+
+Launched 28 November 2026, 00:52 UTC (maintainer's exception: `wave9/verified` still running), as cloud workers, all Opus, high; briefs in `results/swarm/wave10/`
 (preamble `00-preamble.md`).  From the top of `results/TODO.md`, in dependency order:
 
 | task | results | files |
 |---|---|---|
-| `wave10/gl26-conservativity` | Lemmas 2.14 (`lem:faithfully_flat_is_conservative`), 2.15 (`lem:zero_object_via_covers`), 2.18 (`lem:quasi-affine_via_diagonal`), 3.2 (`lem:quasi-affine_is_conservative`) | `Spaces/Conservative/` |
-| `wave10/gl26-internal-hom` | `RHom` over spaces; Lemmas 2.10 (`lem:rhom_tensor_morphism`), 2.11 (`lem:internal_hom`), 2.16 (`lem:gortz_wedhorn_internal_hom`) | `Spaces/InternalHom/` |
-| `wave10/gl26-upper-shriek` | Lemmas 2.21–2.24 (`lem:neeman186`–`189`) | `Spaces/Duality/` |
+| `wave10/gl26-conservativity` (`session_0111iGd9EqGEkn9JWtabwe1W`; archived; merged: 2.14, 2.15, 2.18; 3.2 for a given factorization, the rest in `wave10/verified`; 5 new inputs; verified: `lake build Spaces`, default build, audit 340 clean, both statement checks, non-vacuity (identity)) | Lemmas 2.14 (`lem:faithfully_flat_is_conservative`), 2.15 (`lem:zero_object_via_covers`), 2.18 (`lem:quasi-affine_via_diagonal`), 3.2 (`lem:quasi-affine_is_conservative`) | `Spaces/Conservative/` |
+| `wave10/gl26-internal-hom` (`session_0111iGd62y3xTpdZRCZuCS3X`; archived; merged: `R𝓗om`, coherator; 2.10 (natural in `L`), 2.11, 2.16 (1); 2.16 (2) open; 3 new inputs, 3 modules added to the import list; verified: `lake build Spaces`, default build, audit 382 clean, both statement checks, non-vacuity (affine, zero objects)) | `RHom` over spaces; Lemmas 2.10 (`lem:rhom_tensor_morphism`), 2.11 (`lem:internal_hom`), 2.16 (`lem:gortz_wedhorn_internal_hom`) | `Spaces/InternalHom/` |
+| `wave10/gl26-upper-shriek` (`session_0111iGd9NyeYUSKeFg71vUEW`; archived; merged: 2.22 for every compactification; 2.21, 2.23, 2.24 not attempted (AxiomMath results outside the `Spaces` closure): wave 11 `gl26-shriek-calculus`; 2 new inputs; verified: `lake build Spaces`, default build, audit 356 clean, both statement checks, non-vacuity (identity, trivial compactification)) | Lemmas 2.21–2.24 (`lem:neeman186`–`189`) | `Spaces/Duality/` |
+| `wave10/verified` (`session_0111iGd9FCbVBJSawK1bbwZN`, launched 04:52 UTC 28 Nov; running) | the `SpacesVerified` forms of wave 10 and the general case of Lemma 3.2 (`results/swarm/wave10/verified.md`) | `SpacesVerified/` |
 
-Wave 11 (outline): Lemmas 2.25, 2.26 over spaces (need waves 10's internal Hom and duality);
-§§4–5: Lemmas 5.3, 5.4 (needs 2.14, 3.2), 5.7 (`lem:f_perf_implies_perf_preserved`), 5.9
-(`lem:neeman23lem5_3`); then §6: Propositions 6.2, 6.8, hence Theorem 1.3.
+## Wave 11: GL26 §2 (rest) and §5 over algebraic spaces (launched 04:52 UTC 28 Nov)
+
+Uses wave 10's conservativity, `RHom` and `f^×`.  Cloud workers, all Opus, high, at most four at a time (with the two `verified` builds): quasi-perfect and kernels first, then box generation, pullback-hom, shriek-calculus as slots free; briefs in `results/swarm/wave11/` (preamble `00-preamble.md`):
+
+| task | results | files |
+|---|---|---|
+| `wave11/gl26-quasi-perfect` (`session_0111iGd8WjT87BZ5jJjBJ6ne`; archived; merged `54381a7`: 5.9, 5.3 (1)–(2); 5.3 (3) and 5.7 open (0D0S comparison; GL26 §3–4); 5 new inputs; verified: `lake build Spaces`, default build, audit 404 clean, both statement checks, non-vacuity (identity, zero object)) | Lemmas 5.3 (`lem:quasi-perfect_bounded`), 5.7 (`lem:f_perf_implies_perf_preserved`), 5.9 (`lem:neeman23lem5_3`) | `Spaces/QuasiPerfect/` |
+| `wave11/gl26-box-generation` (`session_0111iGd5Y21q4AtiRceLY3ie`, launched 08:46 UTC) | Lemma 5.4 (`lem:neeman2023cor5_10`) | `Spaces/BoxGeneration/` |
+| `wave11/gl26-kernels` (`session_0111iGd9YUfCZro4cSJK24uD`; archive pending (needs the maintainer's approval); merged `b228f65`: 2.25, 2.26; no new inputs, 3 modules added to the import list; verified: `lake build Spaces`, default build, audit 424 clean, both statement checks, non-vacuity (identity, zero kernels)) | Lemmas 2.25 (`lem:funct_on_kernel`), 2.26 (`lem:convolution`) | `Spaces/Kernels/` |
+| `wave11/gl26-pullback-hom` (`session_0111iGd8uUwHJAsLduyiRCZt`, launched 10:30 UTC) | Lemma 2.16 (2) (`lem:gortz_wedhorn_internal_hom2`): `ρ_f` invertible for `E` pseudo-coherent, `G ∈ D^+_qc`, `f` of finite Tor dimension, over spaces (from AxiomMath's ringed-space 0GM7 and affine case by étale descent); and Lemma 2.10's naturality in `K`, `M` | `Spaces/InternalHom/` |
+| `wave11/gl26-shriek-calculus` (queued) | Lemmas 2.21 (`lem:neeman186`), 2.23 (`lem:neeman188`), 2.24 (`lem:neeman189`), in `SpacesVerified` with the full build (their AxiomMath inputs lie outside the `Spaces` closure) | `SpacesVerified/Duality/` |
+
+## Wave 12 (prepared): GL26 §§3–4 over algebraic spaces
+
+Launched after wave 11's tasks are merged (or recorded) and archived, as cloud workers, all Opus,
+high, at most four at a time; briefs in `results/swarm/wave12/` (preamble `00-preamble.md`):
+
+| task | results | files |
+|---|---|---|
+| `wave12/gl26-points-perfectness` | Lemmas 3.1 (`lem:23`), 3.3 (`lem:34`), 3.4 (`lem:45`), 3.6 (`lem:61`), Proposition 3.12 (`prop:perfectness`) | `Spaces/Perfectness/` |
+| `wave12/gl26-perfect-locality` | Lemmas 3.5 (`lem:perf_pullback_characterize`), 3.7, 3.8, 3.9 | `Spaces/PerfectLocality/` |
+| `wave12/gl26-relative-perfect` | Lemmas 4.3, 4.4, Propositions 4.5, 4.6, Corollary 4.7, Theorem 4.8 (`thm:relative_perf_iff_smooth_locally`) | `Spaces/RelPerfect/` |
+
+Then (wave 13): Lemma 5.7 (needs 3.12 and 4.3), §6 (Propositions 6.2, 6.8, Theorem 1.3).
 
 Later waves: §9–10 (base change for adjoints, Theorems 10.13 / 1.6), §12 (the loci, Theorems
 12.3, 12.9 / 1.2), §11 (Theorem 1.7, once Gorenstein morphisms and fibre genus are available).

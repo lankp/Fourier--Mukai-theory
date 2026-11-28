@@ -65,28 +65,28 @@ absent.
 | Rmk 2.7 | `rem:rel_perfect_is_free` | H | `TransformPreservationForcesRelativePerfect` | |
 | Lem 2.8 | `lem:factor_residual_gerbes` | — | | algebraic spaces |
 | Lem 2.9 | `lem:support_is_cohomological_for_finite_type_cohomology` | — | | |
-| Lem 2.10 | `lem:rhom_tensor_morphism` | H | `Scheme/Duality.lean`, `Scheme/StacksInput.lean` | Stacks 08JJ |
-| Lem 2.11 | `lem:internal_hom` | — | | |
+| Lem 2.10 | `lem:rhom_tensor_morphism` | P (natural in L only; SpacesVerified form open) | **Over algebraic spaces**: `Spaces/InternalHom/TensorHom.lean` `lemma_2_10` (wave 10), `K ⊗^L R𝓗om(M,L) ≅ R𝓗om(R𝓗om(K,M),L)` for perfect `K`, natural in `L` (the paper's "functorial" also in `K`, `M`: not proved); `R𝓗om` is AxiomMath's (Stacks 08J8).  **Open**: naturality in `K`, `M`; the `SpacesVerified` form (`wave10/verified`). |
+| Lem 2.11 | `lem:internal_hom` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/InternalHom/Basic.lean` `lemma_2_11`, `lemma_2_11_of_mem`, `lemma_2_11_of_isPseudoCoherent` (wave 10), for any space with a coherator `Q` (all qcqs spaces, Stacks 0CR4); last clause with `L ∈ D^+_qc` (Stacks 0A8A; the paper's "locally bounded below", equal for quasi-compact `X`).  **Open**: the `SpacesVerified` form (`wave10/verified`). |
 | Lem 2.13 | `lem:spacey_Lipman_Hashimoto` | — | | |
-| Lem 2.14 | `lem:faithfully_flat_is_conservative` | H | `CoverComparisonInput` (`Scheme/Lemma54.lean`) | part of the cover square |
-| Lem 2.15 | `lem:zero_object_via_covers` | — | | possibly inside the Lemma 5.4 cover input; not named |
-| Lem 2.16 | `lem:gortz_wedhorn_internal_hom` | H | `Scheme/Duality.lean` | |
-| Lem 2.18 | `lem:quasi-affine_via_diagonal` | — | | |
+| Lem 2.14 | `lem:faithfully_flat_is_conservative` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Conservative/Flat.lean` `lemma_2_14`, `lemma_2_14_isIso` (wave 10), from tagged AxiomMath inputs (`Spaces/Conservative/Inputs.lean`).  **Open**: the `SpacesVerified` form (`wave10/verified`). |
+| Lem 2.15 | `lem:zero_object_via_covers` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Conservative/Flat.lean` `lemma_2_15` (without the qcqs hypothesis: stronger), `lemma_2_15_homology` (wave 10), from tagged AxiomMath inputs.  **Open**: the `SpacesVerified` form (`wave10/verified`). |
+| Lem 2.16 | `lem:gortz_wedhorn_internal_hom` | C (case (1) proved; case (2) open) | **Over algebraic spaces**: `Spaces/InternalHom/Pullback.lean` `lemma_2_16_perfect`, `lemma_2_16_perfect_qcqs` (case (1), `E` perfect, wave 10); case (2) reduced to invertibility of `ρ_f` (`lemma_2_16_pseudoCoherent_of_isIso`).  **Open**: `ρ_f` invertible for `E` pseudo-coherent, `G ∈ D^+_qc`, `f` of finite Tor dimension (AxiomMath has it for ringed spaces, 0GM7, and affine morphisms only); the `SpacesVerified` form. |
+| Lem 2.18 | `lem:quasi-affine_via_diagonal` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Conservative/QuasiAffine.lean` `lemma_2_18` (wave 10), from `QuasiAffineCompInput` (03WN).  **Open**: the `SpacesVerified` form (`wave10/verified`). |
 | Lem 2.19 | `lem:quasi_affine_diagonal` | — | | |
 | Setup 2.20 | `setup:fm_cube_pullback` | D | `FMSetup`, `BaseChange` (`Scheme/Statements.lean`, `Paper/DerivedSetup.lean`) | |
-| Lem 2.21 | `lem:neeman186` | H | `Scheme/Duality.lean` | four invertibility cases as fields |
-| Lem 2.22 | `lem:neeman187` | H | `Scheme/Duality.lean` | |
-| Lem 2.23 | `lem:neeman188` | H | `Scheme/Duality.lean` | bounded-below and finite-tor cases |
-| Lem 2.24 | `lem:neeman189` | H | `Scheme/Duality.lean` | |
-| Lem 2.25 | `lem:funct_on_kernel` | C | `Scheme/DiagonalIdentity.lean`, `lemma_2_25Statement_proved` | from 08IN, the tensor unit and `f'ᵢ ∘ Δ = 𝟙` (`DiagonalIdentityData`); the bare interface form is refuted in `GL26OtherTargets.lean` |
-| Lem 2.26 | `lem:convolution` | C | `Scheme/AffineConvolution.lean`, `lemma_2_26Statement_of_correction` | from `CorrectedConvolutionData` (07A4, 08IN, 08IR, 0D6D, 0D6E) |
+| Lem 2.21 | `lem:neeman186` | — | Not yet over algebraic spaces (wave 10 did 2.22 only).  Needs Neeman's `ρ(f,g)`, `σ`, `χ` and the base change map for `f^!`, independence of the compactification, flat base change for `f^×`; AxiomMath's 0E5P/0E5Q and related results lie in modules whose closure contains `MilnorPatching.Relative`, so the task works in `SpacesVerified` directly (wave 11, `gl26-shriek-calculus`). |
+| Lem 2.22 | `lem:neeman187` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Duality/ProperShriek.lean` `lemma_2_22` (wave 10), for `f^! = Lj^* ∘ p^×` of every Nagata compactification `f = p ∘ j` (`Spaces/Duality/Basic.lean`; independence of the compactification not proved); from tagged AxiomMath inputs (`Tag0E55Input`, `Tag04NXInput`, existing ones).  **Open**: the `SpacesVerified` form (`wave10/verified`). |
+| Lem 2.23 | `lem:neeman188` | — | Not yet over algebraic spaces (wave 10 did 2.22 only).  Needs Neeman's `ρ(f,g)`, `σ`, `χ` and the base change map for `f^!`, independence of the compactification, flat base change for `f^×`; AxiomMath's 0E5P/0E5Q and related results lie in modules whose closure contains `MilnorPatching.Relative`, so the task works in `SpacesVerified` directly (wave 11, `gl26-shriek-calculus`). |
+| Lem 2.24 | `lem:neeman189` | — | Not yet over algebraic spaces (wave 10 did 2.22 only).  Needs Neeman's `ρ(f,g)`, `σ`, `χ` and the base change map for `f^!`, independence of the compactification, flat base change for `f^×`; AxiomMath's 0E5P/0E5Q and related results lie in modules whose closure contains `MilnorPatching.Relative`, so the task works in `SpacesVerified` directly (wave 11, `gl26-shriek-calculus`). |
+| Lem 2.25 | `lem:funct_on_kernel` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Kernels/Diagonal.lean` `lemma_2_25`, `lemma_2_25IsoQc` (wave 11), as an isomorphism of functors out of `D_qc(Y)` (also `lemma_2_25_of_isProper`: properness suffices); from existing tagged inputs (08F4, 08IN).  The scheme-layer `Scheme/DiagonalIdentity.lean` is superseded.  **Open**: the `SpacesVerified` form (`wave11/verified`). |
+| Lem 2.26 | `lem:convolution` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/Kernels/Convolution.lean` `lemma_2_26` (wave 11), `Nonempty (Φ_{K₂} ∘ Φ_{K₁} ≅ Φ_{K₂ ⋆ K₁})` on `D_qc`, `K₂ ⋆ K₁ = Rp₁₃_*(Lp₁₂^*K₁ ⊗ Lp₂₃^*K₂)` (Huybrechts 5.10); from existing tagged inputs (flat base change 0A1K/08IR, 08IN, 0D6D).  **Open**: the `SpacesVerified` form (`wave11/verified`). |
 
 ### §3 Characterization of perfectness
 
 | # | label | status | note |
 |---|---|---|---|
 | Lem 3.1 | `lem:23` | — | |
-| Lem 3.2 | `lem:quasi-affine_is_conservative` | H | residue of Lemma 5.4 (`Rh₂*` conservative) |
+| Lem 3.2 | `lem:quasi-affine_is_conservative` | C (for f given with a factorization; general quasi-affine f open) | **Over algebraic spaces**: `Spaces/Conservative/QuasiAffine.lean` `lemma_3_2_of_factorization` (wave 10): `R(j ≫ p)_*` conservative on `D_qc` for `j` a quasi-compact open immersion and `p` affine.  **Open**: every quasi-affine `f` has such a factorization (AxiomMath 081X/086S, `isQuasiAffineHom_iff_isOpenImmersion_toDirectImageSpec`, outside the import closure of `Spaces`): to be done in `SpacesVerified` (`wave10/verified`). |
 | Lem 3.3 | `lem:34` | — | |
 | Lem 3.4 | `lem:45` | — | |
 | Lem 3.5 | `lem:perf_pullback_characterize` | — | |
@@ -114,11 +114,11 @@ absent.
 | # | label | status | note |
 |---|---|---|---|
 | Def 5.1 | `def:quasi_perf` | D (over algebraic spaces: `Spaces/RelativePerfect.lean` `IsQuasiPerfect`, wave 6) | `IsQuasiPerfect` |
-| Lem 5.3 | `lem:quasi-perfect_bounded` | H | `Scheme/StacksInput.lean` |
+| Lem 5.3 | `lem:quasi-perfect_bounded` | C (claims (1), (2) proved; claim (3) open) | **Over algebraic spaces**: `Spaces/QuasiPerfect/Bounded.lean` `lemma_5_3_tensor` (1), `lemma_5_3_bounded` (2; also `lemma_5_3_bounded_of_bounded` for every bounded `P`) (wave 11).  **Open**: claim (3) (pseudo-coherence in the Noetherian case): AxiomMath's 0D0S is for a model internal Hom complex, not identified with `smallEtaleDerivedSheafHom`; the `SpacesVerified` forms. |
 | Lem 5.4 | `lem:neeman2023cor5_10` | C | `Scheme/Lemma54.lean`: the cover argument in six-functor form; residue is the cover square (flat base change, conservativity, perfect/compact calculus) |
 | Prop 5.6 | `prop:preservation_of_perfect` | — | a lemma in the arXiv version |
-| Lem 5.7 | `lem:f_perf_implies_perf_preserved` | — | |
-| Lem 5.9 | `lem:neeman23lem5_3` | — | |
+| Lem 5.7 | `lem:f_perf_implies_perf_preserved` | — | Not yet: needs GL26 Prop 3.12 (`prop:perfectness`, (3)⇒(1)), Lemma 4.3, Remark 4.2(3) over spaces (wave 11 found none in the tree or AxiomMath); after GL26 §3–4. |
+| Lem 5.9 | `lem:neeman23lem5_3` | P (SpacesVerified form open) | **Over algebraic spaces**: `Spaces/QuasiPerfect/Neeman53.lean` `lemma_5_9`, `lemma_5_9_app` (wave 11), natural in `P`, for `f` qcqs with `X` quasi-separated (slightly more general), from tagged AxiomMath inputs (projection formula 08IN, 0E55).  **Open**: the `SpacesVerified` form (`wave11/verified`). |
 | Lem 5.10 | `lem:Ballard_relative_perf_implies_dual_is_such` | — | |
 | Lem 5.11 | `lem:f-quasi-perfect_via_small_coproducts` | — | |
 | Prop 5.12 | `prop:stacky_f_perf_gives_iso_between_uppershriek_and_pullback_up_to_tensor` | — | |
@@ -243,7 +243,7 @@ The geometric §5 is not; the tree records it in `results/archive/WEAK_APPROX.md
 | # | label | status | where / note |
 |---|---|---|---|
 | Thm 1.1 | `thm:glueing_weak_approx` | P | **at any Hom and coproduct universes** (AxiomMath's `D(𝒪_X)`: Hom in `Type (u+1)`, sums over `Type u`): `Spaces.Stacks.theorem_1_1_univ` (wave 8, `WeakApprox/SumUniverse*.lean`); **with exactly the paper's hypotheses and no Stacks hypothesis**: `Spaces/Stacks/Corollaries.lean` `RelativeFM.Spaces.Stacks.theorem_1_1` (09SR proved from AxiomMath, wave 6); before that, `WeakApprox/Theorem11Paper.lean` `PaperHypothesesW6.theorem_1_1_paper` (pinned; only Stacks 09SR assumed; wave 6), from `PaperSetupMainMinimal.theorem_1_1`; compactly generated `t`-structures and BNP Cor 3.10(1) proved; non-vacuous (`Theorem11PaperNonVacuity`). The large-model affine endpoints are proved vacuous (`RefuteLargeCoproducts`) |
-| Cor 1.2 | `cor:weak_approx_spaces` | P (W.A. and D_qc parts; standard W.A. SpacesVerified form and coherence open) | **Over qcqs algebraic spaces**: `Spaces/LP26/Corollary12.lean` `corollary_1_2`, `corollary_1_2_dqc` (pinned), unconditional; standard W.A. `Spaces/LP26/StandardWA.lean` `corollary_1_2_standard` (wave 9), from AxiomMath inputs all already proved in `SpacesVerified`; without the paper's quasi-finite-diagonal hypothesis; non-vacuity at `Spec ℤ`.  **Open**: the `SpacesVerified` form of the standard part (end of wave 9); coherence for Noetherian `X` (`lp26-noetherian-coherence`). |
+| Cor 1.2 | `cor:weak_approx_spaces` | P (all parts; SpacesVerified form of standard W.A. and coherence open) | **Over qcqs algebraic spaces**: `Spaces/LP26/Corollary12.lean` `corollary_1_2`, `corollary_1_2_dqc` (pinned), unconditional; standard W.A. `Spaces/LP26/StandardWA.lean` `corollary_1_2_standard`; coherence for Noetherian `X` `Spaces/LP26/Coherence.lean` `corollary_1_2_coherent` (CHNS Ex. 10.1.2 proved here; `IsCoherent` checked against CHNS Def 10.1.1, arXiv:2402.04605, and LP26 §2: identical); both wave 9, from AxiomMath inputs (two new: `CoherentOfIsoInput`, `CoherentOfIsZeroInput`); without the paper's quasi-finite-diagonal hypothesis; non-vacuity at `Spec ℤ`.  **Open**: the `SpacesVerified` forms (`wave9/verified`). |
 | Def 2.1 | `def:weak_approx` | D | `WeakApproximationData`, `PaperWeakApproximationData` |
 | Lem 3.1 | `lem:closures` | P | `Basic`, `Closure`, `Shift`, `Functoriality` |
 | Lem 3.3 | `lem:aisle` | P | `Aisle` |
@@ -261,7 +261,7 @@ The geometric §5 is not; the tree records it in `results/archive/WEAK_APPROX.md
 | Lem 5.6 | `lem:perf_vanishing` | P | **over algebraic spaces, unconditional**: `Spaces/LP26/HomVanishing.lean` `lemma_5_6` (without the paper's generator hypothesis); inputs proved in `SpacesVerified` (wave 8). |
 | Lem 5.7 | `lem:qcqs_open_pushforward` | P | **over algebraic spaces, unconditional**: `Spaces/LP26/OpenPushforward.lean` `lemma_5_7` (weaker hypotheses than the paper's); inputs proved in `SpacesVerified` (wave 8). |
 | Prop 5.8 | `prop:A8` | P (standard part: SpacesVerified form open) | **Over algebraic spaces**: W.A. part `Spaces/LP26/Proposition58.lean` `proposition_5_8`, unconditional (wave 8); standard W.A. part `Spaces/LP26/StandardWA.lean` `proposition_5_8_standard` (wave 9), from AxiomMath inputs all already proved in `SpacesVerified`; non-vacuity on the empty space.  **Open**: its `SpacesVerified` form (end of wave 9). |
-| Lem 5.9 | `lem:characterize_T-_c` | P (for the standard t-structure; preferred-class form open) | **over algebraic spaces, unconditional**: `Spaces/LP26/Lemma59.lean` `lemma_5_9` and the Noetherian forms; the identification with the paper's preferred-class `𝒯^-_c` waits for the standard W.A. of Def 5.3. |
+| Lem 5.9 | `lem:characterize_T-_c` | P (preferred-class form: SpacesVerified form open) | **Over algebraic spaces**: `Spaces/LP26/Lemma59.lean` `lemma_5_9` and the Noetherian forms, for the standard `t`-structure, unconditional; the preferred-class form (any `t`-structure in the preferred class, under standard W.A.) by `Spaces/LP26/Coherence.lean` `inPreferredClass_standardTStructure`, `minusC_boundedC_eq_standard` (wave 9).  **Open**: the `SpacesVerified` form of the latter (`wave9/verified`). |
 
 ## Numbering that disagreed with the current GL26 manuscript
 
