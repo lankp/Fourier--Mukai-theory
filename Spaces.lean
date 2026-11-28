@@ -20,6 +20,10 @@ import Spaces.InternalHom.Inputs
 import Spaces.InternalHom.NonVacuity
 import Spaces.InternalHom.Pullback
 import Spaces.InternalHom.TensorHom
+import Spaces.Kernels.Basic
+import Spaces.Kernels.Convolution
+import Spaces.Kernels.Diagonal
+import Spaces.Kernels.NonVacuity
 import Spaces.LP26.Coherence
 import Spaces.LP26.Corollary12
 import Spaces.LP26.HomVanishing
