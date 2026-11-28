@@ -6,7 +6,7 @@ processes, and that a successor needs, is listed here (CLAUDE.md, "Handoff").  P
 are never committed; they are passed to the successor by session message.  The manuscripts are
 in the repository (`manuscripts/`).
 
-Last updated: 28 November 2026, 13:05 UTC (wave 9 closed, LP26 complete; all merged workers archived; wave 11 box-generation, pullback-hom, shriek-calculus and wave10/verified running; the --verified baseline update delegated to wave10/verified).
+Last updated: 28 November 2026, 15:35 UTC (wave 11: four tasks merged and archived; shriek-calculus and wave11/verified running; wave10/verified running; wave 12 prepared).
 
 ## Running in the background
 
