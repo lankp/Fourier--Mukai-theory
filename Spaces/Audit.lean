@@ -9,6 +9,7 @@ import Spaces.BaseChange.Cube
 import Spaces.Conservative.NonVacuity
 import Spaces.Duality.NonVacuity
 import Spaces.InternalHom.NonVacuity
+import Spaces.QuasiPerfect.NonVacuity
 import Spaces.LP26.Coherence
 import Spaces.LP26.Corollary12
 import Spaces.LP26.Lemma59
@@ -446,3 +447,26 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.lemma_2_10_nonVacuity
 #print axioms RelativeFM.Spaces.lemma_2_16_perfect_nonVacuity
 #print axioms RelativeFM.Spaces.lemma_2_16_pseudoCoherent_nonVacuity
+-- GL26 §5 quasi-perfect objects: Lemmas 5.3 (1), (2), 5.9 (wave 11, `Spaces/QuasiPerfect/`)
+#print axioms RelativeFM.Spaces.QuasiPerfect.Tag09JBInput
+#print axioms RelativeFM.Spaces.QuasiPerfect.Tag0GFHInput
+#print axioms RelativeFM.Spaces.QuasiPerfect.Tag0GFIInput
+#print axioms RelativeFM.Spaces.QuasiPerfect.QcohTruncLEInput
+#print axioms RelativeFM.Spaces.QuasiPerfect.StructureSheafQcohInput
+#print axioms RelativeFM.Spaces.QuasiPerfect.perf_tensorObj
+#print axioms RelativeFM.Spaces.QuasiPerfect.pullQcPushQcAdj
+#print axioms RelativeFM.Spaces.QuasiPerfect.projectionFormulaMap_naturality
+#print axioms RelativeFM.Spaces.QuasiPerfect.projNatTrans
+#print axioms RelativeFM.Spaces.QuasiPerfect.projIsoQc
+#print axioms RelativeFM.Spaces.QuasiPerfect.lemma_5_9_of_adj
+#print axioms RelativeFM.Spaces.QuasiPerfect.lemma_5_9
+#print axioms RelativeFM.Spaces.QuasiPerfect.lemma_5_9_app
+#print axioms RelativeFM.Spaces.QuasiPerfect.lemma_5_3_tensor
+#print axioms RelativeFM.Spaces.QuasiPerfect.upperTimes_isGE
+#print axioms RelativeFM.Spaces.QuasiPerfect.homEquivShift
+#print axioms RelativeFM.Spaces.QuasiPerfect.lemma_5_3_bounded_of_bounded
+#print axioms RelativeFM.Spaces.QuasiPerfect.structureSheafQc
+#print axioms RelativeFM.Spaces.QuasiPerfect.lemma_5_3_bounded
+#print axioms RelativeFM.Spaces.QuasiPerfect.isQcqsHom_id
+#print axioms RelativeFM.Spaces.QuasiPerfect.lemma_5_9_nonVacuity
+#print axioms RelativeFM.Spaces.QuasiPerfect.lemma_5_3_nonVacuity
