@@ -6,6 +6,7 @@ import Spaces.Statements
 import Spaces.Supported.CompactGeneration
 import Spaces.Supported.Preferred
 import Spaces.BaseChange.Cube
+import Spaces.Duality.NonVacuity
 import Spaces.LP26.Coherence
 import Spaces.LP26.Corollary12
 import Spaces.LP26.Lemma59
@@ -384,3 +385,21 @@ open RelativeFM.Spaces
 #print axioms RelativeFM.Spaces.LP26.minusC_boundedC_eq_standard
 #print axioms RelativeFM.Spaces.LP26.corollary_1_2_coherent
 #print axioms RelativeFM.Spaces.LP26.corollary_1_2_coherent_nonVacuity
+
+-- GL26 §2.4, duality for spaces (wave 10, `Spaces/Duality/`)
+#print axioms RelativeFM.Spaces.Duality.Tag0E55Input
+#print axioms RelativeFM.Spaces.Duality.Tag04NXInput
+#print axioms RelativeFM.Spaces.Duality.IsNoethSepFpHom
+#print axioms RelativeFM.Spaces.Duality.Compactification
+#print axioms RelativeFM.Spaces.Duality.upperTimes
+#print axioms RelativeFM.Spaces.Duality.upperTimesAdj
+#print axioms RelativeFM.Spaces.Duality.upperTimesCompIso
+#print axioms RelativeFM.Spaces.Duality.upperShriek
+#print axioms RelativeFM.Spaces.Duality.hom_push_eq_zero
+#print axioms RelativeFM.Spaces.Duality.bijective_comp_unit
+#print axioms RelativeFM.Spaces.Duality.pushPullAdj
+#print axioms RelativeFM.Spaces.Duality.upperTimesIsoPullQc
+#print axioms RelativeFM.Spaces.Duality.upperTimesIsoUpperShriek
+#print axioms RelativeFM.Spaces.Duality.lemma_2_22
+#print axioms RelativeFM.Spaces.Duality.isNoethSepFpHom_id
+#print axioms RelativeFM.Spaces.Duality.lemma_2_22_hypotheses_satisfiable

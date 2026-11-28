@@ -5,6 +5,10 @@ import Spaces.AxiomMathInputs
 import Spaces.BaseChange.Cube
 import Spaces.Basic
 import Spaces.Categories
+import Spaces.Duality.Basic
+import Spaces.Duality.Inputs
+import Spaces.Duality.NonVacuity
+import Spaces.Duality.ProperShriek
 import Spaces.Functors
 import Spaces.IntegralTransform
 import Spaces.LP26.Coherence
