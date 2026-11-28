@@ -1,7 +1,7 @@
 ## Your task: `wave11/verified` (Opus, effort: high; full AxiomMath build)
 
 Goal: the `SpacesVerified` forms of wave 11's results, every tagged-input hypothesis discharged
-by its AxiomMath theorem.  Build regime of `results/swarm/wave9/verified.md`.
+by its AxiomMath theorem.  Build regime of `results/swarm/archive/wave9/verified.md`.
 
 Notes from the merges:
 * `wave11/gl26-quasi-perfect` (merged `54381a7`): discharge `Tag09JBInput`, `Tag0GFHInput`,

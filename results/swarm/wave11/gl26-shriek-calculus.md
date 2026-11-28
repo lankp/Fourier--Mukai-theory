@@ -10,7 +10,7 @@ Wave 10 found that the AxiomMath results these need (Stacks 0E5P/0E5Q, flat base
 `Spaces` closure.  So this task works in **`SpacesVerified`** directly (new directory
 `SpacesVerified/Duality/`), importing the AxiomMath modules it needs and using their theorems
 as theorems; the results there are unconditional.  It runs `lake build SpacesVerified`
-(regime of `results/swarm/wave9/verified.md`: 16 GB swap, `vm.max_map_count`, foreground waits,
+(regime of `results/swarm/archive/wave9/verified.md`: 16 GB swap, `vm.max_map_count`, foreground waits,
 restart after a container restart).  Prove what AxiomMath lacks (independence of the
 compactification if needed, `ρ`, the base-change map) here; stop and report if something needs
 an assumption outside AxiomMath.  Statements and proofs: `manuscripts/GL26/main.tex`.  Pin the

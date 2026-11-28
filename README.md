@@ -13,7 +13,7 @@ Project](https://github.com/AxiomMath/Stacks) (a pinned Lake dependency); everyt
 else comes from Mathlib or is proved here.  **Order:** LP26 first, with the parts of
 the literature it needs, then GL26.
 
-294 Lean modules, about 72 000 lines, no `sorry`.  Every result depends only on the
+306 Lean modules, about 74 000 lines, no `sorry`.  Every result depends only on the
 axioms `propext`, `Classical.choice`, `Quot.sound`.  **Rule:** no assumptions and no
 unproven parts except the Stacks Project as formalized by AxiomMath.
 
@@ -24,9 +24,9 @@ unproven parts except the Stacks Project as formalized by AxiomMath.
 | result | status |
 |---|---|
 | §§2–4 (Lemmas 3.1, 3.3, 3.4, 3.5, 4.2, 4.3, 4.6, Proposition 4.8) | proved |
-| Theorem 1.1 (`thm:glueing_weak_approx`) | proved, with the paper's hypotheses and nothing assumed (`Spaces.Stacks.theorem_1_1`) |
-| Corollary 1.2 (`cor:weak_approx_spaces`) | proved over qcqs algebraic spaces: weak approximability of `D_qc,S(X)` and `D_qc(X)` with nothing assumed; the standard form and coherence for Noetherian `X` from AxiomMath inputs, whose proofs in `SpacesVerified` are in progress |
-| §5 (Definition 5.3, Lemmas 5.5–5.9, Proposition 5.8) | proved over algebraic spaces; nothing assumed except for the standard part of Proposition 5.8 and the preferred-class form of Lemma 5.9 (AxiomMath inputs, `SpacesVerified` in progress) |
+| Theorem 1.1 (`thm:glueing_weak_approx`) | proved, with the paper's hypotheses and nothing assumed (`Spaces.Stacks.theorem_1_1`); applies to the recollements of `D_qc,T(X)` |
+| Corollary 1.2 (`cor:weak_approx_spaces`) | proved over qcqs algebraic spaces, nothing assumed: weak approximability and standard weak approximability of `D_qc,S(X)` and `D_qc(X)`, and coherence for Noetherian `X` |
+| §5 (Definition 5.3, Lemmas 5.5–5.9, Proposition 5.8) | proved over algebraic spaces, nothing assumed |
 
 **GL26**
 
@@ -37,7 +37,7 @@ unproven parts except the Stacks Project as formalized by AxiomMath.
 | Lemmas 7.12, 7.13, 7.17 | proved for algebraic spaces, nothing assumed |
 | Lemmas 2.10, 2.11, 2.14, 2.15, 2.18, 2.22; 2.16 (1); 3.2 for a given factorization | proved over algebraic spaces from AxiomMath inputs (`SpacesVerified` in progress) |
 | Lemmas 7.2, 7.4, 7.6, 7.9, 7.11, Lemma-Definition 7.10, Lemmas 10.2, B.2, B.4, B.5, B.7, B.10, C.1 | proved, over abstract data or in `Cat` |
-| Lemmas A.4, A.6, A.9 (generation; preferred class for the whole space), 6.11 | proved over algebraic spaces, nothing assumed; Lemma A.9's preferred class for every support from AxiomMath inputs (`SpacesVerified` in progress) |
+| Lemmas A.4, A.6, A.9 (generation; preferred class for every support), 6.11 | proved over algebraic spaces, nothing assumed |
 | Lemma 10.1 | proved over algebraic spaces from one flat-base-change hypothesis (open) |
 | Lemmas 2.25, 2.26, 5.4, A.4 (affine case) | conditional on named inputs: not counted as proved; being redone over algebraic spaces |
 | Theorems 1.2, 1.3, 1.6, 1.7 and the rest | open; being stated over algebraic spaces |
@@ -65,10 +65,11 @@ result is removed.  Ledger:
 
 ## Next
 
-1. **Finish LP26**: every result is proved over algebraic spaces; what remains is proving
-   the wave 9 AxiomMath inputs in `SpacesVerified` (running).
-2. **GL26 over algebraic spaces**, in dependency order: the rest of §2 (Lemmas 2.16 (2),
-   2.21, 2.23–2.26) and §5 (wave 11), then §6, §§9–10, §12, §11.
+**LP26 is complete**: every numbered result is proved over algebraic spaces with nothing
+assumed beyond AxiomMath/Stacks (28 November 2026).
+
+**GL26 over algebraic spaces**, in dependency order: the rest of §2 (Lemmas 2.16 (2), 2.21,
+2.23, 2.24) and §5 (wave 11), §§3–4 (wave 12), then §6, §§9–10, §12, §11.
 
 ## Checking
 

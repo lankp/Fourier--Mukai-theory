@@ -6,7 +6,7 @@ processes, and that a successor needs, is listed here (CLAUDE.md, "Handoff").  P
 are never committed; they are passed to the successor by session message.  The manuscripts are
 in the repository (`manuscripts/`).
 
-Last updated: 28 November 2026, 10:30 UTC (wave 11: quasi-perfect, kernels merged; box-generation, pullback-hom running; kernels archive pending approval; wave 9/10 verified running; wave 12 prepared).
+Last updated: 28 November 2026, 12:35 UTC (wave 9 closed, LP26 complete; pending: archive wave9/verified and wave11/gl26-kernels, `--verified` baseline update for 48 additions; wave 10 verified and wave 11 running).
 
 ## Running in the background
 

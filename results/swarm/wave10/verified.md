@@ -3,7 +3,7 @@
 Goal: the `SpacesVerified` forms of wave 10's results, with every tagged-input hypothesis
 discharged by its AxiomMath theorem (as `SpacesVerified/LP26Inputs.lean` does), and the parts
 that need AxiomMath theorem modules outside the `Spaces` closure.  Same build regime as
-`results/swarm/wave9/verified.md` (full `lake build SpacesVerified`, 16 GB swap,
+`results/swarm/archive/wave9/verified.md` (full `lake build SpacesVerified`, 16 GB swap,
 `vm.max_map_count`, foreground waits, restart after a container restart).
 
 Notes from the merges:

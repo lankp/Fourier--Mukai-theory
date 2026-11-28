@@ -232,7 +232,7 @@ bridge and the preferred class first, then §5, then Corollary 1.2.
 
 The manuscripts are in `manuscripts/` (27 November 2026), so manuscript tasks need not run locally.
 
-## Wave 9 (briefs in `results/swarm/wave9/`): finish LP26
+## Wave 9 (briefs in `results/swarm/archive/wave9/`): finish LP26
 
 Launched 27 November 2026, 18:53 UTC, after wave 8 closed and its workers were archived.
 
@@ -241,13 +241,13 @@ Launched 27 November 2026, 18:53 UTC, after wave 8 closed and its workers were a
 | `wave9/lp26-standard-wa` (cloud, `session_0111iGd6PAyq17qjDSXGxPci`; merged, archived) | Opus, high | done: standard W.A. of LP26 Prop 5.8 and Cor 1.2 over spaces (`Spaces/LP26/StandardWA.lean`), no new input; verified: `lake build Spaces`, default build, audit 283 clean, both statement checks, non-vacuity (empty space, `Spec ℤ`).  `SpacesVerified` form at the end of the wave |
 | `wave9/supported-0gfi` (cloud, `session_0111iGd5ogawHqMD6voe1Nm1`; merged, archived) | Opus, high | done: supported Stacks 0GFI (`Spaces/Supported/Detecting.lean`), GL26 Lemma A.9's preferred class for every support; 19 new tagged inputs, 18 definition modules added to the import list; verified: `lake build Spaces`, default build, audit 316 clean, both statement checks, non-vacuity (affine `h_{T₀}`).  Inputs discharged by `wave9/verified` |
 | `wave9/lp26-noetherian-coherence` (cloud, `session_0111iGd6biYZJqTjkNaeCB5z`; merged `81a5ca9`, archived) | Opus, high | done: Cor 1.2's coherence clause for Noetherian `X` (`Spaces/LP26/Coherence.lean`; CHNS Ex. 10.1.2 proved here), and the preferred-class step of Lemma 5.9; 2 new tagged inputs; verified: `lake build Spaces`, default build, audit 327 clean, both statement checks, non-vacuity (`Spec ℤ`) |
-| `wave9/verified` (cloud, `session_0111iGd73ttBiGqdq2N5NwFj`, launched 21:50 UTC after the first two merged) | Opus, high | the `SpacesVerified` forms of wave 9's results, new inputs discharged, `LocallySmall.{u}`; full AxiomMath build |
+| `wave9/verified` (cloud, `session_0111iGd73ttBiGqdq2N5NwFj`; merged `806e155`; archive pending approval) | Opus, high | the `SpacesVerified` forms of wave 9's results, new inputs discharged, `LocallySmall.{u}`; full AxiomMath build |
 
 The first Sonnet trial (model rule) is the next mechanical task, not a proof task.
 
 After wave 9, LP26 is complete up to the discharge of its AxiomMath inputs; GL26 follows.
 
-**Still running**: `wave9/verified` (`session_0111iGd73ttBiGqdq2N5NwFj`), told on 28 November, 00:52 UTC, to discharge the coherence task's inputs too.  Wave 9 closes when it is merged and archived.
+**Closed** 28 November 2026, 12:30 UTC: `wave9/verified` merged (`806e155`): all wave 9 inputs discharged, LP26 complete.  Pending: archive its session (approval), and the `--verified` baseline update for its 48 new pins (additions only; `--update` needs the full build, so it is to be run by a worker with the build, at the orchestrator's request).
 
 ## Wave 10: GL26 §2–3 over algebraic spaces (all tasks merged and archived; `wave10/verified` running)
 
